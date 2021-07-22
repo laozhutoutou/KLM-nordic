@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMGroupTransferListViewController" customModule="KLM" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="i9N-x6-Scj" id="22Y-nx-hzT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeX-Hb-E4T">
+                    <rect key="frame" x="191.5" y="734" width="31" height="30"/>
+                    <state key="normal" title="完成"/>
+                    <connections>
+                        <action selector="finishClick:" destination="-1" eventType="touchUpInside" id="hsL-OF-XfA"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="i9N-x6-Scj">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="suk-Td-Iss"/>
+                        <outlet property="delegate" destination="-1" id="8mM-9O-0zK"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="AeX-Hb-E4T" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Emk-Sf-73m"/>
+                <constraint firstItem="i9N-x6-Scj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T7v-BN-ay0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AeX-Hb-E4T" secondAttribute="bottom" constant="10" id="XTS-KH-SSr"/>
+                <constraint firstItem="i9N-x6-Scj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="iPD-OK-zQ0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="i9N-x6-Scj" secondAttribute="trailing" id="jQR-Hs-sV5"/>
+                <constraint firstItem="AeX-Hb-E4T" firstAttribute="top" secondItem="i9N-x6-Scj" secondAttribute="bottom" id="oVr-ly-4ak"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="-372" y="149"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

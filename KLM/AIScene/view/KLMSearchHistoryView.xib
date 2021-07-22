@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KLMSearchHistoryView" customModule="KLM" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="436" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="历史记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9M-KE-lP3">
+                    <rect key="frame" x="15" y="25" width="70" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iic-cr-Xuc">
+                    <rect key="frame" x="390" y="20.5" width="31" height="30"/>
+                    <state key="normal" title="删除"/>
+                    <connections>
+                        <action selector="deleteClick:" destination="iN0-l3-epB" eventType="touchUpInside" id="STa-dp-kqP"/>
+                    </connections>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="pNR-FV-pxV">
+                    <rect key="frame" x="15" y="81.5" width="406" height="198.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MFh-XD-f9Q">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="8eR-g1-nYQ"/>
+                        <outlet property="delegate" destination="-1" id="F8h-Tn-rJg"/>
+                    </connections>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UE0-XN-vS4">
+                    <rect key="frame" x="15" y="60.5" width="406" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="R2j-k1-TJE"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="pNR-FV-pxV" firstAttribute="top" secondItem="UE0-XN-vS4" secondAttribute="bottom" constant="20" id="27i-cy-z28"/>
+                <constraint firstAttribute="trailing" secondItem="iic-cr-Xuc" secondAttribute="trailing" constant="15" id="BSg-y4-1yA"/>
+                <constraint firstItem="g9M-KE-lP3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="FnL-hP-cdt"/>
+                <constraint firstAttribute="bottom" secondItem="pNR-FV-pxV" secondAttribute="bottom" constant="20" id="Gqe-8J-CC3"/>
+                <constraint firstItem="iic-cr-Xuc" firstAttribute="centerY" secondItem="g9M-KE-lP3" secondAttribute="centerY" id="OGv-5i-YA5"/>
+                <constraint firstItem="pNR-FV-pxV" firstAttribute="trailing" secondItem="UE0-XN-vS4" secondAttribute="trailing" id="WwK-oR-igI"/>
+                <constraint firstItem="UE0-XN-vS4" firstAttribute="top" secondItem="iic-cr-Xuc" secondAttribute="bottom" constant="10" id="Z5S-ez-30F"/>
+                <constraint firstItem="UE0-XN-vS4" firstAttribute="leading" secondItem="g9M-KE-lP3" secondAttribute="leading" id="bX0-PS-ago"/>
+                <constraint firstItem="pNR-FV-pxV" firstAttribute="leading" secondItem="UE0-XN-vS4" secondAttribute="leading" id="gsN-wj-ePN"/>
+                <constraint firstItem="UE0-XN-vS4" firstAttribute="trailing" secondItem="iic-cr-Xuc" secondAttribute="trailing" id="hxs-rA-DED"/>
+                <constraint firstItem="g9M-KE-lP3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="t0z-kG-y3q"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="collectionView" destination="pNR-FV-pxV" id="a1d-s4-JQ3"/>
+            </connections>
+            <point key="canvasLocation" x="-830" y="108"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

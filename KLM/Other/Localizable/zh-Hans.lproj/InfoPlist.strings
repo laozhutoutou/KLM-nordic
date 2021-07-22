@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  KLM
+
+  Created by 朱雨 on 2021/6/2.
+  
+*/
+
+CFBundleDisplayName = "nordic";
+//NSBluetoothAlwaysUsageDescription = "为了更好的使用，建议打开使用蓝牙的权限。";

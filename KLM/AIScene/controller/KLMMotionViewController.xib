@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMMotionViewController" customModule="KLM" customModuleProvider="target">
+            <connections>
+                <outlet property="lightBgView" destination="XGc-Cn-GtW" id="F4i-HZ-vWD"/>
+                <outlet property="timeBgView" destination="YSz-HW-abv" id="hym-WQ-VyK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSz-HW-abv">
+                    <rect key="frame" x="20" y="71" width="374" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="vdc-CW-6Lp"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="人走后多久进入闲置状态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fna-eH-1XN">
+                    <rect key="frame" x="15" y="40" width="191" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XGc-Cn-GtW">
+                    <rect key="frame" x="20" y="222" width="374" height="60"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Ayz-hr-wV3"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="闲置（感应不到人）时亮度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgL-8J-WoR">
+                    <rect key="frame" x="15" y="191" width="208" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="QgL-8J-WoR" firstAttribute="leading" secondItem="fna-eH-1XN" secondAttribute="leading" id="Dre-TO-bBf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YSz-HW-abv" secondAttribute="trailing" constant="20" id="K82-5O-37I"/>
+                <constraint firstItem="QgL-8J-WoR" firstAttribute="top" secondItem="YSz-HW-abv" secondAttribute="bottom" constant="60" id="MRg-Oa-j1z"/>
+                <constraint firstItem="fna-eH-1XN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="MhB-uU-dvC"/>
+                <constraint firstItem="fna-eH-1XN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="OS3-Y0-1Tk"/>
+                <constraint firstItem="XGc-Cn-GtW" firstAttribute="top" secondItem="QgL-8J-WoR" secondAttribute="bottom" constant="10" id="Uml-Rw-ySQ"/>
+                <constraint firstItem="YSz-HW-abv" firstAttribute="top" secondItem="fna-eH-1XN" secondAttribute="bottom" constant="10" id="p1X-A3-ma6"/>
+                <constraint firstItem="XGc-Cn-GtW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="thp-Jy-eJC"/>
+                <constraint firstItem="YSz-HW-abv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="vv4-5Q-zPE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XGc-Cn-GtW" secondAttribute="trailing" constant="20" id="zLI-aR-c0P"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="-822" y="-127"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

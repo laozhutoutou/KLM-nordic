@@ -3,18 +3,149 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA7A52DC48E0A18749BF07C5 /* Pods_KLM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E4000F78A37057450C74406 /* Pods_KLM.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		E4377E3926845DBA00F8DF0C /* KLMRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377E3826845DBA00F8DF0C /* KLMRefreshHeader.swift */; };
+		E4377E432685AB7600F8DF0C /* KLMUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */; };
+		E4377E492685B99500F8DF0C /* NSData+CRC16.m in Sources */ = {isa = PBXBuildFile; fileRef = E4377E482685B99400F8DF0C /* NSData+CRC16.m */; };
+		E4531020268D569B00E6F1FB /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E453101F268D569B00E6F1FB /* Project.bin */; };
+		E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C512695558C00100312 /* KLMPhotoManager.swift */; };
+		E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C53269559F300100312 /* KLMImagePickerController.swift */; };
+		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
+		E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48AF165268EEDCB00140F1F /* KLMSlider.swift */; };
+		E48B526426672B420006CDA7 /* head.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B526326672B420006CDA7 /* head.swift */; };
+		E48B5291266765540006CDA7 /* KLMApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B5290266765540006CDA7 /* KLMApplicationManager.swift */; };
+		E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B529526676A0C0006CDA7 /* KLMTabBarController.swift */; };
+		E48B529C26676D490006CDA7 /* KLMAISceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B529A26676D490006CDA7 /* KLMAISceneViewController.swift */; };
+		E48B52A326676D8F0006CDA7 /* KLMGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B52A126676D8F0006CDA7 /* KLMGroupViewController.swift */; };
+		E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */; };
+		E48B52AA26676DED0006CDA7 /* KLMSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B52A826676DED0006CDA7 /* KLMSettingViewController.swift */; };
+		E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A926676DED0006CDA7 /* KLMSettingViewController.xib */; };
+		E48B52BA26677EB60006CDA7 /* KLMNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B52B926677EB60006CDA7 /* KLMNavigationViewController.swift */; };
+		E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E48B52C5266783D80006CDA7 /* InfoPlist.strings */; };
+		E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E48B52D4266784B10006CDA7 /* Localizable.strings */; };
+		E48B52EF2667886B0006CDA7 /* KLMDeviceEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B52ED2667886B0006CDA7 /* KLMDeviceEditViewController.swift */; };
+		E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */; };
+		E48B530A266875980006CDA7 /* UIImage+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B5309266875980006CDA7 /* UIImage+TL.m */; };
+		E48B53262668785B0006CDA7 /* KLMPhotoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B53242668785B0006CDA7 /* KLMPhotoEditViewController.swift */; };
+		E48B53272668785B0006CDA7 /* KLMPhotoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B53252668785B0006CDA7 /* KLMPhotoEditViewController.xib */; };
+		E48B532D266881DC0006CDA7 /* extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B532C266881DC0006CDA7 /* extension.swift */; };
+		E48B533D2668A47B0006CDA7 /* UIBarButtonItem+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B533C2668A47B0006CDA7 /* UIBarButtonItem+TL.m */; };
+		E48B53F12669FB330006CDA7 /* KLMNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B53F02669FB330006CDA7 /* KLMNetworking.swift */; };
+		E48E608D2692A02A00E630ED /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E48E608B2692A02A00E630ED /* recipe.c */; };
+		E48E60902692F6E800E630ED /* KLMMotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */; };
+		E48E60912692F6E800E630ED /* KLMMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48E608F2692F6E800E630ED /* KLMMotionViewController.xib */; };
+		E492AD29267C83C50028AF3E /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD1B267C83C50028AF3E /* NSString+PinYin4Cocoa.m */; };
+		E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */; };
+		E492AD2B267C83C50028AF3E /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD21267C83C50028AF3E /* PinyinHelper.m */; };
+		E492AD2C267C83C50028AF3E /* ChineseInclude.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD23267C83C50028AF3E /* ChineseInclude.m */; };
+		E492AD2D267C83C50028AF3E /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD24267C83C50028AF3E /* HanyuPinyinOutputFormat.m */; };
+		E492AD2E267C83C50028AF3E /* ZYPinYinSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD25267C83C50028AF3E /* ZYPinYinSearch.m */; };
+		E492AD2F267C83C50028AF3E /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD26267C83C50028AF3E /* ChineseToPinyinResource.m */; };
+		E492AD30267C83C60028AF3E /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD27267C83C50028AF3E /* PinyinFormatter.m */; };
+		E492AD31267C83C60028AF3E /* PinYinForObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD28267C83C50028AF3E /* PinYinForObjc.m */; };
+		E495D0DE2678428400AA50B9 /* KLMOneSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */; };
+		E495D0DF2678428400AA50B9 /* KLMOneSwitchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D0DD2678428400AA50B9 /* KLMOneSwitchCell.xib */; };
+		E495D10E2678521000AA50B9 /* KLMGroupEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */; };
+		E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */; };
+		E495D11C2678586900AA50B9 /* KLMGroupSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D11A2678586900AA50B9 /* KLMGroupSelectCell.swift */; };
+		E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */; };
+		E495D1232678833300AA50B9 /* KLMGroupDeviceEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D1212678833300AA50B9 /* KLMGroupDeviceEditViewController.swift */; };
+		E495D1242678833300AA50B9 /* KLMGroupDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D1222678833300AA50B9 /* KLMGroupDeviceEditViewController.xib */; };
+		E495D12A2678892600AA50B9 /* KLMGroupTransferListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D1282678892600AA50B9 /* KLMGroupTransferListViewController.swift */; };
+		E495D12B2678892600AA50B9 /* KLMGroupTransferListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D1292678892600AA50B9 /* KLMGroupTransferListViewController.xib */; };
+		E495D13126788B2700AA50B9 /* KLMSettingSwichCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D12F26788B2700AA50B9 /* KLMSettingSwichCell.swift */; };
+		E495D13226788B2700AA50B9 /* KLMSettingSwichCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D13026788B2700AA50B9 /* KLMSettingSwichCell.xib */; };
+		E495D1612678B89300AA50B9 /* DAConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = E495D15F2678B89300AA50B9 /* DAConfig.m */; };
+		E495D1622678B89300AA50B9 /* NSBundle+DAUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = E495D1602678B89300AA50B9 /* NSBundle+DAUtils.m */; };
+		E495D1742679DA9000AA50B9 /* KLMRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D1722679DA9000AA50B9 /* KLMRegisterViewController.swift */; };
+		E495D1752679DA9000AA50B9 /* KLMRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D1732679DA9000AA50B9 /* KLMRegisterViewController.xib */; };
+		E495D1B3267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D1B1267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift */; };
+		E495D1B4267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D1B2267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.xib */; };
 		E498A78226671BEC00C78D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A78126671BEC00C78D50 /* AppDelegate.swift */; };
-		E498A78426671BEC00C78D50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A78326671BEC00C78D50 /* SceneDelegate.swift */; };
-		E498A78626671BEC00C78D50 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A78526671BEC00C78D50 /* ViewController.swift */; };
 		E498A78926671BEC00C78D50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78726671BEC00C78D50 /* Main.storyboard */; };
 		E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E498A78A26671BED00C78D50 /* Assets.xcassets */; };
 		E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E498A79926671BED00C78D50 /* KLMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A79826671BED00C78D50 /* KLMTests.swift */; };
 		E498A7A426671BED00C78D50 /* KLMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A7A326671BED00C78D50 /* KLMUITests.swift */; };
+		E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */; };
+		E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */; };
+		E4A65F34266F0DAA00FE6866 /* KLMReNameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F32266F0DAA00FE6866 /* KLMReNameListViewController.swift */; };
+		E4A65F35266F0DAA00FE6866 /* KLMReNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F33266F0DAA00FE6866 /* KLMReNameListViewController.xib */; };
+		E4A65F3E266F459200FE6866 /* KLMAINameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */; };
+		E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */; };
+		E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */; };
+		E4A65F49266F5A1F00FE6866 /* KLMSearchHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F48266F5A1F00FE6866 /* KLMSearchHistoryView.swift */; };
+		E4A65F56266F5A4500FE6866 /* KLMSearchHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F55266F5A4500FE6866 /* KLMSearchHistoryView.xib */; };
+		E4A65F5C266F7F9000FE6866 /* CMSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F5A266F7F9000FE6866 /* CMSearchBar.m */; };
+		E4A65F96267094B500FE6866 /* t_s.bmp in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F95267094B500FE6866 /* t_s.bmp */; };
+		E4A65F9C2670A3B500FE6866 /* KLMCustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F9A2670A3B500FE6866 /* KLMCustomViewController.swift */; };
+		E4A65F9D2670A3B500FE6866 /* KLMCustomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F9B2670A3B500FE6866 /* KLMCustomViewController.xib */; };
+		E4A65FCA2670B06400FE6866 /* RSColorFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FA22670B06300FE6866 /* RSColorFunctions.m */; };
+		E4A65FCB2670B06400FE6866 /* RSGenerateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FA32670B06300FE6866 /* RSGenerateOperation.m */; };
+		E4A65FCC2670B06400FE6866 /* RSColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FA42670B06300FE6866 /* RSColorPickerView.m */; };
+		E4A65FCD2670B06400FE6866 /* UIImage+ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FA72670B06300FE6866 /* UIImage+ANImageBitmapRep.m */; };
+		E4A65FCE2670B06400FE6866 /* NSImage+ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FAB2670B06300FE6866 /* NSImage+ANImageBitmapRep.m */; };
+		E4A65FCF2670B06400FE6866 /* OSCommonImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FAC2670B06300FE6866 /* OSCommonImage.m */; };
+		E4A65FD02670B06400FE6866 /* BitmapDrawManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FAE2670B06300FE6866 /* BitmapDrawManipulator.m */; };
+		E4A65FD12670B06400FE6866 /* BitmapCropManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FB22670B06300FE6866 /* BitmapCropManipulator.m */; };
+		E4A65FD22670B06400FE6866 /* BitmapRotationManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FB32670B06300FE6866 /* BitmapRotationManipulator.m */; };
+		E4A65FD32670B06400FE6866 /* BitmapScaleManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FB52670B06300FE6866 /* BitmapScaleManipulator.m */; };
+		E4A65FD42670B06400FE6866 /* BitmapContextManipulator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FB62670B06300FE6866 /* BitmapContextManipulator.m */; };
+		E4A65FD52670B06400FE6866 /* CGImageContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FBA2670B06300FE6866 /* CGImageContainer.m */; };
+		E4A65FD62670B06400FE6866 /* CGContextCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FBD2670B06300FE6866 /* CGContextCreator.m */; };
+		E4A65FD72670B06400FE6866 /* BitmapContextRep.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FBE2670B06300FE6866 /* BitmapContextRep.m */; };
+		E4A65FD82670B06400FE6866 /* ANImageBitmapRep.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FBF2670B06300FE6866 /* ANImageBitmapRep.m */; };
+		E4A65FD92670B06400FE6866 /* RSColorPickerState.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FC22670B06300FE6866 /* RSColorPickerState.m */; };
+		E4A65FDA2670B06400FE6866 /* BGRSLoupeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FC32670B06300FE6866 /* BGRSLoupeLayer.m */; };
+		E4A65FDB2670B06400FE6866 /* RSSelectionLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FC92670B06300FE6866 /* RSSelectionLayer.m */; };
+		E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6604F2671F6CC00FE6866 /* KLMAddDeviceViewController.swift */; };
+		E4A660522671F6CC00FE6866 /* KLMAddDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A660502671F6CC00FE6866 /* KLMAddDeviceViewController.xib */; };
+		E4A660572672089000FE6866 /* KLMHomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A660562672089000FE6866 /* KLMHomeManager.swift */; };
+		E4A6605C26720EFD00FE6866 /* KLMDeviceSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6605B26720EFD00FE6866 /* KLMDeviceSearchView.swift */; };
+		E4A660612672118C00FE6866 /* KLMDeviceSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A660602672118C00FE6866 /* KLMDeviceSearchView.xib */; };
+		E4A660662672145300FE6866 /* KLMRippleAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A660652672145300FE6866 /* KLMRippleAnimationView.swift */; };
+		E4A6606B2672FFAB00FE6866 /* protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6606A2672FFAB00FE6866 /* protocol.swift */; };
+		E4A6607726733C9500FE6866 /* CMDeviceNamePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6607526733C9500FE6866 /* CMDeviceNamePopViewController.swift */; };
+		E4A6607826733C9500FE6866 /* CMDeviceNamePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6607626733C9500FE6866 /* CMDeviceNamePopViewController.xib */; };
+		E4A6607E2673486400FE6866 /* KLMDeviceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6607C2673486400FE6866 /* KLMDeviceAddCell.swift */; };
+		E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6607D2673486400FE6866 /* KLMDeviceAddCell.xib */; };
+		E4A6608C267360A200FE6866 /* KLMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */; };
+		E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */; };
+		E4A66096267361E900FE6866 /* KLMGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A66094267361E900FE6866 /* KLMGroupCell.swift */; };
+		E4A66097267361E900FE6866 /* KLMGroupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A66095267361E900FE6866 /* KLMGroupCell.xib */; };
+		E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */; };
+		E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */; };
+		E4AEC978266E18CD00E77178 /* CMLanguageSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC976266E18CD00E77178 /* CMLanguageSettingViewController.swift */; };
+		E4AEC98E266E204B00E77178 /* CMLanguageSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC990266E204B00E77178 /* CMLanguageSettingViewController.xib */; };
+		E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */; };
+		E4AEC99E266E239500E77178 /* KLMAPPUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC99C266E239500E77178 /* KLMAPPUpdateViewController.xib */; };
+		E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */; };
+		E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */; };
+		E4DF02C726A57F3300FE7AE5 /* KLMConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C626A57F3300FE7AE5 /* KLMConnectionManager.swift */; };
+		E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */; };
+		E4E2842E269ED132006C120E /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2842D269ED132006C120E /* NetworkConnection.swift */; };
+		E4E28430269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2842F269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift */; };
+		E4E28432269EFF02006C120E /* SceneServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28431269EFF02006C120E /* SceneServerDelegate.swift */; };
+		E4E28434269EFF0F006C120E /* SceneSetupServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28433269EFF0F006C120E /* SceneSetupServerDelegate.swift */; };
+		E4E28436269EFF20006C120E /* SensorClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28435269EFF20006C120E /* SensorClientDelegate.swift */; };
+		E4E28438269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28437269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift */; };
+		E4E2843A269EFF39006C120E /* GenericOnOffServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28439269EFF39006C120E /* GenericOnOffServerDelegate.swift */; };
+		E4E2843C269EFF45006C120E /* GenericLevelServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2843B269EFF45006C120E /* GenericLevelServerDelegate.swift */; };
+		E4E2843E269EFF6A006C120E /* GenericOnOffClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2843D269EFF6A006C120E /* GenericOnOffClientDelegate.swift */; };
+		E4E28440269EFF75006C120E /* GenericLevelClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2843F269EFF75006C120E /* GenericLevelClientDelegate.swift */; };
+		E4E28442269EFF82006C120E /* SimpleOnOffClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28441269EFF82006C120E /* SimpleOnOffClientDelegate.swift */; };
+		E4E28444269EFFC8006C120E /* ModelIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28443269EFFC8006C120E /* ModelIdentifiers.swift */; };
+		E4E28446269EFFFC006C120E /* GenericState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28445269EFFFC006C120E /* GenericState.swift */; };
+		E4E28448269F0052006C120E /* Address+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28447269F0052006C120E /* Address+String.swift */; };
+		E4E2844A269F006B006C120E /* SimpleOnOffSetUnacknowledged.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28449269F006A006C120E /* SimpleOnOffSetUnacknowledged.swift */; };
+		E4E2844C269F008F006C120E /* SimpleOnOffStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2844B269F008F006C120E /* SimpleOnOffStatus.swift */; };
+		E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */; };
+		E4E2845A26A1291A006C120E /* KLMSIGMeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */; };
+		E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845B26A278B9006C120E /* KLMMessageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +166,87 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E4000F78A37057450C74406 /* Pods_KLM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8135F1AEA6A8CC51176CB660 /* Pods-KLM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM.debug.xcconfig"; path = "Target Support Files/Pods-KLM/Pods-KLM.debug.xcconfig"; sourceTree = "<group>"; };
+		E4377E3826845DBA00F8DF0C /* KLMRefreshHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRefreshHeader.swift; sourceTree = "<group>"; };
+		E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUpdateManager.swift; sourceTree = "<group>"; };
+		E4377E472685B99400F8DF0C /* NSData+CRC16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC16.h"; sourceTree = "<group>"; };
+		E4377E482685B99400F8DF0C /* NSData+CRC16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC16.m"; sourceTree = "<group>"; };
+		E453101F268D569B00E6F1FB /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
+		E4762C512695558C00100312 /* KLMPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoManager.swift; sourceTree = "<group>"; };
+		E4762C53269559F300100312 /* KLMImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImagePickerController.swift; sourceTree = "<group>"; };
+		E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SFImageTitleSpacing.m"; sourceTree = "<group>"; };
+		E4762C5626957AE100100312 /* UIButton+SFImageTitleSpacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SFImageTitleSpacing.h"; sourceTree = "<group>"; };
+		E48AF165268EEDCB00140F1F /* KLMSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSlider.swift; sourceTree = "<group>"; };
+		E48B523E2667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		E48B52422667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		E48B526326672B420006CDA7 /* head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = head.swift; sourceTree = "<group>"; };
+		E48B5290266765540006CDA7 /* KLMApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMApplicationManager.swift; sourceTree = "<group>"; };
+		E48B529526676A0C0006CDA7 /* KLMTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTabBarController.swift; sourceTree = "<group>"; };
+		E48B529A26676D490006CDA7 /* KLMAISceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAISceneViewController.swift; sourceTree = "<group>"; };
+		E48B52A126676D8F0006CDA7 /* KLMGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupViewController.swift; sourceTree = "<group>"; };
+		E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupViewController.xib; sourceTree = "<group>"; };
+		E48B52A826676DED0006CDA7 /* KLMSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSettingViewController.swift; sourceTree = "<group>"; };
+		E48B52A926676DED0006CDA7 /* KLMSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMSettingViewController.xib; sourceTree = "<group>"; };
+		E48B52B926677EB60006CDA7 /* KLMNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMNavigationViewController.swift; sourceTree = "<group>"; };
+		E48B52C4266783D80006CDA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E48B52C9266783DB0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		E48B52D3266784B10006CDA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E48B52D8266784B30006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E48B52ED2667886B0006CDA7 /* KLMDeviceEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceEditViewController.swift; sourceTree = "<group>"; };
+		E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceEditViewController.xib; sourceTree = "<group>"; };
+		E48B5308266875980006CDA7 /* UIImage+TL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TL.h"; sourceTree = "<group>"; };
+		E48B5309266875980006CDA7 /* UIImage+TL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TL.m"; sourceTree = "<group>"; };
+		E48B531A266875F60006CDA7 /* KLM-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KLM-Bridging-Header.h"; sourceTree = "<group>"; };
+		E48B53242668785B0006CDA7 /* KLMPhotoEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoEditViewController.swift; sourceTree = "<group>"; };
+		E48B53252668785B0006CDA7 /* KLMPhotoEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMPhotoEditViewController.xib; sourceTree = "<group>"; };
+		E48B532C266881DC0006CDA7 /* extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extension.swift; sourceTree = "<group>"; };
+		E48B533B2668A47B0006CDA7 /* UIBarButtonItem+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+TL.h"; sourceTree = "<group>"; };
+		E48B533C2668A47B0006CDA7 /* UIBarButtonItem+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+TL.m"; sourceTree = "<group>"; };
+		E48B53F02669FB330006CDA7 /* KLMNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMNetworking.swift; sourceTree = "<group>"; };
+		E48E608B2692A02A00E630ED /* recipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = recipe.c; sourceTree = "<group>"; };
+		E48E608C2692A02A00E630ED /* recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recipe.h; sourceTree = "<group>"; };
+		E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMotionViewController.swift; sourceTree = "<group>"; };
+		E48E608F2692F6E800E630ED /* KLMMotionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMMotionViewController.xib; sourceTree = "<group>"; };
+		E492AD18267C83C50028AF3E /* PinyinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinHelper.h; sourceTree = "<group>"; };
+		E492AD19267C83C50028AF3E /* HanyuPinyinOutputFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanyuPinyinOutputFormat.h; sourceTree = "<group>"; };
+		E492AD1A267C83C50028AF3E /* ChineseInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseInclude.h; sourceTree = "<group>"; };
+		E492AD1B267C83C50028AF3E /* NSString+PinYin4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin4Cocoa.m"; sourceTree = "<group>"; };
+		E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unicode_to_hanyu_pinyin.txt; sourceTree = "<group>"; };
+		E492AD1D267C83C50028AF3E /* ChineseToPinyinResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyinResource.h; sourceTree = "<group>"; };
+		E492AD1E267C83C50028AF3E /* ZYPinYinSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPinYinSearch.h; sourceTree = "<group>"; };
+		E492AD1F267C83C50028AF3E /* PinYinForObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinYinForObjc.h; sourceTree = "<group>"; };
+		E492AD20267C83C50028AF3E /* PinyinFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinFormatter.h; sourceTree = "<group>"; };
+		E492AD21267C83C50028AF3E /* PinyinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinHelper.m; sourceTree = "<group>"; };
+		E492AD22267C83C50028AF3E /* NSString+PinYin4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin4Cocoa.h"; sourceTree = "<group>"; };
+		E492AD23267C83C50028AF3E /* ChineseInclude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseInclude.m; sourceTree = "<group>"; };
+		E492AD24267C83C50028AF3E /* HanyuPinyinOutputFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HanyuPinyinOutputFormat.m; sourceTree = "<group>"; };
+		E492AD25267C83C50028AF3E /* ZYPinYinSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPinYinSearch.m; sourceTree = "<group>"; };
+		E492AD26267C83C50028AF3E /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyinResource.m; sourceTree = "<group>"; };
+		E492AD27267C83C50028AF3E /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinFormatter.m; sourceTree = "<group>"; };
+		E492AD28267C83C50028AF3E /* PinYinForObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinYinForObjc.m; sourceTree = "<group>"; };
+		E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMOneSwitchCell.swift; sourceTree = "<group>"; };
+		E495D0DD2678428400AA50B9 /* KLMOneSwitchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMOneSwitchCell.xib; sourceTree = "<group>"; };
+		E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupEditViewController.swift; sourceTree = "<group>"; };
+		E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupEditViewController.xib; sourceTree = "<group>"; };
+		E495D11A2678586900AA50B9 /* KLMGroupSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupSelectCell.swift; sourceTree = "<group>"; };
+		E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupSelectCell.xib; sourceTree = "<group>"; };
+		E495D1212678833300AA50B9 /* KLMGroupDeviceEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupDeviceEditViewController.swift; sourceTree = "<group>"; };
+		E495D1222678833300AA50B9 /* KLMGroupDeviceEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupDeviceEditViewController.xib; sourceTree = "<group>"; };
+		E495D1282678892600AA50B9 /* KLMGroupTransferListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupTransferListViewController.swift; sourceTree = "<group>"; };
+		E495D1292678892600AA50B9 /* KLMGroupTransferListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupTransferListViewController.xib; sourceTree = "<group>"; };
+		E495D12F26788B2700AA50B9 /* KLMSettingSwichCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSettingSwichCell.swift; sourceTree = "<group>"; };
+		E495D13026788B2700AA50B9 /* KLMSettingSwichCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMSettingSwichCell.xib; sourceTree = "<group>"; };
+		E495D15D2678B89200AA50B9 /* NSBundle+DAUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+DAUtils.h"; sourceTree = "<group>"; };
+		E495D15E2678B89200AA50B9 /* DAConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAConfig.h; sourceTree = "<group>"; };
+		E495D15F2678B89300AA50B9 /* DAConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAConfig.m; sourceTree = "<group>"; };
+		E495D1602678B89300AA50B9 /* NSBundle+DAUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+DAUtils.m"; sourceTree = "<group>"; };
+		E495D1722679DA9000AA50B9 /* KLMRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRegisterViewController.swift; sourceTree = "<group>"; };
+		E495D1732679DA9000AA50B9 /* KLMRegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMRegisterViewController.xib; sourceTree = "<group>"; };
+		E495D1B1267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupDeviceAddToViewController.swift; sourceTree = "<group>"; };
+		E495D1B2267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupDeviceAddToViewController.xib; sourceTree = "<group>"; };
 		E498A77E26671BEC00C78D50 /* KLM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KLM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E498A78126671BEC00C78D50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E498A78326671BEC00C78D50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E498A78526671BEC00C78D50 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E498A78826671BEC00C78D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E498A78A26671BED00C78D50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E498A78D26671BED00C78D50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +257,101 @@
 		E498A79F26671BED00C78D50 /* KLMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KLMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E498A7A326671BED00C78D50 /* KLMUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUITests.swift; sourceTree = "<group>"; };
 		E498A7A526671BED00C78D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUnNameListViewController.swift; sourceTree = "<group>"; };
+		E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUnNameListViewController.xib; sourceTree = "<group>"; };
+		E4A65F32266F0DAA00FE6866 /* KLMReNameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMReNameListViewController.swift; sourceTree = "<group>"; };
+		E4A65F33266F0DAA00FE6866 /* KLMReNameListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMReNameListViewController.xib; sourceTree = "<group>"; };
+		E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAINameListCell.swift; sourceTree = "<group>"; };
+		E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAINameListCell.xib; sourceTree = "<group>"; };
+		E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSearchViewController.swift; sourceTree = "<group>"; };
+		E4A65F48266F5A1F00FE6866 /* KLMSearchHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSearchHistoryView.swift; sourceTree = "<group>"; };
+		E4A65F55266F5A4500FE6866 /* KLMSearchHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMSearchHistoryView.xib; sourceTree = "<group>"; };
+		E4A65F5A266F7F9000FE6866 /* CMSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMSearchBar.m; sourceTree = "<group>"; };
+		E4A65F5B266F7F9000FE6866 /* CMSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSearchBar.h; sourceTree = "<group>"; };
+		E4A65F95267094B500FE6866 /* t_s.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = t_s.bmp; sourceTree = "<group>"; };
+		E4A65F9A2670A3B500FE6866 /* KLMCustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCustomViewController.swift; sourceTree = "<group>"; };
+		E4A65F9B2670A3B500FE6866 /* KLMCustomViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMCustomViewController.xib; sourceTree = "<group>"; };
+		E4A65FA22670B06300FE6866 /* RSColorFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorFunctions.m; sourceTree = "<group>"; };
+		E4A65FA32670B06300FE6866 /* RSGenerateOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSGenerateOperation.m; sourceTree = "<group>"; };
+		E4A65FA42670B06300FE6866 /* RSColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorPickerView.m; sourceTree = "<group>"; };
+		E4A65FA72670B06300FE6866 /* UIImage+ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ANImageBitmapRep.m"; sourceTree = "<group>"; };
+		E4A65FA82670B06300FE6866 /* OSCommonImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSCommonImage.h; sourceTree = "<group>"; };
+		E4A65FA92670B06300FE6866 /* NSImage+ANImageBitmapRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+ANImageBitmapRep.h"; sourceTree = "<group>"; };
+		E4A65FAA2670B06300FE6866 /* UIImage+ANImageBitmapRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ANImageBitmapRep.h"; sourceTree = "<group>"; };
+		E4A65FAB2670B06300FE6866 /* NSImage+ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+ANImageBitmapRep.m"; sourceTree = "<group>"; };
+		E4A65FAC2670B06300FE6866 /* OSCommonImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSCommonImage.m; sourceTree = "<group>"; };
+		E4A65FAE2670B06300FE6866 /* BitmapDrawManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapDrawManipulator.m; sourceTree = "<group>"; };
+		E4A65FAF2670B06300FE6866 /* BitmapRotationManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapRotationManipulator.h; sourceTree = "<group>"; };
+		E4A65FB02670B06300FE6866 /* BitmapContextManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapContextManipulator.h; sourceTree = "<group>"; };
+		E4A65FB12670B06300FE6866 /* BitmapScaleManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapScaleManipulator.h; sourceTree = "<group>"; };
+		E4A65FB22670B06300FE6866 /* BitmapCropManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapCropManipulator.m; sourceTree = "<group>"; };
+		E4A65FB32670B06300FE6866 /* BitmapRotationManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapRotationManipulator.m; sourceTree = "<group>"; };
+		E4A65FB42670B06300FE6866 /* BitmapDrawManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapDrawManipulator.h; sourceTree = "<group>"; };
+		E4A65FB52670B06300FE6866 /* BitmapScaleManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapScaleManipulator.m; sourceTree = "<group>"; };
+		E4A65FB62670B06300FE6866 /* BitmapContextManipulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapContextManipulator.m; sourceTree = "<group>"; };
+		E4A65FB72670B06300FE6866 /* BitmapCropManipulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapCropManipulator.h; sourceTree = "<group>"; };
+		E4A65FB82670B06300FE6866 /* ANImageBitmapRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANImageBitmapRep.h; sourceTree = "<group>"; };
+		E4A65FBA2670B06300FE6866 /* CGImageContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGImageContainer.m; sourceTree = "<group>"; };
+		E4A65FBB2670B06300FE6866 /* CGContextCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGContextCreator.h; sourceTree = "<group>"; };
+		E4A65FBC2670B06300FE6866 /* CGImageContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGImageContainer.h; sourceTree = "<group>"; };
+		E4A65FBD2670B06300FE6866 /* CGContextCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CGContextCreator.m; sourceTree = "<group>"; };
+		E4A65FBE2670B06300FE6866 /* BitmapContextRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitmapContextRep.m; sourceTree = "<group>"; };
+		E4A65FBF2670B06300FE6866 /* ANImageBitmapRep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANImageBitmapRep.m; sourceTree = "<group>"; };
+		E4A65FC02670B06300FE6866 /* BitmapContextRep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitmapContextRep.h; sourceTree = "<group>"; };
+		E4A65FC12670B06300FE6866 /* RSSelectionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSSelectionLayer.h; sourceTree = "<group>"; };
+		E4A65FC22670B06300FE6866 /* RSColorPickerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSColorPickerState.m; sourceTree = "<group>"; };
+		E4A65FC32670B06300FE6866 /* BGRSLoupeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGRSLoupeLayer.m; sourceTree = "<group>"; };
+		E4A65FC42670B06300FE6866 /* RSColorFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSColorFunctions.h; sourceTree = "<group>"; };
+		E4A65FC52670B06300FE6866 /* RSColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSColorPickerView.h; sourceTree = "<group>"; };
+		E4A65FC62670B06300FE6866 /* RSGenerateOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSGenerateOperation.h; sourceTree = "<group>"; };
+		E4A65FC72670B06300FE6866 /* RSColorPickerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSColorPickerState.h; sourceTree = "<group>"; };
+		E4A65FC82670B06300FE6866 /* BGRSLoupeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGRSLoupeLayer.h; sourceTree = "<group>"; };
+		E4A65FC92670B06300FE6866 /* RSSelectionLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSelectionLayer.m; sourceTree = "<group>"; };
+		E4A6604F2671F6CC00FE6866 /* KLMAddDeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAddDeviceViewController.swift; sourceTree = "<group>"; };
+		E4A660502671F6CC00FE6866 /* KLMAddDeviceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAddDeviceViewController.xib; sourceTree = "<group>"; };
+		E4A660562672089000FE6866 /* KLMHomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMHomeManager.swift; sourceTree = "<group>"; };
+		E4A6605B26720EFD00FE6866 /* KLMDeviceSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceSearchView.swift; sourceTree = "<group>"; };
+		E4A660602672118C00FE6866 /* KLMDeviceSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceSearchView.xib; sourceTree = "<group>"; };
+		E4A660652672145300FE6866 /* KLMRippleAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRippleAnimationView.swift; sourceTree = "<group>"; };
+		E4A6606A2672FFAB00FE6866 /* protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocol.swift; sourceTree = "<group>"; };
+		E4A6607526733C9500FE6866 /* CMDeviceNamePopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMDeviceNamePopViewController.swift; sourceTree = "<group>"; };
+		E4A6607626733C9500FE6866 /* CMDeviceNamePopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CMDeviceNamePopViewController.xib; sourceTree = "<group>"; };
+		E4A6607C2673486400FE6866 /* KLMDeviceAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceAddCell.swift; sourceTree = "<group>"; };
+		E4A6607D2673486400FE6866 /* KLMDeviceAddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddCell.xib; sourceTree = "<group>"; };
+		E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBaseTableViewCell.swift; sourceTree = "<group>"; };
+		E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBaseTableViewCell.xib; sourceTree = "<group>"; };
+		E4A66094267361E900FE6866 /* KLMGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupCell.swift; sourceTree = "<group>"; };
+		E4A66095267361E900FE6866 /* KLMGroupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupCell.xib; sourceTree = "<group>"; };
+		E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTableViewCell.swift; sourceTree = "<group>"; };
+		E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTableViewCell.xib; sourceTree = "<group>"; };
+		E4AEC976266E18CD00E77178 /* CMLanguageSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CMLanguageSettingViewController.swift; sourceTree = "<group>"; };
+		E4AEC98F266E204B00E77178 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CMLanguageSettingViewController.xib; sourceTree = "<group>"; };
+		E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAPPUpdateViewController.swift; sourceTree = "<group>"; };
+		E4AEC99C266E239500E77178 /* KLMAPPUpdateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAPPUpdateViewController.xib; sourceTree = "<group>"; };
+		E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartNode.swift; sourceTree = "<group>"; };
+		E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMProvisionManager.swift; sourceTree = "<group>"; };
+		E4DF02C626A57F3300FE7AE5 /* KLMConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMConnectionManager.swift; sourceTree = "<group>"; };
+		E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartGroup.swift; sourceTree = "<group>"; };
+		E4E2842D269ED132006C120E /* NetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
+		E4E2842F269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDefaultTransitionTimeServerDelegate.swift; sourceTree = "<group>"; };
+		E4E28431269EFF02006C120E /* SceneServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneServerDelegate.swift; sourceTree = "<group>"; };
+		E4E28433269EFF0F006C120E /* SceneSetupServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneSetupServerDelegate.swift; sourceTree = "<group>"; };
+		E4E28435269EFF20006C120E /* SensorClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorClientDelegate.swift; sourceTree = "<group>"; };
+		E4E28437269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDefaultTransitionTimeClientDelegate.swift; sourceTree = "<group>"; };
+		E4E28439269EFF39006C120E /* GenericOnOffServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericOnOffServerDelegate.swift; sourceTree = "<group>"; };
+		E4E2843B269EFF45006C120E /* GenericLevelServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelServerDelegate.swift; sourceTree = "<group>"; };
+		E4E2843D269EFF6A006C120E /* GenericOnOffClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericOnOffClientDelegate.swift; sourceTree = "<group>"; };
+		E4E2843F269EFF75006C120E /* GenericLevelClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericLevelClientDelegate.swift; sourceTree = "<group>"; };
+		E4E28441269EFF82006C120E /* SimpleOnOffClientDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffClientDelegate.swift; sourceTree = "<group>"; };
+		E4E28443269EFFC8006C120E /* ModelIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelIdentifiers.swift; sourceTree = "<group>"; };
+		E4E28445269EFFFC006C120E /* GenericState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericState.swift; sourceTree = "<group>"; };
+		E4E28447269F0052006C120E /* Address+String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Address+String.swift"; sourceTree = "<group>"; };
+		E4E28449269F006A006C120E /* SimpleOnOffSetUnacknowledged.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffSetUnacknowledged.swift; sourceTree = "<group>"; };
+		E4E2844B269F008F006C120E /* SimpleOnOffStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffStatus.swift; sourceTree = "<group>"; };
+		E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffGet.swift; sourceTree = "<group>"; };
+		E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSIGMeshManager.swift; sourceTree = "<group>"; };
+		E4E2845B26A278B9006C120E /* KLMMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMessageManager.swift; sourceTree = "<group>"; };
+		E994C47995EC4F69AFB29309 /* Pods-KLM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM.release.xcconfig"; path = "Target Support Files/Pods-KLM/Pods-KLM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +359,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA7A52DC48E0A18749BF07C5 /* Pods_KLM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +380,369 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23B81114169577037CD98C4D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E4000F78A37057450C74406 /* Pods_KLM.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7A2EC24076DB8E98370532E2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8135F1AEA6A8CC51176CB660 /* Pods-KLM.debug.xcconfig */,
+				E994C47995EC4F69AFB29309 /* Pods-KLM.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E48B524A26672A0C0006CDA7 /* AIScene */ = {
+			isa = PBXGroup;
+			children = (
+				E48B524B26672A0C0006CDA7 /* controller */,
+				E48B524C26672A0C0006CDA7 /* model */,
+				E48B524D26672A0C0006CDA7 /* view */,
+			);
+			path = AIScene;
+			sourceTree = "<group>";
+		};
+		E48B524B26672A0C0006CDA7 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E48B529A26676D490006CDA7 /* KLMAISceneViewController.swift */,
+				E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */,
+				E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */,
+				E4A65F32266F0DAA00FE6866 /* KLMReNameListViewController.swift */,
+				E4A65F33266F0DAA00FE6866 /* KLMReNameListViewController.xib */,
+				E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */,
+				E4A6604F2671F6CC00FE6866 /* KLMAddDeviceViewController.swift */,
+				E4A660502671F6CC00FE6866 /* KLMAddDeviceViewController.xib */,
+				E48B52ED2667886B0006CDA7 /* KLMDeviceEditViewController.swift */,
+				E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */,
+				E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */,
+				E48E608F2692F6E800E630ED /* KLMMotionViewController.xib */,
+				E4762C53269559F300100312 /* KLMImagePickerController.swift */,
+				E48B53242668785B0006CDA7 /* KLMPhotoEditViewController.swift */,
+				E48B53252668785B0006CDA7 /* KLMPhotoEditViewController.xib */,
+				E4A65F9A2670A3B500FE6866 /* KLMCustomViewController.swift */,
+				E4A65F9B2670A3B500FE6866 /* KLMCustomViewController.xib */,
+				E4A6607526733C9500FE6866 /* CMDeviceNamePopViewController.swift */,
+				E4A6607626733C9500FE6866 /* CMDeviceNamePopViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E48B524C26672A0C0006CDA7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		E48B524D26672A0C0006CDA7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */,
+				E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */,
+				E4A65F48266F5A1F00FE6866 /* KLMSearchHistoryView.swift */,
+				E4A65F55266F5A4500FE6866 /* KLMSearchHistoryView.xib */,
+				E4A6605B26720EFD00FE6866 /* KLMDeviceSearchView.swift */,
+				E4A660602672118C00FE6866 /* KLMDeviceSearchView.xib */,
+				E4A660652672145300FE6866 /* KLMRippleAnimationView.swift */,
+				E4A6607C2673486400FE6866 /* KLMDeviceAddCell.swift */,
+				E4A6607D2673486400FE6866 /* KLMDeviceAddCell.xib */,
+				E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */,
+				E495D0DD2678428400AA50B9 /* KLMOneSwitchCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E48B524E26672A0C0006CDA7 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				E48B524F26672A0C0006CDA7 /* controller */,
+				E48B525026672A0C0006CDA7 /* model */,
+				E48B525126672A0C0006CDA7 /* view */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		E48B524F26672A0C0006CDA7 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E48B52A826676DED0006CDA7 /* KLMSettingViewController.swift */,
+				E48B52A926676DED0006CDA7 /* KLMSettingViewController.xib */,
+				E4AEC976266E18CD00E77178 /* CMLanguageSettingViewController.swift */,
+				E4AEC990266E204B00E77178 /* CMLanguageSettingViewController.xib */,
+				E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */,
+				E4AEC99C266E239500E77178 /* KLMAPPUpdateViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E48B525026672A0C0006CDA7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		E48B525126672A0C0006CDA7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E495D12F26788B2700AA50B9 /* KLMSettingSwichCell.swift */,
+				E495D13026788B2700AA50B9 /* KLMSettingSwichCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E48B525226672A0C0006CDA7 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				E48B525326672A0C0006CDA7 /* controller */,
+				E48B525426672A0C0006CDA7 /* model */,
+				E48B525526672A0C0006CDA7 /* view */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		E48B525326672A0C0006CDA7 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E48B52A126676D8F0006CDA7 /* KLMGroupViewController.swift */,
+				E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */,
+				E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */,
+				E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */,
+				E495D1212678833300AA50B9 /* KLMGroupDeviceEditViewController.swift */,
+				E495D1222678833300AA50B9 /* KLMGroupDeviceEditViewController.xib */,
+				E495D1282678892600AA50B9 /* KLMGroupTransferListViewController.swift */,
+				E495D1292678892600AA50B9 /* KLMGroupTransferListViewController.xib */,
+				E495D1B1267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift */,
+				E495D1B2267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E48B525426672A0C0006CDA7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		E48B525526672A0C0006CDA7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E4A66094267361E900FE6866 /* KLMGroupCell.swift */,
+				E4A66095267361E900FE6866 /* KLMGroupCell.xib */,
+				E495D11A2678586900AA50B9 /* KLMGroupSelectCell.swift */,
+				E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E48B525626672A0C0006CDA7 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E48B525726672A0C0006CDA7 /* controller */,
+				E48B525826672A0C0006CDA7 /* model */,
+				E48B525926672A0C0006CDA7 /* view */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		E48B525726672A0C0006CDA7 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E48B529526676A0C0006CDA7 /* KLMTabBarController.swift */,
+				E48B52B926677EB60006CDA7 /* KLMNavigationViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E48B525826672A0C0006CDA7 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				E48B5290266765540006CDA7 /* KLMApplicationManager.swift */,
+				E4A660562672089000FE6866 /* KLMHomeManager.swift */,
+				E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */,
+				E4762C512695558C00100312 /* KLMPhotoManager.swift */,
+				E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */,
+				E4E2845B26A278B9006C120E /* KLMMessageManager.swift */,
+				E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */,
+				E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */,
+				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
+				E4DF02C626A57F3300FE7AE5 /* KLMConnectionManager.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		E48B525926672A0C0006CDA7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */,
+				E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E48B525A26672A0C0006CDA7 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				E4E2845E26A2E8F0006C120E /* nodicDelegate */,
+				E48E608A2692A02100E630ED /* recipe */,
+				E4AEC96B266E013B00E77178 /* view */,
+				E48B532B266881B60006CDA7 /* Extension */,
+				E48B5307266875590006CDA7 /* OC */,
+				E48B525B26672A0C0006CDA7 /* Plist */,
+				E48B525C26672A0C0006CDA7 /* Http */,
+				E48B525D26672A0C0006CDA7 /* Lib */,
+				E48B525E26672A0C0006CDA7 /* tool */,
+				E48B525F26672A0C0006CDA7 /* Localizable */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		E48B525B26672A0C0006CDA7 /* Plist */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Plist;
+			sourceTree = "<group>";
+		};
+		E48B525C26672A0C0006CDA7 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				E48B53F02669FB330006CDA7 /* KLMNetworking.swift */,
+			);
+			path = Http;
+			sourceTree = "<group>";
+		};
+		E48B525D26672A0C0006CDA7 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				E48AF165268EEDCB00140F1F /* KLMSlider.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		E48B525E26672A0C0006CDA7 /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				E4377E3826845DBA00F8DF0C /* KLMRefreshHeader.swift */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
+		E48B525F26672A0C0006CDA7 /* Localizable */ = {
+			isa = PBXGroup;
+			children = (
+				E48B52C5266783D80006CDA7 /* InfoPlist.strings */,
+				E48B52D4266784B10006CDA7 /* Localizable.strings */,
+			);
+			path = Localizable;
+			sourceTree = "<group>";
+		};
+		E48B5307266875590006CDA7 /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				E48B531A266875F60006CDA7 /* KLM-Bridging-Header.h */,
+				E4A65FA12670B06300FE6866 /* ColorPickerClasses */,
+				E4A65F5B266F7F9000FE6866 /* CMSearchBar.h */,
+				E4A65F5A266F7F9000FE6866 /* CMSearchBar.m */,
+				E48B5308266875980006CDA7 /* UIImage+TL.h */,
+				E48B5309266875980006CDA7 /* UIImage+TL.m */,
+				E48B533B2668A47B0006CDA7 /* UIBarButtonItem+TL.h */,
+				E48B533C2668A47B0006CDA7 /* UIBarButtonItem+TL.m */,
+				E495D15E2678B89200AA50B9 /* DAConfig.h */,
+				E495D15F2678B89300AA50B9 /* DAConfig.m */,
+				E495D15D2678B89200AA50B9 /* NSBundle+DAUtils.h */,
+				E495D1602678B89300AA50B9 /* NSBundle+DAUtils.m */,
+				E4377E472685B99400F8DF0C /* NSData+CRC16.h */,
+				E4377E482685B99400F8DF0C /* NSData+CRC16.m */,
+				E4762C5626957AE100100312 /* UIButton+SFImageTitleSpacing.h */,
+				E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */,
+				E492AD17267C83C50028AF3E /* PinYinSearchLib */,
+			);
+			path = OC;
+			sourceTree = "<group>";
+		};
+		E48B532B266881B60006CDA7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				E48B532C266881DC0006CDA7 /* extension.swift */,
+				E4A6606A2672FFAB00FE6866 /* protocol.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		E48E608A2692A02100E630ED /* recipe */ = {
+			isa = PBXGroup;
+			children = (
+				E48E608B2692A02A00E630ED /* recipe.c */,
+				E48E608C2692A02A00E630ED /* recipe.h */,
+			);
+			path = recipe;
+			sourceTree = "<group>";
+		};
+		E492AD17267C83C50028AF3E /* PinYinSearchLib */ = {
+			isa = PBXGroup;
+			children = (
+				E492AD1A267C83C50028AF3E /* ChineseInclude.h */,
+				E492AD23267C83C50028AF3E /* ChineseInclude.m */,
+				E492AD1D267C83C50028AF3E /* ChineseToPinyinResource.h */,
+				E492AD26267C83C50028AF3E /* ChineseToPinyinResource.m */,
+				E492AD19267C83C50028AF3E /* HanyuPinyinOutputFormat.h */,
+				E492AD24267C83C50028AF3E /* HanyuPinyinOutputFormat.m */,
+				E492AD22267C83C50028AF3E /* NSString+PinYin4Cocoa.h */,
+				E492AD1B267C83C50028AF3E /* NSString+PinYin4Cocoa.m */,
+				E492AD20267C83C50028AF3E /* PinyinFormatter.h */,
+				E492AD27267C83C50028AF3E /* PinyinFormatter.m */,
+				E492AD1F267C83C50028AF3E /* PinYinForObjc.h */,
+				E492AD28267C83C50028AF3E /* PinYinForObjc.m */,
+				E492AD18267C83C50028AF3E /* PinyinHelper.h */,
+				E492AD21267C83C50028AF3E /* PinyinHelper.m */,
+				E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */,
+				E492AD1E267C83C50028AF3E /* ZYPinYinSearch.h */,
+				E492AD25267C83C50028AF3E /* ZYPinYinSearch.m */,
+			);
+			path = PinYinSearchLib;
+			sourceTree = "<group>";
+		};
+		E495D16E2679D5FA00AA50B9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				E495D16F2679D60700AA50B9 /* controller */,
+				E495D1702679D61300AA50B9 /* view */,
+				E495D1712679D61800AA50B9 /* model */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		E495D16F2679D60700AA50B9 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				E495D1722679DA9000AA50B9 /* KLMRegisterViewController.swift */,
+				E495D1732679DA9000AA50B9 /* KLMRegisterViewController.xib */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		E495D1702679D61300AA50B9 /* view */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E495D1712679D61800AA50B9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		E498A77526671BEC00C78D50 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +750,8 @@
 				E498A79726671BED00C78D50 /* KLMTests */,
 				E498A7A226671BED00C78D50 /* KLMUITests */,
 				E498A77F26671BEC00C78D50 /* Products */,
+				7A2EC24076DB8E98370532E2 /* Pods */,
+				23B81114169577037CD98C4D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,13 +768,20 @@
 		E498A78026671BEC00C78D50 /* KLM */ = {
 			isa = PBXGroup;
 			children = (
+				E48B524A26672A0C0006CDA7 /* AIScene */,
+				E48B525226672A0C0006CDA7 /* Group */,
+				E48B524E26672A0C0006CDA7 /* Setting */,
+				E495D16E2679D5FA00AA50B9 /* User */,
+				E48B525626672A0C0006CDA7 /* Main */,
+				E48B525A26672A0C0006CDA7 /* Other */,
 				E498A78126671BEC00C78D50 /* AppDelegate.swift */,
-				E498A78326671BEC00C78D50 /* SceneDelegate.swift */,
-				E498A78526671BEC00C78D50 /* ViewController.swift */,
 				E498A78726671BEC00C78D50 /* Main.storyboard */,
 				E498A78A26671BED00C78D50 /* Assets.xcassets */,
 				E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */,
 				E498A78F26671BED00C78D50 /* Info.plist */,
+				E48B526326672B420006CDA7 /* head.swift */,
+				E4A65F95267094B500FE6866 /* t_s.bmp */,
+				E453101F268D569B00E6F1FB /* Project.bin */,
 			);
 			path = KLM;
 			sourceTree = "<group>";
@@ -128,6 +804,114 @@
 			path = KLMUITests;
 			sourceTree = "<group>";
 		};
+		E4A65FA12670B06300FE6866 /* ColorPickerClasses */ = {
+			isa = PBXGroup;
+			children = (
+				E4A65FA52670B06300FE6866 /* ANImageBitmapRep */,
+				E4A65FC82670B06300FE6866 /* BGRSLoupeLayer.h */,
+				E4A65FC32670B06300FE6866 /* BGRSLoupeLayer.m */,
+				E4A65FC42670B06300FE6866 /* RSColorFunctions.h */,
+				E4A65FA22670B06300FE6866 /* RSColorFunctions.m */,
+				E4A65FC72670B06300FE6866 /* RSColorPickerState.h */,
+				E4A65FC22670B06300FE6866 /* RSColorPickerState.m */,
+				E4A65FC52670B06300FE6866 /* RSColorPickerView.h */,
+				E4A65FA42670B06300FE6866 /* RSColorPickerView.m */,
+				E4A65FC62670B06300FE6866 /* RSGenerateOperation.h */,
+				E4A65FA32670B06300FE6866 /* RSGenerateOperation.m */,
+				E4A65FC12670B06300FE6866 /* RSSelectionLayer.h */,
+				E4A65FC92670B06300FE6866 /* RSSelectionLayer.m */,
+			);
+			path = ColorPickerClasses;
+			sourceTree = "<group>";
+		};
+		E4A65FA52670B06300FE6866 /* ANImageBitmapRep */ = {
+			isa = PBXGroup;
+			children = (
+				E4A65FB82670B06300FE6866 /* ANImageBitmapRep.h */,
+				E4A65FBF2670B06300FE6866 /* ANImageBitmapRep.m */,
+				E4A65FC02670B06300FE6866 /* BitmapContextRep.h */,
+				E4A65FBE2670B06300FE6866 /* BitmapContextRep.m */,
+				E4A65FA62670B06300FE6866 /* Compatibility */,
+				E4A65FB92670B06300FE6866 /* CoreGraphics */,
+				E4A65FAD2670B06300FE6866 /* Manipulators */,
+			);
+			path = ANImageBitmapRep;
+			sourceTree = "<group>";
+		};
+		E4A65FA62670B06300FE6866 /* Compatibility */ = {
+			isa = PBXGroup;
+			children = (
+				E4A65FA92670B06300FE6866 /* NSImage+ANImageBitmapRep.h */,
+				E4A65FAB2670B06300FE6866 /* NSImage+ANImageBitmapRep.m */,
+				E4A65FA82670B06300FE6866 /* OSCommonImage.h */,
+				E4A65FAC2670B06300FE6866 /* OSCommonImage.m */,
+				E4A65FAA2670B06300FE6866 /* UIImage+ANImageBitmapRep.h */,
+				E4A65FA72670B06300FE6866 /* UIImage+ANImageBitmapRep.m */,
+			);
+			path = Compatibility;
+			sourceTree = "<group>";
+		};
+		E4A65FAD2670B06300FE6866 /* Manipulators */ = {
+			isa = PBXGroup;
+			children = (
+				E4A65FB02670B06300FE6866 /* BitmapContextManipulator.h */,
+				E4A65FB62670B06300FE6866 /* BitmapContextManipulator.m */,
+				E4A65FB72670B06300FE6866 /* BitmapCropManipulator.h */,
+				E4A65FB22670B06300FE6866 /* BitmapCropManipulator.m */,
+				E4A65FB42670B06300FE6866 /* BitmapDrawManipulator.h */,
+				E4A65FAE2670B06300FE6866 /* BitmapDrawManipulator.m */,
+				E4A65FAF2670B06300FE6866 /* BitmapRotationManipulator.h */,
+				E4A65FB32670B06300FE6866 /* BitmapRotationManipulator.m */,
+				E4A65FB12670B06300FE6866 /* BitmapScaleManipulator.h */,
+				E4A65FB52670B06300FE6866 /* BitmapScaleManipulator.m */,
+			);
+			path = Manipulators;
+			sourceTree = "<group>";
+		};
+		E4A65FB92670B06300FE6866 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				E4A65FBB2670B06300FE6866 /* CGContextCreator.h */,
+				E4A65FBD2670B06300FE6866 /* CGContextCreator.m */,
+				E4A65FBC2670B06300FE6866 /* CGImageContainer.h */,
+				E4A65FBA2670B06300FE6866 /* CGImageContainer.m */,
+			);
+			path = CoreGraphics;
+			sourceTree = "<group>";
+		};
+		E4AEC96B266E013B00E77178 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */,
+				E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		E4E2845E26A2E8F0006C120E /* nodicDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				E4E2842D269ED132006C120E /* NetworkConnection.swift */,
+				E4E28431269EFF02006C120E /* SceneServerDelegate.swift */,
+				E4E2842F269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift */,
+				E4E28433269EFF0F006C120E /* SceneSetupServerDelegate.swift */,
+				E4E28435269EFF20006C120E /* SensorClientDelegate.swift */,
+				E4E28437269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift */,
+				E4E28439269EFF39006C120E /* GenericOnOffServerDelegate.swift */,
+				E4E2843B269EFF45006C120E /* GenericLevelServerDelegate.swift */,
+				E4E2843D269EFF6A006C120E /* GenericOnOffClientDelegate.swift */,
+				E4E2843F269EFF75006C120E /* GenericLevelClientDelegate.swift */,
+				E4E28441269EFF82006C120E /* SimpleOnOffClientDelegate.swift */,
+				E4E28443269EFFC8006C120E /* ModelIdentifiers.swift */,
+				E4E28445269EFFFC006C120E /* GenericState.swift */,
+				E4E28447269F0052006C120E /* Address+String.swift */,
+				E4E28449269F006A006C120E /* SimpleOnOffSetUnacknowledged.swift */,
+				E4E2844B269F008F006C120E /* SimpleOnOffStatus.swift */,
+				E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */,
+			);
+			path = nodicDelegate;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +919,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E498A7A826671BED00C78D50 /* Build configuration list for PBXNativeTarget "KLM" */;
 			buildPhases = (
+				BF4AFD70A4B13A17EE78F5AF /* [CP] Check Pods Manifest.lock */,
 				E498A77A26671BEC00C78D50 /* Sources */,
 				E498A77B26671BEC00C78D50 /* Frameworks */,
 				E498A77C26671BEC00C78D50 /* Resources */,
+				ACFE3512B8F18DC061093FD2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -195,6 +981,7 @@
 				TargetAttributes = {
 					E498A77D26671BEC00C78D50 = {
 						CreatedOnToolsVersion = 12.4;
+						LastSwiftMigration = 1240;
 					};
 					E498A79326671BED00C78D50 = {
 						CreatedOnToolsVersion = 12.4;
@@ -213,6 +1000,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = E498A77526671BEC00C78D50;
 			productRefGroup = E498A77F26671BEC00C78D50 /* Products */;
@@ -231,7 +1019,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */,
+				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
+				E4531020268D569B00E6F1FB /* Project.bin in Resources */,
+				E495D1752679DA9000AA50B9 /* KLMRegisterViewController.xib in Resources */,
+				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
+				E4A65F9D2670A3B500FE6866 /* KLMCustomViewController.xib in Resources */,
+				E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */,
+				E48B53272668785B0006CDA7 /* KLMPhotoEditViewController.xib in Resources */,
+				E4AEC99E266E239500E77178 /* KLMAPPUpdateViewController.xib in Resources */,
+				E4A65F56266F5A4500FE6866 /* KLMSearchHistoryView.xib in Resources */,
+				E4A66097267361E900FE6866 /* KLMGroupCell.xib in Resources */,
+				E495D0DF2678428400AA50B9 /* KLMOneSwitchCell.xib in Resources */,
+				E48E60912692F6E800E630ED /* KLMMotionViewController.xib in Resources */,
+				E495D1B4267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.xib in Resources */,
+				E4A65F96267094B500FE6866 /* t_s.bmp in Resources */,
+				E495D1242678833300AA50B9 /* KLMGroupDeviceEditViewController.xib in Resources */,
+				E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */,
+				E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */,
+				E495D12B2678892600AA50B9 /* KLMGroupTransferListViewController.xib in Resources */,
+				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
+				E4AEC98E266E204B00E77178 /* CMLanguageSettingViewController.xib in Resources */,
+				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
+				E4A65F35266F0DAA00FE6866 /* KLMReNameListViewController.xib in Resources */,
+				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
 				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
+				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
+				E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */,
+				E4A660522671F6CC00FE6866 /* KLMAddDeviceViewController.xib in Resources */,
+				E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */,
+				E4A6607826733C9500FE6866 /* CMDeviceNamePopViewController.xib in Resources */,
+				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
+				E4A660612672118C00FE6866 /* KLMDeviceSearchView.xib in Resources */,
+				E495D13226788B2700AA50B9 /* KLMSettingSwichCell.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
 				E498A78926671BEC00C78D50 /* Main.storyboard in Resources */,
 			);
@@ -253,14 +1073,154 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		ACFE3512B8F18DC061093FD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KLM/Pods-KLM-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KLM/Pods-KLM-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KLM/Pods-KLM-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF4AFD70A4B13A17EE78F5AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KLM-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E498A77A26671BEC00C78D50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E498A78626671BEC00C78D50 /* ViewController.swift in Sources */,
+				E4E28436269EFF20006C120E /* SensorClientDelegate.swift in Sources */,
+				E48B533D2668A47B0006CDA7 /* UIBarButtonItem+TL.m in Sources */,
+				E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */,
+				E495D1B3267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift in Sources */,
+				E492AD29267C83C50028AF3E /* NSString+PinYin4Cocoa.m in Sources */,
+				E492AD2C267C83C50028AF3E /* ChineseInclude.m in Sources */,
+				E4A6608C267360A200FE6866 /* KLMBaseTableViewCell.swift in Sources */,
+				E4E28446269EFFFC006C120E /* GenericState.swift in Sources */,
+				E4A65FCB2670B06400FE6866 /* RSGenerateOperation.m in Sources */,
+				E4E28448269F0052006C120E /* Address+String.swift in Sources */,
+				E48E608D2692A02A00E630ED /* recipe.c in Sources */,
+				E492AD2D267C83C50028AF3E /* HanyuPinyinOutputFormat.m in Sources */,
+				E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */,
+				E495D11C2678586900AA50B9 /* KLMGroupSelectCell.swift in Sources */,
+				E4377E3926845DBA00F8DF0C /* KLMRefreshHeader.swift in Sources */,
+				E4A65F9C2670A3B500FE6866 /* KLMCustomViewController.swift in Sources */,
+				E4A65FD62670B06400FE6866 /* CGContextCreator.m in Sources */,
+				E4A66096267361E900FE6866 /* KLMGroupCell.swift in Sources */,
+				E495D12A2678892600AA50B9 /* KLMGroupTransferListViewController.swift in Sources */,
+				E4A65FDB2670B06400FE6866 /* RSSelectionLayer.m in Sources */,
+				E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */,
+				E48B53F12669FB330006CDA7 /* KLMNetworking.swift in Sources */,
+				E4AEC978266E18CD00E77178 /* CMLanguageSettingViewController.swift in Sources */,
+				E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */,
+				E495D10E2678521000AA50B9 /* KLMGroupEditViewController.swift in Sources */,
+				E48B5291266765540006CDA7 /* KLMApplicationManager.swift in Sources */,
+				E4E2844C269F008F006C120E /* SimpleOnOffStatus.swift in Sources */,
+				E4A65FCF2670B06400FE6866 /* OSCommonImage.m in Sources */,
+				E4A65FCC2670B06400FE6866 /* RSColorPickerView.m in Sources */,
+				E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */,
+				E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */,
+				E4A65FCA2670B06400FE6866 /* RSColorFunctions.m in Sources */,
+				E495D0DE2678428400AA50B9 /* KLMOneSwitchCell.swift in Sources */,
+				E4A65FCD2670B06400FE6866 /* UIImage+ANImageBitmapRep.m in Sources */,
+				E4A65F34266F0DAA00FE6866 /* KLMReNameListViewController.swift in Sources */,
+				E495D1612678B89300AA50B9 /* DAConfig.m in Sources */,
 				E498A78226671BEC00C78D50 /* AppDelegate.swift in Sources */,
-				E498A78426671BEC00C78D50 /* SceneDelegate.swift in Sources */,
+				E4A65FD02670B06400FE6866 /* BitmapDrawManipulator.m in Sources */,
+				E4A65FD12670B06400FE6866 /* BitmapCropManipulator.m in Sources */,
+				E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */,
+				E495D1232678833300AA50B9 /* KLMGroupDeviceEditViewController.swift in Sources */,
+				E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */,
+				E492AD2F267C83C50028AF3E /* ChineseToPinyinResource.m in Sources */,
+				E48B532D266881DC0006CDA7 /* extension.swift in Sources */,
+				E4E2843A269EFF39006C120E /* GenericOnOffServerDelegate.swift in Sources */,
+				E492AD2B267C83C50028AF3E /* PinyinHelper.m in Sources */,
+				E4377E432685AB7600F8DF0C /* KLMUpdateManager.swift in Sources */,
+				E48E60902692F6E800E630ED /* KLMMotionViewController.swift in Sources */,
+				E48B53262668785B0006CDA7 /* KLMPhotoEditViewController.swift in Sources */,
+				E48B530A266875980006CDA7 /* UIImage+TL.m in Sources */,
+				E4E2843C269EFF45006C120E /* GenericLevelServerDelegate.swift in Sources */,
+				E4A65FD92670B06400FE6866 /* RSColorPickerState.m in Sources */,
+				E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */,
+				E4E2844A269F006B006C120E /* SimpleOnOffSetUnacknowledged.swift in Sources */,
+				E4E2842E269ED132006C120E /* NetworkConnection.swift in Sources */,
+				E4E28444269EFFC8006C120E /* ModelIdentifiers.swift in Sources */,
+				E4A65F5C266F7F9000FE6866 /* CMSearchBar.m in Sources */,
+				E495D1622678B89300AA50B9 /* NSBundle+DAUtils.m in Sources */,
+				E495D1742679DA9000AA50B9 /* KLMRegisterViewController.swift in Sources */,
+				E492AD30267C83C60028AF3E /* PinyinFormatter.m in Sources */,
+				E4E28440269EFF75006C120E /* GenericLevelClientDelegate.swift in Sources */,
+				E4A6605C26720EFD00FE6866 /* KLMDeviceSearchView.swift in Sources */,
+				E48B52EF2667886B0006CDA7 /* KLMDeviceEditViewController.swift in Sources */,
+				E4377E492685B99500F8DF0C /* NSData+CRC16.m in Sources */,
+				E4A660662672145300FE6866 /* KLMRippleAnimationView.swift in Sources */,
+				E4A65FD52670B06400FE6866 /* CGImageContainer.m in Sources */,
+				E4A65FD42670B06400FE6866 /* BitmapContextManipulator.m in Sources */,
+				E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */,
+				E4A660572672089000FE6866 /* KLMHomeManager.swift in Sources */,
+				E4E2845A26A1291A006C120E /* KLMSIGMeshManager.swift in Sources */,
+				E4A65F49266F5A1F00FE6866 /* KLMSearchHistoryView.swift in Sources */,
+				E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */,
+				E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */,
+				E4A6607E2673486400FE6866 /* KLMDeviceAddCell.swift in Sources */,
+				E4DF02C726A57F3300FE7AE5 /* KLMConnectionManager.swift in Sources */,
+				E4A65FD32670B06400FE6866 /* BitmapScaleManipulator.m in Sources */,
+				E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */,
+				E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */,
+				E4A65FD22670B06400FE6866 /* BitmapRotationManipulator.m in Sources */,
+				E48B529C26676D490006CDA7 /* KLMAISceneViewController.swift in Sources */,
+				E495D13126788B2700AA50B9 /* KLMSettingSwichCell.swift in Sources */,
+				E4A6606B2672FFAB00FE6866 /* protocol.swift in Sources */,
+				E48B526426672B420006CDA7 /* head.swift in Sources */,
+				E4A6607726733C9500FE6866 /* CMDeviceNamePopViewController.swift in Sources */,
+				E4A65FCE2670B06400FE6866 /* NSImage+ANImageBitmapRep.m in Sources */,
+				E48B52BA26677EB60006CDA7 /* KLMNavigationViewController.swift in Sources */,
+				E48B52A326676D8F0006CDA7 /* KLMGroupViewController.swift in Sources */,
+				E4A65FD72670B06400FE6866 /* BitmapContextRep.m in Sources */,
+				E4A65F3E266F459200FE6866 /* KLMAINameListCell.swift in Sources */,
+				E4E28438269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */,
+				E4E28434269EFF0F006C120E /* SceneSetupServerDelegate.swift in Sources */,
+				E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */,
+				E48B52AA26676DED0006CDA7 /* KLMSettingViewController.swift in Sources */,
+				E492AD2E267C83C50028AF3E /* ZYPinYinSearch.m in Sources */,
+				E4E2843E269EFF6A006C120E /* GenericOnOffClientDelegate.swift in Sources */,
+				E4E28442269EFF82006C120E /* SimpleOnOffClientDelegate.swift in Sources */,
+				E4E28430269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */,
+				E492AD31267C83C60028AF3E /* PinYinForObjc.m in Sources */,
+				E4A65FD82670B06400FE6866 /* ANImageBitmapRep.m in Sources */,
+				E4A65FDA2670B06400FE6866 /* BGRSLoupeLayer.m in Sources */,
+				E4E28432269EFF02006C120E /* SceneServerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,10 +1256,29 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		E48B52C5266783D80006CDA7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E48B52C4266783D80006CDA7 /* en */,
+				E48B52C9266783DB0006CDA7 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		E48B52D4266784B10006CDA7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E48B52D3266784B10006CDA7 /* en */,
+				E48B52D8266784B30006CDA7 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		E498A78726671BEC00C78D50 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E498A78826671BEC00C78D50 /* Base */,
+				E48B523E2667268F0006CDA7 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -308,8 +1287,17 @@
 			isa = PBXVariantGroup;
 			children = (
 				E498A78D26671BED00C78D50 /* Base */,
+				E48B52422667268F0006CDA7 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E4AEC990266E204B00E77178 /* CMLanguageSettingViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4AEC98F266E204B00E77178 /* Base */,
+			);
+			name = CMLanguageSettingViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -319,6 +1307,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -380,6 +1369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -433,39 +1423,52 @@
 		};
 		E498A7A926671BED00C78D50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8135F1AEA6A8CC51176CB660 /* Pods-KLM.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 35U56DAFC6;
+				DEVELOPMENT_TEAM = B5LACPBM79;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.KLM;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm11.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		E498A7AA26671BED00C78D50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E994C47995EC4F69AFB29309 /* Pods-KLM.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 35U56DAFC6;
+				DEVELOPMENT_TEAM = B5LACPBM79;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.KLM;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm11.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMGroupDeviceAddToViewController" customModule="KLM" customModuleProvider="target">
+            <connections>
+                <outlet property="newGroupBtn" destination="S4o-Ue-Ufy" id="hBr-Ad-huo"/>
+                <outlet property="tableView" destination="rCC-Ej-zCo" id="Pne-1Q-eeM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4o-Ue-Ufy">
+                    <rect key="frame" x="40" y="704" width="334" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1aF-Kz-eRl"/>
+                    </constraints>
+                    <state key="normal" title="new Group"/>
+                    <connections>
+                        <action selector="newGroupClick:" destination="-1" eventType="touchUpInside" id="r7d-GU-AqV"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rCC-Ej-zCo">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="704"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="v3l-5p-Hpy"/>
+                        <outlet property="delegate" destination="-1" id="bUE-4C-W2C"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="S4o-Ue-Ufy" secondAttribute="bottom" constant="30" id="577-4R-Wb9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rCC-Ej-zCo" secondAttribute="trailing" id="AXd-e3-cuT"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S4o-Ue-Ufy" secondAttribute="trailing" constant="40" id="Njb-Am-Iwe"/>
+                <constraint firstItem="S4o-Ue-Ufy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="bWP-qP-AdB"/>
+                <constraint firstItem="S4o-Ue-Ufy" firstAttribute="top" secondItem="rCC-Ej-zCo" secondAttribute="bottom" id="n87-tl-jU1"/>
+                <constraint firstItem="rCC-Ej-zCo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="up4-Jg-P1Y"/>
+                <constraint firstItem="rCC-Ej-zCo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zis-uD-lfi"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="-361" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
