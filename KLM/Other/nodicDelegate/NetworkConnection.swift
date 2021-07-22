@@ -200,6 +200,13 @@ extension NetworkConnection: CBCentralManagerDelegate {
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
             return
         }
+        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+            
+            let UUID = CBUUID(data: manufacturerData.subdata(in: 0 ..< 16))
+            print("---------------" + UUID.uuidString)
+            
+        }
+        
         let bearer = GattBearer(target: peripheral)
         proxies.append(bearer)
         bearer.delegate = self
