@@ -104,6 +104,10 @@ extension NSNotification.Name {
     static let deviceRemoveFromGroup = NSNotification.Name.init("deviceRemoveFromGroup")
     /// 设备添加到群组
     static let deviceAddToGroup = NSNotification.Name.init("deviceAddToGroup")
+    /// 设备名称修改
+    static let deviceNameUpdate = NSNotification.Name.init("deviceNameUpdate")
+    /// 设备删除成功
+    static let deviceReset = NSNotification.Name.init("deviceReset")
 }
 
 extension String {
@@ -190,6 +194,18 @@ extension Data {
         return map { String(format: "%02x", $0) }
                     .joined(separator: "")
     }
+    
+    ///大小端转化
+    mutating func convertToLittleEndian() -> String {
+        
+        var dataList: [UInt8] = []
+        //倒序
+        for i in self.bytes.reversed() {
+            dataList.append(i)
+        }
+        let data = Data.init(bytes: dataList, count: dataList.count)
+        return data.toHexString().uppercased()
+    }
 }
 
 extension Int {
@@ -224,6 +240,7 @@ extension UIColor {
         let HH = Int(H * 360).decimalTo4Hexadecimal()
         let SS = Int(S * 1000).decimalTo4Hexadecimal()
         let BB = Int(B * 1000).decimalTo4Hexadecimal()
+        KLMLog("H = \(H * 360), S = \(S * 1000), B = \(B * 1000)")
         return HH + SS + BB
     }
 }

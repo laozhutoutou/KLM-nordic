@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct tempColors {
+    let maxTemp: Float = 7000
+    let minTemp: Float = 2000
+}
+
 class KLMCustomViewController: UIViewController {
     
     
@@ -34,6 +39,7 @@ class KLMCustomViewController: UIViewController {
         }
     }
     
+    let colorTemp = tempColors()
     
     lazy var ringSelectView: UIView = {
         let ring = UIView.init()
@@ -72,20 +78,21 @@ class KLMCustomViewController: UIViewController {
         let viewLeft: CGFloat = 20
         let sliderWidth = KLMScreenW - viewLeft * 2
     
-        let colorTempSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: colorTempBgView.height), minValue: 0, maxValue: 1000, step: 100)
+        let colorTempSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: colorTempBgView.height), minValue: 0, maxValue: 100, step: 10)
         colorTempSlider.indicateViewWidth = 42
-        colorTempSlider.getValueTitle = { value in
+        colorTempSlider.getValueTitle = {  value in
             
-            return String(format: "%ldK", Int(value))
+            let vv = value / 100.0 * (self.colorTemp.maxTemp - self.colorTemp.minTemp) + self.colorTemp.minTemp
+            return String(format: "%ldK", Int(vv))
         }
         colorTempSlider.delegate = self
         self.colorTempSlider = colorTempSlider
         colorTempBgView.addSubview(colorTempSlider)
         //亮度滑条
-        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0.01, maxValue: 1, step: 0.1)
+        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 10)
         lightSlider.getValueTitle = { value in
-            let V = value * 100
-            return String(format: "%ld%%", Int(V))
+
+            return String(format: "%ld%%", Int(value))
         }
         lightSlider.delegate = self
         self.lightSlider = lightSlider

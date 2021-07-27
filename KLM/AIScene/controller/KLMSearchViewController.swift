@@ -96,11 +96,11 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
             self.collectionView.isHidden = false
         }
         
+        
         self.searchLists.removeAll()
         let network = MeshNetworkManager.instance.meshNetwork!
         let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
-        let array = ZYPinYinSearch.search(withOriginalArray: notConfiguredNodes, andSearchText: self.searchBar.text, andSearchByPropertyName: "name")
-        self.searchLists = array! as! [Node]
+        self.searchLists = notConfiguredNodes.filter({ ($0.name?.contains(self.searchBar.text!))!})
         self.collectionView.reloadData()
     }
 }

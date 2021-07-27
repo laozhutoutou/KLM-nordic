@@ -28,6 +28,7 @@ class KLMGroupViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceRemoveFromGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
         
         setupData()
     }
@@ -106,25 +107,35 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         
         let model: Group = groups[indexPath.row]
         
-        let network = MeshNetworkManager.instance.meshNetwork!
-        let models = network.models(subscribedTo: model)
-        if models.isEmpty {
+        let parame = parameModel(dp: .recipe, value: "string")
+        
+        KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: model) {
             
-            SVProgressHUD.showInfo(withStatus: "no devices")
-            return
+            print("success")
+            
+        } failure: { error in
+            KLMShowError(error)
         }
         
-        KLMHomeManager.sharedInstacnce.smartGroup = model
-        
-        //是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
-            guard let self = self else { return }
-
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
-
-        }
+//        let network = MeshNetworkManager.instance.meshNetwork!
+//        let models = network.models(subscribedTo: model)
+//        if models.isEmpty {
+//
+//            SVProgressHUD.showInfo(withStatus: "no devices")
+//            return
+//        }
+//
+//        KLMHomeManager.sharedInstacnce.smartGroup = model
+//
+//        //是否有相机权限
+//        KLMPhotoManager().photoAuthStatus { [weak self] in
+//            guard let self = self else { return }
+//
+//            let vc = KLMImagePickerController()
+//            vc.sourceType = UIImagePickerController.SourceType.camera
+//            self.tabBarController?.present(vc, animated: true, completion: nil)
+//
+//        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

@@ -15,7 +15,7 @@ class KLMMotionViewController: UIViewController {
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
-    var isFirstTime = true
+    var isAllNodes: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +44,7 @@ class KLMMotionViewController: UIViewController {
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
         
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        if isAllNodes == false {
             
             setupData()
         }
@@ -69,24 +69,53 @@ extension KLMMotionViewController: KLMSliderDelegate {
     func KLMSliderWith(slider: KLMSlider, value: Float) {
         
         if slider == self.lightSlider {
-                    
-            let parame = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                
-            } failure: { error in
-                KLMShowError(error)
-            }
-
             
+            let parame = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+            
+            if isAllNodes {
+                
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                    
+                    print("success")
+                    
+                } failure: { error in
+                    
+                    KLMShowError(error)
+                }
+                
+            } else {
+                
+                
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
+                    
+                } failure: { error in
+                    KLMShowError(error)
+                }
+            }
+                    
         } else {
             
             let parame = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                print("success")
-            } failure: { error in
-                KLMShowError(error)
-            }
             
+            if isAllNodes {
+                
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                    
+                    print("success")
+                    
+                } failure: { error in
+                    
+                    KLMShowError(error)
+                }
+
+            } else {
+                
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
+                    print("success")
+                } failure: { error in
+                    KLMShowError(error)
+                }
+            }
         }
         
     }

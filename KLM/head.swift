@@ -13,6 +13,7 @@ import SnapKitExtend
 import RxSwift
 import RxCocoa
 import nRFMeshProvision
+import HandyJSON
 
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width

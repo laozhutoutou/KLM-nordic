@@ -43,9 +43,9 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
                 KLMShowError(error)
             }
 
-        } else {
+        } else {//关
             
-            let parame = parameModel(dp: .cameraPower, value: 0)
+            let parame = parameModel(dp: .cameraPower, value: 2)
             
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
                 print("success")

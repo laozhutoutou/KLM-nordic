@@ -27,11 +27,11 @@ protocol KLMSIGMeshManagerDelegate: AnyObject {
 extension KLMSIGMeshManagerDelegate {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didScanedDevice device: DiscoveredPeripheral){
-        
+        // This method is optional.
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?){
-        
+        // This method is optional.
         
     }
 }
@@ -141,23 +141,17 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: error)
     }
     
-    func provisionManager(_ manager: KLMProvisionManager, didConnectProxyWithUUID identifier: UUID) {
+    func provisionManagerNodeAddSuccess(_ manager: KLMProvisionManager) {
         
-        print("connect node success3")
-        
-        DispatchQueue.main.asyncAfter(deadline: 1) {
+        //composition
+        if let network = MeshNetworkManager.instance.meshNetwork {
             
-            //composition
-            if let network = MeshNetworkManager.instance.meshNetwork {
-                
-                let node = network.node(for: self.discoveredPeripheral.device)!
-                if !node.isCompositionDataReceived {
-                    
-                    self.getCompositionData(node: node)
-                }
+            let node = network.node(for: self.discoveredPeripheral.device)!
+            if !node.isCompositionDataReceived {
+                print("start composition")
+                self.getCompositionData(node: node)
             }
         }
-        
     }
     
 }
@@ -252,3 +246,5 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
     }
     
 }
+
+

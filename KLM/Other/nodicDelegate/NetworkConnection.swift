@@ -182,6 +182,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral,
                         advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
         // Is it a Network ID beacon?
         if let networkId = advertisementData.networkId {
             guard meshNetwork.matches(networkId: networkId) else {
@@ -200,18 +201,13 @@ extension NetworkConnection: CBCentralManagerDelegate {
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
             return
         }
-        if let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
-            
-            let UUID = CBUUID(data: manufacturerData.subdata(in: 0 ..< 16))
-            print("---------------" + UUID.uuidString)
-            
-        }
         
         let bearer = GattBearer(target: peripheral)
         proxies.append(bearer)
         bearer.delegate = self
         bearer.dataDelegate = self
         bearer.logger = logger
+        
         // Is the limit reached?
         if proxies.count >= NetworkConnection.maxConnections {
             central.stopScan()
@@ -234,6 +230,7 @@ extension NetworkConnection: GattBearerDelegate, BearerDataDelegate {
         if let index = proxies.firstIndex(of: bearer as! GattBearer) {
             proxies.remove(at: index)
         }
+        
         if isStarted && isConnectionModeAutomatic &&
            proxies.count < NetworkConnection.maxConnections {
             centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)

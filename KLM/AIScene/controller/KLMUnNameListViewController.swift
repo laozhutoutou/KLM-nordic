@@ -26,6 +26,8 @@ class KLMUnNameListViewController: UIViewController{
         self.collectionView.register(UINib(nibName: String(describing: KLMAINameListCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: KLMAINameListCell.self))
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceNameUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
         
         setupData()
         
@@ -35,6 +37,8 @@ class KLMUnNameListViewController: UIViewController{
             self.setupData()
         }
         self.collectionView.mj_header = header
+        
+        MeshNetworkManager.bearer.delegate = self
         
     }
 
@@ -107,9 +111,16 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let node = self.nodes[indexPath.item]
-
+    
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
+        
+        //蓝牙 Mesh 设备在线
+//        guard node.isOnLine else {
+//
+//            SVProgressHUD.showError(withStatus: "Device offline")
+//            return
+//        }
         
         if !node.isCompositionDataReceived {
             //对于未composition的进行配置
@@ -121,38 +132,31 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             return
         }
         
-//        KLMSmartNode.sharedInstacnce.readMessage(node: node)
-        
-        
-        let parame = parameModel(dp: .motionPower, value: 50)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-            print("success")
-        } failure: { error in
-            KLMShowError(error)
-        }
-        
-//        let message = ConfigNodeReset()
-//        try! MeshNetworkManager.instance.send(message, to: node)
+//        KLMSmartNode.sharedInstacnce.readMessage(node: node) { _ in
+//            print("success")
+//        } failure: { error in
+//            KLMShowError(error)
+//        }
+
+//        let parame = parameModel(dp: .motionPower, value: 50)
+//        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
+//            print("success")
+//        } failure: { error in
+//            KLMShowError(error)
+//        }
         
 //        MeshNetworkManager.instance.meshNetwork!.remove(node: node)
 //        MeshNetworkManager.instance.save()
 
-//        //蓝牙 Mesh 设备在线
-//        guard smart.deviceModel.isOnline && smart.deviceModel.isMeshBleOnline else {
-//
-//            SVProgressHUD.showError(withStatus: "Device offline")
-//            return
-//        }
-        
-        //是否有相机权限
-//        KLMPhotoManager().photoAuthStatus { [weak self] in
-//            guard let self = self else { return }
-//
-//            let vc = KLMImagePickerController()
-//            vc.sourceType = UIImagePickerController.SourceType.camera
-//            self.tabBarController?.present(vc, animated: true, completion: nil)
-//
-//        }
+//        是否有相机权限
+        KLMPhotoManager().photoAuthStatus { [weak self] in
+            guard let self = self else { return }
+
+            let vc = KLMImagePickerController()
+            vc.sourceType = UIImagePickerController.SourceType.camera
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+
+        }
     }
 }
 
@@ -169,4 +173,18 @@ extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
         KLMShowError(error)
     }
 }
+
+extension KLMUnNameListViewController: BearerDelegate {
+    
+    func bearerDidOpen(_ bearer: Bearer) {
+        
+        self.collectionView.reloadData()
+    }
+    
+    func bearer(_ bearer: Bearer, didClose error: Error?) {
+        
+        self.collectionView.reloadData()
+    }
+}
+
 

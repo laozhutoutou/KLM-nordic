@@ -13,7 +13,7 @@ class KLMSmartNode: NSObject {
     static let sharedInstacnce = KLMSmartNode()
     private override init(){
         super.init()
-//        MeshNetworkManager.instance.delegate = self
+        
     }
     
     typealias SuccessBlock = (_ response: parameModel?) -> Void
@@ -22,14 +22,22 @@ class KLMSmartNode: NSObject {
     var successBlock: SuccessBlock!
     var failureBlock: FailureBlock!
     
+    
+    /// 给节点发送消息
+    /// - Parameters:
+    ///   - parame: 参数
+    ///   - node: 节点
+    ///   - success: success
+    ///   - failure: failure
     func sendMessage(_ parame: parameModel, toNode node: Node,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
-        //代理放这里
+        
         MeshNetworkManager.instance.delegate = self
         
         successBlock = success
         failureBlock = failure
         
         var parameString = ""
+        var parameData: Data = Data.init()
         switch parame.dp {
         case .power,
              .colorTemp,
@@ -41,19 +49,22 @@ class KLMSmartNode: NSObject {
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
+            parameData = Data(hex: parameString)
         case .color,
              .recipe:
             parameString = parame.value as! String
+            parameData = parameString.data(using: .ascii)!
         }
         //zhuzhu
         let model = KLMHomeManager.getModelFromNode(node: node)!
         //数据格式：比如，power dp 01 ,开 01 "0101"字符串转化成
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("A", radix: 16) {
-            let parameters = Data(hex: dpString + parameString)
-//            let parameters = Data(hex: "01010102")
+            let parameters = Data(hex: dpString) + parameData
+            KLMLog("parameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
+                
                 try MeshNetworkManager.instance.send(message, to: model)
                 
             } catch {
@@ -66,6 +77,8 @@ class KLMSmartNode: NSObject {
     }
     
     func readMessage(node: Node, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+        
+        MeshNetworkManager.instance.delegate = self
         
         successBlock = success
         failureBlock = failure
@@ -82,6 +95,29 @@ class KLMSmartNode: NSObject {
                 err.message = error.localizedDescription
                 failure(err)
             }
+        }
+    }
+    
+    /// 删除节点
+    /// - Parameters:
+    ///   - node: 节点
+    ///   - success: success
+    ///   - failure: failure
+    func resetNode(node: Node, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+        
+        MeshNetworkManager.instance.delegate = self
+        
+        successBlock = success
+        failureBlock = failure
+        
+        let message = ConfigNodeReset()
+        do {
+            try MeshNetworkManager.instance.send(message, to: node)
+        } catch  {
+            
+            var err = MessageError()
+            err.message = error.localizedDescription
+            failure(err)
         }
     }
 }
@@ -137,7 +173,8 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 
                 successBlock(nil)
             }
-            
+        case is ConfigNodeResetStatus:
+            successBlock(nil)
         default:
             break
         }
@@ -154,4 +191,3 @@ extension KLMSmartNode: MeshNetworkDelegate {
         failureBlock(err)
     }
 }
-

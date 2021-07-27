@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import nRFMeshProvision
 
 class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -98,7 +99,11 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
                 self.tabBarController?.present(vc, animated: true, completion: nil)
                 
-            }else{
+            }else{//所有灯感应设置
+                if !MeshNetworkManager.bearer.isOpen {
+                    SVProgressHUD.showError(withStatus: "device offline")
+                    return
+                }
                 
                 let vc = KLMMotionViewController()
                 navigationController?.pushViewController(vc, animated: true)

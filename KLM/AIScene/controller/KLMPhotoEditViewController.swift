@@ -228,7 +228,7 @@ class KLMPhotoEditViewController: UIViewController {
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
-                self.dismiss(animated: true, completion: nil)
+                
             } failure: { error in
                 KLMShowError(error)
             }
@@ -236,12 +236,12 @@ class KLMPhotoEditViewController: UIViewController {
         } else {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
-                self.dismiss(animated: true, completion: nil)
-                
             } failure: { error in
                 KLMShowError(error)
             }
         }
+        
+        self.dismiss(animated: true, completion: nil)
         
     }
     

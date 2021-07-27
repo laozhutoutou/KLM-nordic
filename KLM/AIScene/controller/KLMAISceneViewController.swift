@@ -41,6 +41,28 @@ class KLMAISceneViewController: UIViewController {
         return btn
     }()
     
+    lazy var addBtn: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 10, height: 18))
+        btn.setTitle("+", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        btn.setTitleColor(UIColor.lightGray, for: .normal)
+        btn.addTarget(self, action: #selector(addDevice), for: .touchUpInside)
+        btn.contentHorizontalAlignment = .right
+        btn.backgroundColor = .blue
+        return btn
+    }()
+    
+    lazy var searchBtn: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 18))
+        btn.setTitle("search", for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        btn.setTitleColor(UIColor.lightGray, for: .normal)
+        btn.addTarget(self, action: #selector(search), for: .touchUpInside)
+        btn.contentHorizontalAlignment = .right
+        btn.backgroundColor = .red
+        return btn
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,9 +81,10 @@ class KLMAISceneViewController: UIViewController {
         let reNameItem = UIBarButtonItem.init(customView: self.reNameBtn)
         navigationItem.leftBarButtonItems = [nuNameItem,reNameItem]
         
-        let searchItem = UIBarButtonItem.init(title: "搜索", target: self, action: #selector(search))
-        let addItem = UIBarButtonItem.init(title: "+", target: self, action: #selector(addDevice))
-        navigationItem.rightBarButtonItems = [addItem, searchItem]
+        let addItem = UIBarButtonItem.init(customView: self.addBtn)
+        let searchItem = UIBarButtonItem.init(customView: self.searchBtn)
+        navigationItem.rightBarButtonItems = [addItem,searchItem]
+        
     }
     
     

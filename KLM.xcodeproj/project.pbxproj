@@ -12,6 +12,8 @@
 		E4377E432685AB7600F8DF0C /* KLMUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */; };
 		E4377E492685B99500F8DF0C /* NSData+CRC16.m in Sources */ = {isa = PBXBuildFile; fileRef = E4377E482685B99400F8DF0C /* NSData+CRC16.m */; };
 		E4531020268D569B00E6F1FB /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E453101F268D569B00E6F1FB /* Project.bin */; };
+		E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */; };
+		E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */; };
 		E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C512695558C00100312 /* KLMPhotoManager.swift */; };
 		E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C53269559F300100312 /* KLMImagePickerController.swift */; };
 		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
@@ -125,7 +127,6 @@
 		E4AEC99E266E239500E77178 /* KLMAPPUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC99C266E239500E77178 /* KLMAPPUpdateViewController.xib */; };
 		E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */; };
 		E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */; };
-		E4DF02C726A57F3300FE7AE5 /* KLMConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C626A57F3300FE7AE5 /* KLMConnectionManager.swift */; };
 		E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */; };
 		E4E2842E269ED132006C120E /* NetworkConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2842D269ED132006C120E /* NetworkConnection.swift */; };
 		E4E28430269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2842F269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift */; };
@@ -173,6 +174,8 @@
 		E4377E472685B99400F8DF0C /* NSData+CRC16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC16.h"; sourceTree = "<group>"; };
 		E4377E482685B99400F8DF0C /* NSData+CRC16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC16.m"; sourceTree = "<group>"; };
 		E453101F268D569B00E6F1FB /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
+		E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLMTestViewController.swift; sourceTree = "<group>"; };
+		E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KLMTestViewController.xib; sourceTree = "<group>"; };
 		E4762C512695558C00100312 /* KLMPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoManager.swift; sourceTree = "<group>"; };
 		E4762C53269559F300100312 /* KLMImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImagePickerController.swift; sourceTree = "<group>"; };
 		E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SFImageTitleSpacing.m"; sourceTree = "<group>"; };
@@ -330,7 +333,6 @@
 		E4AEC99C266E239500E77178 /* KLMAPPUpdateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAPPUpdateViewController.xib; sourceTree = "<group>"; };
 		E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartNode.swift; sourceTree = "<group>"; };
 		E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMProvisionManager.swift; sourceTree = "<group>"; };
-		E4DF02C626A57F3300FE7AE5 /* KLMConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMConnectionManager.swift; sourceTree = "<group>"; };
 		E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartGroup.swift; sourceTree = "<group>"; };
 		E4E2842D269ED132006C120E /* NetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
 		E4E2842F269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDefaultTransitionTimeServerDelegate.swift; sourceTree = "<group>"; };
@@ -420,6 +422,8 @@
 				E4A660502671F6CC00FE6866 /* KLMAddDeviceViewController.xib */,
 				E48B52ED2667886B0006CDA7 /* KLMDeviceEditViewController.swift */,
 				E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */,
+				E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */,
+				E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */,
 				E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */,
 				E48E608F2692F6E800E630ED /* KLMMotionViewController.xib */,
 				E4762C53269559F300100312 /* KLMImagePickerController.swift */,
@@ -568,12 +572,11 @@
 				E4A660562672089000FE6866 /* KLMHomeManager.swift */,
 				E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */,
 				E4762C512695558C00100312 /* KLMPhotoManager.swift */,
-				E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */,
 				E4E2845B26A278B9006C120E /* KLMMessageManager.swift */,
 				E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */,
 				E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */,
+				E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */,
 				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
-				E4DF02C626A57F3300FE7AE5 /* KLMConnectionManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1048,6 +1051,7 @@
 				E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */,
 				E4A660522671F6CC00FE6866 /* KLMAddDeviceViewController.xib in Resources */,
 				E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */,
+				E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */,
 				E4A6607826733C9500FE6866 /* CMDeviceNamePopViewController.xib in Resources */,
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
 				E4A660612672118C00FE6866 /* KLMDeviceSearchView.xib in Resources */,
@@ -1194,7 +1198,6 @@
 				E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */,
 				E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */,
 				E4A6607E2673486400FE6866 /* KLMDeviceAddCell.swift in Sources */,
-				E4DF02C726A57F3300FE7AE5 /* KLMConnectionManager.swift in Sources */,
 				E4A65FD32670B06400FE6866 /* BitmapScaleManipulator.m in Sources */,
 				E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */,
 				E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */,
@@ -1205,6 +1208,7 @@
 				E48B526426672B420006CDA7 /* head.swift in Sources */,
 				E4A6607726733C9500FE6866 /* CMDeviceNamePopViewController.swift in Sources */,
 				E4A65FCE2670B06400FE6866 /* NSImage+ANImageBitmapRep.m in Sources */,
+				E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */,
 				E48B52BA26677EB60006CDA7 /* KLMNavigationViewController.swift in Sources */,
 				E48B52A326676D8F0006CDA7 /* KLMGroupViewController.swift in Sources */,
 				E4A65FD72670B06400FE6866 /* BitmapContextRep.m in Sources */,

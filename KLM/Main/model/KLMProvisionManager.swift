@@ -12,7 +12,7 @@ protocol KLMProvisionManagerDelegate: AnyObject {
     
     func provisionManager(_ manager: KLMProvisionManager, didFailChange error: Error?)
     
-    func provisionManager(_ manager: KLMProvisionManager, didConnectProxyWithUUID identifier: UUID)
+    func provisionManagerNodeAddSuccess(_ manager: KLMProvisionManager)
 }
 
 class KLMProvisionManager: NSObject {
@@ -21,7 +21,6 @@ class KLMProvisionManager: NSObject {
     var bearer: ProvisioningBearer!
     var discoveredPeripheral: DiscoveredPeripheral!
     weak var delegate:  KLMProvisionManagerDelegate?
-    var connectionManager: KLMConnectionManager!
     
     //单例
     init(discoveredPeripheral: DiscoveredPeripheral, bearer: ProvisioningBearer) {
@@ -121,24 +120,16 @@ extension KLMProvisionManager: GattBearerDelegate {
             
             print("node add success")
             
-            let connection = KLMConnectionManager.init(discoveredPeripheral: self.discoveredPeripheral)
-            connection.delegate = self
-            connection.scanAndConnectProxies()
-            self.connectionManager = connection
+            DispatchQueue.main.asyncAfter(deadline: 1) {
+                
+                self.delegate?.provisionManagerNodeAddSuccess(self)
+            }
+            
         }
     }
     
     func bearerDidOpen(_ bearer: Bearer) {
         
-        
-    }
-}
-
-extension KLMProvisionManager: KLMConnectionManagerDelegate {
-    
-    func connectionManager(_ manager: KLMConnectionManager, didConnectProxyWithUUID identifier: UUID) {
-        
-        self.delegate?.provisionManager(self, didConnectProxyWithUUID: identifier)
         
     }
 }

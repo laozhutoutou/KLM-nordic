@@ -48,7 +48,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 5
+        return 7
         
     }
     
@@ -97,12 +97,17 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.isShowLeftImage = false
             cell.leftTitle = "Motion"
             return cell
-            
+        case 5:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("restorefactorysettings")
+            return cell
         default:
             break
         }
         
         let cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
+        cell.textLabel?.text = "单独控制"
         return cell
     }
     
@@ -125,7 +130,10 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                     
                     self.tableView.reloadData()
                 }
-
+                
+                //发送通知更新首页
+                NotificationCenter.default.post(name: .deviceNameUpdate, object: nil)
+                
             }
             present(vc, animated: true, completion: nil)
             
@@ -139,8 +147,27 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 4:
             let vc = KLMMotionViewController()
             navigationController?.pushViewController(vc, animated: true)
-        default: break
-            
+        case 5: //恢复出厂设置
+            let vc = UIAlertController.init(title: "Restore factory settings", message: nil, preferredStyle: .actionSheet)
+            vc.addAction(UIAlertAction.init(title: "Reset", style: .destructive, handler: { action in
+                SVProgressHUD.show()
+                KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode) { _ in
+                    
+                    SVProgressHUD.showSuccess(withStatus: "success")
+                    NotificationCenter.default.post(name: .deviceReset, object: nil)
+                    self.navigationController?.popToRootViewController(animated: true)
+                    
+                } failure: { error in
+                    KLMShowError(error)
+                }
+
+            }))
+            vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+            present(vc, animated: true, completion: nil)
+        default:
+            let vc = KLMTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            break
         }
     }
 }

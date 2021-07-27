@@ -161,6 +161,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection!.dataDelegate = meshNetworkManager
         connection!.logger = self
         meshNetworkManager.transmitter = connection
+        connection.isConnectionModeAutomatic = true
         connection!.open()
         
         enterMainUI()
