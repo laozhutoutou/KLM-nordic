@@ -19,7 +19,7 @@ class KLMTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+        KLMSmartNode.sharedInstacnce.delegate = self
     }
 
     @IBAction func value(_ sender: UISlider) {
@@ -44,12 +44,26 @@ class KLMTestViewController: UIViewController {
         
         let string = WW.decimalTo4Hexadecimal() + CW.decimalTo4Hexadecimal() + R.decimalTo4Hexadecimal() +
             G.decimalTo4Hexadecimal() + B.decimalTo4Hexadecimal() + A.decimalTo4Hexadecimal()
-        print(string)
-//        KLMHomeManager.currentDevice.publishDps(["105": string]) {
-//            print("success")
-//        } failure: { (error) in
-//            KLMShowError(error)
-//        }
+        KLMLog(string)
+        
+        let parame = parameModel(dp: .PWM, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+
+    }
+}
+
+extension KLMTestViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        if let value = message?.value as? String, value == "FF"{
+            SVProgressHUD.showError(withStatus: "超出功率")
+        }
+        KLMLog("success")
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        KLMShowError(error)
     }
 }
 

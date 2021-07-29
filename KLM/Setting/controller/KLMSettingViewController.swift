@@ -101,11 +101,12 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
                 
             }else{//所有灯感应设置
                 if !MeshNetworkManager.bearer.isOpen {
-                    SVProgressHUD.showError(withStatus: "device offline")
+                    SVProgressHUD.showError(withStatus: "Device Offline")
                     return
                 }
                 
                 let vc = KLMMotionViewController()
+                vc.isAllNodes = true
                 navigationController?.pushViewController(vc, animated: true)
                 
             }

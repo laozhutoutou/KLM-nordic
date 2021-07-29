@@ -17,10 +17,26 @@ class KLMMotionViewController: UIViewController {
     
     var isAllNodes: Bool = false
     
+    /// 是否已经读取
+    var motionTimeFirst = true
+    var motionLightFirst = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = "Motion"
+        
+        setupUI()
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+        if isAllNodes == false {
+            
+            setupData()
+        }
+    }
+    
+    func setupUI() {
         
         //时间滑条
         let viewLeft: CGFloat = 20
@@ -43,24 +59,39 @@ class KLMMotionViewController: UIViewController {
         lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
-        
-        if isAllNodes == false {
-            
-            setupData()
-        }
     }
     
     func setupData() {
         
-        ///查询设备信息
-        var dict2 = Dictionary<String,AnyObject>()
-        dict2["1"] = NSNull()
+        let parameTime = parameModel(dp: .AllDp)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
         
-//        KLMHomeManager.currentNode.sendMessage(dpCode: <#T##Int#>, parameters: <#T##String#>)(dict2) {
-//
-//        } failure: { (error) in
-//            KLMLog(error)
-//        }
+    }
+}
+
+extension KLMMotionViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        if message?.dp ==  .motionTime{
+            if motionTimeFirst {
+                motionTimeFirst = false
+                let value = message?.value as! Int
+                self.timeSlider.currentValue = Float(value)
+            }
+            
+        } else if message?.dp ==  .motionLight{
+            if motionLightFirst {
+                motionLightFirst = false
+                let value = message?.value as! Int
+                self.lightSlider.currentValue = Float(value)
+            }
+        }
+        KLMLog("success")
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        KLMShowError(error)
     }
 }
 
@@ -86,13 +117,9 @@ extension KLMMotionViewController: KLMSliderDelegate {
             } else {
                 
                 
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
-                    
-                } failure: { error in
-                    KLMShowError(error)
-                }
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             }
-                    
+            
         } else {
             
             let parame = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
@@ -107,16 +134,14 @@ extension KLMMotionViewController: KLMSliderDelegate {
                     
                     KLMShowError(error)
                 }
-
+                
             } else {
                 
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
-                    print("success")
-                } failure: { error in
-                    KLMShowError(error)
-                }
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             }
+            
         }
-        
     }
 }
+
+

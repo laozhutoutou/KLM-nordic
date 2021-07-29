@@ -16,6 +16,11 @@ class KLMDeviceEditViewController: UIViewController {
     
     let titles = [LANGLOC("name"),LANGLOC("Group"),LANGLOC("lightSet")]
     
+    /// 是否第一次进来
+    var cameraPowerFirst = true
+    
+    var cameraSwitch = 1
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -25,7 +30,11 @@ class KLMDeviceEditViewController: UIViewController {
         
         self.navigationItem.title = KLMHomeManager.currentNode.name
         
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
         setupData()
+        
+        setupNodeMessage()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         
@@ -37,6 +46,13 @@ class KLMDeviceEditViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    func setupNodeMessage() {
+        
+        //获取开关状态
+        let parameTime = parameModel(dp: .cameraPower)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+    }
+    
     @IBAction func returnTuMain(_ sender: Any) {
         
         navigationController?.popToRootViewController(animated: true)
@@ -44,11 +60,41 @@ class KLMDeviceEditViewController: UIViewController {
     }
 }
 
+extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        if message?.dp ==  .cameraPower{
+            
+            if cameraPowerFirst {
+                cameraPowerFirst = false
+                
+                let value = message?.value as! Int
+                
+                self.cameraSwitch = value
+                self.tableView.reloadData()
+            }
+            
+        }
+        KLMLog("success")
+    }
+    
+    func smartNodeDidResetNode(_ manager: KLMSmartNode){
+        
+        SVProgressHUD.showSuccess(withStatus: "success")
+        NotificationCenter.default.post(name: .deviceReset, object: nil)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        KLMShowError(error)
+    }
+}
+
 extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 7
+        return 8
         
     }
     
@@ -67,7 +113,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = title
             if indexPath.row == 0 {
                 
-                cell.rightTitle = KLMHomeManager.currentNode.name
+                cell.rightTitle = KLMHomeManager.currentNode.nodeName
                 
             }
             
@@ -91,6 +137,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             return cell
         case 3:
             let cell: KLMOneSwitchCell = KLMOneSwitchCell.cellWithTableView(tableView: tableView)
+            cell.cameraOnOff = self.cameraSwitch
             return cell
         case 4:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -102,12 +149,18 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("restorefactorysettings")
             return cell
+        case 6:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "单独控制"
+            return cell
         default:
             break
         }
         
-        let cell = UITableViewCell.init(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = "单独控制"
+        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+        cell.isShowLeftImage = false
+        cell.leftTitle = "测试"
         return cell
     }
     
@@ -142,8 +195,16 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             navigationController?.pushViewController(vc, animated: true)
             
         case 2://灯光设置
+            //是否有相机权限
+            KLMPhotoManager().photoAuthStatus { [weak self] in
+                guard let self = self else { return }
+                
+                let vc = KLMImagePickerController()
+                vc.sourceType = UIImagePickerController.SourceType.camera
+                self.tabBarController?.present(vc, animated: true, completion: nil)
+                
+            }
             
-            print(1111)
         case 4:
             let vc = KLMMotionViewController()
             navigationController?.pushViewController(vc, animated: true)
@@ -151,22 +212,19 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = UIAlertController.init(title: "Restore factory settings", message: nil, preferredStyle: .actionSheet)
             vc.addAction(UIAlertAction.init(title: "Reset", style: .destructive, handler: { action in
                 SVProgressHUD.show()
-                KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode) { _ in
-                    
-                    SVProgressHUD.showSuccess(withStatus: "success")
-                    NotificationCenter.default.post(name: .deviceReset, object: nil)
-                    self.navigationController?.popToRootViewController(animated: true)
-                    
-                } failure: { error in
-                    KLMShowError(error)
-                }
+                KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
 
             }))
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
-        default:
+        case 6://六路测试
             let vc = KLMTestViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 7:
+            let vc = KLMText1ViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            
             break
         }
     }

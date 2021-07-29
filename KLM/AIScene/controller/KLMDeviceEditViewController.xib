@@ -52,39 +52,25 @@
                         <constraint firstItem="XnC-m1-Jid" firstAttribute="leading" secondItem="TbI-AP-cX1" secondAttribute="leading" constant="20" id="TEI-oJ-WSb"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7NY-au-90g">
-                    <rect key="frame" x="0.0" y="170" width="414" height="454"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7NY-au-90g">
+                    <rect key="frame" x="0.0" y="170" width="414" height="604"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="7K1-FF-afY"/>
                         <outlet property="delegate" destination="-1" id="7Tk-vn-G79"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zOJ-Hx-DhB">
-                    <rect key="frame" x="40" y="674" width="334" height="50"/>
-                    <color key="backgroundColor" red="0.9171227201012937" green="0.49795528898582331" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="X4w-Fm-7RE"/>
-                    </constraints>
-                    <state key="normal" title="回到首页"/>
-                    <connections>
-                        <action selector="returnTuMain:" destination="-1" eventType="touchUpInside" id="MCf-5R-0ZW"/>
-                    </connections>
-                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="7NY-au-90g" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3FG-bz-lQ6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TbI-AP-cX1" secondAttribute="trailing" constant="15" id="7NI-qn-HjB"/>
-                <constraint firstItem="zOJ-Hx-DhB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="AZK-3l-AeK"/>
                 <constraint firstItem="7NY-au-90g" firstAttribute="top" secondItem="TbI-AP-cX1" secondAttribute="bottom" constant="20" id="Nkw-tr-TyK"/>
-                <constraint firstItem="zOJ-Hx-DhB" firstAttribute="top" secondItem="7NY-au-90g" secondAttribute="bottom" constant="50" id="TBj-g3-dkx"/>
                 <constraint firstItem="TbI-AP-cX1" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="Tm1-by-i8s"/>
                 <constraint firstItem="TbI-AP-cX1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="g0A-hI-aAa"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zOJ-Hx-DhB" secondAttribute="trailing" constant="40" id="so7-vy-OzD"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="7NY-au-90g" secondAttribute="bottom" id="pbZ-QY-K95"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="7NY-au-90g" secondAttribute="trailing" id="uLm-9a-IAD"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zOJ-Hx-DhB" secondAttribute="bottom" constant="50" id="xFO-7G-5VN"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>

@@ -30,6 +30,7 @@ class KLMSmartGroup: NSObject {
         failureBlock = failure
         
         var parameString = ""
+       
         switch parame.dp {
         case .power,
              .colorTemp,
@@ -41,14 +42,19 @@ class KLMSmartGroup: NSObject {
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
+           
         case .color,
              .recipe:
             parameString = parame.value as! String
+           
+        default:
+            break
         }
         
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("A", radix: 16) {
-            let parameters = Data(hex: dpString) + parameString.data(using: .ascii)!
+            let parameters = Data(hex: dpString + parameString)
+            KLMLog("parameter = \(parameters.hex)")
             let network = MeshNetworkManager.instance.meshNetwork!
             let models = network.models(subscribedTo: group)
             
@@ -83,6 +89,7 @@ class KLMSmartGroup: NSObject {
         failureBlock = failure
         
         var parameString = ""
+        
         switch parame.dp {
         case .power,
              .colorTemp,
@@ -94,21 +101,26 @@ class KLMSmartGroup: NSObject {
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
+            
         case .color,
              .recipe:
             parameString = parame.value as! String
+            
+        default:
+            break
         }
         
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("A", radix: 16) {
-            let parameters = Data(hex: dpString) + parameString.data(using: .ascii)!
+            let parameters = Data(hex: dpString + parameString)
+            KLMLog("parameter = \(parameters.hex)")
             let network = MeshNetworkManager.instance.meshNetwork!
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
             guard !notConfiguredNodes.isEmpty else {
                 
                 //没有节点
                 var err = MessageError()
-                err.message = "no devices"
+                err.message = "No Devices"
                 failure(err)
                 return
             }

@@ -38,7 +38,7 @@ class KLMAINameListCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         
         didSet{
             
-            nameLab.text = model.name ?? "Unknow Name"
+            nameLab.text = model.nodeName
             
         }
     }

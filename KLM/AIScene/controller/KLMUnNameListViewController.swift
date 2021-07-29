@@ -38,15 +38,13 @@ class KLMUnNameListViewController: UIViewController{
         }
         self.collectionView.mj_header = header
         
-        MeshNetworkManager.bearer.delegate = self
-        
     }
 
     @objc func setupData(){
         
         if let network = MeshNetworkManager.instance.meshNetwork {
             
-            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner && $0.name == nil})
             
             self.nodes.removeAll()
             self.nodes = notConfiguredNodes
@@ -54,7 +52,6 @@ class KLMUnNameListViewController: UIViewController{
             self.collectionView.mj_header?.endRefreshing()
         }
     }
-    
 }
 
 extension KLMUnNameListViewController: KLMAINameListCellDelegate {
@@ -62,6 +59,20 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
     func longPressItem(model: Node) {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
+        
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showError(withStatus: "Device Offline")
+            return
+        }
+        if !model.isCompositionDataReceived {
+            //对于未composition的进行配置
+            SVProgressHUD.show(withStatus: "Composition")
+            SVProgressHUD.setDefaultMaskType(.black)
+            
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
+            return
+        }
         
         let vc = KLMDeviceEditViewController()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -115,13 +126,10 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        //蓝牙 Mesh 设备在线
-//        guard node.isOnLine else {
-//
-//            SVProgressHUD.showError(withStatus: "Device offline")
-//            return
-//        }
-        
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showError(withStatus: "Device Offline")
+            return
+        }
         if !node.isCompositionDataReceived {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")
@@ -132,22 +140,6 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             return
         }
         
-//        KLMSmartNode.sharedInstacnce.readMessage(node: node) { _ in
-//            print("success")
-//        } failure: { error in
-//            KLMShowError(error)
-//        }
-
-//        let parame = parameModel(dp: .motionPower, value: 50)
-//        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
-//            print("success")
-//        } failure: { error in
-//            KLMShowError(error)
-//        }
-        
-//        MeshNetworkManager.instance.meshNetwork!.remove(node: node)
-//        MeshNetworkManager.instance.save()
-
 //        是否有相机权限
         KLMPhotoManager().photoAuthStatus { [weak self] in
             guard let self = self else { return }
@@ -174,17 +166,5 @@ extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
     }
 }
 
-extension KLMUnNameListViewController: BearerDelegate {
-    
-    func bearerDidOpen(_ bearer: Bearer) {
-        
-        self.collectionView.reloadData()
-    }
-    
-    func bearer(_ bearer: Bearer, didClose error: Error?) {
-        
-        self.collectionView.reloadData()
-    }
-}
 
 

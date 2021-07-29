@@ -6,5 +6,5 @@
   
 */
 
-CFBundleDisplayName = "nordic";
+CFBundleDisplayName = "AIScene";
 //NSBluetoothAlwaysUsageDescription = "为了更好的使用，建议打开使用蓝牙的权限。";

@@ -67,19 +67,28 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let deviceModel: Node = self.deviceLists[indexPath.item]
+        let deviceModel: Node = self.deviceLists[indexPath.row]
         let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-        cell.leftTitle = deviceModel.name
+        cell.leftTitle = deviceModel.nodeName
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let deviceModel:  TuyaSmartDeviceModel = self.deviceLists[indexPath.item]
-        //记录当前设备
-//        KLMHomeManager.sharedInstacnce.smartNode = TuyaSmartDevice.init(deviceId: deviceModel.devId)
-
+        let node = self.deviceLists[indexPath.row]
         
+        //记录当前设备
+        KLMHomeManager.sharedInstacnce.smartNode = node
+        
+        //是否有相机权限
+        KLMPhotoManager().photoAuthStatus { [weak self] in
+            guard let self = self else { return }
+            
+            let vc = KLMImagePickerController()
+            vc.sourceType = UIImagePickerController.SourceType.camera
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

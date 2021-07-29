@@ -29,6 +29,8 @@ class KLMPhotoEditViewController: UIViewController {
     //当前亮度
     var lightValue: Int = 100
     
+    var isFinish = false
+    
     //模态视图跳转
     var isModel: Bool = false {
         
@@ -60,6 +62,14 @@ class KLMPhotoEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupUI()
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+    }
+    
+    func setupUI() {
+        
         imageView.image = originalImage
         
         //框选
@@ -80,10 +90,10 @@ class KLMPhotoEditViewController: UIViewController {
         }
         lightSlider.currentValue = Float(self.lightValue)
         lightSlider.delegate = self
+        lightSlider.indicateView.isHidden = true
         self.lightSlider = lightSlider
         self.lightSlider.isUserInteractionEnabled = false
         lightBgView.addSubview(lightSlider)
-        
     }
     //点选
     @objc func handleTap(tap: UITapGestureRecognizer) {
@@ -145,22 +155,19 @@ class KLMPhotoEditViewController: UIViewController {
     ///发送数据
     func setData() {
         
+        isFinish = false
+        
         //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
         let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
         //亮度范围80-120
         let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
         let string = recipeHex + lightValueHex + "00"
-        KLMLog("string = \(string)")
+        
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                print("success")
-            } failure: { error in
-                KLMShowError(error)
-            }
-
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         } else {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
@@ -216,22 +223,20 @@ class KLMPhotoEditViewController: UIViewController {
     
     @objc func dimiss() {
         
+        isFinish = false
+        
         //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
         let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
         //亮度范围80-120
         let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
         let string = recipeHex + lightValueHex + "02"
-        KLMLog("string = \(string)")
+        
         
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
-                
-            } failure: { error in
-                KLMShowError(error)
-            }
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         } else {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
@@ -247,36 +252,21 @@ class KLMPhotoEditViewController: UIViewController {
     
     @objc func finish() {
         
+        isFinish = true
+        
         //保存当前设置
         //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
         let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
         //亮度范围80-120
         let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
         let string = recipeHex + lightValueHex + "01"
-        KLMLog("string = \(string)")
+        
         
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in
-                
-                SVProgressHUD.showSuccess(withStatus: "success")
-                
-                DispatchQueue.main.asyncAfter(deadline: 1) {
-                    
-                    //获取根VC
-                    var  rootVC =  self.presentingViewController
-                    while  let  parent = rootVC?.presentingViewController {
-                        rootVC = parent
-                    }
-                    //释放所有下级视图
-                    rootVC?.dismiss(animated:  true , completion:  nil )
-                }
-                
-            } failure: { error in
-                KLMShowError(error)
-            }
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         } else {
             
@@ -310,4 +300,31 @@ extension KLMPhotoEditViewController: KLMSliderDelegate {
         setData()
     }
     
+}
+
+extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        if isFinish {
+            
+            SVProgressHUD.showSuccess(withStatus: "success")
+            
+            DispatchQueue.main.asyncAfter(deadline: 1) {
+                
+                //获取根VC
+                var  rootVC =  self.presentingViewController
+                while  let  parent = rootVC?.presentingViewController {
+                    rootVC = parent
+                }
+                //释放所有下级视图
+                rootVC?.dismiss(animated:  true , completion:  nil )
+            }
+        }
+        
+        print("success")
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        KLMShowError(error)
+    }
 }

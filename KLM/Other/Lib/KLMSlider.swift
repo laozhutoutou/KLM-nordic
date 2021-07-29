@@ -136,20 +136,20 @@ class KLMSlider: UIView {
     
     @objc func minClick() {
         
-//        indicateView.isHidden = false
+        indicateView.isHidden = false
         self.currentValue -= self.step
         setData()
     }
     
     @objc func maxClick() {
-//        indicateView.isHidden = false
+        indicateView.isHidden = false
         self.currentValue += self.step
         setData()
     }
     
     @objc func valueChange(slider: KLMSliderW) {
         
-//        indicateView.isHidden = false
+        indicateView.isHidden = false
         self.currentValue = slider.value
     }
     

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMReNameListViewController" customModule="KLM" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="aV9-x2-AjB" id="rQf-Zr-wSv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,9 +19,31 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="aV9-x2-AjB">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0TW-b4-H2b">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="KWV-Az-UwZ"/>
+                        <outlet property="delegate" destination="-1" id="VFK-Vg-jN8"/>
+                    </connections>
+                </collectionView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="-1148" y="50"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="aV9-x2-AjB" secondAttribute="bottom" id="4g8-0n-bZr"/>
+                <constraint firstItem="aV9-x2-AjB" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Me8-Xc-0or"/>
+                <constraint firstItem="aV9-x2-AjB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="c3b-mg-zpJ"/>
+                <constraint firstItem="aV9-x2-AjB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kml-d7-nK0"/>
+            </constraints>
+            <point key="canvasLocation" x="-1709" y="56"/>
         </view>
     </objects>
     <resources>

@@ -8,6 +8,30 @@
 import UIKit
 import nRFMeshProvision
 
+protocol KLMSmartNodeDelegate: AnyObject {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?)
+    
+    func smartNodeDidResetNode(_ manager: KLMSmartNode)
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?)
+}
+
+extension KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?){
+        
+    }
+    
+    func smartNodeDidResetNode(_ manager: KLMSmartNode){
+        
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?){
+        
+    }
+}
+
 class KLMSmartNode: NSObject {
     
     static let sharedInstacnce = KLMSmartNode()
@@ -16,28 +40,13 @@ class KLMSmartNode: NSObject {
         
     }
     
-    typealias SuccessBlock = (_ response: parameModel?) -> Void
-    typealias FailureBlock = (_ error: MessageError?) -> Void
-  
-    var successBlock: SuccessBlock!
-    var failureBlock: FailureBlock!
+    weak var delegate: KLMSmartNodeDelegate?
     
-    
-    /// 给节点发送消息
-    /// - Parameters:
-    ///   - parame: 参数
-    ///   - node: 节点
-    ///   - success: success
-    ///   - failure: failure
-    func sendMessage(_ parame: parameModel, toNode node: Node,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+    func sendMessage(_ parame: parameModel, toNode node: Node) {
         
         MeshNetworkManager.instance.delegate = self
         
-        successBlock = success
-        failureBlock = failure
-        
         var parameString = ""
-        var parameData: Data = Data.init()
         switch parame.dp {
         case .power,
              .colorTemp,
@@ -49,18 +58,19 @@ class KLMSmartNode: NSObject {
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
-            parameData = Data(hex: parameString)
         case .color,
-             .recipe:
+             .recipe,
+             .PWM:
             parameString = parame.value as! String
-            parameData = parameString.data(using: .ascii)!
+        default:
+            break
         }
-        //zhuzhu
+        
         let model = KLMHomeManager.getModelFromNode(node: node)!
         //数据格式：比如，power dp 01 ,开 01 "0101"字符串转化成
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("A", radix: 16) {
-            let parameters = Data(hex: dpString) + parameData
+            let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
@@ -70,22 +80,21 @@ class KLMSmartNode: NSObject {
             } catch {
                 var err = MessageError()
                 err.message = error.localizedDescription
-                failure(err)
+                self.delegate?.smartNode(self, didfailure: err)
                 
             }
         }
     }
     
-    func readMessage(node: Node, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+    func readMessage(_ parame: parameModel, toNode node: Node) {
         
         MeshNetworkManager.instance.delegate = self
         
-        successBlock = success
-        failureBlock = failure
-        
         let model = KLMHomeManager.getModelFromNode(node: node)!
+        let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("C", radix: 16) {
-            let parameters = Data(hex: "01010101")
+            let parameters = Data(hex: dpString)
+            KLMLog("parameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
                 try MeshNetworkManager.instance.send(message, to: model)
@@ -93,22 +102,15 @@ class KLMSmartNode: NSObject {
                 
                 var err = MessageError()
                 err.message = error.localizedDescription
-                failure(err)
+                self.delegate?.smartNode(self, didfailure: err)
             }
         }
     }
     
     /// 删除节点
-    /// - Parameters:
-    ///   - node: 节点
-    ///   - success: success
-    ///   - failure: failure
-    func resetNode(node: Node, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+    func resetNode(node: Node) {
         
         MeshNetworkManager.instance.delegate = self
-        
-        successBlock = success
-        failureBlock = failure
         
         let message = ConfigNodeReset()
         do {
@@ -117,7 +119,7 @@ class KLMSmartNode: NSObject {
             
             var err = MessageError()
             err.message = error.localizedDescription
-            failure(err)
+            self.delegate?.smartNode(self, didfailure: err)
         }
     }
 }
@@ -126,7 +128,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         switch message {
-        case let message as UnknownMessage:
+        case let message as UnknownMessage://收发消息
             if let parameters = message.parameters {
                 //如果是开关 "0101"
                 KLMLog("messageResponse = \(parameters.hex)")
@@ -135,46 +137,63 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     
                     var response = parameModel()
                     let dpData = parameters[0]
-                    let value = parameters.suffix(from: 1).hex
-                    response.value = value
+                    let valueHex = parameters.suffix(from: 1).hex
                     switch dpData {
                     case 1:
+                        
                         response.dp = .power
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 2:
                         response.dp = .color
+                        
+                        response.value = valueHex
                     case 3:
+                        
                         response.dp = .colorTemp
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 4:
+                        
                         response.dp = .light
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 5:
                         response.dp = .recipe
+                        
+                        response.value = valueHex
                     case 6:
+                        
                         response.dp = .cameraPower
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 7:
+                        
                         response.dp = .flash
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 8:
+                        
                         response.dp = .motionTime
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 9:
+                        
                         response.dp = .motionLight
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 10:
+                        
                         response.dp = .motionPower
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                    case 101:
+                        
+                        response.dp = .PWM
+                        response.value = valueHex
                     default:
                         break
                     }
                     
-                    successBlock(response)
+                    self.delegate?.smartNode(self, didReceiveVendorMessage: response)
                     
-                } else {
-                    
-                    successBlock(nil)
                 }
                 
-            } else {
-                
-                successBlock(nil)
             }
         case is ConfigNodeResetStatus:
-            successBlock(nil)
+            self.delegate?.smartNodeDidResetNode(self)
         default:
             break
         }
@@ -188,6 +207,16 @@ extension KLMSmartNode: MeshNetworkDelegate {
         
         var err = MessageError()
         err.message = error.localizedDescription
-        failureBlock(err)
+        self.delegate?.smartNode(self, didfailure: err)
     }
+}
+
+extension Node {
+    
+    /// 节点的名称
+    var nodeName: String {
+        
+        return self.name ?? "Unknow Name"
+    }
+    
 }

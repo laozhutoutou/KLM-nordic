@@ -97,11 +97,8 @@ class KLMImagePickerController: UIImagePickerController {
         
         let parame = parameModel(dp: .flash, value: 1)
         
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-            print("success")
-        } failure: { error in
-            KLMShowError(error)
-        }
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
     }
     
     @objc func closeClick() {

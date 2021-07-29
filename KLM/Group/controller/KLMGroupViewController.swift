@@ -107,35 +107,25 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         
         let model: Group = groups[indexPath.row]
         
-        let parame = parameModel(dp: .recipe, value: "string")
+        KLMHomeManager.sharedInstacnce.smartGroup = model
         
-        KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: model) {
-            
-            print("success")
-            
-        } failure: { error in
-            KLMShowError(error)
+        let network = MeshNetworkManager.instance.meshNetwork!
+        let models = network.models(subscribedTo: model)
+        if models.isEmpty {
+
+            SVProgressHUD.showInfo(withStatus: "No Devices")
+            return
         }
         
-//        let network = MeshNetworkManager.instance.meshNetwork!
-//        let models = network.models(subscribedTo: model)
-//        if models.isEmpty {
-//
-//            SVProgressHUD.showInfo(withStatus: "no devices")
-//            return
-//        }
-//
-//        KLMHomeManager.sharedInstacnce.smartGroup = model
-//
-//        //是否有相机权限
-//        KLMPhotoManager().photoAuthStatus { [weak self] in
-//            guard let self = self else { return }
-//
-//            let vc = KLMImagePickerController()
-//            vc.sourceType = UIImagePickerController.SourceType.camera
-//            self.tabBarController?.present(vc, animated: true, completion: nil)
-//
-//        }
+        //是否有相机权限
+        KLMPhotoManager().photoAuthStatus { [weak self] in
+            guard let self = self else { return }
+
+            let vc = KLMImagePickerController()
+            vc.sourceType = UIImagePickerController.SourceType.camera
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+
+        }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

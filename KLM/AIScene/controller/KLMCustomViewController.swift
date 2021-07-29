@@ -13,8 +13,7 @@ struct tempColors {
 }
 
 class KLMCustomViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var plateView: UIView!
     @IBOutlet weak var colorItemsView: UIView!
     @IBOutlet weak var colorTempBgView: UIView!
@@ -22,9 +21,10 @@ class KLMCustomViewController: UIViewController {
     
     let itemW:CGFloat = 25
     
-    var isFirstTimeColor = true
-    var isFirstTimeTemp = true
-    var isFirstTimeLight = true
+    /// 是否已经读取
+    var colorFirst = true
+    var colorTempFirst = true
+    var lightFirst = true
     
     //模态视图跳转
     var isModel: Bool = false {
@@ -49,6 +49,7 @@ class KLMCustomViewController: UIViewController {
         return ring
     }()
     
+    /// 色盘
     lazy var pickView:  RSColorPickerView = {
         let pickView = RSColorPickerView(frame: self.plateView.bounds)
         pickView.cropToCircle = true
@@ -62,6 +63,18 @@ class KLMCustomViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupUI()
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+
+            setupData()
+        }
+    }
+    
+    func setupUI() {
         
         plateView.addSubview(pickView)
         
@@ -97,25 +110,12 @@ class KLMCustomViewController: UIViewController {
         lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
-        
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
-
-            setupData()
-        }
-        
     }
     
     func setupData() {
         
-        ///查询设备信息
-//        var dict2 = Dictionary<String,AnyObject>()
-//        dict2["1"] = NSNull()
-//
-//        KLMHomeManager.currentNode.publishDps(dict2) {
-//
-//        } failure: { (error) in
-//            KLMLog(error)
-//        }
+        let parameTime = parameModel(dp: .AllDp)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
     }
     
     func setColorItems() {
@@ -167,11 +167,7 @@ class KLMCustomViewController: UIViewController {
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
         
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                print("success")
-            } failure: { error in
-                KLMShowError(error)
-            }
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
             
         } else {
@@ -195,6 +191,42 @@ class KLMCustomViewController: UIViewController {
 
 }
 
+extension KLMCustomViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        if message?.dp ==  .color{
+            if colorFirst {
+                colorFirst = false
+                let value = message?.value as! String
+                let color = value.hexToColor()
+                self.pickView.selectionColor = color
+            }
+            
+            
+        } else if message?.dp ==  .colorTemp{
+            if colorTempFirst {
+                colorTempFirst = false
+                let value = message?.value as! Int
+                self.colorTempSlider.currentValue = Float(value)
+            }
+            
+        } else if message?.dp ==  .light{
+            if lightFirst {
+                lightFirst = false
+                let value = message?.value as! Int
+                self.lightSlider.currentValue = Float(value)
+            }
+            
+        }
+        KLMLog("success")
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        KLMShowError(error)
+    }
+}
+
+
 extension KLMCustomViewController: KLMSliderDelegate {
 
     func KLMSliderWith(slider: KLMSlider, value: Float) {
@@ -206,11 +238,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
             
             if KLMHomeManager.sharedInstacnce.controllType == .Device {
                 
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                    print("success")
-                } failure: { error in
-                    KLMShowError(error)
-                }
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
                 
             } else {
                 
@@ -227,15 +255,11 @@ extension KLMCustomViewController: KLMSliderDelegate {
         }
         
         if slider == lightSlider { //亮度
-            let vv = Int(value * 1000)
+            let vv = Int(value)
             let parame = parameModel(dp: .light, value: vv)
             if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                    print("success")
-                } failure: { error in
-                    KLMShowError(error)
-                }
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             } else {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
@@ -266,11 +290,7 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                print("success")
-            } failure: { error in
-                KLMShowError(error)
-            }
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         } else {
             

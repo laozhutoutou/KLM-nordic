@@ -14,6 +14,8 @@
 		E4531020268D569B00E6F1FB /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E453101F268D569B00E6F1FB /* Project.bin */; };
 		E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */; };
 		E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */; };
+		E4729A7C26B1333A00DC7D59 /* KLMText1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */; };
+		E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */; };
 		E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C512695558C00100312 /* KLMPhotoManager.swift */; };
 		E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C53269559F300100312 /* KLMImagePickerController.swift */; };
 		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
@@ -176,6 +178,8 @@
 		E453101F268D569B00E6F1FB /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
 		E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLMTestViewController.swift; sourceTree = "<group>"; };
 		E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KLMTestViewController.xib; sourceTree = "<group>"; };
+		E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMText1ViewController.swift; sourceTree = "<group>"; };
+		E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMText1ViewController.xib; sourceTree = "<group>"; };
 		E4762C512695558C00100312 /* KLMPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoManager.swift; sourceTree = "<group>"; };
 		E4762C53269559F300100312 /* KLMImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImagePickerController.swift; sourceTree = "<group>"; };
 		E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SFImageTitleSpacing.m"; sourceTree = "<group>"; };
@@ -424,6 +428,8 @@
 				E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */,
 				E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */,
 				E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */,
+				E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */,
+				E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */,
 				E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */,
 				E48E608F2692F6E800E630ED /* KLMMotionViewController.xib */,
 				E4762C53269559F300100312 /* KLMImagePickerController.swift */,
@@ -1041,6 +1047,7 @@
 				E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */,
 				E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */,
 				E495D12B2678892600AA50B9 /* KLMGroupTransferListViewController.xib in Resources */,
+				E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
 				E4AEC98E266E204B00E77178 /* CMLanguageSettingViewController.xib in Resources */,
 				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
@@ -1192,6 +1199,7 @@
 				E4A65FD52670B06400FE6866 /* CGImageContainer.m in Sources */,
 				E4A65FD42670B06400FE6866 /* BitmapContextManipulator.m in Sources */,
 				E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */,
+				E4729A7C26B1333A00DC7D59 /* KLMText1ViewController.swift in Sources */,
 				E4A660572672089000FE6866 /* KLMHomeManager.swift in Sources */,
 				E4E2845A26A1291A006C120E /* KLMSIGMeshManager.swift in Sources */,
 				E4A65F49266F5A1F00FE6866 /* KLMSearchHistoryView.swift in Sources */,
@@ -1442,7 +1450,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm11.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1468,7 +1476,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm11.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

@@ -110,15 +110,18 @@ struct MessageError: Error {
 
 enum DPType: Int {
     case power = 1
-    case color = 2
-    case colorTemp = 3
-    case light = 4
-    case recipe = 5
+    case color = 2 //色盘
+    case colorTemp = 3 //色温
+    case light = 4 //亮度
+    case recipe = 5 //配方
     case cameraPower = 6
     case flash = 7
     case motionTime = 8
     case motionLight = 9
     case motionPower = 10
+    case colorTest = 11
+    case PWM = 101
+    case AllDp = 0xFF
 }
 
 struct parameModel {

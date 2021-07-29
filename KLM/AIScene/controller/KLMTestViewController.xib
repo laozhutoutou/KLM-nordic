@@ -133,7 +133,7 @@
                 <constraint firstItem="jUt-j5-Y13" firstAttribute="top" secondItem="v2g-5T-g5i" secondAttribute="bottom" constant="34" id="zPx-9S-hYY"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-1654" y="193"/>
+            <point key="canvasLocation" x="-2036" y="-193"/>
         </view>
     </objects>
     <resources>

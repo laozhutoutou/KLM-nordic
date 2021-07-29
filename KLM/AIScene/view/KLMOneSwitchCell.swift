@@ -17,18 +17,18 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
     
     @IBOutlet weak var cameraSwitch: UISwitch!
     
+    var cameraOnOff: Int!{
+        
+        didSet {
+            self.cameraSwitch.isOn = cameraOnOff == 1 ? true : false
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        ///查询设备信息
-        var dict2 = Dictionary<String,AnyObject>()
-        dict2["1"] = NSNull()
         
-//        KLMHomeManager.currentNode.publishDps(dict2) {
-//
-//        } failure: { (error) in
-//            KLMLog(error)
-//        }
     }
 
     @IBAction func switchClick(_ sender: UISwitch) {
@@ -37,21 +37,13 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
             
             let parame = parameModel(dp: .cameraPower, value: 1)
             
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                print("success")
-            } failure: { error in
-                KLMShowError(error)
-            }
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
         } else {//关
             
             let parame = parameModel(dp: .cameraPower, value: 2)
             
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode) {_ in 
-                print("success")
-            } failure: { error in
-                KLMShowError(error)
-            }
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         }
     }
