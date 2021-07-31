@@ -141,6 +141,11 @@ extension String {
             let H: Float = Float(HH.hexadecimalToDecimal())! / 360
             let S: Float = Float(SS.hexadecimalToDecimal())! / 1000
             let B: Float = Float(BB.hexadecimalToDecimal())! / 1000
+            if H == 0 && S == 0 && B == 0{
+                
+                return .white
+            }
+            
             return UIColor.init(hue: CGFloat(H), saturation: CGFloat(S), brightness: CGFloat(B), alpha: 1)
         }
         return .white

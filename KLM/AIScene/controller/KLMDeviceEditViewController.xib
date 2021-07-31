@@ -74,7 +74,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <nil key="simulatedBottomBarMetrics"/>
-            <point key="canvasLocation" x="-1438" y="46"/>
+            <point key="canvasLocation" x="-1996" y="17"/>
         </view>
     </objects>
     <resources>

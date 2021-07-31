@@ -60,6 +60,7 @@ class KLMSmartNode: NSObject {
             parameString = value.decimalTo2Hexadecimal()
         case .color,
              .recipe,
+             .colorTest,
              .PWM:
             parameString = parame.value as! String
         default:

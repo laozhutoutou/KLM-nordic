@@ -33,6 +33,9 @@
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RQf-3a-JV4">
                     <rect key="frame" x="105" y="25" width="51" height="31"/>
+                    <connections>
+                        <action selector="touch:" destination="-1" eventType="valueChanged" id="JT7-OI-1DQ"/>
+                    </connections>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试间隔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sh9-YT-7Dq">
                     <rect key="frame" x="15" y="111" width="70" height="21"/>
@@ -46,26 +49,30 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Jeg-cB-uHa">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="20" maxValue="120" translatesAutoresizingMaskIntoConstraints="NO" id="Jeg-cB-uHa">
                     <rect key="frame" x="103" y="106.5" width="293" height="31"/>
                     <connections>
-                        <action selector="interval:" destination="-1" eventType="valueChanged" id="AhS-FN-kOd"/>
+                        <action selector="interval:" destination="-1" eventType="touchUpOutside" id="4Fa-lE-E5D"/>
+                        <action selector="interval:" destination="-1" eventType="touchUpInside" id="m6g-yu-BI5"/>
+                        <action selector="intervalValueChanged:" destination="-1" eventType="valueChanged" id="Ghv-dr-PVW"/>
                     </connections>
                 </slider>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqc-A5-PKA">
-                    <rect key="frame" x="364" y="80.5" width="30" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqc-A5-PKA">
+                    <rect key="frame" x="365" y="80.5" width="29" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="7Rr-ZL-iiN">
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="0.0" maxValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Rr-ZL-iiN">
                     <rect key="frame" x="103" y="187.5" width="293" height="31"/>
                     <connections>
-                        <action selector="wait:" destination="-1" eventType="valueChanged" id="bsP-Zc-awd"/>
+                        <action selector="wait:" destination="-1" eventType="touchUpOutside" id="fBM-FA-bFA"/>
+                        <action selector="wait:" destination="-1" eventType="touchUpInside" id="k6T-9t-mrB"/>
+                        <action selector="waitValueChanged:" destination="-1" eventType="valueChanged" id="mwh-Z2-Z05"/>
                     </connections>
                 </slider>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OJ-dl-lag">
-                    <rect key="frame" x="367" y="161.5" width="27" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3s" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OJ-dl-lag">
+                    <rect key="frame" x="375" y="161.5" width="19" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -111,7 +118,7 @@
                 <constraint firstItem="sh9-YT-7Dq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="zzE-IU-UEJ"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="4" y="106"/>
+            <point key="canvasLocation" x="139" y="76"/>
         </view>
     </objects>
     <resources>

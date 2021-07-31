@@ -16,10 +16,25 @@ class KLMTestViewController: UIViewController {
     var B: Int = 0
     var A: Int = 0
     
+    @IBOutlet weak var WWLab: UILabel!
+    @IBOutlet weak var CMlab: UILabel!
+    @IBOutlet weak var Rlab: UILabel!
+    @IBOutlet weak var Glab: UILabel!
+    @IBOutlet weak var Blab: UILabel!
+    @IBOutlet weak var Alab: UILabel!
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        KLMSmartNode.sharedInstacnce.delegate = self
     }
 
     @IBAction func value(_ sender: UISlider) {
@@ -50,6 +65,26 @@ class KLMTestViewController: UIViewController {
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
     }
+    
+    @IBAction func valueChanged(_ sender: UISlider) {
+        
+        switch sender.tag {
+        case 0:
+            WWLab.text = "\(Int(sender.value))"
+        case 1:
+            CMlab.text = "\(Int(sender.value))"
+        case 2:
+            Rlab.text = "\(Int(sender.value))"
+        case 3:
+            Glab.text = "\(Int(sender.value))"
+        case 4:
+            Blab.text = "\(Int(sender.value))"
+        case 5:
+            Alab.text = "\(Int(sender.value))"
+        default:
+            break
+        }
+    }
 }
 
 extension KLMTestViewController: KLMSmartNodeDelegate {
@@ -67,14 +102,3 @@ extension KLMTestViewController: KLMSmartNodeDelegate {
     }
 }
 
-//extension KLMTestViewController: TuyaSmartDeviceDelegate {
-//
-//    func device(_ device: TuyaSmartDevice, dpsUpdate dps: [AnyHashable : Any]) {
-//
-//        if let value = dps["105"], value as! String == "FF" {
-//
-//            SVProgressHUD.showError(withStatus: "超出功率")
-//
-//        }
-//    }
-//}

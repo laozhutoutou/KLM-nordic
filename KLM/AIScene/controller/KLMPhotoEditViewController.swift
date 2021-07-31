@@ -59,12 +59,17 @@ class KLMPhotoEditViewController: UIViewController {
         return clicpView
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
-        
-        KLMSmartNode.sharedInstacnce.delegate = self
         
     }
     

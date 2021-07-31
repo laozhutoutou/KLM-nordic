@@ -61,10 +61,8 @@ class KLMCustomViewController: UIViewController {
     var colorTempSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupUI()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         KLMSmartNode.sharedInstacnce.delegate = self
         
@@ -72,6 +70,13 @@ class KLMCustomViewController: UIViewController {
 
             setupData()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupUI()
+        
     }
     
     func setupUI() {

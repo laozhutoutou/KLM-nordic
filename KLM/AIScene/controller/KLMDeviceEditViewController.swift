@@ -25,16 +25,25 @@ class KLMDeviceEditViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+        setupNodeMessage()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = KLMHomeManager.currentNode.name
         
-        KLMSmartNode.sharedInstacnce.delegate = self
-        
         setupData()
-        
-        setupNodeMessage()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         
@@ -53,11 +62,6 @@ class KLMDeviceEditViewController: UIViewController {
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
     }
     
-    @IBAction func returnTuMain(_ sender: Any) {
-        
-        navigationController?.popToRootViewController(animated: true)
-        
-    }
 }
 
 extension KLMDeviceEditViewController: KLMSmartNodeDelegate {

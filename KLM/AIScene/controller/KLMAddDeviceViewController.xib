@@ -33,21 +33,12 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WoR-fn-EfU">
-                                    <rect key="frame" x="337" y="10" width="62" height="30"/>
-                                    <state key="normal" title="重新搜索"/>
-                                    <connections>
-                                        <action selector="reSearch:" destination="-1" eventType="touchUpInside" id="I99-gp-eBK"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="Tfb-xA-WOQ" firstAttribute="centerY" secondItem="YsT-NO-lr3" secondAttribute="centerY" id="BxQ-RO-Gm8"/>
-                                <constraint firstItem="WoR-fn-EfU" firstAttribute="centerY" secondItem="Tfb-xA-WOQ" secondAttribute="centerY" id="CYw-Dn-yH0"/>
                                 <constraint firstAttribute="height" constant="50" id="tdE-EU-eyy"/>
                                 <constraint firstItem="Tfb-xA-WOQ" firstAttribute="leading" secondItem="YsT-NO-lr3" secondAttribute="leading" constant="15" id="v4M-t4-mVi"/>
-                                <constraint firstAttribute="trailing" secondItem="WoR-fn-EfU" secondAttribute="trailing" constant="15" id="zSz-3C-215"/>
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oMn-a8-WK7">
@@ -75,12 +66,12 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="twp-Pm-JJ2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Mf1-wP-Dzv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="twp-Pm-JJ2" secondAttribute="bottom" id="P9A-Ql-uUe"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="twp-Pm-JJ2" secondAttribute="trailing" id="mpO-nm-Kgo"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="twp-Pm-JJ2" secondAttribute="bottom" id="vZd-Zl-Jqf"/>
                 <constraint firstItem="twp-Pm-JJ2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zf3-aU-3zr"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="52" y="51"/>
+            <point key="canvasLocation" x="-301" y="34"/>
         </view>
     </objects>
     <resources>

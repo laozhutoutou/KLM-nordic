@@ -21,12 +21,8 @@ class KLMMotionViewController: UIViewController {
     var motionTimeFirst = true
     var motionLightFirst = true
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        navigationItem.title = "Motion"
-        
-        setupUI()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         KLMSmartNode.sharedInstacnce.delegate = self
         
@@ -34,6 +30,15 @@ class KLMMotionViewController: UIViewController {
             
             setupData()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        navigationItem.title = "Motion"
+        
+        setupUI()
+        
     }
     
     func setupUI() {
