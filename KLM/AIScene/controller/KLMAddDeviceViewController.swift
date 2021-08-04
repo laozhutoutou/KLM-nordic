@@ -21,15 +21,8 @@ class KLMAddDeviceViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tableView: UITableView!
     var searchView: KLMDeviceSearchView!
-    lazy var reScanBtn: UIButton = {
-        let btn = UIButton()
-        btn.setTitle(LANGLOC("reScan"), for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        btn.backgroundColor = .black
-//        btn.addTarget(self, action: #selector(reScanClick), for: .touchUpInside)
-        return btn
-    }()
+    
+    var deviceName = ""
     
     var isHaveDevice: Bool = false {
         
@@ -69,7 +62,10 @@ class KLMAddDeviceViewController: UIViewController {
         
         KLMSIGMeshManager.sharedInstacnce.delegate = self
         
+        contentView.backgroundColor = appBackGroupColor
         
+        tableView.layer.cornerRadius = 16
+        tableView.clipsToBounds = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,8 +76,7 @@ class KLMAddDeviceViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        //这里才能获取真实的frame
-        self.reScanBtn.layer.cornerRadius = self.reScanBtn.height / 2
+       
     }
     
     func searchDevice() {
@@ -105,21 +100,28 @@ class KLMAddDeviceViewController: UIViewController {
 
     }
     
-    //重新搜索
-    @IBAction func reSearch(_ sender: Any) {
-        
-        searchDevice()
-        
-    }
-    
     //连接设备
     func connectDevice(model: DiscoveredPeripheral) {
         
-        SVProgressHUD.show(withStatus: "connecting...")
-        SVProgressHUD.setDefaultMaskType(.black)
-        
-        KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
-        
+        ///弹框
+        let vc = CMDeviceNamePopViewController()
+        vc.nametype = .nameTypeNewDevice
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.nameBlock = { [weak self] name in
+            
+            guard let self = self else { return }
+            self.deviceName = name
+            
+            SVProgressHUD.show(withStatus: "connecting...")
+            SVProgressHUD.setDefaultMaskType(.black)
+            
+            
+            
+            KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
+            
+        }
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -133,7 +135,7 @@ extension KLMAddDeviceViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 50
+        return 80
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -187,14 +189,22 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
         
         //记录当前设备
-        KLMHomeManager.sharedInstacnce.smartNode = device
+//        KLMHomeManager.sharedInstacnce.smartNode = device
         
-        //跳转页面
-        DispatchQueue.main.asyncAfter(deadline: 0.5){
+        device.name = self.deviceName
+        
+        if MeshNetworkManager.instance.save() {
+            
+            //跳转页面
+            DispatchQueue.main.asyncAfter(deadline: 0.5){
+                
+                self.navigationController?.popViewController(animated: true)
 
-            let vc = KLMDeviceEditViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+    //            let vc = KLMDeviceEditViewController()
+    //            self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
+    
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?) {

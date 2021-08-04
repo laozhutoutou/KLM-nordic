@@ -24,26 +24,9 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="twp-Pm-JJ2">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YsT-NO-lr3">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已搜索到的设备" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfb-xA-WOQ">
-                                    <rect key="frame" x="15" y="14.5" width="121.5" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstItem="Tfb-xA-WOQ" firstAttribute="centerY" secondItem="YsT-NO-lr3" secondAttribute="centerY" id="BxQ-RO-Gm8"/>
-                                <constraint firstAttribute="height" constant="50" id="tdE-EU-eyy"/>
-                                <constraint firstItem="Tfb-xA-WOQ" firstAttribute="leading" secondItem="YsT-NO-lr3" secondAttribute="leading" constant="15" id="v4M-t4-mVi"/>
-                            </constraints>
-                        </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oMn-a8-WK7">
-                            <rect key="frame" x="0.0" y="50" width="414" height="724"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <rect key="frame" x="16" y="30" width="382" height="714"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <outlet property="dataSource" destination="-1" id="1Xq-Fw-9h3"/>
                                 <outlet property="delegate" destination="-1" id="EkV-Ud-LQN"/>
@@ -52,13 +35,10 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="YsT-NO-lr3" firstAttribute="leading" secondItem="twp-Pm-JJ2" secondAttribute="leading" id="852-6L-4rZ"/>
-                        <constraint firstItem="oMn-a8-WK7" firstAttribute="leading" secondItem="twp-Pm-JJ2" secondAttribute="leading" id="AXU-lr-W99"/>
-                        <constraint firstAttribute="trailing" secondItem="oMn-a8-WK7" secondAttribute="trailing" id="RHl-Tb-k2b"/>
-                        <constraint firstAttribute="bottom" secondItem="oMn-a8-WK7" secondAttribute="bottom" id="bKe-LC-yWD"/>
-                        <constraint firstAttribute="trailing" secondItem="YsT-NO-lr3" secondAttribute="trailing" id="jEw-l1-XtQ"/>
-                        <constraint firstItem="oMn-a8-WK7" firstAttribute="top" secondItem="YsT-NO-lr3" secondAttribute="bottom" id="jKL-sD-KGQ"/>
-                        <constraint firstItem="YsT-NO-lr3" firstAttribute="top" secondItem="twp-Pm-JJ2" secondAttribute="top" id="t96-ay-yP3"/>
+                        <constraint firstItem="oMn-a8-WK7" firstAttribute="leading" secondItem="twp-Pm-JJ2" secondAttribute="leading" constant="16" id="AXU-lr-W99"/>
+                        <constraint firstAttribute="trailing" secondItem="oMn-a8-WK7" secondAttribute="trailing" constant="16" id="RHl-Tb-k2b"/>
+                        <constraint firstAttribute="bottom" secondItem="oMn-a8-WK7" secondAttribute="bottom" constant="30" id="bKe-LC-yWD"/>
+                        <constraint firstItem="oMn-a8-WK7" firstAttribute="top" secondItem="twp-Pm-JJ2" secondAttribute="top" constant="30" id="xdM-Ng-DbF"/>
                     </constraints>
                 </view>
             </subviews>
@@ -71,7 +51,7 @@
                 <constraint firstItem="twp-Pm-JJ2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zf3-aU-3zr"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-301" y="34"/>
+            <point key="canvasLocation" x="-839" y="37"/>
         </view>
     </objects>
     <resources>

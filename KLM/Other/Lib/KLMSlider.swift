@@ -22,9 +22,10 @@ class KLMSlider: UIView {
     var step: Float = 0
     lazy var slider: KLMSliderW = {
         let slider = KLMSliderW.init()
-        slider.minimumTrackTintColor = .black
-        slider.maximumTrackTintColor = .lightGray
+        slider.minimumTrackTintColor = appMainThemeColor
+        slider.maximumTrackTintColor = rgba(229, 229, 229, 1)
         slider.addTarget(self, action: #selector(valueChange(slider:)), for: .valueChanged)
+        slider.setThumbImage(UIImage(named: "icon_thumb"), for: .normal)
         slider.addTarget(self, action: #selector(touchUp(slider:)), for: .touchUpInside)
         slider.addTarget(self, action: #selector(touchUp(slider:)), for: .touchUpOutside)
         return slider
@@ -32,7 +33,7 @@ class KLMSlider: UIView {
     
     lazy var minBtn: UIButton = {
         let minBtn = UIButton.init(type: .custom)
-        minBtn.setImage(UIImage.init(named: "icon_decrease"), for: .normal)
+        minBtn.setImage(UIImage.init(named: "icon_reduce"), for: .normal)
         minBtn.addTarget(self, action: #selector(minClick), for: .touchUpInside)
         return minBtn
     }()
@@ -118,8 +119,8 @@ class KLMSlider: UIView {
     
         slider.snp.makeConstraints { make in
             make.centerY.equalTo(minBtn)
-            make.left.equalTo(minBtn.snp.right).offset(15)
-            make.right.equalTo(maxBtn.snp.left).offset(-15)
+            make.left.equalTo(minBtn.snp.right).offset(20)
+            make.right.equalTo(maxBtn.snp.left).offset(-20)
         }
         self.setNeedsLayout()
         indicateView = KLMIndicateView()
@@ -173,7 +174,7 @@ class KLMSlider: UIView {
 class KLMSliderW: UISlider {
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
-        let sliderH: CGFloat = 7
+        let sliderH: CGFloat = 6
         let sliderY: CGFloat = self.height / 2 - sliderH / 2
         
         return CGRect.init(x: 0, y: sliderY, width: self.width, height: sliderH)

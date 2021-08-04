@@ -12,52 +12,22 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var newGroupBtn: UIButton!
-    
     private var groups: [Group]!
     private var selectedIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("selectGroup")
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
-        
-        newGroupBtn.layer.cornerRadius = newGroupBtn.height / 2
+        navigationItem.title = LANGLOC("groupSetting")
+    
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
         KLMMessageManager.sharedInstacnce.delegate = self
         
         setupData()
     }
     
-    @objc func finish() {
-        
-        //设备添加到群组
-        guard let selectedIndexPath = selectedIndexPath else { return  }
-        
-        SVProgressHUD.show()
-        let group = groups[selectedIndexPath.row]
-        
-        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
-        
-    }
-    
-    
-    func setupData() {
-        
-        let network = MeshNetworkManager.instance.meshNetwork!
-        
-        let alreadySubscribedGroups = KLMHomeManager.currentModel.subscriptions
-        groups = network.groups.filter {
-            !alreadySubscribedGroups.contains($0)
-        }
-        self.tableView.reloadData()
-    
-    }
-    
-    //新建分组
-    @IBAction func newGroupClick(_ sender: Any) {
+    @objc func newGroup() {
         
         let vc = CMDeviceNamePopViewController()
         vc.nametype = .nameTypeNewGroup
@@ -90,6 +60,31 @@ class KLMGroupDeviceAddToViewController: UIViewController {
 
         }
         present(vc, animated: true, completion: nil)
+        
+    }
+    
+    
+    func setupData() {
+        
+        let network = MeshNetworkManager.instance.meshNetwork!
+        
+        let alreadySubscribedGroups = KLMHomeManager.currentModel.subscriptions
+        groups = network.groups.filter {
+            !alreadySubscribedGroups.contains($0)
+        }
+        self.tableView.reloadData()
+    
+    }
+    
+    @IBAction func finishClick(_ sender: Any) {
+        
+        //设备添加到群组
+        guard let selectedIndexPath = selectedIndexPath else { return  }
+        
+        SVProgressHUD.show()
+        let group = groups[selectedIndexPath.row]
+        
+        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
     }
 }
 
@@ -121,18 +116,18 @@ extension KLMGroupDeviceAddToViewController: UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 50
+        return 64
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model: Group = groups[indexPath.row]
         let cell = KLMGroupSelectCell.cellWithTableView(tableView: tableView)
         if selectedIndexPath == indexPath {
-            cell.setIsSelect = true
+            cell.isShowSelect = true
             
         } else {
             
-            cell.setIsSelect = false
+            cell.isShowSelect = false
             
         }
         

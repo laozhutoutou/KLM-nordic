@@ -17,12 +17,15 @@ class KLMTableViewCell: UITableViewCell, Nibloadable {
     
     @IBOutlet weak var leftImageLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leftImageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     
     var leftImage: String!{
         
         didSet {
-            
-            self.leftImageView.image = UIImage(named: leftImage)
+            let image = UIImage(named: leftImage)
+            self.leftImageView.image = image
+            leftImageWidthConstraint.constant = (image?.size.width)!
+            imageViewHeightConstraint.constant = (image?.size.height)!
         }
     }
     

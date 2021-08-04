@@ -9,7 +9,10 @@ import UIKit
 
 class KLMMotionViewController: UIViewController {
 
+    @IBOutlet weak var timeContentView: UIView!
     @IBOutlet weak var timeBgView: UIView!
+    
+    @IBOutlet weak var lightContentView: UIView!
     @IBOutlet weak var lightBgView: UIView!
     
     var timeSlider: KLMSlider!
@@ -35,7 +38,11 @@ class KLMMotionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Motion"
+        navigationItem.title = LANGLOC("Energysavingsettings")
+        
+        view.backgroundColor = appBackGroupColor
+        timeContentView.layer.cornerRadius = 16
+        lightContentView.layer.cornerRadius = 16
         
         setupUI()
         
@@ -44,7 +51,7 @@ class KLMMotionViewController: UIViewController {
     func setupUI() {
         
         //时间滑条
-        let viewLeft: CGFloat = 20
+        let viewLeft: CGFloat = 20 + 16
         let sliderWidth = KLMScreenW - viewLeft * 2
         let timeSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: timeBgView.height), minValue: 0, maxValue: 60, step: 2)
         timeSlider.getValueTitle = { value in

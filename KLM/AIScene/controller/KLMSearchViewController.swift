@@ -8,7 +8,7 @@
 import UIKit
 import nRFMeshProvision
 
-class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+class KLMSearchViewController: UIViewController {
     
     lazy var historyView: KLMSearchHistoryView = {
         let view = KLMSearchHistoryView.historyView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: 300))
@@ -16,20 +16,15 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         return view
     }()
     
-    lazy var collectionView: UICollectionView = {
-        let layOut: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layOut.minimumLineSpacing = 15
-        layOut.minimumInteritemSpacing = 15
-        let width: CGFloat = (KLMScreenW - 15 * 3) / 2
-        layOut.itemSize = CGSize(width: width, height: 250)
-        layOut.sectionInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
-        let colView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.view.width, height: KLMScreenH - KLM_TopHeight), collectionViewLayout: layOut)
-        colView.backgroundColor = appBackGroupColor
-        colView.delegate = self
-        colView.dataSource = self
-        return colView
+    lazy var tableView: UITableView = {
+        let tableView = UITableView.init(frame: CGRect(x: 0, y: 0, width: self.view.width, height: KLMScreenH - KLM_TopHeight), style: .plain)
+        tableView.separatorStyle = .none
+        tableView.rowHeight = 80
+        tableView.backgroundColor = appBackGroupColor
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
     }()
-    
     
     lazy var searchBar: CMSearchBar = {
         let searchBar = CMSearchBar(frame: CGRect(x: 42, y: KLM_StatusBarHeight + 7, width: KLMScreenW - 42 - 17, height: 32))
@@ -63,11 +58,13 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = appBackGroupColor
+        setupUI()
+
+    }
+    
+    func setupUI() {
         
-        let VV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 300, height: 200))
-        VV.backgroundColor = .red
-        view.addSubview(VV)
+        self.view.backgroundColor = appBackGroupColor
         
         view.addSubview(self.historyView)
         self.historyView.reloadData()
@@ -75,10 +72,15 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         navigationController?.view.addSubview(self.searchBar)
         self.searchBar.becomeFirstResponder()
         
-        self.collectionView.register(UINib(nibName: String(describing: KLMAINameListCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: KLMAINameListCell.self))
-        self.collectionView.isHidden = true
-        self.view.addSubview(self.collectionView)
-
+        self.tableView.isHidden = true
+        self.view.addSubview(self.tableView)
+        
+        self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(pushBack)) as? [UIBarButtonItem]
+    }
+    
+    @objc func pushBack() {
+        
+        dismiss(animated: true, completion: nil)
     }
     
     func searchStart() {
@@ -86,11 +88,11 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         if self.searchBar.text!.isEmpty {
             
             self.historyView.isHidden = false
-            self.collectionView.isHidden = true
+            self.tableView.isHidden = true
         }else {
             
             self.historyView.isHidden = true
-            self.collectionView.isHidden = false
+            self.tableView.isHidden = false
         }
         
         
@@ -98,7 +100,7 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         let network = MeshNetworkManager.instance.meshNetwork!
         let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
         self.searchLists = notConfiguredNodes.filter({ ($0.name?.contains(self.searchBar.text!))!})
-        self.collectionView.reloadData()
+        self.tableView.reloadData()
     }
 }
 
@@ -140,31 +142,67 @@ extension KLMSearchViewController: KLMSearchHistoryViewDelegate {
     }
 
 }
- 
-extension KLMSearchViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return self.searchLists.count
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let deviceModel:  Node = self.searchLists[indexPath.item]
-        let cell: KLMAINameListCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: KLMAINameListCell.self), for: indexPath) as! KLMAINameListCell
-        cell.model = deviceModel
+        let deviceModel:  Node = self.searchLists[indexPath.row]
+        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+        cell.leftImage = "img_scene_48"
+        cell.leftTitle = deviceModel.name
+        cell.leftLab.font = UIFont.systemFont(ofSize: 16)
         return cell
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         
-//        let deviceModel:  TuyaSmartDeviceModel = self.searchLists[indexPath.item]
-        //记录当前设备
-//        KLMHomeManager.sharedInstacnce.smartNode = TuyaSmartDevice.init(deviceId: deviceModel.devId)
+        let deviceModel:  Node = self.searchLists[indexPath.row]
         
+        KLMHomeManager.sharedInstacnce.smartNode = deviceModel
         
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showError(withStatus: "Device Offline")
+            return
+        }
+        if !deviceModel.isCompositionDataReceived {
+            //对于未composition的进行配置
+            SVProgressHUD.show(withStatus: "Composition")
+            SVProgressHUD.setDefaultMaskType(.black)
+            
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: deviceModel)
+            return
+        }
+        
+        let vc = KLMDeviceEditViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
+extension KLMSearchViewController: KLMSIGMeshManagerDelegate {
+        
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
+        
+        SVProgressHUD.showSuccess(withStatus: "please tap again")
+        
+    }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?){
+        
+        KLMShowError(error)
+    }
+}
+
+ 
 
 
 

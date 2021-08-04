@@ -113,11 +113,11 @@ extension KLMGroupTransferListViewController: UITableViewDelegate, UITableViewDa
         let model: Group = groups[indexPath.row]
         let cell = KLMGroupSelectCell.cellWithTableView(tableView: tableView)
         if selectedIndexPath == indexPath {
-            cell.setIsSelect = true
+            cell.isShowSelect = true
             
         } else {
             
-            cell.setIsSelect = false
+            cell.isShowSelect = false
             
         }
         

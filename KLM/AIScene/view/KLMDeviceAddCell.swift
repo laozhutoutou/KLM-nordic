@@ -12,7 +12,6 @@ typealias ConnectBlock = (_ model: DiscoveredPeripheral) -> Void
 class KLMDeviceAddCell: UITableViewCell, Nibloadable {
     
     @IBOutlet weak var nameLab: UILabel!
-    @IBOutlet weak var connectBtn: UIButton!
         
     var model: DiscoveredPeripheral! {
         
@@ -44,8 +43,6 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        connectBtn.layer.cornerRadius = connectBtn.height / 2
-        connectBtn.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

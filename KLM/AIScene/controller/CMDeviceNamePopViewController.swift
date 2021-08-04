@@ -22,6 +22,7 @@ class CMDeviceNamePopViewController: UIViewController {
         case nameTypeNewGroup = "New Group"
         case nameTypeDevice = "Device Name"
         case nameTypeReName = "Rename Group"
+        case nameTypeNewDevice = "New Device"
     }
     
     var nameBlock: NameBlock?
@@ -32,8 +33,9 @@ class CMDeviceNamePopViewController: UIViewController {
         let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.height))
         textField.leftView  = leftView
         textField.leftViewMode = .always
+        textField.layer.cornerRadius = 4
         
-        contentView.layer.cornerRadius = 5
+        contentView.layer.cornerRadius = 8
         
         titleNameLab.text = self.nametype?.rawValue
         

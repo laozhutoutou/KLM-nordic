@@ -262,7 +262,7 @@ NS_ASSUME_NONNULL_END
             forControlEvents:UIControlEventEditingChanged];
         textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         textField.backgroundColor = [UIColor clearColor];
-        textField.tintColor = [UIColor whiteColor];
+        textField.tintColor = [UIColor blackColor];
         [textField setLeftViewMode:UITextFieldViewModeAlways];
         UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 25, textField.frame.size.height)];
         [leftView addSubview:self.imageIcon];

@@ -11,10 +11,14 @@ import nRFMeshProvision
 class KLMDeviceEditViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var contentView: UIView!
+    
+    @IBOutlet weak var nameLab: UILabel!
+    @IBOutlet weak var typeLab: UILabel!
     
     var deviceGroups = [Group]()
     
-    let titles = [LANGLOC("name"),LANGLOC("Group"),LANGLOC("lightSet")]
+    let titles = [LANGLOC("reName"),LANGLOC("groupSetting"),LANGLOC("lightSet")]
     
     /// 是否第一次进来
     var cameraPowerFirst = true
@@ -41,12 +45,28 @@ class KLMDeviceEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = KLMHomeManager.currentNode.name
+        setupUI()
         
         setupData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         
+    }
+    
+    func setupUI() {
+        
+        self.navigationItem.title = KLMHomeManager.currentNode.nodeName
+        nameLab.text = KLMHomeManager.currentNode.nodeName
+        typeLab.text = KLMHomeManager.currentNode.unicastAddress.asString()
+        
+        view.backgroundColor = appBackGroupColor
+        tableView.backgroundColor = appBackGroupColor
+        
+        contentView.layer.cornerRadius = 16
+        contentView.clipsToBounds = true
+        
+        tableView.layer.cornerRadius = 16
+        tableView.clipsToBounds = true
     }
     
     ///查询设备所属分组
@@ -104,7 +124,28 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 50
+        return 56
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 48
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.width, height: 48))
+        view.backgroundColor = .white
+        let lab = UILabel()
+        lab.text = LANGLOC("basicSetting")
+        lab.font = UIFont.systemFont(ofSize: 12)
+        lab.textColor = rgba(0, 0, 0, 0.5)
+        view.addSubview(lab)
+        lab.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(16)
+        }
+        return view
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -146,7 +187,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 4:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "Motion"
+            cell.leftTitle = LANGLOC("Energysavingsettings")
             return cell
         case 5:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)

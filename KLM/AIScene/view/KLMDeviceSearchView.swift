@@ -16,6 +16,7 @@ class KLMDeviceSearchView: UIView, Nibloadable {
     static func deviceSearchView(frame: CGRect) -> KLMDeviceSearchView {
         
         let view = KLMDeviceSearchView.loadNib()
+        view.backgroundColor = appBackGroupColor
         myframe = frame
         return view
     }

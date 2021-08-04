@@ -16,15 +16,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="启动灯具自带摄像头" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qve-5M-8IE">
-                        <rect key="frame" x="15" y="16" width="138" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CMOS颜色识别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qve-5M-8IE">
+                        <rect key="frame" x="16" y="15.5" width="112.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Op-D4-rzL">
-                        <rect key="frame" x="256" y="9.5" width="51" height="31"/>
-                        <color key="onTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="255" y="9.5" width="51" height="31"/>
+                        <color key="onTintColor" red="0.72156862745098038" green="0.090196078431372548" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="switchClick:" destination="5So-Ff-tUE" eventType="valueChanged" id="lAp-PG-gfL"/>
                         </connections>
@@ -33,14 +33,14 @@
                 <constraints>
                     <constraint firstItem="2Op-D4-rzL" firstAttribute="centerY" secondItem="Uop-J4-cZ2" secondAttribute="centerY" id="P0g-9P-QX9"/>
                     <constraint firstItem="Qve-5M-8IE" firstAttribute="centerY" secondItem="Uop-J4-cZ2" secondAttribute="centerY" id="pTV-NA-ujh"/>
-                    <constraint firstAttribute="trailing" secondItem="2Op-D4-rzL" secondAttribute="trailing" constant="15" id="sS8-X5-IrJ"/>
-                    <constraint firstItem="Qve-5M-8IE" firstAttribute="leading" secondItem="Uop-J4-cZ2" secondAttribute="leading" constant="15" id="vk7-O0-QR3"/>
+                    <constraint firstAttribute="trailing" secondItem="2Op-D4-rzL" secondAttribute="trailing" constant="16" id="sS8-X5-IrJ"/>
+                    <constraint firstItem="Qve-5M-8IE" firstAttribute="leading" secondItem="Uop-J4-cZ2" secondAttribute="leading" constant="16" id="vk7-O0-QR3"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="cameraSwitch" destination="2Op-D4-rzL" id="Li8-vq-gcJ"/>
             </connections>
-            <point key="canvasLocation" x="-346" y="-33"/>
+            <point key="canvasLocation" x="191" y="42"/>
         </tableViewCell>
     </objects>
 </document>

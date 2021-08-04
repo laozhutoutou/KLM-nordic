@@ -23,14 +23,6 @@ class KLMGroupSelectCell: KLMBaseTableViewCell {
         }
     }
     
-    var setIsSelect: Bool! {
-        
-        didSet {
-            iconBtn.isSelected = setIsSelect
-        }
-    }
-    
-    
     var model: Group! {
         
         didSet {
