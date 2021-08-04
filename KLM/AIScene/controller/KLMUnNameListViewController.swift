@@ -12,6 +12,31 @@ class KLMUnNameListViewController: UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    lazy var searchBar: UIView = {
+        let searchBar = UIView.init(frame: CGRect(x: 16, y: KLM_StatusBarHeight + 7, width: KLMScreenW - 15 - 65, height: 30))
+        searchBar.backgroundColor = .white
+        searchBar.layer.cornerRadius = 15
+        searchBar.clipsToBounds = true
+        let image = UIImageView.init(image: UIImage(named: "icon_search"))
+        searchBar.addSubview(image)
+        image.snp.makeConstraints { make in
+            make.left.equalTo(9)
+            make.centerY.equalToSuperview()
+        }
+        let titleLab = UILabel()
+        titleLab.text = LANGLOC("searchDeviceName")
+        titleLab.font = UIFont.systemFont(ofSize: 14)
+        titleLab.textColor = rgba(0, 0, 0, 0.3)
+        searchBar.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.left.equalTo(image.snp.right).offset(10)
+            make.centerY.equalToSuperview()
+        }
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapSearch))
+        searchBar.addGestureRecognizer(tap)
+        return searchBar
+    }()
+    
     //设备数据源
     var nodes: [Node] = [Node]()
     
@@ -21,8 +46,27 @@ class KLMUnNameListViewController: UIViewController{
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barTintColor =  rgba(247, 247, 247, 1)
+        self.searchBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.barTintColor = navigationBarColor
+        self.searchBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        view.backgroundColor = appBackGroupColor
+        collectionView.backgroundColor = appBackGroupColor
+        
+        navigationController?.view.addSubview(self.searchBar)
+        
         self.collectionView.register(UINib(nibName: String(describing: KLMAINameListCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: KLMAINameListCell.self))
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddSuccess, object: nil)
@@ -38,19 +82,33 @@ class KLMUnNameListViewController: UIViewController{
         }
         self.collectionView.mj_header = header
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
+        
     }
 
     @objc func setupData(){
         
         if let network = MeshNetworkManager.instance.meshNetwork {
             
-            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner && $0.name == nil})
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
             
             self.nodes.removeAll()
             self.nodes = notConfiguredNodes
             self.collectionView.reloadData()
             self.collectionView.mj_header?.endRefreshing()
         }
+    }
+    
+    @objc func tapSearch() {
+        
+        let vc = KLMSearchViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func newDevice() {
+        
+        let vc = KLMAddDeviceViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -89,14 +147,14 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let itemWidth: CGFloat = (KLMScreenW - 15*3) / 2
-        let itemHeight: CGFloat = 150.0
+        let itemWidth: CGFloat = (KLMScreenW - 16*2 - 15) / 2
+        let itemHeight: CGFloat = 174.0
         return CGSize(width: itemWidth, height: itemHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 15
+        return 16
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -106,7 +164,7 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        return UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

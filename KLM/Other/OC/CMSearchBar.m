@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_END
 - (void)setupUI{
     _placeholder = @"";
     _showsCancelButton = YES;
-    _placeholderColor = [UIColor colorWithWhite:0.35 alpha:1];
+    _placeholderColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
     
     self.backgroundColor = [UIColor colorWithRed:(201.0/255) green:(201.0/255) blue:(206.0/255) alpha:1];
     self.clipsToBounds = YES;
@@ -299,7 +299,7 @@ NS_ASSUME_NONNULL_END
     if (!_buttonCenter) {
         UIButton *buttonCenter = [UIButton buttonWithType:UIButtonTypeCustom];
         buttonCenter.frame = CGRectMake(0, 0, 60, self.frame.size.height);
-        [buttonCenter setImage:[UIImage imageNamed:@"icon_module_search"] forState:UIControlStateNormal];
+        [buttonCenter setImage:[UIImage imageNamed:@"icon_search"] forState:UIControlStateNormal];
         [buttonCenter setTitle:@"search" forState:UIControlStateNormal];
         [buttonCenter setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [buttonCenter.titleLabel setFont:[UIFont systemFontOfSize:13]];
@@ -314,7 +314,7 @@ NS_ASSUME_NONNULL_END
 - (UIImageView *)imageIcon
 {
     if (!_imageIcon) {
-        UIImageView *imageIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_module_search"]];
+        UIImageView *imageIcon = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"icon_search"]];
         [imageIcon setHidden:YES];
         _imageIcon = imageIcon;
     }

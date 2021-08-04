@@ -31,13 +31,13 @@ class KLMTabBarController: UITabBarController {
     
     private func setupAllChildViewController() {
         
-        let scene = KLMAISceneViewController()
+        let scene = KLMUnNameListViewController()
         let group = KLMGroupViewController()
         let setting = KLMSettingViewController()
         
-        setupOneViewController(scene, LANGLOC("AiScene"), "icon_device_unselect", "icon_device_unselect")
-        setupOneViewController(group, LANGLOC("Group"), "icon_device_unselect", "icon_device_unselect")
-        setupOneViewController(setting, LANGLOC("More"), "icon_device_unselect", "icon_device_unselect")
+        setupOneViewController(scene, LANGLOC("AiScene"), "icon_device_unselect", "icon_device_select")
+        setupOneViewController(group, LANGLOC("Group"), "icon_group_unselect", "icon_group_select")
+        setupOneViewController(setting, LANGLOC("More"), "icon_more_unselect", "icon_more_select")
     }
     
     private func setupOneViewController(_ vc : UIViewController, _ title : String, _ imageName : String, _ selectImageName : String) {

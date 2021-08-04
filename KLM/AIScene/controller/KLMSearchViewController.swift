@@ -32,10 +32,10 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
     
     
     lazy var searchBar: CMSearchBar = {
-        let searchBar = CMSearchBar(frame: CGRect(x: 15, y: KLM_StatusBarHeight + 10, width: KLMScreenW - 16 - 60, height: 28))
+        let searchBar = CMSearchBar(frame: CGRect(x: 42, y: KLM_StatusBarHeight + 7, width: KLMScreenW - 42 - 17, height: 32))
         searchBar.placeholder = LANGLOC("searchDeviceName")
-        searchBar.backgroundColor = rgb(246, 246, 246)
-        searchBar.layer.cornerRadius = 28 / 2
+        searchBar.backgroundColor = rgb(247, 247, 247)
+        searchBar.layer.cornerRadius = 32 / 2
         searchBar.showsCancelButton = false
         searchBar.delegate = self
         return searchBar
@@ -57,7 +57,7 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         super.viewWillDisappear(animated)
         
         self.searchBar.isHidden = true
-//        self.searchBar.resignFirstResponder()
+        self.searchBar.resignFirstResponder()
     }
 
     override func viewDidLoad() {
@@ -65,10 +65,12 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         
         self.view.backgroundColor = appBackGroupColor
         
+        let VV = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 300, height: 200))
+        VV.backgroundColor = .red
+        view.addSubview(VV)
+        
         view.addSubview(self.historyView)
         self.historyView.reloadData()
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("cancel"), target: self, action: #selector(cancel))
         
         navigationController?.view.addSubview(self.searchBar)
         self.searchBar.becomeFirstResponder()
@@ -77,11 +79,6 @@ class KLMSearchViewController: UIViewController, UICollectionViewDelegateFlowLay
         self.collectionView.isHidden = true
         self.view.addSubview(self.collectionView)
 
-    }
-
-    @objc func cancel() {
-        
-        dismiss(animated: true, completion: nil)
     }
     
     func searchStart() {

@@ -23,7 +23,6 @@
 		E48B526426672B420006CDA7 /* head.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B526326672B420006CDA7 /* head.swift */; };
 		E48B5291266765540006CDA7 /* KLMApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B5290266765540006CDA7 /* KLMApplicationManager.swift */; };
 		E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B529526676A0C0006CDA7 /* KLMTabBarController.swift */; };
-		E48B529C26676D490006CDA7 /* KLMAISceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B529A26676D490006CDA7 /* KLMAISceneViewController.swift */; };
 		E48B52A326676D8F0006CDA7 /* KLMGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B52A126676D8F0006CDA7 /* KLMGroupViewController.swift */; };
 		E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */; };
 		E48B52AA26676DED0006CDA7 /* KLMSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B52A826676DED0006CDA7 /* KLMSettingViewController.swift */; };
@@ -77,8 +76,6 @@
 		E498A7A426671BED00C78D50 /* KLMUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A7A326671BED00C78D50 /* KLMUITests.swift */; };
 		E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */; };
 		E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */; };
-		E4A65F34266F0DAA00FE6866 /* KLMReNameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F32266F0DAA00FE6866 /* KLMReNameListViewController.swift */; };
-		E4A65F35266F0DAA00FE6866 /* KLMReNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F33266F0DAA00FE6866 /* KLMReNameListViewController.xib */; };
 		E4A65F3E266F459200FE6866 /* KLMAINameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */; };
 		E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */; };
 		E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */; };
@@ -190,7 +187,6 @@
 		E48B526326672B420006CDA7 /* head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = head.swift; sourceTree = "<group>"; };
 		E48B5290266765540006CDA7 /* KLMApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMApplicationManager.swift; sourceTree = "<group>"; };
 		E48B529526676A0C0006CDA7 /* KLMTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTabBarController.swift; sourceTree = "<group>"; };
-		E48B529A26676D490006CDA7 /* KLMAISceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAISceneViewController.swift; sourceTree = "<group>"; };
 		E48B52A126676D8F0006CDA7 /* KLMGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupViewController.swift; sourceTree = "<group>"; };
 		E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupViewController.xib; sourceTree = "<group>"; };
 		E48B52A826676DED0006CDA7 /* KLMSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSettingViewController.swift; sourceTree = "<group>"; };
@@ -266,8 +262,6 @@
 		E498A7A526671BED00C78D50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUnNameListViewController.swift; sourceTree = "<group>"; };
 		E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUnNameListViewController.xib; sourceTree = "<group>"; };
-		E4A65F32266F0DAA00FE6866 /* KLMReNameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMReNameListViewController.swift; sourceTree = "<group>"; };
-		E4A65F33266F0DAA00FE6866 /* KLMReNameListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMReNameListViewController.xib; sourceTree = "<group>"; };
 		E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAINameListCell.swift; sourceTree = "<group>"; };
 		E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAINameListCell.xib; sourceTree = "<group>"; };
 		E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSearchViewController.swift; sourceTree = "<group>"; };
@@ -416,11 +410,8 @@
 		E48B524B26672A0C0006CDA7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				E48B529A26676D490006CDA7 /* KLMAISceneViewController.swift */,
 				E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */,
 				E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */,
-				E4A65F32266F0DAA00FE6866 /* KLMReNameListViewController.swift */,
-				E4A65F33266F0DAA00FE6866 /* KLMReNameListViewController.xib */,
 				E4A6604F2671F6CC00FE6866 /* KLMAddDeviceViewController.swift */,
 				E4A660502671F6CC00FE6866 /* KLMAddDeviceViewController.xib */,
 				E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */,
@@ -1051,7 +1042,6 @@
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
 				E4AEC98E266E204B00E77178 /* CMLanguageSettingViewController.xib in Resources */,
 				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
-				E4A65F35266F0DAA00FE6866 /* KLMReNameListViewController.xib in Resources */,
 				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
 				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
 				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
@@ -1165,7 +1155,6 @@
 				E4A65FCA2670B06400FE6866 /* RSColorFunctions.m in Sources */,
 				E495D0DE2678428400AA50B9 /* KLMOneSwitchCell.swift in Sources */,
 				E4A65FCD2670B06400FE6866 /* UIImage+ANImageBitmapRep.m in Sources */,
-				E4A65F34266F0DAA00FE6866 /* KLMReNameListViewController.swift in Sources */,
 				E495D1612678B89300AA50B9 /* DAConfig.m in Sources */,
 				E498A78226671BEC00C78D50 /* AppDelegate.swift in Sources */,
 				E4A65FD02670B06400FE6866 /* BitmapDrawManipulator.m in Sources */,
@@ -1210,7 +1199,6 @@
 				E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */,
 				E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */,
 				E4A65FD22670B06400FE6866 /* BitmapRotationManipulator.m in Sources */,
-				E48B529C26676D490006CDA7 /* KLMAISceneViewController.swift in Sources */,
 				E495D13126788B2700AA50B9 /* KLMSettingSwichCell.swift in Sources */,
 				E4A6606B2672FFAB00FE6866 /* protocol.swift in Sources */,
 				E48B526426672B420006CDA7 /* head.swift in Sources */,
@@ -1441,8 +1429,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5LACPBM79;
+				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1450,8 +1439,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1467,8 +1457,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = B5LACPBM79;
+				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -1476,8 +1467,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.klm.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

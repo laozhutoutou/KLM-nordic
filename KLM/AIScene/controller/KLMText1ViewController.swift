@@ -29,8 +29,15 @@ class KLMText1ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.startBtn.isEnabled = false
+        
+        //默认关
+        intervalSlider.isEnabled = false
+        waitSlider.isEnabled = false
+        
+        //发送关指令
+        let string = "02000000"
+        let parame = parameModel(dp: .colorTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
     }
     
@@ -55,6 +62,7 @@ class KLMText1ViewController: UIViewController {
         sendAutoData()
     }
     
+    //手动
     @IBAction func start(_ sender: UIButton) {
         
         let string = "02000001"
@@ -68,14 +76,22 @@ class KLMText1ViewController: UIViewController {
             intervalSlider.isEnabled = true
             waitSlider.isEnabled = true
             self.startBtn.isEnabled = false
+            
+            sendAutoData()
+            
         } else {
             
             intervalSlider.isEnabled = false
             waitSlider.isEnabled = false
             self.startBtn.isEnabled = true
+            
+            let string = "02000000"
+            let parame = parameModel(dp: .colorTest, value: string)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         }
     }
     
+    /// 发送开指令
     func sendAutoData() {
         
         let interval = Int(intervalSlider.value).decimalTo2Hexadecimal()

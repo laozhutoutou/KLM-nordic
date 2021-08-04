@@ -43,25 +43,16 @@ class KLMAINameListCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         }
     }
     
-    //长按
-    @objc func longPress(gesture: UILongPressGestureRecognizer) {
-        
-        if gesture.state == .began {
-            self.delegate?.longPressItem(model: self.model)
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        selectBtn.isHidden = true
-        
-        self.layer.cornerRadius = 5;
+        self.layer.cornerRadius = 8
         self.clipsToBounds = true
         
-        //长按
-        let longPress = UILongPressGestureRecognizer.init(target: self, action: #selector(longPress(gesture:)))
-        self.addGestureRecognizer(longPress)
     }
     
+    @IBAction func setClick(_ sender: Any) {
+        
+        self.delegate?.longPressItem(model: self.model)
+    }
 }

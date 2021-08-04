@@ -50,8 +50,8 @@ class KLMSearchHistoryView: UIView, Nibloadable {
         self.collectionView.dataSource = self
         
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
         if #available(iOS 10.0, *) {
             layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         }else {
@@ -89,8 +89,8 @@ extension KLMSearchHistoryView: UICollectionViewDelegate, UICollectionViewDataSo
 class TagCell: UICollectionViewCell {
     lazy var tagLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.textColor = rgba(38, 38, 38, 1)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 1
         label.textAlignment = .center
         return label
@@ -99,12 +99,13 @@ class TagCell: UICollectionViewCell {
         super.init(frame: frame)
         self.contentView.addSubview(tagLabel)
         tagLabel.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(10)
-            make.top.equalToSuperview().offset(5)
+            make.left.equalToSuperview().offset(12)
+            make.top.equalToSuperview().offset(7)
             make.center.equalToSuperview()
         }
-        self.contentView.backgroundColor = rgb(246, 246, 246)
-
+        self.contentView.backgroundColor = appBackGroupColor
+        self.layer.cornerRadius = 16
+        self.clipsToBounds = true
     }
     
     required init?(coder aDecoder: NSCoder) {

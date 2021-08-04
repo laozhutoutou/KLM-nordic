@@ -25,8 +25,8 @@ class KLMNavigationViewController: UINavigationController, UINavigationControlle
         bar.titleTextAttributes = barTitleDic
         
         //去掉导航栏横线
-//        bar.setBackgroundImage(UIImage(), for: .default)
-//        bar.shadowImage = UIImage()
+        bar.setBackgroundImage(UIImage(), for: .default)
+        bar.shadowImage = UIImage()
         
     }
     
