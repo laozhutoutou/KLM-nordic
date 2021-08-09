@@ -26,14 +26,18 @@ class KLMGroupDeviceEditViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMMessageManager.sharedInstacnce.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = self.groupModel.name
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
-        
-        KLMMessageManager.sharedInstacnce.delegate = self
         
         setupData()
         
@@ -63,14 +67,17 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 50
+        return 80
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let deviceModel: Node = self.deviceLists[indexPath.row]
-        let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+        
+        let deviceModel:  Node = self.deviceLists[indexPath.row]
+        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+        cell.leftImage = "img_scene_48"
         cell.leftTitle = deviceModel.nodeName
         return cell
+    
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -116,7 +123,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         }
         
         //转移
-        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("transferTo")) { action, sourceView, completionHandler in
+        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("transfer")) { action, sourceView, completionHandler in
             
             let vc = KLMGroupTransferListViewController()
             vc.currentDevice =  deviceModel
@@ -126,7 +133,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
             completionHandler(true)
         }
         
-        
+        editAction.backgroundColor = appMainThemeColor
         let actions = UISwipeActionsConfiguration.init(actions: [deleteAction, editAction])
         return actions
     }

@@ -45,7 +45,7 @@ class KLMPhotoEditViewController: UIViewController {
     }
     
     lazy var tapView: UIImageView = {
-        let image = UIImage(named: "icon_device_unselect")
+        let image = UIImage(named: "icon_photo_tap")
         let tapView = UIImageView(image: image)
         tapView.frame = CGRect(x: 0, y: 0, width: (image?.size.width)!, height: (image?.size.height)!)
         tapView.isHidden = true
@@ -68,7 +68,8 @@ class KLMPhotoEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.title = LANGLOC("lightSet")
         setupUI()
         
     }
@@ -95,7 +96,7 @@ class KLMPhotoEditViewController: UIViewController {
         }
         lightSlider.currentValue = Float(self.lightValue)
         lightSlider.delegate = self
-        lightSlider.indicateView.isHidden = true
+        lightSlider.indicateLab.isHidden = true
         self.lightSlider = lightSlider
         self.lightSlider.isUserInteractionEnabled = false
         lightBgView.addSubview(lightSlider)

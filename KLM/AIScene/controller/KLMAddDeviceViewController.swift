@@ -63,6 +63,7 @@ class KLMAddDeviceViewController: UIViewController {
         KLMSIGMeshManager.sharedInstacnce.delegate = self
         
         contentView.backgroundColor = appBackGroupColor
+        view.backgroundColor = appBackGroupColor
         
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
@@ -185,23 +186,23 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         //停止
         KLMSIGMeshManager.sharedInstacnce.stopScanning()
         
-        //刷新首页
-        NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
-        
         //记录当前设备
-//        KLMHomeManager.sharedInstacnce.smartNode = device
+        KLMHomeManager.sharedInstacnce.smartNode = device
         
         device.name = self.deviceName
         
         if MeshNetworkManager.instance.save() {
             
+            //刷新首页
+            NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
+            
             //跳转页面
             DispatchQueue.main.asyncAfter(deadline: 0.5){
                 
-                self.navigationController?.popViewController(animated: true)
+//                self.navigationController?.popViewController(animated: true)
 
-    //            let vc = KLMDeviceEditViewController()
-    //            self.navigationController?.pushViewController(vc, animated: true)
+                let vc = KLMDeviceEditViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     

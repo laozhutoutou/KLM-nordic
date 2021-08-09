@@ -1,54 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KLMSettingSwichCell" id="sOW-5N-Zhf" customClass="KLMSettingSwichCell" customModule="KLM" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KLMSettingSwichCell" id="vhS-Cc-Dg4" customClass="KLMSettingSwichCell" customModule="KLM" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sOW-5N-Zhf" id="5g6-P9-TJj">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vhS-Cc-Dg4" id="cds-R1-rO1">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CEq-8M-15S">
-                        <rect key="frame" x="15" y="10" width="30" height="30"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_language" translatesAutoresizingMaskIntoConstraints="NO" id="B4I-jt-fk7">
+                        <rect key="frame" x="16" y="13" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="NYE-0Z-jEp"/>
-                            <constraint firstAttribute="height" constant="30" id="sNP-ij-gnk"/>
+                            <constraint firstAttribute="height" constant="24" id="Z0g-XS-9C7"/>
+                            <constraint firstAttribute="width" constant="24" id="f2X-W2-lh4"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AiSence" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsC-li-WMI">
-                        <rect key="frame" x="60" y="16" width="56.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="语言" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbH-bn-Crv">
+                        <rect key="frame" x="56" y="15.5" width="33" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GSc-Ef-tBv">
-                        <rect key="frame" x="256" y="9.5" width="51" height="31"/>
+                    <view alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSU-Go-JFN" userLabel="line">
+                        <rect key="frame" x="0.0" y="49.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="etC-ic-erP"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Za-r7-447">
+                        <rect key="frame" x="247" y="13" width="57" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57" id="aag-Uo-xgG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="EN" image="icon_language_normal">
+                            <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected" image="icon_language_select">
+                            <color key="titleColor" red="0.14901960784313725" green="0.14901960784313725" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
                         <connections>
-                            <action selector="switchClick:" destination="sOW-5N-Zhf" eventType="valueChanged" id="WG3-2h-aSN"/>
+                            <action selector="ENClick:" destination="vhS-Cc-Dg4" eventType="touchUpInside" id="9IV-N4-gdV"/>
                         </connections>
-                    </switch>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vO0-k1-KdP">
+                        <rect key="frame" x="180" y="13" width="57" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57" id="CtE-oL-Ow5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <inset key="titleEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="CN" image="icon_language_normal">
+                            <color key="titleColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected" image="icon_language_select">
+                            <color key="titleColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="CNClick:" destination="vhS-Cc-Dg4" eventType="touchUpInside" id="0Ug-PL-mqh"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="RsC-li-WMI" firstAttribute="leading" secondItem="CEq-8M-15S" secondAttribute="trailing" constant="15" id="0Vj-5e-nwi"/>
-                    <constraint firstAttribute="trailing" secondItem="GSc-Ef-tBv" secondAttribute="trailing" constant="15" id="LOQ-ie-P5B"/>
-                    <constraint firstItem="GSc-Ef-tBv" firstAttribute="centerY" secondItem="5g6-P9-TJj" secondAttribute="centerY" id="MhW-Yv-1Nt"/>
-                    <constraint firstItem="CEq-8M-15S" firstAttribute="centerY" secondItem="5g6-P9-TJj" secondAttribute="centerY" id="V0h-bY-Yhv"/>
-                    <constraint firstItem="RsC-li-WMI" firstAttribute="centerY" secondItem="5g6-P9-TJj" secondAttribute="centerY" id="rLH-hS-Zig"/>
-                    <constraint firstItem="CEq-8M-15S" firstAttribute="leading" secondItem="5g6-P9-TJj" secondAttribute="leading" constant="15" id="ye1-wR-zw8"/>
+                    <constraint firstItem="lSU-Go-JFN" firstAttribute="leading" secondItem="cds-R1-rO1" secondAttribute="leading" id="7Mq-VU-ger"/>
+                    <constraint firstItem="tbH-bn-Crv" firstAttribute="leading" secondItem="B4I-jt-fk7" secondAttribute="trailing" constant="16" id="AjM-9Q-LcA"/>
+                    <constraint firstAttribute="trailing" secondItem="0Za-r7-447" secondAttribute="trailing" constant="16" id="B9L-VM-dYa"/>
+                    <constraint firstItem="0Za-r7-447" firstAttribute="centerY" secondItem="tbH-bn-Crv" secondAttribute="centerY" id="KU6-hW-1LJ"/>
+                    <constraint firstItem="vO0-k1-KdP" firstAttribute="centerY" secondItem="0Za-r7-447" secondAttribute="centerY" id="cA1-iI-UiR"/>
+                    <constraint firstItem="B4I-jt-fk7" firstAttribute="leading" secondItem="cds-R1-rO1" secondAttribute="leading" constant="16" id="du4-jc-3VW"/>
+                    <constraint firstItem="0Za-r7-447" firstAttribute="leading" secondItem="vO0-k1-KdP" secondAttribute="trailing" constant="10" id="mOk-Pq-0gK"/>
+                    <constraint firstItem="tbH-bn-Crv" firstAttribute="centerY" secondItem="cds-R1-rO1" secondAttribute="centerY" id="sPC-LV-4eE"/>
+                    <constraint firstAttribute="bottom" secondItem="lSU-Go-JFN" secondAttribute="bottom" id="tZR-2N-Ozj"/>
+                    <constraint firstItem="B4I-jt-fk7" firstAttribute="centerY" secondItem="cds-R1-rO1" secondAttribute="centerY" id="yuj-xg-srO"/>
+                    <constraint firstAttribute="trailing" secondItem="lSU-Go-JFN" secondAttribute="trailing" id="zPk-9a-dwe"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="AiSenceSwitch" destination="GSc-Ef-tBv" id="yaE-hS-QHG"/>
+                <outlet property="CNBtn" destination="vO0-k1-KdP" id="yUf-Lj-tSa"/>
+                <outlet property="ENBtn" destination="0Za-r7-447" id="zJG-4o-740"/>
             </connections>
-            <point key="canvasLocation" x="-380" y="-98"/>
+            <point key="canvasLocation" x="-401" y="-5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_language" width="24" height="24"/>
+        <image name="icon_language_normal" width="24" height="24"/>
+        <image name="icon_language_select" width="24" height="24"/>
+    </resources>
 </document>

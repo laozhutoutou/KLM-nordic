@@ -21,10 +21,10 @@ class KLMGroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_device_unselect", target: self, action: #selector(moreClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(moreClick))
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .groupRenameSuccess, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .groupAddSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .groupAddSuccess, object: nil)    
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceRemoveFromGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
@@ -40,8 +40,6 @@ class KLMGroupViewController: UIViewController {
             self.groups = network.groups
             self.tableView.reloadData()
         }
-       
-        
     }
     
     /// 更多
@@ -91,12 +89,13 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
-        return 50
+        return 64
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let model: Group = groups[indexPath.row]
-        let cell = KLMGroupCell.cellWithTableView(tableView: tableView)
+        let cell = KLMGroupSelectCell.cellWithTableView(tableView: tableView)
         cell.model = model
         return cell
 
@@ -161,7 +160,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         //整组设置
-        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("allGroupSetting")) { action, sourceView, completionHandler in
+        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("groupSetting")) { action, sourceView, completionHandler in
             
             let vc = KLMGroupEditViewController()
             vc.group = model
@@ -169,7 +168,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             
             completionHandler(true)
         }
-        
+        editAction.backgroundColor = appMainThemeColor
         let actions = UISwipeActionsConfiguration.init(actions: [deleteAction, editAction])
         return actions
     }

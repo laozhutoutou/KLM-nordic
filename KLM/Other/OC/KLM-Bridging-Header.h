@@ -22,6 +22,7 @@
 #import "NSData+CRC16.h"
 #import "recipe.h"
 #import "UIButton+SFImageTitleSpacing.h"
+#import "CMTextView.h"
 
 
 #endif /* KLM_Bridging_Header_h */

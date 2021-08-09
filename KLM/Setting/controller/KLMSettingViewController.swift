@@ -12,17 +12,16 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    let images = [1,2,3,4]
-    let titles = [[LANGLOC("language"),LANGLOC("allLightSetting")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
+    let images = [["icon_language","icon_enegy_save"],["icon_app_update","icon_helpAndAdvice"]]
+    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = LANGLOC("More")
-        self.tableView.rowHeight = 50
+        self.tableView.rowHeight = 56
         
-        self.tableView.backgroundColor = appBackGroupColor
     }
     
     //切换了语言更新整个APP
@@ -55,22 +54,17 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let title: String = titles[indexPath.section][indexPath.row]
-        switch indexPath.section {
-        case 0:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.leftTitle = title
+        if indexPath.section == 0 && indexPath.row == 0 {
+         
+            let cell: KLMSettingSwichCell = KLMSettingSwichCell.cellWithTableView(tableView: tableView)
             return cell
-        case 1:
-            
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.leftTitle = title
-            return cell
-        default:
-            break
         }
-        
-        return UITableViewCell.init()
+        let title: String = titles[indexPath.section][indexPath.row]
+        let image: String = images[indexPath.section][indexPath.row]
+        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+        cell.leftTitle = title
+        cell.leftImage = image
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -80,24 +74,6 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0:
             if indexPath.row == 0 {//语言
                 
-                let vc = CMLanguageSettingViewController()
-                vc.modalPresentationStyle = .overCurrentContext
-                vc.modalTransitionStyle = .crossDissolve
-                vc.langeuageBlock = {[weak self] (index: Int) in
-                    guard let self = self else { return }
-                    if index == 1 {
-                        
-                        DAConfig.userLanguage = "zh-Hans"
-                        
-                    }else{
-                        
-                        DAConfig.userLanguage = "en"
-                        
-                    }
-                    
-                    self.upDateUI()
-                }
-                self.tabBarController?.present(vc, animated: true, completion: nil)
                 
             }else{//所有灯感应设置
                 if !MeshNetworkManager.bearer.isOpen {
@@ -117,6 +93,9 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
                 navigationController?.pushViewController(vc, animated: true)
                 
             }else{
+                
+                let vc = KLMHelpViewController()
+                navigationController?.pushViewController(vc, animated: true)
                 
             }
         default: break

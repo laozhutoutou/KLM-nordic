@@ -30,12 +30,18 @@ class KLMGroupTransferListViewController: UIViewController {
     
     private var groups: [Group]!
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMMessageManager.sharedInstacnce.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("transferTo")
+        navigationItem.title = LANGLOC("transfer")
         
-        KLMMessageManager.sharedInstacnce.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
         setupData()
     }
@@ -60,7 +66,43 @@ class KLMGroupTransferListViewController: UIViewController {
         SVProgressHUD.show()
         let group = groups[selectedIndexPath.row]
         
-        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
+        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: currentDevice, withGroup: group)
+        
+    }
+    
+    @objc func newGroup() {
+        
+        let vc = CMDeviceNamePopViewController()
+        vc.nametype = .nameTypeNewGroup
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.nameBlock = {[weak self] name in
+            
+            SVProgressHUD.show()
+            
+            guard let self = self else { return }
+            
+            if let network = MeshNetworkManager.instance.meshNetwork,
+               let localProvisioner = network.localProvisioner {
+                // Try assigning next available Group Address.
+                if let automaticAddress = network.nextAvailableGroupAddress(for: localProvisioner) {
+                    
+                    let address = MeshAddress(automaticAddress)
+                    let group = try? Group(name: name, address: address)
+                    try? network.add(group: group!)
+                    
+                    if MeshNetworkManager.instance.save() {
+                        
+                        SVProgressHUD.showSuccess(withStatus: "success")
+                        NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
+                        self.setupData()
+                    }
+                }
+                
+            }
+
+        }
+        present(vc, animated: true, completion: nil)
         
     }
 }
@@ -106,7 +148,7 @@ extension KLMGroupTransferListViewController: UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 50
+        return 64
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

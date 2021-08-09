@@ -15,7 +15,10 @@ struct tempColors {
 class KLMCustomViewController: UIViewController {
 
     @IBOutlet weak var plateView: UIView!
+    /// 色卡
     @IBOutlet weak var colorItemsView: UIView!
+    
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var colorTempBgView: UIView!
     @IBOutlet weak var lightBgView: UIView!
     
@@ -75,11 +78,18 @@ class KLMCustomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = LANGLOC("custom")
+        contentView.layer.cornerRadius = 16
+        
         setupUI()
         
     }
     
     func setupUI() {
+        
+        view.backgroundColor = appBackGroupColor
+        plateView.backgroundColor =  appBackGroupColor
+        colorItemsView.backgroundColor = appBackGroupColor
         
         plateView.addSubview(pickView)
         
@@ -93,7 +103,7 @@ class KLMCustomViewController: UIViewController {
         setColorItems()
         
         ///色温滑条
-        let viewLeft: CGFloat = 20
+        let viewLeft: CGFloat = 20 + 16
         let sliderWidth = KLMScreenW - viewLeft * 2
     
         let colorTempSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: colorTempBgView.height), minValue: 0, maxValue: 100, step: 10)
@@ -106,6 +116,7 @@ class KLMCustomViewController: UIViewController {
         colorTempSlider.delegate = self
         self.colorTempSlider = colorTempSlider
         colorTempBgView.addSubview(colorTempSlider)
+        
         //亮度滑条
         let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 10)
         lightSlider.getValueTitle = { value in

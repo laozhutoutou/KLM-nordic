@@ -23,6 +23,8 @@ class KLMMessageManager: NSObject{
     ///   - group: 组
     func addNodeToGroup(withNode node: Node, withGroup group: Group) {
         
+        MeshNetworkManager.instance.delegate = self
+        
         let model = KLMHomeManager.getModelFromNode(node: node)!
         if let message: ConfigMessage =
             ConfigModelSubscriptionAdd(group: group, to: model){
@@ -44,6 +46,8 @@ class KLMMessageManager: NSObject{
     ///   - group: 组
     func deleteNodeToGroup(withNode node: Node, withGroup group: Group) {
         
+        MeshNetworkManager.instance.delegate = self
+        
         let model = KLMHomeManager.getModelFromNode(node: node)
         if let message: ConfigMessage =
             ConfigModelSubscriptionDelete(group: group, from: model!) {
@@ -63,7 +67,7 @@ class KLMMessageManager: NSObject{
     static let sharedInstacnce = KLMMessageManager()
     private override init(){
         super.init()
-        MeshNetworkManager.instance.delegate = self
+        
     }
 }
 

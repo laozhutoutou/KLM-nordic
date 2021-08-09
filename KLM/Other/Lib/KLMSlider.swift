@@ -45,19 +45,24 @@ class KLMSlider: UIView {
         return maxBtn
     }()
     //指示器
-    var indicateView: KLMIndicateView!
+//    var indicateView: KLMIndicateView!
+    var indicateLab: UILabel!
     
     //设置标题
     var getValueTitle: GetValueTitle?
     weak var delegate: KLMSliderDelegate?
     //指示器的宽度
-    var indicateViewWidth: CGFloat = 35 {
+    var indicateViewWidth: CGFloat = 38 {
         
         didSet {
             
-            indicateView.snp.updateConstraints { make in
+            indicateLab.snp.updateConstraints { make in
                 make.width.equalTo(indicateViewWidth)
             }
+            
+//            indicateView.snp.updateConstraints { make in
+//                make.width.equalTo(indicateViewWidth)
+//            }
         }
     }
     
@@ -78,13 +83,17 @@ class KLMSlider: UIView {
             
             //标签
             let labX = Float(self.slider.width) * (currentValue - self.minValue)  / (self.maxValue - self.minValue)
-            indicateView.snp.updateConstraints { make in
+//            indicateView.snp.updateConstraints { make in
+//                make.centerX.equalTo(slider.snp.left).offset(labX)
+//            }
+            indicateLab.snp.updateConstraints { make in
                 make.centerX.equalTo(slider.snp.left).offset(labX)
             }
             
             if let block = self.getValueTitle {
                 
-                indicateView.title = block(currentValue)
+//                indicateView.title = block(currentValue)
+                indicateLab.text = block(currentValue)
             }
         }
     }
@@ -97,7 +106,6 @@ class KLMSlider: UIView {
         self.step = step
         self.slider.minimumValue = minValue
         self.slider.maximumValue = maxValue
-//        self.backgroundColor = UIColor.orange
         self.setupUI()
     }
     
@@ -123,34 +131,46 @@ class KLMSlider: UIView {
             make.right.equalTo(maxBtn.snp.left).offset(-20)
         }
         self.setNeedsLayout()
-        indicateView = KLMIndicateView()
-        self.addSubview(indicateView)
+//        indicateView = KLMIndicateView()
+        indicateLab = UILabel()
+        indicateLab.font = UIFont.systemFont(ofSize: 14)
+        indicateLab.textColor = .black
+        indicateLab.textAlignment = .center
+//        indicateLab.backgroundColor = .orange
+        self.addSubview(indicateLab)
 //        indicateView.isHidden = true
         
-        indicateView.snp.makeConstraints { make in
+        indicateLab.snp.makeConstraints { make in
             make.width.equalTo(indicateViewWidth)
             make.height.equalTo(28)
             make.bottom.equalTo(slider.snp.top).offset(-5)
             make.centerX.equalTo(slider.snp.left)
         }
+        
+//        indicateView.snp.makeConstraints { make in
+//            make.width.equalTo(indicateViewWidth)
+//            make.height.equalTo(28)
+//            make.bottom.equalTo(slider.snp.top).offset(-5)
+//            make.centerX.equalTo(slider.snp.left)
+//        }
     }
     
     @objc func minClick() {
         
-        indicateView.isHidden = false
+        indicateLab.isHidden = false
         self.currentValue -= self.step
         setData()
     }
     
     @objc func maxClick() {
-        indicateView.isHidden = false
+        indicateLab.isHidden = false
         self.currentValue += self.step
         setData()
     }
     
     @objc func valueChange(slider: KLMSliderW) {
         
-        indicateView.isHidden = false
+        indicateLab.isHidden = false
         self.currentValue = slider.value
     }
     

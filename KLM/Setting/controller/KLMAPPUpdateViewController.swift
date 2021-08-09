@@ -17,9 +17,11 @@ class KLMAPPUpdateViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.title = LANGLOC("checkUpdate")
-        iconImageView.layer.cornerRadius = 10
+        iconImageView.layer.cornerRadius = 16
         iconImageView.clipsToBounds = true
         versionLab.text = String(format: "%@: %@", LANGLOC("version"),KLM_APP_VERSION as! String)
+        
+        updateBtn.layer.cornerRadius = updateBtn.height / 2
     }
 
     @IBAction func updateClick(_ sender: Any) {

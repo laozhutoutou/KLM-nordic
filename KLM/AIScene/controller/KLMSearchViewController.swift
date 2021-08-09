@@ -157,7 +157,6 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.leftImage = "img_scene_48"
         cell.leftTitle = deviceModel.name
-        cell.leftLab.font = UIFont.systemFont(ofSize: 16)
         return cell
         
     }

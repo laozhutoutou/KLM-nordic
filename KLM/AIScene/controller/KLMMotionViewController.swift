@@ -37,8 +37,16 @@ class KLMMotionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.title = LANGLOC("Energysavingsettings")
+        
+        if isAllNodes {
+            
+            navigationItem.title = LANGLOC("allDeviceAutoEnergysaving")
+            
+        } else {
+            
+            navigationItem.title = LANGLOC("Energysavingsettings")
+        }
+        
         
         view.backgroundColor = appBackGroupColor
         timeContentView.layer.cornerRadius = 16

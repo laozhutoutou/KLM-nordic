@@ -27,22 +27,29 @@ class KLMImagePickerController: UIImagePickerController {
         
         //拍照
         let takePhotoBtn = UIButton.init(type: .custom)
-        takePhotoBtn.setTitle("拍照", for: .normal)
+//        takePhotoBtn.setTitle("拍照", for: .normal)
+        takePhotoBtn.backgroundColor = .white
+        takePhotoBtn.layer.borderWidth = 7
+        takePhotoBtn.layer.borderColor = rgb(129, 129, 129).cgColor
+        takePhotoBtn.layer.cornerRadius = 40
+        takePhotoBtn.clipsToBounds = true
         takePhotoBtn.addTarget(self, action: #selector(takePicture), for: .touchUpInside)
         overLayView.addSubview(takePhotoBtn)
         takePhotoBtn.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-30)
             make.centerX.equalToSuperview()
+            make.width.height.equalTo(80)
         }
         
         //关闭
         let closeBtn = UIButton.init()
-        closeBtn.setImage(UIImage(named: "picture_close"), for: .normal)
+        closeBtn.setImage(UIImage(named: "icon_camera_close"), for: .normal)
         closeBtn.addTarget(self, action: #selector(closeClick), for: .touchUpInside)
         overLayView.addSubview(closeBtn)
         closeBtn.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15)
             make.top.equalToSuperview().offset(20)
+            make.width.height.equalTo(30)
         }
         
         //相册
@@ -77,8 +84,8 @@ class KLMImagePickerController: UIImagePickerController {
         //自定义
         let customBtn = UIButton.init(type: .custom)
         customBtn.setTitle(LANGLOC("custom"), for: .normal)
-        customBtn.setImage(UIImage.init(named: "icon_add"), for: .normal)
-        customBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        customBtn.setImage(UIImage.init(named: "icon_customize"), for: .normal)
+        customBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
         customBtn.setTitleColor(.white, for: .normal)
         customBtn.addTarget(self, action: #selector(customClick), for: .touchUpInside)
         overLayView.addSubview(customBtn)
@@ -89,7 +96,7 @@ class KLMImagePickerController: UIImagePickerController {
             make.height.equalTo(70)
             make.width.equalTo(40)
         }
-        customBtn.layoutButton(with: .top, imageTitleSpace: 5)
+        customBtn.layoutButton(with: .top, imageTitleSpace: 7)
     }
     
     //灯闪烁

@@ -15,14 +15,18 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     private var groups: [Group]!
     private var selectedIndexPath: IndexPath?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMMessageManager.sharedInstacnce.delegate = self
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = LANGLOC("groupSetting")
     
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
-        
-        KLMMessageManager.sharedInstacnce.delegate = self
         
         setupData()
     }

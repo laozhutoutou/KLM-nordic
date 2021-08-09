@@ -12,6 +12,8 @@
 
 + (BOOL)isChineseLanguage;
 
++ (BOOL)isEnglishLanguage;
+
 + (NSString *)currentLanguage;
 
 @end

@@ -51,7 +51,7 @@
                 <constraint firstItem="twp-Pm-JJ2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zf3-aU-3zr"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-839" y="37"/>
+            <point key="canvasLocation" x="-1028" y="45"/>
         </view>
     </objects>
     <resources>

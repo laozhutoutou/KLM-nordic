@@ -180,6 +180,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func enterMoreUI() {
+        
+        let tabbar = KLMTabBarController()
+        tabbar.selectedIndex = 2
+        window?.rootViewController = tabbar
+        window?.makeKeyAndVisible()
+        
+    }
+    
     //后台也可以运行定时器
     func applicationDidEnterBackground(_ application: UIApplication) {
         

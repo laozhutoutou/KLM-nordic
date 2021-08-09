@@ -26,6 +26,16 @@
     }
 }
 
++ (BOOL)isEnglishLanguage{
+    
+    NSString *currentLanguage = [self currentLanguage];
+    if ([currentLanguage hasPrefix:@"en"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 + (NSString *)currentLanguage
 {
     return [DAConfig userLanguage] ? : [NSLocale preferredLanguages].firstObject;
