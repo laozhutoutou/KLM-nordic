@@ -89,7 +89,7 @@
                 <constraint firstItem="ZCE-yU-SjU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="l4s-a0-uLf"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-1288" y="-84"/>
+            <point key="canvasLocation" x="-1596" y="-276"/>
         </view>
     </objects>
     <resources>

@@ -6,6 +6,38 @@
   
 */
 
-AiScene = "AiScene";
-Group = "Group";
-More = "More";
+AiScene = "Devices";
+Group = "Groups";
+More = "About";
+language = "Language";
+checkUpdate = "App update";
+helpAdvice = "Help & Feedback";
+finish = "Done";
+version = "Version #";
+cancel = "Cancel";
+searchDeviceName = "Search device";
+lightSet = "Light setting";
+addDevice = "Add new device";
+newGroup = "Create new group";
+groupDeleteTip = "Delete group";
+groupSelectDelete = "Delete group";
+deviceMoveOutGroupTip = "Delete device";
+deviceMoveOutGroup = "Delete device";
+connectSuccess = "Connect success";
+connectFailure = "Connect failure";
+geDevice = "Devices";
+transfer = "Move to other group";
+unGroup = "Ungrouped";
+delete = "Delete";
+sure = "Confirm";
+reNameGroup = "Rename group";
+groupMembers = "Group members";
+library = "Photos";
+custom = "Customization";
+restorefactorysettings = "Factory reset";
+basicSetting = "Setting";
+reName = "Rename";
+groupSetting = "Group setting";
+Energysavingsettings = "Energy saving setting";
+allDeviceAutoEnergysaving = "All devices auto energy saving";
+helpQuestionTip = "Please describe your problem(s) , or feedback, leave your name.";
