@@ -77,7 +77,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
                 
             }else{//所有灯感应设置
                 if !MeshNetworkManager.bearer.isOpen {
-                    SVProgressHUD.showError(withStatus: "Device Offline")
+                    SVProgressHUD.showError(withStatus: "Device offline")
                     return
                 }
                 

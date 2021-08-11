@@ -106,7 +106,7 @@
                 <constraint firstItem="PMo-wr-y1E" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="z39-fu-aDa"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-2036" y="-44"/>
+            <point key="canvasLocation" x="-1433" y="-39"/>
         </view>
     </objects>
     <resources>

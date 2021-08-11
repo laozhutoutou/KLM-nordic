@@ -92,9 +92,9 @@ class KLMImagePickerController: UIImagePickerController {
         customBtn.snp.makeConstraints { make in
             
             make.centerY.equalTo(takePhotoBtn)
-            make.right.equalToSuperview().offset(-40)
+            make.right.equalToSuperview().offset(-30)
             make.height.equalTo(70)
-            make.width.equalTo(40)
+            make.width.equalTo(80)
         }
         customBtn.layoutButton(with: .top, imageTitleSpace: 7)
     }

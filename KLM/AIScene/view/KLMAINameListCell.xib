@@ -61,7 +61,7 @@
                 <outlet property="nameLab" destination="0Sl-T2-02U" id="kBa-wE-1Ko"/>
                 <outlet property="selectBtn" destination="jYt-xL-gPo" id="Ioq-qm-P5n"/>
             </connections>
-            <point key="canvasLocation" x="-62" y="27"/>
+            <point key="canvasLocation" x="136" y="-10"/>
         </collectionViewCell>
     </objects>
     <resources>

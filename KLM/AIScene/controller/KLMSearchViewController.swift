@@ -169,7 +169,7 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
         KLMHomeManager.sharedInstacnce.smartNode = deviceModel
         
         if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showError(withStatus: "Device Offline")
+            SVProgressHUD.showError(withStatus: "Device offline")
             return
         }
         if !deviceModel.isCompositionDataReceived {

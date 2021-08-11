@@ -107,7 +107,7 @@ class KLMCustomViewController: UIViewController {
         let sliderWidth = KLMScreenW - viewLeft * 2
     
         let colorTempSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: colorTempBgView.height), minValue: 0, maxValue: 100, step: 10)
-        colorTempSlider.indicateViewWidth = 42
+        colorTempSlider.indicateViewWidth = 50
         colorTempSlider.getValueTitle = {  value in
             
             let vv = value / 100.0 * (self.colorTemp.maxTemp - self.colorTemp.minTemp) + self.colorTemp.minTemp

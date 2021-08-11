@@ -67,6 +67,7 @@ extension KLMSIGMeshManager {
     
     func startActive(discoveredPeripheral: DiscoveredPeripheral) {
         
+        KLMLog("startActive")
         self.discoveredPeripheral = discoveredPeripheral
         
         let bb = PBGattBearer(target: discoveredPeripheral.peripheral)
@@ -103,7 +104,7 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
         if central.state != .poweredOn {
-            print("Central is not powered on")
+            KLMLog("Central is not powered on")
         } else {
             startScanning()
         }
@@ -148,7 +149,7 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
             
             let node = network.node(for: self.discoveredPeripheral.device)!
             if !node.isCompositionDataReceived {
-                print("start composition")
+                KLMLog("start composition")
                 self.getCompositionData(node: node)
             }
         }
@@ -160,7 +161,7 @@ extension KLMSIGMeshManager: BearerDelegate {
     
     func bearerDidOpen(_ bearer: Bearer) {
         
-        print("connect Unprovision success")
+        KLMLog("connect Unprovision success")
         let bb = bearer as? ProvisioningBearer
         
         let provisonManager = KLMProvisionManager.init(discoveredPeripheral: self.discoveredPeripheral, bearer: bb!)
@@ -186,7 +187,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
         case let status as ConfigAppKeyStatus://node add app key success
             if status.status == .success{
                 
-                print("node appkey success")
+                KLMLog("node appkey success")
                 
                 //给自定义vendor model 配置APP key
                 let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
@@ -206,7 +207,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             }
         case is ConfigCompositionDataStatus:
             
-            print("composition success")
+            KLMLog("composition success")
             
             //给node 配置app key
             if !self.currentNode.applicationKeys.isEmpty {
@@ -226,7 +227,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             if status.status == .success {
                 
                 //整个流程配置完成
-                print("model appkey success")
+                KLMLog("model appkey success")
                 
                 self.delegate?.sigMeshManager(self, didActiveDevice: self.currentNode)
                 

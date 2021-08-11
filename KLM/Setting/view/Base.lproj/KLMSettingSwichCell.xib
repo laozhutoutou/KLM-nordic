@@ -89,7 +89,7 @@
                 <outlet property="CNBtn" destination="vO0-k1-KdP" id="yUf-Lj-tSa"/>
                 <outlet property="ENBtn" destination="0Za-r7-447" id="zJG-4o-740"/>
             </connections>
-            <point key="canvasLocation" x="-401" y="-5"/>
+            <point key="canvasLocation" x="-58" y="-2"/>
         </tableViewCell>
     </objects>
     <resources>

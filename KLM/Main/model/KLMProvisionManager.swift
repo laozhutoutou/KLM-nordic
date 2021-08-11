@@ -46,7 +46,7 @@ extension KLMProvisionManager {
                 try self.provisioningManager.identify(andAttractFor: 5)
             } catch {
                 
-                print("error")
+                KLMLog("error")
                 self.delegate?.provisionManager(self, didFailChange: error)
             }
         }
@@ -67,7 +67,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
         switch state {
         case .capabilitiesReceived(let capabilities)://identify完成
             
-            print("identify success")
+            KLMLog("identify success")
             
             //provision
             if provisioningManager.networkKey == nil {
@@ -82,7 +82,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
                                                        authenticationMethod: .noOob)
             } catch {
                 
-                print("error")
+                KLMLog("error")
                 
                 self.delegate?.provisionManager(self, didFailChange: error)
         
@@ -90,7 +90,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
             
         case .complete://provison完成
             
-            print("provision success")
+            KLMLog("provision success")
             
             //关闭和未配网设备的连接
             self.bearer.close()
@@ -109,7 +109,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
 extension KLMProvisionManager: GattBearerDelegate {
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
-        
+        KLMLog("unprovision bearer close")
         guard case .complete = provisioningManager.state else {
             KLMShowError(error)
             
@@ -118,7 +118,7 @@ extension KLMProvisionManager: GattBearerDelegate {
         //节点添加完成
         if MeshNetworkManager.instance.save() {
             
-            print("node add success")
+            KLMLog("node add success")
             
             DispatchQueue.main.asyncAfter(deadline: 1) {
                 

@@ -19,10 +19,10 @@ class CMDeviceNamePopViewController: UIViewController {
     
     var nametype: NameType?
     enum NameType: String {
-        case nameTypeNewGroup = "New Group"
-        case nameTypeDevice = "Device Name"
-        case nameTypeReName = "Rename Group"
-        case nameTypeNewDevice = "New Device"
+        case nameTypeNewGroup = "Create new group"
+        case nameTypeDevice = "Device"
+        case nameTypeReName = "Rename group"
+        case nameTypeNewDevice = "Create new device"
     }
     
     var nameBlock: NameBlock?
