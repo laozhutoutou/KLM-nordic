@@ -22,5 +22,6 @@ target 'KLM' do
   pod 'SVProgressHUD'
   pod 'JKSwiftExtension', '~> 1.6.8'
   pod 'MJRefresh', '~> 3.5.0'
+  pod 'DZNEmptyDataSet', '~> 1.8.1' #数据为空时显示空白占位图
   
 end

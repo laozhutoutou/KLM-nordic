@@ -32,6 +32,8 @@
                     <connections>
                         <outlet property="dataSource" destination="-1" id="JIh-Yh-EWX"/>
                         <outlet property="delegate" destination="-1" id="9z8-4H-pgg"/>
+                        <outlet property="emptyDataSetDelegate" destination="-1" id="amP-As-NXV"/>
+                        <outlet property="emptyDataSetSource" destination="-1" id="Zl7-iV-yav"/>
                     </connections>
                 </collectionView>
             </subviews>

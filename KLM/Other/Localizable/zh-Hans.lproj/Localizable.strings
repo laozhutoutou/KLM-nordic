@@ -41,3 +41,6 @@ groupSetting = "分组设置";
 Energysavingsettings = "节能设置";
 allDeviceAutoEnergysaving = "所有设备自动节能";
 helpQuestionTip = "请具体清晰描述您的问题及称呼...";
+
+noDevice = "暂无设备";
+noGroup = "暂无分组";

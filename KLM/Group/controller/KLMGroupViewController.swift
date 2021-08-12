@@ -174,3 +174,44 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+extension KLMGroupViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+
+        let contentView = UIView()
+        
+        let addBtn = UIButton()
+        addBtn.backgroundColor = appMainThemeColor
+        addBtn.setTitleColor(.white, for: .normal)
+        addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        addBtn.setTitle(LANGLOC("newGroup"), for: .normal)
+        addBtn.addTarget(self, action: #selector(moreClick), for: .touchUpInside)
+        addBtn.layer.cornerRadius = 20
+        contentView.addSubview(addBtn)
+        addBtn.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(150)
+            make.height.equalTo(40)
+        }
+        
+        let titleLab = UILabel()
+        titleLab.text = LANGLOC("noGroup")
+        titleLab.font = UIFont.systemFont(ofSize: 14)
+        titleLab.textColor = rgba(0, 0, 0, 0.5)
+        contentView.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(addBtn.snp.top).offset(-20)
+        }
+        
+        let image = UIImageView.init(image: UIImage.init(named: "img_Empty_Status"))
+        contentView.addSubview(image)
+        image.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(titleLab.snp.top).offset(-20)
+        }
+        return contentView
+    }
+}
+
+

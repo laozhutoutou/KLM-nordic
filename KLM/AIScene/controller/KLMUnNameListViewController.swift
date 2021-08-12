@@ -62,7 +62,7 @@ class KLMUnNameListViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        view.backgroundColor = appBackGroupColor
+
         collectionView.backgroundColor = appBackGroupColor
         
         navigationController?.view.addSubview(self.searchBar)
@@ -225,6 +225,46 @@ extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?){
         
         KLMShowError(error)
+    }
+}
+ 
+extension KLMUnNameListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+
+        let contentView = UIView()
+        
+        let addBtn = UIButton()
+        addBtn.backgroundColor = appMainThemeColor
+        addBtn.setTitleColor(.white, for: .normal)
+        addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        addBtn.setTitle(LANGLOC("addDevice"), for: .normal)
+        addBtn.addTarget(self, action: #selector(newDevice), for: .touchUpInside)
+        addBtn.layer.cornerRadius = 20
+        contentView.addSubview(addBtn)
+        addBtn.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.equalTo(140)
+            make.height.equalTo(40)
+        }
+        
+        let titleLab = UILabel()
+        titleLab.text = LANGLOC("noDevice")
+        titleLab.font = UIFont.systemFont(ofSize: 14)
+        titleLab.textColor = rgba(0, 0, 0, 0.5)
+        contentView.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(addBtn.snp.top).offset(-20)
+        }
+        
+        let image = UIImageView.init(image: UIImage.init(named: "img_Empty_Status"))
+        contentView.addSubview(image)
+        image.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(titleLab.snp.top).offset(-20)
+        }
+        return contentView
     }
 }
 

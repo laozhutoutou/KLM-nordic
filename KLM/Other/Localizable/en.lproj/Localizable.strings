@@ -41,3 +41,6 @@ groupSetting = "Group setting";
 Energysavingsettings = "Energy saving setting";
 allDeviceAutoEnergysaving = "All devices auto energy saving";
 helpQuestionTip = "Please describe your problem(s) , or feedback, leave your name.";
+
+noDevice = "No devices";
+noGroup = "No groups";
