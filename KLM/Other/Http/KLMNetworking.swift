@@ -9,7 +9,7 @@ import UIKit
 import Alamofire
 
 typealias KLMResponseSuccess = (_ response: AnyObject) -> Void
-typealias KLMResponseFailure = (_ error: AnyObject) -> Void
+typealias KLMResponseFailure = (_ error: Error) -> Void
 
 class KLMNetworking: NSObject {
     static let ShareInstance = KLMNetworking()
@@ -92,7 +92,7 @@ class KLMNetworking: NSObject {
                 let statusCode = response.response?.statusCode
                 let errorStr = HTTPURLResponse.localizedString(forStatusCode: statusCode ?? 0)
                 KLMLog("error = \(errorStr)")
-                failure(error as AnyObject)
+                failure(error)
             }
             
         }
@@ -118,7 +118,7 @@ class KLMNetworking: NSObject {
                 }
             case .failure(let error):
                 
-                failure(error as AnyObject)
+                failure(error)
             }
             
         }

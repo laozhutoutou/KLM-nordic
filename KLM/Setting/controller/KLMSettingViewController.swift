@@ -13,8 +13,8 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     let images = [["icon_language","icon_enegy_save"],["icon_app_update","icon_helpAndAdvice"]]
-    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
-    
+//    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
+    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
