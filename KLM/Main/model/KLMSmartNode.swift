@@ -61,7 +61,9 @@ class KLMSmartNode: NSObject {
         case .color,
              .recipe,
              .colorTest,
-             .PWM:
+             .PWM,
+             .checkVersion,
+             .DFU:
             parameString = parame.value as! String
         default:
             break
@@ -180,6 +182,12 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         
                         response.dp = .motionPower
                         response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                    case 99:
+                        response.dp = .checkVersion
+                        response.value = valueHex
+                    case 100:
+                        response.dp = .DFU
+                        response.value = valueHex
                     case 101:
                         
                         response.dp = .PWM

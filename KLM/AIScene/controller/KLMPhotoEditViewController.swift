@@ -16,14 +16,19 @@ class KLMPhotoEditViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var testLab: UILabel!
+    
     var lightSlider: KLMSlider!
     //当前配方
     var currentRecipe: Int = 0 {
         
         didSet {
+            
+            testLab.text = "\(currentRecipe)"
+            
             self.lightSlider.isUserInteractionEnabled = true
             //完成
-            navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
+//            navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
         }
     }
     //当前亮度
@@ -161,6 +166,8 @@ class KLMPhotoEditViewController: UIViewController {
     ///发送数据
     func setData() {
         
+        return
+        
         isFinish = false
         
         //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
@@ -229,28 +236,28 @@ class KLMPhotoEditViewController: UIViewController {
     
     @objc func dimiss() {
         
-        isFinish = false
-        
-        //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
-        let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
-        //亮度范围80-120
-        let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "02"
-        
-        
-        let parame = parameModel(dp: .recipe, value: string)
-        
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
-            
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-            
-        } else {
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
-                
-            } failure: { error in
-                KLMShowError(error)
-            }
-        }
+//        isFinish = false
+//
+//        //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
+//        let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
+//        //亮度范围80-120
+//        let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
+//        let string = recipeHex + lightValueHex + "02"
+//
+//
+//        let parame = parameModel(dp: .recipe, value: string)
+//
+//        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+//
+//            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+//
+//        } else {
+//            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+//
+//            } failure: { error in
+//                KLMShowError(error)
+//            }
+//        }
         
         self.dismiss(animated: true, completion: nil)
         

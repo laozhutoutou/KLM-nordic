@@ -197,6 +197,11 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 6:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
+            cell.leftTitle = "DFU"
+            return cell
+        case 7:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
             cell.leftTitle = "单独控制"
             return cell
         default:
@@ -262,10 +267,13 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }))
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
-        case 6://六路测试
+        case 6:
+            let vc = KLMDFUViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 7://六路测试
             let vc = KLMTestViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 7:
+        case 8:
             let vc = KLMText1ViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:

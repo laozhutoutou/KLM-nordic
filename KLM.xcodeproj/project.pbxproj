@@ -143,6 +143,9 @@
 		E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */; };
 		E4E2845A26A1291A006C120E /* KLMSIGMeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */; };
 		E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845B26A278B9006C120E /* KLMMessageManager.swift */; };
+		E4E51F2C26CB568600823531 /* KLMDFUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */; };
+		E4E51F2D26CB568600823531 /* KLMDFUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */; };
+		E4E51F2F26CB841200823531 /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4E51F2E26CB841100823531 /* Project.bin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,6 +373,9 @@
 		E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffGet.swift; sourceTree = "<group>"; };
 		E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSIGMeshManager.swift; sourceTree = "<group>"; };
 		E4E2845B26A278B9006C120E /* KLMMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMessageManager.swift; sourceTree = "<group>"; };
+		E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUViewController.swift; sourceTree = "<group>"; };
+		E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDFUViewController.xib; sourceTree = "<group>"; };
+		E4E51F2E26CB841100823531 /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
 		E994C47995EC4F69AFB29309 /* Pods-KLM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM.release.xcconfig"; path = "Target Support Files/Pods-KLM/Pods-KLM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -440,6 +446,8 @@
 				E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */,
 				E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */,
 				E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */,
+				E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */,
+				E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */,
 				E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */,
 				E49B42BE26C21A4A0056C7EE /* KLMMotionViewController.xib */,
 				E4762C53269559F300100312 /* KLMImagePickerController.swift */,
@@ -799,6 +807,7 @@
 				E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */,
 				E498A78F26671BED00C78D50 /* Info.plist */,
 				E48B526326672B420006CDA7 /* head.swift */,
+				E4E51F2E26CB841100823531 /* Project.bin */,
 			);
 			path = KLM;
 			sourceTree = "<group>";
@@ -1037,6 +1046,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */,
+				E4E51F2D26CB568600823531 /* KLMDFUViewController.xib in Resources */,
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
 				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
 				E495D1752679DA9000AA50B9 /* KLMRegisterViewController.xib in Resources */,
@@ -1051,6 +1061,7 @@
 				E495D1242678833300AA50B9 /* KLMGroupDeviceEditViewController.xib in Resources */,
 				E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */,
 				E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */,
+				E4E51F2F26CB841200823531 /* Project.bin in Resources */,
 				E49B42DF26C21D4F0056C7EE /* KLMGroupTransferListViewController.xib in Resources */,
 				E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
@@ -1230,6 +1241,7 @@
 				E492AD2E267C83C50028AF3E /* ZYPinYinSearch.m in Sources */,
 				E4E2843E269EFF6A006C120E /* GenericOnOffClientDelegate.swift in Sources */,
 				E4E28442269EFF82006C120E /* SimpleOnOffClientDelegate.swift in Sources */,
+				E4E51F2C26CB568600823531 /* KLMDFUViewController.swift in Sources */,
 				E4E28430269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */,
 				E492AD31267C83C60028AF3E /* PinYinForObjc.m in Sources */,
 				E4A65FD82670B06400FE6866 /* ANImageBitmapRep.m in Sources */,

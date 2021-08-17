@@ -14,6 +14,7 @@
                 <outlet property="contentView" destination="eiX-MC-9tb" id="Kr5-y6-bqU"/>
                 <outlet property="imageView" destination="vrk-u4-PK4" id="fTo-5e-XSe"/>
                 <outlet property="lightBgView" destination="7tw-ME-efe" id="Aev-BK-dgL"/>
+                <outlet property="testLab" destination="4Gv-P2-t6d" id="EWg-Bp-DZD"/>
                 <outlet property="view" destination="7As-wc-ivO" id="Ki7-Zi-Abs"/>
             </connections>
         </placeholder>
@@ -50,6 +51,12 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gv-P2-t6d">
+                    <rect key="frame" x="327" y="642" width="57" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Ft9-eO-seJ"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -57,15 +64,17 @@
                 <constraint firstItem="7tw-ME-efe" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" constant="20" id="1Ck-c7-yqk"/>
                 <constraint firstItem="eiX-MC-9tb" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" id="9Y9-Nx-Ybh"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="eiX-MC-9tb" secondAttribute="trailing" id="9cx-Ik-4gL"/>
+                <constraint firstItem="7tw-ME-efe" firstAttribute="top" secondItem="4Gv-P2-t6d" secondAttribute="bottom" constant="13" id="Cmg-bY-fVP"/>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="top" secondItem="eiX-MC-9tb" secondAttribute="bottom" constant="50" id="Efs-1I-CFI"/>
                 <constraint firstItem="zim-bE-9NF" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" constant="16" id="MnI-eV-Heu"/>
                 <constraint firstItem="eiX-MC-9tb" firstAttribute="top" secondItem="7As-wc-ivO" secondAttribute="top" constant="10" id="Nrw-7t-Knz"/>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="top" secondItem="zim-bE-9NF" secondAttribute="bottom" constant="8" id="Q7E-DX-YdI"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="7tw-ME-efe" secondAttribute="trailing" constant="20" id="W2d-53-FUn"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="bottom" secondItem="7tw-ME-efe" secondAttribute="bottom" constant="30" id="dUc-dH-q9l"/>
+                <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="4Gv-P2-t6d" secondAttribute="trailing" constant="30" id="eM9-uJ-f6G"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-3486" y="125"/>
+            <point key="canvasLocation" x="-4164" y="155"/>
         </view>
     </objects>
     <resources>

@@ -124,6 +124,8 @@ enum DPType: Int {
     case motionLight = 9
     case motionPower = 10
     case colorTest = 11
+    case checkVersion = 99
+    case DFU = 100
     case PWM = 101
     case AllDp = 0xFF
 }
