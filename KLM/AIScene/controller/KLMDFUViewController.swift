@@ -28,12 +28,12 @@ class KLMDFUViewController: UIViewController {
 
     @IBAction func DFU(_ sender: Any) {
         
-        SVProgressHUD.showProgress(0)
-        SVProgressHUD.setDefaultMaskType(.black)
+//        SVProgressHUD.showProgress(0)
+//        SVProgressHUD.setDefaultMaskType(.black)
         
         let first = KLMUpdateManager.sharedInstacnce.getUpdateFirstPackage()
         let parame = parameModel(dp: .checkVersion, value: first)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentConnectNode!)
         
     }
 }
@@ -44,15 +44,6 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
         
         if let value = message?.value as? String, value == "FF"{
             
-            //开始发送第一包
-            let firstPackage = dataPackageArray[currentIndex]
-            let parame = parameModel(dp: .DFU, value: firstPackage)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        }
-        
-        if let value = message?.value as? String, value == "CC" {
-            
-            currentIndex += 1
             if currentIndex >= dataPackageArray.count {
                 //发送完成
                 SVProgressHUD.showSuccess(withStatus: "Update complete")
@@ -61,12 +52,22 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
                 }
                 return
             }
-            let progress: Float = Float(currentIndex) / Float(dataPackageArray.count)
-            SVProgressHUD.showProgress(progress)
+//                let progress: Float = Float(currentIndex) / Float(dataPackageArray.count)
+//                SVProgressHUD.showProgress(progress)
             
             let package = dataPackageArray[currentIndex]
             let parame = parameModel(dp: .DFU, value: package)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentConnectNode!)
+            KLMLog("------------------\(currentIndex)")
+            currentIndex += 1
+            
+        } else {
+            
+            //错误
+            SVProgressHUD.showError(withStatus: "error")
+            DispatchQueue.main.asyncAfter(deadline: 1) {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     

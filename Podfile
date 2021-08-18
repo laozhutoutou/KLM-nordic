@@ -9,6 +9,7 @@ target 'KLM' do
   pod 'RxSwift', '~> 6.2.0' #函数响应式编程框架
   pod 'RxCocoa', '~> 6.2.0'
   pod 'Alamofire', '~> 5.4.3' #http网络请求事件处理的框架
+  pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Reachability', 'Serialization', 'Security', 'NSURLSession']
   pod 'SwiftyJSON', '~> 5.0.1' #处理JSON数据
   pod 'HandyJSON', '~> 5.0.2' #json转模型
   pod 'Kingfisher', '~> 6.3.0' #图片加载框架

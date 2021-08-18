@@ -164,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection.isConnectionModeAutomatic = true
         connection!.open()
         
-        enterMainUI()
+        enterLoginUI()
     }
     
     func setupSVHUD() {
@@ -185,6 +185,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabbar = KLMTabBarController()
         tabbar.selectedIndex = 2
         window?.rootViewController = tabbar
+        window?.makeKeyAndVisible()
+        
+    }
+    
+    func enterLoginUI() {
+        
+        let login = KLMLoginViewController()
+        let nav = KLMNavigationViewController.init(rootViewController: login)
+        window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
     }

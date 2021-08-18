@@ -228,4 +228,12 @@ extension Node {
         return self.name ?? "Unknow Name"
     }
     
+    /// uuid 前面6个字节
+    var UUIDString: String {
+        
+        let string = self.uuid.uuidString.replacingOccurrences(of: "-", with: "")
+        let substring = string.substring(to: 12)
+        return substring
+    }
+    
 }

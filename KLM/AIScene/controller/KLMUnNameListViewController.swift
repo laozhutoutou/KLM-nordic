@@ -184,7 +184,7 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let node = self.nodes[indexPath.item]
-    
+        
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         

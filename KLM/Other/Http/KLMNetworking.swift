@@ -12,6 +12,9 @@ typealias KLMResponseSuccess = (_ response: AnyObject) -> Void
 typealias KLMResponseFailure = (_ error: Error) -> Void
 
 class KLMNetworking: NSObject {
+    
+    
+    
     static let ShareInstance = KLMNetworking()
     private override init() {}
     
@@ -20,7 +23,7 @@ class KLMNetworking: NSObject {
             return nil
         }
         
-        return ["Token": token]
+        return ["Authorization": token]
     }
     
     private lazy var manager: Session = {
@@ -73,6 +76,8 @@ class KLMNetworking: NSObject {
                             params: [String: Any]?,
                             success: @escaping KLMResponseSuccess,
                             failure: @escaping KLMResponseFailure) {
+        
+        
         manager.request(URLString,
                         method: .post,
                         parameters: params,
@@ -82,7 +87,7 @@ class KLMNetworking: NSObject {
             switch response.result {
             case .success:
                 if let value = response.value as? [String: Any]{
-                    if value["status"] as? Int == 1000 {
+                    if value["code"] as? Int == 200 {
                         
                         success(value as AnyObject)
                     }
@@ -111,7 +116,7 @@ class KLMNetworking: NSObject {
             switch response.result {
             case .success:
                 if let value = response.value as? [String: Any]{
-                    if value["status"] as? Int == 1000 {
+                    if value["code"] as? Int == 200 {
                         
                         success(value as AnyObject)
                     }

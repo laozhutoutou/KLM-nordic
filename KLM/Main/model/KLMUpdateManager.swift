@@ -24,7 +24,7 @@ class KLMUpdateManager {
     }
     
     //一个包85个字节
-    let DataK = 85
+    let DataK = 256
     
     /// 将bin拆成多个DataK大小的集合
     /// - Returns: 16进制字符串集合
@@ -82,7 +82,9 @@ class KLMUpdateManager {
         length32 = NSSwapHostIntToBig(length32)
         let lengthD = NSData.init(bytes: &length32, length: 4)
         
+        let index = Data.init(hex: "01")
         var data = Data()
+        data.append(index)
         data.append(lengthD as Data)
         data.append(crc16)
         let dataHexString = data.hexadecimal()

@@ -1,32 +1,33 @@
 //
-//  KLMRegisterViewController.swift
+//  KLMLoginViewController.swift
 //  KLM
 //
-//  Created by 朱雨 on 2021/6/16.
+//  Created by 朱雨 on 2021/8/18.
 //
 
 import UIKit
 
-class KLMRegisterViewController: UIViewController {
-    
+class KLMLoginViewController: UIViewController {
+
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
-    
-    @IBOutlet weak var codeTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
     }
-    
-    @IBAction func sendCode(_ sender: Any) {
+
+    @IBAction func login(_ sender: Any) {
         
         
     }
     
     @IBAction func register(_ sender: Any) {
         
+        let register = KLMRegisterViewController()
+        navigationController?.pushViewController(register, animated: true)
         
     }
+    
 }

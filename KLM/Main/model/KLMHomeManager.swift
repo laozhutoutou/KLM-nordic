@@ -61,6 +61,24 @@ class KLMHomeManager {
         return  KLMHomeManager.sharedInstacnce.smartGroup!
     }
     
+    /// 当前连接的节点
+    static var currentConnectNode: Node? {
+        
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            
+            for node in notConfiguredNodes {
+                if node.UUIDString == MeshNetworkManager.bearer.connectNode {
+                    
+                    return node
+                }
+            }
+        }
+        
+        return nil
+    }
+    
     //单例
     static let sharedInstacnce = KLMHomeManager()
     private init(){}

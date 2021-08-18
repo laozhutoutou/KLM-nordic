@@ -57,6 +57,7 @@ class NetworkConnection: NSObject, Bearer {
     var proxies: [GattBearer] = []
     /// A flag set to `true` when any of the underlying bearers is open.
     var isOpen: Bool = false
+    var connectNode: String = ""
     
     weak var delegate: BearerDelegate?
     weak var dataDelegate: BearerDataDelegate?
@@ -204,6 +205,14 @@ extension NetworkConnection: CBCentralManagerDelegate {
         
         let bearer = GattBearer(target: peripheral)
         proxies.append(bearer)
+        //记录当前kCBAdvDataManufacturerData
+        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+            
+            let subData = data.suffix(from: 2).hex
+            connectNode = subData
+//            print(subData)
+        }
+        
         bearer.delegate = self
         bearer.dataDelegate = self
         bearer.logger = logger
