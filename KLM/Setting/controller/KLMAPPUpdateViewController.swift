@@ -27,11 +27,11 @@ class KLMAPPUpdateViewController: UIViewController {
     @IBAction func updateClick(_ sender: Any) {
         
         //查询版本
-        KLMNetworking.ShareInstance.POST(URLString: "https://itunes.apple.com/lookup?id=1579633878", params: nil) { response in
-            
-        } failure: { error in
-            
-            KLMShowError(error)
-        }
+//        KLMNetworking.ShareInstance.POST(URLString: "https://itunes.apple.com/lookup?id=1579633878", params: nil) { response in
+//            
+//        } failure: { error in
+//            
+//            KLMShowError(error)
+//        }
     }
 }

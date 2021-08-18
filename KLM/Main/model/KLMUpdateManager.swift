@@ -78,7 +78,7 @@ class KLMUpdateManager {
         let lengthData = NSData.init(bytes: &lenght, length: 4)
         var length32: UInt32 = 0
         lengthData.getBytes(&length32, length: 4)
-        //大小端转化
+        //小端转大端
         length32 = NSSwapHostIntToBig(length32)
         let lengthD = NSData.init(bytes: &length32, length: 4)
         

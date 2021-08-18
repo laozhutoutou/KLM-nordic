@@ -20,7 +20,14 @@ class KLMLoginViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         
-        
+        KLMService.login(username: mailTextField.text!, password: passTextField.text!) { response in
+            
+            
+        } failure: { error in
+            
+            KLMHttpShowError(error)
+        }
+
     }
     
     @IBAction func register(_ sender: Any) {

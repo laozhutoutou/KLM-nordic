@@ -113,3 +113,17 @@ func isError(_ error: Error?) -> Bool {
         return true
     }
 }
+
+/// 显示http请求错误
+/// - Parameter error: NSError
+func KLMHttpShowError(_ error: NSError) {
+    SVProgressHUD.dismiss()
+    let message: String = error.userInfo["error"] as! String
+    SVProgressHUD.showError(withStatus: message)
+}
+
+func KLMUrl(_ url: String) -> String {
+    
+    let baseUrl = "http://8.135.16.88:9898/"
+    return baseUrl + url
+}

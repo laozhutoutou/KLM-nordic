@@ -8,17 +8,27 @@
 import UIKit
 import Alamofire
 
-typealias KLMResponseSuccess = (_ response: AnyObject) -> Void
-typealias KLMResponseFailure = (_ error: Error) -> Void
+typealias KLMResponseSuccess = (_ response: [String: AnyObject]) -> Void
+typealias KLMResponseFailure = (_ error: NSError) -> Void
+
+typealias completionHandlerBlock = (_ responseObject: [String: AnyObject]?, _ error: NSError?) -> Void
 
 class KLMNetworking: NSObject {
     
-    
+    var networkingTool: AFHTTPSessionManager!
     
     static let ShareInstance = KLMNetworking()
-    private override init() {}
+    private override init() {
+        super.init()
+        networkingTool = AFHTTPSessionManager.init()
+        let jsonType = "application/json"
+        let textType = "text/html"
+        let plainType = "text/plain"
+        let set = NSSet.init(array: [jsonType,textType,plainType])
+        networkingTool.responseSerializer.acceptableContentTypes = set as? Set<String>
+    }
     
-    private var header: [String: String]? {
+    static var header: [String: String]? {
         guard let token = KLMGetUserDefault("token") as? String else {
             return nil
         }
@@ -26,23 +36,55 @@ class KLMNetworking: NSObject {
         return ["Authorization": token]
     }
     
-    private lazy var manager: Session = {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpAdditionalHeaders = header
-        configuration.timeoutIntervalForRequest = 10
-        return Session.init(configuration: configuration, delegate: SessionDelegate.init(), serverTrustManager: nil)
-    }()
-    
-    func POST(URLString: String,
-              params: [String: Any]?,
-              success: @escaping KLMResponseSuccess,
-              failure: @escaping KLMResponseFailure) {
+    static func sessionManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
         
-        requestWith(URLString: URLString,
-                    httpMethod: 1,
-                    params: params,
-                    success: success,
-                    failure: failure)
+        KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
+        KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
+        if let hee = head {
+            for (key, value) in hee {
+                KLMNetworking.ShareInstance.networkingTool.requestSerializer.setValue(value, forKey: key)
+            }
+        }
+        
+        return KLMNetworking.ShareInstance.networkingTool
+    }
+    
+    static func POST(URLString: String,
+              params: [String: Any]?,
+              completion: @escaping completionHandlerBlock) {
+        
+        KLMLog("接口域名：\(URLString)\n请求参数：\(String(describing: params))")
+        self.sessionManagerWithHeader(head: header).post(URLString, parameters: params, progress: nil) { task, responseObject in
+            KLMLog("接口域名：\(URLString)\n请求返回数据: \(String(describing: responseObject))")
+            
+            guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject] else {
+                SVProgressHUD.dismiss()
+                let resultDic = ["error": "Unknow error"]
+                let error = NSError.init(domain: "", code: -1, userInfo: resultDic)
+                completion(nil, error)
+                return
+            }
+            
+            guard dic["code"] as? Int == 200 else {
+                SVProgressHUD.dismiss()
+                let msg = dic["msg"]
+                let resultDic = ["error": msg]
+                let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+                completion(nil, error)
+                return
+            }
+            
+            
+            completion(dic, nil)
+            
+        } failure: { task, error in
+            SVProgressHUD.dismiss()
+            
+            let resultDic = ["error": error.localizedDescription]
+            let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+            completion(nil, error)
+        }
+
     }
     
     func GET(URLString: String,
@@ -50,82 +92,28 @@ class KLMNetworking: NSObject {
               success: @escaping KLMResponseSuccess,
               failure: @escaping KLMResponseFailure) {
         
-        requestWith(URLString: URLString,
-                    httpMethod: 0,
-                    params: params,
-                    success: success,
-                    failure: failure)
+       
     }
+}
 
-    func requestWith(URLString: String,
-                            httpMethod: Int32,
-                            params: [String: Any]?,
-                            success: @escaping KLMResponseSuccess,
-                            failure: @escaping KLMResponseFailure) {
+class KLMService: NSObject {
+    
+    static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        if httpMethod == 0 {
-            
-            manageGet(URLString: URLString, params: params, success: success, failure: failure)
-        } else {
-            
-            managePost(URLString: URLString, params: params, success: success, failure: failure)
-        }
+        
     }
     
-    func managePost(URLString: String,
-                            params: [String: Any]?,
-                            success: @escaping KLMResponseSuccess,
-                            failure: @escaping KLMResponseFailure) {
+    static func login(username: String, password: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        
-        manager.request(URLString,
-                        method: .post,
-                        parameters: params,
-                        encoding: JSONEncoding.default,
-                        headers: nil).responseJSON { (response) in
+        let parame = ["username": username,
+                      "password": password]
+        KLMNetworking.POST(URLString: KLMUrl("api/auth/login"), params: parame) { responseObject, error in
             
-            switch response.result {
-            case .success:
-                if let value = response.value as? [String: Any]{
-                    if value["code"] as? Int == 200 {
-                        
-                        success(value as AnyObject)
-                    }
-                }
-            case .failure(let error):
-                
-                let statusCode = response.response?.statusCode
-                let errorStr = HTTPURLResponse.localizedString(forStatusCode: statusCode ?? 0)
-                KLMLog("error = \(errorStr)")
-                failure(error)
+            if error == nil {
+                success(responseObject!)
+            } else {
+                failure(error!)
             }
-            
-        }
-    }
-    
-    func manageGet(URLString: String,
-                            params: [String: Any]?,
-                            success: @escaping KLMResponseSuccess,
-                            failure: @escaping KLMResponseFailure) {
-        manager.request(URLString,
-                        method: .get,
-                        parameters: params,
-                        encoding: JSONEncoding.default,
-                        headers: nil).responseJSON { (response) in
-            
-            switch response.result {
-            case .success:
-                if let value = response.value as? [String: Any]{
-                    if value["code"] as? Int == 200 {
-                        
-                        success(value as AnyObject)
-                    }
-                }
-            case .failure(let error):
-                
-                failure(error)
-            }
-            
         }
     }
 }
