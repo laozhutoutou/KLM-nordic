@@ -12,7 +12,7 @@ class KLMUpdateManager {
     
     //单例
     static let sharedInstacnce = KLMUpdateManager()
-    private init(){}
+    private init(){}   
     
     /// 获取bin文件
     /// - Returns: NSData
@@ -23,12 +23,12 @@ class KLMUpdateManager {
         
     }
     
-    //一个包85个字节
-    let DataK = 256
+    //一个包n个字节 375
+//    let DataK = 256
     
     /// 将bin拆成多个DataK大小的集合
     /// - Returns: 16进制字符串集合
-    func dealFirmware() -> [String] {
+    func dealFirmware(data: Int? = 256) -> [String] {
         
         //数据源
         let datas = self.getProjectData()!
@@ -39,24 +39,24 @@ class KLMUpdateManager {
         
         var dataPackageArray = [String]()
         
-        if dataLength % DataK == 0{
+        if dataLength % data! == 0{
             
-            dataPackageFrame = dataLength / DataK
+            dataPackageFrame = dataLength / data!
         } else {
             
-            dataPackageFrame =  dataLength / DataK+1
+            dataPackageFrame =  dataLength / data!+1
         }
 
         for i in 0..<dataPackageFrame {
             
             if i < dataPackageFrame-1 {
-                let subData = datas.subdata(with: NSRange(location: DataK * i, length: DataK))
+                let subData = datas.subdata(with: NSRange(location: data! * i, length: data!))
                 let dataHexString = subData.hexadecimal()
                 dataPackageArray.append(dataHexString)
                 
             }else if i == dataPackageFrame-1 {
                 
-                let subData = datas.subdata(with: NSRange(location: DataK * i, length: dataLength - DataK*i))
+                let subData = datas.subdata(with: NSRange(location: data! * i, length: dataLength - data!*i))
                 let dataHexString = subData.hexadecimal()
                 dataPackageArray.append(dataHexString)
             }

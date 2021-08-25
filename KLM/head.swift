@@ -122,8 +122,15 @@ func KLMHttpShowError(_ error: NSError) {
     SVProgressHUD.showError(withStatus: message)
 }
 
-func KLMUrl(_ url: String) -> String {
+/// URL
+let baseUrl = "http://8.135.16.88:9898/"
+
+func KLMGetUrl(_ url: String) -> String {
     
-    let baseUrl = "http://8.135.16.88:9898/"
     return baseUrl + url
+}
+
+func KLMPostUrl(_ url: String) -> String {
+    
+    return baseUrl + "api/auth/" + url
 }

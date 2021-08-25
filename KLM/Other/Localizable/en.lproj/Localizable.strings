@@ -44,3 +44,5 @@ helpQuestionTip = "Please describe your problem(s) , or feedback, leave your nam
 
 noDevice = "No devices";
 noGroup = "No groups";
+
+searchDeviceTip = "Make sure your devices are powered on and nearby";

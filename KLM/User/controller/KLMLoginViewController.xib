@@ -42,18 +42,26 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbi-hy-HMp">
-                    <rect key="frame" x="118" y="244" width="184" height="43"/>
+                    <rect key="frame" x="20" y="235" width="184" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="去注册"/>
                     <connections>
                         <action selector="register:" destination="-1" eventType="touchUpInside" id="Oru-Bn-D1M"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHO-yO-4aD">
+                    <rect key="frame" x="88" y="299" width="184" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="退出登录"/>
+                    <connections>
+                        <action selector="logout:" destination="-1" eventType="touchUpInside" id="S6K-Oh-PAj"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-159.42028985507247" y="47.544642857142854"/>
+            <point key="canvasLocation" x="-635" y="-59"/>
         </view>
     </objects>
     <resources>

@@ -118,7 +118,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 9
+        return 10
         
     }
     
@@ -197,9 +197,14 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 6:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "DFU"
+            cell.leftTitle = "MCU DFU"
             return cell
         case 7:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "BLE DFU"
+            return cell
+        case 8:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "单独控制"
@@ -270,10 +275,13 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 6:
             let vc = KLMDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 7://六路测试
+        case 7:
+            let vc = KLMBLEDFUViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 8://六路测试
             let vc = KLMTestViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 8:
+        case 9:
             let vc = KLMText1ViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:

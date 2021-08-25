@@ -8,8 +8,8 @@
 import UIKit
 
 struct tempColors {
-    let maxTemp: Float = 7000
-    let minTemp: Float = 2000
+    let maxTemp: Float = 4000
+    let minTemp: Float = 3000
 }
 
 class KLMCustomViewController: UIViewController {
@@ -106,12 +106,13 @@ class KLMCustomViewController: UIViewController {
         let viewLeft: CGFloat = 20 + 16
         let sliderWidth = KLMScreenW - viewLeft * 2
     
-        let colorTempSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: colorTempBgView.height), minValue: 0, maxValue: 100, step: 10)
+        let colorTempSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: colorTempBgView.height), minValue: 0, maxValue: 10, step: 1)
         colorTempSlider.indicateViewWidth = 50
         colorTempSlider.getValueTitle = {  value in
             
-            let vv = value / 100.0 * (self.colorTemp.maxTemp - self.colorTemp.minTemp) + self.colorTemp.minTemp
-            return String(format: "%ldK", Int(vv))
+            let vv = Int(value)
+            let vvv = vv * 100 + Int(self.colorTemp.minTemp)
+            return String(format: "%ldK", vvv)
         }
         colorTempSlider.delegate = self
         self.colorTempSlider = colorTempSlider
@@ -190,7 +191,7 @@ class KLMCustomViewController: UIViewController {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
-                print("success")
+                KLMLog("success")
                 
             } failure: { error in
                 KLMShowError(error)
@@ -219,7 +220,7 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
             }
             
             
-        } else if message?.dp ==  .colorTemp{
+        } else if message?.dp ==  .colorTemp{//色温
             if colorTempFirst {
                 colorTempFirst = false
                 let value = message?.value as! Int
@@ -260,7 +261,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                     
-                    print("success")
+                    KLMLog("success")
                     
                 } failure: { error in
                     KLMShowError(error)
@@ -280,7 +281,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                     
-                    print("success")
+                    KLMLog("success")
                     
                 } failure: { error in
                     KLMShowError(error)
@@ -312,7 +313,7 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
-                print("success")
+                KLMLog("success")
                 
             } failure: { error in
                 KLMShowError(error)

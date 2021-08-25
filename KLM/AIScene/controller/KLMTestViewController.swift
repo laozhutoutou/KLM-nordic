@@ -10,18 +10,14 @@ import UIKit
 class KLMTestViewController: UIViewController {
     
     var WW: Int = 0
-    var CW: Int = 0
     var R: Int = 0
     var G: Int = 0
     var B: Int = 0
-    var A: Int = 0
     
     @IBOutlet weak var WWLab: UILabel!
-    @IBOutlet weak var CMlab: UILabel!
     @IBOutlet weak var Rlab: UILabel!
     @IBOutlet weak var Glab: UILabel!
     @IBOutlet weak var Blab: UILabel!
-    @IBOutlet weak var Alab: UILabel!
     
     
     
@@ -44,21 +40,17 @@ class KLMTestViewController: UIViewController {
         case 0:
             WW = Int(sender.value)
         case 1:
-            CW = Int(sender.value)
-        case 2:
             R = Int(sender.value)
-        case 3:
+        case 2:
             G = Int(sender.value)
-        case 4:
+        case 3:
             B = Int(sender.value)
-        case 5:
-            A = Int(sender.value)
         default:
             break
         }
         
-        let string = WW.decimalTo4Hexadecimal() + CW.decimalTo4Hexadecimal() + R.decimalTo4Hexadecimal() +
-            G.decimalTo4Hexadecimal() + B.decimalTo4Hexadecimal() + A.decimalTo4Hexadecimal()
+        let string = WW.decimalTo4Hexadecimal() + R.decimalTo4Hexadecimal() +
+            G.decimalTo4Hexadecimal() + B.decimalTo4Hexadecimal()
         KLMLog(string)
         
         let parame = parameModel(dp: .PWM, value: string)
@@ -71,16 +63,14 @@ class KLMTestViewController: UIViewController {
         switch sender.tag {
         case 0:
             WWLab.text = "\(Int(sender.value))"
+        
         case 1:
-            CMlab.text = "\(Int(sender.value))"
-        case 2:
             Rlab.text = "\(Int(sender.value))"
-        case 3:
+        case 2:
             Glab.text = "\(Int(sender.value))"
-        case 4:
+        case 3:
             Blab.text = "\(Int(sender.value))"
-        case 5:
-            Alab.text = "\(Int(sender.value))"
+        
         default:
             break
         }

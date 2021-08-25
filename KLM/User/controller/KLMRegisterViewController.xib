@@ -60,7 +60,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="52" y="119"/>
+            <point key="canvasLocation" x="-965" y="106"/>
         </view>
     </objects>
     <resources>

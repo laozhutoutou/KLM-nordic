@@ -164,7 +164,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection.isConnectionModeAutomatic = true
         connection!.open()
         
-        enterLoginUI()
+        enterMainUI()
     }
     
     func setupSVHUD() {

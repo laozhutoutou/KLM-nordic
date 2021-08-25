@@ -44,3 +44,5 @@ helpQuestionTip = "请具体清晰描述您的问题及称呼...";
 
 noDevice = "暂无设备";
 noGroup = "暂无分组";
+
+searchDeviceTip = "请确保设备已经连接电源，且位于手机附近";

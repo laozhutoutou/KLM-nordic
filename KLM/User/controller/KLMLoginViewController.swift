@@ -20,8 +20,9 @@ class KLMLoginViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         
-        KLMService.login(username: mailTextField.text!, password: passTextField.text!) { response in
+        KLMService.login(username: mailTextField.text!, password: passTextField.text!) { _ in
             
+            SVProgressHUD.showSuccess(withStatus: "success")
             
         } failure: { error in
             
@@ -37,4 +38,16 @@ class KLMLoginViewController: UIViewController {
         
     }
     
+    @IBAction func logout(_ sender: Any) {
+        
+        KLMService.logout { _ in
+            
+            SVProgressHUD.showSuccess(withStatus: "Logout success")
+            
+        } failure: { error in
+            
+            KLMHttpShowError(error)
+        }
+
+    }
 }

@@ -22,11 +22,21 @@ class KLMRegisterViewController: UIViewController {
     
     @IBAction func sendCode(_ sender: Any) {
         
-        
+        KLMService.getCode(email: mailTextField.text!) { _ in
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
     
     @IBAction func register(_ sender: Any) {
         
-        
+        KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
+            
+            SVProgressHUD.showSuccess(withStatus: "success")
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
 }

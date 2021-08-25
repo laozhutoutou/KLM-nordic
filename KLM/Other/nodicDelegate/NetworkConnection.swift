@@ -203,25 +203,48 @@ extension NetworkConnection: CBCentralManagerDelegate {
             return
         }
         
-        let bearer = GattBearer(target: peripheral)
-        proxies.append(bearer)
-        //记录当前kCBAdvDataManufacturerData
-        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
-            
-            let subData = data.suffix(from: 2).hex
-            connectNode = subData
-//            print(subData)
-        }
-        
-        bearer.delegate = self
-        bearer.dataDelegate = self
-        bearer.logger = logger
-        
-        // Is the limit reached?
         if proxies.count >= NetworkConnection.maxConnections {
             central.stopScan()
+        } else {
+            
+            let bearer = GattBearer(target: peripheral)
+            proxies.append(bearer)
+            //手动加的代码
+            //记录当前kCBAdvDataManufacturerData
+            
+            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+                
+                let subData = data.suffix(from: 2).hex
+                connectNode = subData
+            }
+            
+            bearer.delegate = self
+            bearer.dataDelegate = self
+            bearer.logger = logger
+            
+            bearer.open()
         }
-        bearer.open()
+        
+//        let bearer = GattBearer(target: peripheral)
+//        proxies.append(bearer)
+//        //手动加的代码
+//        //记录当前kCBAdvDataManufacturerData
+//
+//        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+//
+//            let subData = data.suffix(from: 2).hex
+//            connectNode = subData
+//        }
+//
+//        bearer.delegate = self
+//        bearer.dataDelegate = self
+//        bearer.logger = logger
+//
+//        // Is the limit reached?
+////        if proxies.count >= NetworkConnection.maxConnections {
+////            central.stopScan()
+////        }
+//        bearer.open()
     }
 }
 
