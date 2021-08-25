@@ -25,6 +25,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param image image
 - (unsigned char *) convertUIImageToBitmapRGBA8:(UIImage *) image;
 
+/**
+ *  Create an image from a given color
+ *
+ *  @param color Color value
+ *
+ *  @return Returns the created UIImage
+ */
++ (UIImage * _Nonnull)imageWithColor:(UIColor * _Nonnull)color;
+
 @end
 
 NS_ASSUME_NONNULL_END

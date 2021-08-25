@@ -63,7 +63,9 @@ class KLMSmartNode: NSObject {
              .colorTest,
              .PWM,
              .checkVersion,
-             .DFU:
+             .DFU,
+             .factoryTest,
+             .factoryTestResule:
             parameString = parame.value as! String
         default:
             break

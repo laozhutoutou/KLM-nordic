@@ -21,6 +21,8 @@
 		E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C53269559F300100312 /* KLMImagePickerController.swift */; };
 		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
 		E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */; };
+		E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */; };
+		E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */; };
 		E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48AF165268EEDCB00140F1F /* KLMSlider.swift */; };
 		E48B526426672B420006CDA7 /* head.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B526326672B420006CDA7 /* head.swift */; };
 		E48B5291266765540006CDA7 /* KLMApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B5290266765540006CDA7 /* KLMApplicationManager.swift */; };
@@ -190,6 +192,8 @@
 		E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SFImageTitleSpacing.m"; sourceTree = "<group>"; };
 		E4762C5626957AE100100312 /* UIButton+SFImageTitleSpacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SFImageTitleSpacing.h"; sourceTree = "<group>"; };
 		E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestSectionTableViewController.swift; sourceTree = "<group>"; };
+		E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBanchenpinViewController.swift; sourceTree = "<group>"; };
+		E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBanchenpinViewController.xib; sourceTree = "<group>"; };
 		E48AF165268EEDCB00140F1F /* KLMSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSlider.swift; sourceTree = "<group>"; };
 		E48B523E2667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E48B52422667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -459,6 +463,8 @@
 				E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */,
 				E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */,
 				E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */,
+				E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */,
+				E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */,
 				E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */,
 				E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */,
 				E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */,
@@ -1097,6 +1103,7 @@
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
+				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
 				E4A33FE726CF89BD0035FA92 /* Project.bin in Resources */,
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
@@ -1255,6 +1262,7 @@
 				E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */,
 				E48B52BA26677EB60006CDA7 /* KLMNavigationViewController.swift in Sources */,
 				E48B52A326676D8F0006CDA7 /* KLMGroupViewController.swift in Sources */,
+				E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */,
 				E4A65FD72670B06400FE6866 /* BitmapContextRep.m in Sources */,
 				E4A65F3E266F459200FE6866 /* KLMAINameListCell.swift in Sources */,
 				E4E28438269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */,

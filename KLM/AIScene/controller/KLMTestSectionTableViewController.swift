@@ -12,7 +12,8 @@ class KLMTestSectionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
+        tableView.rowHeight = 50
     }
 
     // MARK: - Table view data source
@@ -29,8 +30,25 @@ class KLMTestSectionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        cell.textLabel?.text = "半成品测试"
+        if indexPath.row == 0 {
+            cell.textLabel?.text = "半成品测试"
+        } else {
+            cell.textLabel?.text = "成品测试"
+        }
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            //半成品
+            let vc = KLMBanchenpinViewController()
+            let nav = KLMNavigationViewController.init(rootViewController: vc)
+            present(nav, animated: true, completion: nil)
+            
+        } else {
+            //成品
+        }
     }
     
 }
