@@ -44,10 +44,15 @@ class KLMTestSectionTableViewController: UITableViewController {
             //半成品
             let vc = KLMBanchenpinViewController()
             let nav = KLMNavigationViewController.init(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)
             
         } else {
             //成品
+            let vc = KLMChengpinViewController()
+            let nav = KLMNavigationViewController.init(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
         }
     }
     

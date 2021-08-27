@@ -20,6 +20,8 @@
 		E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C512695558C00100312 /* KLMPhotoManager.swift */; };
 		E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C53269559F300100312 /* KLMImagePickerController.swift */; };
 		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
+		E477D94226D782C900612456 /* KLMChengpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477D94026D782C900612456 /* KLMChengpinViewController.swift */; };
+		E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E477D94126D782C900612456 /* KLMChengpinViewController.xib */; };
 		E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */; };
 		E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */; };
 		E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */; };
@@ -191,6 +193,8 @@
 		E4762C53269559F300100312 /* KLMImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImagePickerController.swift; sourceTree = "<group>"; };
 		E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SFImageTitleSpacing.m"; sourceTree = "<group>"; };
 		E4762C5626957AE100100312 /* UIButton+SFImageTitleSpacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SFImageTitleSpacing.h"; sourceTree = "<group>"; };
+		E477D94026D782C900612456 /* KLMChengpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMChengpinViewController.swift; sourceTree = "<group>"; };
+		E477D94126D782C900612456 /* KLMChengpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMChengpinViewController.xib; sourceTree = "<group>"; };
 		E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestSectionTableViewController.swift; sourceTree = "<group>"; };
 		E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBanchenpinViewController.swift; sourceTree = "<group>"; };
 		E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBanchenpinViewController.xib; sourceTree = "<group>"; };
@@ -465,6 +469,8 @@
 				E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */,
 				E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */,
 				E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */,
+				E477D94026D782C900612456 /* KLMChengpinViewController.swift */,
+				E477D94126D782C900612456 /* KLMChengpinViewController.xib */,
 				E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */,
 				E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */,
 				E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */,
@@ -1074,6 +1080,7 @@
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
 				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
 				E495D1752679DA9000AA50B9 /* KLMRegisterViewController.xib in Resources */,
+				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
 				E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */,
@@ -1239,6 +1246,7 @@
 				E4A660662672145300FE6866 /* KLMRippleAnimationView.swift in Sources */,
 				E4A65FD52670B06400FE6866 /* CGImageContainer.m in Sources */,
 				E4A65FD42670B06400FE6866 /* BitmapContextManipulator.m in Sources */,
+				E477D94226D782C900612456 /* KLMChengpinViewController.swift in Sources */,
 				E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */,
 				E4729A7C26B1333A00DC7D59 /* KLMText1ViewController.swift in Sources */,
 				E4A660572672089000FE6866 /* KLMHomeManager.swift in Sources */,

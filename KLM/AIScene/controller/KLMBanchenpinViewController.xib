@@ -343,7 +343,7 @@
                 <constraint firstItem="qin-1Q-lwP" firstAttribute="top" secondItem="CCY-s8-Uhd" secondAttribute="bottom" constant="15" id="uuU-lb-tEw"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-2593" y="23"/>
+            <point key="canvasLocation" x="-2758" y="-81"/>
         </view>
     </objects>
     <resources>

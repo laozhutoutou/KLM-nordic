@@ -1,14 +1,14 @@
 //
-//  KLMBanchenpinViewController.swift
+//  KLMChengpinViewController.swift
 //  KLM
 //
-//  Created by 朱雨 on 2021/8/25.
+//  Created by 朱雨 on 2021/8/26.
 //
 
 import UIKit
 
-class KLMBanchenpinViewController: UIViewController {
-
+class KLMChengpinViewController: UIViewController {
+    
     @IBOutlet weak var WWOK: UIButton!
     @IBOutlet weak var ROK: UIButton!
     @IBOutlet weak var GOK: UIButton!
@@ -19,8 +19,11 @@ class KLMBanchenpinViewController: UIViewController {
     @IBOutlet weak var GFalse: UIButton!
     @IBOutlet weak var BFalse: UIButton!
     
-    @IBOutlet weak var OKBtn: UIButton!
-    @IBOutlet weak var falseBtn: UIButton!
+    @IBOutlet weak var heibuOKBtn: UIButton!
+    @IBOutlet weak var heibufalseBtn: UIButton!
+    
+    @IBOutlet weak var sekaOKBtn: UIButton!
+    @IBOutlet weak var sekafalseBtn: UIButton!
     
     var OKBtnArray: [UIButton]!
     var falseBtnArray: [UIButton]!
@@ -37,12 +40,12 @@ class KLMBanchenpinViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "半成品测试"
+        navigationItem.title = "成品测试"
         
         navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(back)) as? [UIBarButtonItem]
 
-        OKBtnArray = [WWOK,ROK,GOK,BOK,OKBtn]
-        falseBtnArray = [WWFalse,RFalse,GFalse,BFalse,falseBtn]
+        OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOKBtn,sekaOKBtn]
+        falseBtnArray = [WWFalse,RFalse,GFalse,BFalse,heibufalseBtn,sekafalseBtn]
         
         for btn in OKBtnArray {
             btn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
@@ -63,10 +66,18 @@ class KLMBanchenpinViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    //测试
+    //测试BLE
     @IBAction func test(_ sender: UIButton) {
         let type = sender.tag.decimalTo2Hexadecimal()
-        let string = "0101" + type
+        let string = "0102" + type
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    //测试MCU
+    @IBAction func testMCU(_ sender: UIButton) {
+        let type = sender.tag.decimalTo2Hexadecimal()
+        let string = "0202" + type
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
@@ -90,7 +101,7 @@ class KLMBanchenpinViewController: UIViewController {
             }
             
             let type = sender.tag.decimalTo2Hexadecimal()
-            let string = "0101" + type + "01"
+            let string = "0102" + type + "01"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         case 5,6,7,8://ww等不合格
@@ -101,17 +112,27 @@ class KLMBanchenpinViewController: UIViewController {
                 }
             }
             let type = (sender.tag - 4).decimalTo2Hexadecimal()
-            let string = "0101" + type + "00"
+            let string = "0102" + type + "00"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 9://图像合格
-            falseBtn.isSelected = false
-            let string = "02010101"
+        case 9://黑布合格
+            heibufalseBtn.isSelected = false
+            let string = "02020201"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 10://图像不合格
-            OKBtn.isSelected = false
-            let string = "02010100"
+        case 11://黑布不合格
+            heibuOKBtn.isSelected = false
+            let string = "02020200"
+            let parame = parameModel(dp: .factoryTestResule, value: string)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        case 10://色卡合格
+            sekafalseBtn.isSelected = false
+            let string = "02020301"
+            let parame = parameModel(dp: .factoryTestResule, value: string)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        case 12://色卡不合格
+            sekaOKBtn.isSelected = false
+            let string = "02020300"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         default:
@@ -130,7 +151,7 @@ class KLMBanchenpinViewController: UIViewController {
     
 }
 
-extension KLMBanchenpinViewController: KLMSmartNodeDelegate {
+extension KLMChengpinViewController: KLMSmartNodeDelegate {
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
         isReset = true
