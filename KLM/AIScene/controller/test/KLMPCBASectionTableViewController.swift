@@ -1,17 +1,18 @@
 //
-//  KLMTestSectionTableViewController.swift
+//  KLMPCBASectionTableViewController.swift
 //  KLM
 //
-//  Created by 朱雨 on 2021/8/25.
+//  Created by 朱雨 on 2021/8/31.
 //
 
 import UIKit
 
-class KLMTestSectionTableViewController: UITableViewController {
+class KLMPCBASectionTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationItem.title = "PCBA测试"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         tableView.rowHeight = 50
     }
@@ -31,9 +32,9 @@ class KLMTestSectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
         if indexPath.row == 0 {
-            cell.textLabel?.text = "半成品测试"
+            cell.textLabel?.text = "蓝牙测试"
         } else {
-            cell.textLabel?.text = "成品测试"
+            cell.textLabel?.text = "sensor测试"
         }
         
         return cell
@@ -41,21 +42,15 @@ class KLMTestSectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            //半成品
+            //蓝牙
             let vc = KLMBanchenpinViewController()
             navigationController?.pushViewController(vc, animated: true)
-//            let nav = KLMNavigationViewController.init(rootViewController: vc)
-//            nav.modalPresentationStyle = .fullScreen
-//            present(nav, animated: true, completion: nil)
             
         } else {
-            //成品
-            let vc = KLMChengpinViewController()
+            //sensor
+            let vc = KLMPCBASensorViewController()
             navigationController?.pushViewController(vc, animated: true)
-//            let nav = KLMNavigationViewController.init(rootViewController: vc)
-//            nav.modalPresentationStyle = .fullScreen
-//            present(nav, animated: true, completion: nil)
         }
     }
-    
+
 }

@@ -435,7 +435,7 @@
                 <constraint firstItem="aUb-WX-gj6" firstAttribute="top" secondItem="qGA-Bu-bBn" secondAttribute="bottom" id="xf3-be-Dmn"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-4586" y="-10"/>
+            <point key="canvasLocation" x="-4765" y="-159"/>
         </view>
     </objects>
     <resources>

@@ -17,6 +17,13 @@
 		E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */; };
 		E4750A1226C1165500AA4C32 /* KLMHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4750A1026C1165500AA4C32 /* KLMHelpViewController.swift */; };
 		E4750A1626C118A800AA4C32 /* CMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4750A1526C118A800AA4C32 /* CMTextView.m */; };
+		E476177626DE0EA8008225BB /* KLMPCBASectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476177526DE0EA8008225BB /* KLMPCBASectionTableViewController.swift */; };
+		E476177926DE10D1008225BB /* KLMPCBASensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476177726DE10D1008225BB /* KLMPCBASensorViewController.swift */; };
+		E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476177826DE10D1008225BB /* KLMPCBASensorViewController.xib */; };
+		E476177D26DE11A9008225BB /* KLMLaoHuaTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476177B26DE11A9008225BB /* KLMLaoHuaTestViewController.swift */; };
+		E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476177C26DE11A9008225BB /* KLMLaoHuaTestViewController.xib */; };
+		E476178126DE11C2008225BB /* KLMBaoZhuangTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476177F26DE11C2008225BB /* KLMBaoZhuangTestViewController.swift */; };
+		E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476178026DE11C2008225BB /* KLMBaoZhuangTestViewController.xib */; };
 		E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C512695558C00100312 /* KLMPhotoManager.swift */; };
 		E4762C54269559F300100312 /* KLMImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C53269559F300100312 /* KLMImagePickerController.swift */; };
 		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
@@ -189,6 +196,13 @@
 		E4750A1026C1165500AA4C32 /* KLMHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMHelpViewController.swift; sourceTree = "<group>"; };
 		E4750A1426C118A700AA4C32 /* CMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextView.h; sourceTree = "<group>"; };
 		E4750A1526C118A800AA4C32 /* CMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTextView.m; sourceTree = "<group>"; };
+		E476177526DE0EA8008225BB /* KLMPCBASectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPCBASectionTableViewController.swift; sourceTree = "<group>"; };
+		E476177726DE10D1008225BB /* KLMPCBASensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPCBASensorViewController.swift; sourceTree = "<group>"; };
+		E476177826DE10D1008225BB /* KLMPCBASensorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMPCBASensorViewController.xib; sourceTree = "<group>"; };
+		E476177B26DE11A9008225BB /* KLMLaoHuaTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMLaoHuaTestViewController.swift; sourceTree = "<group>"; };
+		E476177C26DE11A9008225BB /* KLMLaoHuaTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMLaoHuaTestViewController.xib; sourceTree = "<group>"; };
+		E476177F26DE11C2008225BB /* KLMBaoZhuangTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBaoZhuangTestViewController.swift; sourceTree = "<group>"; };
+		E476178026DE11C2008225BB /* KLMBaoZhuangTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBaoZhuangTestViewController.xib; sourceTree = "<group>"; };
 		E4762C512695558C00100312 /* KLMPhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoManager.swift; sourceTree = "<group>"; };
 		E4762C53269559F300100312 /* KLMImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImagePickerController.swift; sourceTree = "<group>"; };
 		E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SFImageTitleSpacing.m"; sourceTree = "<group>"; };
@@ -442,6 +456,29 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E476178326DE13C8008225BB /* test */ = {
+			isa = PBXGroup;
+			children = (
+				E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */,
+				E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */,
+				E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */,
+				E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */,
+				E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */,
+				E476177526DE0EA8008225BB /* KLMPCBASectionTableViewController.swift */,
+				E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */,
+				E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */,
+				E476177726DE10D1008225BB /* KLMPCBASensorViewController.swift */,
+				E476177826DE10D1008225BB /* KLMPCBASensorViewController.xib */,
+				E477D94026D782C900612456 /* KLMChengpinViewController.swift */,
+				E477D94126D782C900612456 /* KLMChengpinViewController.xib */,
+				E476177B26DE11A9008225BB /* KLMLaoHuaTestViewController.swift */,
+				E476177C26DE11A9008225BB /* KLMLaoHuaTestViewController.xib */,
+				E476177F26DE11C2008225BB /* KLMBaoZhuangTestViewController.swift */,
+				E476178026DE11C2008225BB /* KLMBaoZhuangTestViewController.xib */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 		E48B524A26672A0C0006CDA7 /* AIScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +492,7 @@
 		E48B524B26672A0C0006CDA7 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				E476178326DE13C8008225BB /* test */,
 				E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */,
 				E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */,
 				E4A6604F2671F6CC00FE6866 /* KLMAddDeviceViewController.swift */,
@@ -462,15 +500,6 @@
 				E4A65F43266F595C00FE6866 /* KLMSearchViewController.swift */,
 				E48B52ED2667886B0006CDA7 /* KLMDeviceEditViewController.swift */,
 				E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */,
-				E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */,
-				E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */,
-				E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */,
-				E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */,
-				E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */,
-				E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */,
-				E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */,
-				E477D94026D782C900612456 /* KLMChengpinViewController.swift */,
-				E477D94126D782C900612456 /* KLMChengpinViewController.xib */,
 				E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */,
 				E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */,
 				E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */,
@@ -1080,6 +1109,7 @@
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
 				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
 				E495D1752679DA9000AA50B9 /* KLMRegisterViewController.xib in Resources */,
+				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
@@ -1097,6 +1127,7 @@
 				E49B7B9726D4F0F6004602C1 /* KLMBLEDFUViewController.xib in Resources */,
 				E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
+				E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
 				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
@@ -1111,6 +1142,7 @@
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
+				E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
 				E4A33FE726CF89BD0035FA92 /* Project.bin in Resources */,
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
@@ -1208,6 +1240,7 @@
 				E4E2844C269F008F006C120E /* SimpleOnOffStatus.swift in Sources */,
 				E4A65FCF2670B06400FE6866 /* OSCommonImage.m in Sources */,
 				E4A65FCC2670B06400FE6866 /* RSColorPickerView.m in Sources */,
+				E476178126DE11C2008225BB /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */,
 				E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */,
 				E4A65FCA2670B06400FE6866 /* RSColorFunctions.m in Sources */,
@@ -1228,6 +1261,7 @@
 				E48E60902692F6E800E630ED /* KLMMotionViewController.swift in Sources */,
 				E48B53262668785B0006CDA7 /* KLMPhotoEditViewController.swift in Sources */,
 				E48B530A266875980006CDA7 /* UIImage+TL.m in Sources */,
+				E476177626DE0EA8008225BB /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4E2843C269EFF45006C120E /* GenericLevelServerDelegate.swift in Sources */,
 				E4A65FD92670B06400FE6866 /* RSColorPickerState.m in Sources */,
 				E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */,
@@ -1262,6 +1296,7 @@
 				E4A65FD22670B06400FE6866 /* BitmapRotationManipulator.m in Sources */,
 				E495D13126788B2700AA50B9 /* KLMSettingSwichCell.swift in Sources */,
 				E49B7B9626D4F0F6004602C1 /* KLMBLEDFUViewController.swift in Sources */,
+				E476177D26DE11A9008225BB /* KLMLaoHuaTestViewController.swift in Sources */,
 				E4750A1626C118A800AA4C32 /* CMTextView.m in Sources */,
 				E4A6606B2672FFAB00FE6866 /* protocol.swift in Sources */,
 				E48B526426672B420006CDA7 /* head.swift in Sources */,
@@ -1269,6 +1304,7 @@
 				E4A65FCE2670B06400FE6866 /* NSImage+ANImageBitmapRep.m in Sources */,
 				E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */,
 				E48B52BA26677EB60006CDA7 /* KLMNavigationViewController.swift in Sources */,
+				E476177926DE10D1008225BB /* KLMPCBASensorViewController.swift in Sources */,
 				E48B52A326676D8F0006CDA7 /* KLMGroupViewController.swift in Sources */,
 				E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */,
 				E4A65FD72670B06400FE6866 /* BitmapContextRep.m in Sources */,
