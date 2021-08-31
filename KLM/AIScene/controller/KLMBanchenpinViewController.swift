@@ -14,18 +14,15 @@ class KLMBanchenpinViewController: UIViewController {
     @IBOutlet weak var GOK: UIButton!
     @IBOutlet weak var BOK: UIButton!
     
-    @IBOutlet weak var WWFalse: UIButton!
-    @IBOutlet weak var RFalse: UIButton!
-    @IBOutlet weak var GFalse: UIButton!
-    @IBOutlet weak var BFalse: UIButton!
+    @IBOutlet weak var BLEOK: UIButton!
+    @IBOutlet weak var BLEFalse: UIButton!
+    
     
     @IBOutlet weak var OKBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
+    @IBOutlet weak var MCUView: UIView!
     
     var OKBtnArray: [UIButton]!
-    var falseBtnArray: [UIButton]!
-    
-    var isReset: Bool = false
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,115 +35,126 @@ class KLMBanchenpinViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "半成品测试"
-        
-        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(back)) as? [UIBarButtonItem]
 
         OKBtnArray = [WWOK,ROK,GOK,BOK,OKBtn]
-        falseBtnArray = [WWFalse,RFalse,GFalse,BFalse,falseBtn]
+        
+        BLEOK.setBackgroundImage(UIImage.init(color: .green), for: .selected)
+        OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
+        
+        BLEFalse.setBackgroundImage(UIImage.init(color: .red), for: .selected)
+        falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
         
         for btn in OKBtnArray {
-            btn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
+            btn.isHidden = true
         }
-        
-        for btn in falseBtnArray {
-            btn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
-        }
+        MCUView.isHidden = true
+        BLEOK.isHidden = true
+        BLEFalse.isHidden = true
     }
     
-    @objc func back() {
-        
-        if isReset == false {
-            SVProgressHUD.showInfo(withStatus: "请点击重置按钮")
-            return
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    //测试
-    @IBAction func test(_ sender: UIButton) {
-        let type = sender.tag.decimalTo2Hexadecimal()
-        let string = "0101" + type
+    @IBAction func startTest(_ sender: Any) {
+        SVProgressHUD.show()
+        let string = "0101" + "FF"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
     }
     
-    //测试结果
-    @IBAction func result(_ sender: UIButton) {
+    @IBAction func BLEResult(_ sender: UIButton) {
+        
         
         if sender.isSelected {
             return
         }
-        
+        SVProgressHUD.show()
         sender.isSelected = true
-        
-        switch sender.tag {
-        case 1,2,3,4://ww等合格
-            for btn in falseBtnArray {
-                if btn.tag - 4 == sender.tag {
-                    btn.isSelected = false
-                    break
-                }
-            }
+        if sender.tag == 1 { //OK
             
-            let type = sender.tag.decimalTo2Hexadecimal()
-            let string = "0101" + type + "01"
+            BLEFalse.isSelected = false
+            let string = "0101" + "FF" + "01"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 5,6,7,8://ww等不合格
-            for btn in OKBtnArray {
-                if sender.tag - 4 == btn.tag {
-                    btn.isSelected = false
-                    break
-                }
-            }
-            let type = (sender.tag - 4).decimalTo2Hexadecimal()
-            let string = "0101" + type + "00"
+        } else {
+            
+            BLEOK.isSelected = false
+            let string = "0101" + "FF" + "00"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 9://图像合格
+        }
+    }
+    
+    @IBAction func MCUResult(_ sender: UIButton) {
+        
+        if sender.isSelected {
+            return
+        }
+        SVProgressHUD.show()
+        sender.isSelected = true
+        if sender.tag == 1 { //OK
+            
             falseBtn.isSelected = false
             let string = "02010101"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 10://图像不合格
+        } else {
+            
             OKBtn.isSelected = false
             let string = "02010100"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        default:
-            break
         }
-        
-        
     }
-    
-    @IBAction func reset(_ sender: Any) {
-        
-        SVProgressHUD.show()
-        KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
-        
-    }
-    
 }
 
 extension KLMBanchenpinViewController: KLMSmartNodeDelegate {
     
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        if let value = message?.value as? String, message?.dp == .factoryTest {
+            
+            if value == "010101" {
+                WWOK.isHidden = false
+            } else if value == "010102" {
+                ROK.isHidden = false
+            } else if value == "010103" {
+                GOK.isHidden = false
+            } else if value == "010104" {
+                BOK.isHidden = false
+                SVProgressHUD.dismiss()
+                BLEOK.isHidden = false
+                BLEFalse.isHidden = false
+            }
+        }
+        
+        //合格或者不合格
+        if let value = message?.value as? String, message?.dp == .factoryTestResule {
+            
+            if value == "0101FF00" || value == "0101FF01"{
+                SVProgressHUD.dismiss()
+                MCUView.isHidden = false
+            }
+        }
+        
+        //正常或者不正常
+        if let value = message?.value as? String, message?.dp == .factoryTestResule {
+            
+            if value == "0201FF00" || value == "0201FF01"{
+                //重置节点
+                KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
+            }
+        }
+    }
+    
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
-        isReset = true
-        SVProgressHUD.showSuccess(withStatus: "重置成功")
+        SVProgressHUD.showSuccess(withStatus: "测试完成")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             NotificationCenter.default.post(name: .deviceReset, object: nil)
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 }

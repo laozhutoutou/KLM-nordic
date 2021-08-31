@@ -51,7 +51,7 @@ class KLMDFUViewController: UIViewController {
             MeshNetworkManager.bearer.delegate = self
             SVProgressHUD.show()
             startScanning()
-            DispatchQueue.main.asyncAfter(deadline: 10) {
+            DispatchQueue.main.asyncAfter(deadline: 15) {
                 //未能找到设备
                 if !self.isFineDevice {
                     SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
@@ -85,8 +85,8 @@ class KLMDFUViewController: UIViewController {
         
         dataPackageArray = KLMUpdateManager.sharedInstacnce.dealFirmware(data: data)
         
-//        SVProgressHUD.showProgress(0)
-//        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.showProgress(0)
+        SVProgressHUD.setDefaultMaskType(.black)
         
         let first = KLMUpdateManager.sharedInstacnce.getUpdateFirstPackage()
         let parame = parameModel(dp: .checkVersion, value: first)
@@ -173,8 +173,8 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
                 return
             }
             
-//            let progress: Float = Float(currentIndex) / Float(dataPackageArray.count)
-//            SVProgressHUD.showProgress(progress)
+            let progress: Float = Float(currentIndex) / Float(dataPackageArray.count)
+            SVProgressHUD.showProgress(progress)
             
             let package = dataPackageArray[currentIndex]
             let parame = parameModel(dp: .DFU, value: package)

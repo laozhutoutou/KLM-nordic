@@ -28,8 +28,6 @@ class KLMChengpinViewController: UIViewController {
     var OKBtnArray: [UIButton]!
     var falseBtnArray: [UIButton]!
     
-    var isReset: Bool = false
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -41,8 +39,6 @@ class KLMChengpinViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "成品测试"
-        
-        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(back)) as? [UIBarButtonItem]
 
         OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOKBtn,sekaOKBtn]
         falseBtnArray = [WWFalse,RFalse,GFalse,BFalse,heibufalseBtn,sekafalseBtn]
@@ -54,16 +50,6 @@ class KLMChengpinViewController: UIViewController {
         for btn in falseBtnArray {
             btn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
         }
-    }
-    
-    @objc func back() {
-        
-        if isReset == false {
-            SVProgressHUD.showInfo(withStatus: "请点击重置按钮")
-            return
-        }
-        
-        dismiss(animated: true, completion: nil)
     }
     
     //测试BLE
@@ -154,20 +140,15 @@ class KLMChengpinViewController: UIViewController {
 extension KLMChengpinViewController: KLMSmartNodeDelegate {
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
-        isReset = true
         SVProgressHUD.showSuccess(withStatus: "重置成功")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             NotificationCenter.default.post(name: .deviceReset, object: nil)
-            self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
-            self.dismiss(animated: true, completion: nil)
-        }
     }
 }

@@ -40,7 +40,7 @@ class KLMBLEDFUViewController: UIViewController {
         SVProgressHUD.show()
         startScanning()
         
-        DispatchQueue.main.asyncAfter(deadline: 10) {
+        DispatchQueue.main.asyncAfter(deadline: 15) {
             //未能找到设备
             if !self.isFineDevice {
                 SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
@@ -51,7 +51,7 @@ class KLMBLEDFUViewController: UIViewController {
     
     func startScanning() {
         
-        let uuidHelper = DFUUuidHelper.init()
+//        let uuidHelper = DFUUuidHelper.init()
 //        [uuidHelper.secureDFUService]
         centralManager.delegate = self
         centralManager.scanForPeripherals(withServices: nil, options: nil)
@@ -113,7 +113,9 @@ extension KLMBLEDFUViewController: DFUServiceDelegate {
         case .completed:
             KLMLog("completed")
             SVProgressHUD.showSuccess(withStatus: "success")
-            
+            DispatchQueue.main.asyncAfter(deadline: 1) {
+                self.navigationController?.popViewController(animated: true)
+            }
         case .uploading:
             KLMLog("uploading")
         default:

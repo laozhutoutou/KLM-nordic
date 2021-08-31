@@ -43,16 +43,18 @@ class KLMTestSectionTableViewController: UITableViewController {
         if indexPath.row == 0 {
             //半成品
             let vc = KLMBanchenpinViewController()
-            let nav = KLMNavigationViewController.init(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
+//            let nav = KLMNavigationViewController.init(rootViewController: vc)
+//            nav.modalPresentationStyle = .fullScreen
+//            present(nav, animated: true, completion: nil)
             
         } else {
             //成品
             let vc = KLMChengpinViewController()
-            let nav = KLMNavigationViewController.init(rootViewController: vc)
-            nav.modalPresentationStyle = .fullScreen
-            present(nav, animated: true, completion: nil)
+            navigationController?.pushViewController(vc, animated: true)
+//            let nav = KLMNavigationViewController.init(rootViewController: vc)
+//            nav.modalPresentationStyle = .fullScreen
+//            present(nav, animated: true, completion: nil)
         }
     }
     
