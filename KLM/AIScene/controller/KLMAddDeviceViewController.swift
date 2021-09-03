@@ -104,23 +104,32 @@ class KLMAddDeviceViewController: UIViewController {
     //连接设备
     func connectDevice(model: DiscoveredPeripheral) {
         
-        ///弹框
+        if isTestApp {
+            
+            //测试APP
+            SVProgressHUD.show(withStatus: "connecting...")
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
+            return
+        }
+        
+        ///正式APP
         let vc = CMDeviceNamePopViewController()
         vc.nametype = .nameTypeNewDevice
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = { [weak self] name in
-            
+
             guard let self = self else { return }
             self.deviceName = name
-            
+
             SVProgressHUD.show(withStatus: "connecting...")
             SVProgressHUD.setDefaultMaskType(.black)
-            
-            
-            
+
+
+
             KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
-            
+
         }
         present(vc, animated: true, completion: nil)
     }
@@ -189,23 +198,33 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = device
         
-        device.name = self.deviceName
-        
-        if MeshNetworkManager.instance.save() {
+        if isTestApp {
             
+            //测试APP
+            NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
+            DispatchQueue.main.asyncAfter(deadline: 0.5){
+
+                let vc = KLMTestSectionTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            return
+        }
+        
+        //正式APP
+        device.name = self.deviceName
+        if MeshNetworkManager.instance.save() {
+
             //刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
-            
+
             //跳转页面
             DispatchQueue.main.asyncAfter(deadline: 0.5){
-                
-//                self.navigationController?.popViewController(animated: true)
 
                 let vc = KLMDeviceEditViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
-    
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?) {

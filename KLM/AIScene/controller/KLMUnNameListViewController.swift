@@ -136,11 +136,16 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             return
         }
         
-        let vc = KLMTestSectionTableViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        if isTestApp {
+            
+            let vc = KLMTestSectionTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
+            return
+        }
         
-//        let vc = KLMDeviceEditViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = KLMDeviceEditViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
 }

@@ -186,7 +186,7 @@
                 <constraint firstItem="o87-yV-QzR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="nac-YD-mJO"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-4974" y="295"/>
+            <point key="canvasLocation" x="-6387" y="350"/>
         </view>
     </objects>
     <resources>

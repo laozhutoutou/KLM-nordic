@@ -13,14 +13,11 @@ class KLMPCBASensorViewController: UIViewController {
     @IBOutlet weak var ROK: UIButton!
     @IBOutlet weak var GOK: UIButton!
     @IBOutlet weak var BOK: UIButton!
-    
-    @IBOutlet weak var BLEOK: UIButton!
-    @IBOutlet weak var BLEFalse: UIButton!
-    
+    @IBOutlet weak var cameraOK: UIButton!
+    @IBOutlet weak var stanbyOK: UIButton!
     
     @IBOutlet weak var OKBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
-    @IBOutlet weak var MCUView: UIView!
     
     var OKBtnArray: [UIButton]!
     
@@ -36,20 +33,15 @@ class KLMPCBASensorViewController: UIViewController {
         
         navigationItem.title = "sensor测试"
 
-        OKBtnArray = [WWOK,ROK,GOK,BOK,OKBtn]
+        OKBtnArray = [WWOK,ROK,GOK,BOK,cameraOK,stanbyOK]
         
-        BLEOK.setBackgroundImage(UIImage.init(color: .green), for: .selected)
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
-        
-        BLEFalse.setBackgroundImage(UIImage.init(color: .red), for: .selected)
         falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
         
         for btn in OKBtnArray {
             btn.isHidden = true
         }
-        MCUView.isHidden = true
-        BLEOK.isHidden = true
-        BLEFalse.isHidden = true
+        
     }
     
     @IBAction func startTest(_ sender: Any) {
@@ -60,29 +52,7 @@ class KLMPCBASensorViewController: UIViewController {
         
     }
     
-    @IBAction func BLEResult(_ sender: UIButton) {
-        
-        if sender.isSelected {
-            return
-        }
-        SVProgressHUD.show()
-        sender.isSelected = true
-        if sender.tag == 1 { //OK
-            
-            BLEFalse.isSelected = false
-            let string = "020101"
-            let parame = parameModel(dp: .factoryTestResule, value: string)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        } else {
-            
-            BLEOK.isSelected = false
-            let string = "020100"
-            let parame = parameModel(dp: .factoryTestResule, value: string)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        }
-    }
-    
-    @IBAction func MCUResult(_ sender: UIButton) {
+    @IBAction func sensorResult(_ sender: UIButton) {
         
         if sender.isSelected {
             return
@@ -92,13 +62,13 @@ class KLMPCBASensorViewController: UIViewController {
         if sender.tag == 1 { //OK
             
             falseBtn.isSelected = false
-            let string = "020201"
+            let string = "0201"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         } else {
             
             OKBtn.isSelected = false
-            let string = "020200"
+            let string = "0200"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         }
@@ -108,6 +78,14 @@ class KLMPCBASensorViewController: UIViewController {
         
         SVProgressHUD.show()
         let string = "0202"
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    @IBAction func stanbyClick(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        let string = "0209"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
@@ -129,36 +107,33 @@ extension KLMPCBASensorViewController: KLMSmartNodeDelegate {
             } else if value == "020104" {
                 BOK.isHidden = false
                 SVProgressHUD.dismiss()
-                BLEOK.isHidden = false
-                BLEFalse.isHidden = false
-            }
-        }
-        
-        //合格或者不合格
-        if let value = message?.value as? String, message?.dp == .factoryTestResule {
-            
-            if value == "020100" || value == "020101"{
-                SVProgressHUD.dismiss()
-                MCUView.isHidden = false
+                
             }
         }
         
         //打开图像
         if let value = message?.value as? String, message?.dp == .factoryTest {
             
-            if value == "020200" || value == "020201"{
+            if value == "0202"{
                 SVProgressHUD.dismiss()
-                
+                cameraOK.isHidden = false
             }
         }
         
-        //正常或者不正常
-        if let value = message?.value as? String, message?.dp == .factoryTestResule {
+        //待机功耗
+        if let value = message?.value as? String, message?.dp == .factoryTest {
             
-            if value == "020200" || value == "020201"{
-                //重置节点
-                KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
+            if value == "0209"{
+                SVProgressHUD.dismiss()
+                stanbyOK.isHidden = false
             }
+        }
+        
+        //合格或者不合格
+        if message?.dp == .factoryTestResule {
+            SVProgressHUD.showSuccess(withStatus: "测试完成")
+            //重置节点
+//            KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
         }
     }
     

@@ -15,6 +15,9 @@ import RxCocoa
 import nRFMeshProvision
 import HandyJSON
 
+///切换APP , 是否是测试APP  AISceneTest kinglumi.jmj123.com
+let isTestApp: Bool = true
+
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width
 let KLMScreenH = UIScreen.main.bounds.size.height
@@ -37,6 +40,7 @@ func KLMLog<T>(_ parameter : T, file : String = #file, lineNumber : Int = #line)
     
     let fileName = (file as NSString).lastPathComponent
     print("[\(fileName):line:\(lineNumber)]\n --\(parameter)\n")
+    #else
     
     #endif
 }
@@ -134,3 +138,6 @@ func KLMPostUrl(_ url: String) -> String {
     
     return baseUrl + "api/auth/" + url
 }
+
+
+

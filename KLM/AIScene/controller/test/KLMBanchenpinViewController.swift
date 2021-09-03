@@ -43,8 +43,6 @@ class KLMBanchenpinViewController: UIViewController {
             btn.isHidden = true
         }
         
-        BLEOK.isHidden = true
-        BLEFalse.isHidden = true
     }
     
     @IBAction func startTest(_ sender: Any) {
@@ -66,13 +64,13 @@ class KLMBanchenpinViewController: UIViewController {
         if sender.tag == 1 { //OK
             
             BLEFalse.isSelected = false
-            let string = "010101"
+            let string = "0101"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         } else {
             
             BLEOK.isSelected = false
-            let string = "010100"
+            let string = "0100"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         }
@@ -94,19 +92,16 @@ extension KLMBanchenpinViewController: KLMSmartNodeDelegate {
             } else if value == "010104" {
                 BOK.isHidden = false
                 SVProgressHUD.dismiss()
-                BLEOK.isHidden = false
-                BLEFalse.isHidden = false
+                
             }
         }
         
         //合格或者不合格
-        if let value = message?.value as? String, message?.dp == .factoryTestResule {
+        if message?.dp == .factoryTestResule {
             
-            if value == "010100" || value == "010101"{
-                //重置节点
-                KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
-                
-            }
+            SVProgressHUD.showSuccess(withStatus: "测试完成")
+            //重置节点
+//            KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
         }
     }
     

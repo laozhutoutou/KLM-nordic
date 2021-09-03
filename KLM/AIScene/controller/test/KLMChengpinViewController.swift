@@ -14,19 +14,14 @@ class KLMChengpinViewController: UIViewController {
     @IBOutlet weak var GOK: UIButton!
     @IBOutlet weak var BOK: UIButton!
     
-    @IBOutlet weak var WWFalse: UIButton!
-    @IBOutlet weak var RFalse: UIButton!
-    @IBOutlet weak var GFalse: UIButton!
-    @IBOutlet weak var BFalse: UIButton!
+    @IBOutlet weak var heibuOK: UIButton!
+    @IBOutlet weak var sekaOK: UIButton!
+    @IBOutlet weak var peifangOK: UIButton!
     
-    @IBOutlet weak var heibuOKBtn: UIButton!
-    @IBOutlet weak var heibufalseBtn: UIButton!
-    
-    @IBOutlet weak var sekaOKBtn: UIButton!
-    @IBOutlet weak var sekafalseBtn: UIButton!
+    @IBOutlet weak var OKBtn: UIButton!
+    @IBOutlet weak var falseBtn: UIButton!
     
     var OKBtnArray: [UIButton]!
-    var falseBtnArray: [UIButton]!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,107 +35,129 @@ class KLMChengpinViewController: UIViewController {
         
         navigationItem.title = "成品测试"
 
-        OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOKBtn,sekaOKBtn]
-        falseBtnArray = [WWFalse,RFalse,GFalse,BFalse,heibufalseBtn,sekafalseBtn]
+        OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOK,sekaOK,peifangOK]
+        
+        OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
+        falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
         
         for btn in OKBtnArray {
-            btn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
+            btn.isHidden = true
         }
         
-        for btn in falseBtnArray {
-            btn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
-        }
     }
     
-    //测试BLE
-    @IBAction func test(_ sender: UIButton) {
-        let type = sender.tag.decimalTo2Hexadecimal()
-        let string = "0102" + type
+    @IBAction func startTest(_ sender: Any) {
+        SVProgressHUD.show()
+        let string = "0301"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
     }
     
-    //测试MCU
-    @IBAction func testMCU(_ sender: UIButton) {
-        let type = sender.tag.decimalTo2Hexadecimal()
-        let string = "0202" + type
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
-    
-    //测试结果
-    @IBAction func result(_ sender: UIButton) {
+    @IBAction func chengpinResult(_ sender: UIButton) {
         
         if sender.isSelected {
             return
         }
-        
+        SVProgressHUD.show()
         sender.isSelected = true
-        
-        switch sender.tag {
-        case 1,2,3,4://ww等合格
-            for btn in falseBtnArray {
-                if btn.tag - 4 == sender.tag {
-                    btn.isSelected = false
-                    break
-                }
-            }
+        if sender.tag == 1 { //OK
             
-            let type = sender.tag.decimalTo2Hexadecimal()
-            let string = "0102" + type + "01"
+            falseBtn.isSelected = false
+            let string = "0301"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 5,6,7,8://ww等不合格
-            for btn in OKBtnArray {
-                if sender.tag - 4 == btn.tag {
-                    btn.isSelected = false
-                    break
-                }
-            }
-            let type = (sender.tag - 4).decimalTo2Hexadecimal()
-            let string = "0102" + type + "00"
+        } else {
+            
+            OKBtn.isSelected = false
+            let string = "0300"
             let parame = parameModel(dp: .factoryTestResule, value: string)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 9://黑布合格
-            heibufalseBtn.isSelected = false
-            let string = "02020201"
-            let parame = parameModel(dp: .factoryTestResule, value: string)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 11://黑布不合格
-            heibuOKBtn.isSelected = false
-            let string = "02020200"
-            let parame = parameModel(dp: .factoryTestResule, value: string)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 10://色卡合格
-            sekafalseBtn.isSelected = false
-            let string = "02020301"
-            let parame = parameModel(dp: .factoryTestResule, value: string)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        case 12://色卡不合格
-            sekaOKBtn.isSelected = false
-            let string = "02020300"
-            let parame = parameModel(dp: .factoryTestResule, value: string)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        default:
-            break
         }
-        
-        
     }
     
-    @IBAction func reset(_ sender: Any) {
+    @IBAction func heibu(_ sender: Any) {
         
         SVProgressHUD.show()
-        KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
+        let string = "0303"
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    @IBAction func seka(_ sender: Any) {
         
+        SVProgressHUD.show()
+        let string = "0304"
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    @IBAction func peifang(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        let string = "0305"
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
     
 }
 
 extension KLMChengpinViewController: KLMSmartNodeDelegate {
     
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        if let value = message?.value as? String, message?.dp == .factoryTest {
+            
+            if value == "030101" {
+                WWOK.isHidden = false
+            } else if value == "030102" {
+                ROK.isHidden = false
+            } else if value == "030103" {
+                GOK.isHidden = false
+            } else if value == "030104" {
+                BOK.isHidden = false
+                SVProgressHUD.dismiss()
+                
+            }
+        }
+        
+        //黑布
+        if let value = message?.value as? String, message?.dp == .factoryTest {
+            
+            if value == "0303"{
+                SVProgressHUD.dismiss()
+                heibuOK.isHidden = false
+            }
+        }
+        
+        //色卡
+        if let value = message?.value as? String, message?.dp == .factoryTest {
+            
+            if value == "0304"{
+                SVProgressHUD.dismiss()
+                sekaOK.isHidden = false
+            }
+        }
+        
+        //配方
+        if let value = message?.value as? String, message?.dp == .factoryTest {
+            
+            if value == "0305"{
+                SVProgressHUD.dismiss()
+                peifangOK.isHidden = false
+            }
+        }
+        
+        //合格或者不合格
+        if message?.dp == .factoryTestResule {
+            SVProgressHUD.showSuccess(withStatus: "测试完成")
+            //重置节点
+//            KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
+        }
+    }
+    
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
-        SVProgressHUD.showSuccess(withStatus: "重置成功")
+        SVProgressHUD.showSuccess(withStatus: "测试完成")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             NotificationCenter.default.post(name: .deviceReset, object: nil)
             self.navigationController?.popToRootViewController(animated: true)

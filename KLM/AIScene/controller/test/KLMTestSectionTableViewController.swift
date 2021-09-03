@@ -54,7 +54,7 @@ class KLMTestSectionTableViewController: UITableViewController {
             let vc = KLMChengpinViewController()
             navigationController?.pushViewController(vc, animated: true)
 
-        } else if indexPath.row == 1 {//老化
+        } else if indexPath.row == 2 {//老化
             let vc = KLMLaoHuaTestViewController()
             navigationController?.pushViewController(vc, animated: true)
             
