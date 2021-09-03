@@ -60,9 +60,6 @@ class KLMSlider: UIView {
                 make.width.equalTo(indicateViewWidth)
             }
             
-//            indicateView.snp.updateConstraints { make in
-//                make.width.equalTo(indicateViewWidth)
-//            }
         }
     }
     

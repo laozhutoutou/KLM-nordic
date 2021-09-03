@@ -179,14 +179,11 @@ class KLMCustomViewController: UIViewController {
         }
         
         let color = btn.backgroundColor
-        
         let parame = parameModel(dp: .color, value: color!.colorToHexString())
-        
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
         
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
-            
         } else {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
@@ -196,9 +193,7 @@ class KLMCustomViewController: UIViewController {
             } failure: { error in
                 KLMShowError(error)
             }
-            
         }
-    
     }
     
     @objc func dimiss() {

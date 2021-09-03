@@ -53,13 +53,12 @@ func rgb(_ r : CGFloat, _ g : CGFloat, _ b : CGFloat) -> UIColor {
     return rgba(r, g, b, 1.0)
 }
 
-//APP导航栏颜色
-let navigationBarColor = UIColor.white
-//APP主题颜色
-let appMainThemeColor = rgba(184, 23, 68, 1)
-//APP背景颜色
-let appBackGroupColor = rgba(247, 247, 247, 1)
-
+//APP导航栏颜色 UIColor.white
+let navigationBarColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//APP主题颜色 rgba(184, 23, 68, 1)
+let appMainThemeColor = #colorLiteral(red: 0.7215686275, green: 0.09019607843, blue: 0.2666666667, alpha: 1)
+//APP背景颜色 rgba(247, 247, 247, 1)
+let appBackGroupColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
     
 //版本信息
 let KLM_SYSTEM_VERSION = Float(UIDevice.current.systemVersion)
