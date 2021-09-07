@@ -40,7 +40,7 @@ class KLMBLEDFUViewController: UIViewController {
         SVProgressHUD.show()
         startScanning()
         
-        DispatchQueue.main.asyncAfter(deadline: 15) {
+        DispatchQueue.main.asyncAfter(deadline: 25) {
             //未能找到设备
             if !self.isFineDevice {
                 SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
@@ -60,7 +60,7 @@ class KLMBLEDFUViewController: UIViewController {
     @IBAction func DFU(_ sender: Any) {
         
         if isFineDevice {
-            
+            SVProgressHUD.showProgress(0)
             serviceInitiator.start(target: self.peripheral)
             
         } else {
@@ -135,7 +135,8 @@ extension KLMBLEDFUViewController: DFUServiceDelegate {
 extension KLMBLEDFUViewController: DFUProgressDelegate {
     func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
         
-        SVProgressHUD.showProgress(Float(progress) / 100.0)
+//        SVProgressHUD.showProgress(Float(progress) / 100.0)
+        SVProgressHUD.showProgress(Float(progress) / 100.0, status: "\(Int(progress))" + "%")
         KLMLog("Updating. Part \(part) of \(totalParts): \(progress)%")
     }
     

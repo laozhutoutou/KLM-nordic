@@ -104,9 +104,9 @@ extension KLMLaoHuaTestViewController: KLMSmartNodeDelegate {
         
         //合格或者不合格
         if message?.dp == .factoryTestResule {
-            SVProgressHUD.showSuccess(withStatus: "测试完成")
+//            SVProgressHUD.showSuccess(withStatus: "测试完成")
             //重置节点
-//            KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
+            KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
         }
     }
     

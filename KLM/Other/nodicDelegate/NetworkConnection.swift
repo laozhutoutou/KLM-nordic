@@ -211,7 +211,6 @@ extension NetworkConnection: CBCentralManagerDelegate {
             proxies.append(bearer)
             //手动加的代码
             //记录当前kCBAdvDataManufacturerData
-            
             if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
                 
                 let subData = data.suffix(from: 2).hex

@@ -46,3 +46,4 @@ noDevice = "暂无设备";
 noGroup = "暂无分组";
 
 searchDeviceTip = "请确保设备已经连接电源，且位于手机附近";
+DFUVersionTip = "最新版本";

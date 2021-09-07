@@ -25,6 +25,13 @@ class KLMDeviceEditViewController: UIViewController {
     
     var cameraSwitch = 1
     
+    ///蓝牙版本是否是最新
+    var isDFUNewest: Bool = true
+    
+    ///MCU版本是否是最新
+    var isMCUNewest: Bool = true
+    
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -49,6 +56,8 @@ class KLMDeviceEditViewController: UIViewController {
         
         setupData()
         
+        sendFlash()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         
     }
@@ -69,6 +78,15 @@ class KLMDeviceEditViewController: UIViewController {
         tableView.clipsToBounds = true
     }
     
+    //灯闪烁
+    func sendFlash() {
+        
+        let parame = parameModel(dp: .flash, value: 1)
+        
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
+    }
+    
     ///查询设备所属分组
     @objc func setupData() {
         deviceGroups = KLMHomeManager.currentModel.subscriptions
@@ -80,6 +98,10 @@ class KLMDeviceEditViewController: UIViewController {
         //获取开关状态
         let parameTime = parameModel(dp: .cameraPower)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+        
+        //获取DFU版本信息
+        let parameDFU = parameModel(dp: .checkVersion)
+        KLMSmartNode.sharedInstacnce.readMessage(parameDFU, toNode: KLMHomeManager.currentNode)
     }
     
 }
@@ -99,6 +121,33 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             }
             
         }
+        
+        if message?.dp ==  .checkVersion, let value = message?.value as? String {//查询版本
+            
+            //0100  01蓝牙  00mcu
+            let DFU: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
+            if DFUVersion > DFU{//需要升级蓝牙
+                
+                isDFUNewest = false
+                
+            } else {
+                //已经是最新版本
+                isDFUNewest = true
+            }
+            
+            //
+            let MCU: Int = Int(value.substring(from: 2).hexadecimalToDecimal())!
+            if MCUVersion > MCU{//需要升级MCU
+                
+                isMCUNewest = false
+                
+            } else {
+                //已经是最新版本
+                isMCUNewest = true
+            }
+            
+        }
+        
         KLMLog("success")
     }
     
@@ -197,12 +246,13 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 6:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "MCU DFU"
+            cell.leftTitle = "MCU"
             return cell
-        case 7:
+        case 7://蓝牙
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "BLE DFU"
+            cell.leftTitle = "DFU"
+            
             return cell
         case 8:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -216,6 +266,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
         cell.leftTitle = "测试"
+        cell.rightTitle = ""
         return cell
     }
     
@@ -264,7 +315,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = KLMMotionViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 5: //恢复出厂设置
-            let vc = UIAlertController.init(title: "Restore factory settings", message: nil, preferredStyle: .actionSheet)
+            let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .actionSheet)
             vc.addAction(UIAlertAction.init(title: "Reset", style: .destructive, handler: { action in
                 SVProgressHUD.show()
                 KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
@@ -272,10 +323,18 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }))
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
-        case 6:
+        case 6://MCU
+            if isMCUNewest {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
             let vc = KLMDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 7:
+        case 7://蓝牙
+            if isDFUNewest {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
             let vc = KLMBLEDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 8://六路测试

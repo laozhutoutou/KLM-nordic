@@ -16,15 +16,11 @@ class KLMPhotoEditViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var testLab: UILabel!
-    
     var lightSlider: KLMSlider!
     //当前配方
     var currentRecipe: Int = 0 {
         
         didSet {
-            
-            testLab.text = "\(currentRecipe)"
             
             self.lightSlider.isUserInteractionEnabled = true
             //完成

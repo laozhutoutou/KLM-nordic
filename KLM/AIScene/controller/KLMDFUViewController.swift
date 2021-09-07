@@ -16,8 +16,6 @@ class KLMDFUViewController: UIViewController {
     var dataPackageArray: [String]!
     var currentIndex = 0
     var isFineDevice = false
-    @IBOutlet weak var dataTextField: UITextField!
-    
     
     private var centralManager: CBCentralManager!
     var bb: Bearer!
@@ -51,7 +49,7 @@ class KLMDFUViewController: UIViewController {
             MeshNetworkManager.bearer.delegate = self
             SVProgressHUD.show()
             startScanning()
-            DispatchQueue.main.asyncAfter(deadline: 15) {
+            DispatchQueue.main.asyncAfter(deadline: 25) {
                 //未能找到设备
                 if !self.isFineDevice {
                     SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
@@ -75,15 +73,7 @@ class KLMDFUViewController: UIViewController {
             return
         }
         
-        var data: Int = 256
-        
-        let (err, str) = isEmptyString(text: dataTextField.text)
-        if err == false {
-            
-            data = Int(str)!
-        }
-        
-        dataPackageArray = KLMUpdateManager.sharedInstacnce.dealFirmware(data: data)
+        dataPackageArray = KLMUpdateManager.sharedInstacnce.dealFirmware()
         
         SVProgressHUD.showProgress(0)
         SVProgressHUD.setDefaultMaskType(.black)
@@ -174,7 +164,8 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
             }
             
             let progress: Float = Float(currentIndex) / Float(dataPackageArray.count)
-            SVProgressHUD.showProgress(progress)
+//            SVProgressHUD.showProgress(progress)
+            SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
             
             let package = dataPackageArray[currentIndex]
             let parame = parameModel(dp: .DFU, value: package)
