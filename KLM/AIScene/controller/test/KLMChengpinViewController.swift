@@ -48,6 +48,7 @@ class KLMChengpinViewController: UIViewController {
     
     @IBAction func startTest(_ sender: Any) {
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0301"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -60,6 +61,7 @@ class KLMChengpinViewController: UIViewController {
             return
         }
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         sender.isSelected = true
         if sender.tag == 1 { //OK
             
@@ -79,6 +81,7 @@ class KLMChengpinViewController: UIViewController {
     @IBAction func heibu(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0303"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -87,6 +90,7 @@ class KLMChengpinViewController: UIViewController {
     @IBAction func seka(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0304"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -95,6 +99,7 @@ class KLMChengpinViewController: UIViewController {
     @IBAction func peifang(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0305"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)

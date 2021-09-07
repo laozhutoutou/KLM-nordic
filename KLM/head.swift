@@ -16,7 +16,7 @@ import nRFMeshProvision
 import HandyJSON
 
 ///切换APP , 是否是测试APP  名称：AISceneTest bundleID: kinglumi.jmj123.com
-let isTestApp: Bool = false
+let isTestApp: Bool = true
 
 /// 蓝牙版本号
 let DFUVersion: Int = 2

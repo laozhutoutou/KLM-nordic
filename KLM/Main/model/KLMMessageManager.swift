@@ -157,3 +157,46 @@ struct RuntimeVendorMessage: VendorMessage {
         return nil
     }
 }
+
+class KLMMessageTime {
+    
+    ///超时时间
+    let messageTimeout: Int = 5
+    ///当前秒
+    var currentTime: Int = 0
+    ///定时器
+    var messageTimer: Timer?
+    
+    static let sharedInstacnce = KLMMessageTime()
+    private init(){}
+    
+    //开始计时
+    func startTime() {
+        
+        stopTime()
+        
+        messageTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+    }
+    
+    //停止计时
+    func stopTime() {
+        currentTime = 0
+        if messageTimer != nil {
+            messageTimer?.invalidate()
+            messageTimer = nil
+        }
+    }
+    
+    @objc func UpdateTimer() {
+        
+        currentTime += 1
+        if currentTime > 5 {//超时
+            stopTime()
+            SVProgressHUD.showError(withStatus: "Time out")
+        }
+    }
+    
+}
+
+
+

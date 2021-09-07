@@ -46,6 +46,7 @@ class KLMPCBASensorViewController: UIViewController {
     
     @IBAction func startTest(_ sender: Any) {
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0201"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -58,6 +59,7 @@ class KLMPCBASensorViewController: UIViewController {
             return
         }
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         sender.isSelected = true
         if sender.tag == 1 { //OK
             
@@ -77,6 +79,7 @@ class KLMPCBASensorViewController: UIViewController {
     @IBAction func openCamera(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0202"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -85,6 +88,7 @@ class KLMPCBASensorViewController: UIViewController {
     @IBAction func stanbyClick(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0209"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)

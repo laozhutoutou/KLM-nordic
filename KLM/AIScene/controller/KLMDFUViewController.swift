@@ -75,8 +75,8 @@ class KLMDFUViewController: UIViewController {
         
         dataPackageArray = KLMUpdateManager.sharedInstacnce.dealFirmware()
         
-        SVProgressHUD.showProgress(0)
-        SVProgressHUD.setDefaultMaskType(.black)
+//        SVProgressHUD.showProgress(0)
+//        SVProgressHUD.setDefaultMaskType(.black)
         
         let first = KLMUpdateManager.sharedInstacnce.getUpdateFirstPackage()
         let parame = parameModel(dp: .checkVersion, value: first)
@@ -165,7 +165,7 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
             
             let progress: Float = Float(currentIndex) / Float(dataPackageArray.count)
 //            SVProgressHUD.showProgress(progress)
-            SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
+//            SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
             
             let package = dataPackageArray[currentIndex]
             let parame = parameModel(dp: .DFU, value: package)

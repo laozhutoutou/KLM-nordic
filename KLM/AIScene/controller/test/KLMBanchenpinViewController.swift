@@ -47,6 +47,7 @@ class KLMBanchenpinViewController: UIViewController {
     
     @IBAction func startTest(_ sender: Any) {
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0101"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -60,6 +61,7 @@ class KLMBanchenpinViewController: UIViewController {
             return
         }
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         sender.isSelected = true
         if sender.tag == 1 { //OK
             

@@ -138,7 +138,7 @@
 		E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */; };
 		E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */; };
 		E4CD137026E70E730063545F /* BLEDFU.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4CD136F26E70E730063545F /* BLEDFU.zip */; };
-		E4CD137226E738120063545F /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4CD137126E738120063545F /* Project.bin */; };
+		E4CD137626E75FBC0063545F /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4CD137526E75FBC0063545F /* Project.bin */; };
 		E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */; };
 		E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */; };
 		E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */; };
@@ -385,7 +385,7 @@
 		E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTableViewCell.xib; sourceTree = "<group>"; };
 		E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAPPUpdateViewController.swift; sourceTree = "<group>"; };
 		E4CD136F26E70E730063545F /* BLEDFU.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = BLEDFU.zip; sourceTree = "<group>"; };
-		E4CD137126E738120063545F /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
+		E4CD137526E75FBC0063545F /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
 		E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartNode.swift; sourceTree = "<group>"; };
 		E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMProvisionManager.swift; sourceTree = "<group>"; };
 		E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartGroup.swift; sourceTree = "<group>"; };
@@ -865,7 +865,7 @@
 				E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */,
 				E498A78F26671BED00C78D50 /* Info.plist */,
 				E48B526326672B420006CDA7 /* head.swift */,
-				E4CD137126E738120063545F /* Project.bin */,
+				E4CD137526E75FBC0063545F /* Project.bin */,
 				E4CD136F26E70E730063545F /* BLEDFU.zip */,
 			);
 			path = KLM;
@@ -1114,7 +1114,7 @@
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
-				E4CD137226E738120063545F /* Project.bin in Resources */,
+				E4CD137626E75FBC0063545F /* Project.bin in Resources */,
 				E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */,
 				E49B42C126C21AD90056C7EE /* KLMPhotoEditViewController.xib in Resources */,
 				E49B42E926C21DAF0056C7EE /* KLMAPPUpdateViewController.xib in Resources */,
@@ -1654,7 +1654,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
@@ -1683,7 +1683,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";

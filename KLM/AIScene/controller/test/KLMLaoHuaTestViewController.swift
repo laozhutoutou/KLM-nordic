@@ -46,6 +46,7 @@ class KLMLaoHuaTestViewController: UIViewController {
             return
         }
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         sender.isSelected = true
         if sender.tag == 1 { //OK
             
@@ -65,6 +66,7 @@ class KLMLaoHuaTestViewController: UIViewController {
     @IBAction func shichan1(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0406"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -73,6 +75,7 @@ class KLMLaoHuaTestViewController: UIViewController {
     @IBAction func shichan2(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0407"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)

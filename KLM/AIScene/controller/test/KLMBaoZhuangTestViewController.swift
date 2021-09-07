@@ -48,6 +48,7 @@ class KLMBaoZhuangTestViewController: UIViewController {
     
     @IBAction func startTest(_ sender: Any) {
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0501"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -60,6 +61,7 @@ class KLMBaoZhuangTestViewController: UIViewController {
             return
         }
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         sender.isSelected = true
         if sender.tag == 1 { //OK
             
@@ -79,6 +81,7 @@ class KLMBaoZhuangTestViewController: UIViewController {
     @IBAction func heibu(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0503"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -87,6 +90,7 @@ class KLMBaoZhuangTestViewController: UIViewController {
     @IBAction func seka(_ sender: Any) {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         let string = "0504"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)

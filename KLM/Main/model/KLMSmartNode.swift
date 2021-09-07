@@ -132,6 +132,10 @@ class KLMSmartNode: NSObject {
 extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
+        
+        ///收到回复，停止计时
+//        KLMMessageTime.sharedInstacnce.stopTime()
+        
         switch message {
         case let message as UnknownMessage://收发消息
             if let parameters = message.parameters {
@@ -218,6 +222,8 @@ extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
         KLMLog("消息发送成功")
+        //开始计时
+//        KLMMessageTime.sharedInstacnce.startTime()
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
