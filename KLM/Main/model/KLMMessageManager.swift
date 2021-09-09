@@ -161,7 +161,7 @@ struct RuntimeVendorMessage: VendorMessage {
 class KLMMessageTime {
     
     ///超时时间
-    let messageTimeout: Int = 5
+    let messageTimeout: Int = 6
     ///当前秒
     var currentTime: Int = 0
     ///定时器
@@ -190,7 +190,7 @@ class KLMMessageTime {
     @objc func UpdateTimer() {
         
         currentTime += 1
-        if currentTime > 5 {//超时
+        if currentTime > messageTimeout {//超时
             stopTime()
             SVProgressHUD.showError(withStatus: "Time out")
         }

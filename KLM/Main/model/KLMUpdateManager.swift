@@ -28,7 +28,7 @@ class KLMUpdateManager {
     
     /// 将bin拆成多个DataK大小的集合
     /// - Returns: 16进制字符串集合
-    func dealFirmware(data: Int? = 256) -> [String] {
+    func dealFirmware(data: Int? = 128) -> [String] {
         
         //数据源
         let datas = self.getProjectData()!

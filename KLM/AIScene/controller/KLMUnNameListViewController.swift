@@ -122,10 +122,10 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
-//        if !MeshNetworkManager.bearer.isOpen {
-//            SVProgressHUD.showError(withStatus: "Device Offline")
-//            return
-//        }
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showError(withStatus: "Device Offline")
+            return
+        }
         if !model.isCompositionDataReceived {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")
@@ -196,10 +196,10 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-//        if !MeshNetworkManager.bearer.isOpen {
-//            SVProgressHUD.showError(withStatus: "Device Offline")
-//            return
-//        }
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showError(withStatus: "Device Offline")
+            return
+        }
         if !node.isCompositionDataReceived {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")

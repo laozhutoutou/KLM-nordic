@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         meshNetworkManager.acknowledgmentMessageTimeout = 20.0
         meshNetworkManager.logger = self
         
+        ///加载本地配置数据
         var loaded = false
         do {
             loaded = try meshNetworkManager.load()

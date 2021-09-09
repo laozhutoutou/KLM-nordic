@@ -102,6 +102,7 @@ class KLMSmartNode: NSObject {
             KLMLog("parameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
+                
                 try MeshNetworkManager.instance.send(message, to: model)
             } catch  {
                 
@@ -134,7 +135,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
         ///收到回复，停止计时
-//        KLMMessageTime.sharedInstacnce.stopTime()
+        KLMMessageTime.sharedInstacnce.stopTime()
         
         switch message {
         case let message as UnknownMessage://收发消息
@@ -221,9 +222,15 @@ extension KLMSmartNode: MeshNetworkDelegate {
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
-        KLMLog("消息发送成功")
+        
+        if let parameters = message.parameters {
+            
+            KLMLog("消息发送成功 = \(parameters.hex)")
+            
+        }
+           
         //开始计时
-//        KLMMessageTime.sharedInstacnce.startTime()
+        KLMMessageTime.sharedInstacnce.startTime()
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
@@ -239,7 +246,7 @@ extension Node {
     /// 节点的名称
     var nodeName: String {
         
-        return self.name ?? "Unknow Name"
+        return self.name ?? "Unknow name"
     }
     
     /// uuid 前面6个字节

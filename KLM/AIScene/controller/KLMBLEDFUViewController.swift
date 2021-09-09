@@ -51,8 +51,6 @@ class KLMBLEDFUViewController: UIViewController {
     
     func startScanning() {
         
-//        let uuidHelper = DFUUuidHelper.init()
-//        [uuidHelper.secureDFUService]
         centralManager.delegate = self
         centralManager.scanForPeripherals(withServices: nil, options: nil)
     }
@@ -135,7 +133,6 @@ extension KLMBLEDFUViewController: DFUServiceDelegate {
 extension KLMBLEDFUViewController: DFUProgressDelegate {
     func dfuProgressDidChange(for part: Int, outOf totalParts: Int, to progress: Int, currentSpeedBytesPerSecond: Double, avgSpeedBytesPerSecond: Double) {
         
-//        SVProgressHUD.showProgress(Float(progress) / 100.0)
         SVProgressHUD.showProgress(Float(progress) / 100.0, status: "\(Int(progress))" + "%")
         KLMLog("Updating. Part \(part) of \(totalParts): \(progress)%")
     }

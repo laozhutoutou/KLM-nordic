@@ -22,7 +22,7 @@ class KLMDeviceEditViewController: UIViewController {
     
     /// 是否第一次进来
     var cameraPowerFirst = true
-    
+    //1 打开
     var cameraSwitch = 1
     
     ///蓝牙版本是否是最新
@@ -31,6 +31,8 @@ class KLMDeviceEditViewController: UIViewController {
     ///MCU版本是否是最新
     var isMCUNewest: Bool = true
     
+    ///是否是mcu升级
+    var isMCUUpdate: Bool = false
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -95,13 +97,18 @@ class KLMDeviceEditViewController: UIViewController {
     
     func setupNodeMessage() {
         
+        SVProgressHUD.show()
         //获取开关状态
         let parameTime = parameModel(dp: .cameraPower)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
         
-        //获取DFU版本信息
-        let parameDFU = parameModel(dp: .checkVersion)
-        KLMSmartNode.sharedInstacnce.readMessage(parameDFU, toNode: KLMHomeManager.currentNode)
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            
+            //获取DFU版本信息
+            let parameDFU = parameModel(dp: .checkVersion)
+            KLMSmartNode.sharedInstacnce.readMessage(parameDFU, toNode: KLMHomeManager.currentNode)
+        }
+        
     }
     
 }
@@ -109,15 +116,33 @@ class KLMDeviceEditViewController: UIViewController {
 extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        SVProgressHUD.dismiss()
         if message?.dp ==  .cameraPower{
             
-            if cameraPowerFirst {
-                cameraPowerFirst = false
+            let value = message?.value as! Int
+            self.cameraSwitch = value
+            self.tableView.reloadData()
+            
+//            if cameraPowerFirst {
+//                cameraPowerFirst = false
+//
+//                let value = message?.value as! Int
+//
+//                self.cameraSwitch = value
+//                self.tableView.reloadData()
+//            }
+            
+            if isMCUUpdate {
                 
-                let value = message?.value as! Int
-                
-                self.cameraSwitch = value
-                self.tableView.reloadData()
+                //跳转到升级页面
+                SVProgressHUD.show()
+                DispatchQueue.main.asyncAfter(deadline: 3) {
+                    SVProgressHUD.dismiss()
+                    self.isMCUUpdate = false
+                    let vc = KLMDFUViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
             
         }
@@ -326,6 +351,15 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case 6://MCU
             if isMCUNewest {
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
+            
+            //开关是否打开
+            if self.cameraSwitch != 1 {//摄像头关，需要打开，mcu才会打开
+                SVProgressHUD.showInfo(withStatus: "Open MCU")
+                isMCUUpdate = true
+                let parame = parameModel(dp: .cameraPower, value: 1)
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
                 return
             }
             let vc = KLMDFUViewController()
