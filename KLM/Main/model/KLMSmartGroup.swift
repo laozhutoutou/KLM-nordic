@@ -151,6 +151,7 @@ extension KLMSmartGroup: MeshNetworkDelegate {
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
+        
         KLMLog("消息发送成功")
     }
     

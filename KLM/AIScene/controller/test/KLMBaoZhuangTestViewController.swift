@@ -34,7 +34,7 @@ class KLMBaoZhuangTestViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "包装测试"
-
+        
         OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOK,sekaOK,stanbyOK]
         
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)

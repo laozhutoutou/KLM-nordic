@@ -289,7 +289,7 @@
                 <constraint firstItem="uDf-IQ-bOi" firstAttribute="top" secondItem="Y2I-Dh-X62" secondAttribute="bottom" id="ylD-y7-dVZ"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-16823" y="2"/>
+            <point key="canvasLocation" x="-16867" y="-66"/>
         </view>
     </objects>
     <resources>
