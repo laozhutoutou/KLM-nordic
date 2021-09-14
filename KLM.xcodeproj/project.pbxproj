@@ -163,6 +163,10 @@
 		E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845B26A278B9006C120E /* KLMMessageManager.swift */; };
 		E4E51F2C26CB568600823531 /* KLMDFUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */; };
 		E4E51F2D26CB568600823531 /* KLMDFUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */; };
+		E4EC661526EEF1BF007503AB /* KLMExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC661326EEF1BF007503AB /* KLMExportViewController.swift */; };
+		E4EC661626EEF1BF007503AB /* KLMExportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EC661426EEF1BF007503AB /* KLMExportViewController.xib */; };
+		E4EC661926EEF8BA007503AB /* KLMImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC661726EEF8BA007503AB /* KLMImportViewController.swift */; };
+		E4EC661A26EEF8BA007503AB /* KLMImportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EC661826EEF8BA007503AB /* KLMImportViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -410,6 +414,10 @@
 		E4E2845B26A278B9006C120E /* KLMMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMessageManager.swift; sourceTree = "<group>"; };
 		E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUViewController.swift; sourceTree = "<group>"; };
 		E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDFUViewController.xib; sourceTree = "<group>"; };
+		E4EC661326EEF1BF007503AB /* KLMExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMExportViewController.swift; sourceTree = "<group>"; };
+		E4EC661426EEF1BF007503AB /* KLMExportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMExportViewController.xib; sourceTree = "<group>"; };
+		E4EC661726EEF8BA007503AB /* KLMImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImportViewController.swift; sourceTree = "<group>"; };
+		E4EC661826EEF8BA007503AB /* KLMImportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMImportViewController.xib; sourceTree = "<group>"; };
 		E994C47995EC4F69AFB29309 /* Pods-KLM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM.release.xcconfig"; path = "Target Support Files/Pods-KLM/Pods-KLM.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -561,6 +569,10 @@
 				E49B42EB26C21DAF0056C7EE /* KLMAPPUpdateViewController.xib */,
 				E4750A1026C1165500AA4C32 /* KLMHelpViewController.swift */,
 				E49B42F026C21DD20056C7EE /* KLMHelpViewController.xib */,
+				E4EC661326EEF1BF007503AB /* KLMExportViewController.swift */,
+				E4EC661426EEF1BF007503AB /* KLMExportViewController.xib */,
+				E4EC661726EEF8BA007503AB /* KLMImportViewController.swift */,
+				E4EC661826EEF8BA007503AB /* KLMImportViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1145,6 +1157,8 @@
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
 				E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
+				E4EC661A26EEF8BA007503AB /* KLMImportViewController.xib in Resources */,
+				E4EC661626EEF1BF007503AB /* KLMExportViewController.xib in Resources */,
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
 				E498A78926671BEC00C78D50 /* Main.storyboard in Resources */,
 			);
@@ -1219,6 +1233,7 @@
 				E495D1B3267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift in Sources */,
 				E492AD29267C83C50028AF3E /* NSString+PinYin4Cocoa.m in Sources */,
 				E492AD2C267C83C50028AF3E /* ChineseInclude.m in Sources */,
+				E4EC661926EEF8BA007503AB /* KLMImportViewController.swift in Sources */,
 				E4A6608C267360A200FE6866 /* KLMBaseTableViewCell.swift in Sources */,
 				E4E28446269EFFFC006C120E /* GenericState.swift in Sources */,
 				E4A65FCB2670B06400FE6866 /* RSGenerateOperation.m in Sources */,
@@ -1228,6 +1243,7 @@
 				E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */,
 				E495D11C2678586900AA50B9 /* KLMGroupSelectCell.swift in Sources */,
 				E4377E3926845DBA00F8DF0C /* KLMRefreshHeader.swift in Sources */,
+				E4EC661526EEF1BF007503AB /* KLMExportViewController.swift in Sources */,
 				E4A65F9C2670A3B500FE6866 /* KLMCustomViewController.swift in Sources */,
 				E4A65FD62670B06400FE6866 /* CGContextCreator.m in Sources */,
 				E495D12A2678892600AA50B9 /* KLMGroupTransferListViewController.swift in Sources */,

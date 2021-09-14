@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                       allocatedUnicastRange: [AddressRange(0x0001...0x199A)],
                                       allocatedGroupRange:   [AddressRange(0xC000...0xCC9A)],
                                       allocatedSceneRange:   [SceneRange(0x0001...0x3333)])
-        _ = meshNetworkManager.createNewMeshNetwork(withName: "nRF Mesh Network", by: provisioner)
+        _ = meshNetworkManager.createNewMeshNetwork(withName: "Mesh Network", by: provisioner)
         _ = meshNetworkManager.save()
         
         //创建一个APP key

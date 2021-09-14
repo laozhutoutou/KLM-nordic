@@ -12,9 +12,9 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    let images = [["icon_language","icon_enegy_save"],["icon_app_update","icon_helpAndAdvice"]]
-//    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
-    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")]]
+    let images = [["icon_language","icon_enegy_save"],["icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]]
+    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice"),"Export","Import"]]
+//    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +22,6 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.title = LANGLOC("More")
         self.tableView.rowHeight = 56
         
-    }
-    
-    //切换了语言更新整个APP
-    func upDateUI() {
-        
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        delegate.enterMainUI()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -92,9 +85,17 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
                 let vc = KLMAPPUpdateViewController()
                 navigationController?.pushViewController(vc, animated: true)
                 
-            }else{
+            }else if indexPath.row == 1{ //帮助建议
                 
                 let vc = KLMHelpViewController()
+                navigationController?.pushViewController(vc, animated: true)
+                
+            } else if indexPath.row == 2{
+                
+                let vc = KLMExportViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            } else {
+                let vc = KLMImportViewController()
                 navigationController?.pushViewController(vc, animated: true)
                 
             }
