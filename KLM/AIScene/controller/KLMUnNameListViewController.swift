@@ -242,6 +242,11 @@ extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
         
         KLMShowError(error)
     }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
+        
+        SVProgressHUD.show(withStatus: "Did send message")
+    }
 }
  
 extension KLMUnNameListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {

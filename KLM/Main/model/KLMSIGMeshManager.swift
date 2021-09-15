@@ -22,6 +22,7 @@ protocol KLMSIGMeshManagerDelegate: AnyObject {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?)
     
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage)
 }
 
 extension KLMSIGMeshManagerDelegate {
@@ -31,6 +32,11 @@ extension KLMSIGMeshManagerDelegate {
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?){
+        // This method is optional.
+        
+    }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
         // This method is optional.
         
     }
@@ -244,6 +250,13 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                             error: Error){
         
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: error)
+    }
+    
+    func meshNetworkManager(_ manager: MeshNetworkManager,
+                            didSendMessage message: MeshMessage,
+                            from localElement: Element, to destination: Address) {
+        
+        self.delegate?.sigMeshManager(self, didSendMessage: message)
     }
     
 }

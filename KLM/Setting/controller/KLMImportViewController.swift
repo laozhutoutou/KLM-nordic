@@ -32,29 +32,7 @@ extension KLMImportViewController: UIDocumentPickerDelegate {
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 let data = try Data(contentsOf: url)
-                let meshNetwork = try manager.import(from: data)
-                // Try restoring the Provisioner used last time on this device.
-                if !meshNetwork.restoreLocalProvisioner() {
-                    // If it's a new network and has only one Provisioner, just save it.
-                    // Otherwise, give the user option to select one.
-                    if meshNetwork.provisioners.count > 1 {
-                        DispatchQueue.main.async {
-                            let alert = UIAlertController(title: "Select Provisioner",
-                                                          message: "Select Provisioner instance to be used on this device:",
-                                                          preferredStyle: .actionSheet)
-                            for provisioner in meshNetwork.provisioners {
-                                alert.addAction(UIAlertAction(title: provisioner.name, style: .default) { action in
-                                    // This will effectively set the Provisioner to be used
-                                    // be the library. Provisioner from index 0 is the local one.
-                                    meshNetwork.moveProvisioner(provisioner, toIndex: 0)
-                                    self.saveAndReload()
-                                })
-                            }
-                            self.present(alert, animated: true)
-                        }
-                        return
-                    }
-                }
+                _ = try manager.import(from: data)
                 self.saveAndReload()
             } catch let DecodingError.dataCorrupted(context) {
                 let path = context.codingPath.path
@@ -104,17 +82,36 @@ extension KLMImportViewController: UIDocumentPickerDelegate {
 extension KLMImportViewController {
     
     func saveAndReload() {
-        if MeshNetworkManager.instance.save() {
-            DispatchQueue.main.async {
-                (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
-//                self.parent?.parent?.children.forEach {
-//                    if let rootViewController = $0 as? UINavigationController {
-//                        rootViewController.popToRootViewController(animated: false)
-//                    }
-//                }
-                SVProgressHUD.showSuccess(withStatus: "Mesh Network configuration imported.")
-                
+        
+        let manager = MeshNetworkManager.instance
+        if manager.save() {
+            
+            //更改provisioner 的 unicastAddress
+            let meshNetwork = manager.meshNetwork!
+            let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
+            let nextAddress: Address = (meshNetwork.nextAvailableUnicastAddress(for: provisioner))!
+            print(nextAddress.asString())
+            
+            do {
+                try meshNetwork.assign(unicastAddress: nextAddress, for: provisioner)
+                // Add the new addresses to the Proxy Filter.
+                let unicastAddresses = provisioner.node!.elements.map { $0.unicastAddress }
+                manager.proxyFilter?.add(addresses: unicastAddresses)
+            } catch  {
+                SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
             }
+            
+            if manager.save() {
+                DispatchQueue.main.async {
+                    (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
+                    SVProgressHUD.showSuccess(withStatus: "Mesh Network configuration imported.")
+                    
+                }
+                
+            } else {
+                SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
+            }
+        
         } else {
             SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
             
