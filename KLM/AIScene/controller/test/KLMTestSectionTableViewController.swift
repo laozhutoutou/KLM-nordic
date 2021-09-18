@@ -14,6 +14,17 @@ class KLMTestSectionTableViewController: UITableViewController {
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
         tableView.rowHeight = 50
+        
+        sendFlash()
+    }
+    
+    //灯闪烁
+    func sendFlash() {
+        
+        let parame = parameModel(dp: .flash, value: 1)
+        
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
     }
 
     // MARK: - Table view data source

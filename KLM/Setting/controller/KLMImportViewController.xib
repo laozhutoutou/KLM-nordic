@@ -33,16 +33,25 @@
                         <action selector="import:" destination="-1" eventType="touchUpInside" id="Foj-Ox-cQy"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Importing network will override your existing settings." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FI1-Ox-5pw">
+                    <rect key="frame" x="15" y="15" width="384" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Odw-I8-bTI"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="9UU-j8-g7b" firstAttribute="leading" secondItem="Odw-I8-bTI" secondAttribute="leading" constant="100" id="LkU-Vt-QZX"/>
+                <constraint firstItem="FI1-Ox-5pw" firstAttribute="top" secondItem="Odw-I8-bTI" secondAttribute="top" constant="15" id="jQb-3v-7TF"/>
                 <constraint firstItem="Odw-I8-bTI" firstAttribute="trailing" secondItem="9UU-j8-g7b" secondAttribute="trailing" constant="100" id="jVr-X6-mP5"/>
+                <constraint firstItem="Odw-I8-bTI" firstAttribute="trailing" secondItem="FI1-Ox-5pw" secondAttribute="trailing" constant="15" id="sxP-0W-48y"/>
                 <constraint firstItem="9UU-j8-g7b" firstAttribute="top" secondItem="Odw-I8-bTI" secondAttribute="top" constant="80" id="vzz-My-yUr"/>
+                <constraint firstItem="FI1-Ox-5pw" firstAttribute="leading" secondItem="Odw-I8-bTI" secondAttribute="leading" constant="15" id="zpy-Fy-7zk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="98.550724637681171" y="150"/>
+            <point key="canvasLocation" x="-58" y="135"/>
         </view>
     </objects>
     <resources>

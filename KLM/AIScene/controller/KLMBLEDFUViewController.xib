@@ -26,7 +26,7 @@
                         <constraint firstAttribute="height" constant="50" id="yQm-3e-OfH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="DFU">
+                    <state key="normal" title="Update">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>

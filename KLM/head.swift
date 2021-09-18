@@ -16,7 +16,7 @@ import nRFMeshProvision
 import HandyJSON
 
 ///切换APP , 是否是测试APP  名称：AISceneTest bundleID: kinglumi.jmj123.com
-let isTestApp: Bool = true
+let isTestApp: Bool = false
 
 /// 蓝牙版本号
 let DFUVersion: Int = 2
@@ -76,7 +76,7 @@ func KLMSetUserDefault(_ key : String, _ value : Any?) -> Void{
     
     UserDefaults.standard.setValue(value, forKey: key)
     UserDefaults.standard.synchronize()
-    
+   
 }
 
 func KLMGetUserDefault(_ key : String) -> Any? {
@@ -142,6 +142,3 @@ func KLMPostUrl(_ url: String) -> String {
     
     return baseUrl + "api/auth/" + url
 }
-
-
-

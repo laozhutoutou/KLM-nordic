@@ -65,7 +65,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
     func provisioningState(of unprovisionedDevice: UnprovisionedDevice, didChangeTo state: ProvisioningState) {
         
         switch state {
-        case .capabilitiesReceived(let capabilities)://identify完成
+        case .capabilitiesReceived(_)://identify完成
             
             KLMLog("identify success")
             

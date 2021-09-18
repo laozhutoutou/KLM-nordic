@@ -666,7 +666,6 @@
 				E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */,
 				E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */,
 				E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */,
-				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -674,6 +673,7 @@
 		E48B525926672A0C0006CDA7 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
 				E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */,
 				E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */,
 			);
@@ -1671,7 +1671,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
@@ -1701,7 +1701,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
