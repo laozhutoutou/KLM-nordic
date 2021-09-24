@@ -16,6 +16,9 @@ class KLMPhotoEditViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
+    //图像数据
+    var imageData: UnsafeMutablePointer<UInt8>!
+    
     var lightSlider: KLMSlider!
     //当前配方
     var currentRecipe: Int = 0 {
@@ -73,6 +76,7 @@ class KLMPhotoEditViewController: UIViewController {
         navigationItem.title = LANGLOC("lightSet")
         setupUI()
         
+        imageData = self.originalImage.convert(toBitmapRGBA8: self.originalImage)
     }
     
     func setupUI() {
@@ -119,8 +123,6 @@ class KLMPhotoEditViewController: UIViewController {
             //图片上的坐标点
             tapPoint = getImagePoint(point: tapPoint)
             
-            let imageData = self.originalImage.convert(toBitmapRGBA8: self.originalImage)
-            
             let recipe = getRecipeIndexOfImageOnClick(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(tapPoint.x), Int32(tapPoint.y))
             currentRecipe = Int(recipe)
             KLMLog("click = \(recipe)")
@@ -150,8 +152,6 @@ class KLMPhotoEditViewController: UIViewController {
             let clipViewStart = getImagePoint(point: clipView.origin)
             let clipViewFinish = getImagePoint(point: CGPoint(x: self.clipView.origin.x + self.clipView.width, y: self.clipView.origin.y + self.clipView.height))
             
-            //控制
-            let imageData = self.originalImage.convert(toBitmapRGBA8: self.originalImage)
             let recipe = getRecipeIndexOfImageOnBox(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(clipViewStart.x), Int32(clipViewStart.y), Int32(clipViewFinish.x), Int32(clipViewFinish.y))
             currentRecipe = Int(recipe)
             KLMLog("box = \(recipe)")
