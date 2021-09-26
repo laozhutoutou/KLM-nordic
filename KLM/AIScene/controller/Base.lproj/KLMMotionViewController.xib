@@ -77,6 +77,20 @@
                         <constraint firstAttribute="height" constant="130" id="geB-ih-HFY"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-wX-Aav">
+                    <rect key="frame" x="42" y="362" width="330" height="44"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="uCJ-Bg-xBD"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="确定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="Comfirm:" destination="-1" eventType="touchUpInside" id="oeF-dR-HhT"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,11 +99,14 @@
                 <constraint firstItem="11d-IH-wpp" firstAttribute="trailing" secondItem="ZCE-yU-SjU" secondAttribute="trailing" id="0ah-ez-5OP"/>
                 <constraint firstItem="11d-IH-wpp" firstAttribute="leading" secondItem="ZCE-yU-SjU" secondAttribute="leading" id="6vb-Mk-Rk2"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZCE-yU-SjU" secondAttribute="trailing" constant="16" id="hfd-d4-crF"/>
+                <constraint firstItem="rdP-wX-Aav" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="42" id="iBF-oB-1gp"/>
                 <constraint firstItem="11d-IH-wpp" firstAttribute="top" secondItem="ZCE-yU-SjU" secondAttribute="bottom" constant="16" id="kLq-qZ-h96"/>
                 <constraint firstItem="ZCE-yU-SjU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="l4s-a0-uLf"/>
+                <constraint firstItem="rdP-wX-Aav" firstAttribute="top" secondItem="11d-IH-wpp" secondAttribute="bottom" constant="70" id="uwn-FK-VG2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rdP-wX-Aav" secondAttribute="trailing" constant="42" id="zs7-rA-u3w"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-1596" y="-276"/>
+            <point key="canvasLocation" x="-2145" y="-167"/>
         </view>
     </objects>
     <resources>

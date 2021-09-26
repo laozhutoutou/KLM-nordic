@@ -96,6 +96,15 @@ class KLMBaoZhuangTestViewController: UIViewController {
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
     
+    @IBAction func stanbyClick(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        let string = "0509"
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
 }
 
 extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
@@ -103,9 +112,7 @@ extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
         if let value = message?.value as? String, message?.dp == .factoryTest {
-            if value == "050100" {
-                stanbyOK.isHidden = false
-            } else if value == "050101" {
+            if value == "050101" {
                 WWOK.isHidden = false
             } else if value == "050102" {
                 ROK.isHidden = false

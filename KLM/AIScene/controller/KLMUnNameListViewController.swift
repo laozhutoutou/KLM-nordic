@@ -118,7 +118,7 @@ class KLMUnNameListViewController: UIViewController{
 
 extension KLMUnNameListViewController: KLMAINameListCellDelegate {
     
-    func longPressItem(model: Node) {
+    func setItem(model: Node) {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
@@ -144,9 +144,37 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             return
         }
         
-        let vc = KLMDeviceEditViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
+        KLMPhotoManager().photoAuthStatus { [weak self] in
+            guard let self = self else { return }
+
+            let vc = KLMImagePickerController()
+            vc.sourceType = UIImagePickerController.SourceType.camera
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+
+        }
         
+//        let vc = KLMDeviceEditViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func longPress(model: Node) {
+        
+        let alert = UIAlertController(title: "Remove Node",
+                                      message: "The node will only be removed from the local database. It will still be able to send and receive messages from the network. Remove the node only if the device is no longer available.",
+                                      preferredStyle: .actionSheet)
+        let resetAction = UIAlertAction(title: "Remove", style: .destructive) { _ in
+            MeshNetworkManager.instance.meshNetwork!.remove(node: model)
+            
+            if MeshNetworkManager.instance.save() {
+                //删除成功
+                self.setupData()
+            } 
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(resetAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }
 
@@ -218,15 +246,18 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             return
         }
         
+        let vc = KLMDeviceEditViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        
 //        是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
-            guard let self = self else { return }
-
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
-
-        }
+//        KLMPhotoManager().photoAuthStatus { [weak self] in
+//            guard let self = self else { return }
+//
+//            let vc = KLMImagePickerController()
+//            vc.sourceType = UIImagePickerController.SourceType.camera
+//            self.tabBarController?.present(vc, animated: true, completion: nil)
+//
+//        }
     }
 }
 

@@ -79,7 +79,8 @@ class KLMSlider: UIView {
             self.slider.value = currentValue
             
             //标签
-            let labX = Float(self.slider.width) * (currentValue - self.minValue)  / (self.maxValue - self.minValue)
+            let sliderW = self.width - 20*2 - 16 * 2
+            let labX = Float(sliderW) * (currentValue - self.minValue)  / (self.maxValue - self.minValue)
 //            indicateView.snp.updateConstraints { make in
 //                make.centerX.equalTo(slider.snp.left).offset(labX)
 //            }

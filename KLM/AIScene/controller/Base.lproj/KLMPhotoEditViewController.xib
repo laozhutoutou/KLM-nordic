@@ -44,7 +44,7 @@
                         <constraint firstAttribute="bottom" secondItem="vrk-u4-PK4" secondAttribute="bottom" id="hEq-nM-RNS"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动节能" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zim-bE-9NF">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亮度调节" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zim-bE-9NF">
                     <rect key="frame" x="16" y="659" width="58" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,7 +65,7 @@
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="bottom" secondItem="7tw-ME-efe" secondAttribute="bottom" constant="30" id="dUc-dH-q9l"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-4630" y="69"/>
+            <point key="canvasLocation" x="-4932" y="129"/>
         </view>
     </objects>
     <resources>

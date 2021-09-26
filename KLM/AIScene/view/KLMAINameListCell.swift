@@ -10,10 +10,11 @@ import nRFMeshProvision
 
 protocol KLMAINameListCellDelegate: AnyObject {
     
-    func longPressItem(model: Node)
+    func setItem(model: Node)
+    func longPress(model: Node)
 }
 
-class KLMAINameListCell: UICollectionViewCell, UIGestureRecognizerDelegate {
+class KLMAINameListCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var selectBtn: UIButton!
@@ -49,10 +50,26 @@ class KLMAINameListCell: UICollectionViewCell, UIGestureRecognizerDelegate {
         self.layer.cornerRadius = 8
         self.clipsToBounds = true
         
+        let tap = UILongPressGestureRecognizer.init(target: self, action: #selector(longPress))
+        tap.minimumPressDuration = 1
+        self.addGestureRecognizer(tap)
     }
     
     @IBAction func setClick(_ sender: Any) {
         
-        self.delegate?.longPressItem(model: self.model)
+        self.delegate?.setItem(model: self.model)
+    }
+}
+
+extension KLMAINameListCell {
+    
+    @objc func longPress(_ gesture: UILongPressGestureRecognizer) {
+        
+        switch gesture.state {
+        case .began:
+            self.delegate?.longPress(model: self.model)
+        default:
+            break
+        }
     }
 }
