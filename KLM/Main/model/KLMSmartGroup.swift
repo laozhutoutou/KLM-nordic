@@ -156,7 +156,7 @@ extension KLMSmartGroup: MeshNetworkDelegate {
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
-        
+        SVProgressHUD.dismiss()
         var err = MessageError()
         err.message = error.localizedDescription
         failureBlock(err)

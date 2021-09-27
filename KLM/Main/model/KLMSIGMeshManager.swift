@@ -54,6 +54,13 @@ class KLMSIGMeshManager: NSObject {
     
     var currentNode: Node!
     
+    ///超时时间 - 配网超时时间
+    let messageTimeout: Int = 20
+    ///当前秒
+    var currentTime: Int = 0
+    ///定时器
+    var messageTimer: Timer?
+    
     //单例
     static let sharedInstacnce = KLMSIGMeshManager()
     private override init(){}
@@ -70,8 +77,10 @@ extension KLMSIGMeshManager {
             startScanning()
         }
     }
-    
+    ///开始配网
     func startActive(discoveredPeripheral: DiscoveredPeripheral) {
+        ///启动定时器
+        startTime()
         
         KLMLog("startActive")
         self.discoveredPeripheral = discoveredPeripheral
@@ -102,6 +111,33 @@ extension KLMSIGMeshManager {
     func stopScanning() {
         
         centralManager.stopScan()
+    }
+    
+    //开始计时
+    func startTime() {
+        
+        stopTime()
+        
+        messageTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
+    }
+    
+    //停止计时
+    func stopTime() {
+        currentTime = 0
+        if messageTimer != nil {
+            messageTimer?.invalidate()
+            messageTimer = nil
+        }
+    }
+    
+    @objc func UpdateTimer() {
+        
+        currentTime += 1
+        if currentTime > messageTimeout {//超时
+            stopTime()
+            
+            SVProgressHUD.showError(withStatus: "Time out")
+        }
     }
 }
 
@@ -231,6 +267,8 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             }
         case let status as ConfigModelAppStatus:
             if status.status == .success {
+                //停止计时
+                stopTime()
                 
                 //整个流程配置完成
                 KLMLog("model appkey success")
@@ -248,7 +286,9 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                             failedToSendMessage message: MeshMessage,
                             from localElement: Element, to destination: Address,
                             error: Error){
-        
+        //失败停止定时器
+        stopTime()
+        SVProgressHUD.dismiss()
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: error)
     }
     

@@ -666,6 +666,7 @@
 				E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */,
 				E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */,
 				E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */,
+				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -673,7 +674,6 @@
 		E48B525926672A0C0006CDA7 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
 				E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */,
 				E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */,
 			);
@@ -1661,7 +1661,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;
@@ -1691,7 +1691,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;

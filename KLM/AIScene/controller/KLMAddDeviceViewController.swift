@@ -125,9 +125,6 @@ class KLMAddDeviceViewController: UIViewController {
 
             SVProgressHUD.show(withStatus: "connecting...")
             SVProgressHUD.setDefaultMaskType(.black)
-
-
-
             KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
 
         }
@@ -228,7 +225,8 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?) {
-        
+        KLMLog("message fail send")
+        SVProgressHUD.dismiss()
         KLMShowError(error)
         
     }

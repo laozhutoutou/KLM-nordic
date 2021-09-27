@@ -234,7 +234,10 @@ extension KLMSmartNode: MeshNetworkDelegate {
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
+        ///失败停止计时
+        KLMMessageTime.sharedInstacnce.stopTime()
         
+        SVProgressHUD.dismiss()
         var err = MessageError()
         err.message = error.localizedDescription
         self.delegate?.smartNode(self, didfailure: err)

@@ -87,30 +87,30 @@ extension KLMImportViewController {
         if manager.save() {
             
             //更改provisioner 的 unicastAddress
-            let meshNetwork = manager.meshNetwork!
-            let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
-            let nextAddress: Address = (meshNetwork.nextAvailableUnicastAddress(for: provisioner))!
-            print(nextAddress.asString())
+//            let meshNetwork = manager.meshNetwork!
+//            let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
+//            let nextAddress: Address = (meshNetwork.nextAvailableUnicastAddress(for: provisioner))!
+//            print(nextAddress.asString())
+//
+//            do {
+//                try meshNetwork.assign(unicastAddress: nextAddress, for: provisioner)
+//                // Add the new addresses to the Proxy Filter.
+//                let unicastAddresses = provisioner.node!.elements.map { $0.unicastAddress }
+//                manager.proxyFilter?.add(addresses: unicastAddresses)
+//            } catch  {
+//                SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
+//            }
             
-            do {
-                try meshNetwork.assign(unicastAddress: nextAddress, for: provisioner)
-                // Add the new addresses to the Proxy Filter.
-                let unicastAddresses = provisioner.node!.elements.map { $0.unicastAddress }
-                manager.proxyFilter?.add(addresses: unicastAddresses)
-            } catch  {
-                SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
-            }
-            
-            if manager.save() {
+//            if manager.save() {
                 DispatchQueue.main.async {
                     (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
                     SVProgressHUD.showSuccess(withStatus: "Mesh Network configuration imported.")
                     
                 }
                 
-            } else {
-                SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
-            }
+//            } else {
+//                SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
+//            }
         
         } else {
             SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
