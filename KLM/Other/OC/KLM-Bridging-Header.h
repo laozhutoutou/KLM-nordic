@@ -25,5 +25,6 @@
 #import "CMTextView.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import <AFNetworking-umbrella.h>
+#import "OpenGLView20.h"
 
 #endif /* KLM_Bridging_Header_h */

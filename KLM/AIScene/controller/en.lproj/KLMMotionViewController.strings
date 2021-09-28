@@ -3,7 +3,7 @@
 "DVa-Zv-cWg.text" = "Brightness";
 
 /* Class = "UILabel"; text = "自动节能"; ObjectID = "RjT-Rm-UpP"; */
-"RjT-Rm-UpP.text" = "Auto energy saving(min)";
+"RjT-Rm-UpP.text" = "Auto-dim(min)";
 
 /* Class = "UIButton"; normalTitle = "确定"; ObjectID = "rdP-wX-Aav"; */
 "rdP-wX-Aav.normalTitle" = "Confirm";

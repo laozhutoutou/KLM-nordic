@@ -144,17 +144,8 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             return
         }
         
-        KLMPhotoManager().photoAuthStatus { [weak self] in
-            guard let self = self else { return }
-
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
-
-        }
-        
-//        let vc = KLMDeviceEditViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
+        let vc = KLMDeviceEditViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
         
     }
     
@@ -246,18 +237,15 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             return
         }
         
-        let vc = KLMDeviceEditViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-        
 //        是否有相机权限
-//        KLMPhotoManager().photoAuthStatus { [weak self] in
-//            guard let self = self else { return }
-//
-//            let vc = KLMImagePickerController()
-//            vc.sourceType = UIImagePickerController.SourceType.camera
-//            self.tabBarController?.present(vc, animated: true, completion: nil)
-//
-//        }
+        KLMPhotoManager().photoAuthStatus { [weak self] in
+            guard let self = self else { return }
+
+            let vc = KLMImagePickerController()
+            vc.sourceType = UIImagePickerController.SourceType.camera
+            self.tabBarController?.present(vc, animated: true, completion: nil)
+
+        }
     }
 }
 
@@ -265,7 +253,7 @@ extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
         
     func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
         
-        SVProgressHUD.showSuccess(withStatus: "please tap again")
+        SVProgressHUD.showSuccess(withStatus: "Please tap again")
         
     }
     

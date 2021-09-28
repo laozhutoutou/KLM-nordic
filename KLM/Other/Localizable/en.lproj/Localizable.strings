@@ -39,7 +39,7 @@ basicSetting = "Setting";
 reName = "Rename";
 groupSetting = "Group setting";
 Energysavingsettings = "Energy saving setting";
-allDeviceAutoEnergysaving = "All devices auto energy saving";
+allDeviceAutoEnergysaving = "All devices auto-dim";
 helpQuestionTip = "Please describe your problem(s) , or feedback, leave your name.";
 
 noDevice = "No devices";

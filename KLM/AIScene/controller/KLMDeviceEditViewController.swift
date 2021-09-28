@@ -102,7 +102,7 @@ class KLMDeviceEditViewController: UIViewController {
         let parameTime = parameModel(dp: .cameraPower)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
         
-        DispatchQueue.main.asyncAfter(deadline: 1) {
+        DispatchQueue.main.asyncAfter(deadline: 0.5) {
             
             //获取DFU版本信息
             let parameDFU = parameModel(dp: .checkVersion)

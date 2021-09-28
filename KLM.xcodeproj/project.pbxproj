@@ -98,6 +98,9 @@
 		E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42F526C21E150056C7EE /* KLMSettingSwichCell.xib */; };
 		E49B7B9626D4F0F6004602C1 /* KLMBLEDFUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */; };
 		E49B7B9726D4F0F6004602C1 /* KLMBLEDFUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B7B9526D4F0F6004602C1 /* KLMBLEDFUViewController.xib */; };
+		E4A1AD27270309B900E391FA /* OpenGLView20.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A1AD26270309B900E391FA /* OpenGLView20.m */; };
+		E4A1AD2927030B8100E391FA /* imageBin.yuv in Resources */ = {isa = PBXBuildFile; fileRef = E4A1AD2827030B8100E391FA /* imageBin.yuv */; };
+		E4A1AD2B2703109E00E391FA /* jpgimage1_image_640_480.yuv in Resources */ = {isa = PBXBuildFile; fileRef = E4A1AD2A2703109E00E391FA /* jpgimage1_image_640_480.yuv */; };
 		E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */; };
 		E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */; };
 		E4A65F3E266F459200FE6866 /* KLMAINameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */; };
@@ -330,6 +333,10 @@
 		E49B430F26C24E990056C7EE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMSettingSwichCell.strings"; sourceTree = "<group>"; };
 		E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBLEDFUViewController.swift; sourceTree = "<group>"; };
 		E49B7B9526D4F0F6004602C1 /* KLMBLEDFUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBLEDFUViewController.xib; sourceTree = "<group>"; };
+		E4A1AD25270309B900E391FA /* OpenGLView20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView20.h; sourceTree = "<group>"; };
+		E4A1AD26270309B900E391FA /* OpenGLView20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView20.m; sourceTree = "<group>"; };
+		E4A1AD2827030B8100E391FA /* imageBin.yuv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = imageBin.yuv; sourceTree = "<group>"; };
+		E4A1AD2A2703109E00E391FA /* jpgimage1_image_640_480.yuv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = jpgimage1_image_640_480.yuv; sourceTree = "<group>"; };
 		E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUnNameListViewController.swift; sourceTree = "<group>"; };
 		E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUnNameListViewController.xib; sourceTree = "<group>"; };
 		E4A65F3C266F459200FE6866 /* KLMAINameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAINameListCell.swift; sourceTree = "<group>"; };
@@ -758,6 +765,8 @@
 				E4377E482685B99400F8DF0C /* NSData+CRC16.m */,
 				E4762C5626957AE100100312 /* UIButton+SFImageTitleSpacing.h */,
 				E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */,
+				E4A1AD25270309B900E391FA /* OpenGLView20.h */,
+				E4A1AD26270309B900E391FA /* OpenGLView20.m */,
 				E492AD17267C83C50028AF3E /* PinYinSearchLib */,
 			);
 			path = OC;
@@ -879,6 +888,8 @@
 				E48B526326672B420006CDA7 /* head.swift */,
 				E48B4F6826E9E9B800CA740E /* Project.bin */,
 				E4CD136F26E70E730063545F /* BLEDFU.zip */,
+				E4A1AD2827030B8100E391FA /* imageBin.yuv */,
+				E4A1AD2A2703109E00E391FA /* jpgimage1_image_640_480.yuv */,
 			);
 			path = KLM;
 			sourceTree = "<group>";
@@ -1147,6 +1158,7 @@
 				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
 				E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */,
 				E4A660522671F6CC00FE6866 /* KLMAddDeviceViewController.xib in Resources */,
+				E4A1AD2B2703109E00E391FA /* jpgimage1_image_640_480.yuv in Resources */,
 				E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */,
 				E48E218A26CCE241000C5CBC /* KLMLoginViewController.xib in Resources */,
 				E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */,
@@ -1156,6 +1168,7 @@
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
 				E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */,
+				E4A1AD2927030B8100E391FA /* imageBin.yuv in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
 				E4EC661A26EEF8BA007503AB /* KLMImportViewController.xib in Resources */,
 				E4EC661626EEF1BF007503AB /* KLMExportViewController.xib in Resources */,
@@ -1243,6 +1256,7 @@
 				E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */,
 				E495D11C2678586900AA50B9 /* KLMGroupSelectCell.swift in Sources */,
 				E4377E3926845DBA00F8DF0C /* KLMRefreshHeader.swift in Sources */,
+				E4A1AD27270309B900E391FA /* OpenGLView20.m in Sources */,
 				E4EC661526EEF1BF007503AB /* KLMExportViewController.swift in Sources */,
 				E4A65F9C2670A3B500FE6866 /* KLMCustomViewController.swift in Sources */,
 				E4A65FD62670B06400FE6866 /* CGContextCreator.m in Sources */,
