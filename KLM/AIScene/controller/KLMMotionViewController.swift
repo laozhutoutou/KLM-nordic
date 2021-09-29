@@ -66,6 +66,7 @@ class KLMMotionViewController: UIViewController {
             return String(format: "%ld", Int(value))
         }
         timeSlider.delegate = self
+        timeSlider.currentValue = 1
         self.timeSlider = timeSlider
         timeBgView.addSubview(timeSlider)
         
@@ -76,6 +77,7 @@ class KLMMotionViewController: UIViewController {
             return String(format: "%ld%%", Int(value))
         }
         lightSlider.delegate = self
+        lightSlider.currentValue = 0
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
     }

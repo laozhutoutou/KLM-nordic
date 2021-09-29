@@ -107,7 +107,7 @@ class KLMAddDeviceViewController: UIViewController {
         if isTestApp {
             
             //测试APP
-            SVProgressHUD.show(withStatus: "connecting...")
+            SVProgressHUD.show(withStatus: "Connecting...")
             SVProgressHUD.setDefaultMaskType(.black)
             KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
             return
@@ -123,7 +123,7 @@ class KLMAddDeviceViewController: UIViewController {
             guard let self = self else { return }
             self.deviceName = name
 
-            SVProgressHUD.show(withStatus: "connecting...")
+            SVProgressHUD.show(withStatus: "Connecting...")
             SVProgressHUD.setDefaultMaskType(.black)
             KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
 

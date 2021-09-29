@@ -123,7 +123,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         KLMHomeManager.sharedInstacnce.smartNode = model
         
         if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showError(withStatus: "Device Offline")
+            SVProgressHUD.showInfo(withStatus: "Connecting...")
             return
         }
         if !model.isCompositionDataReceived {
@@ -216,7 +216,7 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         KLMHomeManager.sharedInstacnce.smartNode = node
         
         if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showError(withStatus: "Device Offline")
+            SVProgressHUD.showInfo(withStatus: "Connecting...")
             return
         }
         if !node.isCompositionDataReceived {

@@ -13,8 +13,8 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     let images = [["icon_language","icon_enegy_save"],["icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]]
-    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice"),"Export","Import"]]
-//    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")]]
+//    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice"),"Export","Import"]]
+    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
                 
             }else{//所有灯感应设置
                 if !MeshNetworkManager.bearer.isOpen {
-                    SVProgressHUD.showError(withStatus: "Device offline")
+                    SVProgressHUD.showInfo(withStatus: "Connecting...")
                     return
                 }
                 

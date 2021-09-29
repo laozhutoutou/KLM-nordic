@@ -101,7 +101,6 @@ class KLMPhotoEditViewController: UIViewController {
         }
         lightSlider.currentValue = Float(self.lightValue)
         lightSlider.delegate = self
-        lightSlider.indicateLab.isHidden = true
         self.lightSlider = lightSlider
         self.lightSlider.isUserInteractionEnabled = false
         lightBgView.addSubview(lightSlider)

@@ -20,8 +20,6 @@ class KLMDeviceEditViewController: UIViewController {
     
     let titles = [LANGLOC("reName"),LANGLOC("groupSetting"),LANGLOC("lightSet")]
     
-    /// 是否第一次进来
-    var cameraPowerFirst = true
     //1 打开
     var cameraSwitch = 1
     
@@ -33,6 +31,12 @@ class KLMDeviceEditViewController: UIViewController {
     
     ///是否是mcu升级
     var isMCUUpdate: Bool = false
+    ///版本号
+    var MCUVersion: Int = 1
+    var BLEVersion: Int = 1
+    
+    //节能开关
+    var motionValue: Bool = false
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -98,16 +102,9 @@ class KLMDeviceEditViewController: UIViewController {
     func setupNodeMessage() {
         
         SVProgressHUD.show()
-        //获取开关状态
-        let parameTime = parameModel(dp: .cameraPower)
+        //获取状态
+        let parameTime = parameModel(dp: .AllDp)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
-        
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
-            //获取DFU版本信息
-            let parameDFU = parameModel(dp: .checkVersion)
-            KLMSmartNode.sharedInstacnce.readMessage(parameDFU, toNode: KLMHomeManager.currentNode)
-        }
         
     }
     
@@ -123,15 +120,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             let value = message?.value as! Int
             self.cameraSwitch = value
             self.tableView.reloadData()
-            
-//            if cameraPowerFirst {
-//                cameraPowerFirst = false
-//
-//                let value = message?.value as! Int
-//
-//                self.cameraSwitch = value
-//                self.tableView.reloadData()
-//            }
             
             if isMCUUpdate {
                 
@@ -151,6 +139,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             
             //0100  01蓝牙  00mcu
             let DFU: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
+            BLEVersion = DFU
             if DFUVersion > DFU{//需要升级蓝牙
                 
                 isDFUNewest = false
@@ -162,6 +151,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             
             //
             let MCU: Int = Int(value.substring(from: 2).hexadecimalToDecimal())!
+            MCUVersion = MCU
             if MCUVersion > MCU{//需要升级MCU
                 
                 isMCUNewest = false
@@ -170,7 +160,13 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
                 //已经是最新版本
                 isMCUNewest = true
             }
-            
+            self.tableView.reloadData()
+        }
+        
+        if message?.dp ==  .motionLight{
+            let value = message?.value as! Int
+            self.motionValue = value == 100 ? false : true
+            self.tableView.reloadData()
         }
         
         KLMLog("success")
@@ -192,7 +188,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10
+        return 10 - 2
         
     }
     
@@ -258,26 +254,28 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let cell: KLMOneSwitchCell = KLMOneSwitchCell.cellWithTableView(tableView: tableView)
             cell.cameraOnOff = self.cameraSwitch
             return cell
-        case 4:
+        case 4://节能设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
+            cell.rightTitle = self.motionValue == false ? "Off" : "On"
             return cell
         case 5:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("restorefactorysettings")
             return cell
-        case 6:
+        case 6://MCU
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "MCU"
+            cell.rightTitle = "Version " + "\(MCUVersion).0"
             return cell
         case 7://蓝牙
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "DFU"
-            
+            cell.rightTitle = "Version " + "\(BLEVersion).0"
             return cell
         case 8:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -349,10 +347,10 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         case 6://MCU
-            if isMCUNewest {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-                return
-            }
+//            if isMCUNewest {
+//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+//                return
+//            }
             
             //开关是否打开
             if self.cameraSwitch != 1 {//摄像头关，需要打开，mcu才会打开
@@ -365,10 +363,10 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = KLMDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 7://蓝牙
-            if isDFUNewest {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-                return
-            }
+//            if isDFUNewest {
+//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+//                return
+//            }
             let vc = KLMBLEDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 8://六路测试
