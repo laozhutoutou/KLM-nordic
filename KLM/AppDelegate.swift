@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 12.6 seconds (4.2 + 4.2 * 2), and 29.4 seconds (4.2 + 4.2 * 2 + 4.2 * 4).
         // Then, leave 10 seconds for until the incomplete message times out.
         //发送消息超时时间
-        meshNetworkManager.acknowledgmentMessageTimeout = 30.0
+        meshNetworkManager.acknowledgmentMessageTimeout = 20.0
         meshNetworkManager.logger = self
         
         ///加载本地配置数据

@@ -112,7 +112,7 @@ extension KLMBLEDFUViewController: DFUServiceDelegate {
             KLMLog("completed")
             SVProgressHUD.showSuccess(withStatus: "success")
             DispatchQueue.main.asyncAfter(deadline: 1) {
-                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.popToRootViewController(animated: true)
             }
         case .uploading:
             KLMLog("uploading")

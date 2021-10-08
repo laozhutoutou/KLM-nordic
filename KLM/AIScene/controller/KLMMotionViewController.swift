@@ -9,11 +9,14 @@ import UIKit
 
 class KLMMotionViewController: UIViewController {
 
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var timeContentView: UIView!
     @IBOutlet weak var timeBgView: UIView!
     
     @IBOutlet weak var lightContentView: UIView!
     @IBOutlet weak var lightBgView: UIView!
+    
+    @IBOutlet weak var autoDim: UISwitch!
     
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
@@ -48,6 +51,8 @@ class KLMMotionViewController: UIViewController {
         
         
         view.backgroundColor = appBackGroupColor
+        contentView.backgroundColor = appBackGroupColor
+        
         timeContentView.layer.cornerRadius = 16
         lightContentView.layer.cornerRadius = 16
         
@@ -56,6 +61,8 @@ class KLMMotionViewController: UIViewController {
     }
     
     func setupUI() {
+        
+        contentView.isHidden = true
         
         //时间滑条
         let viewLeft: CGFloat = 20 + 16
@@ -90,6 +97,11 @@ class KLMMotionViewController: UIViewController {
             KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
         } else {
             //填充本地数据
+            if let motionPower = KLMGetUserDefault("motionPower") as? Int, motionPower == 1  {
+                self.contentView.isHidden = false
+                self.autoDim.isOn =  true
+                
+            }
             guard let motionTime = KLMGetUserDefault("motionTime") as? Int else {
                 return
             }
@@ -102,6 +114,32 @@ class KLMMotionViewController: UIViewController {
             self.lightSlider.currentValue = Float(motionLight)
         }
         
+    }
+    
+    @IBAction func autoDimValue(_ sender: UISwitch) {
+        
+        SVProgressHUD.show()
+        let value: Int = sender.isOn == true ? 1 : 0
+        //发送指令
+        let parame1 = parameModel(dp: .motionPower, value: value)
+        
+        if isAllNodes {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame1) {
+                SVProgressHUD.dismiss()
+                //存储在本地
+                KLMSetUserDefault("motionPower", value)
+                self.contentView.isHidden = value == 0 ? true : false
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+            
+        } else {
+            
+            KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
+        }
     }
     
     @IBAction func Comfirm(_ sender: Any) {
@@ -177,6 +215,10 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
                 self.lightSlider.currentValue = Float(value)
                 
             }
+        } else if message?.dp ==  .motionPower{
+            let value = message?.value as! Int
+            self.autoDim.isOn = value == 0 ? false : true
+            contentView.isHidden = value == 0 ? true : false
         }
         KLMLog("success")
         

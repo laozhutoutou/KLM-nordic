@@ -23,12 +23,6 @@ class KLMDeviceEditViewController: UIViewController {
     //1 打开
     var cameraSwitch = 1
     
-    ///蓝牙版本是否是最新
-    var isDFUNewest: Bool = true
-    
-    ///MCU版本是否是最新
-    var isMCUNewest: Bool = true
-    
     ///是否是mcu升级
     var isMCUUpdate: Bool = false
     ///版本号
@@ -87,7 +81,7 @@ class KLMDeviceEditViewController: UIViewController {
     //灯闪烁
     func sendFlash() {
         
-        let parame = parameModel(dp: .flash, value: 1)
+        let parame = parameModel(dp: .flash, value: 2)
         
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
@@ -138,34 +132,19 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
         if message?.dp ==  .checkVersion, let value = message?.value as? String {//查询版本
             
             //0100  01蓝牙  00mcu
-            let DFU: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
-            BLEVersion = DFU
-            if DFUVersion > DFU{//需要升级蓝牙
-                
-                isDFUNewest = false
-                
-            } else {
-                //已经是最新版本
-                isDFUNewest = true
-            }
+            let BLE: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
+            BLEVersion = BLE
             
             //
             let MCU: Int = Int(value.substring(from: 2).hexadecimalToDecimal())!
             MCUVersion = MCU
-            if MCUVersion > MCU{//需要升级MCU
-                
-                isMCUNewest = false
-                
-            } else {
-                //已经是最新版本
-                isMCUNewest = true
-            }
+            
             self.tableView.reloadData()
         }
         
-        if message?.dp ==  .motionLight{
+        if message?.dp ==  .motionPower{
             let value = message?.value as! Int
-            self.motionValue = value == 100 ? false : true
+            self.motionValue = value == 0 ? false : true
             self.tableView.reloadData()
         }
         
@@ -230,9 +209,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 cell.rightTitle = KLMHomeManager.currentNode.nodeName
                 
-            }
-            
-            if indexPath.row == 1 {
+            }else if indexPath.row == 1 {
                 
                 if self.deviceGroups.count <= 0 {
                     let string = LANGLOC("unGroup")
@@ -248,6 +225,8 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                     cell.rightTitle = string
                 }
 
+            } else {
+                cell.rightTitle = ""
             }
             return cell
         case 3:
@@ -260,27 +239,33 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("Energysavingsettings")
             cell.rightTitle = self.motionValue == false ? "Off" : "On"
             return cell
-        case 5:
+        case 5://恢复出厂设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("restorefactorysettings")
+            cell.rightTitle = ""
             return cell
         case 6://MCU
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "MCU"
-            cell.rightTitle = "Version " + "\(MCUVersion).0"
+            let first: Int = MCUVersion / 10
+            let second: Int = MCUVersion % 10
+            cell.rightTitle = "Version " + "\(first).\(second)"
             return cell
         case 7://蓝牙
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "DFU"
-            cell.rightTitle = "Version " + "\(BLEVersion).0"
+            let first: Int = BLEVersion / 10
+            let second: Int = BLEVersion % 10
+            cell.rightTitle = "Version " + "\(first).\(second)"
             return cell
         case 8:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "单独控制"
+            cell.rightTitle = ""
             return cell
         default:
             break
@@ -347,10 +332,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         case 6://MCU
-//            if isMCUNewest {
-//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-//                return
-//            }
+            if MCUNewestVersion <= MCUVersion {//需要升级MCU
+
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+
+            }
             
             //开关是否打开
             if self.cameraSwitch != 1 {//摄像头关，需要打开，mcu才会打开
@@ -363,10 +350,13 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = KLMDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 7://蓝牙
-//            if isDFUNewest {
-//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-//                return
-//            }
+            
+            if BLENewestVersion <= BLEVersion {//需要升级蓝牙
+                
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+                
+            }
             let vc = KLMBLEDFUViewController()
             navigationController?.pushViewController(vc, animated: true)
         case 8://六路测试

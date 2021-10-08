@@ -177,10 +177,14 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
             // 01 完成更新
             if let value = message?.value as? String, value == "01" {
                 
-                SVProgressHUD.showSuccess(withStatus: "Update complete")
                 KLMLog("更新完成")
-                DispatchQueue.main.asyncAfter(deadline: 1) {
-                    self.navigationController?.popViewController(animated: true)
+                DispatchQueue.main.asyncAfter(deadline: 4) {
+                    SVProgressHUD.showSuccess(withStatus: "Update complete")
+                    DispatchQueue.main.asyncAfter(deadline: 1) {
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                   
                 }
                 
                 return

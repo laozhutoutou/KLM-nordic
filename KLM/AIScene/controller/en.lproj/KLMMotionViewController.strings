@@ -7,3 +7,6 @@
 
 /* Class = "UIButton"; normalTitle = "确定"; ObjectID = "rdP-wX-Aav"; */
 "rdP-wX-Aav.normalTitle" = "Confirm";
+
+/* Class = "UILabel"; text = "自动节能"; ObjectID = "SAl-A2-toj"; */
+"SAl-A2-toj.text" = "Auto-dim";

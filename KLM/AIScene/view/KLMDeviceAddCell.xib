@@ -64,7 +64,7 @@
             <connections>
                 <outlet property="nameLab" destination="WnY-n9-BKd" id="BbR-Wi-VXs"/>
             </connections>
-            <point key="canvasLocation" x="-519" y="-3"/>
+            <point key="canvasLocation" x="-593" y="-17"/>
         </tableViewCell>
     </objects>
     <resources>

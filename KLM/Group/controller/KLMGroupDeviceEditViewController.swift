@@ -38,6 +38,9 @@ class KLMGroupDeviceEditViewController: UIViewController {
         self.navigationItem.title = self.groupModel.name
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addDevice))
         
         setupData()
         
@@ -56,6 +59,13 @@ class KLMGroupDeviceEditViewController: UIViewController {
         self.tableView.reloadData()
     }
     
+    @objc func addDevice() {
+        
+        let vc = KLMGroupDeviceAddTableViewController()
+        vc.groupModel = groupModel
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
 }
 
 extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewDataSource {
@@ -74,6 +84,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         
         let deviceModel:  Node = self.deviceLists[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+
         cell.leftImage = "img_scene_48"
         cell.leftTitle = deviceModel.nodeName
         return cell

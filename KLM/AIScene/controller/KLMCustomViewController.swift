@@ -24,6 +24,8 @@ class KLMCustomViewController: UIViewController {
     
     let itemW:CGFloat = 25
     
+    var isFinish = false
+    
     /// 是否已经读取
     var colorFirst = true
     var colorTempFirst = true
@@ -80,6 +82,8 @@ class KLMCustomViewController: UIViewController {
         
         navigationItem.title = LANGLOC("custom")
         contentView.layer.cornerRadius = 16
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
         
         setupUI()
         
@@ -196,7 +200,44 @@ class KLMCustomViewController: UIViewController {
         }
     }
     
+    @objc func finish() {
+        
+        isFinish = true
+        
+        let string = "000001"
+        let parame = parameModel(dp: .recipe, value: string)
+        
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+            
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            
+        } else {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+                
+                SVProgressHUD.showSuccess(withStatus: "success")
+                
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    
+                    //获取根VC
+                    var  rootVC =  self.presentingViewController
+                    while  let  parent = rootVC?.presentingViewController {
+                        rootVC = parent
+                    }
+                    //释放所有下级视图
+                    rootVC?.dismiss(animated:  true , completion:  nil )
+                }
+                
+            } failure: { error in
+                KLMShowError(error)
+            }
+
+        }
+    }
+    
     @objc func dimiss() {
+        
+        isFinish = false
         
         dismiss(animated: true, completion: nil)
     }
@@ -230,10 +271,25 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
             }
             
         }
+        
+        if isFinish {
+            
+//            SVProgressHUD.showSuccess(withStatus: "success")
+            
+            //获取根VC
+            var  rootVC =  self.presentingViewController
+            while  let  parent = rootVC?.presentingViewController {
+                rootVC = parent
+            }
+            //释放所有下级视图
+            rootVC?.dismiss(animated:  true , completion:  nil )
+        }
+        
         KLMLog("success")
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        isFinish = false
         KLMShowError(error)
     }
 }

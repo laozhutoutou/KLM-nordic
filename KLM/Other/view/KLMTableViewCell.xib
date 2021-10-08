@@ -74,7 +74,7 @@
                 <outlet property="line" destination="5zi-SF-ehg" id="JHw-wI-XV9"/>
                 <outlet property="rightLab" destination="UzA-in-g8K" id="obD-eJ-ONf"/>
             </connections>
-            <point key="canvasLocation" x="-296" y="23"/>
+            <point key="canvasLocation" x="91" y="-19"/>
         </tableViewCell>
     </objects>
     <resources>
