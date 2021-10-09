@@ -167,7 +167,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 10 - 2
+        return 11
         
     }
     
@@ -261,21 +261,29 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let second: Int = BLEVersion % 10
             cell.rightTitle = "Version " + "\(first).\(second)"
             return cell
-        case 8:
+        case 8://
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "单独控制"
+            cell.rightTitle = ""
+            return cell
+        case 9:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "测试"
+            cell.rightTitle = ""
+            return cell
+        case 10:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "下载图像"
             cell.rightTitle = ""
             return cell
         default:
             break
         }
         
-        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-        cell.isShowLeftImage = false
-        cell.leftTitle = "测试"
-        cell.rightTitle = ""
-        return cell
+        return UITableViewCell.init()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -332,12 +340,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         case 6://MCU
-            if MCUNewestVersion <= MCUVersion {//需要升级MCU
-
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-                return
-
-            }
+//            if MCUNewestVersion <= MCUVersion {//需要升级MCU
+//
+//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+//                return
+//
+//            }
             
             //开关是否打开
             if self.cameraSwitch != 1 {//摄像头关，需要打开，mcu才会打开
@@ -364,6 +372,9 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             navigationController?.pushViewController(vc, animated: true)
         case 9:
             let vc = KLMText1ViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 10:
+            let vc = KLMTestCameraViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:
             

@@ -29,6 +29,21 @@ class KLMHelpViewController: UIViewController {
 
     @IBAction func commit(_ sender: Any) {
         
+        guard let question = self.questionView.text, question.isEmpty == false else {
+            
+            return
+            
+        }
         
+        guard let phone = self.phoneField.text, phone.isEmpty == false else {
+            
+            return
+            
+        }
+        
+        SVProgressHUD.showSuccess(withStatus: "Success")
+        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

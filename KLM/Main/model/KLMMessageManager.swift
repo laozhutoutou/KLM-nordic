@@ -125,6 +125,7 @@ enum DPType: Int {
     case motionLight = 9
     case motionPower = 10
     case colorTest = 11
+    case cameraPic = 12
     case factoryTest = 19
     case factoryTestResule = 20
     case checkVersion = 99

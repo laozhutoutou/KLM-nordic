@@ -8,6 +8,7 @@
 import UIKit
 import CoreBluetooth
 import nRFMeshProvision
+import SVProgressHUD
 
 class KLMDFUViewController: UIViewController {
     
@@ -18,7 +19,6 @@ class KLMDFUViewController: UIViewController {
     var isFineDevice = false
     
     private var centralManager: CBCentralManager!
-    var bb: Bearer!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -48,6 +48,7 @@ class KLMDFUViewController: UIViewController {
             centralManager = CBCentralManager()
             MeshNetworkManager.bearer.delegate = self
             SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
             startScanning()
             DispatchQueue.main.asyncAfter(deadline: 25) {
                 //未能找到设备

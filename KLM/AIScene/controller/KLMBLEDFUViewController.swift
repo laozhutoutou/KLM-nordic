@@ -38,6 +38,7 @@ class KLMBLEDFUViewController: UIViewController {
         
         centralManager = CBCentralManager()
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         startScanning()
         
         DispatchQueue.main.asyncAfter(deadline: 25) {

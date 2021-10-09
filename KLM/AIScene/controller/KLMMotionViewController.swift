@@ -216,6 +216,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
                 
             }
         } else if message?.dp ==  .motionPower{
+            SVProgressHUD.dismiss()
             let value = message?.value as! Int
             self.autoDim.isOn = value == 0 ? false : true
             contentView.isHidden = value == 0 ? true : false

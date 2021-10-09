@@ -29,7 +29,7 @@ class KLMAPPUpdateViewController: UIViewController {
 //        if let path = Bundle.main.path(forResource: "jpgimage1_image_640_480", ofType: "yuv"){
 //            yuvData = NSData.init(contentsOfFile: path)
 //
-//            self.myview = OpenGLView20.init(frame: CGRect.init(x: 20, y: 20, width: KLMScreenW - 40, height: 550))
+//            self.myview = OpenGLView20.init(frame: CGRect.init(x: 20, y: 20, width: KLMScreenW - 40, height: 300))
 //            self.view.addSubview(self.myview)
 //
 //        }
