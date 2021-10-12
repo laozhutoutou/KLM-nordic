@@ -17,7 +17,6 @@ target 'KLM' do
   pod 'BluetoothKit', '~> 0.4.0' #蓝牙框架
   pod 'IQKeyboardManagerSwift', '~> 6.5.6'
   pod 'YYCache', '~> 1.0.4' #缓存框架（oc版本）
-#  pod "TuyaSmartHomeKit"
   pod 'SnapKitExtend', '~> 1.1.0' #SnapKit扩展
   pod 'YBPopupMenu', '~> 1.1.2' #弹框
   pod 'SVProgressHUD'

@@ -48,6 +48,7 @@ DEPENDENCIES:
   - iOSDFULibrary (~> 4.10)
   - IQKeyboardManagerSwift (~> 6.5.6)
   - JKSwiftExtension (~> 1.6.8)
+  - Kingfisher (~> 7.1.0)
   - MJRefresh (~> 3.5.0)
   - nRFMeshProvision (~> 3.1.2)
   - RxCocoa (~> 6.2.0)
@@ -111,6 +112,6 @@ SPEC CHECKSUMS:
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 95060b97a0b088e4089e67b5e527dc2594875c35
+PODFILE CHECKSUM: 58e7362f9992e948bb2406604c64419ba86409c6
 
 COCOAPODS: 1.10.0
