@@ -811,7 +811,6 @@ public extension MeshNetworkManager {
         encoder.dateEncodingStrategy = .iso8601
         
         let data = try! encoder.encode(meshData)
-        
         return storage.save(data)
     }
     

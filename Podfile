@@ -12,7 +12,7 @@ target 'KLM' do
   pod 'AFNetworking', '~> 3.2.1', :subspecs => ['Reachability', 'Serialization', 'Security', 'NSURLSession']
   pod 'SwiftyJSON', '~> 5.0.1' #处理JSON数据
   pod 'HandyJSON', '~> 5.0.2' #json转模型
-  pod 'Kingfisher', '~> 6.3.0' #图片加载框架
+  pod 'Kingfisher', '~> 7.1.0' #图片加载框架
   pod 'TZImagePickerController', '~> 3.6.0' #图片选择器
   pod 'BluetoothKit', '~> 0.4.0' #蓝牙框架
   pod 'IQKeyboardManagerSwift', '~> 6.5.6'
