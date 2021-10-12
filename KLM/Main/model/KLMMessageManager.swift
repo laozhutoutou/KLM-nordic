@@ -125,7 +125,7 @@ enum DPType: Int {
     case motionLight = 9
     case motionPower = 10
     case colorTest = 11
-    case cameraPic = 12
+    case cameraPic = 12 //下载摄像头图像
     case factoryTest = 19
     case factoryTestResule = 20
     case checkVersion = 99
@@ -193,7 +193,7 @@ class KLMMessageTime {
         
         currentTime += 1
         if currentTime > messageTimeout {//超时
-            stopTime()
+            stopTime() 
             SVProgressHUD.showError(withStatus: "Time out")
         }
     }

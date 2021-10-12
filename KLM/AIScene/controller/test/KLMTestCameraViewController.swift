@@ -11,67 +11,69 @@ import nRFMeshProvision
 
 class KLMTestCameraViewController: UIViewController {
 
-    @IBOutlet weak var cameraImageView: UIImageView!
+    @IBOutlet weak var cameraView: UIView!
     
     var isFineDevice = false
     
     private var centralManager: CBCentralManager!
-    var currentIndex = 0
-    /// 总的包数
-    let totalNum = 100
+    
+    /// 总字节数
+    let totalBytes: Int = 28800
+    /// 接收的数据
     var cameraData: Data = Data()
     
     var myview: OpenGLView20!
-    var yuvData: NSData!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        KLMSmartNode.sharedInstacnce.delegate = self
+        KLMSmartNode.sharedInstacnce.delegate = self
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-//        SVProgressHUD.dismiss()
-//
-//        if KLMHomeManager.currentConnectNode?.uuid != KLMHomeManager.currentNode.uuid {
-//
-//            self.centralManager.stopScan()
-//        }
+        SVProgressHUD.dismiss()
+
+        if KLMHomeManager.currentConnectNode?.uuid != KLMHomeManager.currentNode.uuid {
+
+            self.centralManager.stopScan()
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    
-        self.myview.setVideoSize(160, height: 120)
-        self.myview.displayYUV420pData(self.yuvData as Data?, width: 160, height: 120)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.myview = OpenGLView20.init(frame: cameraView.bounds)
+        cameraView.addSubview(self.myview)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        yuvData = NSData.init(bytes: list, length: list.count)
-        self.myview = OpenGLView20.init(frame: CGRect.init(x: 20, y: 20, width: KLMScreenW - 40, height: 300))
-        self.view.addSubview(self.myview)
-        
+                
         //搜索1828已配网设备
         //当前连接的节点是否是当前选中的节点
-//        if KLMHomeManager.currentConnectNode?.uuid != KLMHomeManager.currentNode.uuid {
-//
-//            centralManager = CBCentralManager()
-//            MeshNetworkManager.bearer.delegate = self
-//            SVProgressHUD.show()
-//            SVProgressHUD.setDefaultMaskType(.black)
-//            startScanning()
-//            DispatchQueue.main.asyncAfter(deadline: 25) {
-//                //未能找到设备
-//                if !self.isFineDevice {
-//                    SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
-//                }
-//            }
-//        }
+        if KLMHomeManager.currentConnectNode?.uuid != KLMHomeManager.currentNode.uuid {
+
+            centralManager = CBCentralManager()
+            MeshNetworkManager.bearer.delegate = self
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            startScanning()
+            DispatchQueue.main.asyncAfter(deadline: 25) {
+                //未能找到设备
+                if !self.isFineDevice {
+                    SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
+                }
+            }
+        } else {
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            DispatchQueue.main.asyncAfter(deadline: 1.5) {
+                SVProgressHUD.dismiss()
+            }
+        }
     }
     
     func startScanning() {
@@ -87,9 +89,20 @@ class KLMTestCameraViewController: UIViewController {
             SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
             return
         }
+        KLMLog("开始下载")
+        resetData()
+        
+        SVProgressHUD.showProgress(0)
+        SVProgressHUD.setDefaultMaskType(.black)
         
         let parameTime = parameModel(dp: .cameraPic)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+    }
+    
+    ///清空数据
+    func resetData() {
+        
+        cameraData.removeAll()
     }
 }
 
@@ -159,7 +172,31 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        
+        if message?.dp ==  .cameraPic{
+            
+            if let data = message?.value as? Data{
+                                
+                //接收数据
+                cameraData.append(data)
+                KLMLog("length = \(cameraData.count)")
+                
+                let progress: Float = Float(cameraData.count) / Float(totalBytes)
+                SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
+                
+                if cameraData.count >= totalBytes {
+                    ///接收完成,显示图像
+                    KLMLog("图像传输完成")
+                    self.myview.setVideoSize(160, height: 120)
+                    self.myview.displayYUV420pData(self.cameraData, width: 160, height: 120)
+                    SVProgressHUD.showSuccess(withStatus: "下载完成")
+                    return
+                }
+                
+                let parameTime = parameModel(dp: .cameraPic)
+                KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+                
+            }
+        }
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {

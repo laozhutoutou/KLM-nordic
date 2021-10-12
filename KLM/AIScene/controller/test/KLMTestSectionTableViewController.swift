@@ -21,7 +21,7 @@ class KLMTestSectionTableViewController: UITableViewController {
     //灯闪烁
     func sendFlash() {
         
-        let parame = parameModel(dp: .flash, value: 1)
+        let parame = parameModel(dp: .flash, value: 2)
         
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         

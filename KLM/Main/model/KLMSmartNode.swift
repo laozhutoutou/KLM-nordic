@@ -189,6 +189,10 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         
                         response.dp = .motionPower
                         response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                    case 12:
+                        response.dp = .cameraPic
+                        let data = Data(hex: valueHex)
+                        response.value = data
                     case 19:
                         response.dp = .factoryTest
                         response.value = valueHex

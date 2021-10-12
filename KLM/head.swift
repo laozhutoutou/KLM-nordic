@@ -19,9 +19,9 @@ import HandyJSON
 let isTestApp: Bool = false
 
 /// 蓝牙版本号
-let BLENewestVersion: Int = 2
+let BLENewestVersion: Int = 3
 /// MCU版本号
-let MCUNewestVersion: Int = 2
+let MCUNewestVersion: Int = 3
 
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width

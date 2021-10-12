@@ -14,7 +14,6 @@ class KLMDeviceEditViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var nameLab: UILabel!
-    @IBOutlet weak var typeLab: UILabel!
     
     var deviceGroups = [Group]()
     
@@ -66,7 +65,6 @@ class KLMDeviceEditViewController: UIViewController {
         
         self.navigationItem.title = KLMHomeManager.currentNode.nodeName
         nameLab.text = KLMHomeManager.currentNode.nodeName
-        typeLab.text = KLMHomeManager.currentNode.unicastAddress.asString()
         
         view.backgroundColor = appBackGroupColor
         tableView.backgroundColor = appBackGroupColor
@@ -340,12 +338,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         case 6://MCU
-//            if MCUNewestVersion <= MCUVersion {//需要升级MCU
-//
-//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-//                return
-//
-//            }
+            if MCUNewestVersion <= MCUVersion {//需要升级MCU
+
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+
+            }
             
             //开关是否打开
             if self.cameraSwitch != 1 {//摄像头关，需要打开，mcu才会打开

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,6 @@
                 <outlet property="contentView" destination="TbI-AP-cX1" id="Ywc-qv-b2T"/>
                 <outlet property="nameLab" destination="XcG-pk-SQS" id="Hbm-l2-mN3"/>
                 <outlet property="tableView" destination="7NY-au-90g" id="nRA-f6-Xqz"/>
-                <outlet property="typeLab" destination="Lne-uM-KG5" id="Xpu-MM-gZY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,27 +33,19 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XcG-pk-SQS">
-                            <rect key="frame" x="115" y="32" width="42.5" height="19.5"/>
+                            <rect key="frame" x="115" y="45.5" width="42.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lne-uM-KG5">
-                            <rect key="frame" x="115" y="57.5" width="35.5" height="17"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Lne-uM-KG5" firstAttribute="top" secondItem="XcG-pk-SQS" secondAttribute="bottom" constant="6" id="74a-2d-DEY"/>
+                        <constraint firstItem="XcG-pk-SQS" firstAttribute="centerY" secondItem="XnC-m1-Jid" secondAttribute="centerY" id="1kK-3S-cUK"/>
                         <constraint firstAttribute="height" constant="110" id="CfP-c0-TZT"/>
                         <constraint firstItem="XnC-m1-Jid" firstAttribute="centerY" secondItem="TbI-AP-cX1" secondAttribute="centerY" id="Ily-m7-Tf2"/>
                         <constraint firstItem="XnC-m1-Jid" firstAttribute="leading" secondItem="TbI-AP-cX1" secondAttribute="leading" constant="20" id="TEI-oJ-WSb"/>
                         <constraint firstItem="XcG-pk-SQS" firstAttribute="leading" secondItem="XnC-m1-Jid" secondAttribute="trailing" constant="21" id="eXk-bN-dIL"/>
-                        <constraint firstItem="Lne-uM-KG5" firstAttribute="leading" secondItem="XcG-pk-SQS" secondAttribute="leading" id="pf3-ge-BZK"/>
-                        <constraint firstItem="XcG-pk-SQS" firstAttribute="top" secondItem="TbI-AP-cX1" secondAttribute="top" constant="32" id="yHu-8E-w4e"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7NY-au-90g">

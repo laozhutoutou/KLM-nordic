@@ -11,17 +11,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMTestCameraViewController" customModule="KLM" customModuleProvider="target">
             <connections>
-                <outlet property="cameraImageView" destination="4T9-zh-JS2" id="kUi-Yp-9ik"/>
+                <outlet property="cameraView" destination="1Up-S3-nhh" id="XAF-lt-hfc"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFd-7L-fCi">
-                    <rect key="frame" x="40" y="694" width="334" height="50"/>
+                    <rect key="frame" x="40" y="782" width="334" height="50"/>
                     <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="QOU-JD-qbv"/>
@@ -34,25 +34,26 @@
                         <action selector="downLoad:" destination="-1" eventType="touchUpInside" id="6SZ-LY-JhT"/>
                     </connections>
                 </button>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4T9-zh-JS2">
-                    <rect key="frame" x="15" y="15" width="384" height="300"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Up-S3-nhh">
+                    <rect key="frame" x="15" y="103" width="384" height="288"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="300" id="YrG-IU-eFY"/>
+                        <constraint firstAttribute="width" secondItem="1Up-S3-nhh" secondAttribute="height" multiplier="4:3" id="5zS-bB-iIH"/>
                     </constraints>
-                </imageView>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4T9-zh-JS2" secondAttribute="trailing" constant="15" id="48u-wn-J8h"/>
-                <constraint firstItem="4T9-zh-JS2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="6xg-pv-Nfu"/>
+                <constraint firstItem="1Up-S3-nhh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="6XN-wn-hCj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="zFd-7L-fCi" secondAttribute="trailing" constant="40" id="NSz-SR-WO6"/>
                 <constraint firstItem="zFd-7L-fCi" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="PaX-xf-Bq0"/>
-                <constraint firstItem="4T9-zh-JS2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="ddL-1V-x54"/>
+                <constraint firstItem="1Up-S3-nhh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="TWs-19-wMm"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1Up-S3-nhh" secondAttribute="trailing" constant="15" id="fzi-Oo-HaS"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="zFd-7L-fCi" secondAttribute="bottom" constant="30" id="mZC-8X-Yb6"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-1336" y="-3"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="-1690" y="-3"/>
         </view>
     </objects>
     <resources>

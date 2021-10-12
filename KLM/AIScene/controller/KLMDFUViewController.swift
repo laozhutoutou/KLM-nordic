@@ -82,7 +82,7 @@ class KLMDFUViewController: UIViewController {
         let first = KLMUpdateManager.sharedInstacnce.getUpdateFirstPackage()
         let parame = parameModel(dp: .checkVersion, value: first)
         KLMLog("开始更新")
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentConnectNode!)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
     }
 }
@@ -159,7 +159,7 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
                 KLMLog("更新包发送完成")
                 //发送完成
                 let parame = parameModel(dp: .checkVersion, value: "01")
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentConnectNode!)
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
                 
                 return
             }
@@ -169,7 +169,7 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
             
             let package = dataPackageArray[currentIndex]
             let parame = parameModel(dp: .DFU, value: package)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentConnectNode!)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             KLMLog("------------------\(currentIndex)")
             currentIndex += 1
             
