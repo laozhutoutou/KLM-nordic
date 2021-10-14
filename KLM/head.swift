@@ -19,7 +19,7 @@ import HandyJSON
 let isTestApp: Bool = false
 
 /// 蓝牙版本号
-let BLENewestVersion: Int = 3
+let BLENewestVersion: Int = 4
 /// MCU版本号
 let MCUNewestVersion: Int = 3
 

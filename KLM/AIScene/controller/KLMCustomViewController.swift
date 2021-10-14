@@ -167,7 +167,7 @@ class KLMCustomViewController: UIViewController {
     }
     
     @objc func tapColorBtn(btn: UIButton) {
-        
+        self.pickView.selectionColor = btn.backgroundColor
         self.ringSelectView.isHidden = false
         if btn.backgroundColor == UIColor.white {
             

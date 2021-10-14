@@ -27,8 +27,9 @@ class KLMTestCameraViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        KLMSmartNode.sharedInstacnce.delegate = self
         
+        KLMSmartNode.sharedInstacnce.delegate = self
+          
     }
     
     override func viewWillDisappear(_ animated: Bool) {
