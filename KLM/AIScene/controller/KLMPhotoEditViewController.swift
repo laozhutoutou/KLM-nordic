@@ -16,6 +16,8 @@ class KLMPhotoEditViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var recipeLab: UILabel!
+    
     //图像数据
     var imageData: UnsafeMutablePointer<UInt8>!
     
@@ -24,6 +26,8 @@ class KLMPhotoEditViewController: UIViewController {
     var currentRecipe: Int = 0 {
         
         didSet {
+            
+            recipeLab.text = "\(currentRecipe)"
             
             self.lightSlider.isUserInteractionEnabled = true
             //完成
@@ -124,6 +128,7 @@ class KLMPhotoEditViewController: UIViewController {
             
             let recipe = getRecipeIndexOfImageOnClick(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(tapPoint.x), Int32(tapPoint.y))
             currentRecipe = Int(recipe)
+            
             KLMLog("click = \(recipe)")
             setData()
         }

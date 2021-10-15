@@ -17,6 +17,7 @@
 		E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4729A7B26B1333A00DC7D59 /* KLMText1ViewController.xib */; };
 		E4750A1226C1165500AA4C32 /* KLMHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4750A1026C1165500AA4C32 /* KLMHelpViewController.swift */; };
 		E4750A1626C118A800AA4C32 /* CMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4750A1526C118A800AA4C32 /* CMTextView.m */; };
+		E47522D6271967F400A0482B /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E47522D5271967F400A0482B /* recipe.c */; };
 		E476177626DE0EA8008225BB /* KLMPCBASectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476177526DE0EA8008225BB /* KLMPCBASectionTableViewController.swift */; };
 		E476177926DE10D1008225BB /* KLMPCBASensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E476177726DE10D1008225BB /* KLMPCBASensorViewController.swift */; };
 		E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476177826DE10D1008225BB /* KLMPCBASensorViewController.xib */; };
@@ -55,7 +56,6 @@
 		E48B6410270FF00300C2BC27 /* KLMGroupDeviceAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B640E270FF00300C2BC27 /* KLMGroupDeviceAddCell.xib */; };
 		E48E218926CCE241000C5CBC /* KLMLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E218726CCE241000C5CBC /* KLMLoginViewController.swift */; };
 		E48E218A26CCE241000C5CBC /* KLMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48E218826CCE241000C5CBC /* KLMLoginViewController.xib */; };
-		E48E608D2692A02A00E630ED /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E48E608B2692A02A00E630ED /* recipe.c */; };
 		E48E60902692F6E800E630ED /* KLMMotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */; };
 		E492AD29267C83C50028AF3E /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD1B267C83C50028AF3E /* NSString+PinYin4Cocoa.m */; };
 		E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */; };
@@ -207,6 +207,7 @@
 		E4750A1026C1165500AA4C32 /* KLMHelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMHelpViewController.swift; sourceTree = "<group>"; };
 		E4750A1426C118A700AA4C32 /* CMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextView.h; sourceTree = "<group>"; };
 		E4750A1526C118A800AA4C32 /* CMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTextView.m; sourceTree = "<group>"; };
+		E47522D5271967F400A0482B /* recipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = recipe.c; sourceTree = "<group>"; };
 		E476177526DE0EA8008225BB /* KLMPCBASectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPCBASectionTableViewController.swift; sourceTree = "<group>"; };
 		E476177726DE10D1008225BB /* KLMPCBASensorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPCBASensorViewController.swift; sourceTree = "<group>"; };
 		E476177826DE10D1008225BB /* KLMPCBASensorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMPCBASensorViewController.xib; sourceTree = "<group>"; };
@@ -253,7 +254,6 @@
 		E48B640E270FF00300C2BC27 /* KLMGroupDeviceAddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupDeviceAddCell.xib; sourceTree = "<group>"; };
 		E48E218726CCE241000C5CBC /* KLMLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMLoginViewController.swift; sourceTree = "<group>"; };
 		E48E218826CCE241000C5CBC /* KLMLoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMLoginViewController.xib; sourceTree = "<group>"; };
-		E48E608B2692A02A00E630ED /* recipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = recipe.c; sourceTree = "<group>"; };
 		E48E608C2692A02A00E630ED /* recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recipe.h; sourceTree = "<group>"; };
 		E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMotionViewController.swift; sourceTree = "<group>"; };
 		E492AD18267C83C50028AF3E /* PinyinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinHelper.h; sourceTree = "<group>"; };
@@ -798,7 +798,7 @@
 		E48E608A2692A02100E630ED /* recipe */ = {
 			isa = PBXGroup;
 			children = (
-				E48E608B2692A02A00E630ED /* recipe.c */,
+				E47522D5271967F400A0482B /* recipe.c */,
 				E48E608C2692A02A00E630ED /* recipe.h */,
 			);
 			path = recipe;
@@ -1263,7 +1263,6 @@
 				E4E28446269EFFFC006C120E /* GenericState.swift in Sources */,
 				E4A65FCB2670B06400FE6866 /* RSGenerateOperation.m in Sources */,
 				E4E28448269F0052006C120E /* Address+String.swift in Sources */,
-				E48E608D2692A02A00E630ED /* recipe.c in Sources */,
 				E492AD2D267C83C50028AF3E /* HanyuPinyinOutputFormat.m in Sources */,
 				E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */,
 				E495D11C2678586900AA50B9 /* KLMGroupSelectCell.swift in Sources */,
@@ -1332,6 +1331,7 @@
 				E4750A1226C1165500AA4C32 /* KLMHelpViewController.swift in Sources */,
 				E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */,
 				E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */,
+				E47522D6271967F400A0482B /* recipe.c in Sources */,
 				E4A6607E2673486400FE6866 /* KLMDeviceAddCell.swift in Sources */,
 				E4A65FD32670B06400FE6866 /* BitmapScaleManipulator.m in Sources */,
 				E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */,

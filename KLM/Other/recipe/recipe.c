@@ -3,6 +3,7 @@
 //
 #include <stdlib.h>
 #include "recipe.h"
+#include <math.h>
 #define min3v(v1, v2, v3)   ((v1)>(v2)? ((v2)>(v3)?(v3):(v2)):((v1)>(v3)?(v3):(v1)))
 #define max3v(v1, v2, v3)   ((v1)<(v2)? ((v2)<(v3)?(v3):(v2)):((v1)<(v3)?(v3):(v1)))
 
@@ -233,7 +234,7 @@ int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT for
                 avg_hsv[COLOR_WHITE_S][2] += hsv.V;
             } else if (hsv.H < 10 || hsv.H >= 300) {
                 color_dict[COLOR_RED_S]++;
-                avg_hsv[COLOR_RED_S][0] += hsv.H < 10 ? hsv.H: hsv.H - 360;
+                avg_hsv[COLOR_RED_S][0] += hsv.H;
                 avg_hsv[COLOR_RED_S][1] += hsv.S;
                 avg_hsv[COLOR_RED_S][2] += hsv.V;
             } else if (hsv.H >= 10 && hsv.H < 41) {
@@ -270,7 +271,6 @@ int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT for
         }
     }
 
-
     for (int i = 0; i < 9; i++) {
         if (color_dict[i] < 0.05 * (area->Y_End - area->Y_Start + 1) * (area->X_End - area->X_Start + 1)) {
             color_dict[i] = 0;
@@ -284,7 +284,7 @@ int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT for
     if (color_dict[COLOR_BLACK_S] > 0 && avg_hsv[COLOR_BLACK_S][2] > 15) { // squeeze with black
         for (int i = COLOR_RED_S; i <= COLOR_ORANGE_S; i++) {
             if (color_dict[i] == 0) continue;
-            if (abs(avg_hsv[i][0] - avg_hsv[COLOR_BLACK_S][0]) <= 10 && avg_hsv[i][2] < 60) {
+            if (fabsf(avg_hsv[i][0] - avg_hsv[COLOR_BLACK_S][0]) <= 10 && avg_hsv[i][2] < 60) {
                 avg_hsv[i][0] = (avg_hsv[i][0] * color_dict[i] + avg_hsv[COLOR_BLACK_S][0] * color_dict[COLOR_BLACK_S]) / (color_dict[i] + color_dict[COLOR_BLACK_S]);
                 avg_hsv[i][1] = (avg_hsv[i][1] * color_dict[i] + avg_hsv[COLOR_BLACK_S][1] * color_dict[COLOR_BLACK_S]) / (color_dict[i] + color_dict[COLOR_BLACK_S]);
                 avg_hsv[i][2] = (avg_hsv[i][2] * color_dict[i] + avg_hsv[COLOR_BLACK_S][2] * color_dict[COLOR_BLACK_S]) / (color_dict[i] + color_dict[COLOR_BLACK_S]);
@@ -299,7 +299,7 @@ int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT for
     }
     for (int i = COLOR_RED_S; i < COLOR_PURPLE_S; i++) { //close color
         if (color_dict[i] == 0 || color_dict[i + 1] == 0) continue;
-        if (abs(avg_hsv[i][0] - avg_hsv[i + 1][0]) <= 10) {
+        if (fabsf(avg_hsv[i][0] - avg_hsv[i + 1][0]) <= 10) {
             if (color_dict[i] >= color_dict[i + 1]) {
                 avg_hsv[i][0] = (avg_hsv[i][0] * color_dict[i] + avg_hsv[i + 1][0] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
                 avg_hsv[i][1] = (avg_hsv[i][1] * color_dict[i] + avg_hsv[i + 1][1] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
@@ -325,7 +325,7 @@ int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT for
     //set color index
     sorted_indexes[COLOR_BLACK_S] = COLOR_BLACK; // black
 
-    if (avg_hsv[COLOR_WHITE_S][0] < 80) sorted_indexes[COLOR_WHITE_S] = COLOR_WARM_WHITE; // white
+    if (avg_hsv[COLOR_WHITE_S][0] < 70 && avg_hsv[COLOR_WHITE_S][0] > 20 && avg_hsv[COLOR_WHITE_S][1] > 3) sorted_indexes[COLOR_WHITE_S] = COLOR_WARM_WHITE; // white
     else sorted_indexes[COLOR_WHITE_S] = COLOR_WHITE;
 
     if (color_dict[COLOR_RED_S] == 0) sorted_indexes[COLOR_RED_S] = COLOR_RED; //red
@@ -389,8 +389,6 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
     int color_priority[26] = {3, 1, 2, 24, 23, 19, 17, 15, 13, 9, 7, 5, 11, 21, 22, 18, 16, 14, 12, 8, 6, 4, 10, 20, 0, 25};
     get_main_color_of_image(imgData, imgW, imgH, format, area, color_dict, sorted_indexes);
 
-    //for (i = 0; i < 9; i++) LOG_I("color %d has %d pixels", sorted_indexes[i], color_dict[i]);
-
     for (i = 0; i < 9; i++) sum += color_dict[i];
     if (color_dict[0] > sum * 0.7) return (Spectrum_Index)sorted_indexes[0];
     for (i = 0; i < 9; i++) {
@@ -428,9 +426,12 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
     return SPECTRUM_FULL;
 }
 
+
+
 int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY){
-    int radius = imgH / 10;
-    if (radius < 20) radius = 20;
+    //int radius = imgH / 10;
+    //if (radius < 20) radius = 20;
+    int radius = 3;
     int startX = clickX - radius < 0 ? 0: clickX - radius;
     int endX = clickX + radius >= imgW ? imgW - 1: clickX + radius;
     int startY = clickY - radius < 0 ? 0: clickY - radius;
@@ -439,7 +440,6 @@ int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMA
     IMAGE_AREA area = {startX, endX, startY, endY};
     return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }
-
 int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY){
     IMAGE_AREA area = {startX, endX, startY, endY};
     return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
