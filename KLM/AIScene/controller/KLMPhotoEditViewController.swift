@@ -13,10 +13,9 @@ class KLMPhotoEditViewController: UIViewController {
     var startPoint: CGPoint!
     @IBOutlet weak var lightBgView: UIView!
     
+    @IBOutlet weak var lightLab: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    
-    @IBOutlet weak var recipeLab: UILabel!
     
     //图像数据
     var imageData: UnsafeMutablePointer<UInt8>!
@@ -27,7 +26,8 @@ class KLMPhotoEditViewController: UIViewController {
         
         didSet {
             
-            recipeLab.text = "\(currentRecipe)"
+            self.lightBgView.isHidden = false
+            lightLab.isHidden = false
             
             self.lightSlider.isUserInteractionEnabled = true
             //完成
@@ -106,7 +106,6 @@ class KLMPhotoEditViewController: UIViewController {
         lightSlider.currentValue = Float(self.lightValue)
         lightSlider.delegate = self
         self.lightSlider = lightSlider
-        self.lightSlider.isUserInteractionEnabled = false
         lightBgView.addSubview(lightSlider)
     }
     //点选

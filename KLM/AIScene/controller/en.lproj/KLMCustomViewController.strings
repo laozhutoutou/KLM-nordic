@@ -3,7 +3,7 @@
 "9AL-b0-dr7.text" = "Brightness";
 
 /* Class = "UILabel"; text = "颜色增强"; ObjectID = "rUm-lp-4eI"; */
-"rUm-lp-4eI.text" = "Colour enhancement";
+"rUm-lp-4eI.text" = "Quick Selectt";
 
 /* Class = "UILabel"; text = "色温调节"; ObjectID = "zmP-lB-myF"; */
 "zmP-lB-myF.text" = "Colour temperature";

@@ -352,6 +352,8 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
     
     func colorPicker(_ colorPicker: RSColorPickerView!, touchesEnded touches: Set<AnyHashable>!, with event: UIEvent!) {
         
+        ///点击色盘
+        self.ringSelectView.isHidden = true
         let color = colorPicker.selectionColor
         
         let parame = parameModel(dp: .color, value: color!.colorToHexString())
