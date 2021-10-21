@@ -35,7 +35,7 @@ groupMembers = "Group members";
 library = "Photos";
 custom = "Customization";
 restorefactorysettings = "Factory reset";
-basicSetting = "Setting";
+setting = "Settings";
 reName = "Rename";
 groupSetting = "Group setting";
 Energysavingsettings = "Energy saving setting";
@@ -47,3 +47,7 @@ noGroup = "No groups";
 
 searchDeviceTip = "Make sure your devices are powered on and nearby";
 DFUVersionTip = "Latest version";
+
+Devicecoloursensing = "Device colour sensing";
+Software = "Software";
+Version = "Version";

@@ -36,9 +36,9 @@
 		<dict/>
 	</dict>
 	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>For better usage, we will suggest you to give us the permissions to use Bluetooth.</string>
+	<string>We use BlueTooth to control lights. Set light color and brightness.</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>For better usage, we will suggest you to give us the permissions to use Bluetooth.</string>
+	<string>We use BlueTooth to control lights. Set light color and brightness.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>For better usage, we will suggest you to give us the permissions to use Calendars.</string>
 	<key>NSCameraUsageDescription</key>

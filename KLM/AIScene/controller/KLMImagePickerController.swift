@@ -48,8 +48,19 @@ class KLMImagePickerController: UIImagePickerController {
         overLayView.addSubview(closeBtn)
         closeBtn.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(15)
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(30)
             make.width.height.equalTo(30)
+        }
+        
+        ///标题
+        let titleLab: UILabel = UILabel.init()
+        titleLab.font = UIFont.systemFont(ofSize: 15)
+        titleLab.textColor = .white
+        titleLab.text = "Light setting"
+        overLayView.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.centerY.equalTo(closeBtn)
+            make.centerX.equalToSuperview()
         }
         
         //相册

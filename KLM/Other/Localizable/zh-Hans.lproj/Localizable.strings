@@ -35,7 +35,7 @@ groupMembers = "组成员";
 library = "相册";
 custom = "自定义";
 restorefactorysettings = "恢复出厂设置";
-basicSetting = "基础设置";
+setting = "设置";
 reName = "重命名";
 groupSetting = "分组设置";
 Energysavingsettings = "节能设置";
@@ -47,3 +47,7 @@ noGroup = "暂无分组";
 
 searchDeviceTip = "请确保设备已经连接电源，且位于手机附近";
 DFUVersionTip = "最新版本";
+
+Devicecoloursensing = "CMOS颜色识别";
+Software = "软件";
+Version = "版本";

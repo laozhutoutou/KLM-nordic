@@ -46,6 +46,11 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            
+            NotificationCenter.default.post(name: .refreshDeviceEdit, object: nil)
+        }
     }
     
     

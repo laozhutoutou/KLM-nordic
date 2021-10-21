@@ -8,6 +8,20 @@
 import UIKit
 import nRFMeshProvision
 
+private enum itemType: Int {
+    case lightPower = 0
+    case lightSetting
+    case CMOS
+    case motion
+    case test
+    case DFU
+    case rename
+    case group
+    case reset
+    case sigleControl
+    case downLoadPic
+}
+
 class KLMDeviceEditViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -17,19 +31,19 @@ class KLMDeviceEditViewController: UIViewController {
     
     var deviceGroups = [Group]()
     
-    let titles = [LANGLOC("reName"),LANGLOC("groupSetting"),LANGLOC("lightSet")]
-    
     //1 打开
     var cameraSwitch = 1
+    //灯开关
+    var lightSwitch = 0
     
-    ///是否是mcu升级
-    var isMCUUpdate: Bool = false
     ///版本号
     var MCUVersion: Int = 1
     var BLEVersion: Int = 1
     
     //节能开关
     var motionValue: Bool = false
+    //颜色测试
+    var colorTest: Bool  = false
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -58,12 +72,13 @@ class KLMDeviceEditViewController: UIViewController {
         sendFlash()
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupNodeMessage), name: .refreshDeviceEdit, object: nil)
         
     }
     
     func setupUI() {
         
-        self.navigationItem.title = KLMHomeManager.currentNode.nodeName
+        self.navigationItem.title = LANGLOC("setting")
         nameLab.text = KLMHomeManager.currentNode.nodeName
         
         view.backgroundColor = appBackGroupColor
@@ -91,7 +106,7 @@ class KLMDeviceEditViewController: UIViewController {
         self.tableView.reloadData()
     }
     
-    func setupNodeMessage() {
+    @objc func setupNodeMessage() {
         
         SVProgressHUD.show()
         //获取状态
@@ -113,18 +128,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             self.cameraSwitch = value
             self.tableView.reloadData()
             
-            if isMCUUpdate {
-                
-                //跳转到升级页面
-                SVProgressHUD.show()
-                DispatchQueue.main.asyncAfter(deadline: 3) {
-                    SVProgressHUD.dismiss()
-                    self.isMCUUpdate = false
-                    let vc = KLMDFUViewController()
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-            
         }
         
         if message?.dp ==  .checkVersion, let value = message?.value as? String {//查询版本
@@ -143,6 +146,19 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
         if message?.dp ==  .motionPower{
             let value = message?.value as! Int
             self.motionValue = value == 0 ? false : true
+            self.tableView.reloadData()
+        }
+        
+        if message?.dp ==  .colorTest{
+            
+            let value = message?.value as! Int
+            self.colorTest = value == 2 ? false : true
+            self.tableView.reloadData()
+        }
+        if message?.dp ==  .power{
+            
+            let value = message?.value as! Int
+            self.lightSwitch = value
             self.tableView.reloadData()
         }
         
@@ -174,104 +190,82 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         return 56
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 48
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.width, height: 48))
-        view.backgroundColor = .white
-        let lab = UILabel()
-        lab.text = LANGLOC("basicSetting")
-        lab.font = UIFont.systemFont(ofSize: 12)
-        lab.textColor = rgba(0, 0, 0, 0.5)
-        view.addSubview(lab)
-        lab.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(16)
-        }
-        return view
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         switch indexPath.row {
-        case 0, 1, 2:
-            let title: String = titles[indexPath.row]
+        case itemType.lightPower.rawValue:///灯开关
+            let cell: KLMLightOnOffCell = KLMLightOnOffCell.cellWithTableView(tableView: tableView)
+            cell.onOff = self.lightSwitch
+            return cell
+        case itemType.lightSetting.rawValue:
+            
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = title
-            if indexPath.row == 0 {
-                
-                cell.rightTitle = KLMHomeManager.currentNode.nodeName
-                
-            }else if indexPath.row == 1 {
-                
-                if self.deviceGroups.count <= 0 {
-                    let string = LANGLOC("unGroup")
-                    cell.rightTitle = string
-                } else {
-                    var string = ""
-                    for model in self.deviceGroups {
-                        
-                        string = string + model.name + "，"
-                        
-                    }
-                    string.removeLast()
-                    cell.rightTitle = string
-                }
-
-            } else {
-                cell.rightTitle = ""
-            }
+            cell.leftTitle = LANGLOC("lightSet")
+            cell.rightTitle = ""
             return cell
-        case 3:
+        case itemType.CMOS.rawValue:
             let cell: KLMOneSwitchCell = KLMOneSwitchCell.cellWithTableView(tableView: tableView)
             cell.cameraOnOff = self.cameraSwitch
             return cell
-        case 4://节能设置
+        case itemType.motion.rawValue://节能设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
             cell.rightTitle = self.motionValue == false ? "Off" : "On"
             return cell
-        case 5://恢复出厂设置
+        case itemType.rename.rawValue:
+            
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("reName")
+            cell.rightTitle = KLMHomeManager.currentNode.nodeName
+            return cell
+        
+        case itemType.reset.rawValue://恢复出厂设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("restorefactorysettings")
             cell.rightTitle = ""
             return cell
-        case 6://MCU
+        case itemType.DFU.rawValue://MCU
+            ///1.1 代表蓝牙版本是1，MCU版本是1，蓝牙在前面
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "MCU"
-            let first: Int = MCUVersion / 10
-            let second: Int = MCUVersion % 10
-            cell.rightTitle = "Version " + "\(first).\(second)"
+            cell.leftTitle = LANGLOC("Software")
+            cell.rightTitle = LANGLOC("Version ") + "\(BLEVersion).\(MCUVersion)"
             return cell
-        case 7://蓝牙
+        case itemType.test.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "DFU"
-            let first: Int = BLEVersion / 10
-            let second: Int = BLEVersion % 10
-            cell.rightTitle = "Version " + "\(first).\(second)"
+            cell.leftTitle = LANGLOC("Devicecoloursensing") + " test"
+            cell.rightTitle = self.colorTest == false ? "Off" : "On"
             return cell
-        case 8://
+        case itemType.group.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("groupSetting")
+            if self.deviceGroups.count <= 0 {
+                let string = LANGLOC("unGroup")
+                cell.rightTitle = string
+            } else {
+                var string = ""
+                for model in self.deviceGroups {
+                    
+                    string = string + model.name + "，"
+                    
+                }
+                string.removeLast()
+                cell.rightTitle = string
+            }
+            return cell
+        case itemType.sigleControl.rawValue://
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "单独控制"
             cell.rightTitle = ""
             return cell
-        case 9:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "测试"
-            cell.rightTitle = ""
-            return cell
-        case 10:
+        case itemType.downLoadPic.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = "下载图像"
@@ -288,7 +282,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        case 0://设备名称
+        case itemType.rename.rawValue://设备名称
             let vc = CMDeviceNamePopViewController()
             vc.nametype = .nameTypeDevice
             vc.modalPresentationStyle = .overCurrentContext
@@ -301,6 +295,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 if MeshNetworkManager.instance.save() {
                     
+                    self.nameLab.text = KLMHomeManager.currentNode.name
                     self.tableView.reloadData()
                 }
                 
@@ -310,11 +305,11 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }
             present(vc, animated: true, completion: nil)
             
-        case 1://分组
+        case itemType.group.rawValue://分组
             let vc = KLMGroupDeviceAddToViewController()
             navigationController?.pushViewController(vc, animated: true)
             
-        case 2://灯光设置
+        case itemType.lightSetting.rawValue://灯光设置
             //是否有相机权限
             KLMPhotoManager().photoAuthStatus { [weak self] in
                 guard let self = self else { return }
@@ -325,10 +320,10 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
             }
             
-        case 4:
+        case itemType.motion.rawValue:
             let vc = KLMMotionViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 5: //恢复出厂设置
+        case itemType.reset.rawValue: //恢复出厂设置
             let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .actionSheet)
             vc.addAction(UIAlertAction.init(title: "Reset", style: .destructive, handler: { action in
                 SVProgressHUD.show()
@@ -337,41 +332,31 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }))
             vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
-        case 6://MCU
-            if MCUNewestVersion <= MCUVersion {//需要升级MCU
-
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-                return
-
-            }
+        case itemType.DFU.rawValue:
+            //当前版本
+            let currentVersion: String = "\(BLEVersion).\(MCUVersion)"
+            //最新版本
+            let newestVersion: String = "\(BLENewestVersion).\(MCUNewestVersion)"
             
-            //开关是否打开
-            if self.cameraSwitch != 1 {//摄像头关，需要打开，mcu才会打开
-                SVProgressHUD.showInfo(withStatus: "Open MCU")
-                isMCUUpdate = true
-                let parame = parameModel(dp: .cameraPower, value: 1)
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-                return
-            }
-            let vc = KLMDFUViewController()
-            navigationController?.pushViewController(vc, animated: true)
-        case 7://蓝牙
-            
-            if BLENewestVersion <= BLEVersion {//需要升级蓝牙
+            let value = currentVersion.compare(newestVersion)
+            if value == .orderedAscending {//左操作数小于右操作数，需要升级
+                
+                let vc = KLMDFUViewController()
+//                vc.BLEVersion = BLEVersion
+//                vc.MCUVersion = MCUVersion
+                navigationController?.pushViewController(vc, animated: true)
+                
+            } else {
                 
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-                return
-                
             }
-            let vc = KLMBLEDFUViewController()
-            navigationController?.pushViewController(vc, animated: true)
-        case 8://六路测试
+        case itemType.sigleControl.rawValue://六路测试
             let vc = KLMTestViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 9:
+        case itemType.test.rawValue:
             let vc = KLMText1ViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 10:
+        case itemType.downLoadPic.rawValue:
             let vc = KLMTestCameraViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:

@@ -23,6 +23,8 @@ class KLMText1ViewController: UIViewController {
         
         KLMSmartNode.sharedInstacnce.delegate = self
         
+        setupData()
+        
         intervalSlider.value = 30
         waitSlider.value = 3
     }
@@ -34,10 +36,12 @@ class KLMText1ViewController: UIViewController {
         intervalSlider.isEnabled = false
         waitSlider.isEnabled = false
         
-        //发送关指令
-        let string = "02000000"
-        let parame = parameModel(dp: .colorTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    func setupData() {
+        
+        let parame = parameModel(dp: .colorTest)
+        KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         
     }
     
@@ -108,7 +112,12 @@ extension KLMText1ViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        KLMLog("success")
+        if message?.dp ==  .colorTest{
+            
+            let value = message?.value as! Int
+            self.auToSwitch.isOn = value == 2 ? false : true
+            
+        }
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {

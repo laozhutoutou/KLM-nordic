@@ -108,6 +108,8 @@ extension NSNotification.Name {
     static let deviceNameUpdate = NSNotification.Name.init("deviceNameUpdate")
     /// 设备删除成功
     static let deviceReset = NSNotification.Name.init("deviceReset")
+    
+    static let refreshDeviceEdit = NSNotification.Name.init("refreshDeviceEdit")
 }
 
 extension String {

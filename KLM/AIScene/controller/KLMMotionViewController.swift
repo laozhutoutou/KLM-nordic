@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KLMMotionViewController: UIViewController {
+class KLMMotionViewController: UIViewController, Editable {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var timeContentView: UIView!
@@ -58,6 +58,11 @@ class KLMMotionViewController: UIViewController {
         
         setupUI()
         
+        ///显示空白页面
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            self.hideEmptyView()
+        }
     }
     
     func setupUI() {

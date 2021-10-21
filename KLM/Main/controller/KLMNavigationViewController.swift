@@ -17,17 +17,27 @@ class KLMNavigationViewController: UINavigationController, UINavigationControlle
         self.interactivePopGestureRecognizer?.delegate = self
         
         let bar = UINavigationBar.appearance()
-        bar.barTintColor = navigationBarColor
-        bar.isTranslucent = false
         
+        if #available(iOS 15.0, *) {///适配iOS15
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.backgroundColor = navigationBarColor
+            navBarAppearance.shadowColor = UIColor.clear
+            bar.standardAppearance = navBarAppearance
+            bar.scrollEdgeAppearance = navBarAppearance
+        } else {
+            
+            bar.barTintColor = navigationBarColor
+            //去掉导航栏横线
+            bar.setBackgroundImage(UIImage(), for: .default)
+            bar.shadowImage = UIImage()
+            
+        }
+        //不透明
+        bar.isTranslucent = false
+
         let barTitleDic = [NSAttributedString.Key.foregroundColor:UIColor.black,
                            NSAttributedString.Key.font:UIFont.systemFont(ofSize: 17)]
         bar.titleTextAttributes = barTitleDic
-        
-        //去掉导航栏横线
-        bar.setBackgroundImage(UIImage(), for: .default)
-        bar.shadowImage = UIImage()
-        
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {

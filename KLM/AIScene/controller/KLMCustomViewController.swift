@@ -204,7 +204,7 @@ class KLMCustomViewController: UIViewController {
         
         isFinish = true
         
-        let string = "000001"
+        let string = "000003"
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {

@@ -45,7 +45,7 @@ class KLMBLEDFUViewController: UIViewController {
             //未能找到设备
             if !self.isFineDevice {
                 SVProgressHUD.showError(withStatus: LANGLOC("searchDeviceTip"))
-//                self.centralManager.stopScan()
+
             }
         }
     }

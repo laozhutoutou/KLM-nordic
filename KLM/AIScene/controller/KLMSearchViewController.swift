@@ -99,7 +99,10 @@ class KLMSearchViewController: UIViewController {
         self.searchLists.removeAll()
         let network = MeshNetworkManager.instance.meshNetwork!
         let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
-        self.searchLists = notConfiguredNodes.filter({ ($0.name?.contains(self.searchBar.text!))!})
+        self.searchLists = notConfiguredNodes.filter({
+//            ($0.name?.contains(self.searchBar.text!))!
+            ($0.name?.range(of: self.searchBar.text!, options: .caseInsensitive) != nil)
+        })
         self.tableView.reloadData()
     }
 }
