@@ -285,6 +285,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.rename.rawValue://设备名称
             let vc = CMDeviceNamePopViewController()
             vc.nametype = .nameTypeDevice
+            vc.text = KLMHomeManager.currentNode.name
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             vc.nameBlock = {[weak self] name in

@@ -84,7 +84,7 @@ class KLMSmartNode: NSObject {
                 
             } catch {
                 var err = MessageError()
-                err.message = error.localizedDescription
+                err.message = "Connection failed"
                 self.delegate?.smartNode(self, didfailure: err)
                 
             }
@@ -107,7 +107,7 @@ class KLMSmartNode: NSObject {
             } catch  {
                 
                 var err = MessageError()
-                err.message = error.localizedDescription
+                err.message = "Connection failed"
                 self.delegate?.smartNode(self, didfailure: err)
             }
         }

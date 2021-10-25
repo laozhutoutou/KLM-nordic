@@ -20,7 +20,7 @@ protocol KLMSIGMeshManagerDelegate: AnyObject {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node)
     
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?)
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?)
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage)
 }
@@ -31,7 +31,7 @@ extension KLMSIGMeshManagerDelegate {
         // This method is optional.
     }
     
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?){
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
         // This method is optional.
         
     }
@@ -181,7 +181,9 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     
     func provisionManager(_ manager: KLMProvisionManager, didFailChange error: Error?) {
         
-        self.delegate?.sigMeshManager(self, didFailToActiveDevice: error)
+        var err = MessageError()
+        err.message = error?.localizedDescription
+        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }
     
     func provisionManagerNodeAddSuccess(_ manager: KLMProvisionManager) {
@@ -216,7 +218,9 @@ extension KLMSIGMeshManager: BearerDelegate {
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         
         SVProgressHUD.dismiss()
-        self.delegate?.sigMeshManager(self, didFailToActiveDevice: error)
+        var err = MessageError()
+        err.message = error?.localizedDescription
+        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
         
     }
 }
@@ -289,7 +293,9 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
         //失败停止定时器
         stopTime()
         SVProgressHUD.dismiss()
-        self.delegate?.sigMeshManager(self, didFailToActiveDevice: error)
+        var err = MessageError()
+        err.message = error.localizedDescription
+        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager,

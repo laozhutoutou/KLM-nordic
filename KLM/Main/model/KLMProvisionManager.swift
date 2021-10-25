@@ -111,8 +111,11 @@ extension KLMProvisionManager: GattBearerDelegate {
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         KLMLog("unprovision bearer close")
         guard case .complete = provisioningManager.state else {
-            KLMShowError(error)
             
+            var err = MessageError()
+            err.message = error?.localizedDescription
+            KLMShowError(err)
+        
             return
         }
         //节点添加完成

@@ -147,7 +147,9 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                         
                     }
                 } catch {
-                    KLMShowError(error)
+                    var err = MessageError()
+                    err.message = error.localizedDescription
+                    KLMShowError(err)
                     
                 }
                 

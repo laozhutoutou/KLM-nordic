@@ -198,7 +198,7 @@ extension KLMSearchViewController: KLMSIGMeshManagerDelegate {
         
     }
     
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: Error?){
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
         
         KLMShowError(error)
     }

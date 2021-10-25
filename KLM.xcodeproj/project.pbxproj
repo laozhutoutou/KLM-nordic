@@ -174,6 +174,7 @@
 		E4EC661626EEF1BF007503AB /* KLMExportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EC661426EEF1BF007503AB /* KLMExportViewController.xib */; };
 		E4EC661926EEF8BA007503AB /* KLMImportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC661726EEF8BA007503AB /* KLMImportViewController.swift */; };
 		E4EC661A26EEF8BA007503AB /* KLMImportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EC661826EEF8BA007503AB /* KLMImportViewController.xib */; };
+		E4F5073A27268A4800345380 /* KLMSearchDeviceEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F5073927268A4800345380 /* KLMSearchDeviceEmptyView.swift */; };
 		E4FE0CDE271FB6CC001EEABD /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FE0CDD271FB6CC001EEABD /* EmptyView.swift */; };
 		E4FE0CE1271FB99A001EEABD /* KLMLightOnOffCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FE0CDF271FB999001EEABD /* KLMLightOnOffCell.swift */; };
 		E4FE0CE3271FB9AA001EEABD /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
@@ -436,6 +437,7 @@
 		E4EC661426EEF1BF007503AB /* KLMExportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMExportViewController.xib; sourceTree = "<group>"; };
 		E4EC661726EEF8BA007503AB /* KLMImportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMImportViewController.swift; sourceTree = "<group>"; };
 		E4EC661826EEF8BA007503AB /* KLMImportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMImportViewController.xib; sourceTree = "<group>"; };
+		E4F5073927268A4800345380 /* KLMSearchDeviceEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLMSearchDeviceEmptyView.swift; sourceTree = "<group>"; };
 		E4FE0CDD271FB6CC001EEABD /* EmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		E4FE0CDF271FB999001EEABD /* KLMLightOnOffCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLMLightOnOffCell.swift; sourceTree = "<group>"; };
 		E4FE0CE4271FB9AA001EEABD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMLightOnOffCell.xib; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 				E49B42DC26C21D1E0056C7EE /* KLMOneSwitchCell.xib */,
 				E4FE0CDF271FB999001EEABD /* KLMLightOnOffCell.swift */,
 				E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */,
+				E4F5073927268A4800345380 /* KLMSearchDeviceEmptyView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1277,6 +1280,7 @@
 				E4E28448269F0052006C120E /* Address+String.swift in Sources */,
 				E492AD2D267C83C50028AF3E /* HanyuPinyinOutputFormat.m in Sources */,
 				E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */,
+				E4F5073A27268A4800345380 /* KLMSearchDeviceEmptyView.swift in Sources */,
 				E495D11C2678586900AA50B9 /* KLMGroupSelectCell.swift in Sources */,
 				E4377E3926845DBA00F8DF0C /* KLMRefreshHeader.swift in Sources */,
 				E4A1AD27270309B900E391FA /* OpenGLView20.m in Sources */,

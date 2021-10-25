@@ -94,9 +94,9 @@ func LANGLOC(_ key : String) -> String{
 let disposeBag = DisposeBag()
 
 //error HUD
-func KLMShowError(_ error: Error?) {
+func KLMShowError(_ error: MessageError?) {
     
-    SVProgressHUD.showError(withStatus: error?.localizedDescription)
+    SVProgressHUD.showError(withStatus: error?.message)
     
 }
 
