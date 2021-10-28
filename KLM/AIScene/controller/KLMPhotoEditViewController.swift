@@ -281,7 +281,7 @@ class KLMPhotoEditViewController: UIViewController {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
-                SVProgressHUD.showSuccess(withStatus: "success")
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
                 DispatchQueue.main.asyncAfter(deadline: 1) {
                     
@@ -316,7 +316,7 @@ extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         if isFinish {
             
-            SVProgressHUD.showSuccess(withStatus: "success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
             DispatchQueue.main.asyncAfter(deadline: 1) {
                 

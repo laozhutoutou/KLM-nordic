@@ -145,7 +145,7 @@ class KLMAddDeviceViewController: UIViewController {
         
         ///正式APP
         let vc = CMDeviceNamePopViewController()
-        vc.nametype = .nameTypeNewDevice
+        vc.titleName = LANGLOC("Light")
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = { [weak self] name in

@@ -161,7 +161,7 @@ extension KLMGroupDeviceEditViewController: KLMMessageManagerDelegate {
             return
         }
         
-        SVProgressHUD.showSuccess(withStatus: "success")
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         NotificationCenter.default.post(name: .deviceRemoveFromGroup, object: nil)
         
         self.setupData()

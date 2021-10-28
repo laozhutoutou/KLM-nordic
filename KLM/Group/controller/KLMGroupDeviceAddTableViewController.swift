@@ -114,7 +114,7 @@ extension KLMGroupDeviceAddTableViewController: KLMMessageManagerDelegate {
             return
         }
         
-        SVProgressHUD.showSuccess(withStatus: "success")
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         NotificationCenter.default.post(name: .deviceAddToGroup, object: nil)
         self.navigationController?.popViewController(animated: true)
     }

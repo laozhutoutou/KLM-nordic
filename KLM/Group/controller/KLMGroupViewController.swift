@@ -46,7 +46,7 @@ class KLMGroupViewController: UIViewController {
     @objc func moreClick() {
         
         let vc = CMDeviceNamePopViewController()
-        vc.nametype = .nameTypeNewGroup
+        vc.titleName = LANGLOC("Group")
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = {[weak self] name in
@@ -65,7 +65,7 @@ class KLMGroupViewController: UIViewController {
                     
                     if MeshNetworkManager.instance.save() {
                         
-                        SVProgressHUD.showSuccess(withStatus: "success")
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
                     }
                 }
@@ -142,7 +142,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                     try network.remove(group: model)
                     
                     if MeshNetworkManager.instance.save() {
-                        SVProgressHUD.showSuccess(withStatus: "success")
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
                         
                     }

@@ -3,10 +3,10 @@
 "DVa-Zv-cWg.text" = "节能亮度";
 
 /* Class = "UILabel"; text = "自动节能"; ObjectID = "RjT-Rm-UpP"; */
-"RjT-Rm-UpP.text" = "自动节能（min）";
+"RjT-Rm-UpP.text" = "自动节能（分钟）";
 
 /* Class = "UIButton"; normalTitle = "确定"; ObjectID = "rdP-wX-Aav"; */
 "rdP-wX-Aav.normalTitle" = "确定";
 
 /* Class = "UILabel"; text = "自动节能"; ObjectID = "SAl-A2-toj"; */
-"SAl-A2-toj.text" = "自动节能";
+"SAl-A2-toj.text" = "节能设置";

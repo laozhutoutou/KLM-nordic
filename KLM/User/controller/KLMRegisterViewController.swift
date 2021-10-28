@@ -33,7 +33,7 @@ class KLMRegisterViewController: UIViewController {
         
         KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
             
-            SVProgressHUD.showSuccess(withStatus: "success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
         } failure: { error in
             KLMHttpShowError(error)

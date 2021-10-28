@@ -41,7 +41,7 @@ class KLMHelpViewController: UIViewController {
             
         }
         
-        SVProgressHUD.showSuccess(withStatus: "Success")
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             self.navigationController?.popViewController(animated: true)
         }

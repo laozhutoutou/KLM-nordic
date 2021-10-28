@@ -40,15 +40,7 @@ class KLMMotionViewController: UIViewController, Editable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isAllNodes {
-            
-            navigationItem.title = LANGLOC("allDeviceAutoEnergysaving")
-            
-        } else {
-            
-            navigationItem.title = LANGLOC("Energysavingsettings")
-        }
-        
+        navigationItem.title = LANGLOC("Energysavingsettings")
         
         view.backgroundColor = appBackGroupColor
         contentView.backgroundColor = appBackGroupColor
@@ -123,69 +115,18 @@ class KLMMotionViewController: UIViewController, Editable {
     
     @IBAction func autoDimValue(_ sender: UISwitch) {
         
-        SVProgressHUD.show()
-        let value: Int = sender.isOn == true ? 1 : 0
-        //发送指令
-        let parame1 = parameModel(dp: .motionPower, value: value)
-        
-        if isAllNodes {
+        if sender.isOn == false {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame1) {
-                SVProgressHUD.dismiss()
-                //存储在本地
-                KLMSetUserDefault("motionPower", value)
-                self.contentView.isHidden = value == 0 ? true : false
+            SVProgressHUD.show()
+            //发送关闭指令
+            let parame1 = parameModel(dp: .motionPower, value: 0)
+            if isAllNodes {
                 
-            } failure: { error in
-                
-                KLMShowError(error)
-            }
-            
-        } else {
-            
-            KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
-        }
-    }
-    
-    @IBAction func Comfirm(_ sender: Any) {
-        
-        SVProgressHUD.show()
-        //发送指令
-        let parame1 = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
-        
-        if isAllNodes {
-            
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame1) {
-                
-                print("success")
-                
-            } failure: { error in
-                
-                KLMShowError(error)
-            }
-            
-        } else {
-            
-            KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
-        }
-        
-        ///
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
-            let parame = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-            
-            if self.isAllNodes {
-                
-                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
-                    
-                    print("success")
-                    SVProgressHUD.showSuccess(withStatus: "Success")
-                    //存储当前设定值
-                    KLMSetUserDefault("motionTime", Int(self.timeSlider.currentValue))
-                    KLMSetUserDefault("motionLight", Int(self.lightSlider.currentValue))
-                    DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                        self.navigationController?.popViewController(animated: true)
-                    }
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame1) {
+                    SVProgressHUD.dismiss()
+                    //存储在本地
+                    KLMSetUserDefault("motionPower", 0)
+                    self.contentView.isHidden = true
                     
                 } failure: { error in
                     
@@ -193,8 +134,84 @@ class KLMMotionViewController: UIViewController, Editable {
                 }
                 
             } else {
-                self.isClickComfirm = true
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+                
+                KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
+            }
+        } else {
+            
+            contentView.isHidden = false
+        }
+    }
+    
+    @IBAction func Comfirm(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        
+        //发送打开指令
+        if isAllNodes {
+            
+            let parameOn = parameModel(dp: .motionPower, value: 1)
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
+                
+                print("success")
+                KLMSetUserDefault("motionPower", 1)
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+        } else {
+            
+            let parameOn = parameModel(dp: .motionPower, value: 1)
+            KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+            
+            let parame1 = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+            if self.isAllNodes {
+                
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame1) {
+                    
+                    print("success")
+                    KLMSetUserDefault("motionLight", Int(self.lightSlider.currentValue))
+                    
+                } failure: { error in
+                    
+                    KLMShowError(error)
+                }
+                
+            } else {
+                
+                KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                
+                let parame = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
+                
+                if self.isAllNodes {
+                    
+                    KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                        
+                        print("success")
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        //存储当前设定值
+                        KLMSetUserDefault("motionTime", Int(self.timeSlider.currentValue))
+                        
+                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        
+                    } failure: { error in
+                        
+                        KLMShowError(error)
+                    }
+                    
+                } else {
+                    self.isClickComfirm = true
+                    KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+                }
             }
         }
     }
@@ -205,6 +222,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
+        SVProgressHUD.dismiss()
         if message?.dp ==  .motionTime{
             if motionTimeFirst {
                 motionTimeFirst = false
@@ -221,7 +239,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
                 
             }
         } else if message?.dp ==  .motionPower{
-            SVProgressHUD.dismiss()
+            
             let value = message?.value as! Int
             self.autoDim.isOn = value == 0 ? false : true
             contentView.isHidden = value == 0 ? true : false
@@ -230,7 +248,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
         
         //单设备确定
         if isClickComfirm {
-            SVProgressHUD.showSuccess(withStatus: "Success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 self.navigationController?.popViewController(animated: true)
             }

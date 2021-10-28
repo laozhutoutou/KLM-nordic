@@ -56,7 +56,7 @@ class KLMImagePickerController: UIImagePickerController {
         let titleLab: UILabel = UILabel.init()
         titleLab.font = UIFont.systemFont(ofSize: 15)
         titleLab.textColor = .white
-        titleLab.text = "Light setting"
+        titleLab.text = LANGLOC("lightSet")
         overLayView.addSubview(titleLab)
         titleLab.snp.makeConstraints { make in
             make.centerY.equalTo(closeBtn)

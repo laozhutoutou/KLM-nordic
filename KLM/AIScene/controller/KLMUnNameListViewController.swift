@@ -151,10 +151,10 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
     
     func longPress(model: Node) {
         
-        let alert = UIAlertController(title: "Remove Node",
-                                      message: "The node will only be removed from the local database. It will still be able to send and receive messages from the network. Remove the node only if the device is no longer available.",
+        let alert = UIAlertController(title: LANGLOC("deleteDevice"),
+                                      message: LANGLOC("deleteDeviceTip"),
                                       preferredStyle: .actionSheet)
-        let resetAction = UIAlertAction(title: "Remove", style: .destructive) { _ in
+        let resetAction = UIAlertAction(title: LANGLOC("delete"), style: .destructive) { _ in
             MeshNetworkManager.instance.meshNetwork!.remove(node: model)
             
             if MeshNetworkManager.instance.save() {
@@ -162,7 +162,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
                 self.setupData()
             } 
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
         alert.addAction(resetAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)

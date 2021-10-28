@@ -8,7 +8,7 @@
 import UIKit
 import nRFMeshProvision
 
-private enum itemType: Int {
+private enum itemType: Int, CaseIterable {
     case lightPower = 0
     case lightSetting
     case CMOS
@@ -108,7 +108,6 @@ class KLMDeviceEditViewController: UIViewController {
     
     @objc func setupNodeMessage() {
         
-        SVProgressHUD.show()
         //获取状态
         let parameTime = parameModel(dp: .AllDp)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
@@ -167,7 +166,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
         
-        SVProgressHUD.showSuccess(withStatus: "success")
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         NotificationCenter.default.post(name: .deviceReset, object: nil)
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -181,7 +180,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 11
+        return itemType.allCases.count
         
     }
     
@@ -212,7 +211,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = self.motionValue == false ? "Off" : "On"
+            cell.rightTitle = self.motionValue == false ? LANGLOC("OFF") : LANGLOC("ON")
             return cell
         case itemType.rename.rawValue:
             
@@ -238,8 +237,8 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.test.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Devicecoloursensing") + " test"
-            cell.rightTitle = self.colorTest == false ? "Off" : "On"
+            cell.leftTitle = LANGLOC("Devicecoloursensing") + LANGLOC("Test")
+            cell.rightTitle = self.colorTest == false ? LANGLOC("OFF") : LANGLOC("ON")
             return cell
         case itemType.group.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -284,7 +283,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.row {
         case itemType.rename.rawValue://设备名称
             let vc = CMDeviceNamePopViewController()
-            vc.nametype = .nameTypeDevice
+            vc.titleName = LANGLOC("Light")
             vc.text = KLMHomeManager.currentNode.name
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
@@ -326,14 +325,14 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             navigationController?.pushViewController(vc, animated: true)
         case itemType.reset.rawValue: //恢复出厂设置
             let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .actionSheet)
-            vc.addAction(UIAlertAction.init(title: "Reset", style: .destructive, handler: { action in
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .destructive, handler: { action in
                 SVProgressHUD.show()
                 KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
 
             }))
-            vc.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
-        case itemType.DFU.rawValue:
+        case itemType.DFU.rawValue:///固件更新
             //当前版本
             let currentVersion: String = "\(BLEVersion).\(MCUVersion)"
             //最新版本
@@ -343,8 +342,8 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
                 
                 let vc = KLMDFUViewController()
-//                vc.BLEVersion = BLEVersion
-//                vc.MCUVersion = MCUVersion
+                vc.BLEVersion = BLEVersion
+                vc.MCUVersion = MCUVersion
                 navigationController?.pushViewController(vc, animated: true)
                 
             } else {

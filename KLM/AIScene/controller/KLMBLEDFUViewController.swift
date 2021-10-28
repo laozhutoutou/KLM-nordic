@@ -111,7 +111,7 @@ extension KLMBLEDFUViewController: DFUServiceDelegate {
             
         case .completed:
             KLMLog("completed")
-            SVProgressHUD.showSuccess(withStatus: "success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 1) {
                 self.navigationController?.popToRootViewController(animated: true)
             }

@@ -10,20 +10,13 @@ import UIKit
 typealias NameBlock = (_ name: String) -> Void
 
 class CMDeviceNamePopViewController: UIViewController {
-
+    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleNameLab: UILabel!
     
     var text: String?
-    
-    var nametype: NameType?
-    enum NameType: String {
-        case nameTypeNewGroup = "Create new group"
-        case nameTypeDevice = "Device"
-        case nameTypeReName = "Rename group"
-        case nameTypeNewDevice = "Create new device"
-    }
+    var titleName: String = ""
     
     var nameBlock: NameBlock?
     
@@ -37,8 +30,7 @@ class CMDeviceNamePopViewController: UIViewController {
         
         contentView.layer.cornerRadius = 8
         
-        titleNameLab.text = self.nametype?.rawValue
-        
+        titleNameLab.text = titleName
         textField.text = text
     }
 

@@ -78,7 +78,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             //修改组名称
             let vc = CMDeviceNamePopViewController()
-            vc.nametype = .nameTypeReName
+            vc.titleName = LANGLOC("Group")
             vc.text = self.group.name
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve

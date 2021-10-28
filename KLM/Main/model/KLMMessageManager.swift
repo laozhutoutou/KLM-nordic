@@ -194,7 +194,7 @@ class KLMMessageTime {
         currentTime += 1
         if currentTime > messageTimeout {//超时
             stopTime() 
-            SVProgressHUD.showError(withStatus: "Time out")
+            SVProgressHUD.showError(withStatus: LANGLOC("Timeout"))
         }
     }
     

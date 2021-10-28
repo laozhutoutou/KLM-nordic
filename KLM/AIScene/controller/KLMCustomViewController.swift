@@ -141,7 +141,7 @@ class KLMCustomViewController: UIViewController {
     
     func setColorItems() {
         
-        let colorArray = [UIColor.white, UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.cyan, UIColor.blue, UIColor.purple]
+        let colorArray = [UIColor.white, UIColor.red, UIColor.orange, UIColor.yellow, UIColor.green, UIColor.cyan, UIColor.blue, rgb(255, 0, 255)]
         var btnArray = [UIButton]()
         for (i, color) in colorArray.enumerated() {
             
@@ -215,7 +215,7 @@ class KLMCustomViewController: UIViewController {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
-                SVProgressHUD.showSuccess(withStatus: "success")
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
                 DispatchQueue.main.asyncAfter(deadline: 1) {
                     
@@ -274,7 +274,7 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
         
         if isFinish {
             
-//            SVProgressHUD.showSuccess(withStatus: "success")
+//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
             //获取根VC
             var  rootVC =  self.presentingViewController

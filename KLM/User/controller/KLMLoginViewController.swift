@@ -22,7 +22,7 @@ class KLMLoginViewController: UIViewController {
         
         KLMService.login(username: mailTextField.text!, password: passTextField.text!) { _ in
             
-            SVProgressHUD.showSuccess(withStatus: "success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
         } failure: { error in
             

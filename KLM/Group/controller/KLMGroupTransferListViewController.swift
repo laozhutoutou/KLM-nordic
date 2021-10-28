@@ -73,7 +73,7 @@ class KLMGroupTransferListViewController: UIViewController {
     @objc func newGroup() {
         
         let vc = CMDeviceNamePopViewController()
-        vc.nametype = .nameTypeNewGroup
+        vc.titleName = LANGLOC("Group")
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = {[weak self] name in
@@ -93,7 +93,7 @@ class KLMGroupTransferListViewController: UIViewController {
                     
                     if MeshNetworkManager.instance.save() {
                         
-                        SVProgressHUD.showSuccess(withStatus: "success")
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
                         self.setupData()
                     }
@@ -129,7 +129,7 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
         //设备移除成功
         if self.deviceStatus == .deviceDeleteFromGroup {
             
-            SVProgressHUD.showSuccess(withStatus: "success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 1) {
                 NotificationCenter.default.post(name: .deviceTransferSuccess, object: nil)
                 self.navigationController?.popViewController(animated: true)

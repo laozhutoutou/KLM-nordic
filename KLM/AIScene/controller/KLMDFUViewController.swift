@@ -55,6 +55,8 @@ class KLMDFUViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = LANGLOC("Softwareupdate")
+        
         if BLEVersion >= BLENewestVersion {
             updateTy = .MCUUpdate
         }
@@ -375,7 +377,7 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
                 if updateTy == .MCUUpdate {
                     
                     DispatchQueue.main.asyncAfter(deadline: 4) {
-                        SVProgressHUD.showSuccess(withStatus: "Update complete")
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
                         DispatchQueue.main.asyncAfter(deadline: 1) {
                             
                             self.navigationController?.popViewController(animated: true)
@@ -415,7 +417,7 @@ extension KLMDFUViewController: DFUServiceDelegate {
             
         case .completed:
             KLMLog("蓝牙更新完成")
-            SVProgressHUD.showSuccess(withStatus: "success")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 1) {
                 self.navigationController?.popToRootViewController(animated: true)
             }
