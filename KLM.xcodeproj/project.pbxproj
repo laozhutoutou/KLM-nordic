@@ -100,8 +100,6 @@
 		E49B42E926C21DAF0056C7EE /* KLMAPPUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42EB26C21DAF0056C7EE /* KLMAPPUpdateViewController.xib */; };
 		E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42F026C21DD20056C7EE /* KLMHelpViewController.xib */; };
 		E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42F526C21E150056C7EE /* KLMSettingSwichCell.xib */; };
-		E49B7B9626D4F0F6004602C1 /* KLMBLEDFUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */; };
-		E49B7B9726D4F0F6004602C1 /* KLMBLEDFUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B7B9526D4F0F6004602C1 /* KLMBLEDFUViewController.xib */; };
 		E4A1AD27270309B900E391FA /* OpenGLView20.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A1AD26270309B900E391FA /* OpenGLView20.m */; };
 		E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */; };
 		E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */; };
@@ -343,8 +341,6 @@
 		E49B430B26C24E8E0056C7EE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMAPPUpdateViewController.strings"; sourceTree = "<group>"; };
 		E49B430D26C24E920056C7EE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMHelpViewController.strings"; sourceTree = "<group>"; };
 		E49B430F26C24E990056C7EE /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMSettingSwichCell.strings"; sourceTree = "<group>"; };
-		E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBLEDFUViewController.swift; sourceTree = "<group>"; };
-		E49B7B9526D4F0F6004602C1 /* KLMBLEDFUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBLEDFUViewController.xib; sourceTree = "<group>"; };
 		E4A1AD25270309B900E391FA /* OpenGLView20.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLView20.h; sourceTree = "<group>"; };
 		E4A1AD26270309B900E391FA /* OpenGLView20.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGLView20.m; sourceTree = "<group>"; };
 		E4A65F2B266F0D8C00FE6866 /* KLMUnNameListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUnNameListViewController.swift; sourceTree = "<group>"; };
@@ -538,8 +534,6 @@
 				E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */,
 				E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */,
 				E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */,
-				E49B7B9426D4F0F6004602C1 /* KLMBLEDFUViewController.swift */,
-				E49B7B9526D4F0F6004602C1 /* KLMBLEDFUViewController.xib */,
 				E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */,
 				E49B42BE26C21A4A0056C7EE /* KLMMotionViewController.xib */,
 				E4762C53269559F300100312 /* KLMImagePickerController.swift */,
@@ -1173,7 +1167,6 @@
 				E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */,
 				E49B42DF26C21D4F0056C7EE /* KLMGroupTransferListViewController.xib in Resources */,
 				E48B6410270FF00300C2BC27 /* KLMGroupDeviceAddCell.xib in Resources */,
-				E49B7B9726D4F0F6004602C1 /* KLMBLEDFUViewController.xib in Resources */,
 				E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
 				E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */,
@@ -1356,7 +1349,6 @@
 				E4A65FD22670B06400FE6866 /* BitmapRotationManipulator.m in Sources */,
 				E495D13126788B2700AA50B9 /* KLMSettingSwichCell.swift in Sources */,
 				E4AA543A2711A2B100CDC695 /* YUV.swift in Sources */,
-				E49B7B9626D4F0F6004602C1 /* KLMBLEDFUViewController.swift in Sources */,
 				E476177D26DE11A9008225BB /* KLMLaoHuaTestViewController.swift in Sources */,
 				E4750A1626C118A800AA4C32 /* CMTextView.m in Sources */,
 				E4A6606B2672FFAB00FE6866 /* protocol.swift in Sources */,

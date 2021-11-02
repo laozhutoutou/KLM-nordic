@@ -119,12 +119,11 @@ class KLMAddDeviceViewController: UIViewController {
         
         KLMSIGMeshManager.sharedInstacnce.startScan(scanType: .ScanForUnprovision)
         
-        DispatchQueue.main.asyncAfter(deadline: 30){
+        DispatchQueue.main.asyncAfter(deadline: 20){
             
-            if self.isHaveDevice {
-
+            if self.isHaveDevice == false { //没有设备
+                
                 self.noFoundDevice()
-
             }
 
         }
