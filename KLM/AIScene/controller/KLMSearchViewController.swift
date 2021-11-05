@@ -59,7 +59,8 @@ class KLMSearchViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-
+        
+        getHistoryData()
     }
     
     func setupUI() {
@@ -76,6 +77,16 @@ class KLMSearchViewController: UIViewController {
         self.view.addSubview(self.tableView)
         
         self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(pushBack)) as? [UIBarButtonItem]
+    }
+    
+    func getHistoryData() {
+        
+        KLMService.getHistoryData(page: "1", limit: "20") { response in
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+
     }
     
     @objc func pushBack() {
@@ -97,13 +108,15 @@ class KLMSearchViewController: UIViewController {
         
         
         self.searchLists.removeAll()
-        let network = MeshNetworkManager.instance.meshNetwork!
-        let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
-        self.searchLists = notConfiguredNodes.filter({
-//            ($0.name?.contains(self.searchBar.text!))!
-            ($0.name?.range(of: self.searchBar.text!, options: .caseInsensitive) != nil)
-        })
-        self.tableView.reloadData()
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
+            self.searchLists = notConfiguredNodes.filter({
+                ($0.name?.range(of: self.searchBar.text!, options: .caseInsensitive) != nil)
+            })
+            self.tableView.reloadData()
+        }
+        
     }
 }
 
@@ -120,16 +133,23 @@ extension KLMSearchViewController: CMSearchBarDelegate {
         let (err, str) = isEmptyString(text: searchBar.text)
         if err == false {
             
-            var list:[String] = KLMHomeManager.getHistoryLists()
-            //过滤重复记录
-            for string in list {
-                if string == str {
-                    return
-                }
+            KLMService.addSearch(searchContent: str) { response in
+                
+            } failure: { error in
+                
             }
-            list.insert(str, at: 0)
-            KLMHomeManager.cacheHistoryLists(list: list)
-            self.historyView.reloadData()
+
+            
+//            var list:[String] = KLMHomeManager.getHistoryLists()
+//            //过滤重复记录
+//            for string in list {
+//                if string == str {
+//                    return
+//                }
+//            }
+//            list.insert(str, at: 0)
+//            KLMHomeManager.cacheHistoryLists(list: list)
+//            self.historyView.reloadData()
             
         }
         

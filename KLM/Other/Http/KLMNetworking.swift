@@ -79,6 +79,15 @@ class KLMNetworking: NSObject {
             
         } failure: { task, error in
             SVProgressHUD.dismiss()
+            KLMLog(error)
+            let errors: NSError = error as NSError
+            if errors.code == -1011 {///token过期，重新登录
+                ///清空数据
+                KLMSetUserDefault("token", nil)
+                
+                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                appdelegate.enterLoginUI()
+            }
             
             let resultDic = ["error": error.localizedDescription]
             let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
@@ -117,7 +126,7 @@ class KLMNetworking: NSObject {
             
         } failure: { task, error in
             SVProgressHUD.dismiss()
-            
+            KLMLog(error)
             let resultDic = ["error": error.localizedDescription]
             let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
             completion(nil, error)
@@ -192,6 +201,22 @@ class KLMService: NSObject {
         }
     }
     
+    static func addMesh(meshName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let config = KLMMesh.createMesh()
+        let parame = ["meshName": meshName,
+                      "meshConfiguration": config
+                    ]
+        KLMNetworking.POST(URLString: KLMUrl("api/mesh"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject!)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
     static func addSearch(searchContent: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["searchContent": searchContent
@@ -200,6 +225,33 @@ class KLMService: NSObject {
             
             if error == nil {
                 success(responseObject!)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func getHistoryData(page: String, limit: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["page": page,
+                      "limit": limit
+                    ]
+        KLMNetworking.POST(URLString: KLMUrl("api/search/page"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                var datas: [String] = [String]()
+                if let data = responseObject?["data"] as? [AnyObject] {
+                    
+                    for item in data {
+                        
+                        if let dic: [String: AnyObject] = item as? [String : AnyObject], let searchContent: String = dic["searchContent"] as? String {
+                            datas.append(searchContent)
+                        }
+                    }
+                }
+                
+                success(["datas": datas as AnyObject])
             } else {
                 failure(error!)
             }

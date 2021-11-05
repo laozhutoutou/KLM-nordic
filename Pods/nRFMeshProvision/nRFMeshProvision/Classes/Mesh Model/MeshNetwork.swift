@@ -118,7 +118,7 @@ public class MeshNetwork: Codable {
         }
     }
     
-    internal init(name: String, uuid: UUID = UUID()) {
+    public init(name: String, uuid: UUID = UUID()) {
         self.uuid              = uuid
         self.meshName          = name
         self.isPartial         = false

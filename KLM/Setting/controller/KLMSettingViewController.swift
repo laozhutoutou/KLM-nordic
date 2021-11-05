@@ -12,9 +12,9 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    let images = [["icon_language","icon_enegy_save"],["icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]]
+    let images = ["icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
 //    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice"),"Export","Import"]]
-    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice")]]
+    let titles = [LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), "家庭管理"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +26,12 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return titles.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return titles[section].count
+        return titles.count
         
     }
     
@@ -42,18 +42,18 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
-        return 20
+        return 0.01
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 0 && indexPath.row == 0 {
+        if indexPath.row == 0 {
          
             let cell: KLMSettingSwichCell = KLMSettingSwichCell.cellWithTableView(tableView: tableView)
             return cell
         }
-        let title: String = titles[indexPath.section][indexPath.row]
-        let image: String = images[indexPath.section][indexPath.row]
+        let title: String = titles[indexPath.row]
+        let image: String = images[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.leftTitle = title
         cell.leftImage = image
@@ -63,42 +63,27 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch indexPath.section {
-        case 0:
-            if indexPath.row == 0 {//语言
-                
-                
-            }else{//所有灯感应设置
-                if !MeshNetworkManager.bearer.isOpen {
-                    SVProgressHUD.showInfo(withStatus: "Connecting...")
-                    return
-                }
-                
-                let vc = KLMMotionViewController()
-                vc.isAllNodes = true
-                navigationController?.pushViewController(vc, animated: true)
-                
-            }
+        switch indexPath.row {
         case 1:
-            if indexPath.row == 0 {//检查更新
-                
-                let vc = KLMAPPUpdateViewController()
-                navigationController?.pushViewController(vc, animated: true)
-                
-            }else if indexPath.row == 1{ //帮助建议
-                
-                let vc = KLMHelpViewController()
-                navigationController?.pushViewController(vc, animated: true)
-                
-            } else if indexPath.row == 2{
-                
-                let vc = KLMExportViewController()
-                navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = KLMImportViewController()
-                navigationController?.pushViewController(vc, animated: true)
-                
+            
+            if !MeshNetworkManager.bearer.isOpen {
+                SVProgressHUD.showInfo(withStatus: "Connecting...")
+                return
             }
+            
+            let vc = KLMMotionViewController()
+            vc.isAllNodes = true
+            navigationController?.pushViewController(vc, animated: true)
+        
+        case 2://检查更新
+            let vc = KLMAPPUpdateViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 3://帮助建议
+            let vc = KLMHelpViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 4:
+            let vc = KLMHomeViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default: break
             
         }

@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         setUpNordic()
         
-//        KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
+        KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
 //        window?.makeKeyAndVisible()
         return true
     }
@@ -61,23 +61,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         meshNetworkManager.logger = self
         
         ///加载本地配置数据
-        var loaded = false
-        do {
-            loaded = try meshNetworkManager.load()
-        } catch {
-            print(error)
-            // ignore
-        }
+//        var loaded = false
+//        do {
+//            loaded = try meshNetworkManager.load()
+//        } catch {
+//            print(error)
+//            // ignore
+//        }
         
         // If load failed, create a new MeshNetwork.
-        if !loaded {
-            createNewMeshNetwork()
-        } else {
-            meshNetworkDidChange()
-        }
+//        if !loaded {
+//            createNewMeshNetwork()
+//        } else {
+//            meshNetworkDidChange()
+//        }
     }
     
     func createNewMeshNetwork() {
+        
         // TODO: Implement creator
         let provisioner = Provisioner(name: UIDevice.current.name,
                                       allocatedUnicastRange: [AddressRange(0x0001...0x199A)],
