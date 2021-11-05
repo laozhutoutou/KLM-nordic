@@ -24,6 +24,10 @@ class KLMLoginViewController: UIViewController {
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
+            ///进入主页面
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.enterMainUI()
+            
         } failure: { error in
             
             KLMHttpShowError(error)

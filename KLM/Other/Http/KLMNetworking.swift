@@ -130,7 +130,7 @@ class KLMService: NSObject {
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": email]
-        KLMNetworking.GET(URLString: KLMGetUrl("open/email/code"), params: parame) { responseObject, error in
+        KLMNetworking.GET(URLString: KLMUrl("open/email/code"), params: parame) { responseObject, error in
             
             if error == nil {
                 success(responseObject!)
@@ -144,7 +144,7 @@ class KLMService: NSObject {
         
         let parame = ["username": username,
                       "password": password]
-        KLMNetworking.POST(URLString: KLMPostUrl("login"), params: parame) { responseObject, error in
+        KLMNetworking.POST(URLString: KLMUrl("api/auth/login"), params: parame) { responseObject, error in
             
             if error == nil {
                 //登录成功，存储token
@@ -167,7 +167,7 @@ class KLMService: NSObject {
                       "nickname": "zhuyu",
                       "password": password,
                       "code": code]
-        KLMNetworking.POST(URLString: KLMPostUrl("register"), params: parame) { responseObject, error in
+        KLMNetworking.POST(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
             
             if error == nil {
                 success(responseObject!)
@@ -179,12 +179,26 @@ class KLMService: NSObject {
     
     static func logout(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        KLMNetworking.POST(URLString: KLMPostUrl("logout"), params: nil) { responseObject, error in
+        KLMNetworking.POST(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in
             
             if error == nil {
                 
                 KLMSetUserDefault("token", nil)
                 
+                success(responseObject!)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func addSearch(searchContent: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["searchContent": searchContent
+                    ]
+        KLMNetworking.POST(URLString: KLMUrl("api/search"), params: parame) { responseObject, error in
+            
+            if error == nil {
                 success(responseObject!)
             } else {
                 failure(error!)

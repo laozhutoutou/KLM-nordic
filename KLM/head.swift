@@ -45,7 +45,8 @@ func KLMLog<T>(_ parameter : T, file : String = #file, lineNumber : Int = #line)
     #if DEBUG
     
     let fileName = (file as NSString).lastPathComponent
-    print("[\(fileName):line:\(lineNumber)]\n --\(parameter)\n")
+    let time = KLMLogManager.sharedInstacnce.logDateTime()
+    print("[\(time) \(fileName):line:\(lineNumber)]\n --\(parameter)\n")
     #else
     
     #endif
@@ -134,12 +135,8 @@ func KLMHttpShowError(_ error: NSError) {
 /// URL
 let baseUrl = "http://8.135.16.88:9898/"
 
-func KLMGetUrl(_ url: String) -> String {
+func KLMUrl(_ url: String) -> String {
     
     return baseUrl + url
 }
 
-func KLMPostUrl(_ url: String) -> String {
-    
-    return baseUrl + "api/auth/" + url
-}

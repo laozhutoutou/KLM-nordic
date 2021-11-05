@@ -13,12 +13,37 @@ class KLMApplicationManager {
     
     func setupWindow(window : UIWindow) {
         
-        //键盘处理
-//        setupKeyboard()
+        setupSVHUD()
         
+        //键盘处理
+        setupKeyboard()
+        
+        let token = KLMGetUserDefault("token")
+        if token == nil {
+            
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.enterLoginUI()
+        } else {
+            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+            appdelegate.enterMainUI()
+        }
     }
     
+    func setupSVHUD() {
+        
+        SVProgressHUD.setDefaultStyle(.dark)
+    }
     
+    private func setupKeyboard() {
+        
+        let manager =  IQKeyboardManager.shared
+        manager.enable = true
+        manager.shouldResignOnTouchOutside = true
+        manager.shouldToolbarUsesTextFieldTintColor = true;
+        manager.enableAutoToolbar = true;
+        manager.toolbarManageBehaviour = .byTag
+        
+    }
     
     //单例
     static let sharedInstacnce = KLMApplicationManager()

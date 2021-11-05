@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupSVHUD()
         
         setupKeyboard()
-        
+                
         setUpNordic()
         
 //        KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
