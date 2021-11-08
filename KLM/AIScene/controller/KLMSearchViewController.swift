@@ -42,6 +42,8 @@ class KLMSearchViewController: UIViewController {
         return searchLists
     }()
     
+    var historyData:[String] = [String]()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -68,7 +70,6 @@ class KLMSearchViewController: UIViewController {
         self.view.backgroundColor = appBackGroupColor
         
         view.addSubview(self.historyView)
-        self.historyView.reloadData()
         
         navigationController?.view.addSubview(self.searchBar)
         self.searchBar.becomeFirstResponder()
@@ -82,6 +83,9 @@ class KLMSearchViewController: UIViewController {
     func getHistoryData() {
         
         KLMService.getHistoryData(page: "1", limit: "20") { response in
+            
+            self.historyData = response as? [String] ?? []
+            self.historyView.itemString = self.historyData
             
         } failure: { error in
             KLMHttpShowError(error)

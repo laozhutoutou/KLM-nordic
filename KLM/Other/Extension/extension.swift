@@ -252,3 +252,19 @@ extension UIColor {
     }
 }
 
+extension Dictionary {
+    
+    func jsonPrint() -> String {
+        
+        var string = ""
+        do {
+            try string = String.init(data: JSONSerialization.data(withJSONObject: self, options: .prettyPrinted), encoding: .utf8) ?? ""
+            
+        } catch {
+            
+            print(error)
+        }
+        return string
+    }
+}
+

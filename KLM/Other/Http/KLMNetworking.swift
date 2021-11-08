@@ -7,15 +7,22 @@
 
 import UIKit
 import Alamofire
+import SwiftUI
 
-typealias KLMResponseSuccess = (_ response: [String: AnyObject]) -> Void
+typealias KLMResponseSuccess = (_ response: AnyObject) -> Void
 typealias KLMResponseFailure = (_ error: NSError) -> Void
-
 typealias completionHandlerBlock = (_ responseObject: [String: AnyObject]?, _ error: NSError?) -> Void
+
+enum HTTPMethod: String {
+    case post
+    case get
+    case delete
+    case put
+}
 
 class KLMNetworking: NSObject {
     
-    var networkingTool: AFHTTPSessionManager!
+    private var networkingTool: AFHTTPSessionManager!
     
     static let ShareInstance = KLMNetworking()
     private override init() {
@@ -28,15 +35,15 @@ class KLMNetworking: NSObject {
         networkingTool.responseSerializer.acceptableContentTypes = set as? Set<String>
     }
     
-    static var header: [String: String]? {
+    private static var header: [String: String]? {
         guard let token = KLMGetUserDefault("token") as? String else {
             return nil
         }
         
         return ["Authorization": token]
     }
-    
-    static func sessionManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
+    ///请求头
+    private static func sessionManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
         
         KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
         KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
@@ -48,14 +55,34 @@ class KLMNetworking: NSObject {
         
         return KLMNetworking.ShareInstance.networkingTool
     }
-    
-    static func POST(URLString: String,
-              params: [String: Any]?,
-              completion: @escaping completionHandlerBlock) {
+    ///请求方法分类
+    private static func httpMethodSub(method: HTTPMethod? = .post, URLString: String,
+                           params: [String: Any]?,
+                           successBlock: @escaping (_ task: URLSessionDataTask, _ responseObject: Any?) -> Void,
+                           failureBlock: @escaping (_ task: URLSessionDataTask?, _ error: Error) -> Void
+    ) {
         
-        KLMLog("接口域名：\(URLString)\n请求参数：\(String(describing: params))")
-        self.sessionManagerWithHeader(head: header).post(URLString, parameters: params, progress: nil) { task, responseObject in
-            KLMLog("接口域名：\(URLString)\n请求返回数据: \(String(describing: responseObject))")
+        switch method {
+        case .post:
+            self.sessionManagerWithHeader(head: header).post(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
+        case .get:
+            self.sessionManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
+        case .put:
+            self.sessionManagerWithHeader(head: header).put(URLString, parameters: params, success: successBlock, failure: failureBlock)
+        case .delete:
+            self.sessionManagerWithHeader(head: header).delete(URLString, parameters: params, success: successBlock, failure: failureBlock)
+        default:
+            break
+        }
+    }
+    ///发送http请求
+    static func httpMethod(method: HTTPMethod? = .post, URLString: String,
+              params: [String: Any]?,
+                     completion: @escaping completionHandlerBlock) {
+        
+        self.httpMethodSub(method: method, URLString: URLString, params: params) { task, responseObject in
+            KLMLog("接口域名：\(URLString)\n请求返回数据: ")
+            KLMLog(responseObject)
             
             guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject] else {
                 SVProgressHUD.dismiss()
@@ -73,12 +100,12 @@ class KLMNetworking: NSObject {
                 completion(nil, error)
                 return
             }
-            
-            
+
             completion(dic, nil)
             
-        } failure: { task, error in
+        } failureBlock: { task, error in
             SVProgressHUD.dismiss()
+            KLMLog("接口域名：\(URLString)\n错误信息: ")
             KLMLog(error)
             let errors: NSError = error as NSError
             if errors.code == -1011 {///token过期，重新登录
@@ -93,44 +120,6 @@ class KLMNetworking: NSObject {
             let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
             completion(nil, error)
         }
-
-    }
-    
-    static func GET(URLString: String,
-              params: [String: Any]?,
-              completion: @escaping completionHandlerBlock) {
-        
-        KLMLog("接口域名：\(URLString)\n请求参数：\(String(describing: params))")
-        self.sessionManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil) { task, responseObject in
-            KLMLog("接口域名：\(URLString)\n请求返回数据: \(String(describing: responseObject))")
-            
-            guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject] else {
-                SVProgressHUD.dismiss()
-                let resultDic = ["error": "Unknow error"]
-                let error = NSError.init(domain: "", code: -1, userInfo: resultDic)
-                completion(nil, error)
-                return
-            }
-            
-            guard dic["code"] as? Int == 200 else {
-                SVProgressHUD.dismiss()
-                let msg = dic["msg"]
-                let resultDic = ["error": msg]
-                let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
-                completion(nil, error)
-                return
-            }
-            
-            
-            completion(dic, nil)
-            
-        } failure: { task, error in
-            SVProgressHUD.dismiss()
-            KLMLog(error)
-            let resultDic = ["error": error.localizedDescription]
-            let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
-            completion(nil, error)
-        }
     }
 }
 
@@ -139,10 +128,10 @@ class KLMService: NSObject {
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": email]
-        KLMNetworking.GET(URLString: KLMUrl("open/email/code"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("open/email/code"), params: parame) { responseObject, error in
             
             if error == nil {
-                success(responseObject!)
+                success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
@@ -153,7 +142,7 @@ class KLMService: NSObject {
         
         let parame = ["username": username,
                       "password": password]
-        KLMNetworking.POST(URLString: KLMUrl("api/auth/login"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/login"), params: parame) { responseObject, error in
             
             if error == nil {
                 //登录成功，存储token
@@ -162,7 +151,7 @@ class KLMService: NSObject {
                     KLMSetUserDefault("token", token)
                 }
                 
-                success(responseObject!)
+                success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
@@ -176,10 +165,10 @@ class KLMService: NSObject {
                       "nickname": "zhuyu",
                       "password": password,
                       "code": code]
-        KLMNetworking.POST(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
             
             if error == nil {
-                success(responseObject!)
+                success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
@@ -188,13 +177,13 @@ class KLMService: NSObject {
     
     static func logout(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        KLMNetworking.POST(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in
             
             if error == nil {
                 
                 KLMSetUserDefault("token", nil)
                 
-                success(responseObject!)
+                success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
@@ -207,10 +196,10 @@ class KLMService: NSObject {
         let parame = ["meshName": meshName,
                       "meshConfiguration": config
                     ]
-        KLMNetworking.POST(URLString: KLMUrl("api/mesh"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/mesh"), params: parame) { responseObject, error in
             
             if error == nil {
-                success(responseObject!)
+                success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
@@ -221,10 +210,10 @@ class KLMService: NSObject {
         
         let parame = ["searchContent": searchContent
                     ]
-        KLMNetworking.POST(URLString: KLMUrl("api/search"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/search"), params: parame) { responseObject, error in
             
             if error == nil {
-                success(responseObject!)
+                success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
@@ -236,7 +225,7 @@ class KLMService: NSObject {
         let parame = ["page": page,
                       "limit": limit
                     ]
-        KLMNetworking.POST(URLString: KLMUrl("api/search/page"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/search/page"), params: parame) { responseObject, error in
             
             if error == nil {
                 
@@ -251,7 +240,7 @@ class KLMService: NSObject {
                     }
                 }
                 
-                success(["datas": datas as AnyObject])
+                success(datas as AnyObject)
             } else {
                 failure(error!)
             }

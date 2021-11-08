@@ -32,24 +32,6 @@ class KLMMesh {
         let newStr = String(data: data, encoding: String.Encoding.utf8)
         return newStr!
         
-//        _ = MeshNetworkManager.instance.createNewMeshNetwork(withName: "Mesh Network", by: provisioner)
-//        _ = MeshNetworkManager.instance.save()
-        
-        //创建一个APP key
-//        if MeshNetworkManager.instance.meshNetwork!.applicationKeys.isEmpty {
-//
-//            let newKey: Data! = Data.random128BitKey()
-//            let network = MeshNetworkManager.instance.meshNetwork!
-//            do {
-//                try network.add(applicationKey: newKey, withIndex: 0, name: "new key")
-//            } catch  {
-//                print(error)
-//            }
-//
-//            _ =  MeshNetworkManager.instance.save()
-//
-//        }
-        
     }
     
     

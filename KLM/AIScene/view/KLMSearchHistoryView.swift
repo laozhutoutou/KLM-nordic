@@ -18,15 +18,18 @@ class KLMSearchHistoryView: UIView, Nibloadable {
     @IBOutlet weak var collectionView: UICollectionView!
     static var myframe: CGRect!
         
-    var itemString: [String] = [String]()
+    var itemString: [String] = [String]() {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     weak var delegate:  KLMSearchHistoryViewDelegate?
     
     //清除历史记录
     @IBAction func deleteClick(_ sender: Any) {
         
-        KLMHomeManager.deleteHistoryCache()
-        reloadData()
+        
     }
     
     static func historyView(frame: CGRect) -> Self {
@@ -34,12 +37,6 @@ class KLMSearchHistoryView: UIView, Nibloadable {
         let view = Self.loadNib()
         myframe = frame
         return view
-    }
-    
-    func reloadData() {
-        let lists = KLMHomeManager.getHistoryLists()
-        itemString = lists
-        self.collectionView.reloadData()
     }
     
     override func awakeFromNib() {

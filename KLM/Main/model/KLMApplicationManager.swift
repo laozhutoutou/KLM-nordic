@@ -12,7 +12,7 @@ import IQKeyboardManagerSwift
 class KLMApplicationManager {
     
     func setupWindow(window : UIWindow) {
-        
+    
         setupSVHUD()
         
         //键盘处理
@@ -24,6 +24,7 @@ class KLMApplicationManager {
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.enterLoginUI()
         } else {
+            
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.enterMainUI()
         }

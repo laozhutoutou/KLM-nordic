@@ -43,9 +43,14 @@ let KLMKeyWindow = UIApplication.shared.keyWindow
 func KLMLog<T>(_ parameter : T, file : String = #file, lineNumber : Int = #line)
 {
     #if DEBUG
-    
     let fileName = (file as NSString).lastPathComponent
     let time = KLMLogManager.sharedInstacnce.logDateTime()
+    if let dic: Dictionary = parameter as? Dictionary<String, Any> {
+        let message: String = dic.jsonPrint()
+        print("[\(time) \(fileName):line:\(lineNumber)]\n --\(message)\n")
+        return
+    }
+    
     print("[\(time) \(fileName):line:\(lineNumber)]\n --\(parameter)\n")
     #else
     
