@@ -7,9 +7,47 @@
 
 import Foundation
 
-class KLMHome {
+struct KLMBaseModel: Codable {
     
-    var homeName = ""
-    var meshConfiguration: String?
+    var code: Int
+    var msg: String
+}
+
+struct KLMHome: Codable {
     
+    var data: KLMHomeData
+    struct KLMHomeData: Codable {
+        var admin: [KLMHomeModel]
+        var participant: [KLMHomeModel]
+    }
+    
+}
+
+struct KLMHomeModel: Codable {
+    var meshName: String
+    var id: Int
+}
+
+struct KLMToken: Codable {
+    
+    var data: KLMTokenData
+    struct KLMTokenData: Codable {
+        var token: String
+    }
+}
+
+struct KLMHistory: Codable {
+    
+    var data: [KLMHistoryData]
+    struct KLMHistoryData: Codable {
+        var searchContent: String
+    }
+}
+
+struct KLMMeshInfo: Codable {
+    
+    var data: KLMMeshInfoData
+    struct KLMMeshInfoData: Codable {
+        var meshConfiguration: String
+    }
 }

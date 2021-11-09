@@ -30,6 +30,8 @@
 		E4762C5726957AE100100312 /* UIButton+SFImageTitleSpacing.m in Sources */ = {isa = PBXBuildFile; fileRef = E4762C5526957AE100100312 /* UIButton+SFImageTitleSpacing.m */; };
 		E477D94226D782C900612456 /* KLMChengpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E477D94026D782C900612456 /* KLMChengpinViewController.swift */; };
 		E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E477D94126D782C900612456 /* KLMChengpinViewController.xib */; };
+		E47ABA08273A1F0600E24939 /* KLMHomeEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47ABA06273A1F0600E24939 /* KLMHomeEditViewController.swift */; };
+		E47ABA09273A1F0600E24939 /* KLMHomeEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47ABA07273A1F0600E24939 /* KLMHomeEditViewController.xib */; };
 		E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */; };
 		E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */; };
 		E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */; };
@@ -229,6 +231,8 @@
 		E4762C5626957AE100100312 /* UIButton+SFImageTitleSpacing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+SFImageTitleSpacing.h"; sourceTree = "<group>"; };
 		E477D94026D782C900612456 /* KLMChengpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMChengpinViewController.swift; sourceTree = "<group>"; };
 		E477D94126D782C900612456 /* KLMChengpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMChengpinViewController.xib; sourceTree = "<group>"; };
+		E47ABA06273A1F0600E24939 /* KLMHomeEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMHomeEditViewController.swift; sourceTree = "<group>"; };
+		E47ABA07273A1F0600E24939 /* KLMHomeEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMHomeEditViewController.xib; sourceTree = "<group>"; };
 		E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestSectionTableViewController.swift; sourceTree = "<group>"; };
 		E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBanchenpinViewController.swift; sourceTree = "<group>"; };
 		E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBanchenpinViewController.xib; sourceTree = "<group>"; };
@@ -1070,6 +1074,8 @@
 				E4F2D471273504E4007FA07E /* KLMHomeViewController.xib */,
 				E4F2D476273506C0007FA07E /* KLMHomeAddViewController.swift */,
 				E4F2D477273506C0007FA07E /* KLMHomeAddViewController.xib */,
+				E47ABA06273A1F0600E24939 /* KLMHomeEditViewController.swift */,
+				E47ABA07273A1F0600E24939 /* KLMHomeEditViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1239,6 +1245,7 @@
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
+				E47ABA09273A1F0600E24939 /* KLMHomeEditViewController.xib in Resources */,
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
 				E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
@@ -1336,6 +1343,7 @@
 				E4A65FDB2670B06400FE6866 /* RSSelectionLayer.m in Sources */,
 				E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */,
 				E48B53F12669FB330006CDA7 /* KLMNetworking.swift in Sources */,
+				E47ABA08273A1F0600E24939 /* KLMHomeEditViewController.swift in Sources */,
 				E4F2D47B27350904007FA07E /* KLMMesh.swift in Sources */,
 				E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */,
 				E495D10E2678521000AA50B9 /* KLMGroupEditViewController.swift in Sources */,

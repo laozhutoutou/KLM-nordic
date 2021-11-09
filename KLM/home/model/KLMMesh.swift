@@ -25,14 +25,58 @@ class KLMMesh {
         } catch  {
             print(error)
         }
-        
+        ///配置数据转化成data
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let data = try! encoder.encode(network)
+        ///data转化成字符串
         let newStr = String(data: data, encoding: String.Encoding.utf8)
         return newStr!
         
     }
     
+    static func loadHome() -> KLMHomeModel? {
+        
+        if let fileURL = getHomeFile() {
+            
+            if FileManager.default.fileExists(atPath: fileURL.path) {
+                
+                let data = try! Data(contentsOf: fileURL)
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .iso8601
+                let model = try! decoder.decode(KLMHomeModel.self, from: data)
+                return model
+            }
+        }
+        
+        return nil
+    }
     
+    static func saveHome(home: KLMHomeModel) {
+        
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let data = try! encoder.encode(home)
+        let fileURL = getHomeFile()
+        try! data.write(to: fileURL!)
+    }
+    
+    private static func getHomeFile() -> URL? {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        return url?.appendingPathComponent("home")
+    }
+    
+    static func upLoadMesh() {
+        if let model = loadHome() {
+            let manager = MeshNetworkManager.instance
+            let data = manager.export(.full)
+            let newStr = String(data: data, encoding: String.Encoding.utf8)
+            ///提交到服务器
+            KLMService.editMesh(id: model.id, meshName: nil, meshConfiguration: newStr) { response in
+                KLMLog("配置数据提交成功")
+            } failure: { error in
+                
+            }
+        }
+    }
 }

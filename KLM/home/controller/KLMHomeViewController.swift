@@ -12,18 +12,37 @@ class KLMHomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //数据源
-    var homes: [KLMHome] = [KLMHome]()
+    var homes: [KLMHomeModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addHome))
+        
+        getMeshListData()
     }
     
     @objc func addHome() {
         
         let vc = KLMHomeAddViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func getMeshListData() {
+        
+        KLMService.getMeshList { response in
+            
+            if let home = response as? KLMHome {
+                
+                self.homes = home.data.admin + home.data.participant
+                self.tableView.reloadData()
+            }
+            
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+
     }
 }
 
@@ -59,10 +78,10 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let home: KLMHome = self.homes[indexPath.row]
+        let home: KLMHomeModel = self.homes[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
-        cell.leftTitle = home.homeName
+        cell.leftTitle = home.meshName
         return cell
         
     }
@@ -70,6 +89,10 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let home: KLMHomeModel = self.homes[indexPath.row]
+        let vc = KLMHomeEditViewController()
+        vc.homeModel = home
+        navigationController?.pushViewController(vc, animated: true)
         
     }
 }

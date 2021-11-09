@@ -42,7 +42,7 @@ class KLMSearchViewController: UIViewController {
         return searchLists
     }()
     
-    var historyData:[String] = [String]()
+    var historyData: KLMHistory?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,7 +84,7 @@ class KLMSearchViewController: UIViewController {
         
         KLMService.getHistoryData(page: "1", limit: "20") { response in
             
-            self.historyData = response as? [String] ?? []
+            self.historyData = response as? KLMHistory
             self.historyView.itemString = self.historyData
             
         } failure: { error in
@@ -139,6 +139,7 @@ extension KLMSearchViewController: CMSearchBarDelegate {
             
             KLMService.addSearch(searchContent: str) { response in
                 
+                
             } failure: { error in
                 
             }
@@ -166,6 +167,20 @@ extension KLMSearchViewController: KLMSearchHistoryViewDelegate {
         
         self.searchBar.text = text
         self.searchStart()
+    }
+    
+    func KLMSearchHistoryClearAll() {
+        
+        KLMService.clearAllHistory { response in
+            
+            ///清空数据
+            self.historyData?.data.removeAll()
+            self.historyView.itemString = self.historyData
+            
+        } failure: { error in
+            
+        }
+
     }
 
 }

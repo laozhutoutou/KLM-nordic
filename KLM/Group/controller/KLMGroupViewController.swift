@@ -65,10 +65,16 @@ class KLMGroupViewController: UIViewController {
                     
                     if MeshNetworkManager.instance.save() {
                         
+                        ///提交配置数据
+                        KLMMesh.upLoadMesh()
+                        
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
                     }
                 }
+                
+            } else {
+                
                 
             }
             

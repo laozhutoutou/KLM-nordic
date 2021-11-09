@@ -8,10 +8,11 @@
 import UIKit
 import Alamofire
 import SwiftUI
+import nRFMeshProvision
 
 typealias KLMResponseSuccess = (_ response: AnyObject) -> Void
 typealias KLMResponseFailure = (_ error: NSError) -> Void
-typealias completionHandlerBlock = (_ responseObject: [String: AnyObject]?, _ error: NSError?) -> Void
+typealias completionHandlerBlock = (_ responseObject: Data?, _ error: NSError?) -> Void
 
 enum HTTPMethod: String {
     case post
@@ -79,29 +80,33 @@ class KLMNetworking: NSObject {
     static func httpMethod(method: HTTPMethod? = .post, URLString: String,
               params: [String: Any]?,
                      completion: @escaping completionHandlerBlock) {
-        
+        KLMLog("接口域名：\(URLString)\n请求参数：\(String(describing: params))")
         self.httpMethodSub(method: method, URLString: URLString, params: params) { task, responseObject in
             KLMLog("接口域名：\(URLString)\n请求返回数据: ")
             KLMLog(responseObject)
             
-            guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject] else {
+            do {
+                ///json转data
+                let data = try JSONSerialization.data(withJSONObject: responseObject as Any, options: [])
+                ///data转model
+                let model = try JSONDecoder().decode(KLMBaseModel.self, from: data)
+                if model.code == 200 {
+                    
+                    completion(data, nil)
+                    
+                } else {
+                    SVProgressHUD.dismiss()
+                    let msg = model.msg
+                    let resultDic = ["error": msg]
+                    let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+                    completion(nil, error)
+                }
+            } catch {
                 SVProgressHUD.dismiss()
-                let resultDic = ["error": "Unknow error"]
+                let resultDic = ["error": error.localizedDescription]
                 let error = NSError.init(domain: "", code: -1, userInfo: resultDic)
                 completion(nil, error)
-                return
             }
-            
-            guard dic["code"] as? Int == 200 else {
-                SVProgressHUD.dismiss()
-                let msg = dic["msg"]
-                let resultDic = ["error": msg]
-                let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
-                completion(nil, error)
-                return
-            }
-
-            completion(dic, nil)
             
         } failureBlock: { task, error in
             SVProgressHUD.dismiss()
@@ -145,11 +150,12 @@ class KLMService: NSObject {
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/login"), params: parame) { responseObject, error in
             
             if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMToken.self, from: responseObject!)
+                
                 //登录成功，存储token
-                if let data = responseObject?["data"] as? [String: AnyObject], let token = data["token"] as? String{
-                    KLMLog("登录成功：token = \(token)")
-                    KLMSetUserDefault("token", token)
-                }
+                KLMLog("登录成功：token = \(String(describing: model?.data.token))")
+                KLMSetUserDefault("token", model?.data.token)
                 
                 success(responseObject as AnyObject)
             } else {
@@ -229,18 +235,87 @@ class KLMService: NSObject {
             
             if error == nil {
                 
-                var datas: [String] = [String]()
-                if let data = responseObject?["data"] as? [AnyObject] {
-                    
-                    for item in data {
-                        
-                        if let dic: [String: AnyObject] = item as? [String : AnyObject], let searchContent: String = dic["searchContent"] as? String {
-                            datas.append(searchContent)
-                        }
-                    }
-                }
+                let model = try? JSONDecoder().decode(KLMHistory.self, from: responseObject!)
                 
-                success(datas as AnyObject)
+                success(model as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func getMeshList(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/adminId"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMHome.self, from: responseObject!)
+                success(model as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func clearAllHistory(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/search/clearAll"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func editMesh(id: Int, meshName: String?, meshConfiguration: String?, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        var parame = ["id": id] as [String : Any]
+        if meshName != nil {
+            parame["meshName"] = meshName
+        }
+        if meshConfiguration != nil {
+            parame["meshConfiguration"] = meshConfiguration
+        }
+        
+        KLMNetworking.httpMethod(method: .put, URLString: KLMUrl("api/mesh/\(id)"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func deleteMesh(id: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/mesh/\(id)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func getMeshInfo(id: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/\(id)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMMeshInfo.self, from: responseObject!)
+                success(model as AnyObject)
+                
             } else {
                 failure(error!)
             }
