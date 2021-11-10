@@ -13,7 +13,8 @@ class KLMUnNameListViewController: UIViewController{
     @IBOutlet weak var collectionView: UICollectionView!
     
     lazy var searchBar: UIView = {
-        let searchBar = UIView.init(frame: CGRect(x: 16, y: KLM_StatusBarHeight + 7, width: KLMScreenW - 15 - 65, height: 30))
+        let width = 100.0
+        let searchBar = UIView.init(frame: CGRect(x: width, y: KLM_StatusBarHeight + 7, width: KLMScreenW - width - 65, height: 30))
         searchBar.backgroundColor = .white
         searchBar.layer.cornerRadius = 15
         searchBar.clipsToBounds = true
@@ -37,8 +38,22 @@ class KLMUnNameListViewController: UIViewController{
         return searchBar
     }()
     
+    lazy var homeBtn: UIButton = {
+        let homeBtn = UIButton.init(type: .custom)
+        homeBtn.frame = CGRect.init(x: 0, y: 0, width: 100, height: 18)
+        homeBtn.contentHorizontalAlignment = .left
+        homeBtn.setTitleColor(.black, for: .normal)
+        homeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        homeBtn.setImage(UIImage.init(named: "icon_arrowDown"), for: .normal)
+        homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
+        homeBtn.addTarget(self, action: #selector(homeListClick), for: .touchUpInside)
+        return homeBtn
+    }()
+    
     //设备数据源
     var nodes: [Node] = [Node]()
+    //家庭数据源
+    var homes: [KLMHome.KLMHomeModel] = []
     
     deinit {
         
@@ -62,7 +77,7 @@ class KLMUnNameListViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+          
         collectionView.backgroundColor = appBackGroupColor
         
         navigationController?.view.addSubview(self.searchBar)
@@ -73,8 +88,6 @@ class KLMUnNameListViewController: UIViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceNameUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
         
-        setupData()
-        
         //刷新
         let header = KLMRefreshHeader.init {[weak self] in
             guard let self = self else { return }
@@ -84,6 +97,25 @@ class KLMUnNameListViewController: UIViewController{
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
         
+        ///家庭列表按钮
+        let homeItem = UIBarButtonItem.init(customView: self.homeBtn)
+        navigationItem.leftBarButtonItem = homeItem
+        
+        ///初始化数据
+        initData()
+    }
+    
+    func initData() {
+        
+        if let home = KLMMesh.loadHome() { ///有家庭
+            
+            self.homeBtn.setTitle(home.meshName, for: .normal)
+            setupData()
+            
+        } else {
+            
+            
+        }
     }
 
     @objc func setupData(){
@@ -113,6 +145,43 @@ class KLMUnNameListViewController: UIViewController{
         
         let vc = KLMAddDeviceViewController()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func homeListClick() {
+        
+        KLMService.getMeshList { response in
+            
+            self.homes = response as! [KLMHome.KLMHomeModel]
+            self.showHomeDropView()
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+    }
+    
+    func showHomeDropView() {
+        
+        let point: CGPoint = CGPoint.init(x: 20, y: KLM_TopHeight)
+        var titles: [String] = []
+        for model in self.homes {
+            titles.append(model.meshName)
+        }
+        guard titles.count > 0 else { return }
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 100) { popupMenu in
+            popupMenu?.priorityDirection = .none
+            popupMenu?.arrowPosition = 1
+            popupMenu?.arrowHeight = 0
+            popupMenu?.dismissOnSelected = true
+            popupMenu?.isShadowShowing = false
+            popupMenu?.delegate = self
+        }
+    }
+}
+
+extension KLMUnNameListViewController: YBPopupMenuDelegate {
+    
+    func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
+        
+        
     }
 }
 

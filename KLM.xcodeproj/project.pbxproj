@@ -168,6 +168,7 @@
 		E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845B26A278B9006C120E /* KLMMessageManager.swift */; };
 		E4E51F2C26CB568600823531 /* KLMDFUViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */; };
 		E4E51F2D26CB568600823531 /* KLMDFUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */; };
+		E4EB5F19273BB18900C502C1 /* KLMCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB5F18273BB18900C502C1 /* KLMCache.swift */; };
 		E4EBE61E271144AC006111BF /* KLMTestCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBE61C271144AC006111BF /* KLMTestCameraViewController.swift */; };
 		E4EBE61F271144AC006111BF /* KLMTestCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EBE61D271144AC006111BF /* KLMTestCameraViewController.xib */; };
 		E4EC661526EEF1BF007503AB /* KLMExportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EC661326EEF1BF007503AB /* KLMExportViewController.swift */; };
@@ -437,6 +438,7 @@
 		E4E2845B26A278B9006C120E /* KLMMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMessageManager.swift; sourceTree = "<group>"; };
 		E4E51F2A26CB568600823531 /* KLMDFUViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUViewController.swift; sourceTree = "<group>"; };
 		E4E51F2B26CB568600823531 /* KLMDFUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDFUViewController.xib; sourceTree = "<group>"; };
+		E4EB5F18273BB18900C502C1 /* KLMCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCache.swift; sourceTree = "<group>"; };
 		E4EBE61C271144AC006111BF /* KLMTestCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestCameraViewController.swift; sourceTree = "<group>"; };
 		E4EBE61D271144AC006111BF /* KLMTestCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTestCameraViewController.xib; sourceTree = "<group>"; };
 		E4EC661326EEF1BF007503AB /* KLMExportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMExportViewController.swift; sourceTree = "<group>"; };
@@ -727,6 +729,7 @@
 		E48B525A26672A0C0006CDA7 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				E4EB5F17273BB16000C502C1 /* Cache */,
 				E4E2845E26A2E8F0006C120E /* nodicDelegate */,
 				E48E608A2692A02100E630ED /* recipe */,
 				E4AEC96B266E013B00E77178 /* view */,
@@ -1057,6 +1060,14 @@
 			path = nodicDelegate;
 			sourceTree = "<group>";
 		};
+		E4EB5F17273BB16000C502C1 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				E4EB5F18273BB18900C502C1 /* KLMCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		E4F2D46C27350491007FA07E /* home */ = {
 			isa = PBXGroup;
 			children = (
@@ -1378,6 +1389,7 @@
 				E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */,
 				E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */,
 				E4E2844A269F006B006C120E /* SimpleOnOffSetUnacknowledged.swift in Sources */,
+				E4EB5F19273BB18900C502C1 /* KLMCache.swift in Sources */,
 				E4E2842E269ED132006C120E /* NetworkConnection.swift in Sources */,
 				E48B640C270FEE0900C2BC27 /* KLMGroupDeviceAddTableViewController.swift in Sources */,
 				E4E28444269EFFC8006C120E /* ModelIdentifiers.swift in Sources */,

@@ -34,36 +34,22 @@ class KLMMesh {
         return newStr!
         
     }
-    
-    static func loadHome() -> KLMHomeModel? {
+    ///获取存储的家庭
+    static func loadHome() -> KLMHome.KLMHomeModel? {
         
-        if let fileURL = getHomeFile() {
-            
-            if FileManager.default.fileExists(atPath: fileURL.path) {
-                
-                let data = try! Data(contentsOf: fileURL)
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = .iso8601
-                let model = try! decoder.decode(KLMHomeModel.self, from: data)
-                return model
-            }
-        }
+        return KLMCache.getCache(KLMHome.KLMHomeModel.self, key: "home")
         
-        return nil
+    }
+    ///保存选择的家庭
+    static func saveHome(home: KLMHome.KLMHomeModel) {
+        
+        KLMCache.setCache(model: home, key: "home")
+        
     }
     
-    static func saveHome(home: KLMHomeModel) {
+    static func removeHome() {
         
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
-        let data = try! encoder.encode(home)
-        let fileURL = getHomeFile()
-        try! data.write(to: fileURL!)
-    }
-    
-    private static func getHomeFile() -> URL? {
-        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        return url?.appendingPathComponent("home")
+        KLMCache.removeObject(key: "home")
     }
     
     static func upLoadMesh() {

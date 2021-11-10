@@ -234,7 +234,7 @@ class KLMService: NSObject {
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/search/page"), params: parame) { responseObject, error in
             
             if error == nil {
-                
+                 
                 let model = try? JSONDecoder().decode(KLMHistory.self, from: responseObject!)
                 
                 success(model as AnyObject)
@@ -251,7 +251,11 @@ class KLMService: NSObject {
             if error == nil {
                 
                 let model = try? JSONDecoder().decode(KLMHome.self, from: responseObject!)
-                success(model as AnyObject)
+                var homes: [KLMHome.KLMHomeModel]  = []
+                if let model = model {
+                    homes = model.data.admin + model.data.participant
+                }
+                success(homes as AnyObject)
                 
             } else {
                 failure(error!)
@@ -314,6 +318,22 @@ class KLMService: NSObject {
             if error == nil {
                 
                 let model = try? JSONDecoder().decode(KLMMeshInfo.self, from: responseObject!)
+                success(model as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func getMeshUsers(meshId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["meshId": meshId]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/meshId"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMMeshUser.self, from: responseObject!)
                 success(model as AnyObject)
                 
             } else {

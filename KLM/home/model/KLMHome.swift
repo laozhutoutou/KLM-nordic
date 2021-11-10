@@ -20,12 +20,10 @@ struct KLMHome: Codable {
         var admin: [KLMHomeModel]
         var participant: [KLMHomeModel]
     }
-    
-}
-
-struct KLMHomeModel: Codable {
-    var meshName: String
-    var id: Int
+    struct KLMHomeModel: Codable {
+        var meshName: String
+        var id: Int
+    }
 }
 
 struct KLMToken: Codable {
@@ -49,5 +47,15 @@ struct KLMMeshInfo: Codable {
     var data: KLMMeshInfoData
     struct KLMMeshInfoData: Codable {
         var meshConfiguration: String
+    }
+}
+
+struct KLMMeshUser: Codable {
+    
+    var data: [KLMMeshUserData]
+    struct KLMMeshUserData: Codable {
+        var id: Int
+        var email: String
+        var username: String?
     }
 }

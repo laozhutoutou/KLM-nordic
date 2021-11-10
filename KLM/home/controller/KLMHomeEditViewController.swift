@@ -12,13 +12,31 @@ class KLMHomeEditViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
     
-    var homeModel: KLMHomeModel!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var homeModel: KLMHome.KLMHomeModel!
+    var meshUsers: KLMMeshUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nameTextField.text = homeModel.meshName
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
+        
+        getMeshUserData()
+    }
+    
+    func getMeshUserData() {
+        
+        KLMService.getMeshUsers(meshId: homeModel.id) { response in
+            
+            self.meshUsers = response as? KLMMeshUser
+            self.tableView.reloadData()
+            
+        } failure: { error in
+            
+        }
+
     }
     
     @objc func finish() {
@@ -83,5 +101,52 @@ class KLMHomeEditViewController: UIViewController {
             
         }
     }
+}
+
+extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return self.meshUsers?.data.count ?? 0
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 0.1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        return 0.1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let user = self.meshUsers?.data[indexPath.row]
+        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+        cell.isShowLeftImage = false
+        cell.leftTitle = user?.username ?? "Unknow User"
+        cell.rightTitle = user?.email
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        
+    }
 }

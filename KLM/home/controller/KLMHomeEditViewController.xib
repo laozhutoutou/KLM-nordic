@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMHomeEditViewController" customModule="KLM" customModuleProvider="target">
             <connections>
                 <outlet property="nameTextField" destination="98G-3D-AyV" id="7pp-B7-K2c"/>
+                <outlet property="tableView" destination="kAm-Uf-0CG" id="MfM-bJ-UfJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,27 +32,44 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-EB-gbA">
-                    <rect key="frame" x="151" y="226" width="112" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-EB-gbA">
+                    <rect key="frame" x="151" y="798" width="112" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="112" id="Qod-1x-Gz7"/>
+                        <constraint firstAttribute="height" constant="34" id="mje-ND-WPs"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="删除"/>
                     <connections>
                         <action selector="deleteMesh:" destination="-1" eventType="touchUpInside" id="nT4-iH-gma"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kAm-Uf-0CG">
+                    <rect key="frame" x="0.0" y="145.5" width="414" height="632.5"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="iun-ox-Csw"/>
+                        <outlet property="delegate" destination="-1" id="U3R-js-gzi"/>
+                    </connections>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="kAm-Uf-0CG" firstAttribute="top" secondItem="98G-3D-AyV" secondAttribute="bottom" constant="20" id="Bxn-nj-Xnq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="xaM-EB-gbA" secondAttribute="bottom" constant="30" id="CNd-LS-711"/>
                 <constraint firstItem="98G-3D-AyV" firstAttribute="centerY" secondItem="7qR-V4-Z8T" secondAttribute="centerY" id="fMk-1e-w0B"/>
+                <constraint firstItem="kAm-Uf-0CG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hno-ct-hwj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="98G-3D-AyV" secondAttribute="trailing" constant="15" id="iDh-Jq-mYr"/>
+                <constraint firstItem="xaM-EB-gbA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kT4-ji-gqK"/>
                 <constraint firstItem="7qR-V4-Z8T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="qjT-yH-zaQ"/>
                 <constraint firstItem="7qR-V4-Z8T" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="sQx-bU-l8M"/>
                 <constraint firstItem="98G-3D-AyV" firstAttribute="leading" secondItem="7qR-V4-Z8T" secondAttribute="trailing" constant="10" id="ucB-cX-jiu"/>
+                <constraint firstItem="xaM-EB-gbA" firstAttribute="top" secondItem="kAm-Uf-0CG" secondAttribute="bottom" constant="20" id="ukj-GG-6BM"/>
+                <constraint firstItem="kAm-Uf-0CG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="x88-X9-Nyk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="131.8840579710145" y="60.9375"/>
+            <point key="canvasLocation" x="-1036" y="50"/>
         </view>
     </objects>
     <resources>

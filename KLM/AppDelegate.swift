@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setUpNordic()
         
         KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
-//        window?.makeKeyAndVisible()
+
         return true
     }
     
@@ -75,34 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        } else {
 //            meshNetworkDidChange()
 //        }
-    }
-    
-    func createNewMeshNetwork() {
-        
-        // TODO: Implement creator
-        let provisioner = Provisioner(name: UIDevice.current.name,
-                                      allocatedUnicastRange: [AddressRange(0x0001...0x199A)],
-                                      allocatedGroupRange:   [AddressRange(0xC000...0xCC9A)],
-                                      allocatedSceneRange:   [SceneRange(0x0001...0x3333)])
-        _ = meshNetworkManager.createNewMeshNetwork(withName: "Mesh Network", by: provisioner)
-        _ = meshNetworkManager.save()
-        
-        //创建一个APP key
-        if MeshNetworkManager.instance.meshNetwork!.applicationKeys.isEmpty {
-            
-            let newKey: Data! = Data.random128BitKey()
-            let network = MeshNetworkManager.instance.meshNetwork!
-            do {
-                try network.add(applicationKey: newKey, withIndex: 0, name: "new key")
-            } catch  {
-                print(error)
-            }
-            
-            _ =  MeshNetworkManager.instance.save()
-            
-        }
-        
-        meshNetworkDidChange()
     }
     
     func meshNetworkDidChange() {

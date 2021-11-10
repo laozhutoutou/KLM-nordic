@@ -12,7 +12,7 @@ class KLMHomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     //数据源
-    var homes: [KLMHomeModel] = []
+    var homes: [KLMHome.KLMHomeModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,12 +32,8 @@ class KLMHomeViewController: UIViewController {
         
         KLMService.getMeshList { response in
             
-            if let home = response as? KLMHome {
-                
-                self.homes = home.data.admin + home.data.participant
-                self.tableView.reloadData()
-            }
-            
+            self.homes = response as! [KLMHome.KLMHomeModel]
+            self.tableView.reloadData()
             
         } failure: { error in
             KLMHttpShowError(error)
@@ -78,7 +74,7 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let home: KLMHomeModel = self.homes[indexPath.row]
+        let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
         cell.leftTitle = home.meshName
@@ -89,7 +85,7 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let home: KLMHomeModel = self.homes[indexPath.row]
+        let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
         let vc = KLMHomeEditViewController()
         vc.homeModel = home
         navigationController?.pushViewController(vc, animated: true)
