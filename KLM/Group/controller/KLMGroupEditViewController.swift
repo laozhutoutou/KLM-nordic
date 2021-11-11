@@ -87,7 +87,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                 
                 self.group.name = name
                 
-                if MeshNetworkManager.instance.save() {
+                if KLMMesh.save() {
                     
                     self.tableView.reloadData()
                     NotificationCenter.default.post(name: .groupRenameSuccess, object: nil)

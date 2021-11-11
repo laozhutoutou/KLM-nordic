@@ -42,16 +42,4 @@ class KLMLoginViewController: UIViewController {
         
     }
     
-    @IBAction func logout(_ sender: Any) {
-        
-        KLMService.logout { _ in
-            
-            SVProgressHUD.showSuccess(withStatus: "Logout success")
-            
-        } failure: { error in
-            
-            KLMHttpShowError(error)
-        }
-
-    }
 }

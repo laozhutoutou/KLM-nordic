@@ -115,7 +115,7 @@ class KLMNetworking: NSObject {
             let errors: NSError = error as NSError
             if errors.code == -1011 {///token过期，重新登录
                 ///清空数据
-                KLMSetUserDefault("token", nil)
+                KLMMesh.logout()
                 
                 let appdelegate = UIApplication.shared.delegate as! AppDelegate
                 appdelegate.enterLoginUI()
@@ -186,8 +186,8 @@ class KLMService: NSObject {
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in
             
             if error == nil {
-                
-                KLMSetUserDefault("token", nil)
+                ///清空数据
+                KLMMesh.logout()
                 
                 success(responseObject as AnyObject)
             } else {
@@ -318,7 +318,8 @@ class KLMService: NSObject {
             if error == nil {
                 
                 let model = try? JSONDecoder().decode(KLMMeshInfo.self, from: responseObject!)
-                success(model as AnyObject)
+                let meshInfo = model?.data
+                success(meshInfo as AnyObject)
                 
             } else {
                 failure(error!)

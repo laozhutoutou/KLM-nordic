@@ -26,6 +26,8 @@ class KLMHomeAddViewController: UIViewController {
         }
         
         KLMService.addMesh(meshName: text) { response in
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            self.navigationController?.popViewController(animated: true)
             
         } failure: { error in
             KLMHttpShowError(error)

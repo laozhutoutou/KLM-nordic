@@ -21,27 +21,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        setupSVHUD()
-        
-        setupKeyboard()
                 
         setUpNordic()
         
         KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
 
         return true
-    }
-    
-    private func setupKeyboard() {
-        
-        let manager =  IQKeyboardManager.shared
-        manager.enable = true
-        manager.shouldResignOnTouchOutside = true
-        manager.shouldToolbarUsesTextFieldTintColor = true;
-        manager.enableAutoToolbar = true;
-        manager.toolbarManageBehaviour = .byTag
-        
     }
     
     func setUpNordic() {
@@ -60,21 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         meshNetworkManager.acknowledgmentMessageTimeout = 20.0
         meshNetworkManager.logger = self
         
-        ///加载本地配置数据
-//        var loaded = false
-//        do {
-//            loaded = try meshNetworkManager.load()
-//        } catch {
-//            print(error)
-//            // ignore
-//        }
+    }
+    
+    func createNewMeshNetwork() {
+        // TODO: Implement creator
+        let provisioner = Provisioner(name: UIDevice.current.name,
+                                      allocatedUnicastRange: [AddressRange(0x0001...0x199A)],
+                                      allocatedGroupRange:   [AddressRange(0xC000...0xCC9A)],
+                                      allocatedSceneRange:   [SceneRange(0x0001...0x3333)])
+        _ = meshNetworkManager.createNewMeshNetwork(withName: "nRF Mesh Network", by: provisioner)
+        _ = meshNetworkManager.save()
         
-        // If load failed, create a new MeshNetwork.
-//        if !loaded {
-//            createNewMeshNetwork()
-//        } else {
-//            meshNetworkDidChange()
-//        }
+        meshNetworkDidChange()
     }
     
     func meshNetworkDidChange() {
@@ -138,12 +120,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection.isConnectionModeAutomatic = true
         connection!.open()
         
-        enterMainUI()
-    }
-    
-    func setupSVHUD() {
-        
-        SVProgressHUD.setDefaultStyle(.dark)
     }
     
     func enterMainUI() {

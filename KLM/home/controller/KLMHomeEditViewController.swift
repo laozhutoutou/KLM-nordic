@@ -34,7 +34,7 @@ class KLMHomeEditViewController: UIViewController {
             self.tableView.reloadData()
             
         } failure: { error in
-            
+            KLMHttpShowError(error)
         }
 
     }
@@ -47,7 +47,8 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         KLMService.editMesh(id: homeModel.id, meshName: text, meshConfiguration: nil) { response in
-            
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            self.navigationController?.popViewController(animated: true)
         } failure: { error in
             KLMHttpShowError(error)
         }
@@ -55,50 +56,21 @@ class KLMHomeEditViewController: UIViewController {
     
     @IBAction func deleteMesh(_ sender: Any) {
         
-//        KLMService.deleteMesh(id: homeModel.id) { response in
-//
-//        } failure: { error in
-//            KLMHttpShowError(error)
-//        }
-        KLMMesh.saveHome(home: homeModel)
-        
-        KLMService.getMeshInfo(id: homeModel.id) { response in
-            
-            if let home = response as? KLMMeshInfo {
+        KLMService.deleteMesh(id: homeModel.id) { response in
+            ///删除mesh（1、mesh清除配置。2、清除家庭数据。3、刷新页面）
+            if KLMMesh.currentHome?.id == self.homeModel.id {///删除的是当前mesh
                 
-                ///测试导入
-                let manager = MeshNetworkManager.instance
-                do {
-                    let data = home.data.meshConfiguration.data(using: String.Encoding.utf8)
-                    _ = try manager.import(from: data!)
-                    self.saveAndReload()
-                    
-                } catch {
+                KLMMesh.removeHome()
+                (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
+                (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
+                
+            } else {
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                self.navigationController?.popViewController(animated: true)
 
-                }
             }
-
         } failure: { error in
-
-        }
-    }
-    
-    func saveAndReload() {
-        
-        let manager = MeshNetworkManager.instance
-        if manager.save() {
-            
-            
-                DispatchQueue.main.async {
-                    (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
-                    SVProgressHUD.showSuccess(withStatus: "Mesh Network configuration imported.")
-                    
-                }
-                
-        
-        } else {
-            SVProgressHUD.showError(withStatus: "Mesh configuration could not be saved.")
-            
+            KLMHttpShowError(error)
         }
     }
 }

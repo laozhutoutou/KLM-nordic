@@ -14,12 +14,17 @@ class KLMHomeViewController: UIViewController {
     //数据源
     var homes: [KLMHome.KLMHomeModel] = []
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getMeshListData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addHome))
-        
-        getMeshListData()
+
     }
     
     @objc func addHome() {

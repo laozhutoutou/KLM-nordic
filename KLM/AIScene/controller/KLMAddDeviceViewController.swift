@@ -237,11 +237,8 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         
         //正式APP
         device.name = self.deviceName
-        if MeshNetworkManager.instance.save() {
+        if KLMMesh.save() {
             
-            ///提交配置数据
-            KLMMesh.upLoadMesh()
-
             //刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
 

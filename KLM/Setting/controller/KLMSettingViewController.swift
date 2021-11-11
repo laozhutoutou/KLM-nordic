@@ -12,9 +12,9 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    let images = ["icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
+    let images = ["icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
 //    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice"),"Export","Import"]]
-    let titles = [LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), "家庭管理"]
+    let titles = [LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), "家庭管理","退出登录"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +84,14 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         case 4:
             let vc = KLMHomeViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case 5:
+            KLMService.logout { response in
+                ///进入登录页面
+                (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
+            } failure: { error in
+                
+            }
+
         default: break
             
         }

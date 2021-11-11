@@ -23,6 +23,7 @@ struct KLMHome: Codable {
     struct KLMHomeModel: Codable {
         var meshName: String
         var id: Int
+        var meshConfiguration: String
     }
 }
 

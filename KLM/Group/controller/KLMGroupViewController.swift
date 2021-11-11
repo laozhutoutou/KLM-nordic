@@ -63,10 +63,7 @@ class KLMGroupViewController: UIViewController {
                     let group = try? Group(name: name, address: address)
                     try? network.add(group: group!)
                     
-                    if MeshNetworkManager.instance.save() {
-                        
-                        ///提交配置数据
-                        KLMMesh.upLoadMesh()
+                    if KLMMesh.save() {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
@@ -147,7 +144,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                 do {
                     try network.remove(group: model)
                     
-                    if MeshNetworkManager.instance.save() {
+                    if KLMMesh.save() {
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
                         

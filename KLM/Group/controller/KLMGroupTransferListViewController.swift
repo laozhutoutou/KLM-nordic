@@ -91,7 +91,7 @@ class KLMGroupTransferListViewController: UIViewController {
                     let group = try? Group(name: name, address: address)
                     try? network.add(group: group!)
                     
-                    if MeshNetworkManager.instance.save() {
+                    if KLMMesh.save() {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         NotificationCenter.default.post(name: .groupAddSuccess, object: nil)

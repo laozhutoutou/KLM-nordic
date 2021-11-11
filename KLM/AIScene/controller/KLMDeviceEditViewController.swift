@@ -293,7 +293,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 KLMHomeManager.currentNode.name = name
                 
-                if MeshNetworkManager.instance.save() {
+                if KLMMesh.save() {
                     
                     self.nameLab.text = KLMHomeManager.currentNode.name
                     self.tableView.reloadData()

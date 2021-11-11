@@ -10,8 +10,6 @@ import nRFMeshProvision
 
 let KLMPhoneKey = "KLMPhoneKey"
 let KLMPasswordKey = "KLMPasswordKey"
-let KLMHomeId = "KLMHomeId"
-let KLMHistoryKey = "KLMHistoryKey"
 
 //历史记录最大存储条数
 let HistoryMaxCacheNum = 20
@@ -41,8 +39,7 @@ class KLMHomeManager {
     }
     //控制类型
     var controllType: ControllType?
-    
-    
+
     static var currentNode: Node {
         
         return  KLMHomeManager.sharedInstacnce.smartNode!
@@ -92,44 +89,6 @@ extension KLMHomeManager {
         KLMSetUserDefault(KLMPasswordKey, password)
     }
     
-    static func cacheHomeId(_ homeId: Int64) {
-        
-        KLMSetUserDefault(KLMHomeId, homeId)
-    }
-    
-    static func getHomeId() -> Int64{
-        
-         return KLMGetUserDefault(KLMHomeId) as! Int64
-    }
-    
-    static func deleteCache() {
-        
-        KLMSetUserDefault(KLMHomeId, nil)
-        
-    }
-    
-    static func cacheHistoryLists(list: [String]) {
-        //最多存储20条记录
-        var lists = list
-        if lists.count > HistoryMaxCacheNum {
-            
-            lists.removeLast()
-        }
-        KLMSetUserDefault(KLMHistoryKey, lists)
-        
-    }
-    
-    static func getHistoryLists() -> [String] {
-        
-        return KLMGetUserDefault(KLMHistoryKey) as? [String] ?? [String]()
-        
-    }
-    
-    static func deleteHistoryCache() {
-        
-        KLMSetUserDefault(KLMHistoryKey, nil)
-        
-    }
 }
 
 extension KLMHomeManager {

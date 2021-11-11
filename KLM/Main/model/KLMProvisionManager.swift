@@ -119,7 +119,7 @@ extension KLMProvisionManager: GattBearerDelegate {
             return
         }
         //节点添加完成
-        if MeshNetworkManager.instance.save() {
+        if KLMMesh.save() {
             
             KLMLog("node add success")
             
