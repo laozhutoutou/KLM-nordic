@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class KLMHelpViewController: UIViewController {
 
@@ -30,20 +31,23 @@ class KLMHelpViewController: UIViewController {
     @IBAction func commit(_ sender: Any) {
         
         guard let question = self.questionView.text, question.isEmpty == false else {
-            
+            SVProgressHUD.showError(withStatus: LANGLOC("FeedBackContentEmptyTip"))
             return
-            
         }
         
         guard let phone = self.phoneField.text, phone.isEmpty == false else {
-            
+            SVProgressHUD.showError(withStatus: LANGLOC("FeedBackContactEmptyTip"))
             return
-            
         }
         
-        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            self.navigationController?.popViewController(animated: true)
+        SVProgressHUD.show()
+        KLMService.feedBack(contacts: phone, content: question) { response in
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        } failure: { error in
+            KLMHttpShowError(error)
         }
     }
 }

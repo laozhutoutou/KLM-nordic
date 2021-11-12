@@ -76,6 +76,11 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
         
         switch indexPath.row {
         case 0:
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
+            
             //修改组名称
             let vc = CMDeviceNamePopViewController()
             vc.titleName = LANGLOC("Group")

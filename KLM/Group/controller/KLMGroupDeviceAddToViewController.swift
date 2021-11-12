@@ -33,6 +33,10 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     
     @objc func newGroup() {
         
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
+        
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
         vc.modalPresentationStyle = .overCurrentContext
@@ -81,6 +85,10 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     }
     
     @IBAction func finishClick(_ sender: Any) {
+        
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
         
         //设备添加到群组
         guard let selectedIndexPath = selectedIndexPath else { return  }

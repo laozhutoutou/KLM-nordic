@@ -67,3 +67,7 @@ Success = "Success";
 Updatecomplete = "Update complete";
 Softwareupdate = "Software update";
 Update = "Update";
+CreateHomeTip = "请到 更多-家庭管理 创建新家庭";
+admin_permissions_tips = "需管理员权限";
+FeedBackContentEmptyTip = "请描述您的问题";
+FeedBackContactEmptyTip = "请输入您的联系方式";

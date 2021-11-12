@@ -51,13 +51,15 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return homes.count
-        
+        if section == 0 {
+            return homes.count
+        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -79,20 +81,31 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
-        cell.leftTitle = home.meshName
-        return cell
+        if indexPath.section == 0 {
+            let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
+            cell.leftTitle = home.meshName
+            return cell
+        }
         
+        cell.leftTitle = LANGLOC("加入一个家庭")
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
-        let vc = KLMHomeEditViewController()
-        vc.homeModel = home
+        if indexPath.section == 0 {
+            
+            let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
+            let vc = KLMHomeEditViewController()
+            vc.homeModel = home
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+        
+        let vc = KLMJoinHomeViewController()
         navigationController?.pushViewController(vc, animated: true)
         
     }

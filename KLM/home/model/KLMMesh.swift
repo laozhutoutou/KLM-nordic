@@ -10,8 +10,9 @@ import nRFMeshProvision
 
 class KLMMesh {
     
-    ///当期家庭
-    static var currentHome: KLMHome.KLMHomeModel?
+    //单例
+    static let instacnce = KLMMesh()
+    private init(){}
     
     static func createMesh() -> String {
         
@@ -39,19 +40,16 @@ class KLMMesh {
     }
     ///获取存储的家庭
     static func loadHome() -> KLMHome.KLMHomeModel? {
-        currentHome = KLMCache.getCache(KLMHome.KLMHomeModel.self, key: "home")
-        return currentHome
+        return KLMCache.getCache(KLMHome.KLMHomeModel.self, key: "home")
         
     }
     ///保存选择的家庭
-    static func saveHome(home: KLMHome.KLMHomeModel) {
-        currentHome = home
+    static func saveHome(home: KLMHome.KLMHomeModel?) {
         KLMCache.setCache(model: home, key: "home")
         
     }
     ///删除存储的家庭
     static func removeHome() {
-        currentHome = nil
         KLMCache.removeObject(key: "home")
     }
     
@@ -101,7 +99,7 @@ class KLMMesh {
         
         if MeshNetworkManager.instance.save() {
             
-            if let model = currentHome {
+            if let model = KLMMesh.loadHome() {
                 let manager = MeshNetworkManager.instance
                 let data = manager.export(.full)
                 let newStr = String(data: data, encoding: String.Encoding.utf8)
@@ -128,17 +126,46 @@ extension KLMMesh {
         KLMSetUserDefault("token", nil)
         ///清空家庭数据
         self.removeHome()
+        ///清空用户数据
+        KLMUser.removeUserInfo()
         
         (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
     }
-    
+    ///是否有家庭
     static func isLoadMesh() -> Bool {
         
-        return currentHome == nil ? false : true
+        return KLMMesh.loadHome() == nil ? false : true
+    }
+    ///是否是管理员
+    static func isMeshManager() -> Bool{
+        
+        guard let currentHome = KLMMesh.loadHome() else { return false }
+        return isMeshManager(meshAdminId: currentHome.adminId!)
+        
+    }
+    ///是否是管理员
+    static func isMeshManager(meshAdminId: Int) -> Bool{
+        
+        guard let user = KLMUser.getUserInfo() else { return false }
+        if meshAdminId == user.id {
+            return true
+        }
+        return false
     }
     
-    static func isMeshManager() {
+    ///是否可以修改mesh配置数据
+    static func isCanEditMesh() -> Bool {
         
+        if isLoadMesh() == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+            return false
+        }
         
+        if isMeshManager() == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            return false
+        }
+        
+        return true
     }
 }

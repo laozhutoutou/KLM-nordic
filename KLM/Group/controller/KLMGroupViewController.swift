@@ -45,6 +45,10 @@ class KLMGroupViewController: UIViewController {
     /// 更多
     @objc func moreClick() {
         
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
+        
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
         vc.modalPresentationStyle = .overCurrentContext
@@ -135,6 +139,10 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         let model: Group = groups[indexPath.row]
         
         let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
             
             let aler = UIAlertController.init(title: LANGLOC("groupDeleteTip"), message: LANGLOC("groupSelectDelete"), preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)

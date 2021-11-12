@@ -163,6 +163,10 @@ class KLMUnNameListViewController: UIViewController{
     
     @objc func newDevice() {
         
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
+        
         let vc = KLMAddDeviceViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -178,9 +182,9 @@ class KLMUnNameListViewController: UIViewController{
         }
     }
     
-    func refreshData() {
+    private func refreshData() {
         
-        guard let home = KLMMesh.currentHome else {
+        guard let home = KLMMesh.loadHome() else {
             self.collectionView.mj_header?.endRefreshing()
             return
         }
@@ -220,7 +224,7 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
     func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
         
         let selectHome = self.homes[index]
-        if selectHome.id == KLMMesh.currentHome!.id {
+        if selectHome.id == KLMMesh.loadHome()!.id {
             return
         }
         
@@ -268,6 +272,10 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
     }
     
     func longPress(model: Node) {
+        
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
         
         let alert = UIAlertController(title: LANGLOC("deleteDevice"),
                                       message: LANGLOC("deleteDeviceTip"),

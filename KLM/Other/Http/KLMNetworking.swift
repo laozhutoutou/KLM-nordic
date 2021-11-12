@@ -151,11 +151,14 @@ class KLMService: NSObject {
             
             if error == nil {
                 
-                let model = try? JSONDecoder().decode(KLMToken.self, from: responseObject!)
+                let model = try? JSONDecoder().decode(KLMUser.self, from: responseObject!)
                 
                 //登录成功，存储token
                 KLMLog("登录成功：token = \(String(describing: model?.data.token))")
                 KLMSetUserDefault("token", model?.data.token)
+                
+                ///存储个人信息
+                KLMUser.cacheUserInfo(user: model?.data.userInfo)
                 
                 success(responseObject as AnyObject)
             } else {
@@ -336,6 +339,22 @@ class KLMService: NSObject {
                 
                 let model = try? JSONDecoder().decode(KLMMeshUser.self, from: responseObject!)
                 success(model as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func feedBack(contacts: String, content: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["email": contacts,
+                      "content": content]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/feedBack"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
                 
             } else {
                 failure(error!)

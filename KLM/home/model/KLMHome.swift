@@ -23,15 +23,8 @@ struct KLMHome: Codable {
     struct KLMHomeModel: Codable {
         var meshName: String
         var id: Int
+        var adminId: Int?///管理员ID
         var meshConfiguration: String
-    }
-}
-
-struct KLMToken: Codable {
-    
-    var data: KLMTokenData
-    struct KLMTokenData: Codable {
-        var token: String
     }
 }
 

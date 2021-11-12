@@ -119,6 +119,10 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
                 
+                if KLMMesh.isCanEditMesh() == false {
+                    return
+                }
+                
                 //设备移出分组
                 SVProgressHUD.show()
                 

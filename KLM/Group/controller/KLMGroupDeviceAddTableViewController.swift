@@ -54,6 +54,10 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     
     @objc func finishClick() {
         
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
+        
         //设备添加到群组
         guard let selectedIndexPath = selectedIndexPath else { return  }
         

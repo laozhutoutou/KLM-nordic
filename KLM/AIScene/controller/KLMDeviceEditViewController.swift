@@ -282,6 +282,11 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         
         switch indexPath.row {
         case itemType.rename.rawValue://设备名称
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
+            
             let vc = CMDeviceNamePopViewController()
             vc.titleName = LANGLOC("Light")
             vc.text = KLMHomeManager.currentNode.name
@@ -324,6 +329,11 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = KLMMotionViewController()
             navigationController?.pushViewController(vc, animated: true)
         case itemType.reset.rawValue: //恢复出厂设置
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
+            
             let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .actionSheet)
             vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .destructive, handler: { action in
                 SVProgressHUD.show()

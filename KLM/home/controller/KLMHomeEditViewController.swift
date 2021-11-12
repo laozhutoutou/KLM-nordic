@@ -41,6 +41,11 @@ class KLMHomeEditViewController: UIViewController {
     
     @objc func finish() {
         
+        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            return
+        }
+        
         guard let text = nameTextField.text, text.isEmpty == false else {
             SVProgressHUD.showError(withStatus: "请输入家庭名称")
             return
@@ -56,9 +61,14 @@ class KLMHomeEditViewController: UIViewController {
     
     @IBAction func deleteMesh(_ sender: Any) {
         
+        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            return
+        }
+        
         KLMService.deleteMesh(id: homeModel.id) { response in
             ///删除mesh（1、mesh清除配置。2、清除家庭数据。3、刷新页面）
-            if KLMMesh.currentHome?.id == self.homeModel.id {///删除的是当前mesh
+            if KLMMesh.loadHome()?.id == self.homeModel.id {///删除的是当前mesh
                 
                 KLMMesh.removeHome()
                 (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
@@ -73,6 +83,18 @@ class KLMHomeEditViewController: UIViewController {
             KLMHttpShowError(error)
         }
     }
+    
+    @IBAction func addUser(_ sender: Any) {
+        
+        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            return
+        }
+        
+        ///生成邀请码
+        
+    }
+    
 }
 
 extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource {
