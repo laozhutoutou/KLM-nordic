@@ -110,6 +110,9 @@ extension NSNotification.Name {
     static let deviceReset = NSNotification.Name.init("deviceReset")
     
     static let refreshDeviceEdit = NSNotification.Name.init("refreshDeviceEdit")
+    
+    ///家庭添加成功
+    static let homeAddSuccess = NSNotification.Name.init("homeAddSuccess")
 }
 
 extension String {

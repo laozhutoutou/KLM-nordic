@@ -27,6 +27,7 @@ class KLMHomeAddViewController: UIViewController {
         
         KLMService.addMesh(meshName: text) { response in
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
             self.navigationController?.popViewController(animated: true)
             
         } failure: { error in

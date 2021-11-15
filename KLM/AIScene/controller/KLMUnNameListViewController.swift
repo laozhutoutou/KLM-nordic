@@ -56,9 +56,7 @@ class KLMUnNameListViewController: UIViewController{
     var homes: [KLMHome.KLMHomeModel] = []
     
     deinit {
-        
         NotificationCenter.default.removeObserver(self)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,10 +86,12 @@ class KLMUnNameListViewController: UIViewController{
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceNameUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
+        
         //刷新
         let header = KLMRefreshHeader.init {[weak self] in
             guard let self = self else { return }
-            self.refreshData()
+            (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
         }
         self.collectionView.mj_header = header
         
@@ -105,35 +105,53 @@ class KLMUnNameListViewController: UIViewController{
         initData()
     }
     
-    func initData() {
+    @objc func initData() {
         
-        if let home = KLMMesh.loadHome() { ///本地存有家庭
+        KLMService.getMeshList { response in
             
-            self.homeBtn.setTitle(home.meshName, for: .normal)
-            ///从本地提取mesh数据
-            KLMMesh.loadLocalMeshData()
-            ///渲染首页
-            setupData()
-            
-        } else {
-            ///
-            KLMService.getMeshList { response in
+            let meshList = response as! [KLMHome.KLMHomeModel]
+            if meshList.count > 0 {///服务器有家庭
                 
-                let meshList = response as! [KLMHome.KLMHomeModel]
-                if meshList.count > 0 {///服务器有家庭
-                    ///选择第一个家庭
-                    let firstHome = meshList.first!
-                    ///存储当前家庭
-                    KLMMesh.saveHome(home: firstHome)
-                    self.homeBtn.setTitle(firstHome.meshName, for: .normal)
-                    ///将mesh信息存到本地
-                    KLMMesh.loadHomeMeshData(meshConfiguration: firstHome.meshConfiguration)
-                    ///渲染首页
-                    self.setupData()
+                var currentHome: KLMHome.KLMHomeModel!
+                
+                if let home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
                     
+                    currentHome = mesh
+
+                } else {
+                    ///选择第一个家庭
+                    currentHome = meshList.first!
                 }
                 
-            } failure: { error in
+                self.homeBtn.setTitle(currentHome.meshName, for: .normal)
+                ///存储当前家庭
+                KLMMesh.saveHome(home: currentHome)
+                ///存储mesh数据
+                KLMMesh.loadHomeMeshData(meshConfiguration: currentHome.meshConfiguration)
+                ///渲染首页
+                self.setupData()
+                
+            } else {///服务器没有家庭
+                
+                if KLMMesh.loadHome() != nil {///本地存有家庭
+                    ///清空数据
+                    KLMMesh.removeHome()
+                    self.homeBtn.setTitle(nil, for: .normal)
+                    (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
+                    ///渲染首页
+                    self.setupData()
+                }
+            }
+            
+        } failure: { error in
+            ///获取不到服务器数据，加载本地数据
+            if let home = KLMMesh.loadHome() { ///本地存有家庭
+                
+                self.homeBtn.setTitle(home.meshName, for: .normal)
+                ///从本地提取mesh数据
+                KLMMesh.loadLocalMeshData()
+                ///渲染首页
+                self.setupData()
                 
             }
         }
@@ -149,6 +167,8 @@ class KLMUnNameListViewController: UIViewController{
             self.nodes = notConfiguredNodes
             self.collectionView.reloadData()
         }
+        
+        self.collectionView.mj_header?.endRefreshing()
     }
     
     @objc func tapSearch() {
@@ -182,24 +202,6 @@ class KLMUnNameListViewController: UIViewController{
         }
     }
     
-    private func refreshData() {
-        
-        guard let home = KLMMesh.loadHome() else {
-            self.collectionView.mj_header?.endRefreshing()
-            return
-        }
-        KLMService.getMeshInfo(id: home.id) { response in
-            guard let meshInfo = response as? KLMMeshInfo.KLMMeshInfoData else { return  }
-            ///将mesh信息存到本地
-            KLMMesh.loadHomeMeshData(meshConfiguration: meshInfo.meshConfiguration)
-            ///渲染首页
-            (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
-            self.collectionView.mj_header?.endRefreshing()
-        } failure: { error in
-            self.collectionView.mj_header?.endRefreshing()
-        }
-    }
-    
     func showHomeDropView() {
         
         let point: CGPoint = CGPoint.init(x: 20, y: KLM_TopHeight)
@@ -224,7 +226,7 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
     func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
         
         let selectHome = self.homes[index]
-        if selectHome.id == KLMMesh.loadHome()!.id {
+        if let home = KLMMesh.loadHome(), selectHome.id == home.id {
             return
         }
         
@@ -395,6 +397,11 @@ extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
 }
  
 extension KLMUnNameListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        
+        return true
+    }
     
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
 

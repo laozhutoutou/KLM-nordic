@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class KLMRegisterViewController: UIViewController {
     
@@ -23,7 +24,7 @@ class KLMRegisterViewController: UIViewController {
     @IBAction func sendCode(_ sender: Any) {
         
         KLMService.getCode(email: mailTextField.text!) { _ in
-            
+            SVProgressHUD.showSuccess(withStatus: "发送成功")
         } failure: { error in
             KLMHttpShowError(error)
         }

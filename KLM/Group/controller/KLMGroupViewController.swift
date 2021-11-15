@@ -30,6 +30,13 @@ class KLMGroupViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
         
+        //刷新
+        let header = KLMRefreshHeader.init {[weak self] in
+            guard let self = self else { return }
+            self.setupData()
+        }
+        self.tableView.mj_header = header
+        
         setupData()
     }
     
@@ -40,6 +47,7 @@ class KLMGroupViewController: UIViewController {
             self.groups = network.groups
             self.tableView.reloadData()
         }
+        self.tableView.mj_header?.endRefreshing()
     }
     
     /// 更多

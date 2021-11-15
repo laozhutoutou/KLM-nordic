@@ -361,4 +361,52 @@ class KLMService: NSObject {
             }
         }
     }
+    
+    static func getInvitationCode(meshId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["meshId": meshId]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/invitationCode"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMInvitationCode.self, from: responseObject!)
+                let code = model?.data.result
+                success(code as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func joinToHome(invitationCode: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["invitationCode": invitationCode]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/json"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func deleteUser(meshId: Int, userId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["meshId": meshId,
+                      "userId": userId]
+        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/mesh/link"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
 }

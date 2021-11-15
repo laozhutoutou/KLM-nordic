@@ -53,6 +53,13 @@ class KLMHomeEditViewController: UIViewController {
         
         KLMService.editMesh(id: homeModel.id, meshName: text, meshConfiguration: nil) { response in
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            if let home = KLMMesh.loadHome(), self.homeModel.id == home.id {
+                
+                var homee = home
+                homee.meshName = text
+                KLMMesh.saveHome(home: homee)
+                NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
+            }
             self.navigationController?.popViewController(animated: true)
         } failure: { error in
             KLMHttpShowError(error)
@@ -92,9 +99,21 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         ///生成邀请码
-        
+        KLMService.getInvitationCode(meshId: self.homeModel.id) { response in
+            
+            guard let code = response as? String else { return }
+            let alert = UIAlertController(title: "请将此邀请码提供给他人已便加入家庭,有效期3天",
+                                          message: code,
+                                          preferredStyle: .alert)
+            
+            let cancelAction = UIAlertAction(title: "关闭", style: .cancel)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true)
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
-    
 }
 
 extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource {
@@ -142,5 +161,46 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
         
         
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+            
+            return false
+        }
+        
+        let user = self.meshUsers!.data[indexPath.row]
+        if user.id == homeModel.adminId {
+            return false
+        }
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let user = self.meshUsers!.data[indexPath.row]
+        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+                
+            let aler = UIAlertController.init(title: "删除成员", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
+            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+                
+                KLMService.deleteUser(meshId: self.homeModel.id, userId: user.id) { response in
+                    self.getMeshUserData()
+                    SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                } failure: { error in
+                    KLMHttpShowError(error)
+                }
+
+            }
+            aler.addAction(cancel)
+            aler.addAction(sure)
+            self.present(aler, animated: true, completion: nil)
+            completionHandler(true)
+        }
+        
+        let actions = UISwipeActionsConfiguration.init(actions: [deleteAction])
+        return actions
     }
 }

@@ -24,7 +24,14 @@ class KLMJoinHomeViewController: UIViewController {
             return
         }
         
-        
+        KLMService.joinToHome(invitationCode: text) { response in
+            SVProgressHUD.showSuccess(withStatus: "加入成功")
+            NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
+            self.navigationController?.popViewController(animated: true)
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+
     }
     
 }

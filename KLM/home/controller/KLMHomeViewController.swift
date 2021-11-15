@@ -22,7 +22,8 @@ class KLMHomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        tableView.backgroundColor = appBackGroupColor
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addHome))
 
     }
@@ -69,7 +70,7 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return 0.1
+        return 10
         
     }
     
@@ -86,9 +87,12 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
             cell.leftTitle = home.meshName
+            cell.leftLab.textColor = rgb(38, 38, 38)
+            cell.line.isHidden = true
             return cell
         }
-        
+        cell.leftLab.textColor = appMainThemeColor
+        cell.line.isHidden = true
         cell.leftTitle = LANGLOC("加入一个家庭")
         return cell
     }
