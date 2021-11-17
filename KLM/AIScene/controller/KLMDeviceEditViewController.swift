@@ -7,6 +7,7 @@
 
 import UIKit
 import nRFMeshProvision
+import SVProgressHUD
 
 private enum itemType: Int, CaseIterable {
     case lightPower = 0
@@ -40,6 +41,9 @@ class KLMDeviceEditViewController: UIViewController {
     var MCUVersion: Int = 1
     var BLEVersion: Int = 1
     
+    var BLEVersionData: KLMVersion.KLMVersionData?
+    var MCUVersionData: KLMVersion.KLMVersionData?
+
     //节能开关
     var motionValue: Bool = false
     //颜色测试
@@ -67,11 +71,9 @@ class KLMDeviceEditViewController: UIViewController {
         
         setupUI()
         
-        setupData()
+        event()
         
-        sendFlash()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkGroup), name: .deviceAddToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupNodeMessage), name: .refreshDeviceEdit, object: nil)
         
     }
@@ -91,6 +93,15 @@ class KLMDeviceEditViewController: UIViewController {
         tableView.clipsToBounds = true
     }
     
+    func event() {
+        
+        checkGroup()
+        
+        sendFlash()
+        
+        checkVerison()
+    }
+    
     //灯闪烁
     func sendFlash() {
         
@@ -101,7 +112,7 @@ class KLMDeviceEditViewController: UIViewController {
     }
     
     ///查询设备所属分组
-    @objc func setupData() {
+    @objc func checkGroup() {
         deviceGroups = KLMHomeManager.currentModel.subscriptions
         self.tableView.reloadData()
     }
@@ -112,6 +123,23 @@ class KLMDeviceEditViewController: UIViewController {
         let parameTime = parameModel(dp: .AllDp)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
         
+    }
+    
+    func checkVerison() {
+        
+        KLMService.checkVersion(type: "bluetooth") { response in
+            self.BLEVersionData = response as? KLMVersion.KLMVersionData
+            self.tableView.reloadData()
+        } failure: { error in
+            
+        }
+        
+        KLMService.checkVersion(type: "mcu") { response in
+            self.MCUVersionData = response as? KLMVersion.KLMVersionData
+            self.tableView.reloadData()
+        } failure: { error in
+            
+        }
     }
     
 }
@@ -344,9 +372,14 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             present(vc, animated: true, completion: nil)
         case itemType.DFU.rawValue:///固件更新
             //当前版本
+            
+            guard let bleData = self.BLEVersionData, let mcuData = self.MCUVersionData else {
+                SVProgressHUD.showInfo(withStatus: "Check version failed")
+                return
+            }
             let currentVersion: String = "\(BLEVersion).\(MCUVersion)"
-            //最新版本
-            let newestVersion: String = "\(BLENewestVersion).\(MCUNewestVersion)"
+            //最新版本 -- 服务器查询
+            let newestVersion: String = bleData.fileVersion + mcuData.fileVersion
             
             let value = currentVersion.compare(newestVersion)
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
@@ -354,6 +387,9 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 let vc = KLMDFUViewController()
                 vc.BLEVersion = BLEVersion
                 vc.MCUVersion = MCUVersion
+                vc.BLEVersionData = bleData
+                vc.MCUVersionData = mcuData
+                
                 navigationController?.pushViewController(vc, animated: true)
                 
             } else {

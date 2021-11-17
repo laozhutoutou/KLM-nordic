@@ -6,7 +6,9 @@
 //
 
 import UIKit
- 
+import SSZipArchive
+import SwiftUI
+
 class KLMAPPUpdateViewController: UIViewController {
 
     @IBOutlet weak var iconImageView: UIImageView!
@@ -26,31 +28,46 @@ class KLMAPPUpdateViewController: UIViewController {
         
         updateBtn.layer.cornerRadius = updateBtn.height / 2
         
-//        if let path = Bundle.main.path(forResource: "jpgimage1_image_640_480", ofType: "yuv"){
-//            yuvData = NSData.init(contentsOfFile: path)
-//
-//            self.myview = OpenGLView20.init(frame: CGRect.init(x: 20, y: 20, width: KLMScreenW - 40, height: 300))
-//            self.view.addSubview(self.myview)
-//
-//        }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     
-//        self.myview.setVideoSize(640, height: 480)
-//        self.myview.displayYUV420pData(self.yuvData as Data?, width: 640, height: 480)
     }
 
     @IBAction func updateClick(_ sender: Any) {
         
-        //查询版本
-//        KLMNetworking.ShareInstance.POST(URLString: "https://itunes.apple.com/lookup?id=1579633878", params: nil) { response in
-//            
+        KLMService.checkVersion(type: "bluetooth") { response in
+            
+        } failure: { error in
+            
+        }
+        
+//        KLMService.downLoadFile(id: 1) { response in
+//
 //        } failure: { error in
-//            
-//            KLMShowError(error)
+//
+//        }
+
+        
+        ///解压文件
+//        let path = Bundle.main.path(forResource: "Project", ofType: "zip")
+//        let des = NSHomeDirectory() + "/Documents/Project"
+//        SSZipArchive.unzipFile(atPath: path!, toDestination: des) { str, info, index, index1 in
+//            print(str)
+//            print(info)
+//            print(index)
+//            print(index1)
+//        } completionHandler: { str, bool, error in
+//            print(bool)
+//            print(error)
+//        }
+//
+//        ///获取文件
+//        let filePath = NSHomeDirectory() + "/Documents/Project/Project.bin"
+//        if FileManager.default.fileExists(atPath: filePath){
+//            let data = NSData.init(contentsOfFile: filePath)
+//            KLMLog(data)
 //        }
     }
 }

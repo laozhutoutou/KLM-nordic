@@ -409,4 +409,34 @@ class KLMService: NSObject {
             }
         }
     }
+    
+    static func checkVersion(type: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMVersion.self, from: responseObject!)
+                let data = model?.data
+                success(data as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func downLoadFile(id: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/download/\(id)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+            
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
 }

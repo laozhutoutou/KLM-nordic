@@ -19,10 +19,10 @@ import HandyJSON
 //////1、检查配方是否最新 2、检查MCU和蓝牙固件是否最新
 let isTestApp: Bool = false
 
-/// 蓝牙版本号
-let BLENewestVersion: Int = 4
-/// MCU版本号
-let MCUNewestVersion: Int = 3
+///// 蓝牙版本号
+//let BLENewestVersion: Int = 4
+///// MCU版本号
+//let MCUNewestVersion: Int = 3
 
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width

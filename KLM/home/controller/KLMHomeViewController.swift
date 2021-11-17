@@ -24,14 +24,7 @@ class KLMHomeViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.backgroundColor = appBackGroupColor
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addHome))
-
-    }
-    
-    @objc func addHome() {
         
-        let vc = KLMHomeAddViewController()
-        navigationController?.pushViewController(vc, animated: true)
     }
     
     func getMeshListData() {
@@ -52,7 +45,7 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -93,24 +86,33 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.leftLab.textColor = appMainThemeColor
         cell.line.isHidden = true
-        cell.leftTitle = LANGLOC("加入一个家庭")
+        if indexPath.section == 1 {
+            cell.leftTitle = "创建家庭"
+        } else {
+            cell.leftTitle = "加入一个家庭"
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if indexPath.section == 0 {
-            
+        switch indexPath.section {
+        case 0:
             let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
             let vc = KLMHomeEditViewController()
             vc.homeModel = home
             navigationController?.pushViewController(vc, animated: true)
-            return
+        case 1:
+            let vc = KLMHomeAddViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case 2:
+            let vc = KLMJoinHomeViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
         }
-        
-        let vc = KLMJoinHomeViewController()
-        navigationController?.pushViewController(vc, animated: true)
         
     }
 }

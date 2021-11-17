@@ -7,10 +7,14 @@
 
 import UIKit
 import nRFMeshProvision
+import SVProgressHUD
 
 class KLMUnNameListViewController: UIViewController{
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var currentVersion: String!
+    private var versionData: KLMVersion.KLMVersionData!
     
     lazy var searchBar: UIView = {
         let width = 100.0
@@ -76,6 +80,14 @@ class KLMUnNameListViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
           
+        setupUI()
+        
+        event()
+    
+    }
+    
+    func setupUI() {
+        
         collectionView.backgroundColor = appBackGroupColor
         
         navigationController?.view.addSubview(self.searchBar)
@@ -88,21 +100,26 @@ class KLMUnNameListViewController: UIViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
         
-        //刷新
-        let header = KLMRefreshHeader.init {[weak self] in
-            guard let self = self else { return }
-            (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
-        }
-        self.collectionView.mj_header = header
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
         
         ///家庭列表按钮
         let homeItem = UIBarButtonItem.init(customView: self.homeBtn)
         navigationItem.leftBarButtonItem = homeItem
         
+        //刷新
+        let header = KLMRefreshHeader.init {[weak self] in
+            guard let self = self else { return }
+            (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
+        }
+        self.collectionView.mj_header = header
+    }
+    
+    func event() {
+        
         ///初始化数据
         initData()
+        ///检查版本
+        checkVersion()
     }
     
     @objc func initData() {
@@ -218,6 +235,66 @@ class KLMUnNameListViewController: UIViewController{
             popupMenu?.isShadowShowing = false
             popupMenu?.delegate = self
         }
+    }
+    
+    private func checkVersion() {
+        
+        KLMService.checkVersion(type: "ios") { response in
+            
+            guard let data = response as? KLMVersion.KLMVersionData else { return  }
+            self.versionData = data
+            self.currentVersion = String(format: "V%@", KLM_APP_VERSION as! String)
+            
+            guard self.currentVersion.compare(self.versionData.fileVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
+                return
+            }
+            
+            ///是否是强制更新
+            let isForce: Bool = false
+            if isForce {///是强制更新
+                
+                self.showUpdateView()
+                
+            } else {///普通更新
+                
+                ///每个新版本提示一次
+//                guard KLMGetUserDefault(self.versionData.fileVersion) == nil else { return }
+//                KLMSetUserDefault(self.versionData.fileVersion, self.versionData.fileVersion)
+                
+                self.showUpdateView()
+            }
+            ///每隔一段时间提示一次
+        } failure: { error in
+            
+        }
+    }
+    
+    private func showUpdateView() {
+        
+        ///用英语
+        var updateMsg: String = self.versionData.updateMessage
+//        if Bundle.isChineseLanguage() {///使用中文
+//
+//        }
+        ///弹出提示框
+        let vc = UIAlertController.init(title: LANGLOC("checkUpdate"), message: "\(self.versionData.fileVersion)\n\(updateMsg)", preferredStyle: .alert)
+        vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
+            
+            SVProgressHUD.showInfo(withStatus: "功能未完善")
+            ///跳转到appleStore
+//            let url: String = "http://itunes.apple.com/app/id1590631426?mt=8"
+//            if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
+//                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
+//            }
+            
+            ///强制更新退出APP
+//            exit(0)
+            
+        }))
+        
+        ///强制更新没有取消按钮
+        vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+        self.present(vc, animated: true, completion: nil)
     }
 }
 

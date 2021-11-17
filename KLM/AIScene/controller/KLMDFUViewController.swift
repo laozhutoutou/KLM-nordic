@@ -10,6 +10,7 @@ import CoreBluetooth
 import nRFMeshProvision
 import SVProgressHUD
 import iOSDFULibrary
+import SwiftUI
 
 enum updateType {
     case BLEUpdate
@@ -29,6 +30,10 @@ class KLMDFUViewController: UIViewController {
     
     var MCUVersion: Int!
     var BLEVersion: Int!
+    
+    var BLEVersionData: KLMVersion.KLMVersionData!
+    var MCUVersionData: KLMVersion.KLMVersionData!
+    
     var updateTy: updateType = .Both
     
     private var centralManager: CBCentralManager?
@@ -57,11 +62,11 @@ class KLMDFUViewController: UIViewController {
         
         navigationItem.title = LANGLOC("Softwareupdate")
         
-        if BLEVersion >= BLENewestVersion {
+        if BLEVersion >= Int(BLEVersionData.fileVersion)! {
             updateTy = .MCUUpdate
         }
         
-        if MCUVersion >= MCUNewestVersion {
+        if MCUVersion >= Int(MCUVersionData.fileVersion)! {
             updateTy = .BLEUpdate
             
         }
@@ -156,6 +161,16 @@ class KLMDFUViewController: UIViewController {
 
             }
         }
+    }
+    
+    func downLoadBleFile() {
+        
+        
+    }
+    
+    func downLoadMcuFile() {
+        
+        
     }
     
     func startScanning() {

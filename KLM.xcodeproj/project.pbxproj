@@ -69,7 +69,6 @@
 		E492AD30267C83C60028AF3E /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD27267C83C50028AF3E /* PinyinFormatter.m */; };
 		E492AD31267C83C60028AF3E /* PinYinForObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD28267C83C50028AF3E /* PinYinForObjc.m */; };
 		E4935C20271527D500BD2DD6 /* BLEDFU.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4935C1F271527D500BD2DD6 /* BLEDFU.zip */; };
-		E4935C22271527EA00BD2DD6 /* Project.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4935C21271527EA00BD2DD6 /* Project.bin */; };
 		E495D0DE2678428400AA50B9 /* KLMOneSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */; };
 		E495D10E2678521000AA50B9 /* KLMGroupEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */; };
 		E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */; };
@@ -144,6 +143,7 @@
 		E4A6608C267360A200FE6866 /* KLMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */; };
 		E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */; };
 		E4AA543A2711A2B100CDC695 /* YUV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AA54392711A2B100CDC695 /* YUV.swift */; };
+		E4AD43542744DDEE0049F11C /* Project.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4AD43532744DDEE0049F11C /* Project.zip */; };
 		E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */; };
 		E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */; };
 		E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */; };
@@ -290,7 +290,6 @@
 		E492AD27267C83C50028AF3E /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinFormatter.m; sourceTree = "<group>"; };
 		E492AD28267C83C50028AF3E /* PinYinForObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinYinForObjc.m; sourceTree = "<group>"; };
 		E4935C1F271527D500BD2DD6 /* BLEDFU.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = BLEDFU.zip; sourceTree = "<group>"; };
-		E4935C21271527EA00BD2DD6 /* Project.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = Project.bin; sourceTree = "<group>"; };
 		E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMOneSwitchCell.swift; sourceTree = "<group>"; };
 		E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupEditViewController.swift; sourceTree = "<group>"; };
 		E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupEditViewController.xib; sourceTree = "<group>"; };
@@ -417,6 +416,7 @@
 		E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBaseTableViewCell.swift; sourceTree = "<group>"; };
 		E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBaseTableViewCell.xib; sourceTree = "<group>"; };
 		E4AA54392711A2B100CDC695 /* YUV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YUV.swift; sourceTree = "<group>"; };
+		E4AD43532744DDEE0049F11C /* Project.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Project.zip; sourceTree = "<group>"; };
 		E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTableViewCell.swift; sourceTree = "<group>"; };
 		E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTableViewCell.xib; sourceTree = "<group>"; };
 		E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAPPUpdateViewController.swift; sourceTree = "<group>"; };
@@ -935,7 +935,7 @@
 				E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */,
 				E498A78F26671BED00C78D50 /* Info.plist */,
 				E48B526326672B420006CDA7 /* head.swift */,
-				E4935C21271527EA00BD2DD6 /* Project.bin */,
+				E4AD43532744DDEE0049F11C /* Project.zip */,
 				E4935C1F271527D500BD2DD6 /* BLEDFU.zip */,
 			);
 			path = KLM;
@@ -1223,6 +1223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4AD43542744DDEE0049F11C /* Project.zip in Resources */,
 				E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */,
 				E4E51F2D26CB568600823531 /* KLMDFUViewController.xib in Resources */,
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
@@ -1252,7 +1253,6 @@
 				E4F2D479273506C0007FA07E /* KLMHomeAddViewController.xib in Resources */,
 				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4FE0CE3271FB9AA001EEABD /* KLMLightOnOffCell.xib in Resources */,
-				E4935C22271527EA00BD2DD6 /* Project.bin in Resources */,
 				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
 				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
 				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
