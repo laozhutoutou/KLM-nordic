@@ -246,6 +246,7 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
             DispatchQueue.main.asyncAfter(deadline: 0.5){
 
                 let vc = KLMDeviceEditViewController()
+                vc.isFromDeviceAdd = true
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

@@ -69,5 +69,7 @@ struct KLMVersion: Codable {
         var fileUrl: String
         var fileVersion: String
         var updateMessage: String
+        var isForceUpdate: Bool
+        var englishMessage: String
     }
 }

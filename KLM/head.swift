@@ -18,6 +18,8 @@ import HandyJSON
 ///切换APP , 是否是测试APP  名称：AISceneTest bundleID: kinglumi.jmj123.com
 //////1、检查配方是否最新 2、检查MCU和蓝牙固件是否最新
 let isTestApp: Bool = false
+///AppleStoreID
+let AppleStoreID: String = "1579633878"
 
 ///// 蓝牙版本号
 //let BLENewestVersion: Int = 4

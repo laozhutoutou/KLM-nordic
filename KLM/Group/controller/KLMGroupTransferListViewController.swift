@@ -128,7 +128,10 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
         //设备添加进群组成功
         if self.deviceStatus == .deviceAddtoGroup {
             self.deviceStatus = .deviceDeleteFromGroup
-            
+            ///提交数据到服务器
+            if KLMMesh.save() {
+                
+            }
             //设备从当前群组中移除
             KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: currentDevice, withGroup: self.originalGroup)
             
@@ -136,6 +139,11 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
         
         //设备移除成功
         if self.deviceStatus == .deviceDeleteFromGroup {
+            
+            ///提交数据到服务器
+            if KLMMesh.save() {
+                
+            }
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 1) {

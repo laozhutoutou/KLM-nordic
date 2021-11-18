@@ -30,6 +30,7 @@ class KLMGroupViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .dataUpdate, object: nil)
         //刷新
         let header = KLMRefreshHeader.init {[weak self] in
             guard let self = self else { return }

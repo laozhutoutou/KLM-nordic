@@ -164,6 +164,10 @@ extension KLMGroupDeviceEditViewController: KLMMessageManagerDelegate {
             SVProgressHUD.showError(withStatus: error?.message)
             return
         }
+        ///提交到服务器
+        if KLMMesh.save() {
+            
+        }
         
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         NotificationCenter.default.post(name: .deviceRemoveFromGroup, object: nil)

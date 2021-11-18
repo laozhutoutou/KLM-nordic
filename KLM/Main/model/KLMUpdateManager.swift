@@ -12,11 +12,14 @@ class KLMUpdateManager {
     
     //单例
     static let sharedInstacnce = KLMUpdateManager()
+    
+    var fileData: NSData?
+    
     private init(){}   
     
     /// 获取bin文件
     /// - Returns: NSData
-    func getProjectData() -> NSData? {
+    func getProjectData(_ data: NSData) -> NSData? {
         
         guard let path = Bundle.main.path(forResource: "Project", ofType: "bin") else { return nil }
         return NSData.init(contentsOfFile: path)
@@ -31,7 +34,7 @@ class KLMUpdateManager {
     func dealFirmware(data: Int? = 128) -> [String] {
         
         //数据源
-        let datas = self.getProjectData()!
+        let datas = fileData!
         
         let dataLength = datas.length
         ///总包数
@@ -70,7 +73,7 @@ class KLMUpdateManager {
     /// - Returns: 4个字节包长度+2个字节的crc校验值 16进制字符串
     func getUpdateFirstPackage() -> String {
         
-        let datas = self.getProjectData()!
+        let datas = fileData!
         ///整个包的crc校验值
         let crc16 = datas.crc16()
         

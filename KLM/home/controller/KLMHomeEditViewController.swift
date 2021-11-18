@@ -79,7 +79,10 @@ class KLMHomeEditViewController: UIViewController {
                 
                 KLMMesh.removeHome()
                 (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
-                (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                self.navigationController?.popViewController(animated: true)
+                
+                NotificationCenter.default.post(name: .homeDeleteSuccess, object: nil)
                 
             } else {
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

@@ -34,6 +34,9 @@ class KLMDFUViewController: UIViewController {
     var BLEVersionData: KLMVersion.KLMVersionData!
     var MCUVersionData: KLMVersion.KLMVersionData!
     
+    var mcuData: NSData?
+    var bleData: NSData?
+    
     var updateTy: updateType = .Both
     
     private var centralManager: CBCentralManager?
@@ -87,14 +90,11 @@ class KLMDFUViewController: UIViewController {
     
     func setupBLE() {
         
-        let path = Bundle.main.path(forResource: "BLEDFU", ofType: "zip")
-        let url = URL.init(fileURLWithPath: path!)
-        let firmware = DFUFirmware(urlToZipFile: url)
+        downLoadBleFile()
         
         serviceInitiator.delegate = self
         serviceInitiator.progressDelegate = self
         serviceInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
-        serviceInitiator = serviceInitiator.with(firmware: firmware!)
         
         centralManager = CBCentralManager()
         SVProgressHUD.show()
@@ -112,6 +112,8 @@ class KLMDFUViewController: UIViewController {
     }
     
     func setupMCU() {
+        
+        downLoadMcuFile()
         
         //搜索1828已配网设备
         //当前连接的节点是否是当前选中的节点
@@ -136,14 +138,14 @@ class KLMDFUViewController: UIViewController {
     
     func setupBoth() {
         
+        downLoadMcuFile()
+        downLoadBleFile()
+        
         ///蓝牙
-        let path = Bundle.main.path(forResource: "BLEDFU", ofType: "zip")
-        let url = URL.init(fileURLWithPath: path!)
-        let firmware = DFUFirmware(urlToZipFile: url)
         serviceInitiator.delegate = self
         serviceInitiator.progressDelegate = self
         serviceInitiator.enableUnsafeExperimentalButtonlessServiceInSecureDfu = true
-        serviceInitiator = serviceInitiator.with(firmware: firmware!)
+        
         centralManager = CBCentralManager()
         
         ///MCU
@@ -165,12 +167,29 @@ class KLMDFUViewController: UIViewController {
     
     func downLoadBleFile() {
         
-        
+        KLMService.downLoadFile(id: self.BLEVersionData.id) { response in
+            
+            guard let data: NSData = response as? NSData else { return  }
+            KLMLog(data.count)
+            self.bleData = data
+            
+        } failure: { error in
+
+        }
     }
     
     func downLoadMcuFile() {
         
-        
+        KLMService.downLoadFile(id: self.MCUVersionData.id) { response in
+            
+            guard let data: NSData = response as? NSData else { return  }
+            KLMLog(data.count)
+            self.mcuData = data
+            
+        } failure: { error in
+
+        }
+
     }
     
     func startScanning() {
@@ -210,13 +229,28 @@ class KLMDFUViewController: UIViewController {
     }
     
     func updateBLE() {
+        
+        if self.bleData == nil {
+            SVProgressHUD.showError(withStatus: "File Not Found")
+            return
+        }
+        
+        let firmware = DFUFirmware(zipFile: self.bleData! as Data)
+        serviceInitiator = serviceInitiator.with(firmware: firmware!)
+        
         KLMLog("开始更新蓝牙")
         serviceInitiator.start(target: self.peripheral)
     }
     
     func updateMCU() {
         
+        if self.mcuData == nil {
+            SVProgressHUD.showError(withStatus: "File Not Found")
+            return
+        }
+        
         ///更新MCU
+        KLMUpdateManager.sharedInstacnce.fileData = self.mcuData
         dataPackageArray = KLMUpdateManager.sharedInstacnce.dealFirmware()
         currentIndex = 0
         let first = KLMUpdateManager.sharedInstacnce.getUpdateFirstPackage()

@@ -19,6 +19,7 @@ enum HTTPMethod: String {
     case get
     case delete
     case put
+    case downLoad
 }
 
 class KLMNetworking: NSObject {
@@ -40,11 +41,11 @@ class KLMNetworking: NSObject {
         guard let token = KLMGetUserDefault("token") as? String else {
             return nil
         }
-        
+
         return ["Authorization": token]
     }
     ///请求头
-    private static func sessionManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
+    static func jsonManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
         
         KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
         KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
@@ -56,6 +57,21 @@ class KLMNetworking: NSObject {
         
         return KLMNetworking.ShareInstance.networkingTool
     }
+    
+    private static func httpManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
+        
+        KLMNetworking.ShareInstance.networkingTool.responseSerializer = AFHTTPResponseSerializer.init()
+        KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
+        KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
+        if let hee = head {
+            for (key, value) in hee {
+                KLMNetworking.ShareInstance.networkingTool.requestSerializer.setValue(value, forHTTPHeaderField: key)
+            }
+        }
+
+        return KLMNetworking.ShareInstance.networkingTool
+    }
+    
     ///请求方法分类
     private static func httpMethodSub(method: HTTPMethod? = .post, URLString: String,
                            params: [String: Any]?,
@@ -65,13 +81,15 @@ class KLMNetworking: NSObject {
         
         switch method {
         case .post:
-            self.sessionManagerWithHeader(head: header).post(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
+            self.jsonManagerWithHeader(head: header).post(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
         case .get:
-            self.sessionManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
+            self.jsonManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
         case .put:
-            self.sessionManagerWithHeader(head: header).put(URLString, parameters: params, success: successBlock, failure: failureBlock)
+            self.jsonManagerWithHeader(head: header).put(URLString, parameters: params, success: successBlock, failure: failureBlock)
         case .delete:
-            self.sessionManagerWithHeader(head: header).delete(URLString, parameters: params, success: successBlock, failure: failureBlock)
+            self.jsonManagerWithHeader(head: header).delete(URLString, parameters: params, success: successBlock, failure: failureBlock)
+        case .downLoad:
+            self.httpManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil, success: successBlock, failure: failureBlock)
         default:
             break
         }
@@ -84,6 +102,13 @@ class KLMNetworking: NSObject {
         self.httpMethodSub(method: method, URLString: URLString, params: params) { task, responseObject in
             KLMLog("接口域名：\(URLString)\n请求返回数据: ")
             KLMLog(responseObject)
+            
+            if method == .downLoad {
+                
+                let data: NSData = responseObject as! NSData
+                completion(data as Data, nil)
+                return
+            }
             
             do {
                 ///json转data
@@ -113,18 +138,47 @@ class KLMNetworking: NSObject {
             KLMLog("接口域名：\(URLString)\n错误信息: ")
             KLMLog(error)
             let errors: NSError = error as NSError
-            if errors.code == -1011 {///token过期，重新登录
-                ///清空数据
-                KLMMesh.logout()
+            if errors.code == -1011 {
                 
-                let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                appdelegate.enterLoginUI()
+                let errorData = errors.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! Data
+                let errorDic: [String: AnyObject] = try! JSONSerialization.jsonObject(with: errorData, options: .mutableContainers) as! [String: AnyObject]
+                let StateCode = errorDic["code"] as! Int
+                if StateCode == 400 { ///token过期，重新登录
+                    ///清空数据
+                    KLMMesh.logout()
+                    KLMLog("token 失效")
+                    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                    appdelegate.enterLoginUI()
+                }
+            
             }
             
             let resultDic = ["error": error.localizedDescription]
             let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
             completion(nil, error)
         }
+    }
+    
+    ///下载文件使用
+    static func httpDownload(URLString: String,
+              params: [String: Any]?,
+                           completion: @escaping completionHandlerBlock) {
+        
+        self.httpManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil) { task, responseObject in
+            
+            KLMLog("接口域名：\(URLString)\n请求返回数据: ")
+            KLMLog(responseObject)
+            
+            let data: NSData = responseObject as! NSData
+            completion(data as Data, nil)
+            
+        } failure: { task, error in
+            
+            SVProgressHUD.dismiss()
+            KLMLog("接口域名：\(URLString)\n错误信息: ")
+            KLMLog(error)
+        }
+
     }
 }
 
@@ -427,16 +481,40 @@ class KLMService: NSObject {
     }
     
     static func downLoadFile(id: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
-        
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/download/\(id)"), params: nil) { responseObject, error in
-            
-            if error == nil {
-            
-                success(responseObject as AnyObject)
                 
+        KLMNetworking.httpMethod(method: .downLoad, URLString: KLMUrl("api/file/download/\(id)"), params: nil) { responseObject, error in
+
+            if error == nil {
+
+                success(responseObject as AnyObject)
+
             } else {
                 failure(error!)
             }
+        }
+    }
+    
+    static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        //查询版本
+        KLMNetworking.jsonManagerWithHeader(head: nil).post("https://itunes.apple.com/lookup?id=\(AppleStoreID)", parameters: nil, progress: nil) { task, responseObject in
+            
+            KLMLog("查询成功:\(responseObject)")
+            guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject], dic["resultCount"] as? Int == 1 else {
+                return
+            }
+            
+            guard let results: [AnyObject] = dic["results"] as? [AnyObject], let resultFirst: [String : AnyObject] = results.first as? [String : AnyObject], let newVersion = resultFirst["version"] else { return  }
+            
+            KLMLog("newVersion = \(newVersion)")
+            success(newVersion)
+            
+        } failure: { task, error in
+            
+            KLMLog("查询失败:\(error)")
+            let resultDic = ["error": error.localizedDescription]
+            let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+            failure(error)
         }
     }
 }

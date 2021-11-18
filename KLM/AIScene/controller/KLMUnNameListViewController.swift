@@ -100,6 +100,8 @@ class KLMUnNameListViewController: UIViewController{
         
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeDeleteSuccess, object: nil)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
         
         ///家庭列表按钮
@@ -109,7 +111,7 @@ class KLMUnNameListViewController: UIViewController{
         //刷新
         let header = KLMRefreshHeader.init {[weak self] in
             guard let self = self else { return }
-            (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
+            self.initData()
         }
         self.collectionView.mj_header = header
     }
@@ -186,6 +188,8 @@ class KLMUnNameListViewController: UIViewController{
         }
         
         self.collectionView.mj_header?.endRefreshing()
+        
+        NotificationCenter.default.post(name: .dataUpdate, object: nil)
     }
     
     @objc func tapSearch() {
@@ -243,23 +247,22 @@ class KLMUnNameListViewController: UIViewController{
             
             guard let data = response as? KLMVersion.KLMVersionData else { return  }
             self.versionData = data
-            self.currentVersion = String(format: "V%@", KLM_APP_VERSION as! String)
+            self.currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
             
             guard self.currentVersion.compare(self.versionData.fileVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
                 return
             }
             
             ///是否是强制更新
-            let isForce: Bool = false
-            if isForce {///是强制更新
+            if self.versionData.isForceUpdate {///是强制更新
                 
                 self.showUpdateView()
                 
             } else {///普通更新
                 
                 ///每个新版本提示一次
-//                guard KLMGetUserDefault(self.versionData.fileVersion) == nil else { return }
-//                KLMSetUserDefault(self.versionData.fileVersion, self.versionData.fileVersion)
+                guard KLMGetUserDefault(self.versionData.fileVersion) == nil else { return }
+                KLMSetUserDefault(self.versionData.fileVersion, self.versionData.fileVersion)
                 
                 self.showUpdateView()
             }
@@ -272,28 +275,32 @@ class KLMUnNameListViewController: UIViewController{
     private func showUpdateView() {
         
         ///用英语
-        var updateMsg: String = self.versionData.updateMessage
-//        if Bundle.isChineseLanguage() {///使用中文
-//
-//        }
+        var updateMsg: String = self.versionData.englishMessage
+        if Bundle.isChineseLanguage() {///使用中文
+            updateMsg =  self.versionData.updateMessage
+        }
         ///弹出提示框
         let vc = UIAlertController.init(title: LANGLOC("checkUpdate"), message: "\(self.versionData.fileVersion)\n\(updateMsg)", preferredStyle: .alert)
         vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
             
             SVProgressHUD.showInfo(withStatus: "功能未完善")
             ///跳转到appleStore
-//            let url: String = "http://itunes.apple.com/app/id1590631426?mt=8"
-//            if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
-//                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
-//            }
-            
-            ///强制更新退出APP
-//            exit(0)
-            
+            let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
+            if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
+                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
+            }
+            if self.versionData.isForceUpdate {
+                
+                ///强制更新退出APP
+                exit(0)
+            }
         }))
         
         ///强制更新没有取消按钮
-        vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+        if self.versionData.isForceUpdate == false{
+            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+        }
+        
         self.present(vc, animated: true, completion: nil)
     }
 }
@@ -313,7 +320,7 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
         ///将mesh信息存到本地
         KLMMesh.loadHomeMeshData(meshConfiguration: selectHome.meshConfiguration)
         ///渲染页面
-        (UIApplication.shared.delegate as! AppDelegate).enterMainUI()
+        self.setupData()
     }
 }
 
