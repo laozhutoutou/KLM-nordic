@@ -38,6 +38,7 @@ class KLMNetworking: NSObject {
     }
     
     private static var header: [String: String]? {
+        
         guard let token = KLMGetUserDefault("token") as? String else {
             return nil
         }
@@ -122,13 +123,17 @@ class KLMNetworking: NSObject {
                 } else {
                     SVProgressHUD.dismiss()
                     let msg = model.msg
-                    let resultDic = ["error": msg]
-                    let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+                    var egMsg = model.egMsg
+                    if egMsg == nil {
+                        egMsg = msg
+                    }
+                    let resultDic = ["error": msg, "egMsg": egMsg]
+                    let error = NSError.init(domain: "", code: model.code, userInfo: resultDic as [String : Any])
                     completion(nil, error)
                 }
             } catch {
                 SVProgressHUD.dismiss()
-                let resultDic = ["error": error.localizedDescription]
+                let resultDic = ["error": error.localizedDescription, "egMsg": error.localizedDescription]
                 let error = NSError.init(domain: "", code: -1, userInfo: resultDic)
                 completion(nil, error)
             }
@@ -153,8 +158,8 @@ class KLMNetworking: NSObject {
             
             }
             
-            let resultDic = ["error": error.localizedDescription]
-            let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+            let resultDic = ["error": error.localizedDescription, "egMsg": error.localizedDescription]
+            let error = NSError.init(domain: "", code: errors.code, userInfo: resultDic as [String : Any])
             completion(nil, error)
         }
     }
@@ -210,6 +215,10 @@ class KLMService: NSObject {
                 //登录成功，存储token
                 KLMLog("登录成功：token = \(String(describing: model?.data.token))")
                 KLMSetUserDefault("token", model?.data.token)
+                
+                ///存储个人账号密码
+                KLMSetUserDefault("username", username)
+                KLMSetUserDefault("password", password)
                 
                 ///存储个人信息
                 KLMUser.cacheUserInfo(user: model?.data.userInfo)

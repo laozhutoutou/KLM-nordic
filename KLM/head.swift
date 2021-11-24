@@ -135,12 +135,15 @@ func isError(_ error: Error?) -> Bool {
 /// - Parameter error: NSError
 func KLMHttpShowError(_ error: NSError) {
     SVProgressHUD.dismiss()
-    let message: String = error.userInfo["error"] as! String
+    var message: String = error.userInfo["egMsg"] as! String
+    if Bundle.isChineseLanguage() {
+        message = error.userInfo["error"] as! String
+    }
     SVProgressHUD.showError(withStatus: message)
 }
 
-/// URL
-let baseUrl = "http://8.135.16.88:9898/"
+/// URL 8.135.16.88 light.kaiwaresz.com 加入了白名单
+let baseUrl = "http://light.kaiwaresz.com:9898/"
 
 func KLMUrl(_ url: String) -> String {
     

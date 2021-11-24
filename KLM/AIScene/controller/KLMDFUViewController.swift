@@ -38,6 +38,7 @@ class KLMDFUViewController: UIViewController {
     var bleData: NSData?
     
     var updateTy: updateType = .Both
+    var mcuFinish: Bool = false
     
     private var centralManager: CBCentralManager?
     
@@ -423,6 +424,7 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
             if let value = message?.value as? String, value == "01" {
                 
                 KLMLog("MCU更新完成")
+                mcuFinish = true
                 if updateTy == .MCUUpdate {
                     
                     DispatchQueue.main.asyncAfter(deadline: 4) {
@@ -441,11 +443,14 @@ extension KLMDFUViewController: KLMSmartNodeDelegate {
                 return
             }
             
-            //错误 00
-            SVProgressHUD.showError(withStatus: "error")
-            KLMLog("Update error")
-            DispatchQueue.main.asyncAfter(deadline: 1) {
-                self.navigationController?.popViewController(animated: true)
+            if mcuFinish == false {
+                
+                //错误 00
+                SVProgressHUD.showError(withStatus: "error")
+                KLMLog("Update error")
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }

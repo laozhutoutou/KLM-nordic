@@ -11,6 +11,7 @@ struct KLMBaseModel: Codable {
     
     var code: Int
     var msg: String
+    var egMsg: String?
 }
 
 struct KLMHome: Codable {

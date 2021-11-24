@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dYe-yr-mT3">
-                    <rect key="frame" x="100" y="100" width="214" height="50"/>
+                    <rect key="frame" x="100" y="131.5" width="214" height="50"/>
                     <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="gVE-Eh-zDL"/>
@@ -33,10 +33,11 @@
                         <action selector="DFU:" destination="-1" eventType="touchUpInside" id="k66-CO-1rN"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please do not play the phone and keep device online while upgrading!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3r-5L-TpJ">
-                    <rect key="frame" x="15" y="30" width="384" height="41"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3r-5L-TpJ">
+                    <rect key="frame" x="15" y="30" width="384" height="81.5"/>
+                    <string key="text">Please do not operate the phone and keep bluetooth connected during upgrading. If upgrading fails for some reason, please power off the light and then power it on.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -48,10 +49,10 @@
                 <constraint firstItem="dYe-yr-mT3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="100" id="RtB-a4-S5e"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Z3r-5L-TpJ" secondAttribute="trailing" constant="15" id="RyC-SM-cAH"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dYe-yr-mT3" secondAttribute="trailing" constant="100" id="Tva-w2-q42"/>
-                <constraint firstItem="dYe-yr-mT3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="w33-iM-les"/>
+                <constraint firstItem="dYe-yr-mT3" firstAttribute="top" secondItem="Z3r-5L-TpJ" secondAttribute="bottom" constant="20" id="z5B-cN-rC5"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-2257" y="153"/>
+            <point key="canvasLocation" x="-2448" y="86"/>
         </view>
     </objects>
     <resources>

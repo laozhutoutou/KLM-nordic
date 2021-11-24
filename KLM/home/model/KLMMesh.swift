@@ -77,6 +77,8 @@ class KLMMesh {
             let data = meshConfiguration.data(using: String.Encoding.utf8)
             _ = try manager.import(from: data!)
             saveAndReload()
+            ///地址不能唯一
+            changeProvisionerAddress()
         } catch {
 
         }
@@ -91,6 +93,41 @@ class KLMMesh {
                 (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
                 
             }
+        }
+    }
+    ///更改provisoner的 unicastAddress为  0x199A(allocatedUnicastRange) - 用户的ID
+    private static func changeProvisionerAddress() {
+        
+        ///当前mesh管理员无需更改
+        if isMeshManager() {
+            
+            return
+        }
+        //更改provisioner 的 unicastAddress
+        let manager = MeshNetworkManager.instance
+        let meshNetwork = manager.meshNetwork!
+        let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
+        guard let user = KLMUser.getUserInfo() else { return }
+        let address = 0x199A - user.id
+        let newAddress: Address = Address.init(address)
+        print(newAddress.asString())
+        
+        if let node = provisioner.node {
+            let unicastAddresses = node.elements.map { $0.unicastAddress }
+            manager.proxyFilter?.remove(addresses: unicastAddresses)
+        }
+        do {
+            try meshNetwork.assign(unicastAddress: newAddress, for: provisioner)
+            // Add the new addresses to the Proxy Filter.
+            let unicastAddresses = provisioner.node!.elements.map { $0.unicastAddress }
+            manager.proxyFilter?.add(addresses: unicastAddresses)
+        } catch  {
+            print(error)
+        }
+        
+        if manager.save() {
+            
+            
         }
     }
     
@@ -128,7 +165,7 @@ extension KLMMesh {
         self.removeHome()
         ///清空用户数据
         KLMUser.removeUserInfo()
-        
+        ///清空本地存储的mesh数据
         (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
     }
     ///是否有家庭

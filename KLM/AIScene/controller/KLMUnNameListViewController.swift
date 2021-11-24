@@ -152,10 +152,11 @@ class KLMUnNameListViewController: UIViewController{
                 
             } else {///服务器没有家庭
                 
+                self.homeBtn.setTitle(nil, for: .normal)
                 if KLMMesh.loadHome() != nil {///本地存有家庭
                     ///清空数据
                     KLMMesh.removeHome()
-                    self.homeBtn.setTitle(nil, for: .normal)
+                    
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
                     ///渲染首页
                     self.setupData()
@@ -171,7 +172,6 @@ class KLMUnNameListViewController: UIViewController{
                 KLMMesh.loadLocalMeshData()
                 ///渲染首页
                 self.setupData()
-                
             }
         }
     }

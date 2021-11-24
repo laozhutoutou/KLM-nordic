@@ -15,7 +15,13 @@ class KLMLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let username = KLMGetUserDefault("username") {
+            mailTextField.text = username as? String
+        }
         
+        if let password = KLMGetUserDefault("password") {
+            passTextField.text = password as? String
+        }
     }
 
     @IBAction func login(_ sender: Any) {
