@@ -28,7 +28,7 @@ class KLMLoginViewController: UIViewController {
         
         KLMService.login(username: mailTextField.text!, password: passTextField.text!) { _ in
             
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
             ///进入主页面
             let appdelegate = UIApplication.shared.delegate as! AppDelegate

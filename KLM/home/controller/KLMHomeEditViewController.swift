@@ -154,7 +154,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         let user = self.meshUsers?.data[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
-        cell.leftTitle = user?.username ?? "Unknow User"
+        cell.leftTitle = "Unknow user"
         cell.rightTitle = user?.email
         return cell
         

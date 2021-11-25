@@ -9,7 +9,7 @@ import UIKit
 import nRFMeshProvision
 import SVProgressHUD
 
-class KLMUnNameListViewController: UIViewController{
+class KLMUnNameListViewController: UIViewController,  Editable{
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -114,6 +114,12 @@ class KLMUnNameListViewController: UIViewController{
             self.initData()
         }
         self.collectionView.mj_header = header
+        
+        ///显示空白页面
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            self.hideEmptyView()
+        }
     }
     
     func event() {
@@ -366,7 +372,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         let alert = UIAlertController(title: LANGLOC("deleteDevice"),
                                       message: LANGLOC("deleteDeviceTip"),
                                       preferredStyle: .actionSheet)
-        let resetAction = UIAlertAction(title: LANGLOC("delete"), style: .destructive) { _ in
+        let resetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
             MeshNetworkManager.instance.meshNetwork!.remove(node: model)
             
             if KLMMesh.save() {

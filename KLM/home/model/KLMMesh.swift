@@ -145,7 +145,7 @@ class KLMMesh {
                     KLMLog("配置数据提交成功")
                     
                 } failure: { error in
-                    
+                    KLMHttpShowError(error)
                 }
             }
             return true
