@@ -8,19 +8,27 @@
 import UIKit
 import nRFMeshProvision
 
+private enum itemType: Int, CaseIterable {
+    case userInfo = 0
+    case language
+    case motion
+    case update
+    case help
+    case home
+    case logout
+}
+
 class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    let images = ["icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
-//    let titles = [[LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving")],[LANGLOC("checkUpdate"),LANGLOC("helpAdvice"),"Export","Import"]]
-    let titles = [LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), "家庭管理","退出登录"]
+    let images = ["icon_language","icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
+    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), "家庭管理","退出登录"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = LANGLOC("More")
-        self.tableView.rowHeight = 56
         
     }
     
@@ -29,9 +37,17 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         return 1
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.row == itemType.userInfo.rawValue {
+            return 70
+        }
+        return 56
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return titles.count
+        return itemType.allCases.count
         
     }
     
@@ -47,24 +63,29 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
-         
+        switch indexPath.row {
+        case itemType.userInfo.rawValue:
+            let cell: KLMUserInfoCell = KLMUserInfoCell.cellWithTableView(tableView: tableView)
+            cell.setupData()
+            return cell
+        case itemType.language.rawValue:
             let cell: KLMSettingSwichCell = KLMSettingSwichCell.cellWithTableView(tableView: tableView)
             return cell
+        default:
+            let title: String = titles[indexPath.row]
+            let image: String = images[indexPath.row]
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.leftTitle = title
+            cell.leftImage = image
+            return cell
         }
-        let title: String = titles[indexPath.row]
-        let image: String = images[indexPath.row]
-        let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-        cell.leftTitle = title
-        cell.leftImage = image
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        case 1:
+        case itemType.motion.rawValue:
             
             if !MeshNetworkManager.bearer.isOpen {
                 SVProgressHUD.showInfo(withStatus: "Connecting...")
@@ -75,23 +96,32 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
             vc.isAllNodes = true
             navigationController?.pushViewController(vc, animated: true)
         
-        case 2://检查更新
+        case itemType.update.rawValue://检查更新
             let vc = KLMAPPUpdateViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 3://帮助建议
+        case itemType.help.rawValue://帮助建议
             let vc = KLMHelpViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 4:
+        case itemType.home.rawValue:
             let vc = KLMHomeViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case 5:
-            KLMService.logout { response in
-                ///进入登录页面
-                (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
-            } failure: { error in
-                
+        case itemType.logout.rawValue:
+            let alert = UIAlertController(title: "退出登录",
+                                          message: nil,
+                                          preferredStyle: .alert)
+            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
+                KLMService.logout { response in
+                    ///进入登录页面
+                    (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
+                    
+                } failure: { error in
+                    KLMHttpShowError(error)
+                }
             }
-
+            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+            alert.addAction(resetAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true)
         default: break
             
         }

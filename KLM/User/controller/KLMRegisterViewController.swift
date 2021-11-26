@@ -35,6 +35,7 @@ class KLMRegisterViewController: UIViewController {
         KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            self.navigationController?.popViewController(animated: true)
             
         } failure: { error in
             KLMHttpShowError(error)

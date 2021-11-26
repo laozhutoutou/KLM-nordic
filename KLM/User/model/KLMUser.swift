@@ -18,6 +18,7 @@ struct KLMUser: Codable {
         struct KLMUserInfo: Codable {
             var id: Int///用户ID
             var nickname: String
+            var email: String?
         }
     }
     

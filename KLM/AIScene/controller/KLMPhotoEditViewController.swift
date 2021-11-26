@@ -61,10 +61,14 @@ class KLMPhotoEditViewController: UIViewController {
     }()
     
     lazy var clipView: UIView = {
-        let clicpView = UIView()
-        clicpView.layer.borderColor = UIColor.white.cgColor
-        clicpView.layer.borderWidth = 2
-        return clicpView
+        let clipView = UIView()
+        clipView.layer.borderColor = UIColor.white.cgColor
+        clipView.layer.borderWidth = 2
+        clipView.layer.shadowColor = UIColor.gray.cgColor
+        clipView.layer.shadowRadius = 2
+        clipView.layer.shadowOffset = CGSize.init(width: 0, height: 0)
+        clipView.layer.shadowOpacity = 0.8
+        return clipView
     }()
     
     override func viewWillAppear(_ animated: Bool) {

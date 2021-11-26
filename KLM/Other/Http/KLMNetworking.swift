@@ -45,9 +45,10 @@ class KLMNetworking: NSObject {
 
         return ["Authorization": token]
     }
-    ///请求头
+    ///JSON类型数据
     static func jsonManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
         
+        KLMNetworking.ShareInstance.networkingTool.responseSerializer = AFJSONResponseSerializer.init()
         KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
         KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
         if let hee = head {
@@ -58,7 +59,7 @@ class KLMNetworking: NSObject {
         
         return KLMNetworking.ShareInstance.networkingTool
     }
-    
+    ///data类型数据
     private static func httpManagerWithHeader(head: [String: String]?) -> AFHTTPSessionManager{
         
         KLMNetworking.ShareInstance.networkingTool.responseSerializer = AFHTTPResponseSerializer.init()
@@ -163,28 +164,6 @@ class KLMNetworking: NSObject {
             completion(nil, error)
         }
     }
-    
-    ///下载文件使用
-    static func httpDownload(URLString: String,
-              params: [String: Any]?,
-                           completion: @escaping completionHandlerBlock) {
-        
-        self.httpManagerWithHeader(head: header).get(URLString, parameters: params, progress: nil) { task, responseObject in
-            
-            KLMLog("接口域名：\(URLString)\n请求返回数据: ")
-            KLMLog(responseObject)
-            
-            let data: NSData = responseObject as! NSData
-            completion(data as Data, nil)
-            
-        } failure: { task, error in
-            
-            SVProgressHUD.dismiss()
-            KLMLog("接口域名：\(URLString)\n错误信息: ")
-            KLMLog(error)
-        }
-
-    }
 }
 
 class KLMService: NSObject {
@@ -233,8 +212,6 @@ class KLMService: NSObject {
     static func register(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": email,
-                      "username": "zhuyu",
-                      "nickname": "zhuyu",
                       "password": password,
                       "code": code]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in

@@ -122,10 +122,13 @@ class KLMDeviceEditViewController: UIViewController {
     
     @objc func setupNodeMessage() {
         
-        //获取状态
-        let parameTime = parameModel(dp: .AllDp)
-        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
-        
+        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+            
+            //获取状态
+            let parameTime = parameModel(dp: .AllDp)
+            KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+        }
+
     }
     
     func checkVerison() {
@@ -189,7 +192,6 @@ class KLMDeviceEditViewController: UIViewController {
             }
         }
     }
-    
 }
 
 extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
