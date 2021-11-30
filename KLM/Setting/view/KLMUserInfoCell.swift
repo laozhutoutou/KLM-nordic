@@ -11,6 +11,7 @@ class KLMUserInfoCell: KLMBaseTableViewCell {
     
     @IBOutlet weak var nickNameLab: UILabel!
     @IBOutlet weak var emailLab: UILabel!
+    @IBOutlet weak var iconView: UIImageView!
     
     func setupData() {
         
@@ -22,6 +23,8 @@ class KLMUserInfoCell: KLMBaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        iconView.layer.cornerRadius = iconView.height / 2
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
