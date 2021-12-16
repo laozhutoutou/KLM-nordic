@@ -14,13 +14,13 @@ private enum itemType: Int, CaseIterable {
     case lightSetting
     case CMOS
     case motion
-    case test
+//    case test
     case DFU
     case rename
     case group
     case reset
-    case sigleControl
-    case downLoadPic
+//    case sigleControl
+//    case downLoadPic
 }
 
 class KLMDeviceEditViewController: UIViewController {
@@ -317,12 +317,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("Software")
             cell.rightTitle = LANGLOC("Version ") + "\(BLEVersion ?? 0).\(MCUVersion ?? 0)"
             return cell
-        case itemType.test.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Devicecoloursensing") + LANGLOC("Test")
-            cell.rightTitle = self.colorTest == false ? LANGLOC("OFF") : LANGLOC("ON")
-            return cell
+//        case itemType.test.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = LANGLOC("Devicecoloursensing") + LANGLOC("Test")
+//            cell.rightTitle = self.colorTest == false ? LANGLOC("OFF") : LANGLOC("ON")
+//            return cell
         case itemType.group.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
@@ -341,18 +341,18 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.rightTitle = string
             }
             return cell
-        case itemType.sigleControl.rawValue://
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "单独控制"
-            cell.rightTitle = ""
-            return cell
-        case itemType.downLoadPic.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "下载图像"
-            cell.rightTitle = ""
-            return cell
+//        case itemType.sigleControl.rawValue://
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "单独控制"
+//            cell.rightTitle = ""
+//            return cell
+//        case itemType.downLoadPic.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "下载图像"
+//            cell.rightTitle = ""
+//            return cell
         default:
             break
         }
@@ -455,15 +455,15 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
             }
-        case itemType.sigleControl.rawValue://六路测试
-            let vc = KLMTestViewController()
-            navigationController?.pushViewController(vc, animated: true)
-        case itemType.test.rawValue:
-            let vc = KLMText1ViewController()
-            navigationController?.pushViewController(vc, animated: true)
-        case itemType.downLoadPic.rawValue:
-            let vc = KLMTestCameraViewController()
-            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.sigleControl.rawValue://六路测试
+//            let vc = KLMTestViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.test.rawValue:
+//            let vc = KLMText1ViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.downLoadPic.rawValue:
+//            let vc = KLMTestCameraViewController()
+//            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

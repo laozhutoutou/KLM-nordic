@@ -23,7 +23,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     let images = ["icon_language","icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
-    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), "家庭管理","退出登录"]
+    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("logout")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +106,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
             let vc = KLMHomeViewController()
             navigationController?.pushViewController(vc, animated: true)
         case itemType.logout.rawValue:
-            let alert = UIAlertController(title: "退出登录",
+            let alert = UIAlertController(title: LANGLOC("logout"),
                                           message: nil,
                                           preferredStyle: .alert)
             let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in

@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMHomeEditViewController" customModule="KLM" customModuleProvider="target">
             <connections>
+                <outlet property="addMBtn" destination="A2h-wl-o4p" id="Gee-k0-FzK"/>
+                <outlet property="deleteBtn" destination="xaM-EB-gbA" id="lqV-IV-kug"/>
                 <outlet property="nameTextField" destination="98G-3D-AyV" id="7pp-B7-K2c"/>
                 <outlet property="tableView" destination="kAm-Uf-0CG" id="MfM-bJ-UfJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -33,19 +35,22 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaM-EB-gbA">
-                    <rect key="frame" x="151" y="798" width="112" height="34"/>
+                    <rect key="frame" x="30" y="792" width="354" height="40"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="112" id="Qod-1x-Gz7"/>
-                        <constraint firstAttribute="height" constant="34" id="mje-ND-WPs"/>
+                        <constraint firstAttribute="height" constant="40" id="mje-ND-WPs"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="删除家庭"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="删除家庭">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
                         <action selector="deleteMesh:" destination="-1" eventType="touchUpInside" id="nT4-iH-gma"/>
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kAm-Uf-0CG">
-                    <rect key="frame" x="0.0" y="195.5" width="414" height="582.5"/>
+                    <rect key="frame" x="0.0" y="195.5" width="414" height="576.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="iun-ox-Csw"/>
@@ -54,12 +59,15 @@
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2h-wl-o4p">
                     <rect key="frame" x="137.5" y="145.5" width="139" height="32"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="139" id="Lym-uV-Xof"/>
                         <constraint firstAttribute="height" constant="32" id="Nlv-dV-crz"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="添加成员"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="添加成员">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
                         <action selector="addUser:" destination="-1" eventType="touchUpInside" id="K0J-sH-fk6"/>
                     </connections>
@@ -74,16 +82,17 @@
                 <constraint firstItem="98G-3D-AyV" firstAttribute="centerY" secondItem="7qR-V4-Z8T" secondAttribute="centerY" id="fMk-1e-w0B"/>
                 <constraint firstItem="kAm-Uf-0CG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hno-ct-hwj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="98G-3D-AyV" secondAttribute="trailing" constant="15" id="iDh-Jq-mYr"/>
-                <constraint firstItem="xaM-EB-gbA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="kT4-ji-gqK"/>
                 <constraint firstItem="A2h-wl-o4p" firstAttribute="top" secondItem="98G-3D-AyV" secondAttribute="bottom" constant="20" id="pgv-En-SQw"/>
                 <constraint firstItem="7qR-V4-Z8T" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="qjT-yH-zaQ"/>
                 <constraint firstItem="7qR-V4-Z8T" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="sQx-bU-l8M"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xaM-EB-gbA" secondAttribute="trailing" constant="30" id="uJn-ag-ED2"/>
                 <constraint firstItem="98G-3D-AyV" firstAttribute="leading" secondItem="7qR-V4-Z8T" secondAttribute="trailing" constant="10" id="ucB-cX-jiu"/>
                 <constraint firstItem="xaM-EB-gbA" firstAttribute="top" secondItem="kAm-Uf-0CG" secondAttribute="bottom" constant="20" id="ukj-GG-6BM"/>
+                <constraint firstItem="xaM-EB-gbA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="wuD-jA-E1P"/>
                 <constraint firstItem="kAm-Uf-0CG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="x88-X9-Nyk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-130" y="46"/>
+            <point key="canvasLocation" x="-894" y="72"/>
         </view>
     </objects>
     <resources>

@@ -67,9 +67,18 @@ Success = "Success";
 Updatecomplete = "Update complete";
 Softwareupdate = "Software update";
 Update = "Update";
-CreateHomeTip = "请到 更多-家庭管理 创建新家庭";
-admin_permissions_tips = "需管理员权限";
-FeedBackContentEmptyTip = "请描述您的问题";
-FeedBackContactEmptyTip = "请输入您的联系方式";
+CreateHomeTip = "Please goto About > Store Management create a store";
+admin_permissions_tips = "Require administrator privileges";
+FeedBackContentEmptyTip = "Please describe your problems";
+FeedBackContactEmptyTip = "Phone number/Email?";
 
 Remove = "Remove";
+
+logout = "Log Out";
+storeManagement = "Store Management";
+createAStore = "Create a store";
+joinAStore = "Join a store";
+storeSettings = "Store Settings";
+close = "Close";
+deleteMember = "Delete Member";
+invitationCodetip = "Please offer the invitation code to others to join new store within 3 days";

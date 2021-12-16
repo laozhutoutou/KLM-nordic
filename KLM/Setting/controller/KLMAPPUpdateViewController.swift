@@ -15,6 +15,8 @@ class KLMAPPUpdateViewController: UIViewController {
     @IBOutlet weak var versionLab: UILabel!
     @IBOutlet weak var updateBtn: UIButton!
     
+    @IBOutlet weak var nameLab: UILabel!
+    
     var myview: OpenGLView20!
     var yuvData: NSData!
     
@@ -25,6 +27,9 @@ class KLMAPPUpdateViewController: UIViewController {
         iconImageView.layer.cornerRadius = 16
         iconImageView.clipsToBounds = true
         versionLab.text = String(format: "%@: %@", LANGLOC("version"),KLM_APP_VERSION as! String)
+        
+        let appName: String = KLM_APP_NAME as! String
+        nameLab.text = appName
         
         updateBtn.layer.cornerRadius = updateBtn.height / 2
         

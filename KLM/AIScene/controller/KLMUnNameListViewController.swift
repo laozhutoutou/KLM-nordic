@@ -164,9 +164,11 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     KLMMesh.removeHome()
                     
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
-                    ///渲染首页
-                    self.setupData()
+                    
                 }
+                
+                ///渲染首页
+                self.setupData()
             }
             
         } failure: { error in
@@ -176,9 +178,11 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 self.homeBtn.setTitle(home.meshName, for: .normal)
                 ///从本地提取mesh数据
                 KLMMesh.loadLocalMeshData()
-                ///渲染首页
-                self.setupData()
+                
             }
+            
+            ///渲染首页
+            self.setupData()
         }
     }
 

@@ -14,11 +14,19 @@ class KLMHomeEditViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var addMBtn: UIButton!
+    
+    @IBOutlet weak var deleteBtn: UIButton!
+    
     var homeModel: KLMHome.KLMHomeModel!
     var meshUsers: KLMMeshUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = LANGLOC("storeSettings")
+        addMBtn.layer.cornerRadius = addMBtn.height / 2
+        deleteBtn.layer.cornerRadius = deleteBtn.height / 2
         
         nameTextField.text = homeModel.meshName
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
@@ -47,7 +55,7 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         guard let text = nameTextField.text, text.isEmpty == false else {
-            SVProgressHUD.showError(withStatus: "请输入家庭名称")
+            SVProgressHUD.showError(withStatus: "Please enter store name")
             return
         }
         
@@ -105,11 +113,11 @@ class KLMHomeEditViewController: UIViewController {
         KLMService.getInvitationCode(meshId: self.homeModel.id) { response in
             
             guard let code = response as? String else { return }
-            let alert = UIAlertController(title: "请将此邀请码提供给他人已便加入家庭,有效期3天",
+            let alert = UIAlertController(title: LANGLOC("invitationCodetip"),
                                           message: code,
                                           preferredStyle: .alert)
             
-            let cancelAction = UIAlertAction(title: "关闭", style: .cancel)
+            let cancelAction = UIAlertAction(title: LANGLOC("close"), style: .cancel)
             alert.addAction(cancelAction)
             self.present(alert, animated: true)
             
@@ -185,7 +193,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         let user = self.meshUsers!.data[indexPath.row]
         let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
                 
-            let aler = UIAlertController.init(title: "删除成员", message: nil, preferredStyle: .alert)
+            let aler = UIAlertController.init(title: LANGLOC("deleteMember"), message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
                 

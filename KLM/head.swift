@@ -76,7 +76,7 @@ let appBackGroupColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue
     
 //版本信息
 let KLM_SYSTEM_VERSION = Float(UIDevice.current.systemVersion)
-let KLM_APP_NAME = Bundle.main.infoDictionary?["CFBundleName"]
+let KLM_APP_NAME = Bundle.main.infoDictionary?["CFBundleDisplayName"]
 let KLM_APP_VERSION = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
 let KLM_APP_BUILD = Bundle.main.infoDictionary?["CFBundleVersion"]
 
@@ -143,10 +143,11 @@ func KLMHttpShowError(_ error: NSError) {
 }
 
 /// URL 8.135.16.88 light.kaiwaresz.com 加入了白名单
-let baseUrl = "http://light.kaiwaresz.com:9898/"
+let testUrl = "http://8.135.16.88:9898/"
+let baseUrl = "https://light.kaiwaresz.com/"
 
 func KLMUrl(_ url: String) -> String {
     
-    return baseUrl + url
+    return testUrl + url
 }
 

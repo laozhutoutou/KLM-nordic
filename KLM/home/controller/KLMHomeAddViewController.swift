@@ -14,19 +14,20 @@ class KLMHomeAddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationItem.title = LANGLOC("createAStore");
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
     }
     
     @objc func finish() {
         
         guard let text = nameTextField.text, text.isEmpty == false else {
-            SVProgressHUD.showError(withStatus: "请输入家庭名称")
+            SVProgressHUD.showError(withStatus: "Enter store name")
             return
         }
         
         KLMService.addMesh(meshName: text) { response in
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            SVProgressHUD.showSuccess(withStatus: "Store successfully created")
             NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
             self.navigationController?.popViewController(animated: true)
             

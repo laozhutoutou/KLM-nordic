@@ -12,8 +12,12 @@ class KLMLoginViewController: UIViewController {
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
+    @IBOutlet weak var logBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        logBtn.layer.cornerRadius = logBtn.height / 2;
 
         if let username = KLMGetUserDefault("username") {
             mailTextField.text = username as? String
@@ -27,8 +31,6 @@ class KLMLoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
         
         KLMService.login(username: mailTextField.text!, password: passTextField.text!) { _ in
-            
-//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
             ///进入主页面
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
@@ -48,4 +50,9 @@ class KLMLoginViewController: UIViewController {
         
     }
     
+    @IBAction func forgetPass(_ sender: Any) {
+        
+        let vc = KLMForgetPasswordViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

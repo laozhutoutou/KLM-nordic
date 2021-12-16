@@ -1,0 +1,15 @@
+
+/* Class = "UITextField"; placeholder = "请输入验证码"; ObjectID = "BAv-wk-DtO"; */
+"BAv-wk-DtO.placeholder" = "Verification code";
+
+/* Class = "UITextField"; placeholder = "请输入邮箱"; ObjectID = "CGe-Xx-sCh"; */
+"CGe-Xx-sCh.placeholder" = "Please enter your Email";
+
+/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "YeN-S3-ElN"; */
+"YeN-S3-ElN.normalTitle" = "Get verification code";
+
+/* Class = "UITextField"; placeholder = "请输入密码"; ObjectID = "cMp-WP-un3"; */
+"cMp-WP-un3.placeholder" = "Please enter your password";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "ygx-gk-u6c"; */
+"ygx-gk-u6c.normalTitle" = "Sign Up";

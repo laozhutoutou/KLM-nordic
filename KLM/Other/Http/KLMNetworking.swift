@@ -224,6 +224,21 @@ class KLMService: NSObject {
         }
     }
     
+    static func resetPassword(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["email": email,
+                      "password": password,
+                      "code": code]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/reset/password"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
     static func logout(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in

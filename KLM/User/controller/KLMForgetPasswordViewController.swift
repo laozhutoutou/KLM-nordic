@@ -1,23 +1,22 @@
 //
-//  KLMRegisterViewController.swift
+//  KLMForgetPasswordViewController.swift
 //  KLM
 //
-//  Created by 朱雨 on 2021/6/16.
+//  Created by 朱雨 on 2021/12/15.
 //
 
 import UIKit
-import SVProgressHUD
 import RxSwift
 import RxCocoa
 
-class KLMRegisterViewController: UIViewController {
+class KLMForgetPasswordViewController: UIViewController {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
     
     @IBOutlet weak var codeTextField: UITextField!
-    //注册
-    @IBOutlet weak var signupBtn: UIButton!
+    //done
+    @IBOutlet weak var doneBtn: UIButton!
     /// 验证码
     @IBOutlet weak var verCodeBtn: UIButton!
     //倒计时
@@ -30,7 +29,7 @@ class KLMRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        signupBtn.layer.cornerRadius = signupBtn.height / 2;
+        doneBtn.layer.cornerRadius = doneBtn.height / 2;
         
         ///监控输入
         Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty) { mailText, passwordText, codeText in
@@ -40,7 +39,7 @@ class KLMRegisterViewController: UIViewController {
             } else {
                 return true
             }
-        }.bind(to: signupBtn.rx.isEnabled)
+        }.bind(to: doneBtn.rx.isEnabled)
             .disposed(by: disposeBag)
         
         codeTitle = verCodeBtn.currentTitle
@@ -65,9 +64,9 @@ class KLMRegisterViewController: UIViewController {
         }
     }
     
-    @IBAction func register(_ sender: Any) {
+    @IBAction func done(_ sender: Any) {
         
-        KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
+        KLMService.resetPassword(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             self.navigationController?.popViewController(animated: true)

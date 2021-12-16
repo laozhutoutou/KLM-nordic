@@ -42,7 +42,7 @@
                 <constraint firstItem="uoj-tW-Ru7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="uef-gt-UOW"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-794" y="178"/>
+            <point key="canvasLocation" x="-136" y="279"/>
         </view>
     </objects>
     <resources>
