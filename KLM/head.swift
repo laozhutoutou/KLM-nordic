@@ -143,11 +143,11 @@ func KLMHttpShowError(_ error: NSError) {
 }
 
 /// URL 8.135.16.88 light.kaiwaresz.com 加入了白名单
-let testUrl = "http://8.135.16.88:9898/"
+//let testUrl = "http://8.135.16.88:9898/"
 let baseUrl = "https://light.kaiwaresz.com/"
 
 func KLMUrl(_ url: String) -> String {
     
-    return testUrl + url
+    return baseUrl + url
 }
 

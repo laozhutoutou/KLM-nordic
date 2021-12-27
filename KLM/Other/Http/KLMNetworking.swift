@@ -213,7 +213,8 @@ class KLMService: NSObject {
         
         let parame = ["email": email,
                       "password": password,
-                      "code": code]
+                      "code": code,
+                      "nickname": LANGLOC("unknowUser")]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
             
             if error == nil {

@@ -82,3 +82,6 @@ storeSettings = "商场设置";
 close = "关闭";
 deleteMember = "删除成员";
 invitationCodetip = "请将此邀请码提供给他人已便加入家庭,有效期3天";
+administrator = "管理员";
+unknowUser = "未知用户";
+AddMember = "添加成员";

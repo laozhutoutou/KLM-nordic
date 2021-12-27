@@ -14,8 +14,6 @@ class KLMHomeEditViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var addMBtn: UIButton!
-    
     @IBOutlet weak var deleteBtn: UIButton!
     
     var homeModel: KLMHome.KLMHomeModel!
@@ -25,7 +23,6 @@ class KLMHomeEditViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = LANGLOC("storeSettings")
-        addMBtn.layer.cornerRadius = addMBtn.height / 2
         deleteBtn.layer.cornerRadius = deleteBtn.height / 2
         
         nameTextField.text = homeModel.meshName
@@ -102,7 +99,7 @@ class KLMHomeEditViewController: UIViewController {
         }
     }
     
-    @IBAction func addUser(_ sender: Any) {
+    @objc func addMember() {
         
         if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
             SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
@@ -153,8 +150,27 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
-        return 0.1
+        return 50
         
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        let footerView = UIView()
+        let titleLab = UILabel()
+        titleLab.textColor = appMainThemeColor
+        titleLab.text = LANGLOC("AddMember")
+        titleLab.font = UIFont.boldSystemFont(ofSize: 16)
+        footerView.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.left.equalTo(15)
+            make.centerY.equalToSuperview()
+        }
+        
+        ///手势
+        let tap = UITapGestureRecognizer.init(target: self, action: #selector(addMember))
+        footerView.addGestureRecognizer(tap)
+        return footerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,7 +178,11 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         let user = self.meshUsers?.data[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
-        cell.leftTitle = "Unknow user"
+        if user?.id == homeModel.adminId{
+            cell.leftTitle = LANGLOC("administrator")
+        } else {
+            cell.leftTitle = user?.nickname ?? LANGLOC("unknowUser")
+        }
         cell.rightTitle = user?.email
         return cell
         

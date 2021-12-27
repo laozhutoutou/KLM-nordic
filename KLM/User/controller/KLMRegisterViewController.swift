@@ -46,14 +46,14 @@ class KLMRegisterViewController: UIViewController {
         codeTitle = verCodeBtn.currentTitle
         
     }
-    
+    ///获取验证码
     @IBAction func sendCode(_ sender: Any) {
         
         guard let text = mailTextField.text, text.isEmpty == false else {
             SVProgressHUD.showInfo(withStatus: mailTextField.placeholder)
             return
         }
-        
+        SVProgressHUD.show()
         KLMService.getCode(email: mailTextField.text!) { _ in
             SVProgressHUD.showSuccess(withStatus: "Verification code has been sent")
             

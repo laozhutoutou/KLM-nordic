@@ -53,6 +53,7 @@ struct KLMMeshUser: Codable {
         var id: Int ///用户ID
         var email: String
         var username: String?
+        var nickname: String?
     }
 }
 

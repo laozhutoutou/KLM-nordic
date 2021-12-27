@@ -52,7 +52,7 @@ class KLMForgetPasswordViewController: UIViewController {
             SVProgressHUD.showInfo(withStatus: mailTextField.placeholder)
             return
         }
-        
+        SVProgressHUD.show()
         KLMService.getCode(email: mailTextField.text!) { _ in
             SVProgressHUD.showSuccess(withStatus: "Verification code has been sent")
             
