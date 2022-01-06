@@ -9,6 +9,7 @@ import UIKit
 import nRFMeshProvision
 import RxSwift
 import RxCocoa
+import SVProgressHUD
 
 class KLMDFUTestViewController: UIViewController {
 
@@ -30,6 +31,7 @@ class KLMDFUTestViewController: UIViewController {
         passField.text = "26671627"
         
         MeshNetworkManager.instance.delegate = self
+        MeshNetworkManager.bearer.delegate = self
         
         Observable.combineLatest(linkUrlField.rx.text.orEmpty, SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) { mailText, passwordText, codeText  in
             
@@ -169,6 +171,21 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
         
         otaStart = false
         KLMLog("消息发送失败 = \(error)")
+        SVProgressHUD.showError(withStatus: "Upgrade failure")
     }
     
+}
+
+extension KLMDFUTestViewController: BearerDelegate {
+    
+    func bearerDidOpen(_ bearer: Bearer) {
+        
+        
+    }
+    
+    func bearer(_ bearer: Bearer, didClose error: Error?) {
+        
+        otaStart = false
+        SVProgressHUD.showError(withStatus: LANGLOC("connectFailure"))
+    }
 }
