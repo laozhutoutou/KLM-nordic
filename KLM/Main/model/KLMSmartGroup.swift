@@ -52,7 +52,7 @@ class KLMSmartGroup: NSObject {
         }
         
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
-        if let opCode = UInt8("A", radix: 16) {
+        if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
             let network = MeshNetworkManager.instance.meshNetwork!
@@ -111,7 +111,7 @@ class KLMSmartGroup: NSObject {
         }
         
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
-        if let opCode = UInt8("A", radix: 16) {
+        if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
             let network = MeshNetworkManager.instance.meshNetwork!

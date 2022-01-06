@@ -271,11 +271,34 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             }
         case let status as ConfigModelAppStatus:
             if status.status == .success {
+                
+                if status.modelIdentifier == 1 { //vendorModel appkey配置成功
+                    
+                    KLMLog("vendorModel appkey success")
+                    
+                    ///给OTA model配置APPKey
+                    let OTAModel = KLMHomeManager.getOTAModelFromNode(node: self.currentNode)!
+                    guard !OTAModel.boundApplicationKeys.isEmpty else {
+                        
+                        let keys = self.currentNode.applicationKeysAvailableFor(OTAModel)
+                        let applicationKey = keys.first
+                        let message = ConfigModelAppBind(applicationKey: applicationKey!, to: OTAModel)!
+                        
+                        do {
+                            try MeshNetworkManager.instance.send(message, to: self.currentNode)
+                        } catch  {
+                            print(error)
+                        }
+                        return
+                    }
+                    return
+                }
+                
                 //停止计时
                 stopTime()
                 
                 //整个流程配置完成
-                KLMLog("model appkey success")
+                KLMLog("OTA model appkey success")
                 
                 self.delegate?.sigMeshManager(self, didActiveDevice: self.currentNode)
                 

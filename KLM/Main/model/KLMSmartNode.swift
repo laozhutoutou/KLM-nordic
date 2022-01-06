@@ -74,7 +74,7 @@ class KLMSmartNode: NSObject {
         let model = KLMHomeManager.getModelFromNode(node: node)!
         //数据格式：比如，power dp 01 ,开 01 "0101"字符串转化成
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
-        if let opCode = UInt8("A", radix: 16) {
+        if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
@@ -97,7 +97,7 @@ class KLMSmartNode: NSObject {
         
         let model = KLMHomeManager.getModelFromNode(node: node)!
         let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
-        if let opCode = UInt8("C", radix: 16) {
+        if let opCode = UInt8("1C", radix: 16) {
             let parameters = Data(hex: dpString)
             KLMLog("parameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)

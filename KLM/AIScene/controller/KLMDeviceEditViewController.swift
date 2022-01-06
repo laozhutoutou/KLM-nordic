@@ -428,33 +428,37 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.DFU.rawValue:///固件更新
             //当前版本
             
-            guard let bleData = self.BLEVersionData, let mcuData = self.MCUVersionData else {
-                SVProgressHUD.showInfo(withStatus: "Check version failed")
-                return
-            }
-            guard let bleV = BLEVersion, let mcuV = MCUVersion else {
-                SVProgressHUD.showInfo(withStatus: "Check version failed")
-                return
-            }
-            let currentVersion: String = "\(bleV).\(mcuV)"
-            //最新版本 -- 服务器查询
-            let newestVersion: String = bleData.fileVersion + "." + mcuData.fileVersion
+            let vc = KLMDFUTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
             
-            let value = currentVersion.compare(newestVersion)
-            if value == .orderedAscending {//左操作数小于右操作数，需要升级
-                
-                let vc = KLMDFUViewController()
-                vc.BLEVersion = bleV
-                vc.MCUVersion = mcuV
-                vc.BLEVersionData = bleData
-                vc.MCUVersionData = mcuData
-                
-                navigationController?.pushViewController(vc, animated: true)
-                
-            } else {
-                
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-            }
+            
+//            guard let bleData = self.BLEVersionData, let mcuData = self.MCUVersionData else {
+//                SVProgressHUD.showInfo(withStatus: "Check version failed")
+//                return
+//            }
+//            guard let bleV = BLEVersion, let mcuV = MCUVersion else {
+//                SVProgressHUD.showInfo(withStatus: "Check version failed")
+//                return
+//            }
+//            let currentVersion: String = "\(bleV).\(mcuV)"
+//            //最新版本 -- 服务器查询
+//            let newestVersion: String = bleData.fileVersion + "." + mcuData.fileVersion
+//
+//            let value = currentVersion.compare(newestVersion)
+//            if value == .orderedAscending {//左操作数小于右操作数，需要升级
+//
+//                let vc = KLMDFUViewController()
+//                vc.BLEVersion = bleV
+//                vc.MCUVersion = mcuV
+//                vc.BLEVersionData = bleData
+//                vc.MCUVersionData = mcuData
+//
+//                navigationController?.pushViewController(vc, animated: true)
+//
+//            } else {
+//
+//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+//            }
 //        case itemType.sigleControl.rawValue://六路测试
 //            let vc = KLMTestViewController()
 //            navigationController?.pushViewController(vc, animated: true)
