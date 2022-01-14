@@ -83,7 +83,25 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         setupUI()
         
         event()
+        
+//        getWifiInfo()
     }
+    
+//    func getWifiInfo() {
+//        if let cfas: NSArray = CNCopySupportedInterfaces() {
+//            for cfa in cfas {
+//                if let dict = CFBridgingRetain(
+//                    CNCopyCurrentNetworkInfo(cfa as! CFString)
+//                    ) {
+//                    if let ssid = dict["SSID"] as? String,
+//                        let bssid = dict["BSSID"] as? String {
+//
+//                        KLMLog(dict)
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     func setupUI() {
         

@@ -146,35 +146,35 @@ class KLMMotionViewController: UIViewController, Editable {
     @IBAction func Comfirm(_ sender: Any) {
         
         SVProgressHUD.show()
-        
-        //发送打开指令
-        if isAllNodes {
+        ///最后发送开指令
+        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+        if self.isAllNodes {
             
-            let parameOn = parameModel(dp: .motionPower, value: 1)
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameLight) {
                 
                 print("success")
-                KLMSetUserDefault("motionPower", 1)
+                KLMSetUserDefault("motionLight", Int(self.lightSlider.currentValue))
                 
             } failure: { error in
                 
                 KLMShowError(error)
             }
+            
         } else {
             
-            let parameOn = parameModel(dp: .motionPower, value: 1)
-            KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
+            KLMSmartNode.sharedInstacnce.sendMessage(parameLight, toNode: KLMHomeManager.currentNode)
         }
         
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             
-            let parame1 = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
             if self.isAllNodes {
                 
-                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame1) {
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameTime) {
                     
                     print("success")
-                    KLMSetUserDefault("motionLight", Int(self.lightSlider.currentValue))
+                    //存储当前设定值
+                    KLMSetUserDefault("motionTime", Int(self.timeSlider.currentValue))
                     
                 } failure: { error in
                     
@@ -183,21 +183,19 @@ class KLMMotionViewController: UIViewController, Editable {
                 
             } else {
                 
-                KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
+                KLMSmartNode.sharedInstacnce.sendMessage(parameTime, toNode: KLMHomeManager.currentNode)
             }
             
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 
-                let parame = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-                
+                let parameOn = parameModel(dp: .motionPower, value: 1)
                 if self.isAllNodes {
                     
-                    KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                    KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
                         
                         print("success")
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        //存储当前设定值
-                        KLMSetUserDefault("motionTime", Int(self.timeSlider.currentValue))
+                        KLMSetUserDefault("motionPower", 1)
                         
                         DispatchQueue.main.asyncAfter(deadline: 0.5) {
                             self.navigationController?.popViewController(animated: true)
@@ -207,15 +205,14 @@ class KLMMotionViewController: UIViewController, Editable {
                         
                         KLMShowError(error)
                     }
-                    
                 } else {
                     self.isClickComfirm = true
-                    KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+                    KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
                 }
+                
             }
         }
     }
-    
 }
 
 extension KLMMotionViewController: KLMSmartNodeDelegate {

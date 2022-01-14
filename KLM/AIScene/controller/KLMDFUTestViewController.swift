@@ -10,38 +10,42 @@ import nRFMeshProvision
 import RxSwift
 import RxCocoa
 import SVProgressHUD
+import SystemConfiguration.CaptiveNetwork
 
 class KLMDFUTestViewController: UIViewController {
 
-    @IBOutlet weak var linkUrlField: UITextField!
     @IBOutlet weak var SSIDField: UITextField!
     @IBOutlet weak var passField: UITextField!
     
     @IBOutlet weak var upGradeBtn: UIButton!
     
-    private var otaStart: Bool = false
     private var mClearFlash: Bool = false
     private var mUrlEnable: Bool = true
+    
+    ///版本
+    var BLEVersionData: KLMVersion.KLMVersionData!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        linkUrlField.text = "https://note.youdao.com/yws/api/personal/file/WEB2af9301225228e275d1718e461e7e2a3?method=download&shareKey=9edf59662e9897c9ed91d91788c905ca"
         SSIDField.text = "SJKJ"
         passField.text = "26671627"
+        
+        upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         
         MeshNetworkManager.instance.delegate = self
         MeshNetworkManager.bearer.delegate = self
         
-        Observable.combineLatest(linkUrlField.rx.text.orEmpty, SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) { mailText, passwordText, codeText  in
+        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
             
-            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty{
+            if ssidText.isEmpty || passwordText.isEmpty{
                 return false
             } else {
                 return true
             }
         }.bind(to: upGradeBtn.rx.isEnabled)
             .disposed(by: disposeBag)
+        
         
     }
 
@@ -52,11 +56,14 @@ class KLMDFUTestViewController: UIViewController {
     
     func sendBinVersion() {
         
-        otaStart = true
+        ///进度条
+        SVProgressHUD.showProgress(0)
+        SVProgressHUD.setDefaultMaskType(.black)
         KLMLog("Send OTA bin Version")
         
         let binId: Int =  1
-        let version: Int = 2
+        let version: Int = EspDataUtils.binVersionString2Int(version: BLEVersionData.fileVersion)
+        KLMLog("version = \(version)")
         let bytes: [UInt8] = [UInt8(binId & 0xff),
                               UInt8(binId >> 8 & 0xff),
                               UInt8(version & 0xff),
@@ -66,7 +73,7 @@ class KLMDFUTestViewController: UIViewController {
                               UInt8((0xf000 >> 8) & 0xff)
         ]
         let parameters = Data.init(bytes: bytes, count: bytes.count)
-        let model: Model = KLMHomeManager.getOTAModelFromNode(node: KLMHomeManager.currentNode)!
+        let model: Model = KLMHomeManager.getModelFromNode(node: KLMHomeManager.currentNode)!
         if let opCode = UInt8("0C", radix: 16) {
             
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
@@ -75,6 +82,8 @@ class KLMDFUTestViewController: UIViewController {
                 try MeshNetworkManager.instance.send(message, to: model)
                 
             } catch {
+                
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
                 print(error)
                 
             }
@@ -89,7 +98,7 @@ class KLMDFUTestViewController: UIViewController {
     
     func espOtaStart() {
         
-        KLMLog("Send OTA Message")
+        KLMLog("Send OTA Start")
         
         let aa: Character = "a"
         let zz: Character = "z"
@@ -103,29 +112,47 @@ class KLMDFUTestViewController: UIViewController {
             aa.asciiValue! + UInt8(arc4random_uniform(UInt32(zz.asciiValue! - aa.asciiValue!)))
         ]
         
-        
-        let url: String = self.linkUrlField.text!
         let urlSSID: String = self.SSIDField.text!
         let urlPassword: String = self.passField.text!
+
+//        //256
+//        let url: String = KLMUrl("api/file/download/\(BLEVersionData.id)")
+//        var urlBytes: [UInt8] = [UInt8](url.data(using: String.Encoding.ascii)!)
+//        urlBytes = urlBytes + [UInt8].init(repeating: 0, count: 256 - urlBytes.count)
+//        //32
+//        var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: String.Encoding.ascii)!)
+//        urlSSIDBytes = urlSSIDBytes + [UInt8].init(repeating: 0, count: 32 - urlSSIDBytes.count)
+//        //64
+//        var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: String.Encoding.ascii)!)
+//        urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 64 - urlPasswordBytes.count)
         
-        //256
+        
+        //64
+        let url: String = KLMUrl("api/file/download/\(BLEVersionData.id)")
         var urlBytes: [UInt8] = [UInt8](url.data(using: String.Encoding.ascii)!)
-        urlBytes = urlBytes + [UInt8].init(repeating: 0, count: 256 - urlBytes.count)
+        urlBytes = urlBytes + [UInt8].init(repeating: 0, count: 64 - urlBytes.count)
         //32
         var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: String.Encoding.ascii)!)
         urlSSIDBytes = urlSSIDBytes + [UInt8].init(repeating: 0, count: 32 - urlSSIDBytes.count)
-        //64
+        //32
         var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: String.Encoding.ascii)!)
-        urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 64 - urlPasswordBytes.count)
+        urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 32 - urlPasswordBytes.count)
+        //token  256 - 32
+        let token: String = KLMGetUserDefault("token") as! String
+        var tokenBytes: [UInt8] = [UInt8](token.data(using: String.Encoding.ascii)!)
+        tokenBytes = tokenBytes + [UInt8].init(repeating: 0, count: 256 - 32 - tokenBytes.count)
         
         let bytes: [UInt8] = EspDataUtils.mergeBytes(bytes: [0x00], moreBytes:
                                                      ssid,
                                                      password,
                                                      urlBytes,
                                                      urlSSIDBytes,
-                                                     urlPasswordBytes)
+                                                     urlPasswordBytes,
+                                                     tokenBytes
+                                                     
+        )
         let parameters = Data.init(bytes: bytes, count: bytes.count)
-        let model: Model = KLMHomeManager.getOTAModelFromNode(node: KLMHomeManager.currentNode)!
+        let model: Model = KLMHomeManager.getModelFromNode(node: KLMHomeManager.currentNode)!
         if let opCode = UInt8("0E", radix: 16) {
             
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
@@ -134,6 +161,8 @@ class KLMDFUTestViewController: UIViewController {
                 try MeshNetworkManager.instance.send(message, to: model)
                 
             } catch {
+               
+                SVProgressHUD.showError(withStatus: error.localizedDescription)
                 print(error)
                 
             }
@@ -148,18 +177,54 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
         switch message {
         case let message as UnknownMessage:
             KLMLog(message.debugDescription)
+            /// 00CD00FF 00CF00FF
             ///接收到binVersion数据
-            if otaStart == true {
-                otaStart = false
+            if String(format: "%08X", message.opCode) == "00CD00FF" {
                 
                 ///开始发送数据
                 espOtaStart()
             }
             
+            if String(format: "%08X", message.opCode) == "00CF00FF" {
+                
+                ///更新完成
+                if message.parameters?.hex == "24723639" {
+                    ///设备重启中
+                    SVProgressHUD.showProgress(1.0, status: "Restarting")
+                    DispatchQueue.main.asyncAfter(deadline: 8) {
+                        
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
+                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                    
+                } else {
+                    
+                    //进度
+                    if let parameters = message.parameters {
+                        if parameters.count >= 2 {
+                            //00 01 对应成功百分比为1，
+                            let statu = parameters[0]
+                            let PP = parameters[1]
+                            switch statu {
+                            case 0://进度
+                                
+                                let progress: Float = Float(PP) / 100.0
+                                SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
+                                
+                            default:
+                                SVProgressHUD.showError(withStatus: "Upgrade failure")
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            
         default:
             break
         }
-        
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
@@ -169,11 +234,9 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
         
-        otaStart = false
         KLMLog("消息发送失败 = \(error)")
         SVProgressHUD.showError(withStatus: "Upgrade failure")
     }
-    
 }
 
 extension KLMDFUTestViewController: BearerDelegate {
@@ -185,7 +248,6 @@ extension KLMDFUTestViewController: BearerDelegate {
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         
-        otaStart = false
-        SVProgressHUD.showError(withStatus: LANGLOC("connectFailure"))
+        SVProgressHUD.dismiss()
     }
 }

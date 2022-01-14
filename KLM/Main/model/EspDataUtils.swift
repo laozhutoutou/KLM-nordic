@@ -7,19 +7,9 @@
 
 import Foundation
 
-enum Constant: String {
-    case KEY_DST_ADDRESS = "dstAddress"
-    case KEY_COMPANY_ID = "companyId"
-    case KEY_VERSION_CODE = "versionCode"
-    case KEY_BIN_ID = "binId"
-    case KEY_CLEAR_FLASK = "clearFlash"
-    case KEY_URL = "url"
-    case KEY_URL_SSID = "urlSsid"
-    case KEY_URL_PASSWORD = "urlPassword"
-}
-
 class EspDataUtils {
     
+    ///字节数组拼接
     static func mergeBytes(bytes: [UInt8], moreBytes: [UInt8] ...) -> [UInt8] {
         
         var result: [UInt8] = [UInt8]()
@@ -28,5 +18,23 @@ class EspDataUtils {
             result += data
         }
         return result
+    }
+    
+    ///版本转化
+    static func binVersionString2Int(version: String) -> Int {
+        let splits = version.components(separatedBy: ".")
+        var primary: Int = 0
+        if let aa = splits[safeIndex: 0], let bb = Int(aa) {
+            primary = bb & 0xff
+        }
+        var sub1: Int = 0
+        if let aa = splits[safeIndex: 1], let bb = Int(aa) {
+            sub1 = bb & 0xf
+        }
+        var sub2: Int = 0
+        if let aa = splits[safeIndex: 2], let bb = Int(aa) {
+            sub2 = bb & 0xf
+        }
+        return primary | (sub1 << 12) | (sub2 << 8)
     }
 }

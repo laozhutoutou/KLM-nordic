@@ -167,7 +167,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 5:
                         response.dp = .recipe
-                        
                         response.value = valueHex
                     case 6:
                         

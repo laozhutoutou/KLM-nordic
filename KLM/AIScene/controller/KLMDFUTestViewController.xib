@@ -11,10 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMDFUTestViewController" customModule="KLM" customModuleProvider="target">
             <connections>
-                <outlet property="SSIDField" destination="FUx-4P-aHs" id="7YX-jr-GS6"/>
-                <outlet property="linkUrlField" destination="SFh-gB-dT5" id="MY8-os-P0E"/>
-                <outlet property="passField" destination="hWi-4C-7Fs" id="GQg-qL-hPd"/>
-                <outlet property="upGradeBtn" destination="bIF-YQ-kuL" id="Mbl-Uu-GQw"/>
+                <outlet property="SSIDField" destination="wuG-Yn-gl2" id="y5E-OG-UYw"/>
+                <outlet property="passField" destination="Ayi-gw-lsg" id="Y1a-kM-tBZ"/>
+                <outlet property="upGradeBtn" destination="XiG-To-dpp" id="7Du-EU-7ld"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -23,38 +22,88 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="SSID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FUx-4P-aHs">
-                    <rect key="frame" x="35" y="175" width="321" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SSID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oqf-V8-Iuh">
+                    <rect key="frame" x="30" y="108" width="37" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4E-sb-rby">
+                    <rect key="frame" x="30" y="194.5" width="74" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please  enter the SSID" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wuG-Yn-gl2">
+                    <rect key="frame" x="30" y="139" width="354" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="oLc-Bf-WGO"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hWi-4C-7Fs">
-                    <rect key="frame" x="35" y="235" width="321" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIF-YQ-kuL">
-                    <rect key="frame" x="124" y="317" width="143" height="39"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="升级"/>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tH-tR-Vhh" userLabel="line">
+                    <rect key="frame" x="30" y="184" width="354" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="Et4-98-9HK"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiG-To-dpp">
+                    <rect key="frame" x="30" y="321" width="354" height="45"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="dFs-eD-1Ad"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Upgrade">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <connections>
-                        <action selector="upgrade:" destination="-1" eventType="touchUpInside" id="8bF-0z-L8p"/>
+                        <action selector="upgrade:" destination="-1" eventType="touchUpInside" id="FHv-yP-yQQ"/>
                     </connections>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SFh-gB-dT5">
-                    <rect key="frame" x="35" y="115" width="321" height="34"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6E-5K-8fE" userLabel="line">
+                    <rect key="frame" x="30" y="270.5" width="354" height="0.5"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="69o-F6-vRO"/>
+                    </constraints>
+                </view>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter the password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Ayi-gw-lsg">
+                    <rect key="frame" x="30" y="225.5" width="354" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="5es-Qt-Yhd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Ayi-gw-lsg" firstAttribute="top" secondItem="f4E-sb-rby" secondAttribute="bottom" constant="10" id="5SH-BB-tei"/>
+                <constraint firstItem="Oqf-V8-Iuh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="6DJ-Et-7q8"/>
+                <constraint firstItem="Ayi-gw-lsg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="750-AU-yzO"/>
+                <constraint firstItem="f4E-sb-rby" firstAttribute="leading" secondItem="Oqf-V8-Iuh" secondAttribute="leading" id="9nN-gz-jS8"/>
+                <constraint firstItem="wuG-Yn-gl2" firstAttribute="top" secondItem="Oqf-V8-Iuh" secondAttribute="bottom" constant="10" id="Ff1-kl-uwb"/>
+                <constraint firstItem="f4E-sb-rby" firstAttribute="top" secondItem="7tH-tR-Vhh" secondAttribute="bottom" constant="10" id="MdI-I9-MkD"/>
+                <constraint firstItem="N6E-5K-8fE" firstAttribute="trailing" secondItem="Ayi-gw-lsg" secondAttribute="trailing" id="Pqg-MP-XDm"/>
+                <constraint firstItem="7tH-tR-Vhh" firstAttribute="leading" secondItem="wuG-Yn-gl2" secondAttribute="leading" id="aoP-6r-k88"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ayi-gw-lsg" secondAttribute="trailing" constant="30" id="kUK-So-QXO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wuG-Yn-gl2" secondAttribute="trailing" constant="30" id="lnM-9K-FSe"/>
+                <constraint firstItem="7tH-tR-Vhh" firstAttribute="top" secondItem="wuG-Yn-gl2" secondAttribute="bottom" id="qPg-p5-4uK"/>
+                <constraint firstItem="Oqf-V8-Iuh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="sRl-dt-kiP"/>
+                <constraint firstItem="N6E-5K-8fE" firstAttribute="top" secondItem="Ayi-gw-lsg" secondAttribute="bottom" id="tV7-OV-jC9"/>
+                <constraint firstItem="XiG-To-dpp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="uLU-ci-b6y"/>
+                <constraint firstItem="7tH-tR-Vhh" firstAttribute="trailing" secondItem="wuG-Yn-gl2" secondAttribute="trailing" id="uMA-zE-DQW"/>
+                <constraint firstItem="wuG-Yn-gl2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="vOH-WA-l8j"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XiG-To-dpp" secondAttribute="trailing" constant="30" id="w7d-ft-YBs"/>
+                <constraint firstItem="N6E-5K-8fE" firstAttribute="leading" secondItem="Ayi-gw-lsg" secondAttribute="leading" id="waA-3t-8Kd"/>
+                <constraint firstItem="XiG-To-dpp" firstAttribute="top" secondItem="N6E-5K-8fE" secondAttribute="bottom" constant="50" id="zpq-3n-Pf8"/>
+            </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-212" y="56"/>
+            <point key="canvasLocation" x="-1487" y="-247"/>
         </view>
     </objects>
     <resources>

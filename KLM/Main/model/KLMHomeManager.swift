@@ -103,20 +103,6 @@ extension KLMHomeManager {
         
         let models = node.primaryElement!.models
         for M in models {
-            if M.modelIdentifier == 1 && M.companyIdentifier == companyIdentifier {
-                return M
-            }
-        }
-        return nil
-    }
-    
-    /// 通过节点获取OTA model
-    /// - Parameter node: node
-    /// - Returns: OTA model
-    static func getOTAModelFromNode(node: Node) -> Model? {
-        
-        let models = node.primaryElement!.models
-        for M in models {
             if M.modelIdentifier == 2 && M.companyIdentifier == companyIdentifier {
                 return M
             }

@@ -21,11 +21,6 @@ let isTestApp: Bool = false
 ///AppleStoreID
 let AppleStoreID: String = "1579633878"
 
-///// 蓝牙版本号
-//let BLENewestVersion: Int = 4
-///// MCU版本号
-//let MCUNewestVersion: Int = 3
-
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width
 let KLMScreenH = UIScreen.main.bounds.size.height

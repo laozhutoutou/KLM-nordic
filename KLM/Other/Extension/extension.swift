@@ -160,6 +160,18 @@ extension String {
     
 }
 
+///防止数组越界
+extension Array {
+    
+    subscript(safeIndex index: Int) -> Element? {
+        
+        if self.count > index {
+            return self[index]
+        }
+        return nil
+    }
+}
+
 extension String {
     
     /// String使用下标截取字符串
