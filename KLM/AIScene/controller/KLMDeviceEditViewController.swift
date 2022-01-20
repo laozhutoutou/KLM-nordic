@@ -216,7 +216,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             self.colorTest = value == 2 ? false : true
             self.tableView.reloadData()
         }
-        if message?.dp ==  .power{
+        if message?.dp ==  .power{   
             
             let value = message?.value as! Int
             self.lightSwitch = value
@@ -427,7 +427,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 navigationController?.pushViewController(vc, animated: true)
 
             } else {
-
+                 
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
             }
 //        case itemType.sigleControl.rawValue://六路测试

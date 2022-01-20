@@ -136,7 +136,7 @@ enum DPType: Int {
 
 struct parameModel {
     
-    var dp: DPType = .power
+    var dp: DPType?
     var value: Any = 0
     
 }

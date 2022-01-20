@@ -51,7 +51,7 @@ class KLMSmartGroup: NSObject {
             break
         }
         
-        let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
@@ -110,7 +110,7 @@ class KLMSmartGroup: NSObject {
             break
         }
         
-        let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")

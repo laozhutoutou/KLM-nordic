@@ -73,7 +73,7 @@ class KLMSmartNode: NSObject {
         
         let model = KLMHomeManager.getModelFromNode(node: node)!
         //数据格式：比如，power dp 01 ,开 01 "0101"字符串转化成
-        let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
@@ -96,7 +96,7 @@ class KLMSmartNode: NSObject {
         MeshNetworkManager.instance.delegate = self
         
         let model = KLMHomeManager.getModelFromNode(node: node)!
-        let dpString = parame.dp.rawValue.decimalTo2Hexadecimal()
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1C", radix: 16) {
             let parameters = Data(hex: dpString)
             KLMLog("parameter = \(parameters.hex)")
@@ -155,7 +155,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 2:
                         response.dp = .color
-                        
                         response.value = valueHex
                     case 3:
                         
