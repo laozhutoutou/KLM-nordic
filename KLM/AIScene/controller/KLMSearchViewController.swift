@@ -180,9 +180,7 @@ extension KLMSearchViewController: KLMSearchHistoryViewDelegate {
         } failure: { error in
             
         }
-
     }
-
 }
 
 extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -195,7 +193,7 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let deviceModel:  Node = self.searchLists[indexPath.row]
+        let deviceModel: Node = self.searchLists[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.leftImage = "img_scene_48"
         cell.leftTitle = deviceModel.name
@@ -206,8 +204,7 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let deviceModel:  Node = self.searchLists[indexPath.row]
-        
+        let deviceModel: Node = self.searchLists[indexPath.row]
         KLMHomeManager.sharedInstacnce.smartNode = deviceModel
         
         if !MeshNetworkManager.bearer.isOpen {
@@ -233,7 +230,7 @@ extension KLMSearchViewController: KLMSIGMeshManagerDelegate {
         
     func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
         
-        SVProgressHUD.showSuccess(withStatus: "please tap again")
+        SVProgressHUD.showSuccess(withStatus: "Please tap again")
         
     }
     

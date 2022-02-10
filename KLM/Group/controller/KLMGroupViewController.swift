@@ -111,8 +111,15 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let model: Group = groups[indexPath.row]
-        let cell = KLMGroupSelectCell.cellWithTableView(tableView: tableView)
+        let cell = KLMGroupCell.cellWithTableView(tableView: tableView)
         cell.model = model
+        cell.settingsBlock = {[weak self] in
+            
+            guard let self = self else { return }
+            let vc = KLMGroupEditViewController()
+            vc.group = model
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         return cell
 
     }
@@ -182,16 +189,16 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         //整组设置
-        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("groupSetting")) { action, sourceView, completionHandler in
-            
-            let vc = KLMGroupEditViewController()
-            vc.group = model
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-            completionHandler(true)
-        }
-        editAction.backgroundColor = appMainThemeColor
-        let actions = UISwipeActionsConfiguration.init(actions: [deleteAction, editAction])
+//        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("groupSetting")) { action, sourceView, completionHandler in
+//
+//            let vc = KLMGroupEditViewController()
+//            vc.group = model
+//            self.navigationController?.pushViewController(vc, animated: true)
+//
+//            completionHandler(true)
+//        }
+//        editAction.backgroundColor = appMainThemeColor
+        let actions = UISwipeActionsConfiguration.init(actions: [deleteAction])
         return actions
     }
 }
