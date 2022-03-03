@@ -14,8 +14,8 @@ class KLMBaoZhuangTestViewController: UIViewController {
     @IBOutlet weak var GOK: UIButton!
     @IBOutlet weak var BOK: UIButton!
     
-    @IBOutlet weak var heibuOK: UIButton!
-    @IBOutlet weak var sekaOK: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
+    
     @IBOutlet weak var stanbyOK: UIButton!
     
     @IBOutlet weak var OKBtn: UIButton!
@@ -35,7 +35,7 @@ class KLMBaoZhuangTestViewController: UIViewController {
         
         navigationItem.title = "包装测试"
         
-        OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOK,sekaOK,stanbyOK]
+        OKBtnArray = [WWOK,ROK,GOK,BOK,stanbyOK]
         
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
         falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
@@ -78,22 +78,10 @@ class KLMBaoZhuangTestViewController: UIViewController {
         }
     }
     
-    @IBAction func heibu(_ sender: Any) {
+    @IBAction func downLoadPic(_ sender: Any) {
         
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0503"
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
-    
-    @IBAction func seka(_ sender: Any) {
-        
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0504"
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        let parameTime = parameModel(dp: .cameraPic)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
     }
     
     @IBAction func stanbyClick(_ sender: Any) {
@@ -125,21 +113,17 @@ extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
             }
         }
         
-        //黑布
-        if let value = message?.value as? String, message?.dp == .factoryTest {
+        if message?.dp ==  .cameraPic{
             
-            if value == "0503"{
-                SVProgressHUD.dismiss()
-                heibuOK.isHidden = false
-            }
-        }
-        
-        //色卡
-        if let value = message?.value as? String, message?.dp == .factoryTest {
-            
-            if value == "0504"{
-                SVProgressHUD.dismiss()
-                sekaOK.isHidden = false
+            if let data = message?.value as? Data, data.count >= 4 {
+                
+                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
+                KLMLog("ip = \(ip)")
+                let url = URL.init(string: ip)
+                
+                /// forceRefresh 不需要缓存
+                imageView.kf.indicatorType = .activity
+                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh])
             }
         }
         

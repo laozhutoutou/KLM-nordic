@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class KLMLoginViewController: UIViewController {
 
@@ -30,8 +31,9 @@ class KLMLoginViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         
+        SVProgressHUD.show()
         KLMService.login(username: mailTextField.text!, password: passTextField.text!) { _ in
-            
+            SVProgressHUD.dismiss()
             ///进入主页面
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.enterMainUI()

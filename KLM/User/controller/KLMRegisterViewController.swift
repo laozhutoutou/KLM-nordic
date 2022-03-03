@@ -14,8 +14,9 @@ class KLMRegisterViewController: UIViewController {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
-    
     @IBOutlet weak var codeTextField: UITextField!
+    @IBOutlet weak var nickNameField: UITextField!
+    
     //注册
     @IBOutlet weak var signupBtn: UIButton!
     /// 验证码
@@ -33,9 +34,9 @@ class KLMRegisterViewController: UIViewController {
         signupBtn.layer.cornerRadius = signupBtn.height / 2;
         
         ///监控输入
-        Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty) { mailText, passwordText, codeText in
+        Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty,  nickNameField.rx.text.orEmpty) { mailText, passwordText, codeText, nickNameText in
             
-            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty{
+            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty || nickNameText.isEmpty {
                 return false
             } else {
                 return true
@@ -67,7 +68,8 @@ class KLMRegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         
-        KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
+        SVProgressHUD.show()
+        KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!, nickName: nickNameField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             self.navigationController?.popViewController(animated: true)

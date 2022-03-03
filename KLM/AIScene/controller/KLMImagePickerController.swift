@@ -13,10 +13,11 @@ class KLMImagePickerController: UIImagePickerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
-            
+//        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+//
+        ///发送闪灯
             sendFlash()
-        }
+//        }
         
         self.delegate = self
         
@@ -79,18 +80,24 @@ class KLMImagePickerController: UIImagePickerController {
         
         if let latest = self.latestAsset() {
             
-            PHImageManager.default().requestImage(for: latest, targetSize: .zero, contentMode: .aspectFill, options: nil) { result, info in
+            DispatchQueue.global().async{
                 
-                libraryBtn.setImage(result, for: .normal)
-
+                PHImageManager.default().requestImage(for: latest, targetSize: .zero, contentMode: .aspectFill, options: nil) { result, info in
+                    
+                    DispatchQueue.main.async{
+                        
+                        libraryBtn.setImage(result, for: .normal)
+                        
+                    }
+                }
             }
+            
         } else {
             
             libraryBtn.setTitle(LANGLOC("library"), for: .normal)
             libraryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
             libraryBtn.setTitleColor(.white, for: .normal)
         }
-        
         
         //自定义
         let customBtn = UIButton.init(type: .custom)
@@ -115,8 +122,18 @@ class KLMImagePickerController: UIImagePickerController {
         
         let parame = parameModel(dp: .flash, value: 1)
         
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+
+        } else {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+
+            } failure: { error in
+//                KLMShowError(error)
+            }
+        }
     }
     
     @objc func closeClick() {

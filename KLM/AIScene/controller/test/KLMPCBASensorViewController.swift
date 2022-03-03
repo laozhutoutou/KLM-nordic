@@ -13,11 +13,12 @@ class KLMPCBASensorViewController: UIViewController {
     @IBOutlet weak var ROK: UIButton!
     @IBOutlet weak var GOK: UIButton!
     @IBOutlet weak var BOK: UIButton!
-    @IBOutlet weak var cameraOK: UIButton!
     @IBOutlet weak var stanbyOK: UIButton!
     
     @IBOutlet weak var OKBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
+    
+    @IBOutlet weak var imageView: UIImageView!
     
     var OKBtnArray: [UIButton]!
     
@@ -33,7 +34,7 @@ class KLMPCBASensorViewController: UIViewController {
         
         navigationItem.title = "sensor测试"
 
-        OKBtnArray = [WWOK,ROK,GOK,BOK,cameraOK,stanbyOK]
+        OKBtnArray = [WWOK,ROK,GOK,BOK,stanbyOK]
         
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
         falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
@@ -76,14 +77,6 @@ class KLMPCBASensorViewController: UIViewController {
         }
     }
     
-    @IBAction func openCamera(_ sender: Any) {
-        
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0202"
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
     
     @IBAction func stanbyClick(_ sender: Any) {
         
@@ -92,6 +85,12 @@ class KLMPCBASensorViewController: UIViewController {
         let string = "0209"
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    @IBAction func downLoadPic(_ sender: Any) {
+        
+        let parameTime = parameModel(dp: .cameraPic)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
     }
     
 }
@@ -115,21 +114,26 @@ extension KLMPCBASensorViewController: KLMSmartNodeDelegate {
             }
         }
         
-        //打开图像
-        if let value = message?.value as? String, message?.dp == .factoryTest {
-            
-            if value == "0202"{
-                SVProgressHUD.dismiss()
-                cameraOK.isHidden = false
-            }
-        }
-        
         //待机功耗
         if let value = message?.value as? String, message?.dp == .factoryTest {
             
             if value == "0209"{
                 SVProgressHUD.dismiss()
                 stanbyOK.isHidden = false
+            }
+        }
+        
+        if message?.dp ==  .cameraPic{
+            
+            if let data = message?.value as? Data, data.count >= 4 {
+                
+                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
+                KLMLog("ip = \(ip)")
+                let url = URL.init(string: ip)
+                
+                /// forceRefresh 不需要缓存
+                imageView.kf.indicatorType = .activity
+                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh])
             }
         }
         

@@ -1,12 +1,12 @@
 
-/* Class = "UILabel"; text = "家庭名称："; ObjectID = "7qR-V4-Z8T"; */
-"7qR-V4-Z8T.text" = "家庭名称：";
+/* Class = "UILabel"; text = "商场名称："; ObjectID = "7qR-V4-Z8T"; */
+"7qR-V4-Z8T.text" = "商场名称：";
 
-/* Class = "UITextField"; placeholder = "请输入家庭名称"; ObjectID = "98G-3D-AyV"; */
-"98G-3D-AyV.placeholder" = "请输入家庭名称";
+/* Class = "UITextField"; placeholder = "请输入商场名称"; ObjectID = "98G-3D-AyV"; */
+"98G-3D-AyV.placeholder" = "请输入商场名称";
 
 /* Class = "UIButton"; normalTitle = "添加成员"; ObjectID = "A2h-wl-o4p"; */
 "A2h-wl-o4p.normalTitle" = "添加成员";
 
-/* Class = "UIButton"; normalTitle = "删除家庭"; ObjectID = "xaM-EB-gbA"; */
-"xaM-EB-gbA.normalTitle" = "删除家庭";
+/* Class = "UIButton"; normalTitle = "删除商场"; ObjectID = "xaM-EB-gbA"; */
+"xaM-EB-gbA.normalTitle" = "删除商场";

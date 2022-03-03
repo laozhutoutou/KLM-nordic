@@ -14,9 +14,9 @@ import RxSwift
 import RxCocoa
 import nRFMeshProvision
 import HandyJSON
-
+///AiSceneMesh   kinglumi.jmj.com
 ///切换APP , 是否是测试APP  名称：AISceneTest bundleID: kinglumi.jmj123.com
-//////1、检查配方是否最新 2、检查MCU和蓝牙固件是否最新
+//////1、检查配方是否最新
 let isTestApp: Bool = false
 ///AppleStoreID
 let AppleStoreID: String = "1579633878"
@@ -137,12 +137,11 @@ func KLMHttpShowError(_ error: NSError) {
     SVProgressHUD.showError(withStatus: message)
 }
 
-/// URL 8.135.16.88 light.kaiwaresz.com 加入了白名单
-//let testUrl = "http://8.135.16.88:9898/"
+///国内版
 let baseUrl = "https://light.kaiwaresz.com/"
-
+///国外版
+//let baseUrl = "https://ai.kaiwaresz.com/"
 func KLMUrl(_ url: String) -> String {
     
     return baseUrl + url
 }
-

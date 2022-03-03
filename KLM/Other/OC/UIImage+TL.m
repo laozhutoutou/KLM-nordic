@@ -203,6 +203,8 @@
     
     // Get a pointer to the data
     unsigned char *bitmapData = (unsigned char*)CGBitmapContextGetData(context);
+    
+    CGContextRelease(context);
     return bitmapData;
 }
 

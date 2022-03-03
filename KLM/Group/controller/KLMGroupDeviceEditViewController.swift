@@ -104,7 +104,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
             
             let vc = KLMImagePickerController()
             vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
+            self.present(vc, animated: true, completion: nil)
             
         }
     }

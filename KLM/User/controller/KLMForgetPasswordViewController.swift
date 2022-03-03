@@ -65,8 +65,8 @@ class KLMForgetPasswordViewController: UIViewController {
     }
     
     @IBAction func done(_ sender: Any) {
-        
-        KLMService.resetPassword(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
+        SVProgressHUD.show()
+        KLMService.forgetPassword(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             self.navigationController?.popViewController(animated: true)

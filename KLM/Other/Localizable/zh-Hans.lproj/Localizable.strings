@@ -81,7 +81,10 @@ joinAStore = "加入商场";
 storeSettings = "商场设置";
 close = "关闭";
 deleteMember = "删除成员";
-invitationCodetip = "请将此邀请码提供给他人已便加入家庭,有效期3天";
+invitationCodetip = "请将此邀请码提供给他人已便加入商场,有效期3天";
 administrator = "管理员";
 unknowUser = "未知用户";
 AddMember = "添加成员";
+
+ChangePassword = "修改密码";
+passwordWordDifferent = "再次输入的新密码不同";

@@ -133,10 +133,10 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         self.collectionView.mj_header = header
         
         ///显示空白页面
-        showEmptyView()
-        DispatchQueue.main.asyncAfter(deadline: 1) {
-            self.hideEmptyView()
-        }
+//        showEmptyView()
+//        DispatchQueue.main.asyncAfter(deadline: 1) {
+//            self.hideEmptyView()
+//        }
     }
     
     func event() {
@@ -148,6 +148,17 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     }
     
     @objc func initData() {
+        
+        ///先填充本地数据
+        if let home = KLMMesh.loadHome() { ///本地存有家庭
+
+            self.homeBtn.setTitle(home.meshName, for: .normal)
+            ///从本地提取mesh数据
+            KLMMesh.loadLocalMeshData()
+
+            ///渲染首页
+            self.setupData()
+        }
         
         KLMService.getMeshList { response in
             
@@ -190,16 +201,16 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             
         } failure: { error in
             ///获取不到服务器数据，加载本地数据
-            if let home = KLMMesh.loadHome() { ///本地存有家庭
-                
-                self.homeBtn.setTitle(home.meshName, for: .normal)
-                ///从本地提取mesh数据
-                KLMMesh.loadLocalMeshData()
-                
-            }
-            
-            ///渲染首页
-            self.setupData()
+//            if let home = KLMMesh.loadHome() { ///本地存有家庭
+//
+//                self.homeBtn.setTitle(home.meshName, for: .normal)
+//                ///从本地提取mesh数据
+//                KLMMesh.loadLocalMeshData()
+//
+//            }
+//
+//            ///渲染首页
+//            self.setupData()
         }
     }
 
@@ -491,6 +502,11 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
 extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
         
     func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
+        
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
         
         SVProgressHUD.showSuccess(withStatus: "Please tap again")
         

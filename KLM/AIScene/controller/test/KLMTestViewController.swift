@@ -19,8 +19,6 @@ class KLMTestViewController: UIViewController {
     @IBOutlet weak var Glab: UILabel!
     @IBOutlet weak var Blab: UILabel!
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -30,7 +28,8 @@ class KLMTestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
     }
 
     @IBAction func value(_ sender: UISlider) {
@@ -48,7 +47,7 @@ class KLMTestViewController: UIViewController {
         default:
             break
         }
-        
+    
         let string = WW.decimalTo4Hexadecimal() + R.decimalTo4Hexadecimal() +
             G.decimalTo4Hexadecimal() + B.decimalTo4Hexadecimal()
         KLMLog(string)
@@ -63,7 +62,6 @@ class KLMTestViewController: UIViewController {
         switch sender.tag {
         case 0:
             WWLab.text = "\(Int(sender.value))"
-        
         case 1:
             Rlab.text = "\(Int(sender.value))"
         case 2:

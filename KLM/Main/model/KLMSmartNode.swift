@@ -143,11 +143,28 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 //如果是开关 "0101"
                 KLMLog("messageResponse = \(parameters.hex)")
                 
-                if parameters.count >= 2 {
+                if parameters.count >= 3 {
                     
                     var response = parameModel()
-                    let dpData = parameters[0]
-                    let valueHex = parameters.suffix(from: 1).hex
+                        
+                    ///有error
+                    let status = parameters[0]
+                    if status != 0 { ///返回错误
+
+                        var err = MessageError()
+                        err.message = "Errors"
+                        self.delegate?.smartNode(self, didfailure: err)
+
+                        return
+                    }
+
+                    let dpData = parameters[1]
+                    let valueHex = parameters.suffix(from: 2).hex
+                    
+                    ///没error
+//                    let dpData = parameters[0]
+//                    let valueHex = parameters.suffix(from: 1).hex
+                    
                     switch dpData {
                     case 1:
                         
@@ -191,6 +208,9 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         response.dp = .cameraPic
                         let data = Data(hex: valueHex)
                         response.value = data
+                    case 14:
+                        response.dp = .passengerFlow
+                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
                     case 19:
                         response.dp = .factoryTest
                         response.value = valueHex

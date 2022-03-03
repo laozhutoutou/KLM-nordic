@@ -15,7 +15,7 @@ private enum itemType: Int, CaseIterable {
     case update
     case help
     case home
-    case logout
+    case settings
 }
 
 class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -23,7 +23,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     
     let images = ["icon_language","icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
-    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("logout")]
+    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("setting")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +87,11 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         switch indexPath.row {
         case itemType.motion.rawValue:
             
+            if KLMMesh.isLoadMesh() == false { ///本地没有家庭
+                SVProgressHUD.showInfo(withStatus: "Connecting...")
+                return
+            }
+            
             if !MeshNetworkManager.bearer.isOpen {
                 SVProgressHUD.showInfo(withStatus: "Connecting...")
                 return
@@ -105,23 +110,25 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         case itemType.home.rawValue:
             let vc = KLMHomeViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case itemType.logout.rawValue:
-            let alert = UIAlertController(title: LANGLOC("logout"),
-                                          message: nil,
-                                          preferredStyle: .alert)
-            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
-                KLMService.logout { response in
-                    ///进入登录页面
-                    (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
-                    
-                } failure: { error in
-                    KLMHttpShowError(error)
-                }
-            }
-            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
-            alert.addAction(resetAction)
-            alert.addAction(cancelAction)
-            present(alert, animated: true)
+        case itemType.settings.rawValue:
+            let vc = KLMSettingsViewController()
+            navigationController?.pushViewController(vc, animated: true)
+//            let alert = UIAlertController(title: LANGLOC("logout"),
+//                                          message: nil,
+//                                          preferredStyle: .alert)
+//            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
+//                KLMService.logout { response in
+//                    ///进入登录页面
+//                    (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
+//
+//                } failure: { error in
+//                    KLMHttpShowError(error)
+//                }
+//            }
+//            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+//            alert.addAction(resetAction)
+//            alert.addAction(cancelAction)
+//            present(alert, animated: true)
         default: break
             
         }

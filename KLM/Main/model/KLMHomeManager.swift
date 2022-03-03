@@ -14,9 +14,6 @@ let companyIdentifier: UInt16 = 0xff00
 let KLMPhoneKey = "KLMPhoneKey"
 let KLMPasswordKey = "KLMPasswordKey"
 
-//历史记录最大存储条数
-let HistoryMaxCacheNum = 20
-
 //控制类型
 enum ControllType{
     case Device

@@ -139,6 +139,11 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             return
         }
         
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showInfo(withStatus: "Connecting...")
+            return
+        }
+        
         //是否有相机权限
         KLMPhotoManager().photoAuthStatus { [weak self] in
             guard let self = self else { return }

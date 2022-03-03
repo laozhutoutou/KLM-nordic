@@ -19,11 +19,12 @@ private enum itemType: Int, CaseIterable {
     case rename
     case group
     case reset
-//    case sigleControl
-//    case downLoadPic
+    case sigleControl //单路控制
+    case downLoadPic //下载图像
+    case passengerFlow //客流统计
 }
 
-class KLMDeviceEditViewController: UIViewController {
+class KLMDeviceEditViewController: UIViewController, Editable {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contentView: UIView!
@@ -37,9 +38,9 @@ class KLMDeviceEditViewController: UIViewController {
     //灯开关
     var lightSwitch = 0
     
-    ///版本号
+    ///蓝牙固件版本号
     var BLEVersion: String?
-    
+    ///服务器上的版本
     var BLEVersionData: KLMVersion.KLMVersionData?
 
     //节能开关
@@ -77,6 +78,11 @@ class KLMDeviceEditViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(checkGroup), name: .deviceAddToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupNodeMessage), name: .refreshDeviceEdit, object: nil)
         
+        ///显示空白页面
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 5) {
+            self.hideEmptyView()
+        }
     }
     
     func setupUI() {
@@ -107,7 +113,6 @@ class KLMDeviceEditViewController: UIViewController {
     func sendFlash() {
         
         let parame = parameModel(dp: .flash, value: 2)
-        
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
     }
@@ -202,6 +207,8 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             
             self.showUpdateView()
             self.tableView.reloadData()
+            ///隐藏显示框
+            self.hideEmptyView()
         }
         
         if message?.dp ==  .motionPower{
@@ -324,18 +331,24 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.rightTitle = string
             }
             return cell
-//        case itemType.sigleControl.rawValue://
-//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-//            cell.isShowLeftImage = false
-//            cell.leftTitle = "单独控制"
-//            cell.rightTitle = ""
-//            return cell
-//        case itemType.downLoadPic.rawValue:
-//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-//            cell.isShowLeftImage = false
-//            cell.leftTitle = "下载图像"
-//            cell.rightTitle = ""
-//            return cell
+        case itemType.sigleControl.rawValue://
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "单路控制"
+            cell.rightTitle = ""
+            return cell
+        case itemType.downLoadPic.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "下载图像"
+            cell.rightTitle = ""
+            return cell
+        case itemType.passengerFlow.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "客流统计"
+            cell.rightTitle = ""
+            return cell
         default:
             break
         }
@@ -387,7 +400,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
                 let vc = KLMImagePickerController()
                 vc.sourceType = UIImagePickerController.SourceType.camera
-                self.tabBarController?.present(vc, animated: true, completion: nil)
+                self.present(vc, animated: true, completion: nil)
                 
             }
             
@@ -411,11 +424,11 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.DFU.rawValue:///固件更新
             
             guard let bleData = self.BLEVersionData else {
-                SVProgressHUD.showInfo(withStatus: "Check version failed")
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
                 return
             }
             guard let bleV = BLEVersion else {
-                SVProgressHUD.showInfo(withStatus: "Check version failed")
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
                 return
             }
 
@@ -430,15 +443,18 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                  
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
             }
-//        case itemType.sigleControl.rawValue://六路测试
-//            let vc = KLMTestViewController()
-//            navigationController?.pushViewController(vc, animated: true)
+        case itemType.sigleControl.rawValue://六路测试
+            let vc = KLMTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
 //        case itemType.test.rawValue:
 //            let vc = KLMText1ViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.downLoadPic.rawValue:
-//            let vc = KLMTestCameraViewController()
-//            navigationController?.pushViewController(vc, animated: true)
+        case itemType.downLoadPic.rawValue:
+            let vc = KLMTestCameraViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case itemType.passengerFlow.rawValue:
+            let vc = KLMPassengerFlowViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

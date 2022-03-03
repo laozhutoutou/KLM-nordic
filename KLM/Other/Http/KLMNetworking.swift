@@ -50,7 +50,7 @@ class KLMNetworking: NSObject {
         
         KLMNetworking.ShareInstance.networkingTool.responseSerializer = AFJSONResponseSerializer.init()
         KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
-        KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
+        KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 20
         if let hee = head {
             for (key, value) in hee {
                 KLMNetworking.ShareInstance.networkingTool.requestSerializer.setValue(value, forHTTPHeaderField: key)
@@ -209,12 +209,12 @@ class KLMService: NSObject {
         }
     }
     
-    static func register(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+    static func register(email: String, password: String, code: String, nickName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": email,
                       "password": password,
                       "code": code,
-                      "nickname": LANGLOC("unknowUser")]
+                      "nickname": nickName]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
             
             if error == nil {
@@ -225,12 +225,28 @@ class KLMService: NSObject {
         }
     }
     
-    static func resetPassword(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+    static func updatePassword(oldPassword: String, newPassword: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let email = KLMGetUserDefault("username") as! String
+        let parame = ["email": email,
+                      "oldPassword": oldPassword,
+                      "newPassword": newPassword]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/update/password"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func forgetPassword(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": email,
                       "password": password,
                       "code": code]
-        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/reset/password"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/forget/password"), params: parame) { responseObject, error in
             
             if error == nil {
                 success(responseObject as AnyObject)

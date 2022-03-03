@@ -85,3 +85,6 @@ invitationCodetip = "Please offer the invitation code to others to join new stor
 administrator = "administrator";
 unknowUser = "Unknow user";
 AddMember = "Add member";
+
+ChangePassword = "Change Password";
+passwordWordDifferent = "The new password entered again is different";
