@@ -99,7 +99,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return groups.count
+        return groups.count + 1
 
     }
 
@@ -110,12 +110,24 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let model: Group = groups[indexPath.row]
+        if indexPath.row == 0 { ///所有设备
+            
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("allDevice")
+            cell.rightTitle = ""
+            return cell
+        }
+        
+        let model: Group = groups[indexPath.row - 1]
         let cell = KLMGroupCell.cellWithTableView(tableView: tableView)
         cell.model = model
         cell.settingsBlock = {[weak self] in
             
             guard let self = self else { return }
+            
+            KLMHomeManager.sharedInstacnce.smartGroup = model
+            
             let vc = KLMGroupEditViewController()
             vc.group = model
             self.navigationController?.pushViewController(vc, animated: true)
@@ -127,22 +139,28 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let model: Group = groups[indexPath.row]
+        if indexPath.row == 0 { ///所有设备
+            let vc = KLMAllDeviceViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+        
+        let model: Group = groups[indexPath.row - 1]
         
         KLMHomeManager.sharedInstacnce.smartGroup = model
         
-        let network = MeshNetworkManager.instance.meshNetwork!
-        let models = network.models(subscribedTo: model)
-        if models.isEmpty {
-
-            SVProgressHUD.showInfo(withStatus: "No Devices")
-            return
-        }
+//        let network = MeshNetworkManager.instance.meshNetwork!
+//        let models = network.models(subscribedTo: model)
+//        if models.isEmpty {
+//
+//            SVProgressHUD.showInfo(withStatus: "No Devices")
+//            return
+//        }
         
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: "Connecting...")
-            return
-        }
+//        if !MeshNetworkManager.bearer.isOpen {
+//            SVProgressHUD.showInfo(withStatus: "Connecting...")
+//            return
+//        }
         
         //是否有相机权限
         KLMPhotoManager().photoAuthStatus { [weak self] in
@@ -157,7 +175,12 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let model: Group = groups[indexPath.row]
+        if indexPath.row == 0 {
+            
+            return nil
+        }
+        
+        let model: Group = groups[indexPath.row - 1]
         
         let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
             

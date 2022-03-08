@@ -11,7 +11,7 @@ import nRFMeshProvision
 private enum itemType: Int, CaseIterable {
     case userInfo = 0
     case language
-    case motion
+//    case motion
     case update
     case help
     case home
@@ -22,8 +22,11 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    let images = ["icon_language","icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
-    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("setting")]
+//    let images = ["icon_language","icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
+//    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("setting")]
+    
+    let images = ["icon_language","icon_language","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
+    let titles = ["个人信息",LANGLOC("language"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("setting")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,21 +88,21 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        case itemType.motion.rawValue:
-            
-            if KLMMesh.isLoadMesh() == false { ///本地没有家庭
-                SVProgressHUD.showInfo(withStatus: "Connecting...")
-                return
-            }
-            
-            if !MeshNetworkManager.bearer.isOpen {
-                SVProgressHUD.showInfo(withStatus: "Connecting...")
-                return
-            }
-            
-            let vc = KLMMotionViewController()
-            vc.isAllNodes = true
-            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.motion.rawValue:
+//
+//            if KLMMesh.isLoadMesh() == false { ///本地没有家庭
+//                SVProgressHUD.showInfo(withStatus: "Connecting...")
+//                return
+//            }
+//
+//            if !MeshNetworkManager.bearer.isOpen {
+//                SVProgressHUD.showInfo(withStatus: "Connecting...")
+//                return
+//            }
+//
+//            let vc = KLMMotionViewController()
+//            vc.isAllNodes = true
+//            navigationController?.pushViewController(vc, animated: true)
         
         case itemType.update.rawValue://检查更新
             let vc = KLMAPPUpdateViewController()

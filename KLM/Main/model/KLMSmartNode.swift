@@ -159,7 +159,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     }
 
                     let dpData = parameters[1]
-                    let valueHex = parameters.suffix(from: 2).hex
+                    let value: Data = parameters.suffix(from: 2)
                     
                     ///没error
 //                    let dpData = parameters[0]
@@ -167,66 +167,64 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     
                     switch dpData {
                     case 1:
-                        
                         response.dp = .power
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 2:
                         response.dp = .color
-                        response.value = valueHex
+                        response.value = [UInt8](value)
+                        
                     case 3:
-                        
                         response.dp = .colorTemp
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 4:
-                        
                         response.dp = .light
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 5:
                         response.dp = .recipe
-                        response.value = valueHex
+                        response.value = value
                     case 6:
-                        
                         response.dp = .cameraPower
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 7:
-                        
                         response.dp = .flash
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 8:
-                        
                         response.dp = .motionTime
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 9:
-                        
                         response.dp = .motionLight
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 10:
-                        
                         response.dp = .motionPower
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 12:
                         response.dp = .cameraPic
-                        let data = Data(hex: valueHex)
-                        response.value = data
+                        response.value = value
                     case 14:
                         response.dp = .passengerFlow
-                        response.value = Int(valueHex.hexadecimalToDecimal()) as Any
+                        response.value = Int(value.bytes[0])
                     case 19:
                         response.dp = .factoryTest
+                        let valueHex = parameters.suffix(from: 2).hex
                         response.value = valueHex
                     case 20:
                         response.dp = .factoryTestResule
+                        let valueHex = parameters.suffix(from: 2).hex
                         response.value = valueHex
                     case 99:
                         response.dp = .checkVersion
-                        response.value = valueHex
+                        response.value = [UInt8](value)
                     case 100:
                         response.dp = .DFU
+                        let valueHex = parameters.suffix(from: 2).hex
                         response.value = valueHex
-                    case 101:
-                        
+                    case 101:                        
                         response.dp = .PWM
-                        response.value = valueHex
+                        response.value = value
+                    case 0xFE:
+                        response.dp = .deviceSetting
+                        response.value = [UInt8](value)
+                        
                     default:
                         break
                     }

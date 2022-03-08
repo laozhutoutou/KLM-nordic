@@ -56,7 +56,10 @@ class KLMTestSectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             //pcba
-            let vc = KLMPCBASectionTableViewController()
+//            let vc = KLMPCBASectionTableViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+            
+            let vc = KLMPCBASensorViewController()
             navigationController?.pushViewController(vc, animated: true)
             
         } else if indexPath.row == 1 {

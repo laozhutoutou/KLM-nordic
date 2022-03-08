@@ -133,6 +133,7 @@ enum DPType: Int {
     case checkVersion = 99
     case DFU = 100
     case PWM = 101
+    case deviceSetting = 0xFE
     case AllDp = 0xFF
 }
 

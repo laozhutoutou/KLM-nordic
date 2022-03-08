@@ -27,7 +27,6 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
         if sender.isOn {
             
             let parame = parameModel(dp: .power, value: 1)
-            
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
 

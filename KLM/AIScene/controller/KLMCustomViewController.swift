@@ -247,15 +247,46 @@ class KLMCustomViewController: UIViewController {
 extension KLMCustomViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
-        if message?.dp ==  .color{
+        if message?.dp == .color, let value = message?.value as? [UInt8] {
             if colorFirst {
                 colorFirst = false
-                let value = message?.value as! String
-                let color = value.hexToColor()
-                self.pickView.selectionColor = color
+                
+                if value.count >= 6 {
+                    
+                    var HH: UInt16 = 0
+                    (Data(value[0...1]) as NSData).getBytes(&HH, length:2)
+                    
+                    var SS: UInt16 = 0
+                    (Data(value[2...3]) as NSData).getBytes(&SS, length:2)
+                    
+                    var BB: UInt16 = 0
+                    (Data(value[4...5]) as NSData).getBytes(&BB, length:2)
+                    
+                    
+                    let H: Float = Float(HH) / 360
+                    let S: Float = Float(SS) / 1000
+                    let B: Float = Float(BB) / 1000
+                    
+                    if H == 0 && S == 0 && B == 0{
+                        
+                        self.pickView.selectionColor = .white
+                        
+                    } else {
+                        
+                        self.pickView.selectionColor = UIColor.init(hue: CGFloat(H), saturation: CGFloat(S), brightness: CGFloat(B), alpha: 1)
+                    }
+                }
+                
+//                let H: Float = Float(HH.hexadecimalToDecimal())! / 360
+//                let S: Float = Float(SS.hexadecimalToDecimal())! / 1000
+//                let B: Float = Float(BB.hexadecimalToDecimal())! / 1000
+                
+//                let color = value.hexToColor()
+//                self.pickView.selectionColor = color
+                
+                
             }
-            
-            
+
         } else if message?.dp ==  .colorTemp{//色温
             if colorTempFirst {
                 colorTempFirst = false

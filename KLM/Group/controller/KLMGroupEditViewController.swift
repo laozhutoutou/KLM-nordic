@@ -8,6 +8,15 @@
 import UIKit
 import nRFMeshProvision
 
+private enum itemType: Int, CaseIterable {
+    case lightPower = 0
+    case lightSetting
+    case motion
+    case rename
+    case groupMembers
+    
+}
+
 class KLMGroupEditViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -41,7 +50,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
+        return itemType.allCases.count
         
     }
     
@@ -52,30 +61,46 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
-        let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-        cell.isShowLeftImage = false
         switch indexPath.row {
-        case 0:
+        case itemType.rename.rawValue:
+            let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("reNameGroup")
             cell.rightTitle = self.group.name
-        case 1:
+            return cell
+        case itemType.groupMembers.rawValue:
+            let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("groupMembers")
             let network = MeshNetworkManager.instance.meshNetwork!
             let models = network.models(subscribedTo: group)
             cell.rightTitle = String(format: "%d%@", models.count,LANGLOC("geDevice"))
-            
+            return cell
+        case itemType.lightPower.rawValue: ///开关
+            let cell: KLMGroupPowerCell = KLMGroupPowerCell.cellWithTableView(tableView: tableView)
+            return cell
+        case itemType.lightSetting.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("lightSet")
+            cell.rightTitle = ""
+            return cell
+        case itemType.motion.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("Energysavingsettings")
+            return cell
         default: break
             
         }
-        return cell
-        
+        return UITableViewCell.init()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        case 0:
+        case itemType.rename.rawValue:
             
             if KLMMesh.isCanEditMesh() == false {
                 return
@@ -100,9 +125,22 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                 
             }
             self.present(vc, animated: true, completion: nil)
-        case 1:
+        case itemType.groupMembers.rawValue:
             let vc = KLMGroupDeviceEditViewController()
             vc.groupModel = self.group
+            navigationController?.pushViewController(vc, animated: true)
+        case itemType.lightSetting.rawValue://灯光设置
+            //是否有相机权限
+            KLMPhotoManager().photoAuthStatus { [weak self] in
+                guard let self = self else { return }
+                
+                let vc = KLMImagePickerController()
+                vc.sourceType = UIImagePickerController.SourceType.camera
+                self.present(vc, animated: true, completion: nil)
+                
+            }
+        case itemType.motion.rawValue:
+            let vc = KLMGroupMotionViewController()
             navigationController?.pushViewController(vc, animated: true)
         default:
             break

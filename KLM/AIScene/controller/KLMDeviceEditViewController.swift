@@ -7,7 +7,6 @@
 
 import UIKit
 import nRFMeshProvision
-import SVProgressHUD
 
 private enum itemType: Int, CaseIterable {
     case lightPower = 0
@@ -22,6 +21,7 @@ private enum itemType: Int, CaseIterable {
     case sigleControl //单路控制
     case downLoadPic //下载图像
     case passengerFlow //客流统计
+    
 }
 
 class KLMDeviceEditViewController: UIViewController, Editable {
@@ -31,7 +31,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     @IBOutlet weak var nameLab: UILabel!
     
-    var deviceGroups = [Group]()
+    var deviceGroups: [Group] = [Group]()
     
     //1 打开
     var cameraSwitch = 1
@@ -128,7 +128,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             
             //获取状态
-            let parameTime = parameModel(dp: .AllDp)
+            let parameTime = parameModel(dp: .deviceSetting)
             KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
         }
 
@@ -189,48 +189,81 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
         SVProgressHUD.dismiss()
-        if message?.dp ==  .cameraPower{
+        ///版本号2字节，开关1，颜色识别1，motion 3（开关，亮度，时间）
+        if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
             
-            let value = message?.value as! Int
-            self.cameraSwitch = value
-            self.tableView.reloadData()
-            
-        }
-        
-        if message?.dp ==  .checkVersion, let value = message?.value as? String {//查询版本
-            
-            //0112  显示 1.1.2
-            let first: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
-            let second: Int = Int(value[2,1].hexadecimalToDecimal())!
-            let third: Int = Int(value[3,1].hexadecimalToDecimal())!
+            /// 版本 0112  显示 1.1.2
+            let version = value[0...1]
+            let first: Int = Int(version[0])
+            let second: Int = Int((version[1] & 0xf0) >> 4)
+            let third: Int =  Int(version[1] & 0x0f)
             BLEVersion = "\(first).\(second).\(third)"
-            
             self.showUpdateView()
+            
+            ///开关
+            let power: Int = Int(value[2])
+            self.lightSwitch = power
+            
+            ///颜色识别
+            let cmos: Int = Int(value[3])
+            self.cameraSwitch = cmos
+            
+            ///节能
+            let motion: Int = Int(value[4])
+            self.motionValue = motion == 0 ? false : true
+            
+            ///刷新页面
             self.tableView.reloadData()
             ///隐藏显示框
             self.hideEmptyView()
         }
         
-        if message?.dp ==  .motionPower{
-            let value = message?.value as! Int
-            self.motionValue = value == 0 ? false : true
-            self.tableView.reloadData()
-        }
-        
-        if message?.dp ==  .colorTest{
-            
-            let value = message?.value as! Int
-            self.colorTest = value == 2 ? false : true
-            self.tableView.reloadData()
-        }
-        if message?.dp ==  .power{   
-            
-            let value = message?.value as! Int
-            self.lightSwitch = value
-            self.tableView.reloadData()
-        }
-        
-        KLMLog("success")
+//        if message?.dp ==  .cameraPower{
+//
+//            let value = message?.value as! Int
+//            self.cameraSwitch = value
+//            self.tableView.reloadData()
+//
+//        }
+
+//        if message?.dp == .checkVersion, let value = message?.value as? [UInt8] {//查询版本
+//
+//            //0112  显示 1.1.2
+//            let first: Int = Int(value[0])
+//            let second: Int = Int((value[1] & 0xf0) >> 4)
+//            let third: Int =  Int(value[1] & 0x0f)
+//
+//            //0112  显示 1.1.2
+////            let first: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
+////            let second: Int = Int(value[2,1].hexadecimalToDecimal())!
+////            let third: Int = Int(value[3,1].hexadecimalToDecimal())!
+//            BLEVersion = "\(first).\(second).\(third)"
+//
+//            self.showUpdateView()
+//            self.tableView.reloadData()
+//            ///隐藏显示框
+//            self.hideEmptyView()
+//
+//        }
+
+//        if message?.dp ==  .motionPower{
+//            let value = message?.value as! Int
+//            self.motionValue = value == 0 ? false : true
+//            self.tableView.reloadData()
+//        }
+
+//        if message?.dp ==  .colorTest{
+//
+//            let value = message?.value as! Int
+//            self.colorTest = value == 2 ? false : true
+//            self.tableView.reloadData()
+//        }
+//        if message?.dp ==  .power{
+//
+//            let value = message?.value as! Int
+//            self.lightSwitch = value
+//            self.tableView.reloadData()
+//        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
