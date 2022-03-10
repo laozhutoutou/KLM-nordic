@@ -112,24 +112,21 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 { ///所有设备
             
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("allDevice")
-            cell.rightTitle = ""
+            let cell: KLMGroupAllDeviceCell = KLMGroupAllDeviceCell.cellWithTableView(tableView: tableView)
             return cell
         }
         
         let model: Group = groups[indexPath.row - 1]
         let cell = KLMGroupCell.cellWithTableView(tableView: tableView)
         cell.model = model
-        cell.settingsBlock = {[weak self] in
+        cell.settingsBlock = {[weak self] cellGroup in
             
             guard let self = self else { return }
             
-            KLMHomeManager.sharedInstacnce.smartGroup = model
+            KLMHomeManager.sharedInstacnce.smartGroup = cellGroup
             
             let vc = KLMGroupEditViewController()
-            vc.group = model
+            vc.group = cellGroup
             self.navigationController?.pushViewController(vc, animated: true)
         }
         return cell

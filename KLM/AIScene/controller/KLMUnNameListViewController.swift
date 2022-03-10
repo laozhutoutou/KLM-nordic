@@ -321,7 +321,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         let vc = UIAlertController.init(title: LANGLOC("checkUpdate"), message: "\(self.versionData.fileVersion)\n\(updateMsg)", preferredStyle: .alert)
         vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
             
-            SVProgressHUD.showInfo(withStatus: "功能未完善")
+//            SVProgressHUD.showInfo(withStatus: "功能未完善")
             ///跳转到appleStore
             let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
             if UIApplication.shared.canOpenURL(URL.init(string: url)!) {

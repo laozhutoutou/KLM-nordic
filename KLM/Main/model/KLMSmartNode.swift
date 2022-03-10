@@ -199,7 +199,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         response.value = Int(value.bytes[0])
                     case 12:
                         response.dp = .cameraPic
-                        response.value = value
+                        response.value = [UInt8](value)
                     case 14:
                         response.dp = .passengerFlow
                         response.value = Int(value.bytes[0])

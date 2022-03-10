@@ -8,8 +8,10 @@
 import UIKit
 import nRFMeshProvision
 
-typealias SettingsBlock = () -> Void
+
 class KLMGroupCell: KLMBaseTableViewCell {
+    
+    typealias SettingsBlock = (_ cellGroup: Group) -> Void
     
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var numLab: UILabel!
@@ -35,7 +37,7 @@ class KLMGroupCell: KLMBaseTableViewCell {
     @IBAction func settings(_ sender: Any) {
         
         if let settingsBlock = settingsBlock {
-            settingsBlock()
+            settingsBlock(model)
         }
     }
     

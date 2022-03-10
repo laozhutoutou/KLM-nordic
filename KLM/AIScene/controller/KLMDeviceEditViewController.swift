@@ -192,6 +192,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
         ///版本号2字节，开关1，颜色识别1，motion 3（开关，亮度，时间）
         if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
             
+            
             /// 版本 0112  显示 1.1.2
             let version = value[0...1]
             let first: Int = Int(version[0])

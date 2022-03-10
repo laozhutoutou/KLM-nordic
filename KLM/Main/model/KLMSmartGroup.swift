@@ -58,6 +58,14 @@ class KLMSmartGroup: NSObject {
             let network = MeshNetworkManager.instance.meshNetwork!
             let models = network.models(subscribedTo: group)
             
+            if models.isEmpty {
+                
+                var err = MessageError()
+                err.message = LANGLOC("noDevice")
+                failure(err)
+                return
+            }
+            
             if let model = models.first {
                 
                 let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
@@ -114,13 +122,14 @@ class KLMSmartGroup: NSObject {
         if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
             KLMLog("parameter = \(parameters.hex)")
+            
             let network = MeshNetworkManager.instance.meshNetwork!
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
             guard !notConfiguredNodes.isEmpty else {
                 
                 //没有节点
                 var err = MessageError()
-                err.message = "No Devices"
+                err.message = LANGLOC("noDevice")
                 failure(err)
                 return
             }

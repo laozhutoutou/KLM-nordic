@@ -141,7 +141,6 @@ class KLMImagePickerController: UIImagePickerController {
         let string = "000002"
 
         let parame = parameModel(dp: .recipe, value: string)
-
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -150,7 +149,7 @@ class KLMImagePickerController: UIImagePickerController {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
 
             } failure: { error in
-                KLMShowError(error)
+                
             }
         }
         

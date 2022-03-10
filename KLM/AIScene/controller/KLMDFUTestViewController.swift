@@ -206,6 +206,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                         if parameters.count >= 2 {
                             //00 01 对应成功百分比为1，
                             let statu = parameters[0]
+                            /// 0-100
                             let PP = parameters[1]
                             switch statu {
                             case 0://进度

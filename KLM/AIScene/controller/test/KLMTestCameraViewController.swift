@@ -186,9 +186,9 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
 //        SVProgressHUD.dismiss()
-        if message?.dp ==  .cameraPic{
+        if message?.dp == .cameraPic{
             
-            if let data = message?.value as? Data, data.count >= 4 {
+            if let data = message?.value as? [UInt8], data.count >= 4 {
                 
                 let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
                 KLMLog("ip = \(ip)")

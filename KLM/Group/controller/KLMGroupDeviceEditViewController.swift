@@ -177,3 +177,29 @@ extension KLMGroupDeviceEditViewController: KLMMessageManagerDelegate {
     
 }
 
+extension KLMGroupDeviceEditViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+
+        let contentView = UIView()
+        
+        let image = UIImageView.init(image: UIImage.init(named: "img_Empty_Status"))
+        contentView.addSubview(image)
+        image.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        let titleLab = UILabel()
+        titleLab.text = LANGLOC("noDevice")
+        titleLab.font = UIFont.systemFont(ofSize: 14)
+        titleLab.textColor = rgba(0, 0, 0, 0.5)
+        contentView.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(image.snp.bottom).offset(10)
+        }
+        
+        return contentView
+    }
+}
+
