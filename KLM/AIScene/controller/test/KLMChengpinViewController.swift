@@ -127,6 +127,10 @@ extension KLMChengpinViewController: KLMSmartNodeDelegate {
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
         SVProgressHUD.showSuccess(withStatus: "测试完成")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             NotificationCenter.default.post(name: .deviceReset, object: nil)

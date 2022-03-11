@@ -89,3 +89,4 @@ AddMember = "添加成员";
 ChangePassword = "修改密码";
 passwordWordDifferent = "再次输入的新密码不同";
 allDevice = "所有设备";
+turnOnLightTip = "请把灯打开";

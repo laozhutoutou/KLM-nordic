@@ -267,7 +267,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
 //        }
     }
     
-    func smartNodeDidResetNode(_ manager: KLMSmartNode){
+    func smartNodeDidResetNode(_ manager: KLMSmartNode) {
         ///提交数据到服务器
         if KLMMesh.save() {
             

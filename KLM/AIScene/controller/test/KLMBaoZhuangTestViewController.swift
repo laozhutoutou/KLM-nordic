@@ -6,22 +6,28 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class KLMBaoZhuangTestViewController: UIViewController {
     
-    @IBOutlet weak var WWOK: UIButton!
-    @IBOutlet weak var ROK: UIButton!
-    @IBOutlet weak var GOK: UIButton!
-    @IBOutlet weak var BOK: UIButton!
+    @IBOutlet weak var WBtn: UIButton!
+    @IBOutlet weak var RBtn: UIButton!
+    @IBOutlet weak var GBtn: UIButton!
+    @IBOutlet weak var BBtn: UIButton!
+    
+    @IBOutlet weak var oneBtn: UIButton!
+    @IBOutlet weak var hundredBtn: UIButton!
     
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var stanbyOK: UIButton!
-    
     @IBOutlet weak var OKBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
     
-    var OKBtnArray: [UIButton]!
+    var tongdaoBtnArray: [UIButton]!
+    var tiaoguangBtnArray: [UIButton]!
+    
+    var tongdaoValue: Int = 1
+    var tiaoguangValue: Int = 1
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,24 +41,73 @@ class KLMBaoZhuangTestViewController: UIViewController {
         
         navigationItem.title = "包装测试"
         
-        OKBtnArray = [WWOK,ROK,GOK,BOK,stanbyOK]
+        tongdaoBtnArray = [WBtn, RBtn, GBtn, BBtn]
+        tiaoguangBtnArray = [oneBtn, hundredBtn]
+        
+        for btn in tongdaoBtnArray {
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.black.cgColor
+            
+            btn.setTitleColor(.black, for: .normal)
+            btn.setTitleColor(.white, for: .selected)
+            
+            btn.setBackgroundImage(UIImage.init(color: .white), for: .normal)
+            btn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        }
+        
+        for btn in tiaoguangBtnArray {
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.black.cgColor
+            
+            btn.setTitleColor(.black, for: .normal)
+            btn.setTitleColor(.white, for: .selected)
+            
+            btn.setBackgroundImage(UIImage.init(color: .white), for: .normal)
+            btn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        }
         
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
         falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
         
-        for btn in OKBtnArray {
-            btn.isHidden = true
-        }
+        stanbyOK.isHidden = true
         
+        WBtn.isSelected = true
+        oneBtn.isSelected = true
     }
     
     @IBAction func startTest(_ sender: Any) {
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0501"
+        let string = "050A"  + tongdaoValue.decimalTo2Hexadecimal() + tiaoguangValue.decimalTo2Hexadecimal()
         let parame = parameModel(dp: .factoryTest, value: string)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
+    }
+    
+    @IBAction func tongdaoClick(_ sender: UIButton) {
+        
+        if sender.isSelected {
+            return
+        }
+        
+        for btn in tongdaoBtnArray {
+            btn.isSelected = false
+        }
+        sender.isSelected = true
+        tongdaoValue = sender.tag
+    }
+    
+    @IBAction func tiaoguang(_ sender: UIButton) {
+        
+        if sender.isSelected {
+            return
+        }
+        
+        for btn in tiaoguangBtnArray {
+            btn.isSelected = false
+        }
+        sender.isSelected = true
+        tiaoguangValue = sender.tag
     }
     
     @IBAction func chengpinResult(_ sender: UIButton) {
@@ -99,19 +154,25 @@ extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        if let value = message?.value as? String, message?.dp == .factoryTest {
-            if value == "050101" {
-                WWOK.isHidden = false
-            } else if value == "050102" {
-                ROK.isHidden = false
-            } else if value == "050103" {
-                GOK.isHidden = false
-            } else if value == "050104" {
-                BOK.isHidden = false
-                SVProgressHUD.dismiss()
-                
+        if message?.dp == .factoryTest, let value = message?.value as? String {
+            
+            if value.contains("050A") {
+                SVProgressHUD.showSuccess(withStatus: "发送成功")
             }
+            
         }
+//            if value == "050101" {
+//                WWOK.isHidden = false
+//            } else if value == "050102" {
+//                ROK.isHidden = false
+//            } else if value == "050103" {
+//                GOK.isHidden = false
+//            } else if value == "050104" {
+//                BOK.isHidden = false
+//                SVProgressHUD.dismiss()
+//
+//            }
+//        }
         
         if message?.dp ==  .cameraPic{
             
@@ -138,13 +199,17 @@ extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
         
         //合格或者不合格
         if message?.dp == .factoryTestResule {
-//            SVProgressHUD.showSuccess(withStatus: "测试完成")
+
             //重置节点
             KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
         }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
         SVProgressHUD.showSuccess(withStatus: "测试完成")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             NotificationCenter.default.post(name: .deviceReset, object: nil)

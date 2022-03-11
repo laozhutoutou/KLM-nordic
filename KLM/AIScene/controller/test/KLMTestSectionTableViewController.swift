@@ -35,7 +35,7 @@ class KLMTestSectionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return 5
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,8 +43,10 @@ class KLMTestSectionTableViewController: UITableViewController {
         if indexPath.row == 0 {
             cell.textLabel?.text = "PCBA测试"
         } else if indexPath.row == 1 {
-            cell.textLabel?.text = "成品测试"
+            cell.textLabel?.text = "驱动测试"
         } else if indexPath.row == 2 {
+            cell.textLabel?.text = "成品测试"
+        } else if indexPath.row == 3{
             cell.textLabel?.text = "老化测试"
         } else {
             cell.textLabel?.text = "包装测试"
@@ -55,23 +57,26 @@ class KLMTestSectionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            //pcba
-//            let vc = KLMPCBASectionTableViewController()
-//            navigationController?.pushViewController(vc, animated: true)
             
             let vc = KLMPCBASensorViewController()
             navigationController?.pushViewController(vc, animated: true)
             
         } else if indexPath.row == 1 {
-            //成品
+           
+            let vc = KLMQudongTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
+        } else if indexPath.row == 2 {
+            
             let vc = KLMChengpinViewController()
             navigationController?.pushViewController(vc, animated: true)
-
-        } else if indexPath.row == 2 {//老化
+            
+        } else if indexPath.row == 3{
+            
             let vc = KLMLaoHuaTestViewController()
             navigationController?.pushViewController(vc, animated: true)
             
-        } else {//包装
+        } else {
             
             let vc = KLMBaoZhuangTestViewController()
             navigationController?.pushViewController(vc, animated: true)

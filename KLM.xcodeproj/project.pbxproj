@@ -52,6 +52,8 @@
 		E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */; };
 		E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */; };
 		E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */; };
+		E486366427DB342600F74DEB /* KLMQudongTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */; };
+		E486366527DB342600F74DEB /* KLMQudongTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */; };
 		E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48AF165268EEDCB00140F1F /* KLMSlider.swift */; };
 		E48B526426672B420006CDA7 /* head.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B526326672B420006CDA7 /* head.swift */; };
 		E48B5291266765540006CDA7 /* KLMApplicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48B5290266765540006CDA7 /* KLMApplicationManager.swift */; };
@@ -294,6 +296,8 @@
 		E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestSectionTableViewController.swift; sourceTree = "<group>"; };
 		E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBanchenpinViewController.swift; sourceTree = "<group>"; };
 		E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBanchenpinViewController.xib; sourceTree = "<group>"; };
+		E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMQudongTestViewController.swift; sourceTree = "<group>"; };
+		E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMQudongTestViewController.xib; sourceTree = "<group>"; };
 		E48AF165268EEDCB00140F1F /* KLMSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSlider.swift; sourceTree = "<group>"; };
 		E48B523E2667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E48B52422667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -597,6 +601,8 @@
 				E4EBE61D271144AC006111BF /* KLMTestCameraViewController.xib */,
 				E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */,
 				E44554E527C3711400E421DC /* KLMPassengerFlowViewController.xib */,
+				E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */,
+				E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1318,6 +1324,7 @@
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
 				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
 				E46B54502769906200F3D5E5 /* KLMRegisterViewController.xib in Resources */,
+				E486366527DB342600F74DEB /* KLMQudongTestViewController.xib in Resources */,
 				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */,
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
@@ -1530,6 +1537,7 @@
 				E4A660572672089000FE6866 /* KLMHomeManager.swift in Sources */,
 				E414C0C827D5A29600DFD409 /* KLMGroupPowerCell.swift in Sources */,
 				E4E2845A26A1291A006C120E /* KLMSIGMeshManager.swift in Sources */,
+				E486366427DB342600F74DEB /* KLMQudongTestViewController.swift in Sources */,
 				E4A65F49266F5A1F00FE6866 /* KLMSearchHistoryView.swift in Sources */,
 				E414C0DA27D5E3C700DFD409 /* KLMAllDeviceViewController.swift in Sources */,
 				E4750A1226C1165500AA4C32 /* KLMHelpViewController.swift in Sources */,
@@ -2036,7 +2044,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
@@ -2067,7 +2075,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.3;
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";

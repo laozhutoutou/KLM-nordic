@@ -17,7 +17,7 @@ import HandyJSON
 ///AiSceneMesh   kinglumi.jmj.com
 ///切换APP , 是否是测试APP  名称：AiSceneTest bundleID: kinglumi.jmj123.com
 //////1、检查配方是否最新
-let isTestApp: Bool = false
+let isTestApp: Bool = true
 ///AppleStoreID
 let AppleStoreID: String = "1579633878"
 

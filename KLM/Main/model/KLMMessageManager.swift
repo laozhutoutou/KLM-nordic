@@ -109,8 +109,9 @@ extension KLMMessageManager: MeshNetworkDelegate {
 
 struct MessageError: Error {
     
+    var code: Int?
     var message: String?
-    
+    var dp: DPType?
 }
 
 enum DPType: Int {

@@ -149,82 +149,54 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         
                     ///有error
                     let status = parameters[0]
+                    let dpData = parameters[1]
+                    let value: Data = parameters.suffix(from: 2)
+                    
+                    let dp = DPType(rawValue: Int(dpData))
                     if status != 0 { ///返回错误
 
                         var err = MessageError()
+                        err.code = Int(status)
+                        err.dp = dp
                         err.message = "Errors"
+    
+                        if status == 2 {
+                            err.message = LANGLOC("turnOnLightTip")
+                        }
                         self.delegate?.smartNode(self, didfailure: err)
 
                         return
                     }
+                    
+                    response.dp = dp
+                    
+                    switch response.dp {
+                    case .power,
+                         .colorTemp,
+                         .light,
+                         .cameraPower,
+                         .flash,
+                         .motionTime,
+                         .motionLight,
+                         .motionPower,
+                         .passengerFlow:
+                        
+                        response.value = Int(value.bytes[0])
+                    case .color,
+                         .cameraPic,
+                         .checkVersion,
+                         .deviceSetting:
+                        
+                        response.value = [UInt8](value)
+                    case .recipe,
+                         .PWM:
+                        response.value = value
+                    case .factoryTest,
+                         .factoryTestResule,
+                         .DFU:
+                        let valueHex = parameters.suffix(from: 2).hex
+                        response.value = valueHex
 
-                    let dpData = parameters[1]
-                    let value: Data = parameters.suffix(from: 2)
-                    
-                    ///没error
-//                    let dpData = parameters[0]
-//                    let valueHex = parameters.suffix(from: 1).hex
-                    
-                    switch dpData {
-                    case 1:
-                        response.dp = .power
-                        response.value = Int(value.bytes[0])
-                    case 2:
-                        response.dp = .color
-                        response.value = [UInt8](value)
-                        
-                    case 3:
-                        response.dp = .colorTemp
-                        response.value = Int(value.bytes[0])
-                    case 4:
-                        response.dp = .light
-                        response.value = Int(value.bytes[0])
-                    case 5:
-                        response.dp = .recipe
-                        response.value = value
-                    case 6:
-                        response.dp = .cameraPower
-                        response.value = Int(value.bytes[0])
-                    case 7:
-                        response.dp = .flash
-                        response.value = Int(value.bytes[0])
-                    case 8:
-                        response.dp = .motionTime
-                        response.value = Int(value.bytes[0])
-                    case 9:
-                        response.dp = .motionLight
-                        response.value = Int(value.bytes[0])
-                    case 10:
-                        response.dp = .motionPower
-                        response.value = Int(value.bytes[0])
-                    case 12:
-                        response.dp = .cameraPic
-                        response.value = [UInt8](value)
-                    case 14:
-                        response.dp = .passengerFlow
-                        response.value = Int(value.bytes[0])
-                    case 19:
-                        response.dp = .factoryTest
-                        let valueHex = parameters.suffix(from: 2).hex
-                        response.value = valueHex
-                    case 20:
-                        response.dp = .factoryTestResule
-                        let valueHex = parameters.suffix(from: 2).hex
-                        response.value = valueHex
-                    case 99:
-                        response.dp = .checkVersion
-                        response.value = [UInt8](value)
-                    case 100:
-                        response.dp = .DFU
-                        let valueHex = parameters.suffix(from: 2).hex
-                        response.value = valueHex
-                    case 101:                        
-                        response.dp = .PWM
-                        response.value = value
-                    case 0xFE:
-                        response.dp = .deviceSetting
-                        response.value = [UInt8](value)
-                        
                     default:
                         break
                     }

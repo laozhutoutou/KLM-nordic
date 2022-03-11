@@ -61,7 +61,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R7D-cG-1Cq" secondAttribute="trailing" constant="20" id="ur6-ng-ZEL"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-2099" y="11"/>
+            <point key="canvasLocation" x="-2401" y="-20"/>
         </view>
     </objects>
     <resources>
