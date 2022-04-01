@@ -13,12 +13,9 @@ class KLMImagePickerController: UIImagePickerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if KLMHomeManager.sharedInstacnce.controllType == .Device {
-//
         ///发送闪灯
-            sendFlash()
-//        }
-        
+        sendFlash()
+
         self.delegate = self
         
         self.showsCameraControls = false
@@ -126,12 +123,12 @@ class KLMImagePickerController: UIImagePickerController {
 
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
-        } else {
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Group {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
 
             } failure: { error in
-//                KLMShowError(error)
+
             }
         }
     }
@@ -141,7 +138,17 @@ class KLMImagePickerController: UIImagePickerController {
         let string = "000002"
 
         let parame = parameModel(dp: .recipe, value: string)
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                
+            } failure: { error in
+                
+                
+            }
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
@@ -170,7 +177,6 @@ class KLMImagePickerController: UIImagePickerController {
     @objc func customClick() {
         
         let vc = KLMCustomViewController()
-        vc.isModel = true
         let nav = KLMNavigationViewController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
@@ -195,7 +201,6 @@ extension KLMImagePickerController: UIImagePickerControllerDelegate & UINavigati
         
         let photoVc = KLMPhotoEditViewController()
         photoVc.originalImage = image
-        photoVc.isModel = true
         let nav = KLMNavigationViewController(rootViewController: photoVc)
         nav.modalPresentationStyle = .fullScreen
         picker.present(nav, animated: true, completion: nil)

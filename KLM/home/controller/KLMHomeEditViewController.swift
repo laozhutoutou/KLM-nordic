@@ -56,6 +56,8 @@ class KLMHomeEditViewController: UIViewController {
             return
         }
         
+        SVProgressHUD.show()
+        
         KLMService.editMesh(id: homeModel.id, meshName: text, meshConfiguration: nil) { response in
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             if let home = KLMMesh.loadHome(), self.homeModel.id == home.id {
@@ -78,25 +80,35 @@ class KLMHomeEditViewController: UIViewController {
             return
         }
         
-        KLMService.deleteMesh(id: homeModel.id) { response in
-            ///删除mesh（1、mesh清除配置。2、清除家庭数据。3、刷新页面）
-            if KLMMesh.loadHome()?.id == self.homeModel.id {///删除的是当前mesh
-                
-                KLMMesh.removeHome()
-                (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                self.navigationController?.popViewController(animated: true)
-                
-                NotificationCenter.default.post(name: .homeDeleteSuccess, object: nil)
-                
-            } else {
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                self.navigationController?.popViewController(animated: true)
+        let aler = UIAlertController.init(title: LANGLOC("deleteStore"), message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
+        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+            
+            SVProgressHUD.show()
+            KLMService.deleteMesh(id: self.homeModel.id) { response in
+                ///删除mesh（1、mesh清除配置。2、清除家庭数据。3、刷新页面）
+                if KLMMesh.loadHome()?.id == self.homeModel.id {///删除的是当前mesh
+                    
+                    KLMMesh.removeHome()
+                    (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
+                    SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                    self.navigationController?.popViewController(animated: true)
+                    
+                    NotificationCenter.default.post(name: .homeDeleteSuccess, object: nil)
+                    
+                } else {
+                    SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                    self.navigationController?.popViewController(animated: true)
 
+                }
+            } failure: { error in
+                KLMHttpShowError(error)
             }
-        } failure: { error in
-            KLMHttpShowError(error)
+
         }
+        aler.addAction(cancel)
+        aler.addAction(sure)
+        self.present(aler, animated: true, completion: nil)
     }
     
     @objc func addMember() {
@@ -106,8 +118,12 @@ class KLMHomeEditViewController: UIViewController {
             return
         }
         
+        SVProgressHUD.show()
+        
         ///生成邀请码
         KLMService.getInvitationCode(meshId: self.homeModel.id) { response in
+            
+            SVProgressHUD.dismiss()
             
             guard let code = response as? String else { return }
             let alert = UIAlertController(title: LANGLOC("invitationCodetip"),

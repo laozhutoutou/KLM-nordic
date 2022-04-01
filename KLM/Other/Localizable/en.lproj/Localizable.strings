@@ -90,3 +90,4 @@ ChangePassword = "Change Password";
 passwordWordDifferent = "The new password entered again is different";
 allDevice = "All devices";
 turnOnLightTip = "Please turn the light on";
+deleteStore = "Delete Store";

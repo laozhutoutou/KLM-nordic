@@ -74,6 +74,7 @@ class KLMAddDeviceViewController: UIViewController {
         
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
+        
     }
     
     func researchDevice() {
@@ -224,15 +225,18 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         
         if isTestApp {
             
-            //测试APP
-            NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
-            DispatchQueue.main.asyncAfter(deadline: 0.5){
+            if KLMMesh.save() {
+                
+                //测试APP
+                NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
+                DispatchQueue.main.asyncAfter(deadline: 0.5){
 
-                let vc = KLMTestSectionTableViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                    let vc = KLMTestSectionTableViewController()
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+                return
             }
-            
-            return
         }
         
         //正式APP

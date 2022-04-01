@@ -137,6 +137,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         
         if indexPath.row == 0 { ///所有设备
+            KLMHomeManager.sharedInstacnce.controllType = .AllDevices
             let vc = KLMAllDeviceViewController()
             navigationController?.pushViewController(vc, animated: true)
             return

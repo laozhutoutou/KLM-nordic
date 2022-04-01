@@ -26,6 +26,9 @@ class KLMHomeAddViewController: UIViewController {
             return
         }
         
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        
         KLMService.addMesh(meshName: text) { response in
             SVProgressHUD.showSuccess(withStatus: "Store successfully created")
             NotificationCenter.default.post(name: .homeAddSuccess, object: nil)

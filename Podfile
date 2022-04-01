@@ -24,6 +24,7 @@ target 'KLM' do
   pod 'MJRefresh', '~> 3.5.0'
   pod 'DZNEmptyDataSet', '~> 1.8.1' #数据为空时显示空白占位图
   pod 'iOSDFULibrary', '~> 4.10'
-  pod 'SSZipArchive', '~> 2.4.2' #解压缩
+#  pod 'SSZipArchive', '~> 2.4.2' #解压缩
+#  pod 'Charts' #图表
   
 end

@@ -31,19 +31,6 @@ class KLMCustomViewController: UIViewController {
     var colorTempFirst = true
     var lightFirst = true
     
-    //模态视图跳转
-    var isModel: Bool = false {
-        
-        didSet {
-            
-            if isModel {
-                //导航栏左边添加返回按钮
-                self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
-            }
-            
-        }
-    }
-    
     let colorTemp = tempColors()
     
     lazy var ringSelectView: UIView = {
@@ -84,6 +71,8 @@ class KLMCustomViewController: UIViewController {
         contentView.layer.cornerRadius = 16
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
+        //导航栏左边添加返回按钮
+        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
         
         setupUI()
         
@@ -184,7 +173,19 @@ class KLMCustomViewController: UIViewController {
         
         let color = btn.backgroundColor
         let parame = parameModel(dp: .color, value: color!.colorToHexString())
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                KLMLog("success")
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+            
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
         
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
@@ -207,7 +208,29 @@ class KLMCustomViewController: UIViewController {
         let string = "000003"
         let parame = parameModel(dp: .recipe, value: string)
         
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    
+                    //获取根VC
+                    var  rootVC =  self.presentingViewController
+                    while  let  parent = rootVC?.presentingViewController {
+                        rootVC = parent
+                    }
+                    //释放所有下级视图
+                    rootVC?.dismiss(animated:  true , completion:  nil )
+                }
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+            
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
@@ -335,7 +358,18 @@ extension KLMCustomViewController: KLMSliderDelegate {
             
             let parame = parameModel(dp: .colorTemp, value: vv)
             
-            if KLMHomeManager.sharedInstacnce.controllType == .Device {
+            if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+                
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                    
+                    KLMLog("success")
+                    
+                } failure: { error in
+                    
+                    KLMShowError(error)
+                }
+                
+            } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
                 
                 KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
                 
@@ -356,7 +390,19 @@ extension KLMCustomViewController: KLMSliderDelegate {
         if slider == lightSlider { //亮度
             let vv = Int(value)
             let parame = parameModel(dp: .light, value: vv)
-            if KLMHomeManager.sharedInstacnce.controllType == .Device {
+            
+            if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+                
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                    
+                    KLMLog("success")
+                    
+                } failure: { error in
+                    
+                    KLMShowError(error)
+                }
+                
+            } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
                 KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             } else {
@@ -389,7 +435,18 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
         
         let parame = parameModel(dp: .color, value: color!.colorToHexString())
         
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                KLMLog("success")
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+            
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
@@ -404,8 +461,6 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
             }
             
         }
-        
-        
     }
 }
 

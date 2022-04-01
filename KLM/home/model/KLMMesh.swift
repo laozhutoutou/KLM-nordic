@@ -21,8 +21,9 @@ class KLMMesh {
                                       allocatedGroupRange:   [AddressRange(0xC000...0xCC9A)],
                                       allocatedSceneRange:   [SceneRange(0x0001...0x3333)])
         //创建一个APP key
-        let network = MeshNetwork.init(name: "Mesh Network")
-        try! network.add(provisioner: provisioner)
+        let network = MeshNetworkManager().createNewMeshNetwork(withName: "Mesh Network", by: provisioner)
+//        let network = MeshNetwork.init(name: "Mesh Network")
+//        try! network.add(provisioner: provisioner)
         let newKey: Data! = Data.random128BitKey()
         do {
             try network.add(applicationKey: newKey, withIndex: 0, name: "new key")
@@ -145,7 +146,8 @@ class KLMMesh {
                     KLMLog("配置数据提交成功")
                     
                 } failure: { error in
-//                    KLMHttpShowError(error)
+                    
+                    KLMHttpShowError(error)
                 }
             }
             return true

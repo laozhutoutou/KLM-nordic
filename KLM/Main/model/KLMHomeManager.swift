@@ -18,6 +18,7 @@ let KLMPasswordKey = "KLMPasswordKey"
 enum ControllType{
     case Device
     case Group
+    case AllDevices
 }
 
 class KLMHomeManager {

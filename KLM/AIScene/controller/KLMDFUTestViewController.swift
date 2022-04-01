@@ -28,8 +28,8 @@ class KLMDFUTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SSIDField.text = "SJKJ"
-        passField.text = "26671627"
+//        SSIDField.text = "SJKJ"
+//        passField.text = "26671627"
         
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         
@@ -45,7 +45,6 @@ class KLMDFUTestViewController: UIViewController {
             }
         }.bind(to: upGradeBtn.rx.isEnabled)
             .disposed(by: disposeBag)
-        
         
     }
 

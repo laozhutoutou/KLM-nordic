@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SSZipArchive
 import SwiftUI
 
 class KLMAPPUpdateViewController: UIViewController {
@@ -40,7 +39,7 @@ class KLMAPPUpdateViewController: UIViewController {
         
         versionLab.text = String(format: "%@: %@", LANGLOC("Version"),KLM_APP_VERSION as! String)
     }
-
+    
     @IBAction func updateClick(_ sender: Any) {
         
         KLMService.checkAppVersion { response in

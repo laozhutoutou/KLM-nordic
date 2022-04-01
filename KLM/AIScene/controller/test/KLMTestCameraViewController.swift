@@ -107,7 +107,7 @@ class KLMTestCameraViewController: UIViewController {
 //        SVProgressHUD.showProgress(0)
 //        SVProgressHUD.setDefaultMaskType(.black)
         
-//        SVProgressHUD.show()
+        SVProgressHUD.show()
         let parameTime = parameModel(dp: .cameraPic)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
     }
@@ -185,7 +185,7 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-//        SVProgressHUD.dismiss()
+        SVProgressHUD.dismiss()
         if message?.dp == .cameraPic{
             
             if let data = message?.value as? [UInt8], data.count >= 4 {
@@ -197,29 +197,47 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
                 
                 /// forceRefresh 不需要缓存
                 imageView.kf.indicatorType = .activity
-                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh])
+//                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh])
+                
+                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
+
+                    switch result {
+                    case .success(let value):
+                        // The image was set to image view:
+                        print(value.image)
+
+                        ///测试使用 - 保存图片到相册
+                        SVProgressHUD.show(withStatus: "保存到手机")
+//                        let data: Data = try! Data.init(contentsOf: url!)
+//                        let image: UIImage = UIImage.init(data: data)!
+                        UIImageWriteToSavedPhotosAlbum(value.image, self, #selector(self.saveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+
+                    case .failure(let error):
+                        print(error) // The error happens
+                    }
+                }
             }
-//
-//                //接收数据
-//                cameraData.append(data)
-//                KLMLog("length = \(cameraData.count)")
-//
-//                let progress: Float = Float(cameraData.count) / Float(totalBytes)
-//                SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
-//
-//                if cameraData.count >= totalBytes {
-//                    ///接收完成,显示图像
-//                    KLMLog("图像传输完成")
-//                    self.myview.setVideoSize(160, height: 120)
-//                    self.myview.displayYUV420pData(self.cameraData, width: 160, height: 120)
-//                    SVProgressHUD.showSuccess(withStatus: "下载完成")
-//                    return
-//                }
-//
-//                let parameTime = parameModel(dp: .cameraPic)
-//                KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
-//
-//            }
+            //
+            //                //接收数据
+            //                cameraData.append(data)
+            //                KLMLog("length = \(cameraData.count)")
+            //
+            //                let progress: Float = Float(cameraData.count) / Float(totalBytes)
+            //                SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
+            //
+            //                if cameraData.count >= totalBytes {
+            //                    ///接收完成,显示图像
+            //                    KLMLog("图像传输完成")
+            //                    self.myview.setVideoSize(160, height: 120)
+            //                    self.myview.displayYUV420pData(self.cameraData, width: 160, height: 120)
+            //                    SVProgressHUD.showSuccess(withStatus: "下载完成")
+            //                    return
+            //                }
+            //
+            //                let parameTime = parameModel(dp: .cameraPic)
+            //                KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+            //
+            //            }
         }
     }
     
@@ -227,5 +245,16 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
         KLMShowError(error)
         
     }
+    
+    @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
+            var showMessage = ""
+            if error != nil{
+                showMessage = "保存失败"
+            }else{
+                showMessage = "保存成功"
+            }
+            SVProgressHUD.showInfo(withStatus: showMessage)
+            
+        }
 }
 

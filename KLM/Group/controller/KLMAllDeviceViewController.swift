@@ -9,6 +9,7 @@ import UIKit
 
 private enum itemType: Int, CaseIterable {
     case lightPower = 0
+    case lightSetting
     case motion
 }
 
@@ -44,6 +45,12 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             let cell: KLMGroupPowerCell = KLMGroupPowerCell.cellWithTableView(tableView: tableView)
             cell.isAllNodes = true
             return cell
+        case itemType.lightSetting.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("lightSet")
+            cell.rightTitle = ""
+            return cell
         case itemType.motion.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
@@ -59,9 +66,18 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
+        case itemType.lightSetting.rawValue://灯光设置
+            //是否有相机权限
+            KLMPhotoManager().photoAuthStatus { [weak self] in
+                guard let self = self else { return }
+                
+                let vc = KLMImagePickerController()
+                vc.sourceType = UIImagePickerController.SourceType.camera
+                self.present(vc, animated: true, completion: nil)
+                
+            }
         case itemType.motion.rawValue:
             let vc = KLMGroupMotionViewController()
-            vc.isAllNodes = true
             navigationController?.pushViewController(vc, animated: true)
         default:
             break

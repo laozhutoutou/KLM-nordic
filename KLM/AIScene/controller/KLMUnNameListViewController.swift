@@ -8,7 +8,7 @@
 import UIKit
 import nRFMeshProvision
 import SVProgressHUD
-
+    
 class KLMUnNameListViewController: UIViewController,  Editable{
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -144,7 +144,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         ///初始化数据
         initData()
         ///检查版本
-        checkVersion()
+        if isTestApp == false {
+            checkVersion()
+        }
     }
     
     @objc func initData() {
@@ -368,19 +370,19 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: "Connecting...")
-            return
-        }
-        if !model.isCompositionDataReceived {
-            //对于未composition的进行配置
-            SVProgressHUD.show(withStatus: "Composition")
-            SVProgressHUD.setDefaultMaskType(.black)
-            
-            KLMSIGMeshManager.sharedInstacnce.delegate = self
-            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
-            return
-        }
+//        if !MeshNetworkManager.bearer.isOpen {
+//            SVProgressHUD.showInfo(withStatus: "Connecting...")
+//            return
+//        }
+//        if !model.isCompositionDataReceived {
+//            //对于未composition的进行配置
+//            SVProgressHUD.show(withStatus: "Composition")
+//            SVProgressHUD.setDefaultMaskType(.black)
+//
+//            KLMSIGMeshManager.sharedInstacnce.delegate = self
+//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
+//            return
+//        }
         
         if isTestApp {
             

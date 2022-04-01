@@ -215,7 +215,7 @@
                 <constraint firstItem="6tg-Tp-AkV" firstAttribute="top" secondItem="uqh-9u-qSb" secondAttribute="top" id="qJl-Ab-LWc"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-1138" y="123"/>
+            <point key="canvasLocation" x="-1313" y="144"/>
         </view>
     </objects>
     <resources>

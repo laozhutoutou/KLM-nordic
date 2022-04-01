@@ -14,12 +14,26 @@ import RxSwift
 import RxCocoa
 import nRFMeshProvision
 import HandyJSON
+///智谋纪
 ///AiSceneMesh   kinglumi.jmj.com
 ///切换APP , 是否是测试APP  名称：AiSceneTest bundleID: kinglumi.jmj123.com
 //////1、检查配方是否最新
-let isTestApp: Bool = true
+let isTestApp: Bool = false
 ///AppleStoreID
-let AppleStoreID: String = "1579633878"
+var AppleStoreID: String {
+    
+    if isTestApp {
+        return "1584589375"
+    } else {
+        return "1579633878"
+    }
+}
+
+//#if isTestApp
+//
+//#else
+//
+//#endif
 
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width

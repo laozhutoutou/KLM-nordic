@@ -78,7 +78,9 @@ static CGFloat itemMargin = 5;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    if ([[TZImageManager manager] authorizationStatusAuthorized]) {
+        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    }
     self.isFirstAppear = YES;
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
     _isSelectOriginalPhoto = tzImagePickerVc.isSelectOriginalPhoto;
@@ -593,7 +595,8 @@ static CGFloat itemMargin = 5;
     cell.showSelectBtn = tzImagePickerVc.showSelectBtn;
     cell.allowPreview = tzImagePickerVc.allowPreview;
     
-    if (tzImagePickerVc.selectedModels.count >= tzImagePickerVc.maxImagesCount && tzImagePickerVc.showPhotoCannotSelectLayer && !model.isSelected) {
+    BOOL notSelectable = [TZCommonTools isAssetNotSelectable:model tzImagePickerVc:tzImagePickerVc];
+    if (notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !model.isSelected) {
         cell.cannotSelectLayerButton.backgroundColor = tzImagePickerVc.cannotSelectLayerColor;
         cell.cannotSelectLayerButton.hidden = NO;
     } else {

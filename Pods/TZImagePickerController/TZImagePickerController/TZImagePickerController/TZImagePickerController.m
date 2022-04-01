@@ -4,7 +4,7 @@
 //
 //  Created by 谭真 on 15/12/24.
 //  Copyright © 2015年 谭真. All rights reserved.
-//  version 3.6.6 - 2021.09.21
+//  version 3.6.9 - 2021.12.24
 //  更多信息，请前往项目的github地址：https://github.com/banchichen/TZImagePickerController
 
 #import "TZImagePickerController.h"
@@ -521,9 +521,15 @@
 
 - (void)setCropRect:(CGRect)cropRect {
     _cropRect = cropRect;
-    _cropRectPortrait = cropRect;
-    CGFloat widthHeight = cropRect.size.width;
-    _cropRectLandscape = CGRectMake((self.view.tz_height - widthHeight) / 2, cropRect.origin.x, widthHeight, widthHeight);
+    if ([TZCommonTools tz_isLandscape]) {
+        _cropRectLandscape = cropRect;
+        CGFloat widthHeight = cropRect.size.height;
+        _cropRectPortrait = CGRectMake(cropRect.origin.y, (self.view.tz_width - widthHeight) / 2, widthHeight, widthHeight);
+    } else {
+        _cropRectPortrait = cropRect;
+        CGFloat widthHeight = cropRect.size.width;
+        _cropRectLandscape = CGRectMake((self.view.tz_height - widthHeight) / 2, cropRect.origin.x, widthHeight, widthHeight);
+    }
 }
 
 - (CGRect)cropRect {
@@ -746,7 +752,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    if ([[TZImageManager manager] authorizationStatusAuthorized]) {
+        [[PHPhotoLibrary sharedPhotoLibrary] registerChangeObserver:self];
+    }
     self.isFirstAppear = YES;
     if (@available(iOS 13.0, *)) {
         self.view.backgroundColor = UIColor.tertiarySystemBackgroundColor;
@@ -953,6 +961,14 @@
             CGSizeEqualToSize([UIScreen mainScreen].bounds.size, CGSizeMake(926, 428)));
 }
 
++ (BOOL)tz_isLandscape {
+    if ([UIApplication sharedApplication].statusBarOrientation == UIDeviceOrientationLandscapeRight ||
+        [UIApplication sharedApplication].statusBarOrientation == UIDeviceOrientationLandscapeLeft) {
+        return true;
+    }
+    return false;
+}
+
 + (CGFloat)tz_statusBarHeight {
     if ([UIWindow instancesRespondToSelector:@selector(safeAreaInsets)]) {
         return [self tz_safeAreaInsets].top ?: 20;
@@ -1019,6 +1035,16 @@
         return YES;
     }
     return NO;
+}
+
++ (BOOL)isAssetNotSelectable:(TZAssetModel *)model tzImagePickerVc:(TZImagePickerController *)tzImagePickerVc {
+    BOOL notSelectable = tzImagePickerVc.selectedModels.count >= tzImagePickerVc.maxImagesCount;
+    if (tzImagePickerVc.selectedModels && tzImagePickerVc.selectedModels.count > 0 && !tzImagePickerVc.allowPickingMultipleVideo) {
+        if (model.asset.mediaType == PHAssetMediaTypeVideo) {
+            notSelectable = true;
+        }
+    }
+    return notSelectable;
 }
 
 @end

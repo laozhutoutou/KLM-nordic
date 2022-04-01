@@ -339,7 +339,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Software")
-            cell.rightTitle = LANGLOC("Version ") + (BLEVersion ?? "0")
+            cell.rightTitle = LANGLOC("Version") + " " + (BLEVersion ?? "0")
             return cell
 //        case itemType.test.rawValue:
 //            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -468,6 +468,13 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 
             let value = bleV.compare(bleData.fileVersion)
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
+                
+                //关灯不能升级
+                if self.lightSwitch != 1 {
+                    
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("turnOnLightTip"))
+                    return
+                }
                 
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData

@@ -22,8 +22,6 @@ class KLMGroupMotionViewController: UIViewController {
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
-    var isAllNodes: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -106,7 +104,7 @@ class KLMGroupMotionViewController: UIViewController {
         SVProgressHUD.show()
         //发送关闭指令
         let parame = parameModel(dp: .motionPower, value: 0)
-        if isAllNodes {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
@@ -135,7 +133,7 @@ class KLMGroupMotionViewController: UIViewController {
         SVProgressHUD.show()
         ///最后发送开指令
         let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
-        if self.isAllNodes {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameLight) {
                 
@@ -160,7 +158,7 @@ class KLMGroupMotionViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             
             let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-            if self.isAllNodes {
+            if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameTime) {
                     
@@ -185,7 +183,7 @@ class KLMGroupMotionViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 
                 let parameOn = parameModel(dp: .motionPower, value: 1)
-                if self.isAllNodes {
+                if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
                     
                     KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
                         

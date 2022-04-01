@@ -39,19 +39,6 @@ class KLMPhotoEditViewController: UIViewController {
     
     var isFinish = false
     
-    //模态视图跳转
-    var isModel: Bool = false {
-        
-        didSet {
-            
-            if isModel {
-                //导航栏左边添加返回按钮
-                self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
-            }
-            
-        }
-    }
-    
     lazy var tapView: UIImageView = {
         let image = UIImage(named: "icon_photo_tap")
         let tapView = UIImageView(image: image)
@@ -82,6 +69,10 @@ class KLMPhotoEditViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = LANGLOC("lightSet")
+        
+        //导航栏左边添加返回按钮
+        self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
+        
         setupUI()
         
         imageData = self.originalImage.convert(toBitmapRGBA8: self.originalImage)
@@ -179,7 +170,17 @@ class KLMPhotoEditViewController: UIViewController {
         
         let parame = parameModel(dp: .recipe, value: string)
         
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                print("success")
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         } else {
@@ -277,7 +278,28 @@ class KLMPhotoEditViewController: UIViewController {
         
         let parame = parameModel(dp: .recipe, value: string)
         
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    
+                    //获取根VC
+                    var  rootVC =  self.presentingViewController
+                    while  let  parent = rootVC?.presentingViewController {
+                        rootVC = parent
+                    }
+                    //释放所有下级视图
+                    rootVC?.dismiss(animated:  true , completion:  nil )
+                }
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             

@@ -1,0 +1,15 @@
+
+/* Class = "UITextField"; placeholder = "Please enter the password"; ObjectID = "Ayi-gw-lsg"; */
+"Ayi-gw-lsg.placeholder" = "请输入Wi-Fi密码";
+
+/* Class = "UILabel"; text = "SSID"; ObjectID = "Oqf-V8-Iuh"; */
+"Oqf-V8-Iuh.text" = "Wi-Fi名称";
+
+/* Class = "UIButton"; normalTitle = "Upgrade"; ObjectID = "XiG-To-dpp"; */
+"XiG-To-dpp.normalTitle" = "更新";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "f4E-sb-rby"; */
+"f4E-sb-rby.text" = "Wi-Fi密码";
+
+/* Class = "UITextField"; placeholder = "Please  enter the SSID"; ObjectID = "wuG-Yn-gl2"; */
+"wuG-Yn-gl2.placeholder" = "请输入Wi-Fi名称";
