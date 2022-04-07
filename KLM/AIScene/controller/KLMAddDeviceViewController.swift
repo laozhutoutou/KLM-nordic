@@ -132,6 +132,13 @@ class KLMAddDeviceViewController: UIViewController {
     //连接设备
     func connectDevice(model: DiscoveredPeripheral) {
         
+        ///没网不能添加设备
+        if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
+            SVProgressHUD.showError(withStatus: LANGLOC("NetWorkTip"))
+            return
+        }
+        
+        
         if isTestApp {
             
             //测试APP
@@ -203,7 +210,8 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         isHaveDevice = true
         
         if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == device.peripheral }) {
-            
+            discoveredPeripherals[index] = device
+            tableView.reloadData()
         } else {
             foundDevice()
             discoveredPeripherals.append(device)

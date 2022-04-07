@@ -77,6 +77,13 @@ class KLMHomeManager {
         return nil
     }
     
+    ///网络状态
+    enum NetworkStatus {
+        case NetworkStatusOK
+        case NetworkStatusNotReachable
+    }
+    var networkStatus: NetworkStatus = .NetworkStatusOK
+    
     //单例
     static let sharedInstacnce = KLMHomeManager()
     private init(){}

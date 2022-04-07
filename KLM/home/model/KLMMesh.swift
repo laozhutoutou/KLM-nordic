@@ -137,17 +137,28 @@ class KLMMesh {
         
         if MeshNetworkManager.instance.save() {
             
-            if let model = KLMMesh.loadHome() {
+            if var model = KLMMesh.loadHome() {
                 let manager = MeshNetworkManager.instance
                 let data = manager.export(.full)
                 let newStr = String(data: data, encoding: String.Encoding.utf8)
+                ///本地的数据要变更
+                model.meshConfiguration = newStr!
+                KLMMesh.saveHome(home: model)
+                
                 ///提交到服务器
                 KLMService.editMesh(id: model.id, meshName: nil, meshConfiguration: newStr) { response in
                     KLMLog("配置数据提交成功")
                     
                 } failure: { error in
-                    
-                    KLMHttpShowError(error)
+                    SVProgressHUD.dismiss()
+//                    KLMHttpShowError(error)
+                    ///弹出提示框
+                    let aler = UIAlertController.init(title: nil, message: LANGLOC("DataUploadFail"), preferredStyle: .alert)
+                    let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+                        
+                    }
+                    aler.addAction(sure)
+                    KLMKeyWindow?.rootViewController!.present(aler, animated: true, completion: nil)
                 }
             }
             return true
@@ -155,6 +166,19 @@ class KLMMesh {
         return false
     }
     
+}
+
+extension KLMMesh {
+    
+    ///将配置数据字符串转化成模型数据
+    static func getMeshNetwork(meshConfiguration: String) -> MeshNetwork {
+        
+        let data = meshConfiguration.data(using: String.Encoding.utf8)!
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let meshNetwork = try! decoder.decode(MeshNetwork.self, from: data)
+        return meshNetwork
+    }
 }
 
 extension KLMMesh {

@@ -123,6 +123,12 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let self = self else { return }
             
+            ///灯没连接提示靠近
+            if !MeshNetworkManager.bearer.isOpen {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("deviceNearbyTip"))
+                return
+            }
+            
             KLMHomeManager.sharedInstacnce.smartGroup = cellGroup
             
             let vc = KLMGroupEditViewController()
@@ -136,6 +142,12 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        ///灯没连接提示靠近
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("deviceNearbyTip"))
+            return
+        }
+        
         if indexPath.row == 0 { ///所有设备
             KLMHomeManager.sharedInstacnce.controllType = .AllDevices
             let vc = KLMAllDeviceViewController()
@@ -144,21 +156,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let model: Group = groups[indexPath.row - 1]
-        
         KLMHomeManager.sharedInstacnce.smartGroup = model
-        
-//        let network = MeshNetworkManager.instance.meshNetwork!
-//        let models = network.models(subscribedTo: model)
-//        if models.isEmpty {
-//
-//            SVProgressHUD.showInfo(withStatus: "No Devices")
-//            return
-//        }
-        
-//        if !MeshNetworkManager.bearer.isOpen {
-//            SVProgressHUD.showInfo(withStatus: "Connecting...")
-//            return
-//        }
         
         //是否有相机权限
         KLMPhotoManager().photoAuthStatus { [weak self] in

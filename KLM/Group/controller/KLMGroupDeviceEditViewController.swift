@@ -98,15 +98,13 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        //是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
-            guard let self = self else { return }
-            
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.present(vc, animated: true, completion: nil)
-            
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showInfo(withStatus: "Connecting...")
+            return
         }
+        
+        let vc = KLMDeviceEditViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

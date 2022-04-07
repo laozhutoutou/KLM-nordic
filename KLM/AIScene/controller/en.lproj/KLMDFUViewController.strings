@@ -1,6 +1,0 @@
-
-/* Class = "UILabel"; text = "Please do not play the phone and keep device online while upgrading!"; ObjectID = "Z3r-5L-TpJ"; */
-"Z3r-5L-TpJ.text" = "Please do not operate the phone and keep bluetooth connected during upgrading. If upgrading fails for some reason, please power off the light and then power it on.";
-
-/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "dYe-yr-mT3"; */
-"dYe-yr-mT3.normalTitle" = "Update";

@@ -11,6 +11,8 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
 
     @IBOutlet weak var OnOffSwitch: UISwitch!
     
+    var isFirst: Bool = true
+    
     var onOff: Int! {
         didSet {
             self.OnOffSwitch.isOn = onOff == 1 ? true : false
@@ -24,19 +26,30 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
     
     @IBAction func OnOff(_ sender: UISwitch) {
         
-        if sender.isOn {
+        if isFirst == true {
             
-            let parame = parameModel(dp: .power, value: 1)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            if sender.isOn {
+                
+                let parame = parameModel(dp: .power, value: 1)
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+                
+            } else {//关
+                
+                let parame = parameModel(dp: .power, value: 0)
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+                
+            }
+            isFirst = false
             
-
-        } else {//关
-            
-            let parame = parameModel(dp: .power, value: 0)
-            
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-            
+            DispatchQueue.main.asyncAfter(deadline: 10) {
+                self.isFirst = true
+                
+            }
+        } else {
+            sender.isOn = !sender.isOn
+            SVProgressHUD.showInfo(withStatus: "Please wait for 10 seconds")
         }
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

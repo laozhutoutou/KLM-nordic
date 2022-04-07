@@ -158,7 +158,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         var err = MessageError()
                         err.code = Int(status)
                         err.dp = dp
-                        err.message = "Errors"
+                        err.message = LANGLOC("Dataexception")
     
                         if status == 2 {
                             err.message = LANGLOC("turnOnLightTip")

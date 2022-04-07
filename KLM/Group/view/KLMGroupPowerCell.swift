@@ -12,6 +12,8 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     @IBOutlet weak var onBtn: UIButton!
     @IBOutlet weak var offBtn: UIButton!
     
+    fileprivate var isFirst: Bool = true
+    
     var isAllNodes: Bool = false
     
     override func awakeFromNib() {
@@ -38,6 +40,11 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     @IBAction func onClick(_ sender: Any) {
         
         if onBtn.isSelected {
+            return
+        }
+        
+        if isCanClick() == false {
+            
             return
         }
         
@@ -73,6 +80,11 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
             return
         }
         
+        if isCanClick() == false {
+            
+            return
+        }
+        
         onBtn.isSelected = false
         offBtn.isSelected = true
         
@@ -95,7 +107,25 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 KLMShowError(error)
             }
         }
+    }
+    
+    fileprivate func isCanClick() -> Bool {
         
+        if isFirst == true {
+            
+            isFirst = false
+            
+            DispatchQueue.main.asyncAfter(deadline: 10) {
+                self.isFirst = true
+                
+            }
+            return true
+            
+        } else {
+            
+            SVProgressHUD.showInfo(withStatus: "Please wait for 10 seconds")
+            return false
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

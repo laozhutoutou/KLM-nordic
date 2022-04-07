@@ -17,26 +17,26 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     private var versionData: KLMVersion.KLMVersionData!
     
     lazy var searchBar: UIView = {
-        let width = 100.0
-        let searchBar = UIView.init(frame: CGRect(x: width, y: KLM_StatusBarHeight + 7, width: KLMScreenW - width - 65, height: 30))
+        let width = KLMScreenW - 65 - 20
+        let searchBar = UIView.init(frame: CGRect(x: width, y: KLM_StatusBarHeight + 7, width: 30, height: 30))
         searchBar.backgroundColor = .white
-        searchBar.layer.cornerRadius = 15
-        searchBar.clipsToBounds = true
+//        searchBar.layer.cornerRadius = 15
+//        searchBar.clipsToBounds = true
         let image = UIImageView.init(image: UIImage(named: "icon_search"))
         searchBar.addSubview(image)
         image.snp.makeConstraints { make in
-            make.left.equalTo(9)
-            make.centerY.equalToSuperview()
+            
+            make.center.equalToSuperview()
         }
-        let titleLab = UILabel()
-        titleLab.text = LANGLOC("searchDeviceName")
-        titleLab.font = UIFont.systemFont(ofSize: 14)
-        titleLab.textColor = rgba(0, 0, 0, 0.3)
-        searchBar.addSubview(titleLab)
-        titleLab.snp.makeConstraints { make in
-            make.left.equalTo(image.snp.right).offset(10)
-            make.centerY.equalToSuperview()
-        }
+//        let titleLab = UILabel()
+//        titleLab.text = LANGLOC("searchDeviceName")
+//        titleLab.font = UIFont.systemFont(ofSize: 14)
+//        titleLab.textColor = rgba(0, 0, 0, 0.3)
+//        searchBar.addSubview(titleLab)
+//        titleLab.snp.makeConstraints { make in
+//            make.left.equalTo(image.snp.right).offset(10)
+//            make.centerY.equalToSuperview()
+//        }
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapSearch))
         searchBar.addGestureRecognizer(tap)
         return searchBar
@@ -84,25 +84,8 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         event()
         
-//        getWifiInfo()
     }
-    
-//    func getWifiInfo() {
-//        if let cfas: NSArray = CNCopySupportedInterfaces() {
-//            for cfa in cfas {
-//                if let dict = CFBridgingRetain(
-//                    CNCopyCurrentNetworkInfo(cfa as! CFString)
-//                    ) {
-//                    if let ssid = dict["SSID"] as? String,
-//                        let bssid = dict["BSSID"] as? String {
-//
-//                        KLMLog(dict)
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
+        
     func setupUI() {
         
         collectionView.backgroundColor = appBackGroupColor
@@ -141,6 +124,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     func event() {
         
+        ///检查网络
+        checkNetwork()
+        
         ///初始化数据
         initData()
         ///检查版本
@@ -166,25 +152,46 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
-                
-                var currentHome: KLMHome.KLMHomeModel!
-                
+                                
                 if let home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
+                    ///比较是服务器的新还是本地的新
                     
-                    currentHome = mesh
-
+                    let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
+                    let meshData = KLMMesh.getMeshNetwork(meshConfiguration: mesh.meshConfiguration)
+                    if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
+                        KLMLog("本地比服务器的新")
+                        self.commitLoalDataToServer()
+                        
+                    } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
+                        ///本地的和服务器一样
+                        KLMLog("本地和服务器的一样")
+                    } else {
+                        ///本地的比服务器旧，拉取服务器的数据
+                        KLMLog("本地的比服务器旧")
+                        let currentHome = mesh
+                        self.homeBtn.setTitle(currentHome.meshName, for: .normal)
+                        ///存储当前家庭
+                        KLMMesh.saveHome(home: currentHome)
+                        ///存储mesh数据
+                        KLMMesh.loadHomeMeshData(meshConfiguration: currentHome.meshConfiguration)
+                        ///渲染首页
+                        self.setupData()
+                    }
+                    
                 } else {
                     ///选择第一个家庭
-                    currentHome = meshList.first!
+                    let firstHome = meshList.first!
+                    
+                    self.homeBtn.setTitle(firstHome.meshName, for: .normal)
+                    ///存储当前家庭
+                    KLMMesh.saveHome(home: firstHome)
+                    ///存储mesh数据
+                    KLMMesh.loadHomeMeshData(meshConfiguration: firstHome.meshConfiguration)
+                    ///渲染首页
+                    self.setupData()
                 }
                 
-                self.homeBtn.setTitle(currentHome.meshName, for: .normal)
-                ///存储当前家庭
-                KLMMesh.saveHome(home: currentHome)
-                ///存储mesh数据
-                KLMMesh.loadHomeMeshData(meshConfiguration: currentHome.meshConfiguration)
-                ///渲染首页
-                self.setupData()
+                
                 
             } else {///服务器没有家庭
                 
@@ -202,17 +209,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             }
             
         } failure: { error in
-            ///获取不到服务器数据，加载本地数据
-//            if let home = KLMMesh.loadHome() { ///本地存有家庭
-//
-//                self.homeBtn.setTitle(home.meshName, for: .normal)
-//                ///从本地提取mesh数据
-//                KLMMesh.loadLocalMeshData()
-//
-//            }
-//
-//            ///渲染首页
-//            self.setupData()
+            
         }
     }
 
@@ -244,10 +241,13 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     @objc func newDevice() {
         
+//        let vc = KLMChartsTestViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+        
         if KLMMesh.isCanEditMesh() == false {
             return
         }
-        
+
         let vc = KLMAddDeviceViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -343,6 +343,33 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         self.present(vc, animated: true, completion: nil)
     }
+    
+    private func checkNetwork() {
+        
+        ///检查网络是否能用
+        let manager = AFNetworkReachabilityManager.shared()
+        manager.setReachabilityStatusChange { status in
+            switch status {
+                
+            case .reachableViaWWAN,
+                 .reachableViaWiFi,
+                 .unknown:
+                print("有网")
+                KLMHomeManager.sharedInstacnce.networkStatus = .NetworkStatusOK
+            default:
+                KLMHomeManager.sharedInstacnce.networkStatus = .NetworkStatusNotReachable
+                print("没网")
+            }
+        }
+        manager.startMonitoring()
+    }
+    
+    private func commitLoalDataToServer() {
+        
+        if KLMMesh.save() {
+            
+        }
+    }
 }
 
 extension KLMUnNameListViewController: YBPopupMenuDelegate {
@@ -370,19 +397,19 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
-//        if !MeshNetworkManager.bearer.isOpen {
-//            SVProgressHUD.showInfo(withStatus: "Connecting...")
-//            return
-//        }
-//        if !model.isCompositionDataReceived {
-//            //对于未composition的进行配置
-//            SVProgressHUD.show(withStatus: "Composition")
-//            SVProgressHUD.setDefaultMaskType(.black)
-//
-//            KLMSIGMeshManager.sharedInstacnce.delegate = self
-//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
-//            return
-//        }
+        if !MeshNetworkManager.bearer.isOpen {
+            SVProgressHUD.showInfo(withStatus: "Connecting...")
+            return
+        }
+        if !model.isCompositionDataReceived {
+            //对于未composition的进行配置
+            SVProgressHUD.show(withStatus: "Composition")
+            SVProgressHUD.setDefaultMaskType(.black)
+
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
+            return
+        }
         
         if isTestApp {
             

@@ -13,9 +13,8 @@ import SnapKitExtend
 import RxSwift
 import RxCocoa
 import nRFMeshProvision
-import HandyJSON
 ///智谋纪
-///AiSceneMesh   kinglumi.jmj.com
+///AiSCENE Retail   kinglumi.jmj.com
 ///切换APP , 是否是测试APP  名称：AiSceneTest bundleID: kinglumi.jmj123.com
 //////1、检查配方是否最新
 let isTestApp: Bool = false

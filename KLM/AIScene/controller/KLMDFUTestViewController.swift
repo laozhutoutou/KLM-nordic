@@ -56,7 +56,7 @@ class KLMDFUTestViewController: UIViewController {
     func sendBinVersion() {
         
         ///进度条
-        SVProgressHUD.showProgress(0, status: "0%")
+        SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMLog("Send OTA bin Version")
         
@@ -210,12 +210,23 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                             switch statu {
                             case 0://进度
                                 
+                                if PP == 0 { ///准备更新
+                                    SVProgressHUD.show(withStatus: "Preparing to update")
+                                    return
+                                }
+                                
                                 let progress: Float = Float(PP) / 100.0 * 0.7
                                 SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
                                 
                             case 0xFF: ///其他设备在升级
                                 
                                 SVProgressHUD.showProgress(0.8, status: "80%")
+                            
+                            case 1:
+                                KLMLog("wifi 名称或者密码错误")
+                            case 2:
+                                
+                                KLMLog("升级中断，灯断开网络连接")
                                 
                             default:
                                 KLMLog("Upgrade failure")
@@ -253,6 +264,6 @@ extension KLMDFUTestViewController: BearerDelegate {
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         
-        SVProgressHUD.dismiss()
+
     }
 }

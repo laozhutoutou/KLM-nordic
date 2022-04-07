@@ -1,6 +1,0 @@
-
-/* Class = "UILabel"; text = "Please do not play the phone and keep device online while upgrading!"; ObjectID = "Z3r-5L-TpJ"; */
-"Z3r-5L-TpJ.text" = "更新过程中请不要操作手机，并且保持手机蓝牙打开。假如更新失败，请断开灯电源重新上电。";
-
-/* Class = "UIButton"; normalTitle = "Update"; ObjectID = "dYe-yr-mT3"; */
-"dYe-yr-mT3.normalTitle" = "Update";

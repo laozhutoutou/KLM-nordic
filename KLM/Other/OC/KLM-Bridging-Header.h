@@ -11,7 +11,6 @@
 #import "UIImage+TL.h"
 #import "UIBarButtonItem+TL.h"
 #import "CMSearchBar.h"
-#import <YYCache/YYCache.h>
 #import "RSColorPickerView.h"
 #import <YBPopupMenu.h>
 #import "DAConfig.h"

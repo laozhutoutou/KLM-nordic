@@ -80,7 +80,7 @@ class KLMHomeEditViewController: UIViewController {
             return
         }
         
-        let aler = UIAlertController.init(title: LANGLOC("deleteStore"), message: nil, preferredStyle: .alert)
+        let aler = UIAlertController.init(title: LANGLOC("deleteStore"), message: LANGLOC("deleteStoreTip"), preferredStyle: .alert)
         let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
         let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
             

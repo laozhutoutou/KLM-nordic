@@ -1,10 +1,8 @@
 ${PODS_ROOT}/Target Support Files/Pods-KLM/Pods-KLM-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
-${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
-${BUILT_PRODUCTS_DIR}/BluetoothKit/BluetoothKit.framework
+${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
 ${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
-${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/JKSwiftExtension/JKSwiftExtension.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
@@ -15,9 +13,5 @@ ${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SnapKitExtend/SnapKitExtend.framework
-${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework
-${BUILT_PRODUCTS_DIR}/TZImagePickerController/TZImagePickerController.framework
+${BUILT_PRODUCTS_DIR}/SwiftAlgorithms/Algorithms.framework
 ${BUILT_PRODUCTS_DIR}/YBPopupMenu/YBPopupMenu.framework
-${BUILT_PRODUCTS_DIR}/YYCache/YYCache.framework
-${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework
-${BUILT_PRODUCTS_DIR}/iOSDFULibrary/iOSDFULibrary.framework

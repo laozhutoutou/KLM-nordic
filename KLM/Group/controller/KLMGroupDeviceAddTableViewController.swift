@@ -41,11 +41,13 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
             //过滤组中设备
             for node in notConfiguredNodes {
                 let model = KLMHomeManager.getModelFromNode(node: node)
-                if let boo = model?.isSubscribed(to: groupModel), boo == false {
-                    
+//                if let boo = model?.isSubscribed(to: groupModel), boo == false {
+//
+//                    self.nodes.append(node)
+//                }
+                if model?.subscriptions.count == 0 { ///设备没添加进分组
                     self.nodes.append(node)
                 }
-                
             }
             self.tableView.reloadData()
             

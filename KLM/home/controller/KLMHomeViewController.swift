@@ -31,8 +31,9 @@ class KLMHomeViewController: UIViewController {
     
     func getMeshListData() {
         
+        SVProgressHUD.show()
         KLMService.getMeshList { response in
-            
+            SVProgressHUD.dismiss()
             self.homes = response as! [KLMHome.KLMHomeModel]
             self.tableView.reloadData()
             

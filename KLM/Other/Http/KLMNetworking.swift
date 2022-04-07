@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Alamofire
 import SwiftUI
 import nRFMeshProvision
 
