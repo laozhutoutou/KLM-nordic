@@ -88,22 +88,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-//        case itemType.motion.rawValue:
-//
-//            if KLMMesh.isLoadMesh() == false { ///本地没有家庭
-//                SVProgressHUD.showInfo(withStatus: "Connecting...")
-//                return
-//            }
-//
-//            if !MeshNetworkManager.bearer.isOpen {
-//                SVProgressHUD.showInfo(withStatus: "Connecting...")
-//                return
-//            }
-//
-//            let vc = KLMMotionViewController()
-//            vc.isAllNodes = true
-//            navigationController?.pushViewController(vc, animated: true)
-        
+            
         case itemType.update.rawValue://检查更新
             let vc = KLMAPPUpdateViewController()
             navigationController?.pushViewController(vc, animated: true)
@@ -116,22 +101,7 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         case itemType.settings.rawValue:
             let vc = KLMSettingsViewController()
             navigationController?.pushViewController(vc, animated: true)
-//            let alert = UIAlertController(title: LANGLOC("logout"),
-//                                          message: nil,
-//                                          preferredStyle: .alert)
-//            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
-//                KLMService.logout { response in
-//                    ///进入登录页面
-//                    (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
-//
-//                } failure: { error in
-//                    KLMHttpShowError(error)
-//                }
-//            }
-//            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
-//            alert.addAction(resetAction)
-//            alert.addAction(cancelAction)
-//            present(alert, animated: true)
+            
         default: break
             
         }

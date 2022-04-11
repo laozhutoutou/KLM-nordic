@@ -134,9 +134,15 @@ extension KLMSIGMeshManager {
         
         currentTime += 1
         if currentTime > messageTimeout {//超时
+            
             stopTime()
             
-            SVProgressHUD.showError(withStatus: LANGLOC("Timeout"))
+            //超时不再接收消息
+            MeshNetworkManager.instance.delegate = nil
+            var err = MessageError()
+            err.message = "Add light timeout"
+            self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
+            
         }
     }
 }
@@ -181,12 +187,17 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     
     func provisionManager(_ manager: KLMProvisionManager, didFailChange error: Error?) {
         
+        //停止定时
+        stopTime()
+        
         var err = MessageError()
         err.message = error?.localizedDescription
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }
     
     func provisionManagerNodeAddSuccess(_ manager: KLMProvisionManager) {
+        
+        SVProgressHUD.show(withStatus: "composition")
         
         //composition
         if let network = MeshNetworkManager.instance.meshNetwork {
@@ -235,25 +246,30 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                 
                 KLMLog("node appkey success")
                 
+                SVProgressHUD.show(withStatus: "Add app key to model")
+                
                 //给自定义vendor model 配置APP key
                 let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
-                guard !model.boundApplicationKeys.isEmpty else {
-                    
-                    let keys = self.currentNode.applicationKeysAvailableFor(model)
-                    let applicationKey = keys.first
-                    let message = ConfigModelAppBind(applicationKey: applicationKey!, to: model)!
-                    
-                    do {
-                        try MeshNetworkManager.instance.send(message, to: self.currentNode)
-                    } catch  {
-                        print(error)
-                    }
+                guard model.boundApplicationKeys.isEmpty else {
                     return
                 }
+                
+                let keys = self.currentNode.applicationKeysAvailableFor(model)
+                let applicationKey = keys.first
+                let message = ConfigModelAppBind(applicationKey: applicationKey!, to: model)!
+                
+                do {
+                    try MeshNetworkManager.instance.send(message, to: self.currentNode)
+                } catch  {
+                    print(error)
+                }
+                
+                return
             }
         case is ConfigCompositionDataStatus:
             
             KLMLog("composition success")
+            SVProgressHUD.show(withStatus: "Add app key to node")
             
             //给node 配置app key
             if !self.currentNode.applicationKeys.isEmpty {
@@ -269,6 +285,8 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             } catch  {
                 print(error)
             }
+            return
+            
         case let status as ConfigModelAppStatus:
             if status.status == .success {
                 
@@ -279,12 +297,19 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                 KLMLog("OTA model appkey success")
                 
                 self.delegate?.sigMeshManager(self, didActiveDevice: self.currentNode)
-                
+                return
             }
             
         default:
             break
         }
+        
+        //停止计时
+        stopTime()
+        
+        var err = MessageError()
+        err.message = "Add light failed"
+        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager,
@@ -293,6 +318,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                             error: Error){
         //失败停止定时器
         stopTime()
+        
         SVProgressHUD.dismiss()
         var err = MessageError()
         err.message = error.localizedDescription

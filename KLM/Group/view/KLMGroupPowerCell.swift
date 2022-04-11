@@ -48,25 +48,28 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
             return
         }
         
-        onBtn.isSelected = true
-        offBtn.isSelected = false
-        
         let parame = parameModel(dp: .power, value: 1)
-        
         if isAllNodes {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            SVProgressHUD.show()
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] in
+                SVProgressHUD.dismiss()
                 KLMLog("success")
+                guard let self = self else { return }
+                self.onBtn.isSelected = true
+                self.offBtn.isSelected = false
             } failure: { error in
                 KLMShowError(error)
             }
 
         } else {
-            
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
-                
+            SVProgressHUD.show()
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) { [weak self] in
+                SVProgressHUD.dismiss()
                 KLMLog("success")
-                
+                guard let self = self else { return }
+                self.onBtn.isSelected = true
+                self.offBtn.isSelected = false
             } failure: { error in
                 KLMShowError(error)
             }
@@ -85,24 +88,29 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
             return
         }
         
-        onBtn.isSelected = false
-        offBtn.isSelected = true
-        
         let parame = parameModel(dp: .power, value: 0)
         if isAllNodes {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            SVProgressHUD.show()
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] in
+                SVProgressHUD.dismiss()
                 KLMLog("success")
+                guard let self = self else { return }
+                self.onBtn.isSelected = false
+                self.offBtn.isSelected = true
             } failure: { error in
                 KLMShowError(error)
             }
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
-                
+            SVProgressHUD.show()
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) { [weak self] in
+                SVProgressHUD.dismiss()
                 KLMLog("success")
-                
+                guard let self = self else { return }
+                self.onBtn.isSelected = false
+                self.offBtn.isSelected = true
             } failure: { error in
                 KLMShowError(error)
             }

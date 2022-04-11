@@ -97,6 +97,20 @@ extension KLMHomeManager {
         KLMSetUserDefault(KLMPasswordKey, password)
     }
     
+    static func cacheWIFIMsg(SSID: String, password: String) {
+        
+        KLMSetUserDefault("SSID", SSID)
+        KLMSetUserDefault("WIFIPassword", password)
+    }
+    
+    static func getWIFIMsg() -> (SSID: String, password: String)? {
+        
+        let ssid = KLMGetUserDefault("SSID")
+        let pass = KLMGetUserDefault("WIFIPassword")
+        return (ssid, pass) as? (SSID: String, password: String)
+        
+    }
+    
 }
 
 extension KLMHomeManager {
@@ -122,5 +136,7 @@ extension KLMHomeManager {
         
         return model.parentElement?.parentNode
     }
+    
+    
     
 }

@@ -176,6 +176,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
         case .poweredOff, .resetting:
             proxies.forEach { $0.close() }
             proxies.removeAll()
+            isOpen = false
         default:
             break
         }

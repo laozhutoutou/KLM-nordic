@@ -18,8 +18,8 @@ private enum itemType: Int, CaseIterable {
     case rename
     case group
     case reset
-    case sigleControl //单路控制
-    case downLoadPic //下载图像
+//    case sigleControl //单路控制
+//    case downLoadPic //下载图像
     case passengerFlow //客流统计
     
 }
@@ -177,6 +177,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 }))
+                vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel))
                 present(vc, animated: true, completion: nil)
                 
             }
@@ -365,22 +366,22 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.rightTitle = string
             }
             return cell
-        case itemType.sigleControl.rawValue://
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "单路控制"
-            cell.rightTitle = ""
-            return cell
-        case itemType.downLoadPic.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "下载图像"
-            cell.rightTitle = ""
-            return cell
+//        case itemType.sigleControl.rawValue://
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "单路控制"
+//            cell.rightTitle = ""
+//            return cell
+//        case itemType.downLoadPic.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "下载图像"
+//            cell.rightTitle = ""
+//            return cell
         case itemType.passengerFlow.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "客流统计"
+            cell.leftTitle = LANGLOC("Passengerflowstatistics")
             cell.rightTitle = ""
             return cell
         default:
@@ -484,15 +485,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                  
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
             }
-        case itemType.sigleControl.rawValue://六路测试
-            let vc = KLMTestViewController()
-            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.test.rawValue:
-//            let vc = KLMText1ViewController()
+//        case itemType.sigleControl.rawValue://六路测试
+//            let vc = KLMTestViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-        case itemType.downLoadPic.rawValue:
-            let vc = KLMTestCameraViewController()
-            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.downLoadPic.rawValue:
+//            let vc = KLMTestCameraViewController()
+//            navigationController?.pushViewController(vc, animated: true)
         case itemType.passengerFlow.rawValue:
             let vc = KLMPassengerFlowViewController()
             navigationController?.pushViewController(vc, animated: true)

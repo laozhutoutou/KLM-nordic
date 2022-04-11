@@ -397,10 +397,6 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: "Connecting...")
-            return
-        }
         if !model.isCompositionDataReceived {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")
@@ -411,17 +407,25 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             return
         }
         
-        if isTestApp {
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
+            guard let self = self else { return }
+
+            if isTestApp {
+
+                let vc = KLMTestSectionTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+
+                return
+            }
             
-            let vc = KLMTestSectionTableViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            let vc = KLMDeviceEditViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             
-            return
+        } failure: {
+
         }
-        
-        let vc = KLMDeviceEditViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     func longPress(model: Node) {
@@ -494,10 +498,6 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: "Connecting...")
-            return
-        }
         if !node.isCompositionDataReceived {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")
@@ -508,22 +508,31 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             return
         }
         
-        if isTestApp {
-            
-            let vc = KLMTestSectionTableViewController()
-            navigationController?.pushViewController(vc, animated: true)
-            
-            return
-        }
-        
-//        是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
+            
+            if isTestApp {
+                
+                let vc = KLMTestSectionTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                return
+            }
+            
+    //        是否有相机权限
+            KLMPhotoManager().photoAuthStatus { [weak self] in
+                guard let self = self else { return }
 
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
+                let vc = KLMImagePickerController()
+                vc.sourceType = UIImagePickerController.SourceType.camera
+                self.tabBarController?.present(vc, animated: true, completion: nil)
 
+            }
+            
+        } failure: {
+            
         }
     }
 }

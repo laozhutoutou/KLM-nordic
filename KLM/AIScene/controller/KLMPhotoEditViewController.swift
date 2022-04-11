@@ -239,32 +239,14 @@ class KLMPhotoEditViewController: UIViewController {
     @objc func dimiss() {
         
         isFinish = false
-
-//        //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
-//        let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
-//        //亮度范围80-120
-//        let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
-//        let string = recipeHex + lightValueHex + "02"
-//
-//        let parame = parameModel(dp: .recipe, value: string)
-//
-//        if KLMHomeManager.sharedInstacnce.controllType == .Device {
-//
-//            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-//
-//        } else {
-//            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
-//
-//            } failure: { error in
-//                KLMShowError(error)
-//            }
-//        }
         
         self.dismiss(animated: true, completion: nil)
         
     }
     
     @objc func finish() {
+        
+        SVProgressHUD.show()
         
         isFinish = true
         

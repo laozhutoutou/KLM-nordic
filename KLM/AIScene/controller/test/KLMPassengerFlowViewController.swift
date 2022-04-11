@@ -14,6 +14,8 @@ class KLMPassengerFlowViewController: UIViewController {
     @IBOutlet weak var passengerView: UIView!
     @IBOutlet weak var numLab: UILabel!
     
+    var imageView: UIImageView!
+    
     var chart: BarChartView!
     var days: [String] = []
     
@@ -30,10 +32,18 @@ class KLMPassengerFlowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "客流统计"
+        navigationItem.title = LANGLOC("Passengerflowstatistics")
         
         setupCharts()
         
+//        setupPic()
+        
+    }
+    
+    private func setupPic() {
+        
+        imageView = UIImageView.init(frame: CGRect.init(x: 0, y: 210, width: KLMScreenW, height: 300))
+        view.addSubview(imageView)
     }
 
     @IBAction func getPassenger(_ sender: Any) {
@@ -42,9 +52,12 @@ class KLMPassengerFlowViewController: UIViewController {
         let parame = parameModel(dp: .passengerFlow)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         
+//        let parameTime = parameModel(dp: .cameraPic)
+//        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+        
     }
     
-    func setupCharts() {
+    private func setupCharts() {
 
         chart = BarChartView.init(frame: CGRect.init(x: 10, y: 150, width: 300, height: 300))
         chart.leftAxis.drawGridLinesEnabled = false
@@ -68,7 +81,6 @@ class KLMPassengerFlowViewController: UIViewController {
         let rightAxis = chart.rightAxis
         rightAxis.enabled = false  //不绘制右边轴
         
-
         ///X轴
         let xAxis = chart.xAxis
         xAxis.labelPosition = .bottom //x轴的位置
@@ -78,28 +90,52 @@ class KLMPassengerFlowViewController: UIViewController {
     }
     
     func updateData() {
-
+        
         let date = Date()
         let timeFormatter = DateFormatter()
         //日期显示格式，可按自己需求显示
-        timeFormatter.dateFormat = "HH"
+        timeFormatter.dateFormat = "HH:mm"
         let strNowTime = timeFormatter.string(from: date) as String
-        let nowTime: Int = Int(strNowTime)!
+        
+        var model = passengerRecode.recodeModel()
+        model.date = strNowTime
+        model.num = currentValues
+        
+        ///记录最近的3条记录
+        let key = "passengerRecode" + KLMHomeManager.currentNode.UUIDString
+        if var ree = KLMCache.getCache(passengerRecode.self, key: key) { ///有缓存
+            if ree.list.count >= 3 {
+                ree.list.removeFirst()
+            }
+            ree.list.append(model)
+            KLMCache.setCache(model: ree, key: key)
+        } else { ///没有缓存
+            
+            var recode = passengerRecode()
+            recode.list.append(model)
+            KLMCache.setCache(model: recode, key: key)
+        }
+        
+        let result = KLMCache.getCache(passengerRecode.self, key: key)
         
         /// X轴label
-        days = ["\(nowTime - 4)", "\(nowTime - 3)", "\(nowTime - 2)", "\(nowTime - 1)", "当前"]
+        days = result!.list.map({ item in
+            return item.date!
+        })
         chart.xAxis.valueFormatter = IndexAxisValueFormatter(values: days)
         
-        
-        let values = [7, 10, 3, 15, currentValues]
+        /// Y值
+        let values = result!.list.map({ item in
+            return item.num!
+        })
 
         var dataEntris: [BarChartDataEntry] = []
         for (idx, _) in days.enumerated() {
             let dataEntry = BarChartDataEntry(x: Double(idx), y: Double(values[idx]))
             dataEntris.append(dataEntry)
         }
-        let chartDataSet = BarChartDataSet(entries: dataEntris, label: "人数")
-        
+        let chartDataSet = BarChartDataSet(entries: dataEntris, label: "Number of people")
+        chartDataSet.valueFormatter = self
         ///柱状的颜色
 //        chartDataSet.setColor(.blue)
         
@@ -115,6 +151,15 @@ class KLMPassengerFlowViewController: UIViewController {
     }
 }
 
+extension KLMPassengerFlowViewController: ValueFormatter {
+    
+    ///
+    func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
+        
+        return "\(Int(value))"
+    }
+}
+
 extension KLMPassengerFlowViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
@@ -127,9 +172,57 @@ extension KLMPassengerFlowViewController: KLMSmartNodeDelegate {
             
             updateData()
         }
+        
+        if message?.dp == .cameraPic{
+            
+            if let data = message?.value as? [UInt8], data.count >= 4 {
+                
+                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
+                KLMLog("ip = \(ip)")
+                let url = URL.init(string: ip)
+                
+                /// forceRefresh 不需要缓存
+                imageView.kf.indicatorType = .activity
+                
+                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
+
+                    switch result {
+                    case .success(let value):
+                        // The image was set to image view:
+                        print(value.image)
+
+                        ///测试使用 - 保存图片到相册
+                        SVProgressHUD.show(withStatus: "保存到手机")
+                        UIImageWriteToSavedPhotosAlbum(value.image, self, #selector(self.saveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+
+                    case .failure(let error):
+                        print(error) // The error happens
+                    }
+                }
+            }
+        }
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
+    }
+    
+    @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
+            var showMessage = ""
+            if error != nil{
+                showMessage = "保存失败"
+            }else{
+                showMessage = "保存成功"
+            }
+            SVProgressHUD.showInfo(withStatus: showMessage)
+        }
+}
+
+struct passengerRecode: Codable {
+    
+    var list: [recodeModel] = [recodeModel]()
+    struct recodeModel: Codable {
+        var num: Int?
+        var date: String?
     }
 }

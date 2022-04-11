@@ -164,6 +164,18 @@ struct RuntimeVendorMessage: VendorMessage {
     }
 }
 
+protocol KLMMessageTimeDelegate: AnyObject {
+    
+    func messageTimeDidTimeout(_ manager: KLMMessageTime)
+}
+
+extension KLMMessageTimeDelegate {
+    
+    func messageTimeDidTimeout(_ manager: KLMMessageTime) {
+        
+    }
+}
+
 class KLMMessageTime {
     
     ///超时时间
@@ -172,6 +184,8 @@ class KLMMessageTime {
     var currentTime: Int = 0
     ///定时器
     var messageTimer: Timer?
+    
+    weak var delegate: KLMMessageTimeDelegate?
     
     static let sharedInstacnce = KLMMessageTime()
     private init(){}
@@ -198,7 +212,7 @@ class KLMMessageTime {
         currentTime += 1
         if currentTime > messageTimeout {//超时
             stopTime() 
-            SVProgressHUD.showError(withStatus: LANGLOC("Timeout"))
+            self.delegate?.messageTimeDidTimeout(self)
         }
     }
     

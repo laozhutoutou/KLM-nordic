@@ -84,7 +84,7 @@ class KLMSmartNode: NSObject {
                 
             } catch {
                 var err = MessageError()
-                err.message = "Connection failed"
+                err.message = error.localizedDescription
                 self.delegate?.smartNode(self, didfailure: err)
                 
             }
@@ -99,7 +99,7 @@ class KLMSmartNode: NSObject {
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1C", radix: 16) {
             let parameters = Data(hex: dpString)
-            KLMLog("parameter = \(parameters.hex)")
+            KLMLog("readParameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
                 
@@ -107,7 +107,7 @@ class KLMSmartNode: NSObject {
             } catch  {
                 
                 var err = MessageError()
-                err.message = "Connection failed"
+                err.message = error.localizedDescription
                 self.delegate?.smartNode(self, didfailure: err)
             }
         }
@@ -202,15 +202,21 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     }
                     
                     self.delegate?.smartNode(self, didReceiveVendorMessage: response)
-                    
+                    return
                 }
                 
             }
         case is ConfigNodeResetStatus:
             self.delegate?.smartNodeDidResetNode(self)
+            return
         default:
             break
         }
+        
+        //返回错误
+        var err = MessageError()
+        err.message = "Unknow message"
+        self.delegate?.smartNode(self, didfailure: err)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
@@ -222,6 +228,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
         }
            
         //开始计时
+        KLMMessageTime.sharedInstacnce.delegate = self
         KLMMessageTime.sharedInstacnce.startTime()
     }
     
@@ -231,7 +238,19 @@ extension KLMSmartNode: MeshNetworkDelegate {
         
         SVProgressHUD.dismiss()
         var err = MessageError()
-        err.message = error.localizedDescription
+        err.message = LANGLOC("deviceNearbyTip")
+        self.delegate?.smartNode(self, didfailure: err)
+    }
+}
+
+extension KLMSmartNode: KLMMessageTimeDelegate {
+    
+    func messageTimeDidTimeout(_ manager: KLMMessageTime) {
+        
+        ///超时后不再接收蓝牙消息
+        MeshNetworkManager.instance.delegate = nil
+        var err = MessageError()
+        err.message = LANGLOC("deviceNearbyTip")
         self.delegate?.smartNode(self, didfailure: err)
     }
 }

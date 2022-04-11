@@ -11,6 +11,8 @@ import Charts
 class KLMChartsTestViewController: UIViewController {
     
     @IBOutlet weak var chart: BarChartView!
+    @IBOutlet weak var pieView: PieChartView!
+    
     var data: BarChartData!
     
     override func viewDidLoad() {
@@ -18,7 +20,55 @@ class KLMChartsTestViewController: UIViewController {
 
         setupCharts()
         
+        setupPieView()
+        
         updateData()
+    }
+    
+    func setupPieView() {
+        
+        pieView.chartDescription.text = "区域统计"
+        pieView.usePercentValuesEnabled = true ///使用百分比
+        ///区块文本
+        pieView.drawEntryLabelsEnabled = true
+        pieView.entryLabelColor = .white
+        
+        ///空心
+        pieView.drawHoleEnabled = true
+        pieView.drawCenterTextEnabled = true
+        pieView.centerText = "区域人数"
+        
+        //图例样式设置
+        pieView.legend.maxSizePercent = 1
+        pieView.legend.form = .circle
+        pieView.legend.font = UIFont.systemFont(ofSize: 10)
+        pieView.legend.textColor = .orange
+        pieView.legend.horizontalAlignment = .left
+        pieView.legend.verticalAlignment = .top
+        
+        pieView.animate(xAxisDuration: 1, yAxisDuration: 1, easingOption: .easeInBack)
+        
+        updatePieData()
+    }
+    
+    func updatePieData() {
+        
+        let titles = ["红","黄","蓝色","橙","绿"]
+        let yData = [20,30,10,40,60]
+        var yVals = [PieChartDataEntry]()
+        for i in 0 ..< titles.count {
+            let entry = PieChartDataEntry.init(value: Double(yData[i]), label: titles[i])
+            yVals.append(entry)
+        }
+        
+        //dataset
+        let dataset = PieChartDataSet.init(entries: yVals, label: "区域记录")
+        dataset.colors = [.red, .yellow, .blue, .orange, .green]
+        dataset.valueFormatter = self
+        
+        let data = PieChartData.init(dataSets: [dataset])
+        
+        
     }
 
     func setupCharts() {
@@ -27,6 +77,7 @@ class KLMChartsTestViewController: UIViewController {
         chart.scaleXEnabled = false //关闭缩放
         chart.scaleYEnabled = false
         chart.backgroundColor = .yellow
+        chart.chartDescription.text = "客流统计"
 //        view.addSubview(chart)
         
         ///刷新图表
@@ -122,15 +173,8 @@ extension KLMChartsTestViewController: ValueFormatter {
     ///
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
         
+        
         return "\(Int(value))"
     }
 }
 
-//extension KLMChartsTestViewController: AxisValueFormatter {
-//
-//    func stringForValue(_ value: Double,
-//                        axis: AxisBase?) -> String {
-//
-//        return "小时\(value)"
-//    }
-//}

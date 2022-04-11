@@ -123,12 +123,6 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             
             guard let self = self else { return }
             
-            ///灯没连接提示靠近
-            if !MeshNetworkManager.bearer.isOpen {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("deviceNearbyTip"))
-                return
-            }
-            
             KLMHomeManager.sharedInstacnce.smartGroup = cellGroup
             
             let vc = KLMGroupEditViewController()
@@ -142,13 +136,14 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        ///灯没连接提示靠近
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("deviceNearbyTip"))
-            return
-        }
-        
         if indexPath.row == 0 { ///所有设备
+            
+            ///灯没连接提示靠近
+            if !MeshNetworkManager.bearer.isOpen {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("deviceNearbyTip"))
+                return
+            }
+            
             KLMHomeManager.sharedInstacnce.controllType = .AllDevices
             let vc = KLMAllDeviceViewController()
             navigationController?.pushViewController(vc, animated: true)
@@ -158,14 +153,22 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         let model: Group = groups[indexPath.row - 1]
         KLMHomeManager.sharedInstacnce.smartGroup = model
         
-        //是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToGroup(group: model) { [weak self] in
+            
             guard let self = self else { return }
+            //是否有相机权限
+            KLMPhotoManager().photoAuthStatus { [weak self] in
+                guard let self = self else { return }
 
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
+                let vc = KLMImagePickerController()
+                vc.sourceType = UIImagePickerController.SourceType.camera
+                self.tabBarController?.present(vc, animated: true, completion: nil)
 
+            }
+        } failure: {
+            
         }
     }
     
@@ -198,9 +201,19 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                         
                     }
                 } catch {
-                    var err = MessageError()
-                    err.message = error.localizedDescription
-                    KLMShowError(err)
+                    
+                    var erro = MessageError()
+                    erro.message = error.localizedDescription
+                    if let err = error as? MeshNetworkError{
+                        switch err {
+                        case .groupInUse: ///组里有设备
+                            erro.message = "Please remove all lights from the group"
+                        default:
+                            break
+                        }
+                    }
+                    
+                    KLMShowError(erro)
                     
                 }
                 

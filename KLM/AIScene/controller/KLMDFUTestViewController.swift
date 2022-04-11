@@ -28,8 +28,12 @@ class KLMDFUTestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        SSIDField.text = "SJKJ"
-//        passField.text = "26671627"
+        ///填充WIFI信息
+        if let result = KLMHomeManager.getWIFIMsg() {
+            
+            SSIDField.text = result.SSID
+            passField.text = result.password
+        }
         
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         
@@ -188,9 +192,13 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                 
                 ///更新完成
                 if message.parameters?.hex == "24723639" {
+                    
+                    ///存储wifi信息
+                    KLMHomeManager.cacheWIFIMsg(SSID: self.SSIDField.text!, password: self.passField.text!)
+                    
                     ///设备重启中
                     SVProgressHUD.showProgress(1.0, status: "Restarting")
-                    DispatchQueue.main.asyncAfter(deadline: 8) {
+                    DispatchQueue.main.asyncAfter(deadline: 6) {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
                         DispatchQueue.main.asyncAfter(deadline: 0.5) {
@@ -220,17 +228,37 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                 
                             case 0xFF: ///其他设备在升级
                                 
-                                SVProgressHUD.showProgress(0.8, status: "80%")
-                            
+//                                SVProgressHUD.showProgress(0.8, status: "80%")
+                                SVProgressHUD.show(withStatus: "Please wait while other devices are upgrading")
+//                            case 0xFE: ///
+//                                KLMLog("其他设备连接不上")
+//                            case 0xFD: ///
+//                                KLMLog("其他设备升级超时")
                             case 1:
+                                SVProgressHUD.dismiss()
                                 KLMLog("wifi 名称或者密码错误")
+                                ///提示框
+                                let aler = UIAlertController.init(title: nil, message: LANGLOC("WrongWiFitip"), preferredStyle: .alert)
+                                let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+
+                                }
+                                aler.addAction(sure)
+                                present(aler, animated: true, completion: nil)
                             case 2:
-                                
+                                SVProgressHUD.dismiss()
                                 KLMLog("升级中断，灯断开网络连接")
+                                ///提示框
+                                let aler = UIAlertController.init(title: nil, message: LANGLOC("UpdateInterruptedTip"), preferredStyle: .alert)
+                                let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+
+                                }
+                                aler.addAction(sure)
+                                present(aler, animated: true, completion: nil)
                                 
                             default:
                                 KLMLog("Upgrade failure")
-                                SVProgressHUD.showError(withStatus: "Upgrade failure")
+//                                SVProgressHUD.showError(withStatus: "Upgrade failure")
+                                
                                 break
                             }
                         }

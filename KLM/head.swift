@@ -13,9 +13,9 @@ import SnapKitExtend
 import RxSwift
 import RxCocoa
 import nRFMeshProvision
-///智谋纪
-///AiSCENE Retail   kinglumi.jmj.com
-///切换APP , 是否是测试APP  名称：AiSceneTest bundleID: kinglumi.jmj123.com
+///智谋纪  kinglumi.jmj.com
+///AiSCENE Retail  kinglumi.jmjgw.com
+///切换APP , 是否是测试APP  名称：AiSceneTest kinglumi.jmj123.com
 //////1、检查配方是否最新
 let isTestApp: Bool = false
 ///AppleStoreID

@@ -149,25 +149,111 @@ class KLMSmartGroup: NSObject {
             }
         }
     }
+    
+    func readMessage(_ parame: parameModel, toGroup group: Group, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+        
+        MeshNetworkManager.instance.delegate = self
+        
+        successBlock = success
+        failureBlock = failure
+        
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
+        if let opCode = UInt8("1C", radix: 16) {
+            let parameters = Data(hex: dpString)
+            KLMLog("readParameter = \(parameters.hex)")
+            let network = MeshNetworkManager.instance.meshNetwork!
+            let models = network.models(subscribedTo: group)
+            
+            if models.isEmpty {
+                
+                var err = MessageError()
+                err.message = LANGLOC("noDevice")
+                err.code = -1
+                failure(err)
+                return
+            }
+            
+            if let model = models.first {
+                
+                let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
+                do {
+                    
+                    try MeshNetworkManager.instance.send(message, to: group, using: model.boundApplicationKeys.first!)
+                    
+                } catch {
+                    
+                    var err = MessageError()
+                    err.message = error.localizedDescription
+                    failure(err)
+                    
+                }
+            }
+        }
+    }
 }
 
 extension KLMSmartGroup: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        successBlock()
+        ///收到回复，停止计时
+        KLMMessageTime.sharedInstacnce.stopTime()
         
+        switch message {
+        case let message as UnknownMessage://收发消息
+            if let parameters = message.parameters {
+                //如果是开关 "0101"
+                KLMLog("messageResponse = \(parameters.hex)")
+                
+                if parameters.count >= 3 {
+                    
+                    self.successBlock()
+                    return
+                } else if let first = parameters.first, let _ = DPType.init(rawValue: Int(first)) {
+                    ///这种情况不是成功也不是失败
+                    KLMLog("这种情况不是成功也不是失败")
+                    return
+                }
+                
+            }
+        default:
+            break
+        }
+        
+        //返回错误
+        var err = MessageError()
+        err.message = "Unknow message"
+        self.failureBlock(err)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
         
         KLMLog("消息发送成功")
+        
+        KLMMessageTime.sharedInstacnce.delegate = self
+        KLMMessageTime.sharedInstacnce.startTime()
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
+        
+        ///失败停止计时
+        KLMMessageTime.sharedInstacnce.stopTime()
+        
         SVProgressHUD.dismiss()
         var err = MessageError()
         err.message = error.localizedDescription
+        failureBlock(err)
+    }
+}
+
+extension KLMSmartGroup: KLMMessageTimeDelegate {
+    
+    func messageTimeDidTimeout(_ manager: KLMMessageTime) {
+        
+        ///超时后不再接收蓝牙消息
+        MeshNetworkManager.instance.delegate = nil
+        var err = MessageError()
+        err.message = LANGLOC("deviceNearbyTip")
         failureBlock(err)
     }
 }

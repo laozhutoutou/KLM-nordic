@@ -203,6 +203,8 @@ class KLMCustomViewController: UIViewController {
     
     @objc func finish() {
         
+        SVProgressHUD.show()
+        
         isFinish = true
         
         let string = "000003"

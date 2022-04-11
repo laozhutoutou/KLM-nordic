@@ -22,8 +22,6 @@ class KLMMesh {
                                       allocatedSceneRange:   [SceneRange(0x0001...0x3333)])
         //创建一个APP key
         let network = MeshNetworkManager().createNewMeshNetwork(withName: "Mesh Network", by: provisioner)
-//        let network = MeshNetwork.init(name: "Mesh Network")
-//        try! network.add(provisioner: provisioner)
         let newKey: Data! = Data.random128BitKey()
         do {
             try network.add(applicationKey: newKey, withIndex: 0, name: "new key")

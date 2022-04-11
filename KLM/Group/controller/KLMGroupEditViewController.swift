@@ -130,18 +130,40 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             vc.groupModel = self.group
             navigationController?.pushViewController(vc, animated: true)
         case itemType.lightSetting.rawValue://灯光设置
-            //是否有相机权限
-            KLMPhotoManager().photoAuthStatus { [weak self] in
-                guard let self = self else { return }
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToGroup(group: self.group) { [weak self] in
                 
-                let vc = KLMImagePickerController()
-                vc.sourceType = UIImagePickerController.SourceType.camera
-                self.present(vc, animated: true, completion: nil)
+                guard let self = self else { return }
+                //是否有相机权限
+                KLMPhotoManager().photoAuthStatus { [weak self] in
+                    guard let self = self else { return }
+
+                    let vc = KLMImagePickerController()
+                    vc.sourceType = UIImagePickerController.SourceType.camera
+                    self.tabBarController?.present(vc, animated: true, completion: nil)
+
+                }
+            } failure: {
                 
             }
+            
         case itemType.motion.rawValue:
-            let vc = KLMGroupMotionViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToGroup(group: self.group) { [weak self] in
+                
+                guard let self = self else { return }
+                
+                let vc = KLMGroupMotionViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } failure: {
+                
+            }
+        
         default:
             break
         }

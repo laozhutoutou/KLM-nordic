@@ -98,13 +98,25 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: "Connecting...")
-            return
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
+            guard let self = self else { return }
+            
+            if isTestApp {
+                
+                let vc = KLMTestSectionTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                return
+            }
+            
+            let vc = KLMDeviceEditViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } failure: {
+            
         }
-        
-        let vc = KLMDeviceEditViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -130,7 +142,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
             }
             aler.addAction(cancel)
             aler.addAction(sure)
-            self.tabBarController?.present(aler, animated: true, completion: nil)
+            self.present(aler, animated: true, completion: nil)
             
             completionHandler(true)
         }

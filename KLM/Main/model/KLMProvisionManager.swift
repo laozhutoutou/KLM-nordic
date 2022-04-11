@@ -35,6 +35,8 @@ extension KLMProvisionManager {
     
     func identify() {
         
+        SVProgressHUD.show(withStatus: "identify")
+        
         let manager = MeshNetworkManager.instance
         self.provisioningManager = try! manager.provision(unprovisionedDevice: self.discoveredPeripheral.device, over: self.bearer)
         self.provisioningManager.delegate = self
@@ -68,6 +70,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
         case .capabilitiesReceived(_)://identify完成
             
             KLMLog("identify success")
+            SVProgressHUD.show(withStatus: "provision")
             
             //provision
             if provisioningManager.networkKey == nil {
@@ -115,7 +118,7 @@ extension KLMProvisionManager: GattBearerDelegate {
             var err = MessageError()
             err.message = error?.localizedDescription
             KLMShowError(err)
-        
+            self.delegate?.provisionManager(self, didFailChange: error)
             return
         }
         //节点添加完成
