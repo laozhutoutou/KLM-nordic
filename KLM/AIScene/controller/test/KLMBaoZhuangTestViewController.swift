@@ -215,7 +215,6 @@ extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
             NotificationCenter.default.post(name: .deviceReset, object: nil)
             self.navigationController?.popToRootViewController(animated: true)
         }
-        
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {

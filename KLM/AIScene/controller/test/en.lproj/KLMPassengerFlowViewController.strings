@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "0"; ObjectID = "VpI-PU-rzf"; */
+"VpI-PU-rzf.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "获取客流数据"; ObjectID = "lrh-Wr-kUw"; */
+"lrh-Wr-kUw.normalTitle" = "Get data";
+
+/* Class = "UILabel"; text = "点击按钮获取当前客流数据"; ObjectID = "smb-1p-QsB"; */
+"smb-1p-QsB.text" = "Click the button to get the current passenger flow data";
+
+/* Class = "UILabel"; text = "当前客流数据："; ObjectID = "vdj-dy-ACN"; */
+"vdj-dy-ACN.text" = "Current passenger flow data：";

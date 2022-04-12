@@ -24,8 +24,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHG-dF-GuL">
                     <rect key="frame" x="0.0" y="108" width="414" height="200"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击按钮获取当前客流数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smb-1p-QsB">
-                            <rect key="frame" x="15" y="0.0" width="208" height="20.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击按钮获取当前客流数据" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="smb-1p-QsB">
+                            <rect key="frame" x="15" y="0.0" width="389" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -68,6 +68,7 @@
                         <constraint firstItem="VpI-PU-rzf" firstAttribute="leading" secondItem="vdj-dy-ACN" secondAttribute="trailing" id="Xrx-nF-kZx"/>
                         <constraint firstItem="lrh-Wr-kUw" firstAttribute="top" secondItem="smb-1p-QsB" secondAttribute="bottom" constant="10" id="iqi-Rw-CPn"/>
                         <constraint firstItem="vdj-dy-ACN" firstAttribute="top" secondItem="lrh-Wr-kUw" secondAttribute="bottom" constant="20" id="shX-ST-aow"/>
+                        <constraint firstAttribute="trailing" secondItem="smb-1p-QsB" secondAttribute="trailing" constant="10" id="tJo-nv-2Wc"/>
                         <constraint firstItem="smb-1p-QsB" firstAttribute="leading" secondItem="bHG-dF-GuL" secondAttribute="leading" constant="15" id="xva-bm-Wxv"/>
                     </constraints>
                 </view>
@@ -80,7 +81,7 @@
                 <constraint firstItem="bHG-dF-GuL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="t51-FZ-R1s"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-1119" y="23"/>
+            <point key="canvasLocation" x="-1413" y="54"/>
         </view>
     </objects>
     <resources>

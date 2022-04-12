@@ -279,7 +279,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
         
         KLMLog("消息发送失败 = \(error)")
-        SVProgressHUD.showError(withStatus: "Upgrade failure")
+//        SVProgressHUD.showError(withStatus: "Upgrade failure")
     }
 }
 

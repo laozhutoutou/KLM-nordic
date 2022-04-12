@@ -18,12 +18,18 @@ import nRFMeshProvision
 ///切换APP , 是否是测试APP  名称：AiSceneTest kinglumi.jmj123.com
 //////1、检查配方是否最新
 let isTestApp: Bool = false
-///AppleStoreID
+///AppleStoreID 测试APP：1584589375 国内：1579633878 国外：1618735485
+let isGuowai: Bool = false
+
 var AppleStoreID: String {
     
     if isTestApp {
         return "1584589375"
     } else {
+        if isGuowai {
+            return "1618735485"
+        }
+        ///国内
         return "1579633878"
     }
 }
@@ -151,7 +157,14 @@ func KLMHttpShowError(_ error: NSError) {
 }
 
 ///国内版
-let baseUrl = "https://light.kaiwaresz.com/"
+var baseUrl: String {
+    if isGuowai {
+        return "https://ai.kaiwaresz.com/"
+    }
+    return "https://light.kaiwaresz.com/"
+}
+
+//var baseUrl = "https://light.kaiwaresz.com/"
 ///国外版
 //let baseUrl = "https://ai.kaiwaresz.com/"
 func KLMUrl(_ url: String) -> String {

@@ -25,6 +25,8 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = LANGLOC("unGroup")
+        
         tableView.separatorStyle = .none
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finishClick))
@@ -63,9 +65,30 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
         //设备添加到群组
         guard let selectedIndexPath = selectedIndexPath else { return  }
         
-        SVProgressHUD.show()
+        //查询设备是否在线
         let selectNode = self.nodes[selectedIndexPath.row]
-        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: groupModel)
+        if !selectNode.isCompositionDataReceived {
+            //对于未composition的进行配置
+            SVProgressHUD.show(withStatus: "Composition")
+            SVProgressHUD.setDefaultMaskType(.black)
+            
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: selectNode)
+            return
+        }
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: selectNode) { [weak self] in
+            guard let self = self else { return }
+            
+            KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: self.groupModel)
+            
+        } failure: {
+            
+        }
+        
+        
     }
 
     // MARK: - Table view data source
@@ -130,4 +153,28 @@ extension KLMGroupDeviceAddTableViewController: KLMMessageManagerDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     
+}
+
+extension KLMGroupDeviceAddTableViewController: KLMSIGMeshManagerDelegate {
+        
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
+        
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
+        
+        SVProgressHUD.showSuccess(withStatus: "Please tap \(LANGLOC("finish")) again")
+        
+    }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
+        
+        KLMShowError(error)
+    }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
+        
+        SVProgressHUD.show(withStatus: "Did send message")
+    }
 }

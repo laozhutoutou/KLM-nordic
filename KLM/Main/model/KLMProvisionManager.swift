@@ -110,11 +110,12 @@ extension KLMProvisionManager: ProvisioningDelegate {
 }
 
 extension KLMProvisionManager: GattBearerDelegate {
-    
+
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         KLMLog("unprovision bearer close")
+        
         guard case .complete = provisioningManager.state else {
-            
+
             var err = MessageError()
             err.message = error?.localizedDescription
             KLMShowError(err)
@@ -123,19 +124,18 @@ extension KLMProvisionManager: GattBearerDelegate {
         }
         //节点添加完成
         if KLMMesh.save() {
-            
+
             KLMLog("node add success")
-            
             DispatchQueue.main.asyncAfter(deadline: 1) {
-                
+
                 self.delegate?.provisionManagerNodeAddSuccess(self)
             }
-            
+
         }
     }
-    
+
     func bearerDidOpen(_ bearer: Bearer) {
-        
-        
+
+
     }
 }
