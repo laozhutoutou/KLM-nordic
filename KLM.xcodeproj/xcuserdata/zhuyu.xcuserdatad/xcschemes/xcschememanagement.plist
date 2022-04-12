@@ -4,10 +4,26 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>KLM.xcscheme_^#shared#^_</key>
+		<key>KLM_GN.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>0</integer>
+		</dict>
+		<key>KLM_GW.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>KLM_Test.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>21</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -23,6 +39,16 @@
 			<true/>
 		</dict>
 		<key>E498A79E26671BED00C78D50</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4C57E2B28055B1F00E7AB54</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4C57F0228055C7C00E7AB54</key>
 		<dict>
 			<key>primary</key>
 			<true/>

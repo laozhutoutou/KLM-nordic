@@ -130,7 +130,11 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         ///初始化数据
         initData()
         ///检查版本
-        if isTestApp == false {
+//        if isTestApp == false {
+//            checkVersion()
+//        }
+        
+        if apptype == .targetGN || apptype == .targetsGW {
             checkVersion()
         }
     }
@@ -412,7 +416,15 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
             guard let self = self else { return }
 
-            if isTestApp {
+//            if isTestApp {
+//
+//                let vc = KLMTestSectionTableViewController()
+//                self.navigationController?.pushViewController(vc, animated: true)
+//
+//                return
+//            }
+            
+            if apptype == .test {
 
                 let vc = KLMTestSectionTableViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -513,7 +525,15 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
             
-            if isTestApp {
+//            if isTestApp {
+//
+//                let vc = KLMTestSectionTableViewController()
+//                self.navigationController?.pushViewController(vc, animated: true)
+//
+//                return
+//            }
+            
+            if apptype == .test {
                 
                 let vc = KLMTestSectionTableViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

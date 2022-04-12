@@ -225,15 +225,18 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                 
                                 let progress: Float = Float(PP) / 100.0 * 0.7
                                 SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
-                                
+                            case 0xFC:
+                                KLMLog("正在搜索其他待升级设备")
+                                SVProgressHUD.show(withStatus: "正在搜索其他待升级设备")
                             case 0xFF: ///其他设备在升级
-                                
+                                KLMLog("Please wait while other devices are upgrading")
 //                                SVProgressHUD.showProgress(0.8, status: "80%")
                                 SVProgressHUD.show(withStatus: "Please wait while other devices are upgrading")
-//                            case 0xFE: ///
-//                                KLMLog("其他设备连接不上")
-//                            case 0xFD: ///
-//                                KLMLog("其他设备升级超时")
+                            case 0xFE: ///
+                                KLMLog("其他设备连接不上")
+                            case 0xFD: ///
+                                KLMLog("其他设备升级超时")
+                            
                             case 1:
                                 SVProgressHUD.dismiss()
                                 KLMLog("wifi 名称或者密码错误")

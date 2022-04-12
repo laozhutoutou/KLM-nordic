@@ -13,32 +13,36 @@ import SnapKitExtend
 import RxSwift
 import RxCocoa
 import nRFMeshProvision
-///智谋纪  kinglumi.jmj.com
-///AiSCENE Retail  kinglumi.jmjgw.com
-///切换APP , 是否是测试APP  名称：AiSceneTest kinglumi.jmj123.com
-//////1、检查配方是否最新
-let isTestApp: Bool = false
-///AppleStoreID 测试APP：1584589375 国内：1579633878 国外：1618735485
-let isGuowai: Bool = false
 
 var AppleStoreID: String {
     
-    if isTestApp {
-        return "1584589375"
-    } else {
-        if isGuowai {
-            return "1618735485"
-        }
-        ///国内
+    switch apptype {
+    case .targetGN:
         return "1579633878"
+    case .targetsGW:
+        return "1618735485"
+    case .test:
+        return "1584589375"
     }
 }
 
-//#if isTestApp
-//
-//#else
-//
-//#endif
+//分3个包
+enum AppType {
+    case targetGN //国内版
+    case targetsGW //国外版
+    case test //测试版
+}
+
+var apptype: AppType {
+    
+#if target_GN
+    return AppType.targetGN
+#elseif target_GW
+    return AppType.targetsGW
+#elseif target_Test
+    return AppType.test
+#endif
+}
 
 /*** 常用 ***/
 let KLMScreenW = UIScreen.main.bounds.size.width
@@ -158,15 +162,15 @@ func KLMHttpShowError(_ error: NSError) {
 
 ///国内版
 var baseUrl: String {
-    if isGuowai {
+    switch apptype {
+    case .targetGN,
+         .test:
+        return "https://light.kaiwaresz.com/"
+    case .targetsGW:
         return "https://ai.kaiwaresz.com/"
     }
-    return "https://light.kaiwaresz.com/"
 }
 
-//var baseUrl = "https://light.kaiwaresz.com/"
-///国外版
-//let baseUrl = "https://ai.kaiwaresz.com/"
 func KLMUrl(_ url: String) -> String {
     
     return baseUrl + url

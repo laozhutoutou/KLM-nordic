@@ -139,7 +139,16 @@ class KLMAddDeviceViewController: UIViewController {
         }
         
         
-        if isTestApp {
+//        if isTestApp {
+//
+//            //测试APP
+//            SVProgressHUD.show(withStatus: "Connecting...")
+//            SVProgressHUD.setDefaultMaskType(.black)
+//            KLMSIGMeshManager.sharedInstacnce.startActive(discoveredPeripheral: model)
+//            return
+//        }
+        
+        if apptype == .test {
             
             //测试APP
             SVProgressHUD.show(withStatus: "Connecting...")
@@ -231,7 +240,23 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = device
         
-        if isTestApp {
+//        if isTestApp {
+//
+//            if KLMMesh.save() {
+//
+//                //测试APP
+//                NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
+//                DispatchQueue.main.asyncAfter(deadline: 0.5){
+//
+//                    let vc = KLMTestSectionTableViewController()
+//                    self.navigationController?.pushViewController(vc, animated: true)
+//                }
+//
+//                return
+//            }
+//        }
+        
+        if apptype == .test {
             
             if KLMMesh.save() {
                 
