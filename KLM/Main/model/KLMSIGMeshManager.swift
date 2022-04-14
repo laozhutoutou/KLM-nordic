@@ -23,6 +23,8 @@ protocol KLMSIGMeshManagerDelegate: AnyObject {
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?)
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage)
+    
+    func sigMeshManagerDidConnetctUnprovisionDevice(_ manager: KLMSIGMeshManager)
 }
 
 extension KLMSIGMeshManagerDelegate {
@@ -40,6 +42,11 @@ extension KLMSIGMeshManagerDelegate {
         // This method is optional.
         
     }
+    
+    func sigMeshManagerDidConnetctUnprovisionDevice(_ manager: KLMSIGMeshManager) {
+        
+        
+    }
 }
 
 class KLMSIGMeshManager: NSObject {
@@ -49,13 +56,13 @@ class KLMSIGMeshManager: NSObject {
     
     var discoveredPeripheral: DiscoveredPeripheral!
     private var provisioningManager: ProvisioningManager!
-    var gattBearer: PBGattBearer!
+    var gattBearer: PBGattBearer?
     var provisonManager :KLMProvisionManager!
     
     var currentNode: Node!
     
     ///超时时间 - 配网超时时间
-    let messageTimeout: Int = 20
+    var messageTimeout: Int = 20
     ///当前秒
     var currentTime: Int = 0
     ///定时器
@@ -68,6 +75,7 @@ class KLMSIGMeshManager: NSObject {
 
 extension KLMSIGMeshManager {
     
+    ///开始扫描
     func startScan(scanType: KLMSIGScanType) {
         
         centralManager = CBCentralManager()
@@ -77,9 +85,10 @@ extension KLMSIGMeshManager {
             startScanning()
         }
     }
-    ///开始配网
-    func startActive(discoveredPeripheral: DiscoveredPeripheral) {
+    ///开始连接
+    func startConnect(discoveredPeripheral: DiscoveredPeripheral) {
         ///启动定时器
+        messageTimeout = 8
         startTime()
         
         KLMLog("startActive")
@@ -92,10 +101,24 @@ extension KLMSIGMeshManager {
         self.gattBearer = bb
         stopScanning()
     }
+    ///停止连接
+    func stopConnectDevice() {
+        
+        self.gattBearer?.close()
+        
+    }
     
-    func stopActiveDevice() {
+    ///开始配网
+    func startActive() {
         
+        ///启动定时器
+        messageTimeout = 20
+        startTime()
         
+        let provisonManager = KLMProvisionManager.init(discoveredPeripheral: self.discoveredPeripheral, bearer: self.gattBearer!)
+        provisonManager.delegate = self
+        provisonManager.identify()
+        self.provisonManager = provisonManager
     }
 }
 
@@ -116,6 +139,8 @@ extension KLMSIGMeshManager {
     //开始计时
     func startTime() {
         
+        KLMLog("开始计时")
+        
         stopTime()
         
         messageTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
@@ -123,6 +148,7 @@ extension KLMSIGMeshManager {
     
     //停止计时
     func stopTime() {
+        KLMLog("停止计时")
         currentTime = 0
         if messageTimer != nil {
             messageTimer?.invalidate()
@@ -131,14 +157,17 @@ extension KLMSIGMeshManager {
     }
     
     @objc func UpdateTimer() {
-        
+        KLMLog("计时时间:\(currentTime)")
         currentTime += 1
         if currentTime > messageTimeout {//超时
-            
+            KLMLog("时间超时")
             stopTime()
             
             //超时不再接收消息
             MeshNetworkManager.instance.delegate = nil
+            self.gattBearer?.delegate = nil
+            self.gattBearer?.close()
+            
             var err = MessageError()
             err.message = "Add light timeout"
             self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
@@ -216,22 +245,28 @@ extension KLMSIGMeshManager: BearerDelegate {
     
     func bearerDidOpen(_ bearer: Bearer) {
         
-        KLMLog("connect Unprovision success")
-        let bb = bearer as? ProvisioningBearer
+        ///连接成功停止计时
+        stopTime()
         
-        let provisonManager = KLMProvisionManager.init(discoveredPeripheral: self.discoveredPeripheral, bearer: bb!)
-        provisonManager.delegate = self
-        provisonManager.identify()
-        self.provisonManager = provisonManager
+        KLMLog("connect Unprovision success")
+        
+        self.delegate?.sigMeshManagerDidConnetctUnprovisionDevice(self)
+        
+//        let bb = bearer as? ProvisioningBearer
+//
+//        let provisonManager = KLMProvisionManager.init(discoveredPeripheral: self.discoveredPeripheral, bearer: bb!)
+//        provisonManager.delegate = self
+//        provisonManager.identify()
+//        self.provisonManager = provisonManager
         
     }
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         
-        SVProgressHUD.dismiss()
-        var err = MessageError()
-        err.message = error?.localizedDescription
-        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
+//        SVProgressHUD.dismiss()
+//        var err = MessageError()
+//        err.message = error?.localizedDescription
+//        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
         
     }
 }

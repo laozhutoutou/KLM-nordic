@@ -19,7 +19,7 @@ private enum itemType: Int, CaseIterable {
     case group
     case reset
 //    case sigleControl //单路控制
-//    case downLoadPic //下载图像
+    case downLoadPic //下载图像
     case passengerFlow //客流统计
     
 }
@@ -48,7 +48,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     //颜色测试
     var colorTest: Bool  = false
     ///是否来自设备添加页面
-    var isFromDeviceAdd = false
+//    var isFromDeviceAdd = false
     var isVersionFirst = true
     
     deinit {
@@ -147,7 +147,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     func showUpdateView() {
         
-        if isFromDeviceAdd && isVersionFirst {
+        if isVersionFirst {
             
             guard let bleData = self.BLEVersionData,
                   let bleV = BLEVersion else {
@@ -177,7 +177,10 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                     self.navigationController?.pushViewController(vc, animated: true)
                     
                 }))
-                vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel))
+                vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: { action in
+                    
+//                    self.navigationController?.popViewController(animated: true)
+                }))
                 present(vc, animated: true, completion: nil)
                 
             }
@@ -260,12 +263,11 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
 //            self.colorTest = value == 2 ? false : true
 //            self.tableView.reloadData()
 //        }
-//        if message?.dp ==  .power{
-//
-//            let value = message?.value as! Int
-//            self.lightSwitch = value
-//            self.tableView.reloadData()
-//        }
+        if message?.dp ==  .power{
+
+            let value = message?.value as! Int
+            self.lightSwitch = value
+        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
@@ -372,12 +374,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //            cell.leftTitle = "单路控制"
 //            cell.rightTitle = ""
 //            return cell
-//        case itemType.downLoadPic.rawValue:
-//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-//            cell.isShowLeftImage = false
-//            cell.leftTitle = "下载图像"
-//            cell.rightTitle = ""
-//            return cell
+        case itemType.downLoadPic.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "下载图像"
+            cell.rightTitle = ""
+            return cell
         case itemType.passengerFlow.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
@@ -488,9 +490,9 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //        case itemType.sigleControl.rawValue://六路测试
 //            let vc = KLMTestViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.downLoadPic.rawValue:
-//            let vc = KLMTestCameraViewController()
-//            navigationController?.pushViewController(vc, animated: true)
+        case itemType.downLoadPic.rawValue:
+            let vc = KLMTestCameraViewController()
+            navigationController?.pushViewController(vc, animated: true)
         case itemType.passengerFlow.rawValue:
             let vc = KLMPassengerFlowViewController()
             navigationController?.pushViewController(vc, animated: true)

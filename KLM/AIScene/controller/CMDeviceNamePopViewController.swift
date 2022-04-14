@@ -19,6 +19,7 @@ class CMDeviceNamePopViewController: UIViewController {
     var titleName: String = ""
     
     var nameBlock: NameBlock?
+    var cancelBlock: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,9 @@ class CMDeviceNamePopViewController: UIViewController {
     }
     
     @IBAction func cancel(_ sender: Any) {
+        if let cancel = cancelBlock {
+            cancel()
+        }
         
         dismiss(animated: true, completion: nil)
     }
