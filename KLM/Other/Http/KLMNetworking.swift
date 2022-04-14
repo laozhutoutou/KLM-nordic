@@ -152,6 +152,7 @@ class KLMNetworking: NSObject {
                     ///清空数据
                     KLMMesh.logout()
                     KLMLog("token 失效")
+                    SVProgressHUD.showError(withStatus: "token 失效")
                     let appdelegate = UIApplication.shared.delegate as! AppDelegate
                     appdelegate.enterLoginUI()
                 }

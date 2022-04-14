@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMChartsTestViewController" customModule="KLM" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMChartsTestViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
                 <outlet property="chart" destination="bl1-I8-C2z" id="6pg-Lj-bu0"/>
                 <outlet property="pieView" destination="4ZE-fi-0BI" id="v58-jS-vSz"/>
@@ -29,15 +29,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ZE-fi-0BI" customClass="PieChartView" customModule="Charts">
-                    <rect key="frame" x="10" y="358" width="394" height="200"/>
+                    <rect key="frame" x="10" y="358" width="394" height="250"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="200" id="niL-rf-ths"/>
+                        <constraint firstAttribute="height" constant="250" id="niL-rf-ths"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DN-TT-KI8">
-                    <rect key="frame" x="166" y="584" width="82" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DN-TT-KI8">
+                    <rect key="frame" x="166" y="618" width="82" height="31"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="更新数据"/>
                     <connections>
@@ -53,10 +52,12 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bl1-I8-C2z" secondAttribute="trailing" constant="10" id="Y3X-V8-kqV"/>
                 <constraint firstItem="bl1-I8-C2z" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="YV3-in-kBz"/>
                 <constraint firstItem="4ZE-fi-0BI" firstAttribute="top" secondItem="bl1-I8-C2z" secondAttribute="bottom" id="dPw-pm-nEb"/>
+                <constraint firstItem="0DN-TT-KI8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="qPl-qH-wdY"/>
                 <constraint firstItem="bl1-I8-C2z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="qZQ-Zf-A1D"/>
+                <constraint firstItem="0DN-TT-KI8" firstAttribute="top" secondItem="4ZE-fi-0BI" secondAttribute="bottom" constant="10" id="yPn-Q9-1U1"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="199" y="-362"/>
+            <point key="canvasLocation" x="-19" y="-92"/>
         </view>
     </objects>
     <resources>

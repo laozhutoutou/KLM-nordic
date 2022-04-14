@@ -28,6 +28,7 @@ class KLMChartsTestViewController: UIViewController {
     func setupPieView() {
         
         pieView.chartDescription.text = "区域统计"
+        pieView.backgroundColor = .lightGray
         pieView.usePercentValuesEnabled = true ///使用百分比
         ///区块文本
         pieView.drawEntryLabelsEnabled = true
@@ -35,6 +36,7 @@ class KLMChartsTestViewController: UIViewController {
         
         ///空心
         pieView.drawHoleEnabled = true
+        pieView.holeRadiusPercent = 0.382
         pieView.drawCenterTextEnabled = true
         pieView.centerText = "区域人数"
         
@@ -65,9 +67,14 @@ class KLMChartsTestViewController: UIViewController {
         let dataset = PieChartDataSet.init(entries: yVals, label: "区域记录")
         dataset.colors = [.red, .yellow, .blue, .orange, .green]
         dataset.valueFormatter = self
+        dataset.xValuePosition = .insideSlice
+        dataset.yValuePosition = .outsideSlice
+        dataset.valueLinePart1OffsetPercentage = 0.8 //折线中第一段起始位置相对于区块的偏移量, 数值越大, 折线距离区块越远
+        dataset.valueLinePart1Length = 0.6 //折线中第一段长度占比
+        dataset.valueLinePart2Length = 0.3 //折线中第二段长度最大占比
         
         let data = PieChartData.init(dataSets: [dataset])
-        
+        pieView.data = data
         
     }
 
@@ -105,7 +112,6 @@ class KLMChartsTestViewController: UIViewController {
         xAxis.labelPosition = .bottom //x轴的位置
         xAxis.drawGridLinesEnabled = false //不显示网格线
         xAxis.granularity = 1.0 //x轴label对齐柱状条
-        
 
     }
     
@@ -163,7 +169,7 @@ class KLMChartsTestViewController: UIViewController {
         self.chart.notifyDataSetChanged()
         KLMLog("yMax = \(dataset.yMax)")
         KLMLog("dataYmax = \(self.data.yMax)")
-    
+        
     }
     
 }
@@ -173,8 +179,11 @@ extension KLMChartsTestViewController: ValueFormatter {
     ///
     func stringForValue(_ value: Double, entry: ChartDataEntry, dataSetIndex: Int, viewPortHandler: ViewPortHandler?) -> String {
         
+        if entry is BarChartDataEntry {
+            return "\(Int(value))"
+        }
         
-        return "\(Int(value))"
+        return String.init(format: "%.2f%%", value)
     }
 }
 

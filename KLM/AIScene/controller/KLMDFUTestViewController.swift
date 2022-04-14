@@ -227,7 +227,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                 SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
                             case 0xFC:
                                 KLMLog("正在搜索其他待升级设备")
-                                SVProgressHUD.show(withStatus: "正在搜索其他待升级设备")
+                                SVProgressHUD.show(withStatus: "Searching for other devices to be upgraded")
                             case 0xFF: ///其他设备在升级
                                 KLMLog("Please wait while other devices are upgrading")
 //                                SVProgressHUD.showProgress(0.8, status: "80%")

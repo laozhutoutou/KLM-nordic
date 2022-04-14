@@ -302,14 +302,6 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
                     }
                 }
                 
-//                let H: Float = Float(HH.hexadecimalToDecimal())! / 360
-//                let S: Float = Float(SS.hexadecimalToDecimal())! / 1000
-//                let B: Float = Float(BB.hexadecimalToDecimal())! / 1000
-                
-//                let color = value.hexToColor()
-//                self.pickView.selectionColor = color
-                
-                
             }
 
         } else if message?.dp ==  .colorTemp{//色温

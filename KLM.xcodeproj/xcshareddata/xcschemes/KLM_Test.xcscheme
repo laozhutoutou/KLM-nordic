@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4C57F0228055C7C00E7AB54"
-               BuildableName = "KLM_GN copy.app"
+               BuildableName = "KLM_Test.app"
                BlueprintName = "KLM_Test"
                ReferencedContainer = "container:KLM.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4C57F0228055C7C00E7AB54"
-            BuildableName = "KLM_GN copy.app"
+            BuildableName = "KLM_Test.app"
             BlueprintName = "KLM_Test"
             ReferencedContainer = "container:KLM.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4C57F0228055C7C00E7AB54"
-            BuildableName = "KLM_GN copy.app"
+            BuildableName = "KLM_Test.app"
             BlueprintName = "KLM_Test"
             ReferencedContainer = "container:KLM.xcodeproj">
          </BuildableReference>
