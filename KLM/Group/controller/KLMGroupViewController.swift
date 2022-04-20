@@ -138,12 +138,6 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         
         if indexPath.row == 0 { ///所有设备
             
-            ///灯没连接提示靠近
-            if !MeshNetworkManager.bearer.isOpen {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("deviceNearbyTip"))
-                return
-            }
-            
             KLMHomeManager.sharedInstacnce.controllType = .AllDevices
             let vc = KLMAllDeviceViewController()
             navigationController?.pushViewController(vc, animated: true)
@@ -225,16 +219,6 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         
-        //整组设置
-//        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("groupSetting")) { action, sourceView, completionHandler in
-//
-//            let vc = KLMGroupEditViewController()
-//            vc.group = model
-//            self.navigationController?.pushViewController(vc, animated: true)
-//
-//            completionHandler(true)
-//        }
-//        editAction.backgroundColor = appMainThemeColor
         let actions = UISwipeActionsConfiguration.init(actions: [deleteAction])
         return actions
     }

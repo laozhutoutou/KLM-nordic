@@ -91,7 +91,7 @@ let navigationBarColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 let appMainThemeColor = #colorLiteral(red: 0.7215686275, green: 0.09019607843, blue: 0.2666666667, alpha: 1)
 //APP背景颜色 rgba(247, 247, 247, 1)
 let appBackGroupColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
-    
+
 //版本信息
 let KLM_SYSTEM_VERSION = Float(UIDevice.current.systemVersion)
 let KLM_APP_NAME = Bundle.main.infoDictionary?["CFBundleDisplayName"]

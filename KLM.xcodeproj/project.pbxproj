@@ -22,6 +22,9 @@
 		E4377E432685AB7600F8DF0C /* KLMUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */; };
 		E4377E492685B99500F8DF0C /* NSData+CRC16.m in Sources */ = {isa = PBXBuildFile; fileRef = E4377E482685B99400F8DF0C /* NSData+CRC16.m */; };
 		E44554E627C3711400E421DC /* KLMPassengerFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */; };
+		E44E4BC2280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */; };
+		E44E4BC3280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */; };
+		E44E4BC4280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */; };
 		E46B544927698BD300F3D5E5 /* KLMLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B544B27698BD300F3D5E5 /* KLMLoginViewController.xib */; };
 		E46B54502769906200F3D5E5 /* KLMRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54522769906200F3D5E5 /* KLMRegisterViewController.xib */; };
 		E46B5457276997F600F3D5E5 /* KLMHomeAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B5459276997F600F3D5E5 /* KLMHomeAddViewController.xib */; };
@@ -642,6 +645,7 @@
 		E4377E472685B99400F8DF0C /* NSData+CRC16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC16.h"; sourceTree = "<group>"; };
 		E4377E482685B99400F8DF0C /* NSData+CRC16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC16.m"; sourceTree = "<group>"; };
 		E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPassengerFlowViewController.swift; sourceTree = "<group>"; };
+		E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMVerifyManager.swift; sourceTree = "<group>"; };
 		E46B544A27698BD300F3D5E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMLoginViewController.xib; sourceTree = "<group>"; };
 		E46B544D27698BD800F3D5E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMLoginViewController.strings; sourceTree = "<group>"; };
 		E46B544F27698BD800F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMLoginViewController.strings"; sourceTree = "<group>"; };
@@ -1204,6 +1208,7 @@
 				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
 				E4D74489278533C80049B670 /* EspDataUtils.swift */,
 				E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */,
+				E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2128,6 +2133,7 @@
 				E4F2D475273505D8007FA07E /* KLMHome.swift in Sources */,
 				E4A65FD52670B06400FE6866 /* CGImageContainer.m in Sources */,
 				E4A65FD42670B06400FE6866 /* BitmapContextManipulator.m in Sources */,
+				E44E4BC2280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */,
 				E477D94226D782C900612456 /* KLMChengpinViewController.swift in Sources */,
 				E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */,
 				E4729A7C26B1333A00DC7D59 /* KLMText1ViewController.swift in Sources */,
@@ -2275,6 +2281,7 @@
 				E4C57E8128055B1F00E7AB54 /* KLMHome.swift in Sources */,
 				E4C57E8228055B1F00E7AB54 /* CGImageContainer.m in Sources */,
 				E4C57E8328055B1F00E7AB54 /* BitmapContextManipulator.m in Sources */,
+				E44E4BC3280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */,
 				E4C57E8428055B1F00E7AB54 /* KLMChengpinViewController.swift in Sources */,
 				E4C57E8528055B1F00E7AB54 /* KLMSearchViewController.swift in Sources */,
 				E4C57E8628055B1F00E7AB54 /* KLMText1ViewController.swift in Sources */,
@@ -2422,6 +2429,7 @@
 				E4C57F5828055C7C00E7AB54 /* KLMHome.swift in Sources */,
 				E4C57F5928055C7C00E7AB54 /* CGImageContainer.m in Sources */,
 				E4C57F5A28055C7C00E7AB54 /* BitmapContextManipulator.m in Sources */,
+				E44E4BC4280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */,
 				E4C57F5B28055C7C00E7AB54 /* KLMChengpinViewController.swift in Sources */,
 				E4C57F5C28055C7C00E7AB54 /* KLMSearchViewController.swift in Sources */,
 				E4C57F5D28055C7C00E7AB54 /* KLMText1ViewController.swift in Sources */,
@@ -2921,7 +2929,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -2952,7 +2960,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -2984,7 +2992,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -3015,7 +3023,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -3047,7 +3055,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -3078,7 +3086,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

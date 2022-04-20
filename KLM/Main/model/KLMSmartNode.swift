@@ -194,8 +194,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     case .factoryTest,
                          .factoryTestResule,
                          .DFU:
-                        let valueHex = parameters.suffix(from: 2).hex
-                        response.value = valueHex
+                        response.value = value.hex
 
                     default:
                         break
@@ -235,10 +234,21 @@ extension KLMSmartNode: MeshNetworkDelegate {
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
         ///失败停止计时
         KLMMessageTime.sharedInstacnce.stopTime()
-        
         SVProgressHUD.dismiss()
+        
         var err = MessageError()
         err.message = LANGLOC("deviceNearbyTip")
+        
+        do {
+            try KLMConnectManager.checkBluetoothState()
+            
+        } catch {
+            
+            if let errr = error as? MessageError {
+                err.message = errr.message
+            }
+        }
+         
         self.delegate?.smartNode(self, didfailure: err)
     }
 }
@@ -250,7 +260,7 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
         ///超时后不再接收蓝牙消息
         MeshNetworkManager.instance.delegate = nil
         var err = MessageError()
-        err.message = LANGLOC("deviceNearbyTip")
+        err.message = LANGLOC("ConnectTimeoutTip")
         self.delegate?.smartNode(self, didfailure: err)
     }
 }

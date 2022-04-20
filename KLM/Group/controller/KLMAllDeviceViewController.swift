@@ -55,6 +55,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
+            cell.rightTitle = ""
             return cell
         default: break
             

@@ -19,6 +19,7 @@ class KLMForgetPasswordViewController: UIViewController {
     @IBOutlet weak var doneBtn: UIButton!
     /// 验证码
     @IBOutlet weak var verCodeBtn: UIButton!
+    @IBOutlet weak var eyeBtn: UIButton!
     //倒计时
     var messageTimer: Timer?
     ///当前秒
@@ -28,8 +29,12 @@ class KLMForgetPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        doneBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
+        doneBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
 
         doneBtn.layer.cornerRadius = doneBtn.height / 2;
+        doneBtn.clipsToBounds = true
         
         ///监控输入
         Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty) { mailText, passwordText, codeText in
@@ -52,8 +57,14 @@ class KLMForgetPasswordViewController: UIViewController {
             SVProgressHUD.showInfo(withStatus: mailTextField.placeholder)
             return
         }
+        
+        if !KLMVerifyManager.isEmail(email: text) {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("mailboxIncorrectTip"))
+            return
+        }
+        
         SVProgressHUD.show()
-        KLMService.getCode(email: mailTextField.text!) { _ in
+        KLMService.getCode(email: text) { _ in
             SVProgressHUD.showSuccess(withStatus: "Verification code has been sent")
             
             ///开始倒计时
@@ -101,5 +112,14 @@ class KLMForgetPasswordViewController: UIViewController {
             verCodeBtn.isEnabled = true
             verCodeBtn.setTitle(codeTitle, for: .normal)
         }
+    }
+    
+    @IBAction func eyeBtn(_ sender: UIButton) {
+        passTextField.isSecureTextEntry = !passTextField.isSecureTextEntry
+        var image: UIImage = #imageLiteral(resourceName: "icon_login_eyeClose")
+        if !passTextField.isSecureTextEntry {
+            image = #imageLiteral(resourceName: "icon_login_eyeOpen")
+        }
+        eyeBtn.setImage(image, for: .normal)
     }
 }

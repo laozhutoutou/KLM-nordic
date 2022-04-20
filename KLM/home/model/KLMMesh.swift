@@ -45,28 +45,32 @@ class KLMMesh {
     ///保存选择的家庭
     static func saveHome(home: KLMHome.KLMHomeModel?) {
         KLMCache.setCache(model: home, key: "home")
-        
+        KLMCache.setCache(model: home, key: "home\(home!.id)")
     }
     ///删除存储的家庭
     static func removeHome() {
         KLMCache.removeObject(key: "home")
     }
+    ///根据meshid获取本地保存的数据
+    static func getHome(homeId: Int) -> KLMHome.KLMHomeModel? {
+        return KLMCache.getCache(KLMHome.KLMHomeModel.self, key: "home\(homeId)")
+    }
     
     ///加载本地缓存的mesh数据
-    static func loadLocalMeshData () {
-        
-        var loaded = false
-        do {
-            loaded = try MeshNetworkManager.instance.load()
-        } catch {
-            print(error)
-            // ignore
-        }
-        
-        if loaded {
-            (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
-        }
-    }
+//    static func loadLocalMeshData () {
+//        
+//        var loaded = false
+//        do {
+//            loaded = try MeshNetworkManager.instance.load()
+//        } catch {
+//            print(error)
+//            // ignore
+//        }
+//        
+//        if loaded {
+//            (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
+//        }
+//    }
     ///mesh数据写入本地
     static func loadHomeMeshData(meshConfiguration: String) {
         
@@ -98,16 +102,19 @@ class KLMMesh {
     private static func changeProvisionerAddress() {
         
         ///当前mesh管理员无需更改
-        if isMeshManager() {
-            
-            return
-        }
+//        if isMeshManager() {
+//
+//            return
+//        }
         //更改provisioner 的 unicastAddress
         let manager = MeshNetworkManager.instance
         let meshNetwork = manager.meshNetwork!
         let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
         guard let user = KLMUser.getUserInfo() else { return }
-        let address = 0x199A - user.id
+        var address = 0x199A - user.id
+        if apptype == .test {///因为可能同一个用户登录两个APP，如果服务器增加同一个用户不能登录两台设备，这个限制可以去掉
+            address = 0x199A - user.id - 1000
+        }
         let newAddress: Address = Address.init(address)
         print(newAddress.asString())
         
@@ -132,7 +139,7 @@ class KLMMesh {
     
     ///保存配置数据同时提交到服务器
     static func save() -> Bool {
-        
+       
         if MeshNetworkManager.instance.save() {
             
             if var model = KLMMesh.loadHome() {

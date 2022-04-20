@@ -167,13 +167,23 @@ class NetworkConnection: NSObject, Bearer {
 extension NetworkConnection: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        KLMConnectManager.shared.state = central.state
         switch central.state {
         case .poweredOn:
             if isStarted && isConnectionModeAutomatic &&
                proxies.count < NetworkConnection.maxConnections {
                 central.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
             }
-        case .poweredOff, .resetting:
+        case .poweredOff:
+            print("app一定已授权,蓝牙是关闭状态")
+            proxies.forEach { $0.close() }
+            proxies.removeAll()
+            isOpen = false
+//            SVProgressHUD.showInfo(withStatus: "app一定已授权,蓝牙是关闭状态")
+        case .unauthorized:
+            print("app一定未授权,蓝牙是否开启不知")
+//            SVProgressHUD.showInfo(withStatus: "app一定未授权,蓝牙是否开启不知")
+        case .resetting:
             proxies.forEach { $0.close() }
             proxies.removeAll()
             isOpen = false

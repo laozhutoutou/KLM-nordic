@@ -100,4 +100,8 @@ BlueToothSignalTip = "蓝牙信号太弱";
 WrongWiFitip = "连接超时, 请检查WiFi名称或者密码是否有误";
 UpdateInterruptedTip = "更新中断, 请保证网络正常";
 Passengerflowstatistics = "客流统计";
-ConnectLightFailue = "通过蓝牙连接灯失败";
+
+ConnectTimeoutTip = "连接超时";
+APPBluetoothPowerTip = "请打开手机蓝牙";
+APPBluetoothunauthorized = "请到APP控制中心授权蓝牙";
+mailboxIncorrectTip = "邮箱格式不正确";

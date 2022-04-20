@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMRegisterViewController" customModule="KLM" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMRegisterViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
                 <outlet property="codeTextField" destination="BAv-wk-DtO" id="HJH-SO-6fF"/>
+                <outlet property="eyeBtn" destination="ix2-Vu-CQ5" id="W0G-AL-TiN"/>
                 <outlet property="mailTextField" destination="CGe-Xx-sCh" id="jcN-Se-5Kc"/>
                 <outlet property="nickNameField" destination="7Rz-xH-Sqj" id="9Dh-Ny-rPk"/>
                 <outlet property="passTextField" destination="cMp-WP-un3" id="Qc7-sc-EAg"/>
@@ -41,20 +42,20 @@
                     </constraints>
                 </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cMp-WP-un3">
-                    <rect key="frame" x="30" y="75.5" width="354" height="45"/>
+                    <rect key="frame" x="30" y="75.5" width="314" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="063-bE-23z"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygx-gk-u6c">
                     <rect key="frame" x="30" y="262" width="354" height="45"/>
-                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Q9C-XT-Cns"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="注册">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -69,7 +70,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="TWh-ff-1Vk"/>
                     </constraints>
                 </view>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="BAv-wk-DtO">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BAv-wk-DtO">
                     <rect key="frame" x="30" y="121" width="250" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="M4f-vi-c47"/>
@@ -111,22 +112,34 @@
                         <constraint firstAttribute="height" constant="0.5" id="ooc-LM-aDE"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ix2-Vu-CQ5">
+                    <rect key="frame" x="352" y="75" width="32" height="45.5"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                    <connections>
+                        <action selector="eyeBtn:" destination="-1" eventType="touchUpInside" id="t6u-P1-CVm"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="tn8-C3-3Nr"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="tn8-C3-3Nr" firstAttribute="trailing" secondItem="cMp-WP-un3" secondAttribute="trailing" constant="70" id="0eG-WC-Cxg"/>
                 <constraint firstItem="CGe-Xx-sCh" firstAttribute="leading" secondItem="tn8-C3-3Nr" secondAttribute="leading" constant="30" id="130-6r-iUc"/>
                 <constraint firstItem="7Rz-xH-Sqj" firstAttribute="top" secondItem="6Tk-iM-FFR" secondAttribute="bottom" id="1pv-h0-ZQ3"/>
                 <constraint firstItem="6Tk-iM-FFR" firstAttribute="top" secondItem="BAv-wk-DtO" secondAttribute="bottom" id="2j3-Gw-wAv"/>
+                <constraint firstItem="ix2-Vu-CQ5" firstAttribute="leading" secondItem="cMp-WP-un3" secondAttribute="trailing" constant="8" id="42f-dE-iFh"/>
                 <constraint firstItem="UqJ-p7-OHX" firstAttribute="leading" secondItem="7Rz-xH-Sqj" secondAttribute="leading" id="4d0-71-QH1"/>
                 <constraint firstItem="7Rz-xH-Sqj" firstAttribute="leading" secondItem="CGe-Xx-sCh" secondAttribute="leading" id="GnA-Jo-TNe"/>
+                <constraint firstItem="ix2-Vu-CQ5" firstAttribute="trailing" secondItem="CGe-Xx-sCh" secondAttribute="trailing" id="HMQ-ew-OHU"/>
                 <constraint firstItem="UqJ-p7-OHX" firstAttribute="trailing" secondItem="7Rz-xH-Sqj" secondAttribute="trailing" id="JUO-Qy-dYS"/>
                 <constraint firstItem="tn8-C3-3Nr" firstAttribute="trailing" secondItem="CGe-Xx-sCh" secondAttribute="trailing" constant="30" id="K8b-r9-Eza"/>
                 <constraint firstItem="ygx-gk-u6c" firstAttribute="top" secondItem="UqJ-p7-OHX" secondAttribute="bottom" constant="50" id="Kze-JM-udx"/>
-                <constraint firstItem="cMp-WP-un3" firstAttribute="trailing" secondItem="CGe-Xx-sCh" secondAttribute="trailing" id="OiM-y4-Dog"/>
                 <constraint firstItem="6Tk-iM-FFR" firstAttribute="trailing" secondItem="CGe-Xx-sCh" secondAttribute="trailing" id="QR1-Pl-oAq"/>
+                <constraint firstItem="ix2-Vu-CQ5" firstAttribute="top" secondItem="CGe-Xx-sCh" secondAttribute="bottom" id="QSm-FX-JDj"/>
                 <constraint firstItem="YeN-S3-ElN" firstAttribute="centerY" secondItem="BAv-wk-DtO" secondAttribute="centerY" id="SEJ-J8-Sya"/>
                 <constraint firstItem="7Rz-xH-Sqj" firstAttribute="trailing" secondItem="CGe-Xx-sCh" secondAttribute="trailing" id="Srm-ql-bZx"/>
+                <constraint firstItem="xPf-uy-6FA" firstAttribute="top" secondItem="ix2-Vu-CQ5" secondAttribute="bottom" id="TND-af-OX7"/>
                 <constraint firstItem="zvB-KV-rcv" firstAttribute="top" secondItem="CGe-Xx-sCh" secondAttribute="bottom" id="UHN-0b-gcl"/>
                 <constraint firstItem="CGe-Xx-sCh" firstAttribute="top" secondItem="tn8-C3-3Nr" secondAttribute="top" constant="30" id="UuB-uL-o2e"/>
                 <constraint firstItem="xPf-uy-6FA" firstAttribute="trailing" secondItem="CGe-Xx-sCh" secondAttribute="trailing" id="Vlq-pm-G3x"/>
@@ -145,10 +158,11 @@
                 <constraint firstItem="xPf-uy-6FA" firstAttribute="leading" secondItem="CGe-Xx-sCh" secondAttribute="leading" id="xh7-29-ekD"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-5162" y="-525"/>
+            <point key="canvasLocation" x="-5910" y="-732"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_login_eyeClose" width="17.5" height="9"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

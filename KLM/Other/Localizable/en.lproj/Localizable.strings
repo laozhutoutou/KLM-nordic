@@ -100,4 +100,8 @@ BlueToothSignalTip = "Bluetooth signal is too weak";
 WrongWiFitip = "Connection timeout, please check WiFi name or password";
 UpdateInterruptedTip = "Upgrade interrupted, please keep networks open";
 Passengerflowstatistics = "Passenger flow statistics";
-ConnectLightFailue = "Connection light failed via Bluetooth";
+
+ConnectTimeoutTip = "Connection timed out";
+APPBluetoothPowerTip = "Please power on the Bluetooth of your mobile phone";
+APPBluetoothunauthorized = "The application is not authorized to use the Bluetooth";
+mailboxIncorrectTip = "The mailbox format is incorrect";

@@ -7,8 +7,12 @@
 
 import Foundation
 import nRFMeshProvision
+import CoreBluetooth
 
 class KLMConnectManager {
+    
+    //蓝牙连接状态
+    var state: CBManagerState?
     
     var success: (() -> Void)?
     var failure: (() -> Void)?
@@ -45,6 +49,27 @@ class KLMConnectManager {
     //单例
     static let shared = KLMConnectManager()
     private init(){}
+}
+
+extension KLMConnectManager {
+    
+    ///检查手机蓝牙状态
+    static func checkBluetoothState() throws {
+        
+        var err = MessageError()
+        switch KLMConnectManager.shared.state {
+        case .poweredOff:
+            ///弹出手机蓝牙提示框
+            err.message = LANGLOC("APPBluetoothPowerTip")
+            throw err
+        case .unauthorized:
+            ///弹出APP蓝牙授权提示
+            err.message = LANGLOC("APPBluetoothunauthorized")
+            throw err
+        default:
+            break
+        }
+    }
 }
 
 extension KLMConnectManager: KLMSmartNodeDelegate {

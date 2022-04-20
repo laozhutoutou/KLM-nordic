@@ -152,7 +152,6 @@ class KLMNetworking: NSObject {
                     ///清空数据
                     KLMMesh.logout()
                     KLMLog("token 失效")
-                    SVProgressHUD.showError(withStatus: "token 失效")
                     let appdelegate = UIApplication.shared.delegate as! AppDelegate
                     appdelegate.enterLoginUI()
                 }
@@ -515,7 +514,12 @@ class KLMService: NSObject {
     static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         //查询版本
-        KLMNetworking.jsonManagerWithHeader(head: nil).post("https://itunes.apple.com/lookup?id=\(AppleStoreID)", parameters: nil, progress: nil) { task, responseObject in
+        var url = "https://itunes.apple.com/cn/lookup?id=\(AppleStoreID)"
+        if apptype == .targetsGW {
+            url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
+        }
+        KLMLog("url = \(url)")
+        KLMNetworking.jsonManagerWithHeader(head: nil).post(url, parameters: nil, progress: nil) { task, responseObject in
             
             KLMLog("查询成功:\(responseObject)")
             guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject], dic["resultCount"] as? Int == 1 else {

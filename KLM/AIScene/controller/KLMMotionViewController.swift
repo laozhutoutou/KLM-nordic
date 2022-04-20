@@ -20,13 +20,7 @@ class KLMMotionViewController: UIViewController, Editable {
     
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
-    
-    /// 是否已经读取
-    var motionTimeFirst = true
-    var motionLightFirst = true
-    
-    var isClickComfirm = false
-    
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -120,7 +114,6 @@ class KLMMotionViewController: UIViewController, Editable {
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 
                 let parameOn = parameModel(dp: .motionPower, value: 1)
-                self.isClickComfirm = true
                 KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
                 
             }
@@ -152,38 +145,8 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
             self.hideEmptyView()
         }
         
-        if message?.dp ==  .motionPower{
+        if message?.dp ==  .motionPower {
 
-            let value = message?.value as! Int
-            contentView.isHidden = value == 0 ? true : false
-        }
-        
-//        if message?.dp ==  .motionTime{
-//            if motionTimeFirst {
-//                motionTimeFirst = false
-//                let value = message?.value as! Int
-//                self.timeSlider.currentValue = Float(value)
-//
-//            }
-//
-//        } else if message?.dp ==  .motionLight{
-//            if motionLightFirst {
-//                motionLightFirst = false
-//                let value = message?.value as! Int
-//                self.lightSlider.currentValue = Float(value)
-//
-//            }
-//        } else
-//        if message?.dp ==  .motionPower{
-//
-//            let value = message?.value as! Int
-//            self.autoDim.isOn = value == 0 ? false : true
-//            contentView.isHidden = value == 0 ? true : false
-//        }
-//        KLMLog("success")
-        
-        //单设备确定
-        if isClickComfirm {
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 self.navigationController?.popViewController(animated: true)
@@ -192,6 +155,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        autoDim.isOn = true
         KLMShowError(error)
     }
 }

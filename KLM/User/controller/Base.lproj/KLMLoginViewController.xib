@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMLoginViewController" customModule="KLM" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMLoginViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="eyeBtn" destination="963-tn-VzK" id="lSu-Ea-Nu0"/>
                 <outlet property="logBtn" destination="CTQ-NG-57s" id="BIV-qX-aRb"/>
                 <outlet property="mailTextField" destination="R4M-M3-I25" id="DJe-di-GqI"/>
                 <outlet property="passTextField" destination="tGC-bl-r5s" id="Q1K-Wg-dcB"/>
@@ -23,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入邮箱" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R4M-M3-I25">
-                    <rect key="frame" x="30" y="30" width="354" height="45"/>
+                    <rect key="frame" x="30" y="30" width="314" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="sff-f5-PTU"/>
                     </constraints>
@@ -38,16 +39,15 @@
                     </constraints>
                 </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="tGC-bl-r5s">
-                    <rect key="frame" x="30" y="75.5" width="354" height="45"/>
+                    <rect key="frame" x="30" y="75.5" width="314" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="bCz-52-lfN"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                    <textInputTraits key="textInputTraits"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTQ-NG-57s">
                     <rect key="frame" x="30" y="161" width="354" height="45"/>
-                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="rQK-bQ-hK4"/>
                     </constraints>
@@ -85,6 +85,14 @@
                         <action selector="forgetPass:" destination="-1" eventType="touchUpInside" id="c4W-L6-9D1"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="963-tn-VzK">
+                    <rect key="frame" x="352" y="75.5" width="32" height="45"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                    <connections>
+                        <action selector="eyeBtn:" destination="-1" eventType="touchUpInside" id="cFL-ga-dJ9"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,27 +101,33 @@
                 <constraint firstItem="1PS-Jx-dQB" firstAttribute="leading" secondItem="R4M-M3-I25" secondAttribute="leading" id="53j-o2-cWr"/>
                 <constraint firstItem="CTQ-NG-57s" firstAttribute="top" secondItem="Ram-Mt-Vyz" secondAttribute="bottom" constant="40" id="AzE-3x-4Px"/>
                 <constraint firstItem="Ram-Mt-Vyz" firstAttribute="leading" secondItem="R4M-M3-I25" secondAttribute="leading" id="Dbp-Jc-uBz"/>
+                <constraint firstItem="963-tn-VzK" firstAttribute="centerY" secondItem="tGC-bl-r5s" secondAttribute="centerY" id="Fzp-XT-rHj"/>
+                <constraint firstItem="Ram-Mt-Vyz" firstAttribute="top" secondItem="963-tn-VzK" secondAttribute="bottom" id="IYW-3V-5BL"/>
+                <constraint firstItem="CTQ-NG-57s" firstAttribute="trailing" secondItem="1PS-Jx-dQB" secondAttribute="trailing" id="M2w-Fp-FDe"/>
+                <constraint firstItem="963-tn-VzK" firstAttribute="leading" secondItem="tGC-bl-r5s" secondAttribute="trailing" constant="8" id="QIv-fj-syV"/>
                 <constraint firstItem="CTQ-NG-57s" firstAttribute="leading" secondItem="R4M-M3-I25" secondAttribute="leading" id="RHk-Qn-q7t"/>
                 <constraint firstItem="dbi-hy-HMp" firstAttribute="top" secondItem="CTQ-NG-57s" secondAttribute="bottom" constant="25" id="STt-EP-wKG"/>
-                <constraint firstItem="1PS-Jx-dQB" firstAttribute="trailing" secondItem="R4M-M3-I25" secondAttribute="trailing" id="cK8-7N-PJq"/>
+                <constraint firstItem="963-tn-VzK" firstAttribute="trailing" secondItem="1PS-Jx-dQB" secondAttribute="trailing" id="WVC-Qr-RoU"/>
+                <constraint firstItem="Ram-Mt-Vyz" firstAttribute="trailing" secondItem="1PS-Jx-dQB" secondAttribute="trailing" id="a07-jm-5g8"/>
                 <constraint firstItem="Ram-Mt-Vyz" firstAttribute="top" secondItem="tGC-bl-r5s" secondAttribute="bottom" id="dsE-Yf-g6a"/>
-                <constraint firstItem="Ram-Mt-Vyz" firstAttribute="trailing" secondItem="R4M-M3-I25" secondAttribute="trailing" id="fDt-jN-kOj"/>
+                <constraint firstItem="963-tn-VzK" firstAttribute="top" secondItem="1PS-Jx-dQB" secondAttribute="bottom" id="eMh-Dq-by1"/>
                 <constraint firstItem="R4M-M3-I25" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="i3H-mD-DMi"/>
                 <constraint firstItem="tGC-bl-r5s" firstAttribute="trailing" secondItem="R4M-M3-I25" secondAttribute="trailing" id="iee-RW-qzj"/>
                 <constraint firstItem="1PS-Jx-dQB" firstAttribute="top" secondItem="R4M-M3-I25" secondAttribute="bottom" id="j2B-WX-03I"/>
+                <constraint firstAttribute="trailing" secondItem="1PS-Jx-dQB" secondAttribute="trailing" constant="30" id="jKl-cx-owx"/>
                 <constraint firstItem="83u-FT-LVG" firstAttribute="trailing" secondItem="CTQ-NG-57s" secondAttribute="trailing" id="k1X-Ns-EAd"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R4M-M3-I25" secondAttribute="trailing" constant="30" id="kb3-9Q-JJ0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R4M-M3-I25" secondAttribute="trailing" constant="70" id="kb3-9Q-JJ0"/>
                 <constraint firstItem="tGC-bl-r5s" firstAttribute="top" secondItem="1PS-Jx-dQB" secondAttribute="bottom" id="ldl-iv-9Q3"/>
                 <constraint firstItem="83u-FT-LVG" firstAttribute="centerY" secondItem="dbi-hy-HMp" secondAttribute="centerY" id="mOa-x7-oSG"/>
                 <constraint firstItem="tGC-bl-r5s" firstAttribute="leading" secondItem="R4M-M3-I25" secondAttribute="leading" id="rP9-eq-8Tn"/>
-                <constraint firstItem="CTQ-NG-57s" firstAttribute="trailing" secondItem="R4M-M3-I25" secondAttribute="trailing" id="tbV-Ja-HW0"/>
                 <constraint firstItem="dbi-hy-HMp" firstAttribute="leading" secondItem="CTQ-NG-57s" secondAttribute="leading" id="x7p-s0-BI4"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-1700" y="-109"/>
+            <point key="canvasLocation" x="-1891" y="-402"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_login_eyeClose" width="17.5" height="9"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

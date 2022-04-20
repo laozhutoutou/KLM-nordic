@@ -9,6 +9,13 @@ import UIKit
 import Photos
 
 class KLMImagePickerController: UIImagePickerController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,3 +217,16 @@ extension KLMImagePickerController: UIImagePickerControllerDelegate & UINavigati
         picker.dismiss(animated: true, completion: nil)
     }
 }
+
+extension KLMImagePickerController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        
+//        KLMShowError(error)
+    }
+}
+

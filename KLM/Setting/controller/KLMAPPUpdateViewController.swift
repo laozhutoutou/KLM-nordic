@@ -42,8 +42,9 @@ class KLMAPPUpdateViewController: UIViewController {
     
     @IBAction func updateClick(_ sender: Any) {
         
+        SVProgressHUD.show()
         KLMService.checkAppVersion { response in
-            
+            SVProgressHUD.dismiss()
             let newVersion: String = response as! String
             let currentVersion: String = String(format: "%@", KLM_APP_VERSION as! String)
             
@@ -69,24 +70,5 @@ class KLMAPPUpdateViewController: UIViewController {
             KLMShowError(err)
         }
         
-        ///解压文件
-//        let path = Bundle.main.path(forResource: "Project", ofType: "zip")
-//        let des = NSHomeDirectory() + "/Documents/Project"
-//        SSZipArchive.unzipFile(atPath: path!, toDestination: des) { str, info, index, index1 in
-//            print(str)
-//            print(info)
-//            print(index)
-//            print(index1)
-//        } completionHandler: { str, bool, error in
-//            print(bool)
-//            print(error)
-//        }
-//
-//        ///获取文件
-//        let filePath = NSHomeDirectory() + "/Documents/Project/Project.bin"
-//        if FileManager.default.fileExists(atPath: filePath){
-//            let data = NSData.init(contentsOfFile: filePath)
-//            KLMLog(data)
-//        }
     }
 }

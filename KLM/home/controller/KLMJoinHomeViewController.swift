@@ -34,7 +34,5 @@ class KLMJoinHomeViewController: UIViewController {
         } failure: { error in
             KLMHttpShowError(error)
         }
-
     }
-    
 }

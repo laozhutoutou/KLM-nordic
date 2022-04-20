@@ -103,14 +103,6 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
             
-//            if isTestApp {
-//
-//                let vc = KLMTestSectionTableViewController()
-//                self.navigationController?.pushViewController(vc, animated: true)
-//
-//                return
-//            }
-            
             if apptype == .test {
                 
                 let vc = KLMTestSectionTableViewController()

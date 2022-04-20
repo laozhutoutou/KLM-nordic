@@ -187,7 +187,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                 ///开始发送数据
                 espOtaStart()
             }
-            
+            ///开始接收到更新数据
             if String(format: "%08X", message.opCode) == "00CF00FF" {
                 
                 ///更新完成

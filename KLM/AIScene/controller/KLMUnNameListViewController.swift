@@ -130,10 +130,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         ///初始化数据
         initData()
         ///检查版本
-//        if isTestApp == false {
-//            checkVersion()
-//        }
-        
         if apptype == .targetGN || apptype == .targetsGW {
             checkVersion()
         }
@@ -145,27 +141,28 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         if let home = KLMMesh.loadHome() { ///本地存有家庭
 
             self.homeBtn.setTitle(home.meshName, for: .normal)
-            ///从本地提取mesh数据
-            KLMMesh.loadLocalMeshData()
+
+            ///存储mesh数据
+            KLMMesh.loadHomeMeshData(meshConfiguration: home.meshConfiguration)
 
             ///渲染首页
             self.setupData()
         }
         
         KLMService.getMeshList { response in
-            
+
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
-                                
+
                 if let home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
                     ///比较是服务器的新还是本地的新
-                    
+
                     let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
                     let meshData = KLMMesh.getMeshNetwork(meshConfiguration: mesh.meshConfiguration)
                     if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
                         KLMLog("本地比服务器的新")
                         self.commitLoalDataToServer()
-                        
+
                     } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
                         ///本地的和服务器一样
                         KLMLog("本地和服务器的一样")
@@ -181,11 +178,11 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                         ///渲染首页
                         self.setupData()
                     }
-                    
+
                 } else {
                     ///选择第一个家庭
                     let firstHome = meshList.first!
-                    
+
                     self.homeBtn.setTitle(firstHome.meshName, for: .normal)
                     ///存储当前家庭
                     KLMMesh.saveHome(home: firstHome)
@@ -194,24 +191,24 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     ///渲染首页
                     self.setupData()
                 }
-                
-                
-                
+
+
+
             } else {///服务器没有家庭
-                
+
                 self.homeBtn.setTitle(nil, for: .normal)
                 if KLMMesh.loadHome() != nil {///本地存有家庭
                     ///清空数据
                     KLMMesh.removeHome()
-                    
+
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
-                    
+
                 }
-                
+
                 ///渲染首页
                 self.setupData()
             }
-            
+
         } failure: { error in
             
         }
@@ -384,13 +381,22 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
             return
         }
         
-        ///存储当前家庭
-        KLMMesh.saveHome(home: selectHome)
-        self.homeBtn.setTitle(selectHome.meshName, for: .normal)
-        ///将mesh信息存到本地
-        KLMMesh.loadHomeMeshData(meshConfiguration: selectHome.meshConfiguration)
-        ///渲染页面
-        self.setupData()
+        //取缓存数据
+        if let localHome = KLMMesh.getHome(homeId: selectHome.id) {
+            KLMMesh.saveHome(home: localHome)
+        } else {
+            KLMMesh.saveHome(home: selectHome)
+        }
+        self.initData()
+        
+//        ///存储当前家庭
+//        KLMMesh.saveHome(home: selectHome)
+//        self.homeBtn.setTitle(selectHome.meshName, for: .normal)
+//        ///将mesh信息存到本地
+//
+//        KLMMesh.loadHomeMeshData(meshConfiguration: selectHome.meshConfiguration)
+//        ///渲染页面
+//        self.setupData()
     }
 }
 
@@ -414,14 +420,6 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
             guard let self = self else { return }
-
-//            if isTestApp {
-//
-//                let vc = KLMTestSectionTableViewController()
-//                self.navigationController?.pushViewController(vc, animated: true)
-//
-//                return
-//            }
             
             if apptype == .test {
 
@@ -523,14 +521,6 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
-            
-//            if isTestApp {
-//
-//                let vc = KLMTestSectionTableViewController()
-//                self.navigationController?.pushViewController(vc, animated: true)
-//
-//                return
-//            }
             
             if apptype == .test {
                 

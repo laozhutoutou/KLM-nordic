@@ -223,6 +223,13 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             self.hideEmptyView()
         }
         
+        ///开关灯会回调这个
+//        if message?.dp ==  .power{
+//
+//            let value = message?.value as! Int
+//            self.lightSwitch = value
+//        }
+        
 //        if message?.dp ==  .cameraPower{
 //
 //            let value = message?.value as! Int
@@ -263,11 +270,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
 //            self.colorTest = value == 2 ? false : true
 //            self.tableView.reloadData()
 //        }
-        if message?.dp ==  .power{
-
-            let value = message?.value as! Int
-            self.lightSwitch = value
-        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
@@ -282,6 +284,10 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        ///从拍照页面返回来，如果灯是关闭的，不提示开灯操作
+        if error?.dp == .recipe {
+            return
+        }
         KLMShowError(error)
     }
 }
@@ -313,7 +319,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("lightSet")
             cell.rightTitle = ""
             return cell
-        case itemType.CMOS.rawValue:
+        case itemType.CMOS.rawValue://颜色识别
             let cell: KLMOneSwitchCell = KLMOneSwitchCell.cellWithTableView(tableView: tableView)
             cell.cameraOnOff = self.cameraSwitch
             return cell
@@ -473,11 +479,11 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
                 
                 //关灯不能升级
-                if self.lightSwitch != 1 {
-                    
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("turnOnLightTip"))
-                    return
-                }
+//                if self.lightSwitch != 1 {
+//
+//                    SVProgressHUD.showInfo(withStatus: LANGLOC("turnOnLightTip"))
+//                    return
+//                }
                 
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData
