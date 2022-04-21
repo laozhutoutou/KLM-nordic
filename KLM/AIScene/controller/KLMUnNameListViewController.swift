@@ -115,11 +115,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
         self.collectionView.mj_header = header
         
-        ///显示空白页面
-//        showEmptyView()
-//        DispatchQueue.main.asyncAfter(deadline: 1) {
-//            self.hideEmptyView()
-//        }
     }
     
     func event() {
@@ -136,6 +131,12 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     }
     
     @objc func initData() {
+        
+        //蓝牙连接需要一定时间，搞个加载动画
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 2) {
+            self.hideEmptyView()
+        }
         
         ///先填充本地数据
         if let home = KLMMesh.loadHome() { ///本地存有家庭
@@ -191,9 +192,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     ///渲染首页
                     self.setupData()
                 }
-
-
-
+                
             } else {///服务器没有家庭
 
                 self.homeBtn.setTitle(nil, for: .normal)
@@ -255,8 +254,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     @objc func homeListClick() {
         
+        SVProgressHUD.show()
         KLMService.getMeshList { response in
-            
+            SVProgressHUD.dismiss()
             self.homes = response as! [KLMHome.KLMHomeModel]
             self.showHomeDropView()
         } failure: { error in
@@ -389,14 +389,6 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
         }
         self.initData()
         
-//        ///存储当前家庭
-//        KLMMesh.saveHome(home: selectHome)
-//        self.homeBtn.setTitle(selectHome.meshName, for: .normal)
-//        ///将mesh信息存到本地
-//
-//        KLMMesh.loadHomeMeshData(meshConfiguration: selectHome.meshConfiguration)
-//        ///渲染页面
-//        self.setupData()
     }
 }
 

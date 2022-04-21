@@ -44,6 +44,10 @@ extension UIView {
         if let emptyView = subviews.first(where: { $0.tag == 100 }) {
             
             emptyView.alpha = 1.0
+            if let indicatorView: UIActivityIndicatorView = emptyView.subviews.first(where: { $0.tag == 101 }) as? UIActivityIndicatorView{
+               
+                indicatorView.startAnimating()
+            }
         }
     }
     

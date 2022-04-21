@@ -511,6 +511,24 @@ class KLMService: NSObject {
         }
     }
     
+    static func addGroup(groupId: Int, groupName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+                    
+        let model = KLMMesh.loadHome()!
+        let parame: [String : Any] = ["meshId": model.id,
+                                      "groupId": groupId,
+                                      "groupName": groupName]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/group"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
     static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         //查询版本

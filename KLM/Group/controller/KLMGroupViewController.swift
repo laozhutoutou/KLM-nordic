@@ -58,6 +58,12 @@ class KLMGroupViewController: UIViewController {
             return
         }
         
+        //没网不能
+//        if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
+//            SVProgressHUD.showError(withStatus: LANGLOC("NetWorkTip"))
+//            return
+//        }
+        
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
         vc.modalPresentationStyle = .overCurrentContext
@@ -78,6 +84,13 @@ class KLMGroupViewController: UIViewController {
                     
                     if KLMMesh.save() {
                         
+                        //提交分组到服务器
+//                        KLMService.addGroup(groupId: Int(automaticAddress), groupName: name) { response in
+//                            KLMLog("分组提交成功到服务器")
+//                        } failure: { error in
+//
+//                        }
+
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
                     }
