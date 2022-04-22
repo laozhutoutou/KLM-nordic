@@ -22,9 +22,6 @@ class KLMGroupTransferListViewController: UIViewController {
     //选择的
     private var selectedIndexPath: IndexPath?
     
-    //原来设备所属分组
-    var originalGroup: Group!
-    
     //当前设备
     var currentDevice: Node!
     
@@ -95,15 +92,23 @@ class KLMGroupTransferListViewController: UIViewController {
                 // Try assigning next available Group Address.
                 if let automaticAddress = network.nextAvailableGroupAddress(for: localProvisioner) {
                     
-                    let address = MeshAddress(automaticAddress)
-                    let group = try? Group(name: name, address: address)
-                    try? network.add(group: group!)
-                    
-                    if KLMMesh.save() {
+                    //提交分组到服务器
+                    KLMService.addGroup(groupId: Int(automaticAddress), groupName: name) { response in
+                        KLMLog("分组提交成功到服务器")
                         
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
-                        self.setupData()
+                        let address = MeshAddress(automaticAddress)
+                        let group = try? Group(name: name, address: address)
+                        try? network.add(group: group!)
+                        
+                        if KLMMesh.save() {
+                            
+                            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                            NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
+                            self.setupData()
+                        }
+                        
+                    } failure: { error in
+                        KLMHttpShowError(error)
                     }
                 }
                 
@@ -133,7 +138,7 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
                 
             }
             //设备从当前群组中移除
-            KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: currentDevice, withGroup: self.originalGroup)
+            KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: currentDevice, withGroup: KLMHomeManager.currentGroup)
             
         }
         

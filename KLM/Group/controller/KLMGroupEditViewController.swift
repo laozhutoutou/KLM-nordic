@@ -21,8 +21,7 @@ class KLMGroupEditViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    //当前分组
-    var group: Group!
+    var groupData: GroupData?
     
     deinit {
         
@@ -35,11 +34,27 @@ class KLMGroupEditViewController: UIViewController {
 
         navigationItem.title = LANGLOC("groupSetting")
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceRemoveFromGroup, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .deviceRemoveFromGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .deviceAddToGroup, object: nil)
+        
+        setupData()
     }
     
-    @objc func setupData() {
+    private func setupData() {
+        
+        SVProgressHUD.show()
+        KLMService.selectGroup(groupId: Int(KLMHomeManager.currentGroup.address.address)) { response in
+            SVProgressHUD.dismiss()
+            guard let model = response as? GroupData else { return  }
+            self.groupData = model
+            self.tableView.reloadData()
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+
+    }
+    
+    @objc func reloadData() {
         
         self.tableView.reloadData()
     }
@@ -66,18 +81,19 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("reNameGroup")
-            cell.rightTitle = self.group.name
+            cell.rightTitle = KLMHomeManager.currentGroup.name
             return cell
         case itemType.groupMembers.rawValue:
             let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("groupMembers")
             let network = MeshNetworkManager.instance.meshNetwork!
-            let models = network.models(subscribedTo: group)
+            let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
             cell.rightTitle = String(format: "%d%@", models.count,LANGLOC("geDevice"))
             return cell
         case itemType.lightPower.rawValue: ///开关
             let cell: KLMGroupPowerCell = KLMGroupPowerCell.cellWithTableView(tableView: tableView)
+            cell.model = self.groupData
             return cell
         case itemType.lightSetting.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -89,7 +105,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = ""
+            cell.rightTitle = self.groupData?.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
             return cell
         default: break
             
@@ -110,13 +126,13 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             //修改组名称
             let vc = CMDeviceNamePopViewController()
             vc.titleName = LANGLOC("Group")
-            vc.text = self.group.name
+            vc.text = KLMHomeManager.currentGroup.name
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             vc.nameBlock = {[weak self] name in
                 guard let self = self else { return  }
                 
-                self.group.name = name
+                KLMHomeManager.currentGroup.name = name
                 
                 if KLMMesh.save() {
                     
@@ -128,13 +144,12 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             self.present(vc, animated: true, completion: nil)
         case itemType.groupMembers.rawValue:
             let vc = KLMGroupDeviceEditViewController()
-            vc.groupModel = self.group
             navigationController?.pushViewController(vc, animated: true)
         case itemType.lightSetting.rawValue://灯光设置
             
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)
-            KLMConnectManager.shared.connectToGroup(group: self.group) { [weak self] in
+            KLMConnectManager.shared.connectToGroup(group: KLMHomeManager.currentGroup) { [weak self] in
                 
                 guard let self = self else { return }
                 //是否有相机权限
@@ -154,11 +169,12 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)
-            KLMConnectManager.shared.connectToGroup(group: self.group) { [weak self] in
+            KLMConnectManager.shared.connectToGroup(group: KLMHomeManager.currentGroup) { [weak self] in
                 
                 guard let self = self else { return }
                 
                 let vc = KLMGroupMotionViewController()
+                vc.groupData = groupData
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             } failure: {

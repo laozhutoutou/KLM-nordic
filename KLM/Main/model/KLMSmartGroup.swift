@@ -19,8 +19,8 @@ class KLMSmartGroup: NSObject {
     typealias SuccessBlock = () -> Void
     typealias FailureBlock = (_ error: MessageError?) -> Void
     
-    var successBlock: SuccessBlock!
-    var failureBlock: FailureBlock!
+    var successBlock: SuccessBlock?
+    var failureBlock: FailureBlock?
     
     func sendMessage(_ parame: parameModel, toGroup group: Group,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         
@@ -263,7 +263,8 @@ extension KLMSmartGroup: MeshNetworkDelegate {
                 
                 if parameters.count >= 3 {
                     
-                    self.successBlock()
+                    self.successBlock?()
+                    self.successBlock = nil
                     return
                 } else if let first = parameters.first, let _ = DPType.init(rawValue: Int(first)) {
                     ///这种情况不是成功也不是失败
@@ -279,7 +280,8 @@ extension KLMSmartGroup: MeshNetworkDelegate {
         //返回错误
         var err = MessageError()
         err.message = "Unknow message"
-        self.failureBlock(err)
+        self.failureBlock?(err)
+        self.failureBlock = nil
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
@@ -298,7 +300,8 @@ extension KLMSmartGroup: MeshNetworkDelegate {
         SVProgressHUD.dismiss()
         var err = MessageError()
         err.message = error.localizedDescription
-        failureBlock(err)
+        failureBlock?(err)
+        failureBlock = nil
     }
 }
 
@@ -310,6 +313,7 @@ extension KLMSmartGroup: KLMMessageTimeDelegate {
         MeshNetworkManager.instance.delegate = nil
         var err = MessageError()
         err.message = LANGLOC("ConnectTimeoutTip")
-        failureBlock(err)
+        failureBlock?(err)
+        failureBlock = nil
     }
 }

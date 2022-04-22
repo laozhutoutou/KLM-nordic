@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SwiftUI
+import nRFMeshProvision
 
 class KLMGroupPowerCell: KLMBaseTableViewCell {
 
@@ -15,6 +17,17 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     fileprivate var isFirst: Bool = true
     
     var isAllNodes: Bool = false
+    
+    var model: GroupData? {
+        didSet {
+            guard let model = model else { return }
+            if model.power == 0 {
+                offBtn.isSelected = true
+            } else {
+                onBtn.isSelected = true
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -70,6 +83,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 guard let self = self else { return }
                 self.onBtn.isSelected = true
                 self.offBtn.isSelected = false
+                self.sendData()
             } failure: { error in
                 KLMShowError(error)
             }
@@ -111,13 +125,14 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 guard let self = self else { return }
                 self.onBtn.isSelected = false
                 self.offBtn.isSelected = true
+                self.sendData()
             } failure: { error in
                 KLMShowError(error)
             }
         }
     }
     
-    fileprivate func isCanClick() -> Bool {
+    private func isCanClick() -> Bool {
         
         if isFirst == true {
             
@@ -133,6 +148,17 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
             
             SVProgressHUD.showInfo(withStatus: "Please wait for 10 seconds")
             return false
+        }
+    }
+    
+    ///将参数提交到服务器
+    private func sendData() {
+        
+        model?.power = onBtn.isSelected ? 1 : 0
+        KLMService.updateGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), groupData: model) { response in
+            
+        } failure: { error in
+            
         }
     }
     

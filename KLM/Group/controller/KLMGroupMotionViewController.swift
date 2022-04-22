@@ -22,6 +22,8 @@ class KLMGroupMotionViewController: UIViewController {
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
+    var groupData: GroupData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,7 +55,7 @@ class KLMGroupMotionViewController: UIViewController {
         setupUI()
     }
     
-    func setupUI() {
+    private func setupUI() {
         
         contentView.isHidden = true
         
@@ -78,6 +80,17 @@ class KLMGroupMotionViewController: UIViewController {
         lightSlider.currentValue = 0
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
+    }
+    
+    private func setupData() {
+        
+        ///亮度
+//        let light: Int = groupData?.energyPower
+//        self.lightSlider.currentValue = Float(light)
+//
+//        ///时间
+//        let time: Int = Int(value[6])
+//        self.timeSlider.currentValue = Float(time)
     }
 
     @IBAction func onClick(_ sender: Any) {

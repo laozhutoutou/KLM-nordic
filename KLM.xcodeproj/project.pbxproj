@@ -167,6 +167,9 @@
 		E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */; };
 		E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */; };
 		E4B0486927E5964000D03668 /* KLMDFUTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B0486B27E5964000D03668 /* KLMDFUTestViewController.xib */; };
+		E4B89F53281282CA0071D58A /* KLMTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89F52281282CA0071D58A /* KLMTool.swift */; };
+		E4B89F54281282CA0071D58A /* KLMTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89F52281282CA0071D58A /* KLMTool.swift */; };
+		E4B89F55281282CA0071D58A /* KLMTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89F52281282CA0071D58A /* KLMTool.swift */; };
 		E4C2AECB280009D8007D36F6 /* KLMConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */; };
 		E4C57D7B280403BD00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */; };
 		E4C57E2E28055B1F00E7AB54 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
@@ -872,6 +875,7 @@
 		E4B0486A27E5964000D03668 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMDFUTestViewController.xib; sourceTree = "<group>"; };
 		E4B0486D27E5964700D03668 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMDFUTestViewController.strings"; sourceTree = "<group>"; };
 		E4B7B9AB278E7BB90091B116 /* KLM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KLM.entitlements; sourceTree = "<group>"; };
+		E4B89F52281282CA0071D58A /* KLMTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTool.swift; sourceTree = "<group>"; };
 		E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMConnectManager.swift; sourceTree = "<group>"; };
 		E4C57D7C280403BD00E7AB54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMPassengerFlowViewController.xib; sourceTree = "<group>"; };
 		E4C57D7F280403C200E7AB54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMPassengerFlowViewController.strings; sourceTree = "<group>"; };
@@ -1208,6 +1212,7 @@
 				E4D74489278533C80049B670 /* EspDataUtils.swift */,
 				E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */,
 				E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */,
+				E4B89F52281282CA0071D58A /* KLMTool.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2106,6 +2111,7 @@
 				E48E60902692F6E800E630ED /* KLMMotionViewController.swift in Sources */,
 				E48B53262668785B0006CDA7 /* KLMPhotoEditViewController.swift in Sources */,
 				E48B530A266875980006CDA7 /* UIImage+TL.m in Sources */,
+				E4B89F53281282CA0071D58A /* KLMTool.swift in Sources */,
 				E476177626DE0EA8008225BB /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4E2843C269EFF45006C120E /* GenericLevelServerDelegate.swift in Sources */,
 				E4A65FD92670B06400FE6866 /* RSColorPickerState.m in Sources */,
@@ -2254,6 +2260,7 @@
 				E4C57E6728055B1F00E7AB54 /* KLMMotionViewController.swift in Sources */,
 				E4C57E6828055B1F00E7AB54 /* KLMPhotoEditViewController.swift in Sources */,
 				E4C57E6928055B1F00E7AB54 /* UIImage+TL.m in Sources */,
+				E4B89F54281282CA0071D58A /* KLMTool.swift in Sources */,
 				E4C57E6A28055B1F00E7AB54 /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4C57E6B28055B1F00E7AB54 /* GenericLevelServerDelegate.swift in Sources */,
 				E4C57E6C28055B1F00E7AB54 /* RSColorPickerState.m in Sources */,
@@ -2402,6 +2409,7 @@
 				E4C57F3E28055C7C00E7AB54 /* KLMMotionViewController.swift in Sources */,
 				E4C57F3F28055C7C00E7AB54 /* KLMPhotoEditViewController.swift in Sources */,
 				E4C57F4028055C7C00E7AB54 /* UIImage+TL.m in Sources */,
+				E4B89F55281282CA0071D58A /* KLMTool.swift in Sources */,
 				E4C57F4128055C7C00E7AB54 /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4C57F4228055C7C00E7AB54 /* GenericLevelServerDelegate.swift in Sources */,
 				E4C57F4328055C7C00E7AB54 /* RSColorPickerState.m in Sources */,

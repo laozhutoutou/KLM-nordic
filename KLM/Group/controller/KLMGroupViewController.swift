@@ -58,19 +58,12 @@ class KLMGroupViewController: UIViewController {
             return
         }
         
-        //没网不能
-//        if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
-//            SVProgressHUD.showError(withStatus: LANGLOC("NetWorkTip"))
-//            return
-//        }
-        
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = {[weak self] name in
             SVProgressHUD.show()
-            
             guard let self = self else { return }
             
             if let network = MeshNetworkManager.instance.meshNetwork,
@@ -78,21 +71,22 @@ class KLMGroupViewController: UIViewController {
                 
                 if let automaticAddress = network.nextAvailableGroupAddress(for: localProvisioner) {
                     
-                    let address = MeshAddress(automaticAddress)
-                    let group = try? Group(name: name, address: address)
-                    try? network.add(group: group!)
-                    
-                    if KLMMesh.save() {
+                    //提交分组到服务器
+                    KLMService.addGroup(groupId: Int(automaticAddress), groupName: name) { response in
+                        KLMLog("分组提交成功到服务器")
                         
-                        //提交分组到服务器
-//                        KLMService.addGroup(groupId: Int(automaticAddress), groupName: name) { response in
-//                            KLMLog("分组提交成功到服务器")
-//                        } failure: { error in
-//
-//                        }
-
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        self.setupData()
+                        let address = MeshAddress(automaticAddress)
+                        let group = try? Group(name: name, address: address)
+                        try? network.add(group: group!)
+                        
+                        if KLMMesh.save() {
+                            
+                            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                            self.setupData()
+                        }
+                        
+                    } failure: { error in
+                        KLMHttpShowError(error)
                     }
                 }
                 
@@ -139,7 +133,6 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             KLMHomeManager.sharedInstacnce.smartGroup = cellGroup
             
             let vc = KLMGroupEditViewController()
-            vc.group = cellGroup
             self.navigationController?.pushViewController(vc, animated: true)
         }
         return cell
@@ -199,29 +192,35 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
                 
                 let network = MeshNetworkManager.instance.meshNetwork!
-                do {
-                    try network.remove(group: model)
+                let models = network.models(subscribedTo: model)
+                if models.count > 0 { //组里有设备不能删除
+                    SVProgressHUD.showError(withStatus: "Please remove all lights from the group")
+                    return
+                }
+                SVProgressHUD.show()
+                KLMService.deleteGroup(groupId: Int(model.address.address)) { response in
                     
-                    if KLMMesh.save() {
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        self.setupData()
-                        
-                    }
-                } catch {
-                    
-                    var erro = MessageError()
-                    erro.message = error.localizedDescription
-                    if let err = error as? MeshNetworkError{
-                        switch err {
-                        case .groupInUse: ///组里有设备
-                            erro.message = "Please remove all lights from the group"
-                        default:
-                            break
+                    do {
+                        try network.remove(group: model)
+                        if KLMMesh.save() {
+                            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                            self.setupData()
                         }
+                    } catch {
+                        var erro = MessageError()
+                        erro.message = error.localizedDescription
+                        if let err = error as? MeshNetworkError{
+                            switch err {
+                            case .groupInUse: ///组里有设备
+                                erro.message = "Please remove all lights from the group"
+                            default:
+                                break
+                            }
+                        }
+                        KLMShowError(erro)
                     }
-                    
-                    KLMShowError(erro)
-                    
+                } failure: { error in
+                    KLMHttpShowError(error)
                 }
                 
             }

@@ -13,8 +13,6 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     //设备数据源
     var nodes: [Node] = [Node]()
     private var selectedIndexPath: IndexPath?
-    //当前分组
-    var groupModel: Group!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,10 +77,9 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
         
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
-        KLMConnectManager.shared.connectToNode(node: selectNode) { [weak self] in
-            guard let self = self else { return }
+        KLMConnectManager.shared.connectToNode(node: selectNode) {
             
-            KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: self.groupModel)
+            KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: KLMHomeManager.currentGroup)
             
         } failure: {
             

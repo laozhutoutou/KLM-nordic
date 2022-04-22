@@ -512,17 +512,87 @@ class KLMService: NSObject {
     }
     
     static func addGroup(groupId: Int, groupName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
-                    
-        let model = KLMMesh.loadHome()!
-        let parame: [String : Any] = ["meshId": model.id,
+        
+        let mesh = KLMMesh.loadHome()!
+        let groupData: [String : Any] = [
+            "power": 1,
+            "customColor": "#FFFFFF",
+            "customColorTemp": 0,
+            "customLight": 100,
+            "energyPower": 0,
+            "autoDim": 1,
+            "brightness": 100]
+        
+        let parame: [String : Any] = ["meshId": mesh.id,
                                       "groupId": groupId,
-                                      "groupName": groupName]
+                                      "groupName": groupName,
+                                      "groupData": groupData.jsonPrint()
+        ]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/group"), params: parame) { responseObject, error in
             
             if error == nil {
                 
                 success(responseObject as AnyObject)
                 
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func deleteGroup(groupId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let mesh = KLMMesh.loadHome()!
+        let parame = ["meshId": mesh.id,
+                      "groupId": groupId]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/group/deleteByMeshIdAndGroupId"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func selectGroup(groupId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let mesh = KLMMesh.loadHome()!
+        let parame = ["meshId": mesh.id,
+                      "groupId": groupId]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/group/getByMeshIdAndGroupId"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                let model = try? JSONDecoder().decode(KLMGroupModel.self, from: responseObject!)
+                let groupData = KLMTool.getModelFromString(GroupData.self, from: model?.data.groupData)
+                success(groupData as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func updateGroup(groupId: Int, groupName: String? = nil, groupData: GroupData? = nil, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+
+        let mesh = KLMMesh.loadHome()!
+        var parame: [String : Any] = ["meshId": mesh.id,
+                                      "groupId": groupId
+        ]
+        if groupName != nil {
+            parame["groupName"] = groupName
+        }
+        if groupData != nil {
+            let data = try! JSONEncoder().encode(groupData)
+            let groupDataStr = String(data: data, encoding: .utf8)
+            parame["groupData"] = groupDataStr
+        }
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/group/updateByMeshIdAndGroupId"), params: parame) { responseObject, error in
+
+            if error == nil {
+
+                success(responseObject as AnyObject)
+
             } else {
                 failure(error!)
             }

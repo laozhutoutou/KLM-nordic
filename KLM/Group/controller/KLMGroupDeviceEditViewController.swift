@@ -13,9 +13,6 @@ class KLMGroupDeviceEditViewController: UIViewController {
    
     @IBOutlet weak var tableView: UITableView!
     
-    //当前分组
-    var groupModel: Group!
-    
     //数据源
     lazy var deviceLists: [Node] = {
         let  deviceLists = [Node]()
@@ -35,7 +32,7 @@ class KLMGroupDeviceEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = self.groupModel.name
+        self.navigationItem.title = KLMHomeManager.currentGroup.name
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
@@ -49,7 +46,7 @@ class KLMGroupDeviceEditViewController: UIViewController {
     @objc func setupData(){
         
         let network = MeshNetworkManager.instance.meshNetwork!
-        let models = network.models(subscribedTo: groupModel)
+        let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
         self.deviceLists.removeAll()
         for model in models {
             
@@ -62,7 +59,6 @@ class KLMGroupDeviceEditViewController: UIViewController {
     @objc func addDevice() {
         
         let vc = KLMGroupDeviceAddTableViewController()
-        vc.groupModel = groupModel
         navigationController?.pushViewController(vc, animated: true)
         
     }
@@ -137,7 +133,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
                 SVProgressHUD.show()
                 
                 //设备从当前群组中移除
-                KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: self.groupModel)
+                KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: KLMHomeManager.currentGroup)
                 
             }
             aler.addAction(cancel)
@@ -152,7 +148,6 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
             
             let vc = KLMGroupTransferListViewController()
             vc.currentDevice =  deviceModel
-            vc.originalGroup = self.groupModel
             self.navigationController?.pushViewController(vc, animated: true)
             
             completionHandler(true)

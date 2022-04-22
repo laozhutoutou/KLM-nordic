@@ -75,3 +75,22 @@ struct KLMVersion: Codable {
         var englishMessage: String
     }
 }
+
+struct KLMGroupModel: Codable {
+    var data: KLMGroupData
+    struct KLMGroupData: Codable {
+        var groupData: String
+    }
+}
+
+struct GroupData: Codable {
+    var power: Int
+    var customColor: String
+    var customColorTemp: Int
+    var customLight: Int
+    var energyPower: Int
+    var autoDim: Int
+    var brightness: Int
+}
+
+
