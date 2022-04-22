@@ -22,7 +22,7 @@ class KLMGroupMotionViewController: UIViewController {
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
-    var groupData: GroupData?
+    var groupData: GroupData = GroupData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,11 +53,11 @@ class KLMGroupMotionViewController: UIViewController {
         offBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
         
         setupUI()
+        
+        setupData()
     }
     
     private func setupUI() {
-        
-        contentView.isHidden = true
         
         //时间滑条
         let viewLeft: CGFloat = 20 + 16
@@ -84,13 +84,53 @@ class KLMGroupMotionViewController: UIViewController {
     
     private func setupData() {
         
-        ///亮度
-//        let light: Int = groupData?.energyPower
-//        self.lightSlider.currentValue = Float(light)
-//
-//        ///时间
-//        let time: Int = Int(value[6])
-//        self.timeSlider.currentValue = Float(time)
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+            
+            SVProgressHUD.show()
+            KLMService.selectGroup(groupId: address) { response in
+                SVProgressHUD.dismiss()
+                guard let model = response as? GroupData else { return  }
+                self.groupData = model
+                //UI
+                if self.groupData.energyPower == 0 {
+                    self.offBtn.isSelected = true
+                    self.contentView.isHidden = true
+                } else {
+                    self.onBtn.isSelected = true
+                    self.contentView.isHidden = false
+                }
+                
+                ///亮度
+                let light: Int = self.groupData.brightness
+                self.lightSlider.currentValue = Float(light)
+
+                ///时间
+                let time: Int = self.groupData.autoDim
+                self.timeSlider.currentValue = Float(time)
+                
+            } failure: { error in
+                KLMHttpShowError(error)
+            }
+        }
+        
+        
+    }
+    
+    private func sendData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+            
+            KLMService.updateGroup(groupId: address, groupData: self.groupData) { response in
+                
+            } failure: { error in
+                
+            }
+        }
+        
     }
 
     @IBAction func onClick(_ sender: Any) {
@@ -110,10 +150,7 @@ class KLMGroupMotionViewController: UIViewController {
         if offBtn.isSelected {
             return
         }
-        
-        onBtn.isSelected = false
-        offBtn.isSelected = true
-        
+                
         SVProgressHUD.show()
         //发送关闭指令
         let parame = parameModel(dp: .motionPower, value: 0)
@@ -122,7 +159,8 @@ class KLMGroupMotionViewController: UIViewController {
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.contentView.isHidden = true
-                
+                self.onBtn.isSelected = false
+                self.offBtn.isSelected = true
             } failure: { error in
                 
                 KLMShowError(error)
@@ -134,6 +172,11 @@ class KLMGroupMotionViewController: UIViewController {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.contentView.isHidden = true
+                self.onBtn.isSelected = false
+                self.offBtn.isSelected = true
+                
+                self.groupData.energyPower = 0
+                self.sendData()
                 
             } failure: { error in
                 KLMShowError(error)
@@ -217,6 +260,11 @@ class KLMGroupMotionViewController: UIViewController {
                         
                         print("success")
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        
+                        self.groupData.energyPower = 1
+                        self.groupData.brightness = Int(self.lightSlider.currentValue)
+                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
+                        self.sendData()
                         
                         DispatchQueue.main.asyncAfter(deadline: 0.5) {
                             self.navigationController?.popViewController(animated: true)

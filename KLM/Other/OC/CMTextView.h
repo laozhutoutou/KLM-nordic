@@ -12,7 +12,7 @@ typedef void(^returnTextBlock)(NSString *text);
 
 @interface CMTextView : UITextView
 
-@property (nonatomic, strong) NSString *placeholder;
+@property (nonatomic, strong) NSString *placeholderTitle;
 
 @property (nonatomic, strong) UIColor *realTextColor UI_APPEARANCE_SELECTOR;
 

@@ -84,13 +84,13 @@ struct KLMGroupModel: Codable {
 }
 
 struct GroupData: Codable {
-    var power: Int
-    var customColor: String
-    var customColorTemp: Int
-    var customLight: Int
-    var energyPower: Int
-    var autoDim: Int
-    var brightness: Int
+    var power: Int = 1
+    var customColor: String = "#FFFFFF"
+    var customColorTemp: Int = 0
+    var customLight: Int = 100
+    var energyPower: Int = 0
+    var autoDim: Int = 1
+    var brightness: Int = 100
 }
 
 

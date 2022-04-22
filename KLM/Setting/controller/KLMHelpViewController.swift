@@ -20,7 +20,7 @@ class KLMHelpViewController: UIViewController {
         
         navigationItem.title = LANGLOC("helpAdvice")
 
-        questionView.placeholder = LANGLOC("helpQuestionTip")
+        questionView.placeholderTitle = LANGLOC("helpQuestionTip")
         questionView.placeholderColor = rgba(0, 0, 0, 0.3)
         
         questionView.layer.cornerRadius = 6

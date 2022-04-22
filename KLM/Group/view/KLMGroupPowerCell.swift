@@ -18,13 +18,14 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     
     var isAllNodes: Bool = false
     
-    var model: GroupData? {
+    var model: GroupData! {
         didSet {
-            guard let model = model else { return }
             if model.power == 0 {
                 offBtn.isSelected = true
+                onBtn.isSelected = false
             } else {
                 onBtn.isSelected = true
+                offBtn.isSelected = false
             }
         }
     }
@@ -154,8 +155,13 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     ///将参数提交到服务器
     private func sendData() {
         
-        model?.power = onBtn.isSelected ? 1 : 0
-        KLMService.updateGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), groupData: model) { response in
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+        }
+        
+        model.power = onBtn.isSelected ? 1 : 0
+        KLMService.updateGroup(groupId: address, groupData: model) { response in
             
         } failure: { error in
             

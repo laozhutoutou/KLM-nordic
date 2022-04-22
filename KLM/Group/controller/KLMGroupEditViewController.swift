@@ -21,12 +21,18 @@ class KLMGroupEditViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var groupData: GroupData?
+    var groupData: GroupData = GroupData()
     
     deinit {
         
         NotificationCenter.default.removeObserver(self)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupData()
     }
     
     override func viewDidLoad() {
@@ -37,7 +43,6 @@ class KLMGroupEditViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .deviceRemoveFromGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .deviceAddToGroup, object: nil)
         
-        setupData()
     }
     
     private func setupData() {
@@ -105,7 +110,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = self.groupData?.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
+            cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
             return cell
         default: break
             
@@ -174,7 +179,6 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                 guard let self = self else { return }
                 
                 let vc = KLMGroupMotionViewController()
-                vc.groupData = groupData
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             } failure: {

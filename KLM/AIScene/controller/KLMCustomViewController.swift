@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JKSwiftExtension
 
 struct tempColors {
     let maxTemp: Float = 4000
@@ -53,6 +54,9 @@ class KLMCustomViewController: UIViewController {
     var colorTempSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
+    ///分组和所有设备使用
+    var groupData: GroupData = GroupData()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -61,6 +65,8 @@ class KLMCustomViewController: UIViewController {
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
             setupData()
+        } else {
+            setupGroupData()
         }
     }
     
@@ -122,10 +128,45 @@ class KLMCustomViewController: UIViewController {
         lightBgView.addSubview(lightSlider)
     }
     
-    func setupData() {
+    private func setupData() {
         
         let parameTime = parameModel(dp: .AllDp)
         KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+    }
+    
+    private func setupGroupData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+            
+            SVProgressHUD.show()
+            KLMService.selectGroup(groupId: address) { response in
+                SVProgressHUD.dismiss()
+                guard let model = response as? GroupData else { return  }
+                self.groupData = model
+                //UI
+                self.pickView.selectionColor = UIColor.init(hexString: self.groupData.customColor)
+                self.colorTempSlider.currentValue = Float(self.groupData.customColorTemp)
+                self.lightSlider.currentValue = Float(self.groupData.customLight)
+            } failure: { error in
+                KLMHttpShowError(error)
+            }
+        }
+        
+    }
+    
+    private func sendData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+        }
+        KLMService.updateGroup(groupId: address, groupData: self.groupData) { response in
+            
+        } failure: { error in
+            
+        }
     }
     
     func setColorItems() {
@@ -194,6 +235,8 @@ class KLMCustomViewController: UIViewController {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
                 KLMLog("success")
+                self.groupData.customColor = color!.hexString!
+                self.sendData()
                 
             } failure: { error in
                 KLMShowError(error)
@@ -371,6 +414,8 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                     
+                    self.groupData.customColorTemp = vv
+                    self.sendData()
                     KLMLog("success")
                     
                 } failure: { error in
@@ -403,6 +448,8 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                     
+                    self.groupData.customLight = vv
+                    self.sendData()
                     KLMLog("success")
                     
                 } failure: { error in
@@ -448,6 +495,8 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
+                self.groupData.customColor = color!.hexString!
+                self.sendData()
                 KLMLog("success")
                 
             } failure: { error in
