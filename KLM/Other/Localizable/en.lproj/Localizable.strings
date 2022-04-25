@@ -99,7 +99,7 @@ deviceNearbyTip = "Make sure your devices are powered on and nearby.whether the 
 BlueToothSignalTip = "Bluetooth signal is too weak";
 WrongWiFitip = "Connection timeout, please check WiFi name or password";
 UpdateInterruptedTip = "Upgrade interrupted, please keep networks open";
-Passengerflowstatistics = "Passenger flow statistics";
+Passengerflowstatistics = "Customer Counting";
 
 ConnectTimeoutTip = "Connection timed out";
 APPBluetoothPowerTip = "Please power on the Bluetooth of your mobile phone";

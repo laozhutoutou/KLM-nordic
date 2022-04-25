@@ -139,21 +139,21 @@ class KLMCustomViewController: UIViewController {
         var address: Int = 0
         if KLMHomeManager.sharedInstacnce.controllType == .Group {
             address = Int(KLMHomeManager.currentGroup.address.address)
-            
-            SVProgressHUD.show()
-            KLMService.selectGroup(groupId: address) { response in
-                SVProgressHUD.dismiss()
-                guard let model = response as? GroupData else { return  }
-                self.groupData = model
-                //UI
-                self.pickView.selectionColor = UIColor.init(hexString: self.groupData.customColor)
-                self.colorTempSlider.currentValue = Float(self.groupData.customColorTemp)
-                self.lightSlider.currentValue = Float(self.groupData.customLight)
-            } failure: { error in
-                KLMHttpShowError(error)
-            }
         }
         
+        SVProgressHUD.show()
+        KLMService.selectGroup(groupId: address) { response in
+            SVProgressHUD.dismiss()
+            guard let model = response as? GroupData else { return  }
+            self.groupData = model
+            //UI
+            self.pickView.selectionColor = UIColor.init(hexString: self.groupData.customColor)
+            self.colorTempSlider.currentValue = Float(self.groupData.customColorTemp)
+            self.lightSlider.currentValue = Float(self.groupData.customLight)
+        } failure: { error in
+            SVProgressHUD.dismiss()
+//                KLMHttpShowError(error)
+        }
     }
     
     private func sendData() {
@@ -220,6 +220,8 @@ class KLMCustomViewController: UIViewController {
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 
                 KLMLog("success")
+                self.groupData.customColor = color!.hexString!
+                self.sendData()
                 
             } failure: { error in
                 
@@ -399,6 +401,8 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                     
+                    self.groupData.customColorTemp = vv
+                    self.sendData()
                     KLMLog("success")
                     
                 } failure: { error in
@@ -434,6 +438,8 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
                 KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                     
+                    self.groupData.customLight = vv
+                    self.sendData()
                     KLMLog("success")
                     
                 } failure: { error in
@@ -480,6 +486,8 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 
+                self.groupData.customColor = color!.hexString!
+                self.sendData()
                 KLMLog("success")
                 
             } failure: { error in

@@ -19,6 +19,14 @@ class KLMConnectManager {
     
     func connectToNode(node: Node, success: @escaping () -> Void, failure: @escaping () -> Void) {
         
+        ///将node当做proxies first
+//        if let bearer = MeshNetworkManager.bearer.proxies.first(where: {$0.nodeUUID == node.UUIDString}) {
+//
+//            MeshNetworkManager.bearer.use(proxy: bearer)
+//            success()
+//            return
+//        }
+        
         KLMSmartNode.sharedInstacnce.delegate = self
         
         self.success = success

@@ -213,9 +213,9 @@ extension KLMSmartNode: MeshNetworkDelegate {
         }
         
         //返回错误
-        var err = MessageError()
-        err.message = "Unknow message"
-        self.delegate?.smartNode(self, didfailure: err)
+//        var err = MessageError()
+//        err.message = "Unknow message"
+//        self.delegate?.smartNode(self, didfailure: err)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
@@ -281,4 +281,17 @@ extension Node {
         return substring
     }
     
+}
+
+///给扩展增加存储属性
+extension GattBearer {
+    private static var Node_KEY: Void?
+    var nodeUUID: String {
+        get {
+            (objc_getAssociatedObject(self, &Self.Node_KEY) as? String) ?? ""
+        }
+        set {
+            (objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_ASSIGN))
+        }
+    }
 }

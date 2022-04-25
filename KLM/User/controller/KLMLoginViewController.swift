@@ -53,10 +53,10 @@ class KLMLoginViewController: UIViewController {
             return
         }
         
-        if !KLMVerifyManager.isEmail(email: mailText) {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("mailboxIncorrectTip"))
-            return
-        }
+//        if !KLMVerifyManager.isEmail(email: mailText) {
+//            SVProgressHUD.showInfo(withStatus: LANGLOC("mailboxIncorrectTip"))
+//            return
+//        }
         
         SVProgressHUD.show()
         KLMService.login(username: mailText, password: passTextField.text!) { _ in

@@ -54,7 +54,8 @@ class KLMGroupEditViewController: UIViewController {
             self.groupData = model
             self.tableView.reloadData()
         } failure: { error in
-            KLMHttpShowError(error)
+            SVProgressHUD.dismiss()
+//            KLMHttpShowError(error)
         }
 
     }

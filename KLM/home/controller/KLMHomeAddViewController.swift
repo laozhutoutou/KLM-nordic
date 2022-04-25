@@ -30,9 +30,18 @@ class KLMHomeAddViewController: UIViewController {
         SVProgressHUD.setDefaultMaskType(.black)
         
         KLMService.addMesh(meshName: text) { response in
-            SVProgressHUD.showSuccess(withStatus: "Store successfully created")
-            NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
-            self.navigationController?.popViewController(animated: true)
+            ///创建一个所有设备的分组
+            let meshId: Int = response as! Int
+            KLMService.addGroup(meshId: meshId, groupId: 0, groupName: "所有设备") { response in
+                KLMLog("分组提交成功到服务器")
+
+                SVProgressHUD.showSuccess(withStatus: "Store successfully created")
+                NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
+                self.navigationController?.popViewController(animated: true)
+
+            } failure: { error in
+                KLMHttpShowError(error)
+            }
         
         } failure: { error in
             KLMHttpShowError(error)

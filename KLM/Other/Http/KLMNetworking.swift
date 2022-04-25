@@ -146,16 +146,20 @@ class KLMNetworking: NSObject {
             if errors.code == -1011 {
                 
                 let errorData = errors.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! Data
-                let errorDic: [String: AnyObject] = try! JSONSerialization.jsonObject(with: errorData, options: .mutableContainers) as! [String: AnyObject]
-                let StateCode = errorDic["code"] as! Int
-                if StateCode == 400 { ///token过期，重新登录
-                    ///清空数据
-                    KLMMesh.logout()
-                    KLMLog("token 失效")
-                    let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                    appdelegate.enterLoginUI()
+                do {
+                    
+                    let errorDic: [String: AnyObject] = try JSONSerialization.jsonObject(with: errorData, options: .mutableContainers) as! [String: AnyObject]
+                    let StateCode = errorDic["code"] as! Int
+                    if StateCode == 400 { ///token过期，重新登录
+                        ///清空数据
+                        KLMMesh.logout()
+                        KLMLog("token 失效")
+                        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                        appdelegate.enterLoginUI()
+                    }
+                } catch {
+                    
                 }
-            
             }
             
             let resultDic = ["error": error.localizedDescription, "egMsg": error.localizedDescription]
@@ -276,10 +280,12 @@ class KLMService: NSObject {
         let parame = ["meshName": meshName,
                       "meshConfiguration": config
                     ]
-        KLMNetworking.httpMethod(URLString: KLMUrl("api/mesh"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/mesh/id"), params: parame) { responseObject, error in
             
             if error == nil {
-                success(responseObject as AnyObject)
+                let jsonObject: [String: AnyObject] = try! JSONSerialization.jsonObject(with: responseObject!, options: .mutableContainers) as! [String: AnyObject]
+                let meshId: Int = jsonObject["data"] as! Int
+                success(meshId as AnyObject)
             } else {
                 failure(error!)
             }
@@ -511,9 +517,8 @@ class KLMService: NSObject {
         }
     }
     
-    static func addGroup(groupId: Int, groupName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+    static func addGroup(meshId: Int, groupId: Int, groupName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let mesh = KLMMesh.loadHome()!
         let groupData: [String : Any] = [
             "power": 1,
             "customColor": "#FFFFFF",
@@ -523,7 +528,7 @@ class KLMService: NSObject {
             "autoDim": 1,
             "brightness": 100]
         
-        let parame: [String : Any] = ["meshId": mesh.id,
+        let parame: [String : Any] = ["meshId": meshId,
                                       "groupId": groupId,
                                       "groupName": groupName,
                                       "groupData": groupData.jsonPrint()
@@ -546,7 +551,7 @@ class KLMService: NSObject {
         let parame = ["meshId": mesh.id,
                       "groupId": groupId]
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/group/deleteByMeshIdAndGroupId"), params: parame) { responseObject, error in
-            
+            //没有记录也是成功
             if error == nil {
                 success(responseObject as AnyObject)
             } else {

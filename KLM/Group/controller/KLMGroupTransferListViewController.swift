@@ -92,8 +92,9 @@ class KLMGroupTransferListViewController: UIViewController {
                 // Try assigning next available Group Address.
                 if let automaticAddress = network.nextAvailableGroupAddress(for: localProvisioner) {
                     
+                    let mesh = KLMMesh.loadHome()!
                     //提交分组到服务器
-                    KLMService.addGroup(groupId: Int(automaticAddress), groupName: name) { response in
+                    KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
                         KLMLog("分组提交成功到服务器")
                         
                         let address = MeshAddress(automaticAddress)

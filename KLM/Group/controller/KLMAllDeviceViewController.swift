@@ -16,11 +16,34 @@ private enum itemType: Int, CaseIterable {
 class KLMAllDeviceViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var groupData: GroupData = GroupData()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setupData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = LANGLOC("allDevice")
+    }
+    
+    private func setupData() {
+        
+        SVProgressHUD.show()
+        KLMService.selectGroup(groupId: 0) { response in
+            SVProgressHUD.dismiss()
+            guard let model = response as? GroupData else { return  }
+            self.groupData = model
+            self.tableView.reloadData()
+        } failure: { error in
+            SVProgressHUD.dismiss()
+//            KLMHttpShowError(error)
+        }
+
     }
 
 }
@@ -43,7 +66,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
         switch indexPath.row {
         case itemType.lightPower.rawValue: ///开关
             let cell: KLMGroupPowerCell = KLMGroupPowerCell.cellWithTableView(tableView: tableView)
-            cell.isAllNodes = true
+            cell.model = self.groupData
             return cell
         case itemType.lightSetting.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
@@ -55,7 +78,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = ""
+            cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
             return cell
         default: break
             

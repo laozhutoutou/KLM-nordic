@@ -27,7 +27,10 @@ class KLMJoinHomeViewController: UIViewController {
             return
         }
         
-        KLMService.joinToHome(invitationCode: text) { response in
+        SVProgressHUD.show()
+        //转化成大写字母
+        let upperText = text.uppercased()
+        KLMService.joinToHome(invitationCode: upperText) { response in
             SVProgressHUD.showSuccess(withStatus: "Successfully joined in")
             NotificationCenter.default.post(name: .homeAddSuccess, object: nil)
             self.navigationController?.popViewController(animated: true)

@@ -33,8 +33,9 @@ class KLMHomeEditViewController: UIViewController {
     
     func getMeshUserData() {
         
+        SVProgressHUD.show()
         KLMService.getMeshUsers(meshId: homeModel.id) { response in
-            
+            SVProgressHUD.dismiss()
             self.meshUsers = response as? KLMMeshUser
             self.tableView.reloadData()
             
@@ -57,7 +58,6 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         SVProgressHUD.show()
-        
         KLMService.editMesh(id: homeModel.id, meshName: text, meshConfiguration: nil) { response in
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             if let home = KLMMesh.loadHome(), self.homeModel.id == home.id {
@@ -77,6 +77,14 @@ class KLMHomeEditViewController: UIViewController {
         
         if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
             SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            return
+        }
+        
+        //有灯不给删
+        let meshnetwork = KLMMesh.getMeshNetwork(meshConfiguration: self.homeModel.meshConfiguration)
+        let notConfiguredNodes = meshnetwork.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+        if notConfiguredNodes.count > 0 { //有设备不给删除
+            SVProgressHUD.showInfo(withStatus: "Please remove or reset all lights from the store")
             return
         }
         
@@ -119,7 +127,6 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         SVProgressHUD.show()
-        
         ///生成邀请码
         KLMService.getInvitationCode(meshId: self.homeModel.id) { response in
             
@@ -213,10 +220,10 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
-            
+
             return false
         }
-        
+
         let user = self.meshUsers!.data[indexPath.row]
         if user.id == homeModel.adminId {
             return false
@@ -233,6 +240,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
                 
+                SVProgressHUD.show()
                 KLMService.deleteUser(meshId: self.homeModel.id, userId: user.id) { response in
                     self.getMeshUserData()
                     SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

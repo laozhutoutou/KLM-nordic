@@ -16,8 +16,6 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     
     fileprivate var isFirst: Bool = true
     
-    var isAllNodes: Bool = false
-    
     var model: GroupData! {
         didSet {
             if model.power == 0 {
@@ -53,17 +51,13 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     
     @IBAction func onClick(_ sender: Any) {
         
-        if onBtn.isSelected {
-            return
-        }
-        
         if isCanClick() == false {
             
             return
         }
         
         let parame = parameModel(dp: .power, value: 1)
-        if isAllNodes {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             SVProgressHUD.show()
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] in
@@ -72,6 +66,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 guard let self = self else { return }
                 self.onBtn.isSelected = true
                 self.offBtn.isSelected = false
+                self.sendData()
             } failure: { error in
                 KLMShowError(error)
             }
@@ -94,17 +89,13 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     
     @IBAction func offClick(_ sender: Any) {
         
-        if offBtn.isSelected {
-            return
-        }
-        
         if isCanClick() == false {
             
             return
         }
         
         let parame = parameModel(dp: .power, value: 0)
-        if isAllNodes {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             SVProgressHUD.show()
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] in
@@ -113,6 +104,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 guard let self = self else { return }
                 self.onBtn.isSelected = false
                 self.offBtn.isSelected = true
+                self.sendData()
             } failure: { error in
                 KLMShowError(error)
             }

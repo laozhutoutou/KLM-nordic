@@ -22,6 +22,8 @@ class KLMDFUTestViewController: UIViewController {
     private var mClearFlash: Bool = false
     private var mUrlEnable: Bool = true
     
+    private var isTureWiFi = true
+    
     ///版本
     var BLEVersionData: KLMVersion.KLMVersionData!
     
@@ -193,9 +195,6 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                 ///更新完成
                 if message.parameters?.hex == "24723639" {
                     
-                    ///存储wifi信息
-                    KLMHomeManager.cacheWIFIMsg(SSID: self.SSIDField.text!, password: self.passField.text!)
-                    
                     ///设备重启中
                     SVProgressHUD.showProgress(1.0, status: "Restarting")
                     DispatchQueue.main.asyncAfter(deadline: 6) {
@@ -223,6 +222,12 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                     return
                                 }
                                 
+                                if isTureWiFi {
+                                    isTureWiFi = false
+                                    ///存储wifi信息
+                                    KLMHomeManager.cacheWIFIMsg(SSID: self.SSIDField.text!, password: self.passField.text!)
+                                }
+                            
                                 let progress: Float = Float(PP) / 100.0 * 0.7
                                 SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
                             case 0xFC:

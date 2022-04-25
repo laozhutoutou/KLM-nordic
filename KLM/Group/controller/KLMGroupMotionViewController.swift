@@ -87,35 +87,21 @@ class KLMGroupMotionViewController: UIViewController {
         var address: Int = 0
         if KLMHomeManager.sharedInstacnce.controllType == .Group {
             address = Int(KLMHomeManager.currentGroup.address.address)
-            
-            SVProgressHUD.show()
-            KLMService.selectGroup(groupId: address) { response in
-                SVProgressHUD.dismiss()
-                guard let model = response as? GroupData else { return  }
-                self.groupData = model
-                //UI
-                if self.groupData.energyPower == 0 {
-                    self.offBtn.isSelected = true
-                    self.contentView.isHidden = true
-                } else {
-                    self.onBtn.isSelected = true
-                    self.contentView.isHidden = false
-                }
-                
-                ///亮度
-                let light: Int = self.groupData.brightness
-                self.lightSlider.currentValue = Float(light)
-
-                ///时间
-                let time: Int = self.groupData.autoDim
-                self.timeSlider.currentValue = Float(time)
-                
-            } failure: { error in
-                KLMHttpShowError(error)
-            }
         }
         
-        
+        SVProgressHUD.show()
+        KLMService.selectGroup(groupId: address) { response in
+            SVProgressHUD.dismiss()
+            guard let model = response as? GroupData else { return  }
+            self.groupData = model
+            
+            self.updateUI()
+            
+        } failure: { error in
+            self.updateUI()
+//                KLMHttpShowError(error)
+            SVProgressHUD.dismiss()
+        }
     }
     
     private func sendData() {
@@ -123,14 +109,35 @@ class KLMGroupMotionViewController: UIViewController {
         var address: Int = 0
         if KLMHomeManager.sharedInstacnce.controllType == .Group {
             address = Int(KLMHomeManager.currentGroup.address.address)
-            
-            KLMService.updateGroup(groupId: address, groupData: self.groupData) { response in
-                
-            } failure: { error in
-                
-            }
         }
         
+        KLMService.updateGroup(groupId: address, groupData: self.groupData) { response in
+            
+        } failure: { error in
+            
+        }
+    }
+    
+    private func updateUI() {
+        
+        //UI
+        if self.groupData.energyPower == 0 { //关闭
+            self.offBtn.isSelected = true
+            self.onBtn.isSelected = false
+            self.contentView.isHidden = true
+        } else {
+            self.onBtn.isSelected = true
+            self.offBtn.isSelected = false
+            self.contentView.isHidden = false
+        }
+        
+        ///亮度
+        let light: Int = self.groupData.brightness
+        self.lightSlider.currentValue = Float(light)
+
+        ///时间
+        let time: Int = self.groupData.autoDim
+        self.timeSlider.currentValue = Float(time)
     }
 
     @IBAction func onClick(_ sender: Any) {
@@ -146,10 +153,6 @@ class KLMGroupMotionViewController: UIViewController {
     }
     
     @IBAction func offClick(_ sender: Any) {
-        
-        if offBtn.isSelected {
-            return
-        }
                 
         SVProgressHUD.show()
         //发送关闭指令
@@ -158,9 +161,10 @@ class KLMGroupMotionViewController: UIViewController {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                self.contentView.isHidden = true
-                self.onBtn.isSelected = false
-                self.offBtn.isSelected = true
+                
+                self.groupData.energyPower = 0
+                self.updateUI()
+                self.sendData()
             } failure: { error in
                 
                 KLMShowError(error)
@@ -171,11 +175,9 @@ class KLMGroupMotionViewController: UIViewController {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                self.contentView.isHidden = true
-                self.onBtn.isSelected = false
-                self.offBtn.isSelected = true
                 
                 self.groupData.energyPower = 0
+                self.updateUI()
                 self.sendData()
                 
             } failure: { error in
@@ -245,6 +247,11 @@ class KLMGroupMotionViewController: UIViewController {
                         
                         print("success")
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        
+                        self.groupData.energyPower = 1
+                        self.groupData.brightness = Int(self.lightSlider.currentValue)
+                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
+                        self.sendData()
                         
                         DispatchQueue.main.asyncAfter(deadline: 0.5) {
                             self.navigationController?.popViewController(animated: true)
