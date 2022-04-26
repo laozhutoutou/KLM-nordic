@@ -29,8 +29,26 @@ class KLMSmartGroup: NSObject {
         successBlock = success
         failureBlock = failure
         
+        //蓝牙没开启
+        do {
+            try KLMConnectManager.checkBluetoothState()
+            
+        } catch {
+            
+            if let errr = error as? MessageError {
+                failure(errr)
+                return
+            }
+        }
+        //一个设备都没连接
+        if !MeshNetworkManager.bearer.isOpen {
+            var err = MessageError()
+            err.message = LANGLOC("deviceNearbyTip")
+            failure(err)
+            return
+        }
+        
         var parameString = ""
-       
         switch parame.dp {
         case .power,
              .colorTemp,
@@ -57,33 +75,6 @@ class KLMSmartGroup: NSObject {
             KLMLog("parameter = \(parameters.hex)")
             let network = MeshNetworkManager.instance.meshNetwork!
             let models = network.models(subscribedTo: group)
-            //没有设备
-            if models.isEmpty {
-                
-                var err = MessageError()
-                err.message = LANGLOC("noDevice")
-                failure(err)
-                return
-            }
-            //蓝牙没开启
-            do {
-                try KLMConnectManager.checkBluetoothState()
-                
-            } catch {
-                
-                if let errr = error as? MessageError {
-                    failure(errr)
-                    return
-                }
-            }
-            //一个设备都没连接
-            if !MeshNetworkManager.bearer.isOpen {
-                var err = MessageError()
-                err.message = LANGLOC("deviceNearbyTip")
-                failure(err)
-                return
-            }
-            
             if let model = models.first {
                 
                 let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
@@ -98,6 +89,11 @@ class KLMSmartGroup: NSObject {
                     failure(err)
                     
                 }
+            } else {
+                
+                var err = MessageError()
+                err.message = LANGLOC("noDevice")
+                failure(err)
             }
         }
     }
@@ -114,8 +110,26 @@ class KLMSmartGroup: NSObject {
         successBlock = success
         failureBlock = failure
         
-        var parameString = ""
+        do {
+            try KLMConnectManager.checkBluetoothState()
+            
+        } catch {
+            
+            if let errr = error as? MessageError {
+                failure(errr)
+                return
+            }
+        }
         
+        //一个设备都没连接
+        if !MeshNetworkManager.bearer.isOpen {
+            var err = MessageError()
+            err.message = LANGLOC("deviceNearbyTip")
+            failure(err)
+            return
+        }
+        
+        var parameString = ""
         switch parame.dp {
         case .power,
              .colorTemp,
@@ -152,25 +166,6 @@ class KLMSmartGroup: NSObject {
                 return
             }
             
-            do {
-                try KLMConnectManager.checkBluetoothState()
-                
-            } catch {
-                
-                if let errr = error as? MessageError {
-                    failure(errr)
-                    return
-                }
-            }
-            
-            //一个设备都没连接
-            if !MeshNetworkManager.bearer.isOpen {
-                var err = MessageError()
-                err.message = LANGLOC("deviceNearbyTip")
-                failure(err)
-                return
-            }
-            
             let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!)!
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
@@ -194,41 +189,31 @@ class KLMSmartGroup: NSObject {
         successBlock = success
         failureBlock = failure
         
+        do {
+            try KLMConnectManager.checkBluetoothState()
+
+        } catch {
+
+            if let errr = error as? MessageError {
+                failure(errr)
+                return
+            }
+        }
+
+        //一个设备都没连接,  群组发送消息也可以发送出去，没报异常。所以要添加这个
+        if !MeshNetworkManager.bearer.isOpen {
+            var err = MessageError()
+            err.message = LANGLOC("deviceNearbyTip")
+            failure(err)
+            return
+        }
+        
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1C", radix: 16) {
             let parameters = Data(hex: dpString)
             KLMLog("readParameter = \(parameters.hex)")
             let network = MeshNetworkManager.instance.meshNetwork!
             let models = network.models(subscribedTo: group)
-            
-            if models.isEmpty {
-                
-                var err = MessageError()
-                err.message = LANGLOC("noDevice")
-                err.code = -1
-                failure(err)
-                return
-            }
-            
-            do {
-                try KLMConnectManager.checkBluetoothState()
-                
-            } catch {
-                
-                if let errr = error as? MessageError {
-                    failure(errr)
-                    return
-                }
-            }
-            
-            //一个设备都没连接
-            if !MeshNetworkManager.bearer.isOpen {
-                var err = MessageError()
-                err.message = LANGLOC("deviceNearbyTip")
-                failure(err)
-                return
-            }
-            
             if let model = models.first {
                 
                 let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
@@ -243,6 +228,12 @@ class KLMSmartGroup: NSObject {
                     failure(err)
                     
                 }
+            } else {
+                
+                var err = MessageError()
+                err.message = LANGLOC("noDevice")
+                err.code = -1
+                failure(err)
             }
         }
     }
@@ -278,10 +269,10 @@ extension KLMSmartGroup: MeshNetworkDelegate {
         }
         
         //返回错误
-        var err = MessageError()
-        err.message = "Unknow message"
-        self.failureBlock?(err)
-        self.failureBlock = nil
+//        var err = MessageError()
+//        err.message = "Unknow message"
+//        self.failureBlock?(err)
+//        self.failureBlock = nil
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {

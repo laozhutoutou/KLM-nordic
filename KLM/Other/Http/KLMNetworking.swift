@@ -552,7 +552,7 @@ class KLMService: NSObject {
                       "groupId": groupId]
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/group/deleteByMeshIdAndGroupId"), params: parame) { responseObject, error in
             //没有记录也是成功
-            if error == nil {
+            if error == nil || error?.code == 777 {
                 success(responseObject as AnyObject)
             } else {
                 failure(error!)

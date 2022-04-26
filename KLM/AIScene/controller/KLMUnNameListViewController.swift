@@ -435,16 +435,28 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             return
         }
         
+        //弹出提示框
         let alert = UIAlertController(title: LANGLOC("deleteDevice"),
-                                      message: LANGLOC("deleteDeviceTip"),
+                                      message: "Please make sure that the light is no longer available",
                                       preferredStyle: .actionSheet)
         let resetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
-            MeshNetworkManager.instance.meshNetwork!.remove(node: model)
             
-            if KLMMesh.save() {
-                //删除成功
-                self.setupData()
-            } 
+            //弹出提示框
+            let warnAlert = UIAlertController(title: LANGLOC("Warning"),
+                                          message: LANGLOC("deleteDeviceTip"),
+                                          preferredStyle: .alert)
+            let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
+                
+                MeshNetworkManager.instance.meshNetwork!.remove(node: model)
+                if KLMMesh.save() {
+                    //删除成功
+                    self.setupData()
+                }
+            }
+            let warncancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+            warnAlert.addAction(warnresetAction)
+            warnAlert.addAction(warncancelAction)
+            self.present(warnAlert, animated: true)
         }
         let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
         alert.addAction(resetAction)

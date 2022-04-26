@@ -261,7 +261,7 @@ class KLMCustomViewController: UIViewController {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
-                DispatchQueue.main.asyncAfter(deadline: 1) {
+                DispatchQueue.main.asyncAfter(deadline: 0.5) {
                     
                     //获取根VC
                     var  rootVC =  self.presentingViewController
@@ -287,7 +287,7 @@ class KLMCustomViewController: UIViewController {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
-                DispatchQueue.main.asyncAfter(deadline: 1) {
+                DispatchQueue.main.asyncAfter(deadline: 0.5) {
                     
                     //获取根VC
                     var  rootVC =  self.presentingViewController
@@ -367,15 +367,18 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
         
         if isFinish {
             
-//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
-            //获取根VC
-            var  rootVC =  self.presentingViewController
-            while  let  parent = rootVC?.presentingViewController {
-                rootVC = parent
+            DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                
+                //获取根VC
+                var  rootVC =  self.presentingViewController
+                while  let  parent = rootVC?.presentingViewController {
+                    rootVC = parent
+                }
+                //释放所有下级视图
+                rootVC?.dismiss(animated:  true , completion:  nil )
             }
-            //释放所有下级视图
-            rootVC?.dismiss(animated:  true , completion:  nil )
         }
         
         KLMLog("success")

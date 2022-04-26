@@ -326,7 +326,7 @@ extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             
-            DispatchQueue.main.asyncAfter(deadline: 1) {
+            DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 
                 //获取根VC
                 var  rootVC =  self.presentingViewController

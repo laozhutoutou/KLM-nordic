@@ -52,6 +52,12 @@ class KLMDFUTestViewController: UIViewController {
         }.bind(to: upGradeBtn.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        //弹出更新提示框
+        let aler = UIAlertController.init(title: LANGLOC("Warning"), message: LANGLOC("OTAWarningTip"), preferredStyle: .alert)
+        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default, handler: nil)
+        aler.addAction(sure)
+        present(aler, animated: true, completion: nil)
+        
     }
 
     @IBAction func upgrade(_ sender: Any) {

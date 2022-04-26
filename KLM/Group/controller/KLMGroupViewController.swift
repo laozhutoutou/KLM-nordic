@@ -225,6 +225,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                         KLMShowError(erro)
                     }
                 } failure: { error in
+                    
                     KLMHttpShowError(error)
                 }
                 

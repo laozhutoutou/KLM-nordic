@@ -105,3 +105,6 @@ ConnectTimeoutTip = "连接超时";
 APPBluetoothPowerTip = "请打开手机蓝牙";
 APPBluetoothunauthorized = "请到APP设置中授权蓝牙";
 mailboxIncorrectTip = "邮箱格式不正确";
+
+Warning = "警告";
+OTAWarningTip = "更新过程中请不要移动手机，同时保持APP与灯之间蓝牙连接";
