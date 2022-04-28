@@ -185,15 +185,38 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
+        ///过滤消息，不是当前手机发出的消息不处理（这个可以不加，因为不是当前手机的信息nordic底层已经处理）
+        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
+            KLMLog("别的手机发的消息")
+            return
+        }
+        
+        ///不是当前节点的消息不处理
+        if source != KLMHomeManager.currentNode.unicastAddress {
+            KLMLog("别的节点回的消息")
+            return
+        }
+        
         switch message {
         case let message as UnknownMessage:
             KLMLog(message.debugDescription)
             /// 00CD00FF 00CF00FF
             ///接收到binVersion数据
             if String(format: "%08X", message.opCode) == "00CD00FF" {
-                
-                ///开始发送数据
-                espOtaStart()
+                //设备在更新中
+                if message.parameters?.hex == "0000" {
+                    
+                    KLMLog("设备正在更新中...")
+                    SVProgressHUD.showInfo(withStatus: "The device is upgrading")
+                    DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    
+                } else {//正常
+                    
+                    ///开始发送数据
+                    espOtaStart()
+                }
             }
             ///开始接收到更新数据
             if String(format: "%08X", message.opCode) == "00CF00FF" {
@@ -247,7 +270,6 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                 KLMLog("其他设备连接不上")
                             case 0xFD: ///
                                 KLMLog("其他设备升级超时")
-                            
                             case 1:
                                 SVProgressHUD.dismiss()
                                 KLMLog("wifi 名称或者密码错误")

@@ -51,8 +51,8 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     
     @IBAction func onClick(_ sender: Any) {
         
-        if isCanClick() == false {
-            
+        if isFirst == false {
+            SVProgressHUD.showInfo(withStatus: "Please wait for 3 seconds")
             return
         }
         
@@ -89,10 +89,6 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     
     @IBAction func offClick(_ sender: Any) {
         
-        if isCanClick() == false {
-            
-            return
-        }
         
         let parame = parameModel(dp: .power, value: 0)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
@@ -105,6 +101,12 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 self.onBtn.isSelected = false
                 self.offBtn.isSelected = true
                 self.sendData()
+                
+                self.isFirst = false
+                DispatchQueue.main.asyncAfter(deadline: 3) {
+                    self.isFirst = true
+                }
+                
             } failure: { error in
                 KLMShowError(error)
             }
@@ -119,28 +121,15 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
                 self.onBtn.isSelected = false
                 self.offBtn.isSelected = true
                 self.sendData()
+                
+                self.isFirst = false
+                DispatchQueue.main.asyncAfter(deadline: 3) {
+                    self.isFirst = true
+                }
+                
             } failure: { error in
                 KLMShowError(error)
             }
-        }
-    }
-    
-    private func isCanClick() -> Bool {
-        
-        if isFirst == true {
-            
-            isFirst = false
-            
-            DispatchQueue.main.asyncAfter(deadline: 10) {
-                self.isFirst = true
-                
-            }
-            return true
-            
-        } else {
-            
-            SVProgressHUD.showInfo(withStatus: "Please wait for 10 seconds")
-            return false
         }
     }
     

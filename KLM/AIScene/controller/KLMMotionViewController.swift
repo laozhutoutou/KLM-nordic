@@ -125,8 +125,6 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        SVProgressHUD.dismiss()
-        
         if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
             
             ///节能开关

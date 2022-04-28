@@ -34,6 +34,8 @@ extension KLMSmartNodeDelegate {
 
 class KLMSmartNode: NSObject {
     
+    var currentNode: Node?
+    
     static let sharedInstacnce = KLMSmartNode()
     private override init(){
         super.init()
@@ -44,6 +46,7 @@ class KLMSmartNode: NSObject {
     
     func sendMessage(_ parame: parameModel, toNode node: Node) {
         
+        currentNode = node
         MeshNetworkManager.instance.delegate = self
         
         var parameString = ""
@@ -92,7 +95,8 @@ class KLMSmartNode: NSObject {
     }
     
     func readMessage(_ parame: parameModel, toNode node: Node) {
-        
+       
+        currentNode = node
         MeshNetworkManager.instance.delegate = self
         
         let model = KLMHomeManager.getModelFromNode(node: node)!
@@ -102,7 +106,7 @@ class KLMSmartNode: NSObject {
             KLMLog("readParameter = \(parameters.hex)")
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
-                
+            
                 try MeshNetworkManager.instance.send(message, to: model)
             } catch  {
                 
@@ -116,6 +120,7 @@ class KLMSmartNode: NSObject {
     /// 删除节点
     func resetNode(node: Node) {
         
+        currentNode = node
         MeshNetworkManager.instance.delegate = self
         
         let message = ConfigNodeReset()
@@ -134,9 +139,22 @@ extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
+        KLMLog("mess = \(message.parameters?.hex)")
+        
+        ///过滤消息，不是当前手机发出的消息不处理。（这个可以不加，因为不是当前手机的信息nordic底层已经处理）
+        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
+            KLMLog("别的手机发的消息")
+            return
+        }
+
+        ///不是当前节点的消息不处理
+        if source != currentNode?.unicastAddress {
+            KLMLog("别的节点回的消息")
+            return
+        }
+        
         ///收到回复，停止计时
         KLMMessageTime.sharedInstacnce.stopTime()
-        
         switch message {
         case let message as UnknownMessage://收发消息
             if let parameters = message.parameters {
