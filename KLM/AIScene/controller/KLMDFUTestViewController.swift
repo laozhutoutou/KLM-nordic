@@ -24,6 +24,8 @@ class KLMDFUTestViewController: UIViewController {
     
     private var isTureWiFi = true
     
+    
+    
     ///版本
     var BLEVersionData: KLMVersion.KLMVersionData!
     

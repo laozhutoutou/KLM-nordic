@@ -123,7 +123,7 @@
                 <constraint firstItem="dbi-hy-HMp" firstAttribute="leading" secondItem="CTQ-NG-57s" secondAttribute="leading" id="x7p-s0-BI4"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-1891" y="-402"/>
+            <point key="canvasLocation" x="-2755" y="-450"/>
         </view>
     </objects>
     <resources>

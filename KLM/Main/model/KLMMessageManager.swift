@@ -185,6 +185,7 @@ class KLMMessageTime {
     
     ///超时时间
     let messageTimeout: Int = 6
+    
     ///当前秒
     var currentTime: Int = 0
     ///定时器
