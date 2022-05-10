@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KLMGroupMotionViewController: UIViewController {
+class KLMGroupMotionViewController: UIViewController, Editable {
 
     @IBOutlet weak var onBtn: UIButton!
     @IBOutlet weak var offBtn: UIButton!
@@ -55,6 +55,8 @@ class KLMGroupMotionViewController: UIViewController {
         setupUI()
         
         setupData()
+        
+        showEmptyView()
     }
     
     private func setupUI() {
@@ -82,6 +84,7 @@ class KLMGroupMotionViewController: UIViewController {
         lightBgView.addSubview(lightSlider)
     }
     
+    
     private func setupData() {
         
         var address: Int = 0
@@ -96,10 +99,10 @@ class KLMGroupMotionViewController: UIViewController {
             self.groupData = model
             
             self.updateUI()
-            
+            self.hideEmptyView()
         } failure: { error in
             self.updateUI()
-//                KLMHttpShowError(error)
+            self.hideEmptyView()
             SVProgressHUD.dismiss()
         }
     }

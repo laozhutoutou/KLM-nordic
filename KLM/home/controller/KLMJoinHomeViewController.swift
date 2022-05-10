@@ -23,7 +23,7 @@ class KLMJoinHomeViewController: UIViewController {
     @IBAction func comfirm(_ sender: Any) {
         
         guard let text = invitationCodeTextField.text, !text.isEmpty else {
-            SVProgressHUD.showError(withStatus: "Please enter the invitation code")
+            SVProgressHUD.showInfo(withStatus: "Please enter the invitation code")
             return
         }
         

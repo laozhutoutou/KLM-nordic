@@ -143,7 +143,7 @@ class KLMAddDeviceViewController: UIViewController {
         
         ///没网不能添加设备
         if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
-            SVProgressHUD.showError(withStatus: LANGLOC("NetWorkTip"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("NetWorkTip"))
             return
         }
         

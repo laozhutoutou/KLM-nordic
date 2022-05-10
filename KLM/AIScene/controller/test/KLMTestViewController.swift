@@ -80,7 +80,7 @@ extension KLMTestViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
         if let value = message?.value as? String, value == "FF"{
-            SVProgressHUD.showError(withStatus: "超出功率")
+            SVProgressHUD.showInfo(withStatus: "超出功率")
         }
         KLMLog("success")
     }

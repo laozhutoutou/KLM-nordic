@@ -32,7 +32,6 @@ class KLMImagePickerController: UIImagePickerController {
         
         //拍照
         let takePhotoBtn = UIButton.init(type: .custom)
-//        takePhotoBtn.setTitle("拍照", for: .normal)
         takePhotoBtn.backgroundColor = .white
         takePhotoBtn.layer.borderWidth = 7
         takePhotoBtn.layer.borderColor = rgb(129, 129, 129).cgColor
@@ -70,6 +69,9 @@ class KLMImagePickerController: UIImagePickerController {
         
         //相册
         let libraryBtn = UIButton.init(type: .custom)
+        libraryBtn.setTitle(LANGLOC("library"), for: .normal)
+        libraryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        libraryBtn.setTitleColor(.white, for: .normal)
         libraryBtn.layer.cornerRadius = 5
         libraryBtn.clipsToBounds = true
         libraryBtn.addTarget(self, action: #selector(libraryClick), for: .touchUpInside)
@@ -80,27 +82,24 @@ class KLMImagePickerController: UIImagePickerController {
             make.left.equalToSuperview().offset(40)
             make.height.equalTo(40)
             make.width.equalTo(40)
-        }      
-        
-        if let latest = self.latestAsset() {
-            
-            DispatchQueue.global().async{
-                
-                PHImageManager.default().requestImage(for: latest, targetSize: .zero, contentMode: .aspectFill, options: nil) { result, info in
-                    
-                    DispatchQueue.main.async{
-                        
-                        libraryBtn.setImage(result, for: .normal)
-                        
+        }
+        ///异步请求
+        DispatchQueue.global().async{
+
+            if let latest = self.latestAsset() {
+
+                DispatchQueue.global().async{
+
+                    PHImageManager.default().requestImage(for: latest, targetSize: .zero, contentMode: .aspectFill, options: nil) { result, info in
+
+                        DispatchQueue.main.async{
+
+                            libraryBtn.setImage(result, for: .normal)
+                            libraryBtn.setTitle(nil, for: .normal)
+                        }
                     }
                 }
             }
-            
-        } else {
-            
-            libraryBtn.setTitle(LANGLOC("library"), for: .normal)
-            libraryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-            libraryBtn.setTitleColor(.white, for: .normal)
         }
         
         //自定义
@@ -226,7 +225,6 @@ extension KLMImagePickerController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         
-//        KLMShowError(error)
     }
 }
 

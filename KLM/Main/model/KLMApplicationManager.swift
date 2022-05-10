@@ -33,6 +33,7 @@ class KLMApplicationManager {
     func setupSVHUD() {
         
         SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
     }
     
     private func setupKeyboard() {

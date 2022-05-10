@@ -53,7 +53,7 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         guard let text = nameTextField.text, text.isEmpty == false else {
-            SVProgressHUD.showError(withStatus: "Please enter store name")
+            SVProgressHUD.showInfo(withStatus: "Please enter store name")
             return
         }
         

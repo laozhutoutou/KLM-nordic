@@ -122,8 +122,8 @@ let disposeBag = DisposeBag()
 //error HUD
 func KLMShowError(_ error: MessageError?) {
     
-    SVProgressHUD.showError(withStatus: error?.message)
-    
+    SVProgressHUD.showInfo(withStatus: error?.message)
+    SVProgressHUD.dismiss(withDelay: 1.5)
 }
 
 //是否是空字符串 ""和nil 返回false 
@@ -157,7 +157,8 @@ func KLMHttpShowError(_ error: NSError) {
     if Bundle.isChineseLanguage() {
         message = error.userInfo["error"] as! String
     }
-    SVProgressHUD.showError(withStatus: message)
+    SVProgressHUD.showInfo(withStatus: message)
+    SVProgressHUD.dismiss(withDelay: 1.5)
 }
 
 ///国内版

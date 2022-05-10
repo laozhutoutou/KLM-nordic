@@ -55,9 +55,18 @@ class KLMGroupEditViewController: UIViewController {
             self.tableView.reloadData()
         } failure: { error in
             SVProgressHUD.dismiss()
-//            KLMHttpShowError(error)
+            if error.code == 575 { //查询不到数据
+                //提交本地的
+                let mesh = KLMMesh.loadHome()!
+                KLMService.addGroup(meshId: mesh.id, groupId: Int(KLMHomeManager.currentGroup.address.address), groupName: KLMHomeManager.currentGroup.name) { response in
+                    
+                } failure: { error in
+                    
+                }
+            } else {
+                KLMHttpShowError(error)
+            }
         }
-
     }
     
     @objc func reloadData() {

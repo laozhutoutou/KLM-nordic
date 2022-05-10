@@ -199,7 +199,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                 let network = MeshNetworkManager.instance.meshNetwork!
                 let models = network.models(subscribedTo: model)
                 if models.count > 0 { //组里有设备不能删除
-                    SVProgressHUD.showError(withStatus: "Please remove all lights from the group")
+                    SVProgressHUD.showInfo(withStatus: "Please remove all lights from the group")
                     return
                 }
                 SVProgressHUD.show()

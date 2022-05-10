@@ -65,7 +65,10 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                                           message: nil,
                                           preferredStyle: .alert)
             let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
+                
+                SVProgressHUD.show()
                 KLMService.logout { response in
+                    SVProgressHUD.dismiss()
                     ///进入登录页面
                     (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
                     

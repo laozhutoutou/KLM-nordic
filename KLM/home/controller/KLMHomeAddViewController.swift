@@ -22,7 +22,7 @@ class KLMHomeAddViewController: UIViewController {
     @objc func finish() {
         
         guard let text = nameTextField.text, text.isEmpty == false else {
-            SVProgressHUD.showError(withStatus: "Enter store name")
+            SVProgressHUD.showInfo(withStatus: "Enter store name")
             return
         }
         

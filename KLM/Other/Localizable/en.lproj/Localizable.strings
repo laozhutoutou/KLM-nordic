@@ -95,7 +95,7 @@ Dataexception = "Data exception";
 DataUploadFail = "Data upload failed, please check the network connection";
 NetWorkTip = "Please make sure the network can be connected";
 deleteStoreTip = "Please ensure that all lights have been reset, otherwise they will not be searched";
-deviceNearbyTip = "Make sure your devices are powered on and nearby.whether the device has been reset";
+deviceNearbyTip = "Make sure your device is powered on and nearby, and has not been reset.";
 BlueToothSignalTip = "Bluetooth signal is too weak";
 WrongWiFitip = "Please check WiFi name or password";
 UpdateInterruptedTip = "Upgrade interrupted, please keep networks open";
@@ -107,4 +107,4 @@ APPBluetoothunauthorized = "The application is not authorized to use the Bluetoo
 mailboxIncorrectTip = "The mailbox format is incorrect";
 
 Warning = "Warning";
-OTAWarningTip = "Please do not move the mobile phone and keep the Bluetooth connection between the mobile phone and the light during the update process.";
+OTAWarningTip = "Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process.";

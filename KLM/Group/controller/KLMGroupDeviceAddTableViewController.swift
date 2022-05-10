@@ -136,7 +136,7 @@ extension KLMGroupDeviceAddTableViewController: KLMMessageManagerDelegate {
         
         if error != nil {
             
-            SVProgressHUD.showError(withStatus: error?.message)
+            SVProgressHUD.showInfo(withStatus: error?.message)
             return
         }
         

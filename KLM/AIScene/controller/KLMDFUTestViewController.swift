@@ -47,7 +47,7 @@ class KLMDFUTestViewController: UIViewController {
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         
         MeshNetworkManager.instance.delegate = self
-        MeshNetworkManager.bearer.delegate = self
+//        MeshNetworkManager.bearer.delegate = self
         
         Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
             
@@ -101,7 +101,7 @@ class KLMDFUTestViewController: UIViewController {
                 
             } catch {
                 
-                SVProgressHUD.showError(withStatus: error.localizedDescription)
+                SVProgressHUD.showInfo(withStatus: error.localizedDescription)
                 print(error)
                 
             }
@@ -180,7 +180,7 @@ class KLMDFUTestViewController: UIViewController {
                 
             } catch {
                 
-                SVProgressHUD.showError(withStatus: error.localizedDescription)
+                SVProgressHUD.showInfo(withStatus: error.localizedDescription)
                 print(error)
                 
             }
@@ -287,7 +287,6 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                         case 0xFF: ///其他设备在升级
                             timer.startTimer(timeOut: 40)
                             KLMLog("Please wait while other devices are upgrading")
-                            //                                SVProgressHUD.showProgress(0.8, status: "80%")
                             SVProgressHUD.show(withStatus: "Please wait while other devices are upgrading")
                         case 0xFE: ///
                             KLMLog("其他设备连接不上")
@@ -324,8 +323,6 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                             
                         default:
                             KLMLog("Upgrade failure")
-                            //                                SVProgressHUD.showError(withStatus: "Upgrade failure")
-                            
                             break
                         }
                     }
@@ -367,22 +364,21 @@ extension KLMDFUTestViewController: KLMTimerDelegate {
     func timeDidTimeout() {
         
         KLMLog("蓝牙连接超时，消息未收到")
-        SVProgressHUD.showError(withStatus: LANGLOC("ConnectTimeoutTip"))
+        SVProgressHUD.showInfo(withStatus: LANGLOC("ConnectTimeoutTip"))
     }
-    
 }
 
-extension KLMDFUTestViewController: BearerDelegate {
-    
-    func bearerDidOpen(_ bearer: Bearer) {
-        
-        
-    }
-    
-    func bearer(_ bearer: Bearer, didClose error: Error?) {
-        
-        
-    }
-}
+//extension KLMDFUTestViewController: BearerDelegate {
+//
+//    func bearerDidOpen(_ bearer: Bearer) {
+//
+//
+//    }
+//
+//    func bearer(_ bearer: Bearer, didClose error: Error?) {
+//
+//
+//    }
+//}
 
 
