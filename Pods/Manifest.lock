@@ -15,6 +15,7 @@ PODS:
   - IQKeyboardManagerSwift (6.5.9)
   - JKSwiftExtension (1.6.9):
     - Kingfisher
+  - KeychainAccess (4.2.2)
   - Kingfisher (7.1.2)
   - MJRefresh (3.5.0)
   - nRFMeshProvision (3.1.5):
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - DZNEmptyDataSet (~> 1.8.1)
   - IQKeyboardManagerSwift (~> 6.5.6)
   - JKSwiftExtension (~> 1.6.8)
+  - KeychainAccess (~> 4.2.2)
   - Kingfisher (~> 7.1.0)
   - MJRefresh (~> 3.5.0)
   - nRFMeshProvision (~> 3.1.2)
@@ -59,6 +61,7 @@ SPEC REPOS:
     - DZNEmptyDataSet
     - IQKeyboardManagerSwift
     - JKSwiftExtension
+    - KeychainAccess
     - Kingfisher
     - MJRefresh
     - nRFMeshProvision
@@ -78,6 +81,7 @@ SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   JKSwiftExtension: f3a19d386eaf663d06349dd370cba0cbf402cdf6
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   nRFMeshProvision: 8d93e5827501f166f1511c89a5540a610844ccf2
@@ -90,6 +94,6 @@ SPEC CHECKSUMS:
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   YBPopupMenu: 3a02e89860bb0568ba477aee609bc3f25e5bd339
 
-PODFILE CHECKSUM: 6fb170fcb3757cf7250debb2bd908400beec2852
+PODFILE CHECKSUM: f20283d586164196b5e0346b70b4a1343a7a5a4f
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.3

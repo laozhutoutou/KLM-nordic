@@ -133,18 +133,6 @@ class KLMDFUTestViewController: UIViewController {
         let urlSSID: String = self.SSIDField.text!
         let urlPassword: String = self.passField.text!
         
-        //        //256
-        //        let url: String = KLMUrl("api/file/download/\(BLEVersionData.id)")
-        //        var urlBytes: [UInt8] = [UInt8](url.data(using: String.Encoding.ascii)!)
-        //        urlBytes = urlBytes + [UInt8].init(repeating: 0, count: 256 - urlBytes.count)
-        //        //32
-        //        var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: String.Encoding.ascii)!)
-        //        urlSSIDBytes = urlSSIDBytes + [UInt8].init(repeating: 0, count: 32 - urlSSIDBytes.count)
-        //        //64
-        //        var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: String.Encoding.ascii)!)
-        //        urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 64 - urlPasswordBytes.count)
-        
-        
         //64
         let url: String = KLMUrl("api/file/download/\(BLEVersionData.id)")
         var urlBytes: [UInt8] = [UInt8](url.data(using: String.Encoding.ascii)!)
@@ -281,11 +269,11 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                             let progress: Float = Float(PP) / 100.0 * 0.7
                             SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
                         case 0xFC:
-                            timer.startTimer(timeOut: 40)
+                            timer.startTimer(timeOut: 60)
                             KLMLog("正在搜索其他待升级设备")
                             SVProgressHUD.show(withStatus: "Searching for other devices to be upgraded")
                         case 0xFF: ///其他设备在升级
-                            timer.startTimer(timeOut: 40)
+//                            timer.startTimer(timeOut: 60)
                             KLMLog("Please wait while other devices are upgrading")
                             SVProgressHUD.show(withStatus: "Please wait while other devices are upgrading")
                         case 0xFE: ///
@@ -380,5 +368,3 @@ extension KLMDFUTestViewController: KLMTimerDelegate {
 //
 //    }
 //}
-
-

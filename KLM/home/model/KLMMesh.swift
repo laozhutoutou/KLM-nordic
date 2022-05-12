@@ -196,6 +196,7 @@ extension KLMMesh {
         self.removeHome()
         ///清空用户数据
         KLMUser.removeUserInfo()
+        
         ///清空本地存储的mesh数据
         (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
     }

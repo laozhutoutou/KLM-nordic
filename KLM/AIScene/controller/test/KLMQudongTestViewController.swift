@@ -18,6 +18,8 @@ class KLMQudongTestViewController: UIViewController {
     @IBOutlet weak var twentyBtn: UIButton!
     @IBOutlet weak var hundredBtn: UIButton!
     
+    @IBOutlet weak var stanbyOK: UIButton!
+    
     var tongdaoBtnArray: [UIButton]!
     var tiaoguangBtnArray: [UIButton]!
     
@@ -60,6 +62,8 @@ class KLMQudongTestViewController: UIViewController {
             btn.setBackgroundImage(UIImage.init(color: .white), for: .normal)
             btn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
         }
+        
+        stanbyOK.isHidden = true
         
         WBtn.isSelected = true
         oneBtn.isSelected = true
@@ -108,6 +112,15 @@ class KLMQudongTestViewController: UIViewController {
         //重置节点
         KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
     }
+    
+    @IBAction func stanbyClick(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        let string = "0609"
+        let parame = parameModel(dp: .factoryTest, value: string)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
 }
 
 extension KLMQudongTestViewController: KLMSmartNodeDelegate {
@@ -120,6 +133,15 @@ extension KLMQudongTestViewController: KLMSmartNodeDelegate {
                 SVProgressHUD.showSuccess(withStatus: "发送成功")
             }
             
+        }
+        
+        //待机功耗
+        if let value = message?.value as? String, message?.dp == .factoryTest {
+            
+            if value == "0609"{
+                SVProgressHUD.dismiss()
+                stanbyOK.isHidden = false
+            }
         }
     }
     

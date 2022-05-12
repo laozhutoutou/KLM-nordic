@@ -19,6 +19,7 @@ targets.each do |t|
     pod 'MJRefresh', '~> 3.5.0'
     pod 'DZNEmptyDataSet', '~> 1.8.1' #数据为空时显示空白占位图
     pod 'Charts' #图表
+    pod 'KeychainAccess', '~> 4.2.2'
   end
 end
 

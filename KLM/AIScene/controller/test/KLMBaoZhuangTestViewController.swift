@@ -161,18 +161,6 @@ extension KLMBaoZhuangTestViewController: KLMSmartNodeDelegate {
             }
             
         }
-//            if value == "050101" {
-//                WWOK.isHidden = false
-//            } else if value == "050102" {
-//                ROK.isHidden = false
-//            } else if value == "050103" {
-//                GOK.isHidden = false
-//            } else if value == "050104" {
-//                BOK.isHidden = false
-//                SVProgressHUD.dismiss()
-//
-//            }
-//        }
         
         if message?.dp ==  .cameraPic{
             
