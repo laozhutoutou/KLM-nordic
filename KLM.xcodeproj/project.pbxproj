@@ -582,6 +582,12 @@
 		E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */; };
 		E4D7448A278533C80049B670 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4D7448D27853AA80049B670 /* KLMDFUTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */; };
+		E4DCCE8D282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
+		E4DCCE8E282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
+		E4DCCE8F282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
+		E4DCCE90282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */; };
+		E4DCCE91282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */; };
+		E4DCCE92282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */; };
 		E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */; };
 		E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */; };
 		E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */; };
@@ -890,6 +896,8 @@
 		E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUserInfoCell.xib; sourceTree = "<group>"; };
 		E4D74489278533C80049B670 /* EspDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspDataUtils.swift; sourceTree = "<group>"; };
 		E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUTestViewController.swift; sourceTree = "<group>"; };
+		E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoEditMoreViewController.swift; sourceTree = "<group>"; };
+		E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMPhotoEditMoreViewController.xib; sourceTree = "<group>"; };
 		E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartNode.swift; sourceTree = "<group>"; };
 		E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMProvisionManager.swift; sourceTree = "<group>"; };
 		E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartGroup.swift; sourceTree = "<group>"; };
@@ -1045,6 +1053,8 @@
 				E49B42C826C21B0A0056C7EE /* KLMCustomViewController.xib */,
 				E4A6607526733C9500FE6866 /* CMDeviceNamePopViewController.swift */,
 				E49B42CD26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib */,
+				E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */,
+				E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1728,6 +1738,7 @@
 				E486366527DB342600F74DEB /* KLMQudongTestViewController.xib in Resources */,
 				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */,
+				E4DCCE90282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
@@ -1796,6 +1807,7 @@
 				E4C57EC328055B1F00E7AB54 /* KLMQudongTestViewController.xib in Resources */,
 				E4C57EC428055B1F00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57EC528055B1F00E7AB54 /* KLMUserInfoCell.xib in Resources */,
+				E4DCCE91282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E4C57EC628055B1F00E7AB54 /* KLMChengpinViewController.xib in Resources */,
 				E4C57EC728055B1F00E7AB54 /* KLMBaseTableViewCell.xib in Resources */,
 				E4C57EC828055B1F00E7AB54 /* KLMCustomViewController.xib in Resources */,
@@ -1864,6 +1876,7 @@
 				E4C57F9A28055C7C00E7AB54 /* KLMQudongTestViewController.xib in Resources */,
 				E4C57F9B28055C7C00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57F9C28055C7C00E7AB54 /* KLMUserInfoCell.xib in Resources */,
+				E4DCCE92282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E4C57F9D28055C7C00E7AB54 /* KLMChengpinViewController.xib in Resources */,
 				E4C57F9E28055C7C00E7AB54 /* KLMBaseTableViewCell.xib in Resources */,
 				E4C57F9F28055C7C00E7AB54 /* KLMCustomViewController.xib in Resources */,
@@ -2059,6 +2072,7 @@
 				E4E28446269EFFFC006C120E /* GenericState.swift in Sources */,
 				E4A65FCB2670B06400FE6866 /* RSGenerateOperation.m in Sources */,
 				E4E28448269F0052006C120E /* Address+String.swift in Sources */,
+				E4DCCE8D282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */,
 				E4AC3EBF279FC5A9000D9F21 /* recipe.c in Sources */,
 				E492AD2D267C83C50028AF3E /* HanyuPinyinOutputFormat.m in Sources */,
 				E48B529626676A0C0006CDA7 /* KLMTabBarController.swift in Sources */,
@@ -2207,6 +2221,7 @@
 				E4C57E3928055B1F00E7AB54 /* GenericState.swift in Sources */,
 				E4C57E3A28055B1F00E7AB54 /* RSGenerateOperation.m in Sources */,
 				E4C57E3B28055B1F00E7AB54 /* Address+String.swift in Sources */,
+				E4DCCE8E282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */,
 				E4C57E3C28055B1F00E7AB54 /* recipe.c in Sources */,
 				E4C57E3D28055B1F00E7AB54 /* HanyuPinyinOutputFormat.m in Sources */,
 				E4C57E3E28055B1F00E7AB54 /* KLMTabBarController.swift in Sources */,
@@ -2355,6 +2370,7 @@
 				E4C57F1028055C7C00E7AB54 /* GenericState.swift in Sources */,
 				E4C57F1128055C7C00E7AB54 /* RSGenerateOperation.m in Sources */,
 				E4C57F1228055C7C00E7AB54 /* Address+String.swift in Sources */,
+				E4DCCE8F282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */,
 				E4C57F1328055C7C00E7AB54 /* recipe.c in Sources */,
 				E4C57F1428055C7C00E7AB54 /* HanyuPinyinOutputFormat.m in Sources */,
 				E4C57F1528055C7C00E7AB54 /* KLMTabBarController.swift in Sources */,
@@ -2919,7 +2935,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.2;
+				MARKETING_VERSION = 1.6.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2951,7 +2967,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.2;
+				MARKETING_VERSION = 1.6.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3036,7 +3052,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM_Test.plist;
@@ -3068,7 +3084,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM_Test.plist;

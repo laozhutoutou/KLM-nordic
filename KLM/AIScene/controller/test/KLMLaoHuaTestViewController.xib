@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMLaoHuaTestViewController" customModule="KLM" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMLaoHuaTestViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
                 <outlet property="OKBtn" destination="IyR-Gu-8HX" id="dew-Zx-o34"/>
                 <outlet property="falseBtn" destination="iFR-cD-9qN" id="MGn-8S-OVq"/>
@@ -33,11 +33,11 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0T-K9-COi">
-                            <rect key="frame" x="15" y="79" width="100" height="35"/>
+                            <rect key="frame" x="15" y="79" width="120" height="40"/>
                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="9jm-T0-YEl"/>
-                                <constraint firstAttribute="height" constant="35" id="RRT-no-467"/>
+                                <constraint firstAttribute="width" constant="120" id="9jm-T0-YEl"/>
+                                <constraint firstAttribute="height" constant="40" id="RRT-no-467"/>
                             </constraints>
                             <state key="normal" title="试产老化1">
                                 <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -47,11 +47,11 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xaz-MS-dKd">
-                            <rect key="frame" x="15" y="144" width="100" height="35"/>
+                            <rect key="frame" x="15" y="149" width="120" height="40"/>
                             <color key="backgroundColor" systemColor="systemGreenColor"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="9UK-WY-f2P"/>
-                                <constraint firstAttribute="height" constant="35" id="hMl-OF-fuP"/>
+                                <constraint firstAttribute="width" constant="120" id="9UK-WY-f2P"/>
+                                <constraint firstAttribute="height" constant="40" id="hMl-OF-fuP"/>
                             </constraints>
                             <state key="normal" title="试产老化2">
                                 <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,15 +61,15 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1L-2q-FCm">
-                            <rect key="frame" x="165" y="84.5" width="24" height="24"/>
+                            <rect key="frame" x="185" y="87" width="24" height="24"/>
                             <state key="normal" image="icon_selected"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehi-hV-v0G">
-                            <rect key="frame" x="165" y="149.5" width="24" height="24"/>
+                            <rect key="frame" x="185" y="157" width="24" height="24"/>
                             <state key="normal" image="icon_selected"/>
                         </button>
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyR-Gu-8HX">
-                            <rect key="frame" x="60" y="229" width="88" height="39"/>
+                            <rect key="frame" x="60" y="239" width="88" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="XtS-zs-53e"/>
                                 <constraint firstAttribute="width" constant="88" id="n2a-s7-6vj"/>
@@ -80,7 +80,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFR-cD-9qN">
-                            <rect key="frame" x="266" y="229" width="88" height="39"/>
+                            <rect key="frame" x="266" y="239" width="88" height="39"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="88" id="2We-0K-Fqs"/>
                                 <constraint firstAttribute="height" constant="39" id="s1K-gh-MVy"/>

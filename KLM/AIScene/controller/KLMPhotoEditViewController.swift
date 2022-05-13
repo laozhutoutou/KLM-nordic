@@ -17,10 +17,16 @@ class KLMPhotoEditViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var moreBtn: UIButton!
+    
     //图像数据
     var imageData: UnsafeMutablePointer<UInt8>!
     
     var lightSlider: KLMSlider!
+    
+    ///rgb 单路
+    var enhance: RGBEnhance = RGBEnhance()
+    
     //当前配方
     var currentRecipe: Int = 0 {
         
@@ -28,8 +34,8 @@ class KLMPhotoEditViewController: UIViewController {
             
             self.lightBgView.isHidden = false
             lightLab.isHidden = false
+            moreBtn.isHidden = false
             
-            self.lightSlider.isUserInteractionEnabled = true
             //完成
             navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))  
         }
@@ -80,6 +86,8 @@ class KLMPhotoEditViewController: UIViewController {
     
     func setupUI() {
         
+        moreBtn.setTitleColor(appMainThemeColor, for: .normal)
+        
         imageView.image = originalImage
         
         //框选
@@ -124,7 +132,10 @@ class KLMPhotoEditViewController: UIViewController {
             currentRecipe = Int(recipe)
             
             KLMLog("click = \(recipe)")
-            setData()
+            enhance.RR = 0
+            enhance.BB = 0
+            enhance.GG = 0
+            sendData()
         }
     }
     //框选
@@ -153,23 +164,26 @@ class KLMPhotoEditViewController: UIViewController {
             let recipe = getRecipeIndexOfImageOnBox(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(clipViewStart.x), Int32(clipViewStart.y), Int32(clipViewFinish.x), Int32(clipViewFinish.y))
             currentRecipe = Int(recipe)
             KLMLog("box = \(recipe)")
-            setData()
+            enhance.RR = 0
+            enhance.BB = 0
+            enhance.GG = 0
+            sendData()
         }
     }
     
     ///发送数据
-    func setData() {
+    func sendData() {
         
         isFinish = false
         
         //16进制字符串，2个字节，"121001"，12代表配方18，10代表亮度,00代表预览，01代表确定，02取消
         let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
-        //亮度范围80-120
         let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "00"
-        
+        let RRHex = enhance.RR.decimalTo2Hexadecimal()
+        let GGHex = enhance.GG.decimalTo2Hexadecimal()
+        let BBHex = enhance.BB.decimalTo2Hexadecimal()
+        let string = recipeHex + lightValueHex + "00" + RRHex + GGHex + BBHex
         let parame = parameModel(dp: .recipe, value: string)
-        
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
@@ -192,9 +206,7 @@ class KLMPhotoEditViewController: UIViewController {
             } failure: { error in
                 KLMShowError(error)
             }
-
         }
-        
     }
     
     /// 屏幕上的点转化为图片上的坐标点
@@ -255,9 +267,10 @@ class KLMPhotoEditViewController: UIViewController {
         let recipeHex = self.currentRecipe.decimalTo2Hexadecimal()
         //亮度范围80-120
         let lightValueHex = self.lightValue.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "01"
-        
-        
+        let RRHex = enhance.RR.decimalTo2Hexadecimal()
+        let GGHex = enhance.GG.decimalTo2Hexadecimal()
+        let BBHex = enhance.BB.decimalTo2Hexadecimal()
+        let string = recipeHex + lightValueHex + "01" + RRHex + GGHex + BBHex
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
@@ -308,13 +321,29 @@ class KLMPhotoEditViewController: UIViewController {
 
         }
     }
+    
+    @IBAction func moreClick(_ sender: Any) {
+        
+        let vc = KLMPhotoEditMoreViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        vc.enhance = enhance
+        vc.enhanceBlock = {[weak self] enhan in
+            
+            guard let self = self else { return }
+            self.enhance = enhan
+            self.sendData()
+        }
+        present(vc, animated: true, completion: nil)
+    }
+    
 }
 
 extension KLMPhotoEditViewController: KLMSliderDelegate {
     
     func KLMSliderWith(slider: KLMSlider, value: Float) {
         self.lightValue = Int(value)
-        setData()
+        sendData()
     }
     
 }
@@ -325,7 +354,6 @@ extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
         if isFinish {
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 
                 //获取根VC
