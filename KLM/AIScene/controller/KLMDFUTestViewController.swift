@@ -349,7 +349,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
 
 extension KLMDFUTestViewController: KLMTimerDelegate {
     
-    func timeDidTimeout() {
+    func timeDidTimeout(_ timer: KLMTimer) {
         
         KLMLog("蓝牙连接超时，消息未收到")
         SVProgressHUD.showInfo(withStatus: LANGLOC("ConnectTimeoutTip"))

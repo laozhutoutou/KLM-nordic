@@ -19,6 +19,7 @@ class KLMProvisionManager: NSObject {
     
     private var provisioningManager: ProvisioningManager!
     var bearer: ProvisioningBearer!
+    /// 配网设备
     var discoveredPeripheral: DiscoveredPeripheral!
     weak var delegate:  KLMProvisionManagerDelegate?
     
@@ -86,7 +87,6 @@ extension KLMProvisionManager: ProvisioningDelegate {
             } catch {
                 
                 KLMLog("error")
-                
                 self.delegate?.provisionManager(self, didFailChange: error)
         
             }

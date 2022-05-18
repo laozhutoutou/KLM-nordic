@@ -83,7 +83,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         setupUI()
         
         event()
-        
+
     }
         
     func setupUI() {
@@ -241,13 +241,17 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     @objc func newDevice() {
         
-//        let vc = KLMChartsTestViewController()
-//        navigationController?.pushViewController(vc, animated: true)
-        
         if KLMMesh.isCanEditMesh() == false {
             return
         }
-
+        
+        if apptype == .test {
+            
+            let vc = KLMAddDeviceTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+        
         let vc = KLMAddDeviceViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -327,12 +331,14 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             ///跳转到appleStore
             let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
             if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
-                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
-            }
-            if self.versionData.isForceUpdate {
-                
-                ///强制更新退出APP
-                exit(0)
+                UIApplication.shared.open(URL.init(string: url)!, options: [:]) { _ in
+                    
+                    if self.versionData.isForceUpdate {
+                        
+                        ///强制更新退出APP
+                        exit(0)
+                    }
+                }
             }
         }))
         

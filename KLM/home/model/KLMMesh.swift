@@ -101,11 +101,6 @@ class KLMMesh {
     ///更改provisoner的 unicastAddress为  0x199A(allocatedUnicastRange) - 用户的ID
     private static func changeProvisionerAddress() {
         
-        ///当前mesh管理员无需更改
-//        if isMeshManager() {
-//
-//            return
-//        }
         //更改provisioner 的 unicastAddress
         let manager = MeshNetworkManager.instance
         let meshNetwork = manager.meshNetwork!
@@ -117,7 +112,6 @@ class KLMMesh {
         }
         let newAddress: Address = Address.init(address)
         print(newAddress.asString())
-        
         if let node = provisioner.node {
             let unicastAddresses = node.elements.map { $0.unicastAddress }
             manager.proxyFilter?.remove(addresses: unicastAddresses)

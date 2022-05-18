@@ -217,13 +217,8 @@ extension NetworkConnection: CBCentralManagerDelegate {
             central.stopScan()
         } else {
             
-            //手动加的代码
             //记录当前kCBAdvDataManufacturerData
             let bearer = GattBearer(target: peripheral)
-//            KLMLog("nodeIdentity = \(advertisementData.nodeIdentity)")
-//            for node in meshNetwork.nodes {
-//                KLMLog("nodeid = \(node.uuid)")
-//            }
 //            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
 //
 //                let subData = data.suffix(from: 2).hex
@@ -236,7 +231,6 @@ extension NetworkConnection: CBCentralManagerDelegate {
             bearer.logger = logger
             bearer.open()
         }
-        
     }
 }
 

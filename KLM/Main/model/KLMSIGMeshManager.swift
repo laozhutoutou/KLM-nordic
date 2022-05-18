@@ -61,6 +61,7 @@ class KLMSIGMeshManager: NSObject {
     
     var currentNode: Node!
     
+    
     ///超时时间 - 配网超时时间
     var messageTimeout: Int = 20
     ///当前秒
@@ -162,6 +163,7 @@ extension KLMSIGMeshManager {
         if currentTime > messageTimeout {//超时
             KLMLog("时间超时")
             stopTime()
+            
             
             //超时不再接收消息
             MeshNetworkManager.instance.delegate = nil

@@ -43,4 +43,9 @@ class KLMTool {
         }
         return uuid
     }
+    
+    //获取设备的UUID，卸载APP会变化，适合现在使用。
+    static func getAppUUID() -> String {
+        return UIDevice.current.identifierForVendor!.uuidString
+    }
 }

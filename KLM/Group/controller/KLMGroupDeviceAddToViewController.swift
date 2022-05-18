@@ -59,30 +59,27 @@ class KLMGroupDeviceAddToViewController: UIViewController {
                 // Try assigning next available Group Address.
                 if let automaticAddress = network.nextAvailableGroupAddress(for: localProvisioner) {
                     
-                    let mesh = KLMMesh.loadHome()!
-                    //提交分组到服务器
-                    KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
-                        KLMLog("分组提交成功到服务器")
+                    let address = MeshAddress(automaticAddress)
+                    let group = try? Group(name: name, address: address)
+                    try? network.add(group: group!)
+                    
+                    if KLMMesh.save() {
                         
-                        let address = MeshAddress(automaticAddress)
-                        let group = try? Group(name: name, address: address)
-                        try? network.add(group: group!)
-                        
-                        if KLMMesh.save() {
+                        let mesh = KLMMesh.loadHome()!
+                        //提交分组到服务器
+                        KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
+                            KLMLog("分组提交成功到服务器")
                             
                             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                             NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
                             self.setupData()
+                            
+                        } failure: { error in
+                            KLMHttpShowError(error)
                         }
-                        
-                    } failure: { error in
-                        KLMHttpShowError(error)
                     }
-            
                 }
-                
             }
-
         }
         present(vc, animated: true, completion: nil)
         

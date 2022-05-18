@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KLMDeviceAddCell" id="MlG-uC-D7c" customClass="KLMDeviceAddCell" customModule="KLM" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KLMDeviceAddCell" id="MlG-uC-D7c" customClass="KLMDeviceAddCell" customModule="KLM_GN" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MlG-uC-D7c" id="Pfr-1U-Zvr">
@@ -85,7 +85,7 @@
                 <outlet property="nameLab" destination="WnY-n9-BKd" id="BbR-Wi-VXs"/>
                 <outlet property="rssiIcon" destination="O5z-wC-zix" id="xA2-1x-IXh"/>
             </connections>
-            <point key="canvasLocation" x="-2571" y="-513"/>
+            <point key="canvasLocation" x="-2571.0144927536235" y="-513.61607142857144"/>
         </tableViewCell>
     </objects>
     <resources>

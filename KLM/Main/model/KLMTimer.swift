@@ -9,7 +9,7 @@ import Foundation
 
 protocol KLMTimerDelegate: AnyObject {
     
-    func timeDidTimeout()
+    func timeDidTimeout(_ timer: KLMTimer)
 }
 
 class KLMTimer {
@@ -18,6 +18,8 @@ class KLMTimer {
     private var timeout: Int!
     ///当前秒
     private var currentTime: Int = 0
+    /// 标识
+    var tag: Int = 0
     weak var delegate: KLMTimerDelegate?
     
     func startTimer(timeOut: Int? = 10) {
@@ -43,8 +45,15 @@ class KLMTimer {
         if currentTime > timeout {//超时
             KLMLog("时间超时了。。。")
             stopTimer()
-            self.delegate?.timeDidTimeout()
+            self.delegate?.timeDidTimeout(self)
         }
+    }
+    
+    func timeIsValid() -> Bool {
+        if let time = timer, time.isValid == true {
+            return true
+        }
+        return false
     }
     
     deinit {
