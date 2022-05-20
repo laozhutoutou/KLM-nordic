@@ -604,6 +604,25 @@ class KLMService: NSObject {
         }
     }
     
+    static func getMeshProvisonerAddress(meshId: Int, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame: [String : Any] = ["meshId": meshId,
+                                      "uuid": uuid
+        ]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/meshApp/message"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(ProvisionerAddress.self, from: responseObject!)
+                let address = model?.data.address
+                success(address as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
     static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         //查询版本

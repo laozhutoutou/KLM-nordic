@@ -79,8 +79,8 @@ class KLMMotionViewController: UIViewController, Editable {
     
     func setupData() {
         
-        let parameTime = parameModel(dp: .deviceSetting)
-        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+        let parame = parameModel(dp: .deviceSetting)
+        KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         
     }
     

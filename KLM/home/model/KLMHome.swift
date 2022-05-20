@@ -93,4 +93,11 @@ struct GroupData: Codable {
     var brightness: Int = 100
 }
 
+struct ProvisionerAddress: Codable {
+    var data: KLMAddress
+    struct KLMAddress: Codable {
+        var address: Int
+    }
+}
+
 

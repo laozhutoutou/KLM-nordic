@@ -98,36 +98,52 @@ class KLMMesh {
             }
         }
     }
-    ///更改provisoner的 unicastAddress为  0x199A(allocatedUnicastRange) - 用户的ID
+    ///更改provisoner的 unicastAddress
     private static func changeProvisionerAddress() {
         
-        //更改provisioner 的 unicastAddress
-        let manager = MeshNetworkManager.instance
-        let meshNetwork = manager.meshNetwork!
-        let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
-        guard let user = KLMUser.getUserInfo() else { return }
-        var address = 0x199A - user.id
-        if apptype == .test {///因为可能同一个用户登录两个APP，如果服务器增加同一个用户不能登录两台设备，这个限制可以去掉
-            address = 0x199A - user.id - 1000
-        }
-        let newAddress: Address = Address.init(address)
-        print(newAddress.asString())
-        if let node = provisioner.node {
-            let unicastAddresses = node.elements.map { $0.unicastAddress }
-            manager.proxyFilter?.remove(addresses: unicastAddresses)
-        }
-        do {
-            try meshNetwork.assign(unicastAddress: newAddress, for: provisioner)
-            // Add the new addresses to the Proxy Filter.
-            let unicastAddresses = provisioner.node!.elements.map { $0.unicastAddress }
-            manager.proxyFilter?.add(addresses: unicastAddresses)
-        } catch  {
-            print(error)
-        }
-        
-        if manager.save() {
+        //从服务器获取地址
+        let model = KLMMesh.loadHome()!
+        KLMService.getMeshProvisonerAddress(meshId: model.id, uuid: KLMTool.getAppUUID()) { response in
+            guard var address = response as? Int else { return }
             
+            let manager = MeshNetworkManager.instance
+            let meshNetwork = manager.meshNetwork!
+            let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
+            address = 0x199A - address
+            if apptype == .test {///可能一个手机安装两个APP
+                address = address - 50
+            }
+            let newAddress: Address = Address.init(address)
+            print(newAddress.asString())
+            if let node = provisioner.node {
+                let unicastAddresses = node.elements.map { $0.unicastAddress }
+                manager.proxyFilter?.remove(addresses: unicastAddresses)
+            }
+            do {
+                try meshNetwork.assign(unicastAddress: newAddress, for: provisioner)
+                // Add the new addresses to the Proxy Filter.
+                let unicastAddresses = provisioner.node!.elements.map { $0.unicastAddress }
+                manager.proxyFilter?.add(addresses: unicastAddresses)
+            } catch  {
+                print(error)
+            }
             
+            if manager.save() {
+                
+            }
+        } failure: { error in
+            
+            var message: String = error.userInfo["egMsg"] as! String
+            if Bundle.isChineseLanguage() {
+                message = error.userInfo["error"] as! String
+            }
+            
+            let aler = UIAlertController.init(title: "Failed to get the address from the server. Please make sure the network is normal and then refresh the page", message: message, preferredStyle: .alert)
+            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+                
+            }
+            aler.addAction(sure)
+            KLMKeyWindow?.rootViewController!.present(aler, animated: true, completion: nil)
         }
     }
     
@@ -150,7 +166,7 @@ class KLMMesh {
                     
                 } failure: { error in
                     SVProgressHUD.dismiss()
-//                    KLMHttpShowError(error)
+
                     ///弹出提示框
                     let aler = UIAlertController.init(title: nil, message: LANGLOC("DataUploadFail"), preferredStyle: .alert)
                     let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
@@ -181,7 +197,7 @@ extension KLMMesh {
 }
 
 extension KLMMesh {
-    
+    //退出登录
     static func logout() {
         
         ///token清空

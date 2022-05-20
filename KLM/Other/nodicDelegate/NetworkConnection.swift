@@ -225,7 +225,6 @@ extension NetworkConnection: CBCentralManagerDelegate {
 //                bearer.nodeUUID = subData
 //            }
             proxies.append(bearer)
-
             bearer.delegate = self
             bearer.dataDelegate = self
             bearer.logger = logger
