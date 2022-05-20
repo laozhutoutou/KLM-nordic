@@ -404,15 +404,15 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
-        if !model.isCompositionDataReceived {
-            //对于未composition的进行配置
-            SVProgressHUD.show(withStatus: "Composition")
-            SVProgressHUD.setDefaultMaskType(.black)
-
-            KLMSIGMeshManager.sharedInstacnce.delegate = self
-            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
-            return
-        }
+//        if !model.isCompositionDataReceived {
+//            //对于未composition的进行配置
+//            SVProgressHUD.show(withStatus: "Composition")
+//            SVProgressHUD.setDefaultMaskType(.black)
+//
+//            KLMSIGMeshManager.sharedInstacnce.delegate = self
+//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
+//            return
+//        }
         
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
@@ -517,15 +517,15 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        if !node.isCompositionDataReceived {
-            //对于未composition的进行配置
-            SVProgressHUD.show(withStatus: "Composition")
-            SVProgressHUD.setDefaultMaskType(.black)
-            
-            KLMSIGMeshManager.sharedInstacnce.delegate = self
-            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: node)
-            return
-        }
+//        if !node.isCompositionDataReceived {
+//            //对于未composition的进行配置
+//            SVProgressHUD.show(withStatus: "Composition")
+//            SVProgressHUD.setDefaultMaskType(.black)
+//
+//            KLMSIGMeshManager.sharedInstacnce.delegate = self
+//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: node)
+//            return
+//        }
         
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)

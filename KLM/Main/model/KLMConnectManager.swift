@@ -27,6 +27,17 @@ class KLMConnectManager {
 //            return
 //        }
         
+        //检查是否composition
+        if !node.isCompositionDataReceived {
+            //对于未composition的进行配置
+            SVProgressHUD.show(withStatus: "Composition")
+            SVProgressHUD.setDefaultMaskType(.black)
+
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: node)
+            return
+        }
+        
         KLMSmartNode.sharedInstacnce.delegate = self
         
         self.success = success
@@ -96,5 +107,29 @@ extension KLMConnectManager: KLMSmartNodeDelegate {
         KLMShowError(error)
         self.failure?()
         self.failure = nil
+    }
+}
+
+extension KLMConnectManager: KLMSIGMeshManagerDelegate {
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
+        
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
+        
+        SVProgressHUD.showSuccess(withStatus: "Please tap again")
+        
+    }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
+        
+        KLMShowError(error)
+    }
+    
+    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
+        
+        SVProgressHUD.show(withStatus: "Did send message")
     }
 }

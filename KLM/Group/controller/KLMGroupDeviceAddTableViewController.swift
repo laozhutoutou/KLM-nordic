@@ -67,15 +67,15 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
         
         //查询设备是否在线
         let selectNode = self.nodes[selectedIndexPath.row]
-        if !selectNode.isCompositionDataReceived {
-            //对于未composition的进行配置
-            SVProgressHUD.show(withStatus: "Composition")
-            SVProgressHUD.setDefaultMaskType(.black)
-            
-            KLMSIGMeshManager.sharedInstacnce.delegate = self
-            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: selectNode)
-            return
-        }
+//        if !selectNode.isCompositionDataReceived {
+//            //对于未composition的进行配置
+//            SVProgressHUD.show(withStatus: "Composition")
+//            SVProgressHUD.setDefaultMaskType(.black)
+//
+//            KLMSIGMeshManager.sharedInstacnce.delegate = self
+//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: selectNode)
+//            return
+//        }
         
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
