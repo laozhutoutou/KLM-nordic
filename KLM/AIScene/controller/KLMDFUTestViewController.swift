@@ -46,9 +46,6 @@ class KLMDFUTestViewController: UIViewController {
         
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         
-        MeshNetworkManager.instance.delegate = self
-//        MeshNetworkManager.bearer.delegate = self
-        
         Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
             
             if ssidText.isEmpty || passwordText.isEmpty{
@@ -69,14 +66,29 @@ class KLMDFUTestViewController: UIViewController {
     
     @IBAction func upgrade(_ sender: Any) {
         
-        sendBinVersion()
+        //连接节点成功
+        SVProgressHUD.show(withStatus: "Connecting")
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: KLMHomeManager.currentNode) { [weak self] in
+            guard let self = self else { return }
+            
+            self.sendBinVersion()
+            
+        } failure: {
+            
+        }
     }
     
     func sendBinVersion() {
         
+        SVProgressHUD.show(withStatus: "Verify version")
+        
+        MeshNetworkManager.instance.delegate = self
+        
+        //开始计时
+        timer.startTimer(timeOut: 40)
+        
         ///进度条
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
         KLMLog("Send OTA bin Version")
         
         let binId: Int =  1
@@ -115,6 +127,9 @@ class KLMDFUTestViewController: UIViewController {
     }
     
     func espOtaStart() {
+        
+        //开始计时
+        timer.startTimer(timeOut: 40)
         
         KLMLog("Send OTA Start")
         
@@ -218,6 +233,8 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                     }
                 } else {//正常
                     
+                    SVProgressHUD.show(withStatus: "Version OK")
+                    
                     ///开始发送数据
                     espOtaStart()
                 }
@@ -269,7 +286,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                             let progress: Float = Float(PP) / 100.0 * 0.7
                             SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
                         case 0xFC:
-                            timer.startTimer(timeOut: 60)
+                            timer.startTimer(timeOut: 100)
                             KLMLog("正在搜索其他待升级设备")
                             SVProgressHUD.show(withStatus: "Searching for other devices to be upgraded")
                         case 0xFF: ///其他设备在升级
@@ -325,25 +342,13 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
         
         KLMLog("消息发送成功")
-        //开始计时
-        timer.startTimer()
+        
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
         
-        var err = MessageError()
-        err.message = LANGLOC("deviceNearbyTip")
-        
-        do {
-            try KLMConnectManager.checkBluetoothState()
-            
-        } catch {
-            
-            if let errr = error as? MessageError {
-                err.message = errr.message
-            }
-        }
-        KLMShowError(err)
+        KLMLog("升级发送消息失败 - \(error.localizedDescription)")
+
     }
 }
 
@@ -356,15 +361,3 @@ extension KLMDFUTestViewController: KLMTimerDelegate {
     }
 }
 
-//extension KLMDFUTestViewController: BearerDelegate {
-//
-//    func bearerDidOpen(_ bearer: Bearer) {
-//
-//
-//    }
-//
-//    func bearer(_ bearer: Bearer, didClose error: Error?) {
-//
-//
-//    }
-//}

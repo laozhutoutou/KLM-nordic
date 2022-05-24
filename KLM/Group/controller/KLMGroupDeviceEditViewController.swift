@@ -98,7 +98,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
-            
+            SVProgressHUD.dismiss()
             if apptype == .test {
                 
                 let vc = KLMTestSectionTableViewController()

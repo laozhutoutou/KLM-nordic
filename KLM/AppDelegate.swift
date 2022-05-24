@@ -148,6 +148,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
+    func enterLoginUIOtherLogin() {
+        
+        let login = KLMLoginViewController()
+        login.isOtherLogin = true
+        let nav = KLMNavigationViewController.init(rootViewController: login)
+        window?.rootViewController = nav
+        window?.makeKeyAndVisible()
+    }
+    
     //后台也可以运行定时器
     func applicationDidEnterBackground(_ application: UIApplication) {
         

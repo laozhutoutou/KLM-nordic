@@ -95,7 +95,6 @@ extension KLMConnectManager: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        SVProgressHUD.dismiss()
         if message?.dp == .power {
             self.success?()
             self.success = nil

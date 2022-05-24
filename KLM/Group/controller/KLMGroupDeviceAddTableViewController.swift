@@ -80,7 +80,7 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: selectNode) {
-            
+            SVProgressHUD.dismiss()
             KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: KLMHomeManager.currentGroup)
             
         } failure: {

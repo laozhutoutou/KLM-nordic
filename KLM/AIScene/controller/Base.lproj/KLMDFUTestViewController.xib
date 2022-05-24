@@ -78,21 +78,30 @@
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note:Please make sure that the light can connect to the Internet Via the Wi-Fi and password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UiN-OW-SE8">
+                    <rect key="frame" x="15" y="386" width="384" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" systemColor="systemRedColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="UiN-OW-SE8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="34Y-c9-s83"/>
                 <constraint firstItem="Ayi-gw-lsg" firstAttribute="top" secondItem="f4E-sb-rby" secondAttribute="bottom" constant="10" id="5SH-BB-tei"/>
                 <constraint firstItem="Oqf-V8-Iuh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="6DJ-Et-7q8"/>
                 <constraint firstItem="Ayi-gw-lsg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="750-AU-yzO"/>
                 <constraint firstItem="f4E-sb-rby" firstAttribute="leading" secondItem="Oqf-V8-Iuh" secondAttribute="leading" id="9nN-gz-jS8"/>
                 <constraint firstItem="wuG-Yn-gl2" firstAttribute="top" secondItem="Oqf-V8-Iuh" secondAttribute="bottom" constant="10" id="Ff1-kl-uwb"/>
+                <constraint firstAttribute="trailing" secondItem="UiN-OW-SE8" secondAttribute="trailing" constant="15" id="GAT-s8-Zwa"/>
                 <constraint firstItem="f4E-sb-rby" firstAttribute="top" secondItem="7tH-tR-Vhh" secondAttribute="bottom" constant="10" id="MdI-I9-MkD"/>
                 <constraint firstItem="N6E-5K-8fE" firstAttribute="trailing" secondItem="Ayi-gw-lsg" secondAttribute="trailing" id="Pqg-MP-XDm"/>
                 <constraint firstItem="7tH-tR-Vhh" firstAttribute="leading" secondItem="wuG-Yn-gl2" secondAttribute="leading" id="aoP-6r-k88"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ayi-gw-lsg" secondAttribute="trailing" constant="30" id="kUK-So-QXO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wuG-Yn-gl2" secondAttribute="trailing" constant="30" id="lnM-9K-FSe"/>
                 <constraint firstItem="7tH-tR-Vhh" firstAttribute="top" secondItem="wuG-Yn-gl2" secondAttribute="bottom" id="qPg-p5-4uK"/>
+                <constraint firstItem="UiN-OW-SE8" firstAttribute="top" secondItem="XiG-To-dpp" secondAttribute="bottom" constant="20" id="r81-Sa-QyY"/>
                 <constraint firstItem="Oqf-V8-Iuh" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="sRl-dt-kiP"/>
                 <constraint firstItem="N6E-5K-8fE" firstAttribute="top" secondItem="Ayi-gw-lsg" secondAttribute="bottom" id="tV7-OV-jC9"/>
                 <constraint firstItem="XiG-To-dpp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="uLU-ci-b6y"/>
@@ -109,6 +118,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

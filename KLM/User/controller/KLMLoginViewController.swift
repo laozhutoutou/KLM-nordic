@@ -15,13 +15,20 @@ class KLMLoginViewController: UIViewController {
 
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
-    
     @IBOutlet weak var logBtn: UIButton!
-    
     @IBOutlet weak var eyeBtn: UIButton!
+    ///是否是其他用户登录
+    var isOtherLogin: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupUI()
+        
+        events()
+    }
+    
+    private func setupUI() {
         
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
@@ -44,6 +51,13 @@ class KLMLoginViewController: UIViewController {
         .map{$0}
         .bind(to: logBtn.rx.isEnabled)
         .disposed(by: disposeBag)
+    }
+    
+    private func events() {
+        
+        if isOtherLogin {
+            isOtherLogin = false
+        }
     }
 
     @IBAction func login(_ sender: Any) {

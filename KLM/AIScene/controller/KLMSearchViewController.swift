@@ -207,21 +207,11 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
         let deviceModel: Node = self.searchLists[indexPath.row]
         KLMHomeManager.sharedInstacnce.smartNode = deviceModel
         
-//        if !deviceModel.isCompositionDataReceived {
-//            //对于未composition的进行配置
-//            SVProgressHUD.show(withStatus: "Composition")
-//            SVProgressHUD.setDefaultMaskType(.black)
-//
-//            KLMSIGMeshManager.sharedInstacnce.delegate = self
-//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: deviceModel)
-//            return
-//        }
-        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: deviceModel) { [weak self] in
             guard let self = self else { return }
-            
+            SVProgressHUD.dismiss()
             if apptype == .test {
                 
                 let vc = KLMTestSectionTableViewController()

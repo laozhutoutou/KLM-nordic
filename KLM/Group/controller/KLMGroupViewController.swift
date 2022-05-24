@@ -77,14 +77,14 @@ class KLMGroupViewController: UIViewController {
                     
                     if KLMMesh.save() {
                         
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        self.setupData()
+                        
                         let mesh = KLMMesh.loadHome()!
                         //提交分组到服务器
                         KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
                             KLMLog("分组提交成功到服务器")
-                            
-                            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                            self.setupData()
-                            
+
                         } failure: { error in
                             KLMHttpShowError(error)
                         }

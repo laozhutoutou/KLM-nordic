@@ -404,21 +404,11 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         KLMHomeManager.sharedInstacnce.smartNode = model
         
-//        if !model.isCompositionDataReceived {
-//            //对于未composition的进行配置
-//            SVProgressHUD.show(withStatus: "Composition")
-//            SVProgressHUD.setDefaultMaskType(.black)
-//
-//            KLMSIGMeshManager.sharedInstacnce.delegate = self
-//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: model)
-//            return
-//        }
-        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
             guard let self = self else { return }
-            
+            SVProgressHUD.dismiss()
             if apptype == .test {
 
                 let vc = KLMTestSectionTableViewController()
@@ -517,21 +507,11 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-//        if !node.isCompositionDataReceived {
-//            //对于未composition的进行配置
-//            SVProgressHUD.show(withStatus: "Composition")
-//            SVProgressHUD.setDefaultMaskType(.black)
-//
-//            KLMSIGMeshManager.sharedInstacnce.delegate = self
-//            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: node)
-//            return
-//        }
-        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
-            
+            SVProgressHUD.dismiss()
             if apptype == .test {
                 
                 let vc = KLMTestSectionTableViewController()
