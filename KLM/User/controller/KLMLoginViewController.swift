@@ -57,6 +57,10 @@ class KLMLoginViewController: UIViewController {
         
         if isOtherLogin {
             isOtherLogin = false
+            
+            ///弹出提示框
+            KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("OtherLogin"))
+            
         }
     }
 

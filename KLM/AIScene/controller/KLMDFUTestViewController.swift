@@ -42,6 +42,9 @@ class KLMDFUTestViewController: UIViewController {
             
             SSIDField.text = result.SSID
             passField.text = result.password
+        } else {
+            ///获取手机连接的WiFi
+            
         }
         
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
@@ -57,10 +60,8 @@ class KLMDFUTestViewController: UIViewController {
             .disposed(by: disposeBag)
         
         //弹出更新提示框
-        let aler = UIAlertController.init(title: LANGLOC("Warning"), message: LANGLOC("OTAWarningTip"), preferredStyle: .alert)
-        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default, handler: nil)
-        aler.addAction(sure)
-        present(aler, animated: true, completion: nil)
+        KLMAlertController.showAlertWithTitle(title: LANGLOC("Warning"), message: LANGLOC("OTAWarningTip"))
+
         
     }
     
@@ -220,17 +221,12 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                     
                     KLMLog("设备正在更新中...")
                     SVProgressHUD.showInfo(withStatus: "The device is upgrading")
-                    DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                        self.navigationController?.popViewController(animated: true)
-                    }
                     
                 } else if message.parameters?.hex == "0001" {
                     
                     KLMLog("已经是最新版本，不需要升级")
                     SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-                    DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                        self.navigationController?.popViewController(animated: true)
-                    }
+                    
                 } else {//正常
                     
                     SVProgressHUD.show(withStatus: "Version OK")
@@ -248,7 +244,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                 if message.parameters?.hex == "24723639" {
                     
                     ///设备重启中
-                    SVProgressHUD.showProgress(1.0, status: "Restarting")
+                    SVProgressHUD.show(withStatus: "Restarting")
                     DispatchQueue.main.asyncAfter(deadline: 6) {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
@@ -304,27 +300,18 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                         case 0xFA:
                             timer.startTimer(timeOut: 40)
                             KLMLog("通过WiFi连接网络")
-                            SVProgressHUD.show(withStatus: "Use Wi-Fi to connect to the internet")
+                            SVProgressHUD.show(withStatus: "Connect to the internet via Wi-Fi")
                         case 1:
                             SVProgressHUD.dismiss()
                             KLMLog("wifi 名称或者密码错误")
                             ///提示框
-                            let aler = UIAlertController.init(title: nil, message: LANGLOC("WrongWiFitip"), preferredStyle: .alert)
-                            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
-                                
-                            }
-                            aler.addAction(sure)
-                            present(aler, animated: true, completion: nil)
+                            KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("WrongWiFitip"))
+                            
                         case 2:
                             SVProgressHUD.dismiss()
                             KLMLog("升级中断，灯断开网络连接")
                             ///提示框
-                            let aler = UIAlertController.init(title: nil, message: LANGLOC("UpdateInterruptedTip"), preferredStyle: .alert)
-                            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
-                                
-                            }
-                            aler.addAction(sure)
-                            present(aler, animated: true, completion: nil)
+                            KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("UpdateInterruptedTip"))
                             
                         default:
                             KLMLog("Upgrade failure")
@@ -357,7 +344,9 @@ extension KLMDFUTestViewController: KLMTimerDelegate {
     func timeDidTimeout(_ timer: KLMTimer) {
         
         KLMLog("蓝牙连接超时，消息未收到")
-        SVProgressHUD.showInfo(withStatus: LANGLOC("ConnectTimeoutTip"))
+//        SVProgressHUD.showInfo(withStatus: LANGLOC("ConnectTimeoutTip") + LANGLOC("deviceNearbyTip"))
+        SVProgressHUD.dismiss()
+        KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("ConnectTimeoutTip") + LANGLOC("deviceNearbyTip"))
     }
 }
 

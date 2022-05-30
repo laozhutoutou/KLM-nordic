@@ -278,7 +278,7 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
         ///超时后不再接收蓝牙消息
         MeshNetworkManager.instance.delegate = nil
         var err = MessageError()
-        err.message = LANGLOC("ConnectTimeoutTip")
+        err.message = LANGLOC("ConnectTimeoutTip") + LANGLOC("deviceNearbyTip")
         self.delegate?.smartNode(self, didfailure: err)
     }
 }

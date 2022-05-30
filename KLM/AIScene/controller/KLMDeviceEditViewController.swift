@@ -20,7 +20,7 @@ private enum itemType: Int, CaseIterable {
     case reset
 //    case sigleControl //单路控制
 //    case downLoadPic //下载图像
-    case passengerFlow //客流统计
+//    case passengerFlow //客流统计
     
 }
 
@@ -136,7 +136,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     func checkVerison() {
         ///bluetooth mcu
-        KLMService.checkVersion(type: "bluetooth") { response in
+        KLMService.checkVersion(type: "mcu") { response in
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
             self.tableView.reloadData()
             self.showUpdateView()
@@ -386,12 +386,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //            cell.leftTitle = "下载图像"
 //            cell.rightTitle = ""
 //            return cell
-        case itemType.passengerFlow.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Passengerflowstatistics")
-            cell.rightTitle = ""
-            return cell
+//        case itemType.passengerFlow.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = LANGLOC("Passengerflowstatistics")
+//            cell.rightTitle = ""
+//            return cell
         default:
             break
         }
@@ -492,9 +492,9 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //        case itemType.downLoadPic.rawValue:
 //            let vc = KLMTestCameraViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-        case itemType.passengerFlow.rawValue:
-            let vc = KLMPassengerFlowViewController()
-            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.passengerFlow.rawValue:
+//            let vc = KLMPassengerFlowViewController()
+//            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

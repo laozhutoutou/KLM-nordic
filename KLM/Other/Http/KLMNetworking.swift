@@ -156,6 +156,13 @@ class KLMNetworking: NSObject {
                         KLMLog("token 失效")
                         let appdelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.enterLoginUI()
+                    } else { ///用户在其他地方登录
+                        ///清空数据
+//                        KLMMesh.logout()
+//                        KLMLog("用户在其他地方登录")
+//                        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+//                        appdelegate.enterLoginUIOtherLogin()
+                        
                     }
                 } catch {
                     

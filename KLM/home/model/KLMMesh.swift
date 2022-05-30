@@ -133,17 +133,18 @@ class KLMMesh {
             }
         } failure: { error in
             
+            ///如果是token失效，不需要提示
+            if error.code == -1011 {
+                return
+            }
+            
             var message: String = error.userInfo["egMsg"] as! String
             if Bundle.isChineseLanguage() {
                 message = error.userInfo["error"] as! String
             }
             
-            let aler = UIAlertController.init(title: "Failed to get the address from the server. Please make sure the network is normal and then refresh the page", message: message, preferredStyle: .alert)
-            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
-                
-            }
-            aler.addAction(sure)
-            KLMKeyWindow?.rootViewController!.present(aler, animated: true, completion: nil)
+            KLMAlertController.showAlertWithTitle(title: "Failed to get the address from the server. Please make sure the network is normal and then refresh the page", message: message)
+            
         }
     }
     
@@ -166,14 +167,15 @@ class KLMMesh {
                     
                 } failure: { error in
                     SVProgressHUD.dismiss()
-
-                    ///弹出提示框
-                    let aler = UIAlertController.init(title: nil, message: LANGLOC("DataUploadFail"), preferredStyle: .alert)
-                    let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
-                        
+                    
+                    ///如果是token失效，不需要提示
+                    if error.code == -1011 {
+                        return
                     }
-                    aler.addAction(sure)
-                    KLMKeyWindow?.rootViewController!.present(aler, animated: true, completion: nil)
+                    
+                    ///弹出提示框
+                    KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("DataUploadFail"))
+                    
                 }
             }
             return true

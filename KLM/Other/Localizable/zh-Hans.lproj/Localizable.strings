@@ -101,10 +101,11 @@ WrongWiFitip = "请检查WiFi名称或者密码是否有误";
 UpdateInterruptedTip = "更新中断, 请保证网络正常";
 Passengerflowstatistics = "客流统计";
 
-ConnectTimeoutTip = "连接超时";
+ConnectTimeoutTip = "连接超时。";
 APPBluetoothPowerTip = "请打开手机蓝牙";
 APPBluetoothunauthorized = "请到APP设置中授权蓝牙";
 mailboxIncorrectTip = "邮箱格式不正确";
 
 Warning = "警告";
 OTAWarningTip = "更新过程中请不要移动手机，同时保持APP与灯之间蓝牙连接";
+OtherLogin = "你的账号在其他设备登录";

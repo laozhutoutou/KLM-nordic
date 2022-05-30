@@ -40,7 +40,6 @@ class KLMAddDeviceViewController: UIViewController {
     
     private var discoveredPeripherals: [DiscoveredPeripheral] = []
     private var selectedDevice: UnprovisionedDevice?
-    private var alert: UIAlertController?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

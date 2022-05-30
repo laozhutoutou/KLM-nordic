@@ -8,7 +8,7 @@
 import UIKit
 import nRFMeshProvision
 import SVProgressHUD
-    
+
 class KLMUnNameListViewController: UIViewController,  Editable{
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -83,7 +83,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         setupUI()
         
         event()
-
+        
     }
         
     func setupUI() {
@@ -604,6 +604,3 @@ extension KLMUnNameListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDel
         return contentView
     }
 }
-
-
-

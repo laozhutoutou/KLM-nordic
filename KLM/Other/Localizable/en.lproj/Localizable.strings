@@ -101,10 +101,11 @@ WrongWiFitip = "Please check WiFi name or password";
 UpdateInterruptedTip = "Upgrade interrupted, please keep networks open";
 Passengerflowstatistics = "Customer Counting";
 
-ConnectTimeoutTip = "Connection timed out";
+ConnectTimeoutTip = "Connection timed out.";
 APPBluetoothPowerTip = "Please power on the Bluetooth of your mobile phone";
 APPBluetoothunauthorized = "The application is not authorized to use the Bluetooth";
 mailboxIncorrectTip = "The mailbox format is incorrect";
 
 Warning = "Warning";
 OTAWarningTip = "Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process.";
+OtherLogin = "Your account is logged in on other devices";
