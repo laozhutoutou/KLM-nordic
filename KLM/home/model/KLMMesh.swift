@@ -83,7 +83,7 @@ class KLMMesh {
             ///地址不能唯一
             changeProvisionerAddress()
         } catch {
-
+            print(error)
         }
     }
     
@@ -134,7 +134,7 @@ class KLMMesh {
         } failure: { error in
             
             ///如果是token失效，不需要提示
-            if error.code == -1011 {
+            if error.code == 401 {
                 return
             }
             
@@ -156,7 +156,7 @@ class KLMMesh {
             if var model = KLMMesh.loadHome() {
                 let manager = MeshNetworkManager.instance
                 let data = manager.export(.full)
-                let newStr = String(data: data, encoding: String.Encoding.utf8)
+                let newStr = String(data: data, encoding: .utf8)
                 ///本地的数据要变更
                 model.meshConfiguration = newStr!
                 KLMMesh.saveHome(home: model)
@@ -169,7 +169,7 @@ class KLMMesh {
                     SVProgressHUD.dismiss()
                     
                     ///如果是token失效，不需要提示
-                    if error.code == -1011 {
+                    if error.code == 401 {
                         return
                     }
                     

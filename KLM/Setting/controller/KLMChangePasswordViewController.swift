@@ -45,6 +45,7 @@ class KLMChangePasswordViewController: UIViewController {
             return
         }
         
+        SVProgressHUD.show()
         KLMService.updatePassword(oldPassword: oldTextField.text!, newPassword: passTextField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

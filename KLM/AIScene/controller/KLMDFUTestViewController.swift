@@ -298,7 +298,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                             KLMLog("初始化WiFi")
                             SVProgressHUD.show(withStatus: "WiFi initialization")
                         case 0xFA:
-                            timer.startTimer(timeOut: 40)
+                            timer.startTimer(timeOut: 60)
                             KLMLog("通过WiFi连接网络")
                             SVProgressHUD.show(withStatus: "Connect to the internet via Wi-Fi")
                         case 1:

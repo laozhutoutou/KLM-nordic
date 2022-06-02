@@ -49,7 +49,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         homeBtn.setTitleColor(.black, for: .normal)
         homeBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         homeBtn.setImage(UIImage.init(named: "icon_arrowDown"), for: .normal)
-        homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
         homeBtn.addTarget(self, action: #selector(homeListClick), for: .touchUpInside)
         return homeBtn
     }()
@@ -97,9 +96,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceNameUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeDeleteSuccess, object: nil)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
@@ -142,7 +139,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         if let home = KLMMesh.loadHome() { ///本地存有家庭
 
             self.homeBtn.setTitle(home.meshName, for: .normal)
-
+            self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
             ///存储mesh数据
             KLMMesh.loadHomeMeshData(meshConfiguration: home.meshConfiguration)
 
@@ -172,6 +169,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                         KLMLog("本地的比服务器旧")
                         let currentHome = mesh
                         self.homeBtn.setTitle(currentHome.meshName, for: .normal)
+                        self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
                         ///存储当前家庭
                         KLMMesh.saveHome(home: currentHome)
                         ///存储mesh数据
@@ -185,6 +183,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     let firstHome = meshList.first!
 
                     self.homeBtn.setTitle(firstHome.meshName, for: .normal)
+                    self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
                     ///存储当前家庭
                     KLMMesh.saveHome(home: firstHome)
                     ///存储mesh数据
