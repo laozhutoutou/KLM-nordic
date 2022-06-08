@@ -96,16 +96,18 @@ DataUploadFail = "Data upload failed, please check the network connection";
 NetWorkTip = "Please make sure the network can be connected";
 deleteStoreTip = "Please ensure that all lights have been reset, otherwise they will not be searched";
 deviceNearbyTip = "Make sure your device is powered on and nearby, and has not been reset.";
-BlueToothSignalTip = "Bluetooth signal is too weak";
-WrongWiFitip = "Please check WiFi name or password";
-UpdateInterruptedTip = "Upgrade interrupted, please keep networks open";
-Passengerflowstatistics = "Customer Counting";
 
-ConnectTimeoutTip = "Connection timed out.";
-APPBluetoothPowerTip = "Please power on the Bluetooth of your mobile phone";
-APPBluetoothunauthorized = "The application is not authorized to use the Bluetooth";
-mailboxIncorrectTip = "The mailbox format is incorrect";
 
-Warning = "Warning";
-OTAWarningTip = "Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process.";
-OtherLogin = "Your account is logged in on other devices";
+
+
+
+
+
+
+
+
+
+
+
+
+

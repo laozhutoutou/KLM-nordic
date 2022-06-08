@@ -79,11 +79,11 @@ extension KLMConnectManager {
         switch KLMConnectManager.shared.state {
         case .poweredOff:
             ///弹出手机蓝牙提示框
-            err.message = LANGLOC("APPBluetoothPowerTip")
+            err.message = LANGLOC("Please power on the Bluetooth of your mobile phone")
             throw err
         case .unauthorized:
             ///弹出APP蓝牙授权提示
-            err.message = LANGLOC("APPBluetoothunauthorized")
+            err.message = LANGLOC("The application is not authorized to use the Bluetooth")
             throw err
         default:
             break

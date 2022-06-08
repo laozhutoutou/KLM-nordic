@@ -230,7 +230,7 @@ extension KLMAddDeviceTestViewController: UITableViewDelegate, UITableViewDataSo
             selectedDevice.remove(at: index)
         } else {
             if discoveredPeripheral.rssi <= -90 {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("BlueToothSignalTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Bluetooth signal is too weak"))
                 return
             }
             if selectedDevice.count > 5 {

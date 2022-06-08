@@ -112,7 +112,7 @@
                 <constraint firstItem="XiG-To-dpp" firstAttribute="top" secondItem="N6E-5K-8fE" secondAttribute="bottom" constant="50" id="zpq-3n-Pf8"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-1799" y="-380"/>
+            <point key="canvasLocation" x="-1438" y="-90"/>
         </view>
     </objects>
     <resources>

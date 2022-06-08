@@ -13,13 +13,14 @@ class KLMForgetPasswordViewController: UIViewController {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
-    
+    @IBOutlet weak var passAgainField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
     //done
     @IBOutlet weak var doneBtn: UIButton!
     /// 验证码
     @IBOutlet weak var verCodeBtn: UIButton!
     @IBOutlet weak var eyeBtn: UIButton!
+    @IBOutlet weak var eyaAgainBtn: UIButton!
     //倒计时
     var messageTimer: Timer?
     ///当前秒
@@ -30,6 +31,8 @@ class KLMForgetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = LANGLOC("Forgot Password")
+        
         doneBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         doneBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
 
@@ -37,9 +40,9 @@ class KLMForgetPasswordViewController: UIViewController {
         doneBtn.clipsToBounds = true
         
         ///监控输入
-        Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty) { mailText, passwordText, codeText in
+        Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, passAgainText in
             
-            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty{
+            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty || passAgainText.isEmpty {
                 return false
             } else {
                 return true
@@ -59,7 +62,7 @@ class KLMForgetPasswordViewController: UIViewController {
         }
         
         if !KLMVerifyManager.isEmail(email: text) {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("mailboxIncorrectTip"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The mailbox format is incorrect"))
             return
         }
         
@@ -76,6 +79,14 @@ class KLMForgetPasswordViewController: UIViewController {
     }
     
     @IBAction func done(_ sender: Any) {
+        
+        //比价两次密码
+        if passTextField.text != passAgainField.text {
+            
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The password entered again is different"))
+            return
+        }
+        
         SVProgressHUD.show()
         KLMService.forgetPassword(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
             
@@ -121,5 +132,14 @@ class KLMForgetPasswordViewController: UIViewController {
             image = #imageLiteral(resourceName: "icon_login_eyeOpen")
         }
         eyeBtn.setImage(image, for: .normal)
+    }
+    
+    @IBAction func againEye(_ sender: Any) {
+        passAgainField.isSecureTextEntry = !passAgainField.isSecureTextEntry
+        var image: UIImage = #imageLiteral(resourceName: "icon_login_eyeClose")
+        if !passAgainField.isSecureTextEntry {
+            image = #imageLiteral(resourceName: "icon_login_eyeOpen")
+        }
+        eyaAgainBtn.setImage(image, for: .normal)
     }
 }

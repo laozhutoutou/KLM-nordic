@@ -59,7 +59,7 @@ class KLMLoginViewController: UIViewController {
             isOtherLogin = false
             
             ///弹出提示框
-            KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("OtherLogin"))
+            KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("Your account is logged in on other devices"))
             
         }
     }

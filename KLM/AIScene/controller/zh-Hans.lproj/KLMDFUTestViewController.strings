@@ -13,3 +13,5 @@
 
 /* Class = "UITextField"; placeholder = "Please  enter the SSID"; ObjectID = "wuG-Yn-gl2"; */
 "wuG-Yn-gl2.placeholder" = "请输入Wi-Fi名称";
+
+"UiN-OW-SE8.text" = "注意：请确保灯可以通过Wi-Fi和密码连接网络";

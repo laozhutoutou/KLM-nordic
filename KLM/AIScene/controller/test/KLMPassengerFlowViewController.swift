@@ -32,7 +32,7 @@ class KLMPassengerFlowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("Passengerflowstatistics")
+        navigationItem.title = LANGLOC("Customer Counting")
         
         setupCharts()
         

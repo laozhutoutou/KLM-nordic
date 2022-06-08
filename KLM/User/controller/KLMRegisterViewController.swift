@@ -14,6 +14,8 @@ class KLMRegisterViewController: UIViewController {
     
     @IBOutlet weak var mailTextField: UITextField!
     @IBOutlet weak var passTextField: UITextField!
+    
+    @IBOutlet weak var passAgainField: UITextField!
     @IBOutlet weak var codeTextField: UITextField!
     @IBOutlet weak var nickNameField: UITextField!
     
@@ -23,6 +25,8 @@ class KLMRegisterViewController: UIViewController {
     @IBOutlet weak var verCodeBtn: UIButton!
     
     @IBOutlet weak var eyeBtn: UIButton!
+    @IBOutlet weak var eyaAgainBtn: UIButton!
+    
     //倒计时
     var messageTimer: Timer?
     ///当前秒
@@ -33,6 +37,8 @@ class KLMRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = LANGLOC("Sign Up")
+        
         signupBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         signupBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
         
@@ -40,9 +46,9 @@ class KLMRegisterViewController: UIViewController {
         signupBtn.clipsToBounds = true
         
         ///监控输入
-        Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty,  nickNameField.rx.text.orEmpty) { mailText, passwordText, codeText, nickNameText in
+        Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty,  nickNameField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, nickNameText, passAgainText in
             
-            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty || nickNameText.isEmpty {
+            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty || nickNameText.isEmpty || passAgainText.isEmpty{
                 return false
             } else {
                 return true
@@ -62,13 +68,13 @@ class KLMRegisterViewController: UIViewController {
         }
         
         if !KLMVerifyManager.isEmail(email: text) {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("mailboxIncorrectTip"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The mailbox format is incorrect"))
             return
         }
         
         SVProgressHUD.show()
         KLMService.getCode(email: text) { _ in
-            SVProgressHUD.showSuccess(withStatus: "Verification code has been sent")
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Verification code has been sent"))
             
             ///开始倒计时
             self.startTimer()
@@ -79,6 +85,13 @@ class KLMRegisterViewController: UIViewController {
     }
     
     @IBAction func register(_ sender: Any) {
+        
+        //比价两次密码
+        if passTextField.text != passAgainField.text {
+            
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The password entered again is different"))
+            return
+        }
         
         SVProgressHUD.show()
         KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!, nickName: nickNameField.text!) { _ in
@@ -125,5 +138,14 @@ class KLMRegisterViewController: UIViewController {
             image = #imageLiteral(resourceName: "icon_login_eyeOpen")
         }
         eyeBtn.setImage(image, for: .normal)
+    }
+    
+    @IBAction func againEye(_ sender: Any) {
+        passAgainField.isSecureTextEntry = !passAgainField.isSecureTextEntry
+        var image: UIImage = #imageLiteral(resourceName: "icon_login_eyeClose")
+        if !passAgainField.isSecureTextEntry {
+            image = #imageLiteral(resourceName: "icon_login_eyeOpen")
+        }
+        eyaAgainBtn.setImage(image, for: .normal)
     }
 }
