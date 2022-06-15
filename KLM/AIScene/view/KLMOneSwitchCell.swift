@@ -7,14 +7,8 @@
 
 import UIKit
 
-enum CameraControlType: String {
-    case PASSIVE_COLOR_LIGHTING
-    case MANUAL_COLOR_LIGHTING
-}
-
 class KLMOneSwitchCell: KLMBaseTableViewCell {
 
-    
     @IBOutlet weak var cameraSwitch: UISwitch!
     
     var cameraOnOff: Int!{
@@ -24,11 +18,24 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
         }
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        //添加手势
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
+        tap.numberOfTapsRequired = 3
+        addGestureRecognizer(tap)
+    }
+    
+    @objc func tap() {
         
+        KLMLog("连续点击")
+        if cameraOnOff != 1 { //自动颜色开关没打开
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please power on ") + LANGLOC("Devicecoloursensing"))
+            return
+        }
+        let vc = KLMCMOSViewController()
+        currentViewController()?.navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func switchClick(_ sender: UISwitch) {
@@ -36,13 +43,11 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
         if sender.isOn {
             
             let parame = parameModel(dp: .cameraPower, value: 1)
-            
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
         } else {//关
             
             let parame = parameModel(dp: .cameraPower, value: 2)
-            
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         }

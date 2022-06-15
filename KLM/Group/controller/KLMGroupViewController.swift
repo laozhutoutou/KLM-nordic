@@ -164,7 +164,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                 guard let self = self else { return }
 
                 let vc = KLMImagePickerController()
-                vc.sourceType = UIImagePickerController.SourceType.camera
+                vc.sourceType = .camera
                 self.tabBarController?.present(vc, animated: true, completion: nil)
 
             }
@@ -195,7 +195,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                 let network = MeshNetworkManager.instance.meshNetwork!
                 let models = network.models(subscribedTo: model)
                 if models.count > 0 { //组里有设备不能删除
-                    SVProgressHUD.showInfo(withStatus: "Please remove all lights from the group")
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Please remove all lights from the group"))
                     return
                 }
                 SVProgressHUD.show()
@@ -213,7 +213,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                         if let err = error as? MeshNetworkError{
                             switch err {
                             case .groupInUse: ///组里有设备
-                                erro.message = "Please remove all lights from the group"
+                                erro.message = LANGLOC("Please remove all lights from the group")
                             default:
                                 break
                             }

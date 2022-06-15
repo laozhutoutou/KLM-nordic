@@ -77,6 +77,7 @@ class KLMPhotoEditMoreViewController: UIViewController {
         BSlider.currentValue = Float(enhance.BB)
     }
     
+    
     @IBAction func resetClick(_ sender: Any) {
         
         enhance.RR = 0
@@ -84,7 +85,9 @@ class KLMPhotoEditMoreViewController: UIViewController {
         enhance.GG = 0
         
         sendData()
-        setupData()
+//        setupData()
+        
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction func bgClick(_ sender: Any) {

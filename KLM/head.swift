@@ -136,19 +136,6 @@ func isEmptyString(text: String?) -> (Bool, String) {
     return (false, T)
 }
 
-//是否有错误
-func isError(_ error: Error?) -> Bool {
-    
-    if error == nil {
-        
-        return false
-        
-    } else {
-        
-        return true
-    }
-}
-
 /// 显示http请求错误
 /// - Parameter error: NSError
 func KLMHttpShowError(_ error: NSError) {

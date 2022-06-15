@@ -7,6 +7,7 @@
 
 import Foundation
 import KeychainAccess
+import SwiftUI
 
 class KLMTool {
     
@@ -47,5 +48,23 @@ class KLMTool {
     //获取设备的UUID，卸载APP会变化，适合现在使用。
     static func getAppUUID() -> String {
         return UIDevice.current.identifierForVendor!.uuidString
+    }
+}
+
+extension UIView {
+    
+    ///获取view所在的控制器
+    func currentViewController() -> UIViewController? {
+        //1.通过响应者链关系，取得此视图的下一个响应者
+        var n = next
+        while n != nil {
+            //2.判断响应者对象是否是视图控制器类型
+            if n is UIViewController {
+                //3.转换类型后 返回
+                return n as? UIViewController
+            }
+            n = n?.next
+        }
+        return nil
     }
 }

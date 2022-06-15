@@ -50,7 +50,7 @@ class KLMMotionViewController: UIViewController, Editable {
         
     }
     
-    func setupUI() {
+    private func setupUI() {
         
         contentView.isHidden = true
         

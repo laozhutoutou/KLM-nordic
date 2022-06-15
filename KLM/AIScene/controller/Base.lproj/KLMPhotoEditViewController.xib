@@ -15,7 +15,7 @@
                 <outlet property="imageView" destination="vrk-u4-PK4" id="fTo-5e-XSe"/>
                 <outlet property="lightBgView" destination="7tw-ME-efe" id="Aev-BK-dgL"/>
                 <outlet property="lightLab" destination="zim-bE-9NF" id="ODm-UN-XpV"/>
-                <outlet property="moreBtn" destination="3iH-eI-613" id="gMo-VE-fTd"/>
+                <outlet property="moreBtn" destination="U7w-F8-8vy" id="EkA-um-2Je"/>
                 <outlet property="view" destination="7As-wc-ivO" id="Ki7-Zi-Abs"/>
             </connections>
         </placeholder>
@@ -52,14 +52,12 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3iH-eI-613">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U7w-F8-8vy">
                     <rect key="frame" x="256" y="733.5" width="143" height="30"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Colour enhancement">
-                        <color key="titleColor" systemColor="systemBrownColor"/>
-                    </state>
+                    <state key="normal" title="Colour enhancement"/>
                     <connections>
-                        <action selector="moreClick:" destination="-1" eventType="touchUpInside" id="Be0-QD-acn"/>
+                        <action selector="moreClick:" destination="-1" eventType="touchUpInside" id="wSR-aS-rEw"/>
                     </connections>
                 </button>
             </subviews>
@@ -67,27 +65,24 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" constant="20" id="1Ck-c7-yqk"/>
-                <constraint firstItem="3iH-eI-613" firstAttribute="centerY" secondItem="zim-bE-9NF" secondAttribute="centerY" id="2WI-Po-3b3"/>
                 <constraint firstItem="eiX-MC-9tb" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" id="9Y9-Nx-Ybh"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="eiX-MC-9tb" secondAttribute="trailing" id="9cx-Ik-4gL"/>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="top" secondItem="eiX-MC-9tb" secondAttribute="bottom" constant="60" id="Efs-1I-CFI"/>
+                <constraint firstItem="U7w-F8-8vy" firstAttribute="centerY" secondItem="zim-bE-9NF" secondAttribute="centerY" id="JPw-HT-ouB"/>
                 <constraint firstItem="zim-bE-9NF" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" constant="16" id="MnI-eV-Heu"/>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="top" secondItem="zim-bE-9NF" secondAttribute="bottom" constant="15" id="Q7E-DX-YdI"/>
+                <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="U7w-F8-8vy" secondAttribute="trailing" constant="15" id="RDE-kA-5qP"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="7tw-ME-efe" secondAttribute="trailing" constant="20" id="W2d-53-FUn"/>
                 <constraint firstItem="eiX-MC-9tb" firstAttribute="top" secondItem="Ft9-eO-seJ" secondAttribute="top" id="abh-wo-hCF"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="bottom" secondItem="7tw-ME-efe" secondAttribute="bottom" constant="30" id="dUc-dH-q9l"/>
-                <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="3iH-eI-613" secondAttribute="trailing" constant="15" id="k00-Ny-KWn"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-5523" y="-99"/>
+            <point key="canvasLocation" x="-6594" y="-59"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

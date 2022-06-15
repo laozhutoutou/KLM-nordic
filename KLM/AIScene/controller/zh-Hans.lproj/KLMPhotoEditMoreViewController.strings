@@ -1,0 +1,15 @@
+
+/* Class = "UILabel"; text = "R-Enhancement"; ObjectID = "Ac2-X8-V3f"; */
+"Ac2-X8-V3f.text" = "红色-增强";
+
+/* Class = "UILabel"; text = "G-Enhancement"; ObjectID = "Cwb-EE-ucd"; */
+"Cwb-EE-ucd.text" = "绿色-增强";
+
+/* Class = "UIButton"; normalTitle = "Give up"; ObjectID = "DUV-MB-dFt"; */
+"DUV-MB-dFt.normalTitle" = "放弃";
+
+/* Class = "UILabel"; text = "B-Enhancement"; ObjectID = "hn1-UE-6zp"; */
+"hn1-UE-6zp.text" = "蓝色-增强";
+
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "ir3-25-cLz"; */
+"ir3-25-cLz.normalTitle" = "确定";

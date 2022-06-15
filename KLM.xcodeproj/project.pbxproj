@@ -179,6 +179,12 @@
 		E4B89F53281282CA0071D58A /* KLMTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89F52281282CA0071D58A /* KLMTool.swift */; };
 		E4B89F54281282CA0071D58A /* KLMTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89F52281282CA0071D58A /* KLMTool.swift */; };
 		E4B89F55281282CA0071D58A /* KLMTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B89F52281282CA0071D58A /* KLMTool.swift */; };
+		E4C258442859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C258482859EAD60080192A /* KLMPhotoEditMoreViewController.xib */; };
+		E4C258452859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C258482859EAD60080192A /* KLMPhotoEditMoreViewController.xib */; };
+		E4C258462859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C258482859EAD60080192A /* KLMPhotoEditMoreViewController.xib */; };
+		E4C2584B2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */; };
+		E4C2584C2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */; };
+		E4C2584D2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */; };
 		E4C2AECB280009D8007D36F6 /* KLMConnectManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */; };
 		E4C3465828335025000852DE /* KLMMeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3465728335025000852DE /* KLMMeshManager.swift */; };
 		E4C3465928335025000852DE /* KLMMeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C3465728335025000852DE /* KLMMeshManager.swift */; };
@@ -599,14 +605,14 @@
 		E4C80D4327F7EC2400DA5155 /* KLMChartsTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */; };
 		E4CBED742750D81000A21936 /* KLMUserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */; };
 		E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */; };
+		E4D1F97728531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
+		E4D1F97828531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
+		E4D1F97928531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
 		E4D7448A278533C80049B670 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4D7448D27853AA80049B670 /* KLMDFUTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */; };
 		E4DCCE8D282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
 		E4DCCE8E282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
 		E4DCCE8F282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
-		E4DCCE90282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */; };
-		E4DCCE91282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */; };
-		E4DCCE92282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */; };
 		E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */; };
 		E4DF02C526A575F400FE7AE5 /* KLMProvisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */; };
 		E4DF02D526A6B71D00FE7AE5 /* KLMSmartGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */; };
@@ -901,6 +907,10 @@
 		E4B0486D27E5964700D03668 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMDFUTestViewController.strings"; sourceTree = "<group>"; };
 		E4B7B9AB278E7BB90091B116 /* KLM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KLM.entitlements; sourceTree = "<group>"; };
 		E4B89F52281282CA0071D58A /* KLMTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTool.swift; sourceTree = "<group>"; };
+		E4C258472859EAD60080192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMPhotoEditMoreViewController.xib; sourceTree = "<group>"; };
+		E4C2584A2859EADD0080192A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMPhotoEditMoreViewController.strings"; sourceTree = "<group>"; };
+		E4C2584E2859ED4D0080192A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMCMOSViewController.xib; sourceTree = "<group>"; };
+		E4C258512859ED530080192A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMCMOSViewController.strings"; sourceTree = "<group>"; };
 		E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMConnectManager.swift; sourceTree = "<group>"; };
 		E4C3465728335025000852DE /* KLMMeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMeshManager.swift; sourceTree = "<group>"; };
 		E4C3465B283378E1000852DE /* KLMAddDeviceTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAddDeviceTestViewController.swift; sourceTree = "<group>"; };
@@ -920,10 +930,10 @@
 		E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMChartsTestViewController.xib; sourceTree = "<group>"; };
 		E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUserInfoCell.swift; sourceTree = "<group>"; };
 		E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUserInfoCell.xib; sourceTree = "<group>"; };
+		E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCMOSViewController.swift; sourceTree = "<group>"; };
 		E4D74489278533C80049B670 /* EspDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspDataUtils.swift; sourceTree = "<group>"; };
 		E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUTestViewController.swift; sourceTree = "<group>"; };
 		E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoEditMoreViewController.swift; sourceTree = "<group>"; };
-		E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMPhotoEditMoreViewController.xib; sourceTree = "<group>"; };
 		E4DF02C226A523B800FE7AE5 /* KLMSmartNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartNode.swift; sourceTree = "<group>"; };
 		E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMProvisionManager.swift; sourceTree = "<group>"; };
 		E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartGroup.swift; sourceTree = "<group>"; };
@@ -1084,7 +1094,9 @@
 				E4A6607526733C9500FE6866 /* CMDeviceNamePopViewController.swift */,
 				E49B42CD26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib */,
 				E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */,
-				E4DCCE8C282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib */,
+				E4C258482859EAD60080192A /* KLMPhotoEditMoreViewController.xib */,
+				E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */,
+				E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1772,7 +1784,7 @@
 				E486366527DB342600F74DEB /* KLMQudongTestViewController.xib in Resources */,
 				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */,
-				E4DCCE90282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */,
+				E4C258442859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
@@ -1816,6 +1828,7 @@
 				E4EBE61F271144AC006111BF /* KLMTestCameraViewController.xib in Resources */,
 				E49B42CB26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib in Resources */,
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
+				E4C2584B2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
 				E46B545E27699B2D00F3D5E5 /* KLMHomeEditViewController.xib in Resources */,
@@ -1843,7 +1856,7 @@
 				E4C57EC328055B1F00E7AB54 /* KLMQudongTestViewController.xib in Resources */,
 				E4C57EC428055B1F00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57EC528055B1F00E7AB54 /* KLMUserInfoCell.xib in Resources */,
-				E4DCCE91282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */,
+				E4C258452859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E4C57EC628055B1F00E7AB54 /* KLMChengpinViewController.xib in Resources */,
 				E4C57EC728055B1F00E7AB54 /* KLMBaseTableViewCell.xib in Resources */,
 				E4C57EC828055B1F00E7AB54 /* KLMCustomViewController.xib in Resources */,
@@ -1887,6 +1900,7 @@
 				E4C57EED28055B1F00E7AB54 /* KLMTestCameraViewController.xib in Resources */,
 				E4C57EEE28055B1F00E7AB54 /* CMDeviceNamePopViewController.xib in Resources */,
 				E4C57EEF28055B1F00E7AB54 /* KLMDeviceAddCell.xib in Resources */,
+				E4C2584C2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C57EF028055B1F00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
 				E4C57EF128055B1F00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57EF228055B1F00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
@@ -1914,7 +1928,7 @@
 				E4C57F9A28055C7C00E7AB54 /* KLMQudongTestViewController.xib in Resources */,
 				E4C57F9B28055C7C00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57F9C28055C7C00E7AB54 /* KLMUserInfoCell.xib in Resources */,
-				E4DCCE92282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.xib in Resources */,
+				E4C258462859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E4C57F9D28055C7C00E7AB54 /* KLMChengpinViewController.xib in Resources */,
 				E4C57F9E28055C7C00E7AB54 /* KLMBaseTableViewCell.xib in Resources */,
 				E4C57F9F28055C7C00E7AB54 /* KLMCustomViewController.xib in Resources */,
@@ -1958,6 +1972,7 @@
 				E4C57FC428055C7C00E7AB54 /* KLMTestCameraViewController.xib in Resources */,
 				E4C57FC528055C7C00E7AB54 /* CMDeviceNamePopViewController.xib in Resources */,
 				E4C57FC628055C7C00E7AB54 /* KLMDeviceAddCell.xib in Resources */,
+				E4C2584D2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C57FC728055C7C00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
 				E4C57FC828055C7C00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57FC928055C7C00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
@@ -2243,6 +2258,7 @@
 				E492AD31267C83C60028AF3E /* PinYinForObjc.m in Sources */,
 				E4A65FD82670B06400FE6866 /* ANImageBitmapRep.m in Sources */,
 				E4A65FDA2670B06400FE6866 /* BGRSLoupeLayer.m in Sources */,
+				E4D1F97728531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */,
 				E4E28432269EFF02006C120E /* SceneServerDelegate.swift in Sources */,
 				E4CBED742750D81000A21936 /* KLMUserInfoCell.swift in Sources */,
 			);
@@ -2396,6 +2412,7 @@
 				E4C57EB528055B1F00E7AB54 /* PinYinForObjc.m in Sources */,
 				E4C57EB628055B1F00E7AB54 /* ANImageBitmapRep.m in Sources */,
 				E4C57EB728055B1F00E7AB54 /* BGRSLoupeLayer.m in Sources */,
+				E4D1F97828531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */,
 				E4C57EB828055B1F00E7AB54 /* SceneServerDelegate.swift in Sources */,
 				E4C57EB928055B1F00E7AB54 /* KLMUserInfoCell.swift in Sources */,
 			);
@@ -2549,6 +2566,7 @@
 				E4C57F8C28055C7C00E7AB54 /* PinYinForObjc.m in Sources */,
 				E4C57F8D28055C7C00E7AB54 /* ANImageBitmapRep.m in Sources */,
 				E4C57F8E28055C7C00E7AB54 /* BGRSLoupeLayer.m in Sources */,
+				E4D1F97928531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */,
 				E4C57F8F28055C7C00E7AB54 /* SceneServerDelegate.swift in Sources */,
 				E4C57F9028055C7C00E7AB54 /* KLMUserInfoCell.swift in Sources */,
 			);
@@ -2815,6 +2833,24 @@
 				E4B0486D27E5964700D03668 /* zh-Hans */,
 			);
 			name = KLMDFUTestViewController.xib;
+			sourceTree = "<group>";
+		};
+		E4C258482859EAD60080192A /* KLMPhotoEditMoreViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4C258472859EAD60080192A /* Base */,
+				E4C2584A2859EADD0080192A /* zh-Hans */,
+			);
+			name = KLMPhotoEditMoreViewController.xib;
+			sourceTree = "<group>";
+		};
+		E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4C2584E2859ED4D0080192A /* Base */,
+				E4C258512859ED530080192A /* zh-Hans */,
+			);
+			name = KLMCMOSViewController.xib;
 			sourceTree = "<group>";
 		};
 		E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */ = {

@@ -75,6 +75,8 @@ class KLMSlider: UIView {
                 currentValue = maxValue
             }
             
+            KLMLog("value = \(currentValue)")
+            
             //滑块
             self.slider.value = currentValue
             
@@ -173,7 +175,6 @@ class KLMSlider: UIView {
     }
     
     @objc func touchUp(slider: KLMSliderW) {
-        KLMLog("value = \(slider.value)")
         self.currentValue = slider.value
         setData()
     }

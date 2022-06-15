@@ -26,9 +26,6 @@
                 <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smp-Eg-z2y">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <connections>
-                        <action selector="bgClick:" destination="-1" eventType="touchUpInside" id="mlv-IV-oOo"/>
-                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IE1-Kk-IrK">
                     <rect key="frame" x="10" y="278" width="394" height="340"/>
@@ -65,29 +62,15 @@
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUV-MB-dFt">
-                            <rect key="frame" x="327" y="13" width="67" height="31"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="31" id="baT-zv-NgN"/>
-                                <constraint firstAttribute="width" constant="67" id="ruc-8T-2yH"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="reset">
-                                <color key="titleColor" red="0.72156862745098038" green="0.090196078431372548" blue="0.26666666666666666" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="resetClick:" destination="-1" eventType="touchUpInside" id="ExE-4B-u0X"/>
-                            </connections>
-                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ir3-25-cLz">
-                            <rect key="frame" x="137" y="285" width="120" height="35"/>
+                            <rect key="frame" x="244" y="285" width="100" height="35"/>
                             <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="120" id="Lhe-Kb-H2f"/>
+                                <constraint firstAttribute="width" constant="100" id="Lhe-Kb-H2f"/>
                                 <constraint firstAttribute="height" constant="35" id="fUI-gN-JCe"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="OK">
+                            <state key="normal" title="Confirm">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <connections>
@@ -101,18 +84,31 @@
                                 <constraint firstAttribute="height" constant="60" id="FT6-PM-zbw"/>
                             </constraints>
                         </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUV-MB-dFt">
+                            <rect key="frame" x="50" y="285" width="100" height="35"/>
+                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Give up">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="resetClick:" destination="-1" eventType="touchUpInside" id="ExE-4B-u0X"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="ir3-25-cLz" firstAttribute="centerX" secondItem="IE1-Kk-IrK" secondAttribute="centerX" id="B3w-qC-lW9"/>
                         <constraint firstItem="Ac2-X8-V3f" firstAttribute="top" secondItem="IE1-Kk-IrK" secondAttribute="top" constant="20" id="C0Q-bS-ftu"/>
                         <constraint firstItem="ESi-ge-xWz" firstAttribute="top" secondItem="Cwb-EE-ucd" secondAttribute="bottom" id="DXE-hZ-Edf"/>
+                        <constraint firstItem="DUV-MB-dFt" firstAttribute="centerY" secondItem="ir3-25-cLz" secondAttribute="centerY" id="FJa-7t-JM2"/>
                         <constraint firstAttribute="trailing" secondItem="ESi-ge-xWz" secondAttribute="trailing" constant="10" id="Gfk-9Z-cl9"/>
-                        <constraint firstItem="DUV-MB-dFt" firstAttribute="centerY" secondItem="Ac2-X8-V3f" secondAttribute="centerY" id="KfD-MV-m2y"/>
                         <constraint firstItem="Ac2-X8-V3f" firstAttribute="leading" secondItem="IE1-Kk-IrK" secondAttribute="leading" constant="10" id="OBv-fl-JMz"/>
+                        <constraint firstAttribute="trailing" secondItem="ir3-25-cLz" secondAttribute="trailing" constant="50" id="QzB-EI-H4T"/>
                         <constraint firstItem="hn1-UE-6zp" firstAttribute="leading" secondItem="IE1-Kk-IrK" secondAttribute="leading" constant="10" id="T2R-FJ-8YE"/>
                         <constraint firstItem="Cwb-EE-ucd" firstAttribute="leading" secondItem="IE1-Kk-IrK" secondAttribute="leading" constant="10" id="Ugd-j2-puf"/>
+                        <constraint firstItem="DUV-MB-dFt" firstAttribute="width" secondItem="ir3-25-cLz" secondAttribute="width" id="V4M-7E-Fy2"/>
                         <constraint firstItem="xGD-U2-HeP" firstAttribute="leading" secondItem="IE1-Kk-IrK" secondAttribute="leading" constant="10" id="WJq-lg-COt"/>
+                        <constraint firstItem="DUV-MB-dFt" firstAttribute="height" secondItem="ir3-25-cLz" secondAttribute="height" id="Y7N-Rb-ZSm"/>
                         <constraint firstItem="ESi-ge-xWz" firstAttribute="leading" secondItem="IE1-Kk-IrK" secondAttribute="leading" constant="10" id="Zeu-kq-uQ2"/>
                         <constraint firstAttribute="bottom" secondItem="ir3-25-cLz" secondAttribute="bottom" constant="20" id="ZtS-N7-SdS"/>
                         <constraint firstItem="hn1-UE-6zp" firstAttribute="top" secondItem="ESi-ge-xWz" secondAttribute="bottom" constant="10" id="bME-cM-f8i"/>
@@ -122,7 +118,7 @@
                         <constraint firstAttribute="trailing" secondItem="Md2-Gg-Dgb" secondAttribute="trailing" constant="10" id="gXE-KJ-0gZ"/>
                         <constraint firstItem="Md2-Gg-Dgb" firstAttribute="top" secondItem="hn1-UE-6zp" secondAttribute="bottom" id="qep-9z-SVw"/>
                         <constraint firstAttribute="trailing" secondItem="xGD-U2-HeP" secondAttribute="trailing" constant="10" id="r7b-8Z-RdT"/>
-                        <constraint firstAttribute="trailing" secondItem="DUV-MB-dFt" secondAttribute="trailing" id="u4f-bT-7T0"/>
+                        <constraint firstItem="DUV-MB-dFt" firstAttribute="leading" secondItem="IE1-Kk-IrK" secondAttribute="leading" constant="50" id="sxM-BS-se0"/>
                         <constraint firstItem="xGD-U2-HeP" firstAttribute="top" secondItem="Ac2-X8-V3f" secondAttribute="bottom" id="ycD-hc-yfH"/>
                     </constraints>
                 </view>
@@ -139,10 +135,13 @@
                 <constraint firstItem="IE1-Kk-IrK" firstAttribute="centerY" secondItem="PBf-VY-a0E" secondAttribute="centerY" id="e2w-Ir-2Gm"/>
                 <constraint firstAttribute="trailing" secondItem="Smp-Eg-z2y" secondAttribute="trailing" id="jha-qA-732"/>
             </constraints>
-            <point key="canvasLocation" x="-5226" y="-10"/>
+            <point key="canvasLocation" x="-6003" y="-149"/>
         </view>
     </objects>
     <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -128,15 +128,15 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             
             //获取状态
-            let parameTime = parameModel(dp: .deviceSetting)
-            KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+            let parame = parameModel(dp: .deviceSetting)
+            KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         }
 
     }
     
     func checkVerison() {
         ///bluetooth mcu
-        KLMService.checkVersion(type: "mcu") { response in
+        KLMService.checkVersion(type: "bluetooth") { response in
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
             self.tableView.reloadData()
             self.showUpdateView()
@@ -402,6 +402,8 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        
+        
         switch indexPath.row {
         case itemType.rename.rawValue://设备名称
             
@@ -442,7 +444,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 guard let self = self else { return }
                 
                 let vc = KLMImagePickerController()
-                vc.sourceType = UIImagePickerController.SourceType.camera
+                vc.sourceType = .camera
                 self.present(vc, animated: true, completion: nil)
                 
             }

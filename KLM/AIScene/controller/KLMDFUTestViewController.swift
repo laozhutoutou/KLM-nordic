@@ -213,7 +213,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
             /// 00CD00FF 00CF00FF
             ///接收到binVersion数据
             if String(format: "%08X", message.opCode) == "00CD00FF" {
-                
+                //收到消息停止计时
                 timer.stopTimer()
                 //设备在更新中
                 if message.parameters?.hex == "0000" {
@@ -263,7 +263,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                         let PP = parameters[1]
                         switch statu {
                         case 0://进度
-                            
+                            //开始计时
                             timer.startTimer(timeOut: 40)
                             
                             if PP == 0 { ///准备更新
@@ -284,8 +284,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                             timer.startTimer(timeOut: 100)
                             KLMLog("正在搜索其他待升级设备")
                             SVProgressHUD.show(withStatus: LANGLOC("Searching for other devices to be upgraded"))
-                        case 0xFF: ///其他设备在升级
-//                            timer.startTimer(timeOut: 60)
+                        case 0xFF: ///其他设备在升级/Users/zhuyu/Desktop/Spring-Boot-Demo-master
                             KLMLog("Please wait while other devices are upgrading")
                             SVProgressHUD.show(withStatus: LANGLOC("Please wait while other devices are upgrading"))
                         case 0xFE: ///

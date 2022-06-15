@@ -123,3 +123,5 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Connect to the internet via Wi-Fi" = "通过Wi-Fi连接网络";
 "Sign Up" = "注册";
 "Forgot Password" = "忘记密码";
+"Please remove all lights from the group" = "请先把分组中的设备移除";
+"Please power on " = "请打开 ";

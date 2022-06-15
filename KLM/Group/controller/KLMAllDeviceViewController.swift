@@ -104,7 +104,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
                 guard let self = self else { return }
                 
                 let vc = KLMImagePickerController()
-                vc.sourceType = UIImagePickerController.SourceType.camera
+                vc.sourceType = .camera
                 self.present(vc, animated: true, completion: nil)
                 
             }
