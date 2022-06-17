@@ -143,7 +143,7 @@ class KLMMesh {
                 message = error.userInfo["error"] as! String
             }
             
-            KLMAlertController.showAlertWithTitle(title: "Failed to get the address from the server. Please make sure the network is normal and then refresh the page", message: message)
+            KLMAlertController.showAlertWithTitle(title: LANGLOC("Failed to get the address from the server. Please make sure the network is normal and then refresh the page"), message: message)
             
         }
     }

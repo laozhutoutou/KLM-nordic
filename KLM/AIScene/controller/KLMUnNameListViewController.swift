@@ -20,23 +20,12 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         let width = KLMScreenW - 65 - 20
         let searchBar = UIView.init(frame: CGRect(x: width, y: KLM_StatusBarHeight + 7, width: 30, height: 30))
         searchBar.backgroundColor = .white
-//        searchBar.layer.cornerRadius = 15
-//        searchBar.clipsToBounds = true
         let image = UIImageView.init(image: UIImage(named: "icon_search"))
         searchBar.addSubview(image)
         image.snp.makeConstraints { make in
             
             make.center.equalToSuperview()
         }
-//        let titleLab = UILabel()
-//        titleLab.text = LANGLOC("searchDeviceName")
-//        titleLab.font = UIFont.systemFont(ofSize: 14)
-//        titleLab.textColor = rgba(0, 0, 0, 0.3)
-//        searchBar.addSubview(titleLab)
-//        titleLab.snp.makeConstraints { make in
-//            make.left.equalTo(image.snp.right).offset(10)
-//            make.centerY.equalToSuperview()
-//        }
         let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapSearch))
         searchBar.addGestureRecognizer(tap)
         return searchBar

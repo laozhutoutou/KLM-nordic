@@ -135,7 +135,7 @@
                 <constraint firstItem="IE1-Kk-IrK" firstAttribute="centerY" secondItem="PBf-VY-a0E" secondAttribute="centerY" id="e2w-Ir-2Gm"/>
                 <constraint firstAttribute="trailing" secondItem="Smp-Eg-z2y" secondAttribute="trailing" id="jha-qA-732"/>
             </constraints>
-            <point key="canvasLocation" x="-6003" y="-149"/>
+            <point key="canvasLocation" x="-5965" y="-147"/>
         </view>
     </objects>
     <resources>
