@@ -52,7 +52,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     @IBAction func onClick(_ sender: Any) {
         
         if isFirst == false {
-            SVProgressHUD.showInfo(withStatus: "Please wait for 3 seconds")
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please wait for 3 seconds"))
             return
         }
         

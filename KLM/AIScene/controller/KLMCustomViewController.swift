@@ -13,7 +13,7 @@ struct tempColors {
     let minTemp: Float = 3000
 }
 
-class KLMCustomViewController: UIViewController {
+class KLMCustomViewController: UIViewController, Editable {
 
     @IBOutlet weak var plateView: UIView!
     /// 色卡
@@ -25,13 +25,17 @@ class KLMCustomViewController: UIViewController {
     
     let itemW:CGFloat = 25
     
+    var cameraPower: Int = 0
+    var colorTempValue: Int = 6
+    var lightValue: Int = 100
+    var currentColor: UIColor = .white
+    
+    var isFirst: Bool = true
+    
+    var isTap: Bool = false
+    
     var isFinish = false
-    
-    /// 是否已经读取
-    var colorFirst = true
-    var colorTempFirst = true
-    var lightFirst = true
-    
+        
     let colorTemp = tempColors()
     
     lazy var ringSelectView: UIView = {
@@ -82,6 +86,10 @@ class KLMCustomViewController: UIViewController {
         
         setupUI()
         
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            self.hideEmptyView()
+        }
     }
     
     func setupUI() {
@@ -197,6 +205,9 @@ class KLMCustomViewController: UIViewController {
     }
     
     @objc func tapColorBtn(btn: UIButton) {
+        
+        isTap = true
+        
         self.pickView.selectionColor = btn.backgroundColor
         self.ringSelectView.isHidden = false
         if btn.backgroundColor == UIColor.white {
@@ -308,19 +319,36 @@ class KLMCustomViewController: UIViewController {
     @objc func dimiss() {
         
         isFinish = false
-        
         dismiss(animated: true, completion: nil)
     }
-
+    
+    private func updateUI() {
+        
+        if cameraPower == 4 || cameraPower == 0 { //获取蓝牙端数据
+            
+            if isTap == false {
+                self.pickView.selectionColor = currentColor
+                self.colorTempSlider.currentValue = Float(colorTempValue)
+                self.lightSlider.currentValue = Float(lightValue)
+            }
+        } else { //填充默认值
+            
+            if isFirst {
+                isFirst = false
+                
+                self.pickView.selectionColor = .white
+                self.colorTempSlider.currentValue = 6
+                self.lightSlider.currentValue = 100
+            }
+        }
+    }
 }
 
 extension KLMCustomViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         if message?.dp == .color, let value = message?.value as? [UInt8] {
-            if colorFirst {
-                colorFirst = false
-                
+           
                 if value.count >= 6 {
                     
                     var HH: UInt16 = 0
@@ -337,33 +365,37 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
                     let S: Float = Float(SS) / 1000
                     let B: Float = Float(BB) / 1000
                     
+//                    currentColor = UIColor.init(hue: CGFloat(H), saturation: CGFloat(S), brightness: CGFloat(B), alpha: 1)
                     if H == 0 && S == 0 && B == 0{
-                        
-                        self.pickView.selectionColor = .white
-                        
+
+//                        self.pickView.selectionColor = .white
+
                     } else {
-                        
-                        self.pickView.selectionColor = UIColor.init(hue: CGFloat(H), saturation: CGFloat(S), brightness: CGFloat(B), alpha: 1)
+
+                        currentColor = UIColor.init(hue: CGFloat(H), saturation: CGFloat(S), brightness: CGFloat(B), alpha: 1)
                     }
                 }
                 
-            }
-
         } else if message?.dp ==  .colorTemp{//色温
-            if colorTempFirst {
-                colorTempFirst = false
-                let value = message?.value as! Int
-                self.colorTempSlider.currentValue = Float(value)
-            }
             
-        } else if message?.dp ==  .light{
-            if lightFirst {
-                lightFirst = false
                 let value = message?.value as! Int
-                self.lightSlider.currentValue = Float(value)
-            }
+                colorTempValue = value
+//                self.colorTempSlider.currentValue = Float(value)
             
+            
+        } else if message?.dp ==  .light{ //亮度
+            
+                let value = message?.value as! Int
+            lightValue = value
+//                self.lightSlider.currentValue = Float(value)
+            
+            
+        } else if message?.dp == .cameraPower {
+            
+            cameraPower = message?.value as! Int
         }
+        
+        updateUI()
         
         if isFinish {
             
@@ -394,6 +426,8 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
 extension KLMCustomViewController: KLMSliderDelegate {
 
     func KLMSliderWith(slider: KLMSlider, value: Float) {
+        
+        isTap = true
 
         if slider == colorTempSlider {//色温
             let vv = Int(value)
@@ -466,7 +500,6 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 }
                 
             }
-            
         }
     }
 }
@@ -478,6 +511,8 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
     }
     
     func colorPicker(_ colorPicker: RSColorPickerView!, touchesEnded touches: Set<AnyHashable>!, with event: UIEvent!) {
+        
+        isTap = true
         
         ///点击色盘
         self.ringSelectView.isHidden = true

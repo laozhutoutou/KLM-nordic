@@ -36,7 +36,7 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
             } else {
                 
                 sender.isOn = !sender.isOn
-                SVProgressHUD.showInfo(withStatus: "Please wait for 3 seconds")
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please wait for 3 seconds"))
             }
             
         } else {//关

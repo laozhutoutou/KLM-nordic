@@ -111,7 +111,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Your account is logged in on other devices" = "你的账号在其他设备登录";
 "Verification code has been sent" = "验证码已经发送";
 "The password entered again is different" = "再次输入的密码不一致";
-"Please confirm that you are not going to use the light again." = "请确认不再使用此设备";
+"Please confirm that you are not going to use the light again" = "请确认不再使用此设备";
 "Verify version" = "验证版本";
 "The device is upgrading" = "设备更新中";
 "Version is OK" = "版本验证成功";
@@ -126,3 +126,8 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Please remove all lights from the group" = "请先把分组中的设备移除";
 "Please power on " = "请打开 ";
 "Failed to get the address from the server. Please make sure the network is normal and then refresh the page" = "从服务器获取地址失败，请确保网络正常同时刷新页面";
+"Please wait for 3 seconds" = "请等待3秒再操作";
+"Please remove or reset all lights from the store" = "请将该商场下的所有设备删除或者复位";
+
+///下面为适配第三方库
+"Request timed out." = "请求超时";

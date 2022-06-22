@@ -13,7 +13,6 @@ private enum itemType: Int, CaseIterable {
     case lightSetting
     case CMOS
     case motion
-//    case test
     case DFU
     case rename
     case group
@@ -222,54 +221,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             ///隐藏显示框
             self.hideEmptyView()
         }
-        
-        ///开关灯会回调这个
-//        if message?.dp ==  .power{
-//
-//            let value = message?.value as! Int
-//            self.lightSwitch = value
-//        }
-        
-//        if message?.dp ==  .cameraPower{
-//
-//            let value = message?.value as! Int
-//            self.cameraSwitch = value
-//            self.tableView.reloadData()
-//
-//        }
-
-//        if message?.dp == .checkVersion, let value = message?.value as? [UInt8] {//查询版本
-//
-//            //0112  显示 1.1.2
-//            let first: Int = Int(value[0])
-//            let second: Int = Int((value[1] & 0xf0) >> 4)
-//            let third: Int =  Int(value[1] & 0x0f)
-//
-//            //0112  显示 1.1.2
-////            let first: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
-////            let second: Int = Int(value[2,1].hexadecimalToDecimal())!
-////            let third: Int = Int(value[3,1].hexadecimalToDecimal())!
-//            BLEVersion = "\(first).\(second).\(third)"
-//
-//            self.showUpdateView()
-//            self.tableView.reloadData()
-//            ///隐藏显示框
-//            self.hideEmptyView()
-//
-//        }
-
-//        if message?.dp ==  .motionPower{
-//            let value = message?.value as! Int
-//            self.motionValue = value == 0 ? false : true
-//            self.tableView.reloadData()
-//        }
-
-//        if message?.dp ==  .colorTest{
-//
-//            let value = message?.value as! Int
-//            self.colorTest = value == 2 ? false : true
-//            self.tableView.reloadData()
-//        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
@@ -350,12 +301,6 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("Software")
             cell.rightTitle = LANGLOC("Version") + " " + (BLEVersion ?? "0")
             return cell
-//        case itemType.test.rawValue:
-//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-//            cell.isShowLeftImage = false
-//            cell.leftTitle = LANGLOC("Devicecoloursensing") + LANGLOC("Test")
-//            cell.rightTitle = self.colorTest == false ? LANGLOC("OFF") : LANGLOC("ON")
-//            return cell
         case itemType.group.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false

@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; normalTitle = "确定"; ObjectID = "Gxx-x2-ctM"; */
+"Gxx-x2-ctM.normalTitle" = "确定";
+
+/* Class = "UILabel"; text = "节能亮度"; ObjectID = "HmG-ym-4UH"; */
+"HmG-ym-4UH.text" = "节能亮度";
+
+/* Class = "UILabel"; text = "自动节能（分钟）"; ObjectID = "V8k-sE-fWj"; */
+"V8k-sE-fWj.text" = "自动节能（分钟）";
+
+/* Class = "UIButton"; normalTitle = "开"; ObjectID = "gCD-U7-Lz6"; */
+"gCD-U7-Lz6.normalTitle" = "开";
+
+/* Class = "UILabel"; text = "节能设置"; ObjectID = "jAm-gz-dys"; */
+"jAm-gz-dys.text" = "节能设置";
+
+/* Class = "UIButton"; normalTitle = "关"; ObjectID = "t8u-SA-E8b"; */
+"t8u-SA-E8b.normalTitle" = "关";

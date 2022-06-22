@@ -16,8 +16,7 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
         super.awakeFromNib()
         if Bundle.isChineseLanguage() {
             CNBtn.isSelected = true
-        }
-        if Bundle.isEnglishLanguage() {
+        } else {
             ENBtn.isSelected = true
         }
     }

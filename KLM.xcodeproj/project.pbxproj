@@ -811,7 +811,6 @@
 		E49B42CC26C21BBE0056C7EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CMDeviceNamePopViewController.xib; sourceTree = "<group>"; };
 		E49B42CF26C21BC40056C7EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CMDeviceNamePopViewController.strings; sourceTree = "<group>"; };
 		E49B42D126C21C950056C7EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMSearchHistoryView.xib; sourceTree = "<group>"; };
-		E49B42D426C21C9A0056C7EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMSearchHistoryView.strings; sourceTree = "<group>"; };
 		E49B42D626C21CB50056C7EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMDeviceSearchView.xib; sourceTree = "<group>"; };
 		E49B42D926C21CBA0056C7EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMDeviceSearchView.strings; sourceTree = "<group>"; };
 		E49B42DB26C21D1E0056C7EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMOneSwitchCell.xib; sourceTree = "<group>"; };
@@ -956,6 +955,10 @@
 		E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffGet.swift; sourceTree = "<group>"; };
 		E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSIGMeshManager.swift; sourceTree = "<group>"; };
 		E4E2845B26A278B9006C120E /* KLMMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMessageManager.swift; sourceTree = "<group>"; };
+		E4E62ADF28605F380015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMSearchHistoryView.strings"; sourceTree = "<group>"; };
+		E4E62AE1286060440015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMGroupMotionViewController.strings"; sourceTree = "<group>"; };
+		E4E62AE3286060B20015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMGroupAllDeviceCell.strings"; sourceTree = "<group>"; };
+		E4E62AE4286060D30015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMChangePasswordViewController.strings"; sourceTree = "<group>"; };
 		E4EB5F18273BB18900C502C1 /* KLMCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCache.swift; sourceTree = "<group>"; };
 		E4EBE61C271144AC006111BF /* KLMTestCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestCameraViewController.swift; sourceTree = "<group>"; };
 		E4EBE61D271144AC006111BF /* KLMTestCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTestCameraViewController.xib; sourceTree = "<group>"; };
@@ -2580,6 +2583,7 @@
 			children = (
 				E414585B27BCE8AC00C181E3 /* Base */,
 				E414585E27BCE8AF00C181E3 /* en */,
+				E4E62AE4286060D30015239D /* zh-Hans */,
 			);
 			name = KLMChangePasswordViewController.xib;
 			sourceTree = "<group>";
@@ -2589,6 +2593,7 @@
 			children = (
 				E414C0CF27D5D9D100DFD409 /* Base */,
 				E414C0D227D5D9D800DFD409 /* en */,
+				E4E62AE1286060440015239D /* zh-Hans */,
 			);
 			name = KLMGroupMotionViewController.xib;
 			sourceTree = "<group>";
@@ -2685,6 +2690,7 @@
 			children = (
 				E497A71027D8B88000DA7AF7 /* Base */,
 				E497A71327D8B88400DA7AF7 /* en */,
+				E4E62AE3286060B20015239D /* zh-Hans */,
 			);
 			name = KLMGroupAllDeviceCell.xib;
 			sourceTree = "<group>";
@@ -2751,7 +2757,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E49B42D126C21C950056C7EE /* Base */,
-				E49B42D426C21C9A0056C7EE /* en */,
+				E4E62ADF28605F380015239D /* zh-Hans */,
 			);
 			name = KLMSearchHistoryView.xib;
 			sourceTree = "<group>";

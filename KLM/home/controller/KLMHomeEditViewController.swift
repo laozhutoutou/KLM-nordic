@@ -84,7 +84,7 @@ class KLMHomeEditViewController: UIViewController {
         let meshnetwork = KLMMesh.getMeshNetwork(meshConfiguration: self.homeModel.meshConfiguration)
         let notConfiguredNodes = meshnetwork.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
         if notConfiguredNodes.count > 0 { //有设备不给删除
-            SVProgressHUD.showInfo(withStatus: "Please remove or reset all lights from the store")
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please remove or reset all lights from the store"))
             return
         }
         

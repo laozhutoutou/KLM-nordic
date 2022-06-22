@@ -421,7 +421,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         
         //弹出提示框
         let alert = UIAlertController(title: LANGLOC("deleteDevice"),
-                                      message: LANGLOC("please confirm that you are not going to use the light again."),
+                                      message: LANGLOC("Please confirm that you are not going to use the light again"),
                                       preferredStyle: .alert)
         let resetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
             
