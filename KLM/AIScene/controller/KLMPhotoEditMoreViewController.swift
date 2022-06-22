@@ -16,6 +16,12 @@ class KLMPhotoEditMoreViewController: UIViewController {
     @IBOutlet weak var GBgView: UIView!
     @IBOutlet weak var BBgView: UIView!
     
+    @IBOutlet weak var defaultBtn: UIButton!
+    @IBOutlet weak var freshBtn: UIButton!
+    @IBOutlet weak var plantBtn: UIButton!
+    
+    var btnArray: [UIButton] = [UIButton]()
+    
     var RSlider: KLMSlider!
     var GSlider: KLMSlider!
     var BSlider: KLMSlider!
@@ -34,8 +40,6 @@ class KLMPhotoEditMoreViewController: UIViewController {
     }
     
     private func setUI() {
-        
-        contentView.layer.cornerRadius = 8
         
         //R滑条
         let viewLeft: CGFloat = 20
@@ -68,6 +72,9 @@ class KLMPhotoEditMoreViewController: UIViewController {
         BBSlider.delegate = self
         self.BSlider = BBSlider
         BBgView.addSubview(BBSlider)
+        
+        btnArray = [defaultBtn, freshBtn, plantBtn]
+        
     }
     
     private func setupData() {
@@ -75,6 +82,17 @@ class KLMPhotoEditMoreViewController: UIViewController {
         RSlider.currentValue = Float(enhance.RR)
         GSlider.currentValue = Float(enhance.GG)
         BSlider.currentValue = Float(enhance.BB)
+        for btn in btnArray {
+            btn.layer.cornerRadius = 3
+            btn.layer.borderWidth = 1
+            btn.layer.borderColor = UIColor.gray.cgColor
+            btn.clipsToBounds = true
+            btn.setTitleColor(.white, for: .selected)
+            btn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+            if btn.tag == enhance.classification {
+                btn.isSelected = true
+            }
+        }
     }
     
     
@@ -83,16 +101,16 @@ class KLMPhotoEditMoreViewController: UIViewController {
         enhance.RR = 0
         enhance.BB = 0
         enhance.GG = 0
+        enhance.classification = 0
         
         sendData()
-//        setupData()
         
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func bgClick(_ sender: Any) {
         
-        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
         
     }
     
@@ -101,6 +119,19 @@ class KLMPhotoEditMoreViewController: UIViewController {
         if let enhan = self.enhanceBlock {
             enhan(enhance)
         }
+    }
+    
+    @IBAction func classificationClick(_ sender: UIButton) {
+        
+        if sender.tag == enhance.classification {
+            return
+        }
+        enhance.classification = sender.tag
+        for btn in btnArray {
+            btn.isSelected = false
+        }
+        sender.isSelected = true
+        sendData()
     }
 }
 
@@ -129,5 +160,6 @@ class RGBEnhance {
     var RR: Int = 0
     var GG: Int = 0
     var BB: Int = 0
+    var classification: Int = 0
 }
 

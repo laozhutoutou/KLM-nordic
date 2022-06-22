@@ -325,8 +325,6 @@ class KLMPhotoEditViewController: UIViewController {
     @IBAction func moreClick(_ sender: Any) {
         
         let vc = KLMPhotoEditMoreViewController()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .crossDissolve
         vc.enhance = enhance
         vc.enhanceBlock = {[weak self] enhan in
             
@@ -334,7 +332,7 @@ class KLMPhotoEditViewController: UIViewController {
             self.enhance = enhan
             self.sendData()
         }
-        present(vc, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }
