@@ -126,16 +126,6 @@ func KLMShowError(_ error: MessageError?) {
     SVProgressHUD.dismiss(withDelay: 1.5)
 }
 
-//是否是空字符串 ""和nil 返回false 
-func isEmptyString(text: String?) -> (Bool, String) {
-    
-    guard let T = text else { return (true, "") }
-    guard !T.isEmpty else {
-        return (true, "")
-    }
-    return (false, T)
-}
-
 /// 显示http请求错误
 /// - Parameter error: NSError
 func KLMHttpShowError(_ error: NSError) {
@@ -152,11 +142,11 @@ func KLMHttpShowError(_ error: NSError) {
 var baseUrl: String {
     switch apptype {
     case .targetGN,
-            .test,
-         .targetsGW:
+            .test:
+//         .targetsGW:
         return "https://light.kaiwaresz.com/"
-//    case .targetsGW:
-//        return "https://ai.kaiwaresz.com/"
+    case .targetsGW:
+        return "https://ai.kaiwaresz.com/"
     }
 }
 

@@ -133,31 +133,13 @@ extension KLMSearchViewController: CMSearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: CMSearchBar) {
         
-        //存储历史记录
-        let (err, str) = isEmptyString(text: searchBar.text)
-        if err == false {
+        guard let test = searchBar.text else { return }
+        
+        KLMService.addSearch(searchContent: test) { response in
             
-            KLMService.addSearch(searchContent: str) { response in
-                
-                
-            } failure: { error in
-                
-            }
-
-            
-//            var list:[String] = KLMHomeManager.getHistoryLists()
-//            //过滤重复记录
-//            for string in list {
-//                if string == str {
-//                    return
-//                }
-//            }
-//            list.insert(str, at: 0)
-//            KLMHomeManager.cacheHistoryLists(list: list)
-//            self.historyView.reloadData()
+        } failure: { error in
             
         }
-        
     }
 }
 

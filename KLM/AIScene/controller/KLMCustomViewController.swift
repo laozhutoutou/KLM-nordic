@@ -29,9 +29,7 @@ class KLMCustomViewController: UIViewController, Editable {
     var colorTempValue: Int = 6
     var lightValue: Int = 100
     var currentColor: UIColor = .white
-    
-    var isFirst: Bool = true
-    
+    //是否控制
     var isTap: Bool = false
     
     var isFinish = false
@@ -324,17 +322,13 @@ class KLMCustomViewController: UIViewController, Editable {
     
     private func updateUI() {
         
-        if cameraPower == 4 || cameraPower == 0 { //获取蓝牙端数据
-            
-            if isTap == false {
+        if isTap == false {
+            if cameraPower == 4 || cameraPower == 0 { //获取蓝牙端数据
+                
                 self.pickView.selectionColor = currentColor
                 self.colorTempSlider.currentValue = Float(colorTempValue)
                 self.lightSlider.currentValue = Float(lightValue)
-            }
-        } else { //填充默认值
-            
-            if isFirst {
-                isFirst = false
+            } else { //填充默认值
                 
                 self.pickView.selectionColor = .white
                 self.colorTempSlider.currentValue = 6
@@ -365,10 +359,8 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
                     let S: Float = Float(SS) / 1000
                     let B: Float = Float(BB) / 1000
                     
-//                    currentColor = UIColor.init(hue: CGFloat(H), saturation: CGFloat(S), brightness: CGFloat(B), alpha: 1)
-                    if H == 0 && S == 0 && B == 0{
+                    if H == 0 && S == 0 && B == 0 { //默认白色
 
-//                        self.pickView.selectionColor = .white
 
                     } else {
 
@@ -380,15 +372,11 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
             
                 let value = message?.value as! Int
                 colorTempValue = value
-//                self.colorTempSlider.currentValue = Float(value)
-            
             
         } else if message?.dp ==  .light{ //亮度
             
-                let value = message?.value as! Int
+            let value = message?.value as! Int
             lightValue = value
-//                self.lightSlider.currentValue = Float(value)
-            
             
         } else if message?.dp == .cameraPower {
             
@@ -400,7 +388,6 @@ extension KLMCustomViewController: KLMSmartNodeDelegate {
         if isFinish {
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 
                 //获取根VC
