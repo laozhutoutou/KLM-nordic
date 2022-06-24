@@ -128,6 +128,6 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Failed to get the address from the server. Please make sure the network is normal and then refresh the page" = "从服务器获取地址失败，请确保网络正常同时刷新页面";
 "Please wait for 3 seconds" = "请等待3秒再操作";
 "Please remove or reset all lights from the store" = "请将该商场下的所有设备删除或者复位";
-
+"Time interval change" = "时间间隔更改";
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

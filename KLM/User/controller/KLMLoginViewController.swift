@@ -30,6 +30,8 @@ class KLMLoginViewController: UIViewController {
     
     private func setupUI() {
         
+        KLMLog("login")
+        
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
         

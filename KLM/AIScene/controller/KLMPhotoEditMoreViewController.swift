@@ -8,6 +8,8 @@
 import UIKit
 
 typealias EnhanceBlock = (_ enhan: RGBEnhance) -> Void
+typealias sureBlock = () -> Void
+typealias cancelBlock = () -> Void
 
 class KLMPhotoEditMoreViewController: UIViewController {
 
@@ -16,9 +18,7 @@ class KLMPhotoEditMoreViewController: UIViewController {
     @IBOutlet weak var GBgView: UIView!
     @IBOutlet weak var BBgView: UIView!
     
-    @IBOutlet weak var defaultBtn: UIButton!
-    @IBOutlet weak var freshBtn: UIButton!
-    @IBOutlet weak var plantBtn: UIButton!
+    @IBOutlet weak var btnsView: UIView!
     
     var btnArray: [UIButton] = [UIButton]()
     
@@ -28,7 +28,8 @@ class KLMPhotoEditMoreViewController: UIViewController {
     
     ///rgb 单路
     var enhance: RGBEnhance = RGBEnhance()
-    
+    var sure: sureBlock?
+    var cancel: cancelBlock?
     var enhanceBlock: EnhanceBlock?
     
     override func viewDidLoad() {
@@ -73,8 +74,14 @@ class KLMPhotoEditMoreViewController: UIViewController {
         self.BSlider = BBSlider
         BBgView.addSubview(BBSlider)
         
-        btnArray = [defaultBtn, freshBtn, plantBtn]
+        btnArray = btnsView.subviews as! [UIButton]
         
+        //平均分配
+        btnArray.snp.makeConstraints { make in
+            make.height.equalTo(34)
+            make.centerY.equalToSuperview()
+        }
+        btnArray.snp.distributeViewsAlong(axisType: .horizontal, fixedItemLength: 70, leadSpacing: 20, tailSpacing: 20)
     }
     
     private func setupData() {
@@ -98,18 +105,18 @@ class KLMPhotoEditMoreViewController: UIViewController {
     
     @IBAction func resetClick(_ sender: Any) {
         
-        enhance.RR = 0
-        enhance.BB = 0
-        enhance.GG = 0
-        enhance.classification = 0
-        
-        sendData()
-        
+        if let cancel = self.cancel {
+            cancel()
+        }
         navigationController?.popViewController(animated: true)
     }
     
+    //确定
     @IBAction func bgClick(_ sender: Any) {
         
+        if let sure = self.sure {
+            sure()
+        }
         navigationController?.popViewController(animated: true)
         
     }
@@ -152,7 +159,6 @@ extension KLMPhotoEditMoreViewController: KLMSliderDelegate {
         
         sendData()
     }
-    
 }
 
 class RGBEnhance {

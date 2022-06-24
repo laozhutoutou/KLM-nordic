@@ -637,10 +637,10 @@ class KLMService: NSObject {
     static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         //查询版本
-        var url = "https://itunes.apple.com/cn/lookup?id=\(AppleStoreID)"
-        if apptype == .targetsGW {
-            url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
-        }
+        let url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
+//        if apptype == .targetsGW {
+//            url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
+//        }
         KLMLog("url = \(url)")
         KLMNetworking.jsonManagerWithHeader(head: nil).post(url, parameters: nil, progress: nil) { task, responseObject in
             

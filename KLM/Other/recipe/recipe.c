@@ -7,6 +7,10 @@
 #define min3v(v1, v2, v3)   ((v1)>(v2)? ((v2)>(v3)?(v3):(v2)):((v1)>(v3)?(v3):(v1)))
 #define max3v(v1, v2, v3)   ((v1)<(v2)? ((v2)<(v3)?(v3):(v2)):((v1)<(v3)?(v3):(v1)))
 
+
+//#include <android/log.h>
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, "CameraView", __VA_ARGS__);
+
 typedef enum {
     SPECTRUM_ROSEWOOD            = 0,   //0
     SPECTRUM_CHAMPAGNE              ,   //1
@@ -87,13 +91,23 @@ typedef enum {
     COLOR_UNDEFINED,
 }Color_Index;
 typedef enum{
-    COLD_BLACK_WHITE,
+    COLD_BLACK_WHITE = 0,
     COLD_CYAN_BLUE_PURPLE,
-    NEUTRAL_RED,
+    WARM_RED,
     NEUTRAL_GREEN,
     WARM_ROSEWOOD,
     WARM_ORANGE_YELLOW,
 } Color_Index_S;
+typedef enum {
+    COLOR_FRUIT_DARKRED,
+    COLOR_FRUIT_WHITE,
+    COLOR_FRUIT_BLACK,
+    COLOR_FRUIT_RED,
+    COLOR_FRUIT_ORANGE,
+    COLOR_FRUIT_YELLOW,
+    COLOR_FRUIT_CYANGREEN,
+    COLOR_FRUIT_BLUEPURPLE,
+}Color_Index_FruitVeg;
 typedef struct{
     unsigned char  R;
     unsigned char  G;
@@ -160,6 +174,14 @@ void YUVtoHSV100(const COLOR_YUV *yuv, COLOR_HSV *hsv){
     rgb.G = (unsigned char)(((g > 255) ? 255 : ((g < 0) ? 0: g)));
     rgb.B = (unsigned char)(((b > 255) ? 255 : ((b < 0) ? 0: b)));
     RGBtoHSV100(&rgb, hsv);
+}
+void YUVtoRGB(const COLOR_YUV *yuv, COLOR_RGB *rgb) {
+    int r = yuv->Y + 1.37 * (yuv->V - 128);
+    int g = yuv->Y - 0.70 * (yuv->V - 128) - 0.34 * (yuv->U - 128);
+    int b = yuv->Y + 1.73 * (yuv->U - 128);
+    rgb->R = (unsigned char)(((r > 255) ? 255 : ((r < 0) ? 0: r)));
+    rgb->G = (unsigned char)(((g > 255) ? 255 : ((g < 0) ? 0: g)));
+    rgb->B = (unsigned char)(((b > 255) ? 255 : ((b < 0) ? 0: b)));
 }
 void sort_array_and_indexes_int(int * array, int * indexes, int start, int end, int if_set_indexes) {
     int i, j, max_index = -1, swap_temp;
@@ -257,7 +279,7 @@ Color_Index_S get_color_s_hsv(COLOR_HSV Hsv) {
     if (Hsv.H >= 141 && Hsv.H < 300) return COLD_CYAN_BLUE_PURPLE;
     if (Hsv.H >= 68 && Hsv.H < 141) return NEUTRAL_GREEN;
     if (Hsv.H >= 10 && Hsv.H < 68)  return WARM_ORANGE_YELLOW;
-    if (Hsv.H < 10 || Hsv.H >= 300) return NEUTRAL_RED;
+    if (Hsv.H < 10 || Hsv.H >= 300) return WARM_RED;
     return COLD_BLACK_WHITE;
 }
 Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
@@ -283,13 +305,16 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
                 yuv.Y = p[y * imgW + x];
                 yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
                 yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
                 YUVtoHSV100(&yuv, &hsv);
             } else if (format == IMAGE_FORMAT_NV21) {
                 yuv.Y = p[y * imgW + x];
                 yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
                 yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
                 YUVtoHSV100(&yuv, &hsv);
             }
+            sum++;
             int index = (int)get_color_s_hsv(hsv);
             avg_rgb[index][0] += rgb.R; //color
             avg_rgb[index][1] += rgb.G;
@@ -297,13 +322,13 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
             color_dict[index]++; // at last
         }
     }
-    const int window_w = area->X_End - area->X_Start + 1, window_h = area->Y_End - area->Y_Start + 1;
+//    LOGI("sum %d", sum);
     for (int i = 0; i < 6; i++) {
-        if (color_dict[i] < 0.05 * window_h * window_w) {
+        if (color_dict[i] < 0.05 * sum) {
+            sum -= color_dict[i];
             color_dict[i] = 0;
             continue;
         }
-        sum += color_dict[i];
         for (int j = 0; j < 3; j++)	{
             avg_rgb[i][j] /= color_dict[i];
         }
@@ -312,7 +337,12 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
         rgb.B = (unsigned char)avg_rgb[i][2];
         RGBtoHSV100(&rgb, &hsv);
         real_colors[i] = get_color_hsv(hsv);
+//        LOGI("%d real color %d, pixel num %d", i, real_colors[i], color_dict[i]);
     }
+    int ncw = color_dict[COLD_BLACK_WHITE] + color_dict[COLD_CYAN_BLUE_PURPLE]; // this should be before sort!! very important!
+    int nnw = color_dict[NEUTRAL_GREEN];
+    int nww = color_dict[WARM_ROSEWOOD] + color_dict[WARM_ORANGE_YELLOW] + color_dict[WARM_RED];
+
     sort_array_and_indexes_int(color_dict, sorted_indexes_s, 0, 5, 0);
     if (color_dict[0] > sum * 0.7) { // pure color
         if (sorted_indexes_s[0] == COLD_BLACK_WHITE) {
@@ -324,9 +354,7 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
     if (color_dict[0] + color_dict[1] > 0.9 * sum) {
         if (real_colors[sorted_indexes_s[1]] == COLD_BLACK_WHITE) return (Spectrum_Index)real_colors[sorted_indexes_s[0]];
     }
-    int ncw = color_dict[COLD_BLACK_WHITE] + color_dict[COLD_CYAN_BLUE_PURPLE];
-    int nnw = color_dict[NEUTRAL_RED] + color_dict[NEUTRAL_GREEN];
-    int nww = color_dict[WARM_ROSEWOOD] + color_dict[WARM_ORANGE_YELLOW];
+
     if (ncw > sum * 0.6) return SPECTRUM_4000K;
     if (nnw > sum * 0.6) return SPECTRUM_3500K;
     if (nww > sum * 0.6) return SPECTRUM_3000K;
@@ -334,22 +362,80 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
     if (ncw + nww > 0.8) return SPECTRUM_3500K;
     return SPECTRUM_FULL;
 }
+int getRecipeIndexOfFreshImageROI(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
+    int color_dict[8] = {0}, sum = 0;
+    unsigned char * p = (unsigned char *)imgData;
+    COLOR_RGB rgb;
+    COLOR_HSV hsv;
+    COLOR_YUV yuv;
+    for (int y = area->Y_Start; y < area->Y_End; y++) {
+        for (int x = area->X_Start; x < area->X_End; x++) {
+            if (format == IMAGE_FORMAT_RGBA) {
+                rgb.R = p[(y * imgW + x) * 4 + 0];
+                rgb.G = p[(y * imgW + x) * 4 + 1];
+                rgb.B = p[(y * imgW + x) * 4 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            } else if (format == IMAGE_FORMAT_RGB) {
+                rgb.R = p[(y * imgW + x) * 3 + 0];
+                rgb.G = p[(y * imgW + x) * 3 + 1];
+                rgb.B = p[(y * imgW + x) * 3 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            } else if (format == IMAGE_FORMAT_YUV420)  {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
+                yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            } else if (format == IMAGE_FORMAT_NV21) {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
+                yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            sum++;
+            if (hsv.S <= 30 && hsv.V >= 40) color_dict[COLOR_FRUIT_WHITE]++;
+            else if (hsv.V <= 40) color_dict[COLOR_FRUIT_BLACK]++;
+            else if (hsv.H < 288 && hsv.H >= 211) color_dict[COLOR_FRUIT_BLUEPURPLE]++;
+            else if (hsv.H < 211 && hsv.H >= 89) color_dict[COLOR_FRUIT_CYANGREEN]++;
+            else if (hsv.H < 89 && hsv.H >= 45) color_dict[COLOR_FRUIT_YELLOW]++;
+            else if (hsv.H < 45 && hsv.H >= 20) color_dict[COLOR_FRUIT_ORANGE]++;
+            else { // red
+                if (hsv.V <= 60 && hsv.S >= 60 && (hsv.H > 340 || hsv.H < 20)) color_dict[COLOR_FRUIT_DARKRED]++;
+                else color_dict[COLOR_FRUIT_RED]++;
+            }
+        }
+    }
+    for (int i = 0; i < 8; i++) {
+//        LOGI("color %d num %d", i, color_dict[i]);
+        if (color_dict[i] > 0.7 * sum) {
+            return i;
+        }
+    }
+    int nww = color_dict[COLOR_FRUIT_DARKRED] + color_dict[COLOR_FRUIT_RED] + color_dict[COLOR_FRUIT_YELLOW] + color_dict[COLOR_FRUIT_ORANGE];
+    int ncw = color_dict[COLOR_FRUIT_BLUEPURPLE] + color_dict[COLOR_FRUIT_CYANGREEN];
+    int nnw = color_dict[COLOR_FRUIT_WHITE] + color_dict[COLOR_FRUIT_BLACK];
 
+    if (nww > 0.5 * sum) return SPECTRUM_3000K;
+    if (ncw > 0.5 * sum) return SPECTRUM_4000K;
+    if (nnw > 0.5 * sum) return SPECTRUM_3500K;
+    return SPECTRUM_FULL;
+}
 
-
-int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY){
-    //int radius = imgH / 10;
-    //if (radius < 20) radius = 20;
-    int radius = 3;
+int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY, COMMODITY_CATEGORY category) {
+    int radius = 5;
     int startX = clickX - radius < 0 ? 0: clickX - radius;
     int endX = clickX + radius >= imgW ? imgW - 1: clickX + radius;
     int startY = clickY - radius < 0 ? 0: clickY - radius;
     int endY = clickY + radius >= imgH ? imgH - 1: clickY + radius;
 
     IMAGE_AREA area = {startX, endX, startY, endY};
-    return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
+//    LOGI("%d, %d, %d, %d", startX, endX , startY, endY);
+    if (category == GROCERY || category == BAKERY) return getRecipeIndexOfFreshImageROI(imgData, imgW, imgH, format, &area);
+    else return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }
-int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY){
+int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY, COMMODITY_CATEGORY category){
     IMAGE_AREA area = {startX, endX, startY, endY};
-    return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
+    if (category == GROCERY || category == BAKERY) return getRecipeIndexOfFreshImageROI(imgData, imgW, imgH, format, &area);
+    else return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }

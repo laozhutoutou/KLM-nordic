@@ -10,13 +10,13 @@ import UIKit
 class KLMPhotoEditViewController: UIViewController {
     
     var originalImage: UIImage!
+    //框选开始点
     var startPoint: CGPoint!
     @IBOutlet weak var lightBgView: UIView!
     
     @IBOutlet weak var lightLab: UILabel!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageView: UIImageView!
-    
     @IBOutlet weak var moreBtn: UIButton!
     
     //图像数据
@@ -26,6 +26,10 @@ class KLMPhotoEditViewController: UIViewController {
     
     ///rgb 单路
     var enhance: RGBEnhance = RGBEnhance()
+    //原始值
+    var originalEnhance: RGBEnhance = RGBEnhance()
+    ///当前配方结构
+    var recipe: Recipe = Recipe()
     
     //当前配方
     var currentRecipe: Int = 0 {
@@ -87,7 +91,6 @@ class KLMPhotoEditViewController: UIViewController {
     func setupUI() {
         
         moreBtn.setTitleColor(appMainThemeColor, for: .normal)
-        
         imageView.image = originalImage
         
         //框选
@@ -103,7 +106,6 @@ class KLMPhotoEditViewController: UIViewController {
         let sliderWidth = KLMScreenW - viewLeft * 2
         let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 2)
         lightSlider.getValueTitle = { value in
-//            let value = value
             return String(format: "%ld%%", Int(value))
         }
         lightSlider.currentValue = Float(self.lightValue)
@@ -127,14 +129,19 @@ class KLMPhotoEditViewController: UIViewController {
             //控制
             //图片上的坐标点
             tapPoint = getImagePoint(point: tapPoint)
+            recipe.type = 1
+            recipe.clickPoint = tapPoint
             
-            let recipe = getRecipeIndexOfImageOnClick(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(tapPoint.x), Int32(tapPoint.y))
+            let recipe = getRecipeIndexOfImageOnClick(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(tapPoint.x), Int32(tapPoint.y), COMMODITY_CATEGORY(UInt32(enhance.classification)))
             currentRecipe = Int(recipe)
             
             KLMLog("click = \(recipe)")
             enhance.RR = 0
             enhance.BB = 0
             enhance.GG = 0
+            self.originalEnhance.RR = self.enhance.RR
+            self.originalEnhance.GG = self.enhance.GG
+            self.originalEnhance.BB = self.enhance.BB
             sendData()
         }
     }
@@ -144,9 +151,7 @@ class KLMPhotoEditViewController: UIViewController {
         if pan.state == .began {
             
             self.tapView.removeFromSuperview()
-            
             startPoint = pan.location(in: contentView)
-            
             clipView.removeFromSuperview()
             contentView.addSubview(clipView)
         }else if pan.state == .changed {
@@ -161,12 +166,19 @@ class KLMPhotoEditViewController: UIViewController {
             let clipViewStart = getImagePoint(point: clipView.origin)
             let clipViewFinish = getImagePoint(point: CGPoint(x: self.clipView.origin.x + self.clipView.width, y: self.clipView.origin.y + self.clipView.height))
             
-            let recipe = getRecipeIndexOfImageOnBox(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(clipViewStart.x), Int32(clipViewStart.y), Int32(clipViewFinish.x), Int32(clipViewFinish.y))
+            recipe.type = 2
+            recipe.startBox = clipViewStart
+            recipe.endBox = clipViewFinish
+            
+            let recipe = getRecipeIndexOfImageOnBox(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(clipViewStart.x), Int32(clipViewStart.y), Int32(clipViewFinish.x), Int32(clipViewFinish.y), COMMODITY_CATEGORY(UInt32(enhance.classification)))
             currentRecipe = Int(recipe)
             KLMLog("box = \(recipe)")
             enhance.RR = 0
             enhance.BB = 0
             enhance.GG = 0
+            self.originalEnhance.RR = self.enhance.RR
+            self.originalEnhance.GG = self.enhance.GG
+            self.originalEnhance.BB = self.enhance.BB
             sendData()
         }
     }
@@ -182,7 +194,8 @@ class KLMPhotoEditViewController: UIViewController {
         let RRHex = enhance.RR.decimalTo2Hexadecimal()
         let GGHex = enhance.GG.decimalTo2Hexadecimal()
         let BBHex = enhance.BB.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "00" + RRHex + GGHex + BBHex
+        let classification = enhance.classification.decimalTo2Hexadecimal()
+        let string = recipeHex + lightValueHex + "00" + RRHex + GGHex + BBHex + classification
         let parame = parameModel(dp: .recipe, value: string)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
@@ -251,7 +264,6 @@ class KLMPhotoEditViewController: UIViewController {
     @objc func dimiss() {
         
         isFinish = false
-        
         self.dismiss(animated: true, completion: nil)
         
     }
@@ -270,7 +282,8 @@ class KLMPhotoEditViewController: UIViewController {
         let RRHex = enhance.RR.decimalTo2Hexadecimal()
         let GGHex = enhance.GG.decimalTo2Hexadecimal()
         let BBHex = enhance.BB.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "01" + RRHex + GGHex + BBHex
+        let classification = enhance.classification.decimalTo2Hexadecimal()
+        let string = recipeHex + lightValueHex + "01" + RRHex + GGHex + BBHex + classification
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
@@ -318,7 +331,6 @@ class KLMPhotoEditViewController: UIViewController {
             } failure: { error in
                 KLMShowError(error)
             }
-
         }
     }
     
@@ -330,11 +342,47 @@ class KLMPhotoEditViewController: UIViewController {
             
             guard let self = self else { return }
             self.enhance = enhan
+            //重新生成配方
+            self.getRecipe()
+            self.sendData()
+        }
+        vc.sure = { [weak self] in
+            guard let self = self else { return }
+            
+            self.originalEnhance.RR = self.enhance.RR
+            self.originalEnhance.GG = self.enhance.GG
+            self.originalEnhance.BB = self.enhance.BB
+            self.originalEnhance.classification = self.enhance.classification
+        }
+        
+        vc.cancel = { [weak self] in
+            guard let self = self else { return }
+            self.enhance.RR = self.originalEnhance.RR
+            self.enhance.GG = self.originalEnhance.GG
+            self.enhance.BB = self.originalEnhance.BB
+            self.enhance.classification = self.originalEnhance.classification
+            //重新生成配方
+            self.getRecipe()
             self.sendData()
         }
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    //修改了分类也要变更当前的配方
+    private func getRecipe() {
+        
+        if recipe.type == 1 { //点选
+            
+            let recipe = getRecipeIndexOfImageOnClick(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(recipe.clickPoint!.x), Int32(recipe.clickPoint!.y), COMMODITY_CATEGORY(UInt32(enhance.classification)))
+            currentRecipe = Int(recipe)
+            KLMLog("clickRecipe = \(currentRecipe)")
+        } else if recipe.type == 2 { //框选
+            
+            let recipe = getRecipeIndexOfImageOnBox(imageData, Int32(self.originalImage.size.width), Int32(self.originalImage.size.height), IMAGE_FORMAT_RGBA, Int32(recipe.startBox!.x), Int32(recipe.startBox!.y), Int32(recipe.endBox!.x), Int32(recipe.endBox!.y), COMMODITY_CATEGORY(UInt32(enhance.classification)))
+            currentRecipe = Int(recipe)
+            KLMLog("boxRecipe = \(currentRecipe)")
+        }
+    }
 }
 
 extension KLMPhotoEditViewController: KLMSliderDelegate {
@@ -343,7 +391,6 @@ extension KLMPhotoEditViewController: KLMSliderDelegate {
         self.lightValue = Int(value)
         sendData()
     }
-    
 }
 
 extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
@@ -370,4 +417,12 @@ extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
     }
+}
+
+struct Recipe {
+    //点选 1 框选 2
+    var type: Int = 0
+    var clickPoint: CGPoint?
+    var startBox: CGPoint?
+    var endBox: CGPoint?
 }

@@ -1,4 +1,6 @@
 
+"RHB-ho-Qjt.text" = "RGB颜色增强";
+
 /* Class = "UILabel"; text = "R-Enhancement"; ObjectID = "Ac2-X8-V3f"; */
 "Ac2-X8-V3f.text" = "红色-增强";
 
@@ -6,7 +8,7 @@
 "Cwb-EE-ucd.text" = "绿色-增强";
 
 /* Class = "UIButton"; normalTitle = "Give up"; ObjectID = "DUV-MB-dFt"; */
-"DUV-MB-dFt.normalTitle" = "放弃";
+"DUV-MB-dFt.normalTitle" = "取消";
 
 /* Class = "UILabel"; text = "B-Enhancement"; ObjectID = "hn1-UE-6zp"; */
 "hn1-UE-6zp.text" = "蓝色-增强";
@@ -14,11 +16,13 @@
 /* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "ir3-25-cLz"; */
 "ir3-25-cLz.normalTitle" = "确定";
 
-"crR-7E-RWx.normalTitle" = "默认";
+"crR-7E-RWx.normalTitle" = "衣服";
 
-"Z57-kC-JFv.normalTitle" = "生鲜";
+"Z57-kC-JFv.normalTitle" = "食品";
 
 "JM7-0I-Sgn.normalTitle" = "植物";
 
-"6V5-kY-FEz.text" = "分类";
+"gxe-fM-Kfk.normalTitle" = "面包";
+
+"6V5-kY-FEz.text" = "分类匹配";
 

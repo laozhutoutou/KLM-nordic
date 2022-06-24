@@ -27,7 +27,7 @@ class KLMCMOSViewController: UIViewController {
     
     private func setupUI() {
         
-        navigationItem.title = LANGLOC("Devicecoloursensing")
+        navigationItem.title = LANGLOC("Time interval change")
         
         let viewLeft: CGFloat = 20
         let sliderWidth = KLMScreenW - viewLeft * 2
