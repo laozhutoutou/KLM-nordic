@@ -43,7 +43,7 @@ class KLMPhotoEditMoreViewController: UIViewController {
     private func setUI() {
         
         //R滑条
-        let viewLeft: CGFloat = 20
+        let viewLeft: CGFloat = 10
         let sliderWidth = KLMScreenW - viewLeft * 2
         let RRSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: RBgView.height), minValue: 0, maxValue: 100, step: 2)
         RRSlider.getValueTitle = { value in

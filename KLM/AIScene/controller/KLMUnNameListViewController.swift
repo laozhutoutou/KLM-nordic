@@ -395,7 +395,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
-            guard let self = self else { return }
+            guard let self = self else { return } 
             SVProgressHUD.dismiss()
             if apptype == .test {
 

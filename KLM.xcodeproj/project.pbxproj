@@ -608,6 +608,12 @@
 		E4D1F97728531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
 		E4D1F97828531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
 		E4D1F97928531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
+		E4D3F997286B0ACE0071B5AE /* KLMRGBTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */; };
+		E4D3F998286B0ACE0071B5AE /* KLMRGBTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */; };
+		E4D3F999286B0ACE0071B5AE /* KLMRGBTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */; };
+		E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */; };
+		E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */; };
+		E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */; };
 		E4D7448A278533C80049B670 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4D7448D27853AA80049B670 /* KLMDFUTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */; };
 		E4DCCE8D282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
@@ -929,6 +935,8 @@
 		E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUserInfoCell.swift; sourceTree = "<group>"; };
 		E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUserInfoCell.xib; sourceTree = "<group>"; };
 		E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCMOSViewController.swift; sourceTree = "<group>"; };
+		E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRGBTestViewController.swift; sourceTree = "<group>"; };
+		E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMRGBTestViewController.xib; sourceTree = "<group>"; };
 		E4D74489278533C80049B670 /* EspDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspDataUtils.swift; sourceTree = "<group>"; };
 		E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUTestViewController.swift; sourceTree = "<group>"; };
 		E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoEditMoreViewController.swift; sourceTree = "<group>"; };
@@ -1057,6 +1065,8 @@
 				E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */,
 				E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */,
 				E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */,
+				E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */,
+				E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -1808,6 +1818,7 @@
 				E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
 				E4F2D473273504E4007FA07E /* KLMHomeViewController.xib in Resources */,
+				E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E46B54652769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib in Resources */,
 				E414C0DB27D5E3C700DFD409 /* KLMAllDeviceViewController.xib in Resources */,
 				E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */,
@@ -1880,6 +1891,7 @@
 				E4C57ED828055B1F00E7AB54 /* KLMText1ViewController.xib in Resources */,
 				E4C57ED928055B1F00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57EDA28055B1F00E7AB54 /* KLMHomeViewController.xib in Resources */,
+				E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E4C57EDB28055B1F00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57EDC28055B1F00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
 				E4C57EDD28055B1F00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
@@ -1952,6 +1964,7 @@
 				E4C57FAF28055C7C00E7AB54 /* KLMText1ViewController.xib in Resources */,
 				E4C57FB028055C7C00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57FB128055C7C00E7AB54 /* KLMHomeViewController.xib in Resources */,
+				E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E4C57FB228055C7C00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57FB328055C7C00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
 				E4C57FB428055C7C00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
@@ -2215,6 +2228,7 @@
 				E486366427DB342600F74DEB /* KLMQudongTestViewController.swift in Sources */,
 				E4A65F49266F5A1F00FE6866 /* KLMSearchHistoryView.swift in Sources */,
 				E414C0DA27D5E3C700DFD409 /* KLMAllDeviceViewController.swift in Sources */,
+				E4D3F997286B0ACE0071B5AE /* KLMRGBTestViewController.swift in Sources */,
 				E4750A1226C1165500AA4C32 /* KLMHelpViewController.swift in Sources */,
 				E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */,
 				E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */,
@@ -2369,6 +2383,7 @@
 				E4C57E8B28055B1F00E7AB54 /* KLMQudongTestViewController.swift in Sources */,
 				E4C57E8C28055B1F00E7AB54 /* KLMSearchHistoryView.swift in Sources */,
 				E4C57E8D28055B1F00E7AB54 /* KLMAllDeviceViewController.swift in Sources */,
+				E4D3F998286B0ACE0071B5AE /* KLMRGBTestViewController.swift in Sources */,
 				E4C57E8E28055B1F00E7AB54 /* KLMHelpViewController.swift in Sources */,
 				E4C57E8F28055B1F00E7AB54 /* KLMAddDeviceViewController.swift in Sources */,
 				E4C57E9028055B1F00E7AB54 /* KLMPhotoManager.swift in Sources */,
@@ -2523,6 +2538,7 @@
 				E4C57F6228055C7C00E7AB54 /* KLMQudongTestViewController.swift in Sources */,
 				E4C57F6328055C7C00E7AB54 /* KLMSearchHistoryView.swift in Sources */,
 				E4C57F6428055C7C00E7AB54 /* KLMAllDeviceViewController.swift in Sources */,
+				E4D3F999286B0ACE0071B5AE /* KLMRGBTestViewController.swift in Sources */,
 				E4C57F6528055C7C00E7AB54 /* KLMHelpViewController.swift in Sources */,
 				E4C57F6628055C7C00E7AB54 /* KLMAddDeviceViewController.swift in Sources */,
 				E4C57F6728055C7C00E7AB54 /* KLMPhotoManager.swift in Sources */,

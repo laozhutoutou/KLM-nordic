@@ -212,7 +212,7 @@
                 <constraint firstAttribute="trailing" secondItem="Smp-Eg-z2y" secondAttribute="trailing" id="jha-qA-732"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-6242" y="-379"/>
+            <point key="canvasLocation" x="-6187" y="-374"/>
         </view>
     </objects>
     <resources>
