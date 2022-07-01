@@ -143,30 +143,6 @@ extension KLMGroupDeviceAddTableViewController: KLMMessageManagerDelegate {
     
 }
 
-extension KLMGroupDeviceAddTableViewController: KLMSIGMeshManagerDelegate {
-        
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
-        
-        ///提交数据到服务器
-        if KLMMesh.save() {
-            
-        }
-        
-        SVProgressHUD.showSuccess(withStatus: "Please tap \(LANGLOC("finish")) again")
-        
-    }
-    
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
-        
-        KLMShowError(error)
-    }
-    
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
-        
-        SVProgressHUD.show(withStatus: "Did send message")
-    }
-}
-
 extension KLMGroupDeviceAddTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {

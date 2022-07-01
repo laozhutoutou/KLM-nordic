@@ -129,6 +129,6 @@ extension KLMConnectManager: KLMSIGMeshManagerDelegate {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
         
-        SVProgressHUD.show(withStatus: "Did send message")
+
     }
 }

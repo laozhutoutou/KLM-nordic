@@ -164,7 +164,6 @@ extension KLMSIGMeshManager {
             KLMLog("时间超时")
             stopTime()
             
-            
             //超时不再接收消息
             MeshNetworkManager.instance.delegate = nil
             self.gattBearer?.delegate = nil
@@ -195,8 +194,14 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
         if let unprovisionedDevice = UnprovisionedDevice(advertisementData: advertisementData){
             
             let discoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue)
-            self.delegate?.sigMeshManager(self, didScanedDevice: discoveredPeripheral)
-            
+            //过滤一下设备
+            if unprovisionedDevice.uuid.uuidString.count >= 4 {
+                //以DDDD 和 DD00开头的设备是我们的
+                let id = unprovisionedDevice.uuid.uuidString.substring(to: 4)
+                if id == "DDDD" || id == "DD00" {
+                    self.delegate?.sigMeshManager(self, didScanedDevice: discoveredPeripheral)
+                }
+            }
         }
     }
 }
@@ -205,7 +210,6 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     func getCompositionData(node: Node) {
         
         self.currentNode = node
-        
         MeshNetworkManager.instance.delegate = self
         let message = ConfigCompositionDataGet()
         do {
@@ -254,21 +258,9 @@ extension KLMSIGMeshManager: BearerDelegate {
         
         self.delegate?.sigMeshManagerDidConnetctUnprovisionDevice(self)
         
-//        let bb = bearer as? ProvisioningBearer
-//
-//        let provisonManager = KLMProvisionManager.init(discoveredPeripheral: self.discoveredPeripheral, bearer: bb!)
-//        provisonManager.delegate = self
-//        provisonManager.identify()
-//        self.provisonManager = provisonManager
-        
     }
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
-        
-//        SVProgressHUD.dismiss()
-//        var err = MessageError()
-//        err.message = error?.localizedDescription
-//        self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
         
     }
 }
@@ -288,7 +280,6 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             if status.status == .success{
                 
                 KLMLog("node appkey success")
-                
                 SVProgressHUD.show(withStatus: "Add app key to model")
                 
                 //给自定义vendor model 配置APP key
@@ -376,5 +367,3 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
     }
     
 }
-
-

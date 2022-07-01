@@ -203,6 +203,24 @@
 		E4C3466828338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4C3466928338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4C3466A28338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
+		E4C4A0A1286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
+		E4C4A0A2286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
+		E4C4A0A3286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
+		E4C4A0A4286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */; };
+		E4C4A0A5286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */; };
+		E4C4A0A6286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */; };
+		E4C4A0A9286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */; };
+		E4C4A0AA286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */; };
+		E4C4A0AB286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */; };
+		E4C4A0AC286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */; };
+		E4C4A0AD286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */; };
+		E4C4A0AE286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */; };
+		E4C4A0B1286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */; };
+		E4C4A0B2286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */; };
+		E4C4A0B3286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */; };
+		E4C4A0B7286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */; };
+		E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */; };
+		E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */; };
 		E4C57D7B280403BD00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */; };
 		E4C57E2E28055B1F00E7AB54 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4C57E2F28055B1F00E7AB54 /* SensorClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28435269EFF20006C120E /* SensorClientDelegate.swift */; };
@@ -921,6 +939,13 @@
 		E4C3465C283378E1000852DE /* KLMAddDeviceTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAddDeviceTestViewController.xib; sourceTree = "<group>"; };
 		E4C3466328338573000852DE /* KLMDeviceAddTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceAddTestCell.swift; sourceTree = "<group>"; };
 		E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddTestCell.xib; sourceTree = "<group>"; };
+		E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferViewController.swift; sourceTree = "<group>"; };
+		E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAdminTransferViewController.xib; sourceTree = "<group>"; };
+		E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferCell.swift; sourceTree = "<group>"; };
+		E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAdminTransferCell.xib; sourceTree = "<group>"; };
+		E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceNameAndTypePopViewController.swift; sourceTree = "<group>"; };
+		E4C4A0BA286EF70700450A52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMDeviceNameAndTypePopViewController.xib; sourceTree = "<group>"; };
+		E4C4A0BD286EF70E00450A52 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMDeviceNameAndTypePopViewController.strings"; sourceTree = "<group>"; };
 		E4C57D7C280403BD00E7AB54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMPassengerFlowViewController.xib; sourceTree = "<group>"; };
 		E4C57D7F280403C200E7AB54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMPassengerFlowViewController.strings; sourceTree = "<group>"; };
 		E4C57F0028055B1F00E7AB54 /* KLM_GW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KLM_GW.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1139,6 +1164,8 @@
 				E4FE0CDF271FB999001EEABD /* KLMLightOnOffCell.swift */,
 				E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */,
 				E4F5073927268A4800345380 /* KLMSearchDeviceEmptyView.swift */,
+				E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */,
+				E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1664,6 +1691,8 @@
 				E46B546027699B2D00F3D5E5 /* KLMHomeEditViewController.xib */,
 				E4A1BAD0273E4138005DD2CC /* KLMJoinHomeViewController.swift */,
 				E46B54672769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib */,
+				E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */,
+				E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */,
 				E4C80D4027F7EC2400DA5155 /* KLMChartsTestViewController.swift */,
 				E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */,
 			);
@@ -1682,6 +1711,8 @@
 		E4F2D46F27350491007FA07E /* view */ = {
 			isa = PBXGroup;
 			children = (
+				E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */,
+				E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1818,6 +1849,7 @@
 				E4729A7D26B1333A00DC7D59 /* KLMText1ViewController.xib in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
 				E4F2D473273504E4007FA07E /* KLMHomeViewController.xib in Resources */,
+				E4C4A0B7286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E46B54652769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib in Resources */,
 				E414C0DB27D5E3C700DFD409 /* KLMAllDeviceViewController.xib in Resources */,
@@ -1842,7 +1874,9 @@
 				E49B42CB26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib in Resources */,
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
 				E4C2584B2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
+				E4C4A0AC286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
+				E4C4A0A4286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
 				E46B545E27699B2D00F3D5E5 /* KLMHomeEditViewController.xib in Resources */,
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
@@ -1891,6 +1925,7 @@
 				E4C57ED828055B1F00E7AB54 /* KLMText1ViewController.xib in Resources */,
 				E4C57ED928055B1F00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57EDA28055B1F00E7AB54 /* KLMHomeViewController.xib in Resources */,
+				E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E4C57EDB28055B1F00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57EDC28055B1F00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
@@ -1915,7 +1950,9 @@
 				E4C57EEE28055B1F00E7AB54 /* CMDeviceNamePopViewController.xib in Resources */,
 				E4C57EEF28055B1F00E7AB54 /* KLMDeviceAddCell.xib in Resources */,
 				E4C2584C2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
+				E4C4A0AD286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4C57EF028055B1F00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
+				E4C4A0A5286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */,
 				E4C57EF128055B1F00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57EF228055B1F00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
 				E4C57EF328055B1F00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
@@ -1964,6 +2001,7 @@
 				E4C57FAF28055C7C00E7AB54 /* KLMText1ViewController.xib in Resources */,
 				E4C57FB028055C7C00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57FB128055C7C00E7AB54 /* KLMHomeViewController.xib in Resources */,
+				E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E4C57FB228055C7C00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57FB328055C7C00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
@@ -1988,7 +2026,9 @@
 				E4C57FC528055C7C00E7AB54 /* CMDeviceNamePopViewController.xib in Resources */,
 				E4C57FC628055C7C00E7AB54 /* KLMDeviceAddCell.xib in Resources */,
 				E4C2584D2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
+				E4C4A0AE286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4C57FC728055C7C00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
+				E4C4A0A6286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */,
 				E4C57FC828055C7C00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57FC928055C7C00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
 				E4C57FCA28055C7C00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
@@ -2166,6 +2206,7 @@
 				E4E2844C269F008F006C120E /* SimpleOnOffStatus.swift in Sources */,
 				E4A65FCF2670B06400FE6866 /* OSCommonImage.m in Sources */,
 				E4A65FCC2670B06400FE6866 /* RSColorPickerView.m in Sources */,
+				E4C4A0A9286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
 				E476178126DE11C2008225BB /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */,
 				E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */,
@@ -2218,6 +2259,7 @@
 				E4A65FD52670B06400FE6866 /* CGImageContainer.m in Sources */,
 				E4A65FD42670B06400FE6866 /* BitmapContextManipulator.m in Sources */,
 				E44E4BC2280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */,
+				E4C4A0A1286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */,
 				E477D94226D782C900612456 /* KLMChengpinViewController.swift in Sources */,
 				E4A65F44266F595C00FE6866 /* KLMSearchViewController.swift in Sources */,
 				E4729A7C26B1333A00DC7D59 /* KLMText1ViewController.swift in Sources */,
@@ -2249,6 +2291,7 @@
 				E48B526426672B420006CDA7 /* head.swift in Sources */,
 				E4A6607726733C9500FE6866 /* CMDeviceNamePopViewController.swift in Sources */,
 				E4A65FCE2670B06400FE6866 /* NSImage+ANImageBitmapRep.m in Sources */,
+				E4C4A0B1286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift in Sources */,
 				E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */,
 				E48B52BA26677EB60006CDA7 /* KLMNavigationViewController.swift in Sources */,
 				E476177926DE10D1008225BB /* KLMPCBASensorViewController.swift in Sources */,
@@ -2321,6 +2364,7 @@
 				E4C57E5128055B1F00E7AB54 /* SimpleOnOffStatus.swift in Sources */,
 				E4C57E5228055B1F00E7AB54 /* OSCommonImage.m in Sources */,
 				E4C57E5328055B1F00E7AB54 /* RSColorPickerView.m in Sources */,
+				E4C4A0AA286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
 				E4C57E5428055B1F00E7AB54 /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4C57E5528055B1F00E7AB54 /* SimpleOnOffGet.swift in Sources */,
 				E4C57E5628055B1F00E7AB54 /* KLMSmartNode.swift in Sources */,
@@ -2373,6 +2417,7 @@
 				E4C57E8228055B1F00E7AB54 /* CGImageContainer.m in Sources */,
 				E4C57E8328055B1F00E7AB54 /* BitmapContextManipulator.m in Sources */,
 				E44E4BC3280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */,
+				E4C4A0A2286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */,
 				E4C57E8428055B1F00E7AB54 /* KLMChengpinViewController.swift in Sources */,
 				E4C57E8528055B1F00E7AB54 /* KLMSearchViewController.swift in Sources */,
 				E4C57E8628055B1F00E7AB54 /* KLMText1ViewController.swift in Sources */,
@@ -2404,6 +2449,7 @@
 				E4C57E9D28055B1F00E7AB54 /* head.swift in Sources */,
 				E4C57E9E28055B1F00E7AB54 /* CMDeviceNamePopViewController.swift in Sources */,
 				E4C57E9F28055B1F00E7AB54 /* NSImage+ANImageBitmapRep.m in Sources */,
+				E4C4A0B2286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift in Sources */,
 				E4C57EA028055B1F00E7AB54 /* KLMTestViewController.swift in Sources */,
 				E4C57EA128055B1F00E7AB54 /* KLMNavigationViewController.swift in Sources */,
 				E4C57EA228055B1F00E7AB54 /* KLMPCBASensorViewController.swift in Sources */,
@@ -2476,6 +2522,7 @@
 				E4C57F2828055C7C00E7AB54 /* SimpleOnOffStatus.swift in Sources */,
 				E4C57F2928055C7C00E7AB54 /* OSCommonImage.m in Sources */,
 				E4C57F2A28055C7C00E7AB54 /* RSColorPickerView.m in Sources */,
+				E4C4A0AB286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
 				E4C57F2B28055C7C00E7AB54 /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4C57F2C28055C7C00E7AB54 /* SimpleOnOffGet.swift in Sources */,
 				E4C57F2D28055C7C00E7AB54 /* KLMSmartNode.swift in Sources */,
@@ -2528,6 +2575,7 @@
 				E4C57F5928055C7C00E7AB54 /* CGImageContainer.m in Sources */,
 				E4C57F5A28055C7C00E7AB54 /* BitmapContextManipulator.m in Sources */,
 				E44E4BC4280FE71100CF1C43 /* KLMVerifyManager.swift in Sources */,
+				E4C4A0A3286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */,
 				E4C57F5B28055C7C00E7AB54 /* KLMChengpinViewController.swift in Sources */,
 				E4C57F5C28055C7C00E7AB54 /* KLMSearchViewController.swift in Sources */,
 				E4C57F5D28055C7C00E7AB54 /* KLMText1ViewController.swift in Sources */,
@@ -2559,6 +2607,7 @@
 				E4C57F7428055C7C00E7AB54 /* head.swift in Sources */,
 				E4C57F7528055C7C00E7AB54 /* CMDeviceNamePopViewController.swift in Sources */,
 				E4C57F7628055C7C00E7AB54 /* NSImage+ANImageBitmapRep.m in Sources */,
+				E4C4A0B3286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift in Sources */,
 				E4C57F7728055C7C00E7AB54 /* KLMTestViewController.swift in Sources */,
 				E4C57F7828055C7C00E7AB54 /* KLMNavigationViewController.swift in Sources */,
 				E4C57F7928055C7C00E7AB54 /* KLMPCBASensorViewController.swift in Sources */,
@@ -2871,6 +2920,15 @@
 				E4C258512859ED530080192A /* zh-Hans */,
 			);
 			name = KLMCMOSViewController.xib;
+			sourceTree = "<group>";
+		};
+		E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4C4A0BA286EF70700450A52 /* Base */,
+				E4C4A0BD286EF70E00450A52 /* zh-Hans */,
+			);
+			name = KLMDeviceNameAndTypePopViewController.xib;
 			sourceTree = "<group>";
 		};
 		E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */ = {

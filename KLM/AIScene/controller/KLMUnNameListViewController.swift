@@ -16,21 +16,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     private var currentVersion: String!
     private var versionData: KLMVersion.KLMVersionData!
     
-    lazy var searchBar: UIView = {
-        let width = KLMScreenW - 65 - 20
-        let searchBar = UIView.init(frame: CGRect(x: width, y: KLM_StatusBarHeight + 7, width: 30, height: 30))
-        searchBar.backgroundColor = .white
-        let image = UIImageView.init(image: UIImage(named: "icon_search"))
-        searchBar.addSubview(image)
-        image.snp.makeConstraints { make in
-            
-            make.center.equalToSuperview()
-        }
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(tapSearch))
-        searchBar.addGestureRecognizer(tap)
-        return searchBar
-    }()
-    
     lazy var homeBtn: UIButton = {
         let homeBtn = UIButton.init(type: .custom)
         homeBtn.frame = CGRect.init(x: 0, y: 0, width: 100, height: 18)
@@ -55,14 +40,14 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.barTintColor =  rgba(247, 247, 247, 1)
-        self.searchBar.isHidden = false
+
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         navigationController?.navigationBar.barTintColor = navigationBarColor
-        self.searchBar.isHidden = true
+
     }
     
     override func viewDidLoad() {
@@ -72,23 +57,26 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         event()
         
+        KLMHomeManager.showTipView()
     }
         
     func setupUI() {
         
         collectionView.backgroundColor = appBackGroupColor
         
-        navigationController?.view.addSubview(self.searchBar)
-        
         self.collectionView.register(UINib(nibName: String(describing: KLMAINameListCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: KLMAINameListCell.self))
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceNameUpdate, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil) 
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeDeleteSuccess, object: nil)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
+        let addBtn: UIBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
+        let searchBtn: UIBarButtonItem = UIBarButtonItem.init(icon: "icon_search", target: self, action: #selector(tapSearch))
+        let negativeSpacer: UIBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = 0
+        navigationItem.rightBarButtonItems = [addBtn, negativeSpacer, searchBtn]
         
         ///家庭列表按钮
         let homeItem = UIBarButtonItem.init(customView: self.homeBtn)
@@ -521,30 +509,6 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         } failure: {
             
         }
-    }
-}
-
-extension KLMUnNameListViewController: KLMSIGMeshManagerDelegate {
-        
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
-        
-        ///提交数据到服务器
-        if KLMMesh.save() {
-            
-        }
-        
-        SVProgressHUD.showSuccess(withStatus: "Please tap again")
-        
-    }
-    
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
-        
-        KLMShowError(error)
-    }
-    
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
-        
-        SVProgressHUD.show(withStatus: "Did send message")
     }
 }
  

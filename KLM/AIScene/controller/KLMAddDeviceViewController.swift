@@ -24,6 +24,7 @@ class KLMAddDeviceViewController: UIViewController {
     var emptyView: KLMSearchDeviceEmptyView!
     
     var deviceName = ""
+    var category: Int!
     
     var isHaveDevice: Bool = false
     
@@ -249,14 +250,14 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         }
         
         ///正式APP
-        let vc = CMDeviceNamePopViewController()
-        vc.titleName = LANGLOC("Light")
+        let vc = KLMDeviceNameAndTypePopViewController()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
-        vc.nameBlock = { [weak self] name in
+        vc.nameAndTypeBlock = { [weak self] name, type in
 
             guard let self = self else { return }
             self.deviceName = name
+            self.category = type
             //开始配网
             KLMSIGMeshManager.sharedInstacnce.startActive()
 
@@ -279,6 +280,10 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = device
+        
+        //发送分类指令
+        let parame = parameModel(dp: .category, value: self.category!)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
         if apptype == .test {
             

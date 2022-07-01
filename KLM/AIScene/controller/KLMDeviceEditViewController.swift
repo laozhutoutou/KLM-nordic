@@ -18,7 +18,7 @@ private enum itemType: Int, CaseIterable {
     case group
     case reset
 //    case sigleControl //单路控制
-    case downLoadPic //下载图像
+//    case downLoadPic //下载图像
 //    case passengerFlow //客流统计
     
 }
@@ -82,6 +82,8 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         DispatchQueue.main.asyncAfter(deadline: 5) {
             self.hideEmptyView()
         }
+        
+        KLMHomeManager.showTipView()
     }
     
     func setupUI() {
@@ -325,12 +327,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //            cell.leftTitle = "单路控制"
 //            cell.rightTitle = ""
 //            return cell
-        case itemType.downLoadPic.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "下载图像"
-            cell.rightTitle = ""
-            return cell
+//        case itemType.downLoadPic.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "下载图像"
+//            cell.rightTitle = ""
+//            return cell
 //        case itemType.passengerFlow.rawValue:
 //            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
 //            cell.isShowLeftImage = false
@@ -436,9 +438,9 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //        case itemType.sigleControl.rawValue://六路测试
 //            let vc = KLMTestViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-        case itemType.downLoadPic.rawValue:
-            let vc = KLMRGBTestViewController()
-            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.downLoadPic.rawValue:
+//            let vc = KLMRGBTestViewController()
+//            navigationController?.pushViewController(vc, animated: true)
 //            let vc = KLMTestCameraViewController()
 //            navigationController?.pushViewController(vc, animated: true)
 //        case itemType.passengerFlow.rawValue:

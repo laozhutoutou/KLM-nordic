@@ -154,6 +154,7 @@ class KLMNetworking: NSObject {
             KLMLog("接口域名：\(URLString)\n错误信息: ")
             KLMLog(error)
             let errors: NSError = error as NSError
+            let resultDic = ["error": error.localizedDescription, "egMsg": error.localizedDescription]
             if errors.code == -1011 {
                 
                 let errorData = errors.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] as! Data
@@ -167,15 +168,18 @@ class KLMNetworking: NSObject {
                         KLMLog("token 失效")
                         let appdelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.enterLoginUI()
+                        
+                        //和别人登录一样返回401统一处理
+                        let retureError = NSError.init(domain: "", code: 401, userInfo: resultDic as [String : Any])
+                        completion(nil, retureError)
+                        return
                     }
                 } catch {
                     
                 }
             }
-            
-            let resultDic = ["error": error.localizedDescription, "egMsg": error.localizedDescription]
-            let error = NSError.init(domain: "", code: errors.code, userInfo: resultDic as [String : Any])
-            completion(nil, error)
+            let retureError = NSError.init(domain: "", code: errors.code, userInfo: resultDic as [String : Any])
+            completion(nil, retureError)
         }
     }
 }

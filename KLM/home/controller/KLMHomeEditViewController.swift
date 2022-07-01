@@ -11,9 +11,7 @@ import nRFMeshProvision
 class KLMHomeEditViewController: UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var deleteBtn: UIButton!
     
     var homeModel: KLMHome.KLMHomeModel!
@@ -31,7 +29,7 @@ class KLMHomeEditViewController: UIViewController {
         getMeshUserData()
     }
     
-    func getMeshUserData() {
+    private func getMeshUserData() {
         
         SVProgressHUD.show()
         KLMService.getMeshUsers(meshId: homeModel.id) { response in
@@ -53,7 +51,7 @@ class KLMHomeEditViewController: UIViewController {
         }
         
         guard let text = nameTextField.text, text.isEmpty == false else {
-            SVProgressHUD.showInfo(withStatus: "Please enter store name")
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please enter store name"))
             return
         }
         
@@ -119,7 +117,7 @@ class KLMHomeEditViewController: UIViewController {
         self.present(aler, animated: true, completion: nil)
     }
     
-    @objc func addMember() {
+    private func addMember() {
         
         if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
             SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
@@ -151,13 +149,15 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
+        if section == 1 || section == 2 {
+            return 1
+        }
         return self.meshUsers?.data.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -173,34 +173,36 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
-        return 50
+        return 0.1
         
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
-        let footerView = UIView()
-        let titleLab = UILabel()
-        titleLab.textColor = appMainThemeColor
-        titleLab.text = LANGLOC("AddMember")
-        titleLab.font = UIFont.boldSystemFont(ofSize: 16)
-        footerView.addSubview(titleLab)
-        titleLab.snp.makeConstraints { make in
-            make.left.equalTo(15)
-            make.centerY.equalToSuperview()
-        }
-        
-        ///手势
-        let tap = UITapGestureRecognizer.init(target: self, action: #selector(addMember))
-        footerView.addGestureRecognizer(tap)
-        return footerView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        if indexPath.section == 1 {
+            
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("AddMember")
+            cell.leftLab.textColor = appMainThemeColor
+            cell.rightTitle = ""
+            return cell
+        }
+        
+        if indexPath.section == 2 {
+            
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = LANGLOC("Administrator transfer")
+            cell.leftLab.textColor = appMainThemeColor
+            cell.rightTitle = ""
+            return cell
+        }
+        
         let user = self.meshUsers?.data[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
+        cell.leftLab.textColor = rgb(38, 38, 38)
         if user?.id == homeModel.adminId{
             cell.leftTitle = LANGLOC("administrator")
         } else {
@@ -214,10 +216,21 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        if indexPath.section == 1 { //添加成员
+            
+            addMember()
+        }
         
+        if indexPath.section == 2 { //转移管理员
+            
+        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if indexPath.section == 1 || indexPath.section == 2 {
+            return false
+        }
         
         if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
 

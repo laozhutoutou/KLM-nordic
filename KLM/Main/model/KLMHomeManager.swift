@@ -118,7 +118,29 @@ extension KLMHomeManager {
         
         return model.parentElement?.parentNode
     }
+}
+
+extension KLMHomeManager {
     
-    
-    
+    static func showTipView() {
+        
+        if KLMGetUserDefault("showTime") != nil {
+            return
+        }
+        
+        ///弹出提示框
+        let vc = UIAlertController.init(title: LANGLOC("Devicecoloursensing"), message: LANGLOC("Auto Mode has been changed. The sensor on the light detects commodity automatically every 20 minutes by default. For test purpose, tap three times in a row on “Device colour sensing” item to set time intervals with “Device colour sensing” on. Time interval can be changed from 5 seconds to 60 seconds. Turn on the light again, the time interval will be reset to 20 minutes."), preferredStyle: .alert)
+        vc.addAction(UIAlertAction.init(title: LANGLOC("Do not show"), style: .destructive, handler: { action in
+            KLMSetUserDefault("showTime", 1)
+        }))
+        vc.addAction(UIAlertAction.init(title: LANGLOC("sure"), style: .default, handler: { action in
+            
+        }))
+        if let label: UILabel = vc.view.value(forKeyPath: "_messageLabel") as? UILabel {
+            
+            label.textAlignment = .left
+        }
+        
+        KLMKeyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+    }
 }
