@@ -68,7 +68,7 @@ class KLMLoginViewController: UIViewController {
 
     @IBAction func login(_ sender: Any) {
         
-        guard let mailText = mailTextField.text, mailText.isEmpty == false else {
+        guard let mailText = KLMTool.isEmptyString(string: mailTextField.text) else {
             SVProgressHUD.showInfo(withStatus: mailTextField.placeholder)
             return
         }

@@ -82,7 +82,6 @@ storeSettings = "Store Settings";
 close = "Close";
 deleteMember = "Delete Member";
 invitationCodetip = "Please offer the invitation code to others to join new store within 3 days";
-administrator = "administrator";
 unknowUser = "Unknow user";
 AddMember = "Add member";
 

@@ -62,7 +62,7 @@ class KLMRegisterViewController: UIViewController {
     ///获取验证码
     @IBAction func sendCode(_ sender: Any) {
         
-        guard let text = mailTextField.text, text.isEmpty == false else {
+        guard let text = KLMTool.isEmptyString(string: mailTextField.text) else {
             SVProgressHUD.showInfo(withStatus: mailTextField.placeholder)
             return
         }

@@ -37,10 +37,9 @@ class CMDeviceNamePopViewController: UIViewController {
 
     @IBAction func sure(_ sender: Any) {
         
-        guard let text = self.textField.text,text.isEmpty == false else {
-            
+        guard let text = KLMTool.isEmptyString(string: textField.text) else {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please enter a name"))
             return
-            
         }
         
         if let nameB = nameBlock {

@@ -21,11 +21,11 @@ class KLMHomeAddViewController: UIViewController {
     
     @objc func finish() {
         
-        guard let text = nameTextField.text, text.isEmpty == false else {
-            SVProgressHUD.showInfo(withStatus: "Enter store name")
+        guard let text = KLMTool.isEmptyString(string: nameTextField.text) else {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please enter store name"))
             return
         }
-        
+
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         

@@ -14,8 +14,15 @@ class KLMHomeEditViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deleteBtn: UIButton!
     
-    var homeModel: KLMHome.KLMHomeModel!
+    var meshInfo: KLMMeshInfo.KLMMeshInfoData?
+    var meshId: Int!
     var meshUsers: KLMMeshUser?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getMeshInfo()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +30,18 @@ class KLMHomeEditViewController: UIViewController {
         navigationItem.title = LANGLOC("storeSettings")
         deleteBtn.layer.cornerRadius = deleteBtn.height / 2
         
-        nameTextField.text = homeModel.meshName
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
         
         getMeshUserData()
+        
+        getMeshInfo()
     }
     
     private func getMeshUserData() {
         
         SVProgressHUD.show()
-        KLMService.getMeshUsers(meshId: homeModel.id) { response in
+        KLMService.getMeshUsers(meshId: meshId) { response in
             SVProgressHUD.dismiss()
             self.meshUsers = response as? KLMMeshUser
             self.tableView.reloadData()
@@ -43,22 +52,37 @@ class KLMHomeEditViewController: UIViewController {
 
     }
     
+    private func getMeshInfo() {
+        
+        SVProgressHUD.show()
+        KLMService.getMeshInfo(id: meshId) { response in
+            SVProgressHUD.dismiss()
+            self.meshInfo = response as? KLMMeshInfo.KLMMeshInfoData
+            self.nameTextField.text = self.meshInfo?.meshName
+            self.tableView.reloadData()
+        } failure: { error in
+            
+            KLMHttpShowError(error)
+        }
+    }
+    
     @objc func finish() {
         
-        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+        guard let meshIn = meshInfo else { return  }
+        if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
             SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
             return
         }
         
-        guard let text = nameTextField.text, text.isEmpty == false else {
+        guard let text = KLMTool.isEmptyString(string: nameTextField.text) else {
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please enter store name"))
             return
         }
         
         SVProgressHUD.show()
-        KLMService.editMesh(id: homeModel.id, meshName: text, meshConfiguration: nil) { response in
+        KLMService.editMesh(id: meshId, meshName: text, meshConfiguration: nil) { response in
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            if let home = KLMMesh.loadHome(), self.homeModel.id == home.id {
+            if let home = KLMMesh.loadHome(), self.meshId == home.id {
                 
                 var homee = home
                 homee.meshName = text
@@ -73,13 +97,14 @@ class KLMHomeEditViewController: UIViewController {
     
     @IBAction func deleteMesh(_ sender: Any) {
         
-        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+        guard let meshIn = meshInfo else { return  }
+        if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
             SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
             return
         }
         
         //有灯不给删
-        let meshnetwork = KLMMesh.getMeshNetwork(meshConfiguration: self.homeModel.meshConfiguration)
+        let meshnetwork = KLMMesh.getMeshNetwork(meshConfiguration: meshIn.meshConfiguration)
         let notConfiguredNodes = meshnetwork.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
         if notConfiguredNodes.count > 0 { //有设备不给删除
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please remove or reset all lights from the store"))
@@ -91,9 +116,9 @@ class KLMHomeEditViewController: UIViewController {
         let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
             
             SVProgressHUD.show()
-            KLMService.deleteMesh(id: self.homeModel.id) { response in
+            KLMService.deleteMesh(id: self.meshId) { response in
                 ///删除mesh（1、mesh清除配置。2、清除家庭数据。3、刷新页面）
-                if KLMMesh.loadHome()?.id == self.homeModel.id {///删除的是当前mesh
+                if KLMMesh.loadHome()?.id == self.meshId {///删除的是当前mesh
                     
                     KLMMesh.removeHome()
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
@@ -119,14 +144,15 @@ class KLMHomeEditViewController: UIViewController {
     
     private func addMember() {
         
-        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+        guard let meshIn = meshInfo else { return  }
+        if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
             SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
             return
         }
         
         SVProgressHUD.show()
         ///生成邀请码
-        KLMService.getInvitationCode(meshId: self.homeModel.id) { response in
+        KLMService.getInvitationCode(meshId: meshId) { response in
             
             SVProgressHUD.dismiss()
             
@@ -149,7 +175,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     
     func numberOfSections(in tableView: UITableView) -> Int {
         
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -203,8 +229,8 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
         cell.isShowLeftImage = false
         cell.leftLab.textColor = rgb(38, 38, 38)
-        if user?.id == homeModel.adminId{
-            cell.leftTitle = LANGLOC("administrator")
+        if let meshIn = meshInfo, user?.id == meshIn.adminId{
+            cell.leftTitle = LANGLOC("Administrator")
         } else {
             cell.leftTitle = user?.nickname ?? LANGLOC("unknowUser")
         }
@@ -223,6 +249,16 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         
         if indexPath.section == 2 { //转移管理员
             
+            guard let meshIn = meshInfo else { return  }
+            if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+                return
+            }
+            
+            let vc = KLMAdminTransferViewController()
+            vc.meshId = meshId
+            vc.adminId = meshIn.adminId
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -232,13 +268,14 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
             return false
         }
         
-        if KLMMesh.isMeshManager(meshAdminId: homeModel.adminId!) == false {
+        
+        if let meshIn = meshInfo, KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
 
             return false
         }
 
         let user = self.meshUsers!.data[indexPath.row]
-        if user.id == homeModel.adminId {
+        if let meshIn = meshInfo, user.id == meshIn.adminId {
             return false
         }
         return true
@@ -254,7 +291,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
                 
                 SVProgressHUD.show()
-                KLMService.deleteUser(meshId: self.homeModel.id, userId: user.id) { response in
+                KLMService.deleteUser(meshId: self.meshId, userId: user.id) { response in
                     self.getMeshUserData()
                     SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 } failure: { error in

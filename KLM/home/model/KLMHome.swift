@@ -43,6 +43,7 @@ struct KLMMeshInfo: Codable {
     struct KLMMeshInfoData: Codable {
         var meshConfiguration: String
         var meshName: String?
+        var adminId: Int
     }
 }
 

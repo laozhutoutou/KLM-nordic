@@ -82,7 +82,6 @@ storeSettings = "商场设置";
 close = "关闭";
 deleteMember = "删除成员";
 invitationCodetip = "请将此邀请码提供给他人已便加入商场,有效期3天";
-administrator = "管理员";
 unknowUser = "未知用户";
 AddMember = "添加成员";
 
@@ -138,6 +137,11 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Clothing" = "服装百货";
 "Plants" = "植物花卉";
 "Others" = "其它";
+"Successful transfer" = "成功转移";
+"You will not have administrative access rights for the store" = "您将失去这个商店的管理员权限";
+"Administrator" = "管理员";
+"Please enter a name" = "请输入名称";
+"Please enter the invitation code" = "请输入邀请码";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

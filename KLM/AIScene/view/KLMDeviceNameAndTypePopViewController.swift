@@ -34,16 +34,9 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     }
     
     @IBAction func sure(_ sender: Any) {
-        
-        guard let text = self.textField.text, text.isEmpty == false else {
-            SVProgressHUD.showInfo(withStatus: self.textField.placeholder)
-            return
-        }
-        
-        ///去掉最后的空格
-        let tt = text.trimmingCharacters(in: .whitespaces)
-        if tt.isEmpty == true {
-            SVProgressHUD.showInfo(withStatus: self.textField.placeholder)
+
+        guard let text = KLMTool.isEmptyString(string: textField.text) else {
+            SVProgressHUD.showInfo(withStatus: textField.placeholder)
             return
         }
         
@@ -53,7 +46,7 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         }
 
         if let nameB = nameAndTypeBlock {
-            nameB(tt, cate)
+            nameB(text, cate)
         }
 
         dismiss(animated: true, completion: nil)

@@ -30,12 +30,12 @@ class KLMHelpViewController: UIViewController {
 
     @IBAction func commit(_ sender: Any) {
         
-        guard let question = self.questionView.text, question.isEmpty == false else {
+        guard let question = KLMTool.isEmptyString(string: questionView.text) else {
             SVProgressHUD.showInfo(withStatus: LANGLOC("FeedBackContentEmptyTip"))
             return
         }
         
-        guard let phone = self.phoneField.text, phone.isEmpty == false else {
+        guard let phone = KLMTool.isEmptyString(string: phoneField.text) else {
             SVProgressHUD.showInfo(withStatus: LANGLOC("FeedBackContactEmptyTip"))
             return
         }

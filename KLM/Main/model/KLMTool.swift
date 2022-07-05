@@ -68,3 +68,19 @@ extension UIView {
         return nil
     }
 }
+
+extension KLMTool {
+    
+    /// 判断字符串是否是空的，去掉前后空格
+    /// - Parameter string: string
+    /// - Returns: 去掉前后空格的字符串
+    static func isEmptyString(string: String?) -> String? {
+        guard let string = string else { return nil }
+        //字符串前后空格去掉
+        let tt = string.trimmingCharacters(in: .whitespaces)
+        if tt.isEmpty {
+            return nil
+        }
+        return tt
+    }
+}

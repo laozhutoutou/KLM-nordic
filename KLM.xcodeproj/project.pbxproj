@@ -44,6 +44,9 @@
 		E46B54652769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54672769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib */; };
 		E46B546E2769CFEE00F3D5E5 /* KLMForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B546C2769CFEE00F3D5E5 /* KLMForgetPasswordViewController.swift */; };
 		E46B54702769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54722769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib */; };
+		E46E00C828740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E00CC28740FF1001D29E4 /* KLMAdminTransferViewController.xib */; };
+		E46E00C928740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E00CC28740FF1001D29E4 /* KLMAdminTransferViewController.xib */; };
+		E46E00CA28740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46E00CC28740FF1001D29E4 /* KLMAdminTransferViewController.xib */; };
 		E4729A7826AE92A400DC7D59 /* KLMTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */; };
 		E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */; };
 		E4729A7C26B1333A00DC7D59 /* KLMText1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */; };
@@ -206,9 +209,6 @@
 		E4C4A0A1286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
 		E4C4A0A2286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
 		E4C4A0A3286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
-		E4C4A0A4286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */; };
-		E4C4A0A5286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */; };
-		E4C4A0A6286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */; };
 		E4C4A0A9286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */; };
 		E4C4A0AA286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */; };
 		E4C4A0AB286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */; };
@@ -725,6 +725,8 @@
 		E46B54712769D53B00F3D5E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMForgetPasswordViewController.xib; sourceTree = "<group>"; };
 		E46B54742769D53F00F3D5E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMForgetPasswordViewController.strings; sourceTree = "<group>"; };
 		E46B54762769D54100F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMForgetPasswordViewController.strings"; sourceTree = "<group>"; };
+		E46E00CB28740FF1001D29E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMAdminTransferViewController.xib; sourceTree = "<group>"; };
+		E46E00CE28741005001D29E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMAdminTransferViewController.strings"; sourceTree = "<group>"; };
 		E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLMTestViewController.swift; sourceTree = "<group>"; };
 		E4729A7726AE92A400DC7D59 /* KLMTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KLMTestViewController.xib; sourceTree = "<group>"; };
 		E4729A7A26B1333A00DC7D59 /* KLMText1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMText1ViewController.swift; sourceTree = "<group>"; };
@@ -940,7 +942,6 @@
 		E4C3466328338573000852DE /* KLMDeviceAddTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceAddTestCell.swift; sourceTree = "<group>"; };
 		E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddTestCell.xib; sourceTree = "<group>"; };
 		E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferViewController.swift; sourceTree = "<group>"; };
-		E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAdminTransferViewController.xib; sourceTree = "<group>"; };
 		E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferCell.swift; sourceTree = "<group>"; };
 		E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAdminTransferCell.xib; sourceTree = "<group>"; };
 		E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceNameAndTypePopViewController.swift; sourceTree = "<group>"; };
@@ -1692,7 +1693,7 @@
 				E4A1BAD0273E4138005DD2CC /* KLMJoinHomeViewController.swift */,
 				E46B54672769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib */,
 				E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */,
-				E4C4A0A0286E9E1C00450A52 /* KLMAdminTransferViewController.xib */,
+				E46E00CC28740FF1001D29E4 /* KLMAdminTransferViewController.xib */,
 				E4C80D4027F7EC2400DA5155 /* KLMChartsTestViewController.swift */,
 				E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */,
 			);
@@ -1876,7 +1877,7 @@
 				E4C2584B2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AC286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
-				E4C4A0A4286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */,
+				E46E00C828740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
 				E46B545E27699B2D00F3D5E5 /* KLMHomeEditViewController.xib in Resources */,
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
@@ -1952,7 +1953,7 @@
 				E4C2584C2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AD286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4C57EF028055B1F00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
-				E4C4A0A5286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */,
+				E46E00C928740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
 				E4C57EF128055B1F00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57EF228055B1F00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
 				E4C57EF328055B1F00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
@@ -2028,7 +2029,7 @@
 				E4C2584D2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AE286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4C57FC728055C7C00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
-				E4C4A0A6286E9E1C00450A52 /* KLMAdminTransferViewController.xib in Resources */,
+				E46E00CA28740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
 				E4C57FC828055C7C00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57FC928055C7C00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
 				E4C57FCA28055C7C00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
@@ -2731,6 +2732,15 @@
 			name = KLMForgetPasswordViewController.xib;
 			sourceTree = "<group>";
 		};
+		E46E00CC28740FF1001D29E4 /* KLMAdminTransferViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E46E00CB28740FF1001D29E4 /* Base */,
+				E46E00CE28741005001D29E4 /* zh-Hans */,
+			);
+			name = KLMAdminTransferViewController.xib;
+			sourceTree = "<group>";
+		};
 		E48B52C5266783D80006CDA7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3092,7 +3102,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;
@@ -3124,7 +3134,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KLM/Info.plist;

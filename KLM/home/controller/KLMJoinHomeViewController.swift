@@ -22,8 +22,8 @@ class KLMJoinHomeViewController: UIViewController {
 
     @IBAction func comfirm(_ sender: Any) {
         
-        guard let text = invitationCodeTextField.text, !text.isEmpty else {
-            SVProgressHUD.showInfo(withStatus: "Please enter the invitation code")
+        guard let text = KLMTool.isEmptyString(string: invitationCodeTextField.text) else {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please enter the invitation code"))
             return
         }
         

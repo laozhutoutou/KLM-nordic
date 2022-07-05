@@ -438,6 +438,23 @@ class KLMService: NSObject {
         }
     }
     
+    static func transferAdmin(meshId: Int, fromId: Int, toEmail: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame: [String : Any] = ["meshId": meshId,
+                      "userId": fromId,
+                      "email": toEmail]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/transfer/mesh"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
     static func feedBack(contacts: String, content: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": contacts,

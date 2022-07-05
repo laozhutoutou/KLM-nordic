@@ -105,7 +105,7 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let home: KLMHome.KLMHomeModel = self.homes[indexPath.row]
             let vc = KLMHomeEditViewController()
-            vc.homeModel = home
+            vc.meshId = home.id
             navigationController?.pushViewController(vc, animated: true)
         case 1:
             let vc = KLMHomeAddViewController()
