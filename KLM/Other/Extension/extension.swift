@@ -115,6 +115,7 @@ extension NSNotification.Name {
     static let homeAddSuccess = NSNotification.Name.init("homeAddSuccess")
     static let homeDeleteSuccess = NSNotification.Name.init("homeDeleteSuccess")
     static let dataUpdate = NSNotification.Name.init("dataUpdate")
+    static let mainPageRefresh = NSNotification.Name.init("mainPageRefresh")
 }
 
 extension String {

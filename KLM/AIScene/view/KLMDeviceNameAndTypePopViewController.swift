@@ -18,9 +18,10 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     
     var nameAndTypeBlock: NameAndTypeBlock?
     var cancelBlock: (() -> Void)?
-    var category: Int?
-    
-    let categoryList: [String] = [LANGLOC("Groceries"), LANGLOC("Clothing"), LANGLOC("Plants"), LANGLOC("Others")]
+    var categoryList: [KLMType] = [KLMType]()
+    var selectCategory: KLMType?
+    var grocerySubTypes: [KLMType] = [KLMType]()
+    var categoryPopView: YBPopupMenu?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,15 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         textField.layer.cornerRadius = 4
         
         contentView.layer.cornerRadius = 8
+        
+        let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
+        let occations: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str), error: ())
+        categoryList = KLMTool.jsonToModel(type: KLMType.self, array: occations as! [[String : Any]])!
+        
+        let str1: String = Bundle.main.path(forResource: "GroceriesPlist", ofType: "plist")!
+        let groceries: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str1), error: ())
+        grocerySubTypes = KLMTool.jsonToModel(type: KLMType.self, array: groceries as! [[String : Any]])!
+        
     }
     
     @IBAction func sure(_ sender: Any) {
@@ -40,13 +50,13 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
             return
         }
         
-        guard let cate = category  else {
+        guard let cate = selectCategory  else {
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please select use occasion"))
             return
         }
 
         if let nameB = nameAndTypeBlock {
-            nameB(text, cate)
+            nameB(text, cate.num)
         }
 
         dismiss(animated: true, completion: nil)
@@ -56,14 +66,20 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         
         let menuViewrect: CGRect = categoryView.convert(categoryView.bounds, to: KLMKeyWindow)
         let point: CGPoint = CGPoint.init(x: menuViewrect.origin.x, y: menuViewrect.origin.y + menuViewrect.size.height)
-        YBPopupMenu.show(at: point, titles: categoryList, icons: nil, menuWidth: 120) { popupMenu in
+        var titles: [String] = [String]()
+        for model in categoryList {
+            titles.append(LANGLOC(model.title))
+        }
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
             popupMenu?.priorityDirection = .none
             popupMenu?.arrowHeight = 0
             popupMenu?.minSpace = menuViewrect.origin.x
-            popupMenu?.dismissOnSelected = true
+            popupMenu?.dismissOnSelected = false
             popupMenu?.isShadowShowing = false
             popupMenu?.delegate = self
             popupMenu?.cornerRadius = 0
+            popupMenu?.tag = 100
+            self.categoryPopView = popupMenu
         }
     }
     
@@ -80,9 +96,37 @@ extension KLMDeviceNameAndTypePopViewController: YBPopupMenuDelegate {
     
     func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
         
-        category = index + 1
-        let title = categoryList[index]
-        categoryLab.text = title
-        KLMLog("index = \(category), category = \(title)")
+        if ybPopupMenu.tag == 100 {
+            
+            if index == 0 { //弹出二级菜单
+                
+                let menuViewrect: CGRect = categoryView.convert(categoryView.bounds, to: KLMKeyWindow)
+                let point: CGPoint = CGPoint.init(x: menuViewrect.origin.x, y: menuViewrect.origin.y + menuViewrect.size.height)
+                var titles: [String] = [String]()
+                for model in grocerySubTypes {
+                    titles.append(LANGLOC(model.title))
+                }
+                YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
+                    popupMenu?.priorityDirection = .none
+                    popupMenu?.arrowHeight = 0
+                    popupMenu?.minSpace = menuViewrect.origin.x + 120
+                    popupMenu?.isShadowShowing = false
+                    popupMenu?.delegate = self
+                    popupMenu?.cornerRadius = 0
+                    popupMenu?.tag = 10
+                }
+                
+                return
+            }
+            ybPopupMenu.dismiss()
+            selectCategory = categoryList[index]
+            
+        } else { //果蔬二级菜单
+            categoryPopView?.dismiss()
+            selectCategory = grocerySubTypes[index]
+        }
+        
+        categoryLab.text = LANGLOC(selectCategory!.title)
+        KLMLog("selectCategory = \(selectCategory)")
     }
 }

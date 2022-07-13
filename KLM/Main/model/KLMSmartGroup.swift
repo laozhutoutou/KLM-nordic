@@ -182,6 +182,64 @@ class KLMSmartGroup: NSObject {
         }
     }
     
+    //读所有节点的消息
+    func readMessageAllNodes(_ parame: parameModel, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
+        
+        MeshNetworkManager.instance.delegate = self
+        
+        successBlock = success
+        failureBlock = failure
+        
+        do {
+            try KLMConnectManager.checkBluetoothState()
+            
+        } catch {
+            
+            if let errr = error as? MessageError {
+                failure(errr)
+                return
+            }
+        }
+        
+        //一个设备都没连接,  群组发送消息也可以发送出去，没报异常。所以要添加这个
+        if !MeshNetworkManager.bearer.isOpen {
+            var err = MessageError()
+            err.message = LANGLOC("deviceNearbyTip")
+            failure(err)
+            return
+        }
+        
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
+        if let opCode = UInt8("1C", radix: 16) {
+            let parameters = Data(hex: dpString)
+            KLMLog("readParameter = \(parameters.hex)")
+            let network = MeshNetworkManager.instance.meshNetwork!
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
+            guard !notConfiguredNodes.isEmpty else {
+                
+                //没有节点
+                var err = MessageError()
+                err.message = LANGLOC("noDevice")
+                failure(err)
+                return
+            }
+            
+            let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!)!
+            let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
+            do {
+                //allNodes 为所有节点
+                try  MeshNetworkManager.instance.send(message, to: MeshAddress.init(.allNodes), using: model.boundApplicationKeys.first!)
+                
+            } catch {
+                
+                var err = MessageError()
+                err.message = error.localizedDescription
+                failure(err)
+                
+            }
+        }
+    }
+    
     func readMessage(_ parame: parameModel, toGroup group: Group, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         
         MeshNetworkManager.instance.delegate = self

@@ -32,7 +32,7 @@ import Foundation
 
 public class Node: Codable {
     internal weak var meshNetwork: MeshNetwork?
-
+    
     /// The state of a network or application key distributed to a mesh
     /// node by a Mesh Manager.
     public class NodeKey: Codable {

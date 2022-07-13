@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class KLMSettingSwichCell: KLMBaseTableViewCell {
 

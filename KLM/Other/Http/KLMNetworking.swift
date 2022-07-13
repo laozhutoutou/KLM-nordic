@@ -161,19 +161,22 @@ class KLMNetworking: NSObject {
                 do {
                     
                     let errorDic: [String: AnyObject] = try JSONSerialization.jsonObject(with: errorData, options: .mutableContainers) as! [String: AnyObject]
-                    let StateCode = errorDic["code"] as! Int
-                    if StateCode == 400 { ///token过期，重新登录
-                        ///清空数据
-                        KLMMesh.logout()
-                        KLMLog("token 失效")
-                        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                        appdelegate.enterLoginUI()
+                    if let StateCode = errorDic["code"] as? Int {
                         
-                        //和别人登录一样返回401统一处理
-                        let retureError = NSError.init(domain: "", code: 401, userInfo: resultDic as [String : Any])
-                        completion(nil, retureError)
-                        return
+                        if StateCode == 400 { ///token过期，重新登录
+                            ///清空数据
+                            KLMMesh.logout()
+                            KLMLog("token 失效")
+                            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                            appdelegate.enterLoginUI()
+                            
+                            //和别人登录一样返回401统一处理
+                            let retureError = NSError.init(domain: "", code: 401, userInfo: resultDic as [String : Any])
+                            completion(nil, retureError)
+                            return
+                        }
                     }
+                    
                 } catch {
                     
                 }

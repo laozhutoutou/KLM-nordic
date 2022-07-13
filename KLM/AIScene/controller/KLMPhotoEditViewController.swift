@@ -73,6 +73,12 @@ class KLMPhotoEditViewController: UIViewController {
         
         KLMSmartNode.sharedInstacnce.delegate = self
         
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+//            SVProgressHUD.show()
+//            //读取分类数据
+//            let parame = parameModel(dp: .category)
+//            KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+        }
     }
     
     override func viewDidLoad() {
@@ -194,8 +200,8 @@ class KLMPhotoEditViewController: UIViewController {
         let RRHex = enhance.RR.decimalTo2Hexadecimal()
         let GGHex = enhance.GG.decimalTo2Hexadecimal()
         let BBHex = enhance.BB.decimalTo2Hexadecimal()
-        let classification = enhance.classification.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "00" + RRHex + GGHex + BBHex + classification
+        let classification = (enhance.classification<<4).decimalTo2Hexadecimal()
+        let string = recipeHex + lightValueHex + classification + RRHex + GGHex + BBHex
         let parame = parameModel(dp: .recipe, value: string)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
@@ -282,8 +288,8 @@ class KLMPhotoEditViewController: UIViewController {
         let RRHex = enhance.RR.decimalTo2Hexadecimal()
         let GGHex = enhance.GG.decimalTo2Hexadecimal()
         let BBHex = enhance.BB.decimalTo2Hexadecimal()
-        let classification = enhance.classification.decimalTo2Hexadecimal()
-        let string = recipeHex + lightValueHex + "01" + RRHex + GGHex + BBHex + classification
+        let classification = ((enhance.classification<<4)+1).decimalTo2Hexadecimal()
+        let string = recipeHex + lightValueHex + classification + RRHex + GGHex + BBHex
         let parame = parameModel(dp: .recipe, value: string)
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
@@ -396,6 +402,12 @@ extension KLMPhotoEditViewController: KLMSliderDelegate {
 extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        if let value = message?.value as? Int, message?.dp == .category {
+            SVProgressHUD.dismiss()
+            enhance.classification = value
+        }
+        
         if isFinish {
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

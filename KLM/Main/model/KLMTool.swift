@@ -84,3 +84,30 @@ extension KLMTool {
         return tt
     }
 }
+
+extension KLMTool {
+    
+    //单独的字典（json）转模型
+    static public func jsonToModel<T>(type:T.Type, json:Any) -> T? where T:Codable {
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: json, options: []) else {
+            return nil
+        }
+        guard let model = try? JSONDecoder.init().decode(type, from: jsonData) else {
+            return nil
+        }
+        return model
+    }
+    
+    //json数组转模型数组
+    static public func jsonToModel<T>(type:T.Type, array:[[String:Any]]) -> [T]? where T:Codable {
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: array, options: []) else {
+            return nil
+        }
+        guard let result = try? JSONDecoder.init().decode([T].self, from: jsonData) else {
+            return nil
+        }
+        return result
+    }
+}

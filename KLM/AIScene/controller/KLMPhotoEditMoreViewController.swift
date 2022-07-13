@@ -18,9 +18,16 @@ class KLMPhotoEditMoreViewController: UIViewController {
     @IBOutlet weak var GBgView: UIView!
     @IBOutlet weak var BBgView: UIView!
     
-    @IBOutlet weak var btnsView: UIView!
+    @IBOutlet weak var categoryView: UIView!
+    @IBOutlet weak var categoryLab: UILabel!
     
-    var btnArray: [UIButton] = [UIButton]()
+    ///大分类
+    var categoryList: [KLMType] = [KLMType]()
+    var selectCategory: KLMType?
+    //果蔬子类
+    var grocerySubTypes: [KLMType] = [KLMType]()
+    var categoryPopView: YBPopupMenu?
+    var allTypes: [KLMType] = [KLMType]()
     
     var RSlider: KLMSlider!
     var GSlider: KLMSlider!
@@ -74,14 +81,15 @@ class KLMPhotoEditMoreViewController: UIViewController {
         self.BSlider = BBSlider
         BBgView.addSubview(BBSlider)
         
-        btnArray = btnsView.subviews as! [UIButton]
+        let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
+        let occations: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str), error: ())
+        categoryList = KLMTool.jsonToModel(type: KLMType.self, array: occations as! [[String : Any]])!
         
-        //平均分配
-        btnArray.snp.makeConstraints { make in
-            make.height.equalTo(34)
-            make.centerY.equalToSuperview()
-        }
-        btnArray.snp.distributeViewsAlong(axisType: .horizontal, fixedItemLength: 70, leadSpacing: 20, tailSpacing: 20)
+        let str1: String = Bundle.main.path(forResource: "GroceriesPlist", ofType: "plist")!
+        let groceries: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str1), error: ())
+        grocerySubTypes = KLMTool.jsonToModel(type: KLMType.self, array: groceries as! [[String : Any]])!
+        
+        allTypes = categoryList + grocerySubTypes
     }
     
     private func setupData() {
@@ -89,17 +97,9 @@ class KLMPhotoEditMoreViewController: UIViewController {
         RSlider.currentValue = Float(enhance.RR)
         GSlider.currentValue = Float(enhance.GG)
         BSlider.currentValue = Float(enhance.BB)
-        for btn in btnArray {
-            btn.layer.cornerRadius = 3
-            btn.layer.borderWidth = 1
-            btn.layer.borderColor = UIColor.gray.cgColor
-            btn.clipsToBounds = true
-            btn.setTitleColor(.white, for: .selected)
-            btn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
-            if btn.tag == enhance.classification {
-                btn.isSelected = true
-            }
-        }
+        
+        let title: String = allTypes.first(where: {$0.num == enhance.classification})!.title
+        categoryLab.text = LANGLOC(title)
     }
     
     
@@ -128,18 +128,27 @@ class KLMPhotoEditMoreViewController: UIViewController {
         }
     }
     
-    @IBAction func classificationClick(_ sender: UIButton) {
+    @IBAction func tapCategory(_ sender: UITapGestureRecognizer) {
         
-        if sender.tag == enhance.classification {
-            return
+        let menuViewrect: CGRect = categoryView.convert(categoryView.bounds, to: KLMKeyWindow)
+        let point: CGPoint = CGPoint.init(x: menuViewrect.origin.x, y: menuViewrect.origin.y + menuViewrect.size.height)
+        var titles: [String] = [String]()
+        for model in categoryList {
+            titles.append(LANGLOC(model.title))
         }
-        enhance.classification = sender.tag
-        for btn in btnArray {
-            btn.isSelected = false
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
+            popupMenu?.priorityDirection = .none
+            popupMenu?.arrowHeight = 0
+            popupMenu?.minSpace = menuViewrect.origin.x
+            popupMenu?.dismissOnSelected = false
+            popupMenu?.isShadowShowing = false
+            popupMenu?.delegate = self
+            popupMenu?.cornerRadius = 0
+            popupMenu?.tag = 100
+            self.categoryPopView = popupMenu
         }
-        sender.isSelected = true
-        sendData()
     }
+    
 }
 
 extension KLMPhotoEditMoreViewController: KLMSliderDelegate {
@@ -161,11 +170,56 @@ extension KLMPhotoEditMoreViewController: KLMSliderDelegate {
     }
 }
 
+extension KLMPhotoEditMoreViewController: YBPopupMenuDelegate {
+    
+    func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
+        
+        if ybPopupMenu.tag == 100 {
+            
+            if index == 0 { //弹出二级菜单
+                
+                let menuViewrect: CGRect = categoryView.convert(categoryView.bounds, to: KLMKeyWindow)
+                let point: CGPoint = CGPoint.init(x: menuViewrect.origin.x, y: menuViewrect.origin.y + menuViewrect.size.height)
+                var titles: [String] = [String]()
+                for model in grocerySubTypes {
+                    titles.append(LANGLOC(model.title))
+                }
+                YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
+                    popupMenu?.priorityDirection = .none
+                    popupMenu?.arrowHeight = 0
+                    popupMenu?.minSpace = menuViewrect.origin.x + 120
+                    popupMenu?.isShadowShowing = false
+                    popupMenu?.delegate = self
+                    popupMenu?.cornerRadius = 0
+                    popupMenu?.tag = 10
+                }
+                
+                return
+            }
+            
+            ybPopupMenu.dismiss()
+            selectCategory = categoryList[index]
+            enhance.classification = selectCategory!.num
+            sendData()
+            
+        } else { //果蔬二级菜单
+            
+            categoryPopView?.dismiss()
+            selectCategory = grocerySubTypes[index]
+            enhance.classification = selectCategory!.num
+            sendData()
+        }
+        
+        categoryLab.text = LANGLOC(selectCategory!.title)
+        KLMLog("selectCategory = \(selectCategory)")
+    }
+}
+
 class RGBEnhance {
     
     var RR: Int = 0
     var GG: Int = 0
     var BB: Int = 0
-    var classification: Int = 0
+    var classification: Int = 2
 }
 

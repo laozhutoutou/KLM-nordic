@@ -41,8 +41,9 @@ class KLMApplicationManager {
         let manager =  IQKeyboardManager.shared
         manager.enable = true
         manager.shouldResignOnTouchOutside = true
-        manager.shouldToolbarUsesTextFieldTintColor = true;
-        manager.enableAutoToolbar = true;
+        manager.shouldToolbarUsesTextFieldTintColor = true
+        ///不显示工具条
+        manager.enableAutoToolbar = false
         manager.toolbarManageBehaviour = .byTag
         
     }

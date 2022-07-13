@@ -58,6 +58,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         event()
         
         KLMHomeManager.showTipView()
+        
     }
         
     func setupUI() {
@@ -71,6 +72,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil) 
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeDeleteSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .mainPageRefresh, object: nil)
         
         let addBtn: UIBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
         let searchBtn: UIBarButtonItem = UIBarButtonItem.init(icon: "icon_search", target: self, action: #selector(tapSearch))

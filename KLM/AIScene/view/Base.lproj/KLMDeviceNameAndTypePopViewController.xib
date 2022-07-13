@@ -155,7 +155,7 @@
                 <constraint firstItem="Zgt-YK-NSD" firstAttribute="trailing" secondItem="Wtf-Q5-xZB" secondAttribute="trailing" constant="20" id="io5-mY-KMS"/>
                 <constraint firstAttribute="bottom" secondItem="mm5-tZ-3d1" secondAttribute="bottom" id="wle-zF-tOb"/>
             </constraints>
-            <point key="canvasLocation" x="-3265" y="277"/>
+            <point key="canvasLocation" x="-3681" y="263"/>
         </view>
         <tapGestureRecognizer id="Bo5-he-EQ2">
             <connections>

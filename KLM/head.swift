@@ -154,3 +154,5 @@ func KLMUrl(_ url: String) -> String {
     
     return baseUrl + url
 }
+
+//app二维码下载路径： https://apps.apple.com/app/id1618735485?mt=8

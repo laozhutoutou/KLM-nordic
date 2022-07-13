@@ -178,6 +178,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                 }
             } failure: {
                 
+                
             }
             
         case itemType.motion.rawValue:

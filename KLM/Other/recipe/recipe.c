@@ -362,65 +362,6 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
     if (ncw + nww > 0.8) return SPECTRUM_3500K;
     return SPECTRUM_FULL;
 }
-int getRecipeIndexOfFreshImageROI(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
-    int color_dict[8] = {0}, sum = 0;
-    unsigned char * p = (unsigned char *)imgData;
-    COLOR_RGB rgb;
-    COLOR_HSV hsv;
-    COLOR_YUV yuv;
-    for (int y = area->Y_Start; y < area->Y_End; y++) {
-        for (int x = area->X_Start; x < area->X_End; x++) {
-            if (format == IMAGE_FORMAT_RGBA) {
-                rgb.R = p[(y * imgW + x) * 4 + 0];
-                rgb.G = p[(y * imgW + x) * 4 + 1];
-                rgb.B = p[(y * imgW + x) * 4 + 2];
-                RGBtoHSV100(&rgb, &hsv);
-            } else if (format == IMAGE_FORMAT_RGB) {
-                rgb.R = p[(y * imgW + x) * 3 + 0];
-                rgb.G = p[(y * imgW + x) * 3 + 1];
-                rgb.B = p[(y * imgW + x) * 3 + 2];
-                RGBtoHSV100(&rgb, &hsv);
-            } else if (format == IMAGE_FORMAT_YUV420)  {
-                yuv.Y = p[y * imgW + x];
-                yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
-                yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
-                YUVtoRGB(&yuv, &rgb);
-                YUVtoHSV100(&yuv, &hsv);
-            } else if (format == IMAGE_FORMAT_NV21) {
-                yuv.Y = p[y * imgW + x];
-                yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
-                yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
-                YUVtoRGB(&yuv, &rgb);
-                YUVtoHSV100(&yuv, &hsv);
-            }
-            sum++;
-            if (hsv.S <= 30 && hsv.V >= 40) color_dict[COLOR_FRUIT_WHITE]++;
-            else if (hsv.V <= 40) color_dict[COLOR_FRUIT_BLACK]++;
-            else if (hsv.H < 288 && hsv.H >= 211) color_dict[COLOR_FRUIT_BLUEPURPLE]++;
-            else if (hsv.H < 211 && hsv.H >= 89) color_dict[COLOR_FRUIT_CYANGREEN]++;
-            else if (hsv.H < 89 && hsv.H >= 45) color_dict[COLOR_FRUIT_YELLOW]++;
-            else if (hsv.H < 45 && hsv.H >= 20) color_dict[COLOR_FRUIT_ORANGE]++;
-            else { // red
-                if (hsv.V <= 60 && hsv.S >= 60 && (hsv.H > 340 || hsv.H < 20)) color_dict[COLOR_FRUIT_DARKRED]++;
-                else color_dict[COLOR_FRUIT_RED]++;
-            }
-        }
-    }
-    for (int i = 0; i < 8; i++) {
-//        LOGI("color %d num %d", i, color_dict[i]);
-        if (color_dict[i] > 0.7 * sum) {
-            return i;
-        }
-    }
-    int nww = color_dict[COLOR_FRUIT_DARKRED] + color_dict[COLOR_FRUIT_RED] + color_dict[COLOR_FRUIT_YELLOW] + color_dict[COLOR_FRUIT_ORANGE];
-    int ncw = color_dict[COLOR_FRUIT_BLUEPURPLE] + color_dict[COLOR_FRUIT_CYANGREEN];
-    int nnw = color_dict[COLOR_FRUIT_WHITE] + color_dict[COLOR_FRUIT_BLACK];
-
-    if (nww > 0.5 * sum) return SPECTRUM_3000K;
-    if (ncw > 0.5 * sum) return SPECTRUM_4000K;
-    if (nnw > 0.5 * sum) return SPECTRUM_3500K;
-    return SPECTRUM_FULL;
-}
 
 int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY, COMMODITY_CATEGORY category) {
     int radius = 5;
@@ -431,11 +372,11 @@ int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMA
 
     IMAGE_AREA area = {startX, endX, startY, endY};
 //    LOGI("%d, %d, %d, %d", startX, endX , startY, endY);
-    if (category == GROCERY || category == BAKERY) return getRecipeIndexOfFreshImageROI(imgData, imgW, imgH, format, &area);
+    if (category >= Grocery_Fruits) return (int)(category - Grocery_Fruits);
     else return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }
 int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY, COMMODITY_CATEGORY category){
     IMAGE_AREA area = {startX, endX, startY, endY};
-    if (category == GROCERY || category == BAKERY) return getRecipeIndexOfFreshImageROI(imgData, imgW, imgH, format, &area);
+    if (category >= Grocery_Fruits) return (int)(category - Grocery_Fruits);
     else return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }

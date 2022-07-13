@@ -10,10 +10,15 @@ typedef enum {
     IMAGE_FORMAT_NV21 = 3,   //YYYYYYYY UVUV
 }IMAGE_FORMAT;
 typedef enum{
-    CLOTHING = 0,
-    GROCERY,
-    PLANT,
-    BAKERY,
+    Groceries = 1,
+    Clothing,
+    Plants,
+    Others,
+    Grocery_Fruits = 5,
+    Grocery_Vegetable,
+    Grocery_Iced,
+    Grocery_Meat,
+    Grocery_Bread,
 }COMMODITY_CATEGORY;
 
 /* 函数参数：

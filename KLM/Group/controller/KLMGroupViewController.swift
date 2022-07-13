@@ -34,7 +34,8 @@ class KLMGroupViewController: UIViewController {
         //刷新
         let header = KLMRefreshHeader.init {[weak self] in
             guard let self = self else { return }
-            self.setupData()
+            NotificationCenter.default.post(name: .mainPageRefresh, object: nil)
+
         }
         self.tableView.mj_header = header
         

@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_scene_48" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-Gs-Bst">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_scene" translatesAutoresizingMaskIntoConstraints="NO" id="WhM-Gs-Bst">
                         <rect key="frame" x="16" y="15" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="Uab-BJ-1Qn"/>
@@ -90,7 +90,7 @@
     </objects>
     <resources>
         <image name="icon_Add_to" width="16" height="16"/>
-        <image name="img_scene_48" width="48" height="48"/>
+        <image name="img_scene" width="114" height="132"/>
         <image name="rssi_4" width="128" height="128"/>
     </resources>
 </document>

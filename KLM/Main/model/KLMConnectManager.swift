@@ -65,6 +65,23 @@ class KLMConnectManager {
         }
     }
     
+    func connectToAllNodes(success: @escaping () -> Void, failure: @escaping () -> Void) {
+        
+        self.success = success
+        self.failure = failure
+    
+        let parame = parameModel(dp: .power)
+        KLMSmartGroup.sharedInstacnce.readMessageAllNodes(parame) {
+            SVProgressHUD.dismiss()
+            self.success?()
+            self.success = nil
+        } failure: { error in
+            KLMShowError(error)
+            self.failure?()
+            self.failure = nil
+        }
+    }
+    
     //单例
     static let shared = KLMConnectManager()
     private init(){}

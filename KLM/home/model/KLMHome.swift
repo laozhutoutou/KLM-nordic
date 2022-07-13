@@ -101,4 +101,9 @@ struct ProvisionerAddress: Codable {
     }
 }
 
+struct KLMType: Codable {
+    var title: String
+    var num: Int
+}
+
 
