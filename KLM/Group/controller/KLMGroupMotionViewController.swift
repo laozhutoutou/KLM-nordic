@@ -159,7 +159,8 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 
         SVProgressHUD.show()
         //发送关闭指令
-        let parame = parameModel(dp: .motionPower, value: 0)
+        let parame = parameModel(dp: .motion, value: "000000")
+//        let parame = parameModel(dp: .motionPower, value: 0)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
@@ -193,100 +194,146 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         
         SVProgressHUD.show()
         ///最后发送开指令
-        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+        let power = "01"
+        let time = Int(self.timeSlider.currentValue).decimalTo2Hexadecimal()
+        let light = Int(self.lightSlider.currentValue).decimalTo2Hexadecimal()
+        let parame = parameModel(dp: .motion, value: power + time + light)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameLight) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 
                 print("success")
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+                self.groupData.energyPower = 1
+                self.groupData.brightness = Int(self.lightSlider.currentValue)
+                self.groupData.autoDim = Int(self.timeSlider.currentValue)
+                self.sendData()
+                
+                DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                    self.navigationController?.popViewController(animated: true)
+                }
                 
             } failure: { error in
                 
                 KLMShowError(error)
             }
-            
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parameLight, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
                 print("success")
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+                self.groupData.energyPower = 1
+                self.groupData.brightness = Int(self.lightSlider.currentValue)
+                self.groupData.autoDim = Int(self.timeSlider.currentValue)
+                self.sendData()
+                
+                DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                    self.navigationController?.popViewController(animated: true)
+                }
                 
             } failure: { error in
                 KLMShowError(error)
             }
+            
         }
         
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
-            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-            if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
-                
-                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameTime) {
-                    
-                    print("success")
-                    
-                } failure: { error in
-                    
-                    KLMShowError(error)
-                }
-                
-            } else {
-                
-                KLMSmartGroup.sharedInstacnce.sendMessage(parameTime, toGroup: KLMHomeManager.currentGroup) {
-                    
-                    print("success")
-                    
-                } failure: { error in
-                    KLMShowError(error)
-                }
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                
-                let parameOn = parameModel(dp: .motionPower, value: 1)
-                if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
-                    
-                    KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
-                        
-                        print("success")
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        
-                        self.groupData.energyPower = 1
-                        self.groupData.brightness = Int(self.lightSlider.currentValue)
-                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
-                        self.sendData()
-                        
-                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                        
-                    } failure: { error in
-                        
-                        KLMShowError(error)
-                    }
-                } else {
-                    
-                    KLMSmartGroup.sharedInstacnce.sendMessage(parameOn, toGroup: KLMHomeManager.currentGroup) {
-                        
-                        print("success")
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        
-                        self.groupData.energyPower = 1
-                        self.groupData.brightness = Int(self.lightSlider.currentValue)
-                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
-                        self.sendData()
-                        
-                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                        
-                    } failure: { error in
-                        KLMShowError(error)
-                    }
-                    
-                }
-                
-            }
-        }
+//        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+//        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+//
+//            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameLight) {
+//
+//                print("success")
+//
+//            } failure: { error in
+//
+//                KLMShowError(error)
+//            }
+//
+//        } else {
+//
+//            KLMSmartGroup.sharedInstacnce.sendMessage(parameLight, toGroup: KLMHomeManager.currentGroup) {
+//
+//                print("success")
+//
+//            } failure: { error in
+//                KLMShowError(error)
+//            }
+//        }
+        
+//        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//
+//            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
+//            if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+//
+//                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameTime) {
+//
+//                    print("success")
+//
+//                } failure: { error in
+//
+//                    KLMShowError(error)
+//                }
+//
+//            } else {
+//
+//                KLMSmartGroup.sharedInstacnce.sendMessage(parameTime, toGroup: KLMHomeManager.currentGroup) {
+//
+//                    print("success")
+//
+//                } failure: { error in
+//                    KLMShowError(error)
+//                }
+//            }
+//
+//            DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//
+//                let parameOn = parameModel(dp: .motionPower, value: 1)
+//                if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+//
+//                    KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
+//
+//                        print("success")
+//                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+//
+//                        self.groupData.energyPower = 1
+//                        self.groupData.brightness = Int(self.lightSlider.currentValue)
+//                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
+//                        self.sendData()
+//
+//                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//                            self.navigationController?.popViewController(animated: true)
+//                        }
+//
+//                    } failure: { error in
+//
+//                        KLMShowError(error)
+//                    }
+//                } else {
+//
+//                    KLMSmartGroup.sharedInstacnce.sendMessage(parameOn, toGroup: KLMHomeManager.currentGroup) {
+//
+//                        print("success")
+//                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+//
+//                        self.groupData.energyPower = 1
+//                        self.groupData.brightness = Int(self.lightSlider.currentValue)
+//                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
+//                        self.sendData()
+//
+//                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//                            self.navigationController?.popViewController(animated: true)
+//                        }
+//
+//                    } failure: { error in
+//                        KLMShowError(error)
+//                    }
+//
+//                }
+//
+//            }
+//        }
     }
 }

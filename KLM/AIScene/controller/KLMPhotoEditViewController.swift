@@ -49,6 +49,8 @@ class KLMPhotoEditViewController: UIViewController {
     
     var isFinish = false
     
+    var isFirst: Bool = true
+    
     lazy var tapView: UIImageView = {
         let image = UIImage(named: "icon_photo_tap")
         let tapView = UIImageView(image: image)
@@ -74,10 +76,15 @@ class KLMPhotoEditViewController: UIViewController {
         KLMSmartNode.sharedInstacnce.delegate = self
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
-//            SVProgressHUD.show()
-//            //读取分类数据
-//            let parame = parameModel(dp: .category)
-//            KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+            
+            if isFirst {
+                isFirst = false
+                SVProgressHUD.show()
+                //读取分类数据
+                let parame = parameModel(dp: .category)
+                KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+            }
+            
         }
     }
     

@@ -148,7 +148,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Iced" = "冰鲜";
 "Meat" = "肉类";
 "Bread" = "面包";
-
+"Interval & occasion change" = "时间间隔和使用场合修改";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

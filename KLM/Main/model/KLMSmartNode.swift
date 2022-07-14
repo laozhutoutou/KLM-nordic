@@ -58,7 +58,6 @@ class KLMSmartNode: NSObject {
              .flash,
              .motionTime,
              .motionLight,
-             .colorTest,
              .category,
              .motionPower:
             let value = parame.value as! Int
@@ -69,6 +68,8 @@ class KLMSmartNode: NSObject {
              .checkVersion,
              .DFU,
              .factoryTest,
+             .colorTest,
+             .motion,
              .factoryTestResule:
             parameString = parame.value as! String
         default:
@@ -198,7 +199,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .motionTime,
                          .motionLight,
                          .motionPower,
-                         .colorTest,
                          .category,
                          .passengerFlow:
                         
@@ -209,7 +209,9 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .deviceSetting:
                         
                         response.value = [UInt8](value)
-                    case .recipe,
+                    case .recipe, //不处理结果
+                         .colorTest,
+                         .motion,
                          .PWM:
                         response.value = value
                     case .factoryTest,

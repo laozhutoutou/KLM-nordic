@@ -43,7 +43,7 @@ class KLMApplicationManager {
         manager.shouldResignOnTouchOutside = true
         manager.shouldToolbarUsesTextFieldTintColor = true
         ///不显示工具条
-        manager.enableAutoToolbar = false
+        manager.enableAutoToolbar = true
         manager.toolbarManageBehaviour = .byTag
         
     }

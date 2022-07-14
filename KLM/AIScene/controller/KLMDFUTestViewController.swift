@@ -24,6 +24,8 @@ class KLMDFUTestViewController: UIViewController {
     
     private var isTureWiFi = true
     
+    var isPresent: Bool = false
+    
     //定时器
     private lazy var timer: KLMTimer = {
         let timer = KLMTimer()
@@ -62,7 +64,10 @@ class KLMDFUTestViewController: UIViewController {
         //弹出更新提示框
         KLMAlertController.showAlertWithTitle(title: LANGLOC("Warning"), message: LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process."))
 
-        
+        //导航栏左边添加返回按钮
+        if isPresent {
+            navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
+        }
     }
     
     @IBAction func upgrade(_ sender: Any) {
@@ -189,6 +194,11 @@ class KLMDFUTestViewController: UIViewController {
             }
         }
     }
+    
+    @objc func dimiss() {
+        
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension KLMDFUTestViewController: MeshNetworkDelegate {
@@ -248,7 +258,12 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
                         DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                            self.navigationController?.popViewController(animated: true)
+                            if self.isPresent {
+                                self.dismiss(animated: true, completion: nil)
+                            } else {
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                            
                         }
                     }
                     return

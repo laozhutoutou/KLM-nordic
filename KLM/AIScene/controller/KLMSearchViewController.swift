@@ -177,7 +177,7 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
         
         let deviceModel: Node = self.searchLists[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-        cell.leftImage = "img_scene"
+        cell.leftImage = "img_scene_30"
         cell.leftTitle = deviceModel.name
         return cell
         

@@ -10,10 +10,21 @@ import Photos
 
 class KLMImagePickerController: UIImagePickerController {
     
+    ///蓝牙固件版本号
+    var BLEVersion: String?
+    ///服务器上的版本
+    var BLEVersionData: KLMVersion.KLMVersionData?
+    var isVersionFirst = true
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        KLMSmartNode.sharedInstacnce.delegate = self
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+            
+            KLMSmartNode.sharedInstacnce.delegate = self
+            self.checkBleVersion()
+            self.checkNetworkVersion()
+        }
         
     }
 
@@ -196,6 +207,55 @@ class KLMImagePickerController: UIImagePickerController {
         let assetsFetchResults = PHAsset.fetchAssets(with: options)
         return assetsFetchResults.firstObject ?? nil
     }
+    
+    private func checkBleVersion() {
+        
+        let parame = parameModel(dp: .deviceSetting)
+        KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    private func checkNetworkVersion() {
+        
+        
+        KLMService.checkVersion(type: "bluetooth") { response in
+            self.BLEVersionData = response as? KLMVersion.KLMVersionData
+            self.showUpdateView()
+        } failure: { error in
+            
+        }
+    }
+    
+    func showUpdateView() {
+        
+        guard let bleData = self.BLEVersionData,
+              let bleV = BLEVersion else {
+            
+            return
+        }
+        
+        if isVersionFirst {
+            
+            KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
+                
+                let vc = KLMDFUTestViewController()
+                vc.isPresent = true
+                vc.BLEVersionData = bleData
+                let nav = KLMNavigationViewController.init(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+                
+            } cancel: {
+                
+            }
+
+        }
+        
+        if bleData.isForceUpdate { //强制更新，每次都弹框
+            
+        } else { //普通更新，只弹框一次
+            isVersionFirst = false
+        }
+    }
 }
 
 extension KLMImagePickerController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
@@ -220,7 +280,17 @@ extension KLMImagePickerController: UIImagePickerControllerDelegate & UINavigati
 extension KLMImagePickerController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
-
+        
+        if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
+            
+            /// 版本 0112  显示 1.1.2
+            let version = value[0...1]
+            let first: Int = Int(version[0])
+            let second: Int = Int((version[1] & 0xf0) >> 4)
+            let third: Int =  Int(version[1] & 0x0f)
+            BLEVersion = "\(first).\(second).\(third)"
+            self.showUpdateView()
+        }
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {

@@ -62,6 +62,7 @@ class KLMSmartGroup: NSObject {
             parameString = value.decimalTo2Hexadecimal()
            
         case .color,
+             .motion,
              .recipe:
             parameString = parame.value as! String
            
@@ -143,6 +144,7 @@ class KLMSmartGroup: NSObject {
             parameString = value.decimalTo2Hexadecimal()
             
         case .color,
+             .motion,
              .recipe:
             parameString = parame.value as! String
             

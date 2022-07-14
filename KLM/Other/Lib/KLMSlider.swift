@@ -75,7 +75,7 @@ class KLMSlider: UIView {
                 currentValue = maxValue
             }
             
-            KLMLog("value = \(currentValue)")
+//            KLMLog("value = \(currentValue)")
             
             //滑块
             self.slider.value = currentValue

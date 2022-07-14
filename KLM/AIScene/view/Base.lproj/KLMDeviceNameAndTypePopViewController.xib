@@ -25,9 +25,6 @@
                 <button opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mm5-tZ-3d1">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <connections>
-                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="Qig-OZ-PcU"/>
-                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wtf-Q5-xZB">
                     <rect key="frame" x="20" y="313" width="374" height="270"/>
@@ -155,7 +152,7 @@
                 <constraint firstItem="Zgt-YK-NSD" firstAttribute="trailing" secondItem="Wtf-Q5-xZB" secondAttribute="trailing" constant="20" id="io5-mY-KMS"/>
                 <constraint firstAttribute="bottom" secondItem="mm5-tZ-3d1" secondAttribute="bottom" id="wle-zF-tOb"/>
             </constraints>
-            <point key="canvasLocation" x="-3681" y="263"/>
+            <point key="canvasLocation" x="-3425" y="287"/>
         </view>
         <tapGestureRecognizer id="Bo5-he-EQ2">
             <connections>

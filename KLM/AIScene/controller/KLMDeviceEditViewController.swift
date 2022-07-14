@@ -65,6 +65,8 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         KLMSmartNode.sharedInstacnce.delegate = self
         
         setupNodeMessage()
+        
+        checkVerison()
     }
     
     override func viewDidLoad() {
@@ -106,8 +108,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         checkGroup()
         
         sendFlash()
-        
-        checkVerison()
     }
     
     //灯闪烁
@@ -148,43 +148,28 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     func showUpdateView() {
         
+        guard let bleData = self.BLEVersionData,
+              let bleV = BLEVersion else {
+            
+            return
+        }
+        
         if isVersionFirst {
-            
-            guard let bleData = self.BLEVersionData,
-                  let bleV = BLEVersion else {
+            KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
                 
-                return
+                let vc = KLMDFUTestViewController()
+                vc.BLEVersionData = bleData
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } cancel: {
+                
             }
+        }
+        
+        if bleData.isForceUpdate { //强制更新，每次都弹框
             
+        } else { //普通更新，只弹框一次
             isVersionFirst = false
-            
-            //最新版本 -- 服务器查询
-            let newestVersion: String = bleData.fileVersion
-            let value = bleV.compare(newestVersion)
-            if value == .orderedAscending {//左操作数小于右操作数，需要升级
-                
-                ///更新消息
-                var updateMsg: String = bleData.englishMessage
-                if Bundle.isChineseLanguage() {///使用中文
-                    updateMsg =  bleData.updateMessage
-                }
-                
-                ///弹出更新框
-                let vc = UIAlertController.init(title: LANGLOC("Softwareupdate"), message: "V \(newestVersion)\n\(updateMsg)", preferredStyle: .alert)
-                vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .destructive, handler: { action in
-                    
-                    let vc = KLMDFUTestViewController()
-                    vc.BLEVersionData = bleData
-                    self.navigationController?.pushViewController(vc, animated: true)
-                    
-                }))
-                vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: { action in
-                    
-//                    self.navigationController?.popViewController(animated: true)
-                }))
-                present(vc, animated: true, completion: nil)
-                
-            }
         }
     }
 }
@@ -196,7 +181,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
         SVProgressHUD.dismiss()
         ///版本号2字节，开关1，颜色识别1，motion 3（开关，亮度，时间）
         if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
-            
             
             /// 版本 0112  显示 1.1.2
             let version = value[0...1]
@@ -435,6 +419,14 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                  
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
             }
+        case itemType.CMOS.rawValue:
+            if cameraSwitch != 1 { //自动颜色开关没打开
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please power on ") + LANGLOC("Devicecoloursensing"))
+                return
+            }
+            let vc = KLMCMOSViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
 //        case itemType.sigleControl.rawValue://六路测试
 //            let vc = KLMTestViewController()
 //            navigationController?.pushViewController(vc, animated: true)

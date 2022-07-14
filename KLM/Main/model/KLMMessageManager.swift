@@ -135,6 +135,7 @@ enum DPType: Int {
     case passengerFlowPower = 13 //客流统计开关
     case passengerFlow = 14 //客流统计数据
     case category = 15 //分类
+    case motion = 18 //节能
     case factoryTest = 19
     case factoryTestResule = 20
     case checkVersion = 99

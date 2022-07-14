@@ -22,9 +22,9 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
         super.awakeFromNib()
         
         //添加手势
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
-        tap.numberOfTapsRequired = 3
-        addGestureRecognizer(tap)
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
+//        tap.numberOfTapsRequired = 3
+//        addGestureRecognizer(tap)
     }
     
     @objc func tap() {

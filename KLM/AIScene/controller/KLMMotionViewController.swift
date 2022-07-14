@@ -90,8 +90,10 @@ class KLMMotionViewController: UIViewController, Editable {
             
             SVProgressHUD.show()
             //发送关闭指令
-            let parame1 = parameModel(dp: .motionPower, value: 0)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
+            let parame = parameModel(dp: .motion, value: "000000")
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+//            let parame1 = parameModel(dp: .motionPower, value: 0)
+//            KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
             
         } else {
             
@@ -103,21 +105,27 @@ class KLMMotionViewController: UIViewController, Editable {
         
         SVProgressHUD.show()
         ///最后发送开指令
-        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
-        KLMSmartNode.sharedInstacnce.sendMessage(parameLight, toNode: KLMHomeManager.currentNode)
+        let power = "01"
+        let time = Int(self.timeSlider.currentValue).decimalTo2Hexadecimal()
+        let light = Int(self.lightSlider.currentValue).decimalTo2Hexadecimal()
+        let parame = parameModel(dp: .motion, value: power + time + light)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
-            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-            KLMSmartNode.sharedInstacnce.sendMessage(parameTime, toNode: KLMHomeManager.currentNode)
-            
-            DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                
-                let parameOn = parameModel(dp: .motionPower, value: 1)
-                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
-                
-            }
-        }
+//        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
+//        KLMSmartNode.sharedInstacnce.sendMessage(parameLight, toNode: KLMHomeManager.currentNode)
+        
+//        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//
+//            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
+//            KLMSmartNode.sharedInstacnce.sendMessage(parameTime, toNode: KLMHomeManager.currentNode)
+//
+//            DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//
+//                let parameOn = parameModel(dp: .motionPower, value: 1)
+//                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
+//
+//            }
+//        }
     }
 }
 
@@ -143,7 +151,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
             self.hideEmptyView()
         }
         
-        if message?.dp ==  .motionPower {
+        if message?.dp ==  .motion {
 
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 0.5) {

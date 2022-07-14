@@ -82,6 +82,7 @@ class KLMCustomViewController: UIViewController, Editable {
         //导航栏左边添加返回按钮
         navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
         
+        
         setupUI()
         
         showEmptyView()
