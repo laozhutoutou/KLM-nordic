@@ -40,6 +40,7 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
 
     @IBAction func switchClick(_ sender: UISwitch) {
         
+        SVProgressHUD.show()
         if sender.isOn {
             
             let parame = parameModel(dp: .cameraPower, value: 1)

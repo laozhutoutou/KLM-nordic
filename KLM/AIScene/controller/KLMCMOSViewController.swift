@@ -7,16 +7,18 @@
 
 import UIKit
 
-class KLMCMOSViewController: UIViewController {
+class KLMCMOSViewController: UIViewController, Editable {
     
     
     @IBOutlet weak var secondBtn: UIButton!
     @IBOutlet weak var mimuteBtn: UIButton!
     
+    //秒
     @IBOutlet weak var secondView: UIView!
     @IBOutlet weak var timeBgView: UIView!
     var timeSlider: KLMSlider!
     
+    //分
     @IBOutlet weak var mimuteView: UIView!
     @IBOutlet weak var minuteTimeBgView: UIView!
     var mimuteSlider: KLMSlider!
@@ -31,6 +33,24 @@ class KLMCMOSViewController: UIViewController {
     var grocerySubTypes: [KLMType] = [KLMType]()
     var categoryPopView: YBPopupMenu?
     var allTypes: [KLMType] = [KLMType]()
+    
+    var isTimeControl: Bool = false
+    
+    var isMinute: Bool = true {
+        didSet {
+            if isMinute { //分
+                mimuteBtn.isSelected = true
+                secondBtn.isSelected = false
+                mimuteView.isHidden = false
+                secondView.isHidden = true
+            } else { //秒
+                secondBtn.isSelected = true
+                mimuteBtn.isSelected = false
+                secondView.isHidden = false
+                mimuteView.isHidden = true
+            }
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -79,8 +99,7 @@ class KLMCMOSViewController: UIViewController {
         secondBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
         mimuteBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
         
-        mimuteBtn.isSelected = true
-        secondView.isHidden = true
+        isMinute = true
         
         //分类
         let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
@@ -90,16 +109,24 @@ class KLMCMOSViewController: UIViewController {
         let str1: String = Bundle.main.path(forResource: "GroceriesPlist", ofType: "plist")!
         let groceries: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str1), error: ())
         grocerySubTypes = KLMTool.jsonToModel(type: KLMType.self, array: groceries as! [[String : Any]])!
-        
         allTypes = categoryList + grocerySubTypes
+        
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 5) {
+            self.hideEmptyView()
+        }
     }
     
     private func setupData() {
         
         //读取数据
-        SVProgressHUD.show()
         let parame = parameModel(dp: .category)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+        
+        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+            let parame = parameModel(dp: .colorTest)
+            KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+        }
 
     }
     
@@ -125,17 +152,11 @@ class KLMCMOSViewController: UIViewController {
     }
     
     @IBAction func secondClick(_ sender: UIButton) {
-        secondBtn.isSelected = true
-        mimuteBtn.isSelected = false
-        secondView.isHidden = false
-        mimuteView.isHidden = true
+        isMinute = false
     }
     
     @IBAction func minuteClick(_ sender: UIButton) {
-        mimuteBtn.isSelected = true
-        secondBtn.isSelected = false
-        mimuteView.isHidden = false
-        secondView.isHidden = true
+        isMinute = true
     }
     
     private func sendData() {
@@ -194,6 +215,7 @@ extension KLMCMOSViewController: KLMSliderDelegate {
     
     func KLMSliderWith(slider: KLMSlider, value: Float) {
         
+        isTimeControl = true
         var vv = Int(value)
         if slider == mimuteSlider {
             
@@ -208,8 +230,9 @@ extension KLMCMOSViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
+        SVProgressHUD.dismiss()
         if let value = message?.value as? Int, message?.dp == .category {
-            SVProgressHUD.dismiss()
+            
             let title: String = allTypes.first(where: {$0.num == value})!.title
             categoryLab.text = LANGLOC(title)
             if selectCategory != nil {
@@ -217,10 +240,23 @@ extension KLMCMOSViewController: KLMSmartNodeDelegate {
             }
         }
         
-        if message?.dp ==  .colorTest{
-            
-            //成功
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+        if message?.dp ==  .colorTest, let value: Data = message?.value as? Data{
+            hideEmptyView()
+            if isTimeControl == false {
+                
+                var time: UInt16 = 0
+                (value as NSData).getBytes(&time, length:2)
+                KLMLog("time = \(time)")
+                if Float(time) > timeSlider.maxValue { //大于秒设置，填充分滑动条
+                    mimuteSlider.currentValue = Float(time) / 60
+                    isMinute = true
+                } else { //填充秒
+                    timeSlider.currentValue = Float(time)
+                    isMinute = false
+                }
+            } else {
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            }
         }
     }
     

@@ -99,15 +99,18 @@ typedef enum{
     WARM_ORANGE_YELLOW,
 } Color_Index_S;
 typedef enum {
-    COLOR_FRUIT_DARKRED,
-    COLOR_FRUIT_WHITE,
-    COLOR_FRUIT_BLACK,
-    COLOR_FRUIT_RED,
-    COLOR_FRUIT_ORANGE,
-    COLOR_FRUIT_YELLOW,
-    COLOR_FRUIT_CYANGREEN,
-    COLOR_FRUIT_BLUEPURPLE,
-}Color_Index_FruitVeg;
+    SPECTRUM_GROCERY_WHITE,
+    SPECTRUM_GROCERY_BLACK,
+    SPECTRUM_GROCERY_RED,
+    SPECTRUM_GROCERY_ORANGE,
+    SPECTRUM_GROCERY_YELLOW,
+    SPECTRUM_GROCERY_GREEN_CYAN,
+    SPECTRUM_GROCERY_BLUE_PURPLE,
+    SPECTRUM_GROCERY_3000K,
+    SPECTRUM_GROCERY_3500K,
+    SPECTRUM_GROCERY_4000K,
+    SPECTRUM_GROCERY_DEFAULT,
+}Spectrum_Index_Grocery;
 typedef struct{
     unsigned char  R;
     unsigned char  G;
@@ -362,7 +365,64 @@ Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAG
     if (ncw + nww > 0.8) return SPECTRUM_3500K;
     return SPECTRUM_FULL;
 }
-
+Spectrum_Index_Grocery get_spectrum_index_of_grocery_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area, int category) {
+    if (category == Grocery_Bread) return SPECTRUM_GROCERY_DEFAULT;
+    int color_dict[7] = {0}, sum = 0;
+    unsigned char * p = (unsigned char *)imgData;
+    COLOR_RGB rgb;
+    COLOR_HSV hsv;
+    COLOR_YUV yuv;
+    for (int y = area->Y_Start; y <= area->Y_End; y++) {
+        for (int x = area->X_Start; x <= area->X_End; x++) {
+            if (format == IMAGE_FORMAT_RGBA) {
+                rgb.R = p[(y * imgW + x) * 4 + 0];
+                rgb.G = p[(y * imgW + x) * 4 + 1];
+                rgb.B = p[(y * imgW + x) * 4 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            } else if (format == IMAGE_FORMAT_RGB) {
+                rgb.R = p[(y * imgW + x) * 3 + 0];
+                rgb.G = p[(y * imgW + x) * 3 + 1];
+                rgb.B = p[(y * imgW + x) * 3 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            } else if (format == IMAGE_FORMAT_YUV420)  {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
+                yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            } else if (format == IMAGE_FORMAT_NV21) {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
+                yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            sum++;
+            if (hsv.S <= 30 && hsv.V >= 40) color_dict[SPECTRUM_GROCERY_WHITE]++;
+            else if (hsv.V <= 40) color_dict[SPECTRUM_GROCERY_BLACK]++;
+            else if (hsv.H < 288 && hsv.H >= 211) color_dict[SPECTRUM_GROCERY_BLUE_PURPLE]++;
+            else if (hsv.H < 211 && hsv.H >= 89) color_dict[SPECTRUM_GROCERY_GREEN_CYAN]++;
+            else if (hsv.H < 89 && hsv.H >= 45) color_dict[SPECTRUM_GROCERY_YELLOW]++;
+            else if (hsv.H < 45 && hsv.H >= 20) color_dict[SPECTRUM_GROCERY_ORANGE]++;
+            else color_dict[SPECTRUM_GROCERY_RED]++;
+        }
+    }
+    int nww = color_dict[SPECTRUM_GROCERY_RED] + color_dict[SPECTRUM_GROCERY_YELLOW] + color_dict[SPECTRUM_GROCERY_ORANGE];
+    int ncw = color_dict[SPECTRUM_GROCERY_BLUE_PURPLE] + color_dict[SPECTRUM_GROCERY_GREEN_CYAN];
+    int nnw = color_dict[SPECTRUM_GROCERY_WHITE] + color_dict[SPECTRUM_GROCERY_BLACK];
+    if (category == Grocery_Meat) {
+        if (nww > 0.65 * sum) return SPECTRUM_GROCERY_RED;
+        else if (nnw > 0.65 * sum) return SPECTRUM_GROCERY_WHITE;
+    } else {
+        for (int i = 0; i < 7; i++) {
+            if (color_dict[i] > 0.65 * sum) return i;
+        }
+    }
+    if (nww > 0.5 * sum) return SPECTRUM_GROCERY_3000K;
+    if (ncw > 0.5 * sum) return SPECTRUM_GROCERY_4000K;
+    if (nnw > 0.5 * sum) return SPECTRUM_GROCERY_3500K;
+    return SPECTRUM_GROCERY_DEFAULT;
+}
 int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY, COMMODITY_CATEGORY category) {
     int radius = 5;
     int startX = clickX - radius < 0 ? 0: clickX - radius;
@@ -372,11 +432,11 @@ int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMA
 
     IMAGE_AREA area = {startX, endX, startY, endY};
 //    LOGI("%d, %d, %d, %d", startX, endX , startY, endY);
-    if (category >= Grocery_Fruits) return (int)(category - Grocery_Fruits);
+    if (category >= Grocery_Fruits) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
     else return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }
 int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY, COMMODITY_CATEGORY category){
     IMAGE_AREA area = {startX, endX, startY, endY};
-    if (category >= Grocery_Fruits) return (int)(category - Grocery_Fruits);
+    if (category >= Grocery_Fruits) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
     else return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
 }

@@ -43,7 +43,8 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
     }
     
     func upDateUI() {
-        
+        //键盘完成按钮适配中英文
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = LANGLOC("finish")
         let delegate = UIApplication.shared.delegate as! AppDelegate
         delegate.enterMoreUI()
     }
