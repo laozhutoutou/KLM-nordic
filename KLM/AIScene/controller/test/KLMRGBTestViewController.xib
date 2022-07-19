@@ -142,7 +142,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="K3W-bJ-UN1" secondAttribute="trailing" constant="10" id="qoC-gv-a8U"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-210" y="87"/>
+            <point key="canvasLocation" x="86" y="195"/>
         </view>
     </objects>
     <resources>

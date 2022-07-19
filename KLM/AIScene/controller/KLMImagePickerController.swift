@@ -216,7 +216,7 @@ class KLMImagePickerController: UIImagePickerController {
     
     private func checkNetworkVersion() {
         
-        
+        ///bluetooth mcu
         KLMService.checkVersion(type: "bluetooth") { response in
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
             self.showUpdateView()

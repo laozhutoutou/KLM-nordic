@@ -133,7 +133,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
 
                 if let home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
                     ///比较是服务器的新还是本地的新
-
                     let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
                     let meshData = KLMMesh.getMeshNetwork(meshConfiguration: mesh.meshConfiguration)
                     if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
@@ -160,7 +159,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 } else {
                     ///选择第一个家庭
                     let firstHome = meshList.first!
-
                     self.homeBtn.setTitle(firstHome.meshName, for: .normal)
                     self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
                     ///存储当前家庭
@@ -203,7 +201,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
         
         self.collectionView.mj_header?.endRefreshing()
-        
         NotificationCenter.default.post(name: .dataUpdate, object: nil)
     }
     
