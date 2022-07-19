@@ -6,6 +6,7 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
+  - Bugly (2.5.91)
   - Charts (4.0.2):
     - Charts/Core (= 4.0.2)
   - Charts/Core (4.0.2):
@@ -38,6 +39,7 @@ DEPENDENCIES:
   - AFNetworking/Reachability (~> 3.2.1)
   - AFNetworking/Security (~> 3.2.1)
   - AFNetworking/Serialization (~> 3.2.1)
+  - Bugly
   - Charts
   - DZNEmptyDataSet (~> 1.8.1)
   - IQKeyboardManagerSwift (~> 6.5.6)
@@ -56,6 +58,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - Bugly
     - Charts
     - CryptoSwift
     - DZNEmptyDataSet
@@ -76,6 +79,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
   Charts: cfa4e911e6dc289582c2fe011a0e87c03d96727f
   CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -94,6 +98,6 @@ SPEC CHECKSUMS:
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   YBPopupMenu: 3a02e89860bb0568ba477aee609bc3f25e5bd339
 
-PODFILE CHECKSUM: f20283d586164196b5e0346b70b4a1343a7a5a4f
+PODFILE CHECKSUM: 6225c730c227b06be1e44c6a874bad2a1c5eb52d
 
 COCOAPODS: 1.11.3

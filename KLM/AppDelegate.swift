@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         setUpNordic()
         
+        setupBugly()
+        
         KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
 
         return true
@@ -45,6 +47,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        meshNetworkManager.acknowledgmentMessageTimeout = 20.0
         meshNetworkManager.logger = self
     
+    }
+    
+    func setupBugly() {
+        
+        if apptype == .targetGN {
+            let config = BuglyConfig()
+            config.blockMonitorEnable = true
+            config.debugMode = true
+            config.unexpectedTerminatingDetectionEnable = true
+            Bugly.start(withAppId: "02072c9ff3", config: config)
+        }
+        
     }
     
     func createNewMeshNetwork() {

@@ -25,5 +25,6 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import <AFNetworking-umbrella.h>
 #import "OpenGLView20.h"
+#import <Bugly/Bugly.h>
 
 #endif /* KLM_Bridging_Header_h */
