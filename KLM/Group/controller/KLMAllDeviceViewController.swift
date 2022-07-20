@@ -103,6 +103,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)
             KLMConnectManager.shared.connectToAllNodes { [weak self] in
+                SVProgressHUD.dismiss()
                 guard let self = self else { return }
                 //是否有相机权限
                 KLMPhotoManager().photoAuthStatus { [weak self] in
@@ -122,6 +123,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)
             KLMConnectManager.shared.connectToAllNodes { [weak self] in
+                SVProgressHUD.dismiss()
                 guard let self = self else { return }
                 let vc = KLMGroupMotionViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

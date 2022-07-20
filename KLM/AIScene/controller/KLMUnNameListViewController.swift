@@ -58,7 +58,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         event()
         
         KLMHomeManager.showTipView()
-        
     }
         
     func setupUI() {
@@ -400,6 +399,8 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         }
     }
     
+    /// 长按删除
+    /// - Parameter model: 节点
     func longPress(model: Node) {
         
         if KLMMesh.isCanEditMesh() == false {
@@ -407,32 +408,35 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         }
         
         //弹出提示框
-        let alert = UIAlertController(title: LANGLOC("deleteDevice"),
-                                      message: LANGLOC("Please confirm that you are not going to use the light again"),
+        let warnAlert = UIAlertController(title: LANGLOC("deleteDevice"),
+                                      message: LANGLOC("Please make sure the device can not be connected with APP, otherwise use 'Settings reset'"),
                                       preferredStyle: .alert)
-        let resetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
+        let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
             
-            //弹出提示框
-            let warnAlert = UIAlertController(title: LANGLOC("Warning"),
-                                          message: LANGLOC("deleteDeviceTip"),
-                                          preferredStyle: .alert)
-            let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
+            ///连接节点
+            SVProgressHUD.show()
+            KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
+                guard let self = self else { return }
                 
+                //连接上，重置设备。
+                KLMSmartNode.sharedInstacnce.delegate = self
+                KLMSmartNode.sharedInstacnce.resetNode(node: model)
+                
+            } failure: {
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                //连接不上，直接删除设备
                 MeshNetworkManager.instance.meshNetwork!.remove(node: model)
                 if KLMMesh.save() {
                     //删除成功
                     self.setupData()
                 }
             }
-            let warncancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
-            warnAlert.addAction(warnresetAction)
-            warnAlert.addAction(warncancelAction)
-            self.present(warnAlert, animated: true)
+            
         }
-        let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
-        alert.addAction(resetAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true)
+        let warncancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+        warnAlert.addAction(warnresetAction)
+        warnAlert.addAction(warncancelAction)
+        self.present(warnAlert, animated: true)
     }
 }
 
@@ -553,5 +557,22 @@ extension KLMUnNameListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDel
             make.bottom.equalTo(titleLab.snp.top).offset(-20)
         }
         return contentView
+    }
+}
+
+extension KLMUnNameListViewController: KLMSmartNodeDelegate {
+    
+    func smartNodeDidResetNode(_ manager: KLMSmartNode) {
+        
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            self.setupData()
+        }
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        
+        KLMShowError(error)
     }
 }

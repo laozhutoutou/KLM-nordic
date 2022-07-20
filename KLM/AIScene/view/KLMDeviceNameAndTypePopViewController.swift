@@ -70,7 +70,7 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         for model in categoryList {
             titles.append(LANGLOC(model.title))
         }
-        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 150) { popupMenu in
             popupMenu?.priorityDirection = .none
             popupMenu?.arrowHeight = 0
             popupMenu?.minSpace = menuViewrect.origin.x
@@ -109,7 +109,7 @@ extension KLMDeviceNameAndTypePopViewController: YBPopupMenuDelegate {
                 YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
                     popupMenu?.priorityDirection = .none
                     popupMenu?.arrowHeight = 0
-                    popupMenu?.minSpace = menuViewrect.origin.x + 120
+                    popupMenu?.minSpace = menuViewrect.origin.x + 150
                     popupMenu?.isShadowShowing = false
                     popupMenu?.delegate = self
                     popupMenu?.cornerRadius = 0

@@ -24,6 +24,8 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     
     var groupData: GroupData = GroupData()
     
+    var isFirst: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -156,7 +158,17 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     }
     
     @IBAction func offClick(_ sender: Any) {
-                
+        
+        if isFirst == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please wait for 3 seconds"))
+            return
+        }
+        
+        isFirst = false
+        DispatchQueue.main.asyncAfter(deadline: 3) {
+            self.isFirst = true
+        }
+
         SVProgressHUD.show()
         //发送关闭指令
         let parame = parameModel(dp: .motion, value: "000000")
@@ -192,6 +204,16 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     
     @IBAction func Comfirm(_ sender: Any) {
         
+        if isFirst == false {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please wait for 3 seconds"))
+            return
+        }
+        
+        isFirst = false
+        DispatchQueue.main.asyncAfter(deadline: 3) {
+            self.isFirst = true
+        }
+        
         SVProgressHUD.show()
         ///最后发送开指令
         let power = "01"
@@ -210,9 +232,9 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 self.groupData.autoDim = Int(self.timeSlider.currentValue)
                 self.sendData()
                 
-                DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                    self.navigationController?.popViewController(animated: true)
-                }
+//                DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//                    self.navigationController?.popViewController(animated: true)
+//                }
                 
             } failure: { error in
                 
@@ -230,110 +252,14 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 self.groupData.autoDim = Int(self.timeSlider.currentValue)
                 self.sendData()
                 
-                DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                    self.navigationController?.popViewController(animated: true)
-                }
+//                DispatchQueue.main.asyncAfter(deadline: 0.5) {
+//                    self.navigationController?.popViewController(animated: true)
+//                }
                 
             } failure: { error in
                 KLMShowError(error)
             }
             
         }
-        
-//        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
-//        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
-//
-//            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameLight) {
-//
-//                print("success")
-//
-//            } failure: { error in
-//
-//                KLMShowError(error)
-//            }
-//
-//        } else {
-//
-//            KLMSmartGroup.sharedInstacnce.sendMessage(parameLight, toGroup: KLMHomeManager.currentGroup) {
-//
-//                print("success")
-//
-//            } failure: { error in
-//                KLMShowError(error)
-//            }
-//        }
-        
-//        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//
-//            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-//            if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
-//
-//                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameTime) {
-//
-//                    print("success")
-//
-//                } failure: { error in
-//
-//                    KLMShowError(error)
-//                }
-//
-//            } else {
-//
-//                KLMSmartGroup.sharedInstacnce.sendMessage(parameTime, toGroup: KLMHomeManager.currentGroup) {
-//
-//                    print("success")
-//
-//                } failure: { error in
-//                    KLMShowError(error)
-//                }
-//            }
-//
-//            DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//
-//                let parameOn = parameModel(dp: .motionPower, value: 1)
-//                if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
-//
-//                    KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parameOn) {
-//
-//                        print("success")
-//                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-//
-//                        self.groupData.energyPower = 1
-//                        self.groupData.brightness = Int(self.lightSlider.currentValue)
-//                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
-//                        self.sendData()
-//
-//                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//                            self.navigationController?.popViewController(animated: true)
-//                        }
-//
-//                    } failure: { error in
-//
-//                        KLMShowError(error)
-//                    }
-//                } else {
-//
-//                    KLMSmartGroup.sharedInstacnce.sendMessage(parameOn, toGroup: KLMHomeManager.currentGroup) {
-//
-//                        print("success")
-//                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-//
-//                        self.groupData.energyPower = 1
-//                        self.groupData.brightness = Int(self.lightSlider.currentValue)
-//                        self.groupData.autoDim = Int(self.timeSlider.currentValue)
-//                        self.sendData()
-//
-//                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//                            self.navigationController?.popViewController(animated: true)
-//                        }
-//
-//                    } failure: { error in
-//                        KLMShowError(error)
-//                    }
-//
-//                }
-//
-//            }
-//        }
     }
 }

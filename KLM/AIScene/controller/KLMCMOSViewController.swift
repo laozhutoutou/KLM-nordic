@@ -9,17 +9,20 @@ import UIKit
 
 class KLMCMOSViewController: UIViewController, Editable {
     
+    //实时检测
+    @IBOutlet weak var realTimeBtn: UIButton!
+    @IBOutlet weak var realTimeView: UIView!
+    @IBOutlet weak var realTimeSwitch: UISwitch!
     
+    //定时测试
+    @IBOutlet weak var timingBtn: UIButton!
+    @IBOutlet weak var timingBgView: UIView!
     @IBOutlet weak var secondBtn: UIButton!
     @IBOutlet weak var mimuteBtn: UIButton!
-    
     //秒
-    @IBOutlet weak var secondView: UIView!
-    @IBOutlet weak var timeBgView: UIView!
-    var timeSlider: KLMSlider!
-    
+    @IBOutlet weak var secondTimeBgView: UIView!
+    var secondSlider: KLMSlider!
     //分
-    @IBOutlet weak var mimuteView: UIView!
     @IBOutlet weak var minuteTimeBgView: UIView!
     var mimuteSlider: KLMSlider!
     
@@ -36,18 +39,23 @@ class KLMCMOSViewController: UIViewController, Editable {
     
     var isTimeControl: Bool = false
     
-    var isMinute: Bool = true {
+    var currentTime: UInt16 = 0 {
+        
         didSet {
-            if isMinute { //分
-                mimuteBtn.isSelected = true
-                secondBtn.isSelected = false
-                mimuteView.isHidden = false
-                secondView.isHidden = true
-            } else { //秒
-                secondBtn.isSelected = true
-                mimuteBtn.isSelected = false
-                secondView.isHidden = false
-                mimuteView.isHidden = true
+            realTimeBtn.isSelected = currentTime == 0 ? true : false
+            timingBtn.isSelected = currentTime == 0 ? false : true
+            realTimeView.isHidden = currentTime == 0 ? false : true
+            timingBgView.isHidden = currentTime == 0 ? true : false
+            realTimeSwitch.isOn = currentTime == 0 ? true : false
+            
+            mimuteBtn.isSelected = Float(currentTime) > secondSlider.maxValue ? true : false
+            secondBtn.isSelected = Float(currentTime) > secondSlider.maxValue ? false : true
+            minuteTimeBgView.isHidden = Float(currentTime) > secondSlider.maxValue ? false : true
+            secondTimeBgView.isHidden = Float(currentTime) > secondSlider.maxValue ? true : false
+            if Float(currentTime) > secondSlider.maxValue  { //分钟
+                mimuteSlider.currentValue = Float(currentTime) / 60
+            } else if currentTime != 0 {
+                secondSlider.currentValue = Float(currentTime)
             }
         }
     }
@@ -73,22 +81,23 @@ class KLMCMOSViewController: UIViewController, Editable {
         //滑条
         let viewLeft: CGFloat = 20
         let sliderWidth = KLMScreenW - viewLeft * 2
-        let timeSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: timeBgView.height), minValue: 5, maxValue: 60, step: 1)
-        timeSlider.getValueTitle = { value in
+        let secondSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: secondTimeBgView.height), minValue: 5, maxValue: 60, step: 1)
+        secondSlider.getValueTitle = { value in
             
             return String(format: "%lds", Int(value))
         }
-        timeSlider.currentValue = 5
-        timeSlider.delegate = self
-        self.timeSlider = timeSlider
-        timeBgView.addSubview(timeSlider)
+        secondSlider.currentValue = secondSlider.minValue
+        secondSlider.delegate = self
+        self.secondSlider = secondSlider
+        secondTimeBgView.addSubview(secondSlider)
         
+        //分钟
         let mimuteSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: minuteTimeBgView.height), minValue: 10, maxValue: 120, step: 2)
         mimuteSlider.getValueTitle = { value in
             
             return String(format: "%ldm", Int(value))
         }
-        mimuteSlider.currentValue = 10
+        mimuteSlider.currentValue = mimuteSlider.minValue
         mimuteSlider.delegate = self
         self.mimuteSlider = mimuteSlider
         minuteTimeBgView.addSubview(mimuteSlider)
@@ -98,8 +107,20 @@ class KLMCMOSViewController: UIViewController, Editable {
         mimuteBtn.setTitleColor(.white, for: .selected)
         secondBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
         mimuteBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        timingBtn.setTitleColor(.white, for: .selected)
+        realTimeBtn.setTitleColor(.white, for: .selected)
+        timingBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        realTimeBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        secondBtn.layer.cornerRadius = secondBtn.height / 2
+        secondBtn.clipsToBounds = true
+        mimuteBtn.layer.cornerRadius = mimuteBtn.height / 2
+        mimuteBtn.clipsToBounds = true
+        secondBtn.layer.borderColor = secondBtn.titleLabel?.textColor.cgColor
+        secondBtn.layer.borderWidth = 1
+        mimuteBtn.layer.borderColor = mimuteBtn.titleLabel?.textColor.cgColor
+        mimuteBtn.layer.borderWidth = 1
         
-        isMinute = true
+        currentTime = 0
         
         //分类
         let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
@@ -138,7 +159,7 @@ class KLMCMOSViewController: UIViewController, Editable {
         for model in categoryList {
             titles.append(LANGLOC(model.title))
         }
-        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 150) { popupMenu in
             popupMenu?.priorityDirection = .none
             popupMenu?.arrowHeight = 0
             popupMenu?.minSpace = menuViewrect.origin.x
@@ -151,12 +172,52 @@ class KLMCMOSViewController: UIViewController, Editable {
         }
     }
     
+    //秒
     @IBAction func secondClick(_ sender: UIButton) {
-        isMinute = false
+        
+        secondBtn.isSelected = true
+        secondTimeBgView.isHidden = false
+        
+        mimuteBtn.isSelected = false
+        minuteTimeBgView.isHidden = true
     }
     
+    //分
     @IBAction func minuteClick(_ sender: UIButton) {
-        isMinute = true
+        
+        secondBtn.isSelected = false
+        secondTimeBgView.isHidden = true
+        
+        mimuteBtn.isSelected = true
+        minuteTimeBgView.isHidden = false
+    }
+    
+    //定时
+    @IBAction func timingClick(_ sender: UIButton) {
+        
+        timingBtn.isSelected = true
+        timingBgView.isHidden = false
+        
+        realTimeBtn.isSelected = false
+        realTimeView.isHidden = true
+    }
+    
+    //实时
+    @IBAction func realTimeClick(_ sender: UIButton) {
+        
+        timingBtn.isSelected = false
+        timingBgView.isHidden = true
+        
+        realTimeBtn.isSelected = true
+        realTimeView.isHidden = false
+    }
+    
+    @IBAction func realTime(_ sender: UISwitch) {
+        isTimeControl = true
+        if sender.isOn {
+            let parame = parameModel(dp: .colorTest, value: "0000")
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        }
     }
     
     private func sendData() {
@@ -186,7 +247,7 @@ extension KLMCMOSViewController: YBPopupMenuDelegate {
                 YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 120) { popupMenu in
                     popupMenu?.priorityDirection = .none
                     popupMenu?.arrowHeight = 0
-                    popupMenu?.minSpace = menuViewrect.origin.x + 120
+                    popupMenu?.minSpace = menuViewrect.origin.x + 150
                     popupMenu?.isShadowShowing = false
                     popupMenu?.delegate = self
                     popupMenu?.cornerRadius = 0
@@ -247,13 +308,8 @@ extension KLMCMOSViewController: KLMSmartNodeDelegate {
                 var time: UInt16 = 0
                 (value as NSData).getBytes(&time, length:2)
                 KLMLog("time = \(time)")
-                if Float(time) > timeSlider.maxValue { //大于秒设置，填充分滑动条
-                    mimuteSlider.currentValue = Float(time) / 60
-                    isMinute = true
-                } else { //填充秒
-                    timeSlider.currentValue = Float(time)
-                    isMinute = false
-                }
+                currentTime = time
+                
             } else {
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             }

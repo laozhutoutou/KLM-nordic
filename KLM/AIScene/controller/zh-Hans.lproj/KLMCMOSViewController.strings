@@ -1,11 +1,12 @@
 
-/* Class = "UILabel"; text = "Interval time(s)"; ObjectID = "Q2s-cV-4Xf"; */
-"Q2s-cV-4Xf.text" = "时间间隔(秒)";
-
-"vOv-kG-eWt.text" = "时间间隔(分)";
+"v4V-gd-BZN.text" = "打开实时检测";
 
 "bIb-T5-TuZ.text" = "使用场合";
 
-"yGf-Oc-87c.normalTitle" = "按秒设置";
+"yGf-Oc-87c.normalTitle" = "时间间隔(秒)";
 
-"3ad-66-XpU.normalTitle" = "按分设置";
+"3ad-66-XpU.normalTitle" = "时间间隔(分)";
+
+"U5b-Fb-eKu.normalTitle" = "定时检测";
+
+"crX-Zb-Qv7.normalTitle" = "实时检测";

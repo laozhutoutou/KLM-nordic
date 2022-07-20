@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             config.blockMonitorEnable = true
             config.debugMode = true
             config.unexpectedTerminatingDetectionEnable = true
+            config.delegate = self
             Bugly.start(withAppId: "02072c9ff3", config: config)
         }
         
@@ -263,6 +264,14 @@ extension LogCategory {
         return OSLog(subsystem: Bundle.main.bundleIdentifier!, category: rawValue)
     }
     
+}
+
+extension AppDelegate: BuglyDelegate {
+    
+    func attachment(for exception: NSException?) -> String? {
+        
+        return ""
+    }
 }
 
 

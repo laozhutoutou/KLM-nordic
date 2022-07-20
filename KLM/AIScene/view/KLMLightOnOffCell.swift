@@ -48,6 +48,7 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
             DispatchQueue.main.asyncAfter(deadline: 3) {
                 self.isFirst = true
             }
+            
         }
     }
     

@@ -52,7 +52,6 @@ Devicecoloursensing = "Device colour sensing";
 Software = "Software";
 Version = "Version";
 deleteDevice = "Remove Device";
-deleteDeviceTip = "The device will only be removed from the local database. Remove the light only if the light is no longer available";
 research = "Search again";
 nodevicesfound = "No devices found";
 

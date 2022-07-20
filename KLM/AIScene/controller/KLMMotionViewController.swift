@@ -110,22 +110,6 @@ class KLMMotionViewController: UIViewController, Editable {
         let light = Int(self.lightSlider.currentValue).decimalTo2Hexadecimal()
         let parame = parameModel(dp: .motion, value: power + time + light)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        
-//        let parameLight = parameModel(dp: .motionLight, value: Int(self.lightSlider.currentValue))
-//        KLMSmartNode.sharedInstacnce.sendMessage(parameLight, toNode: KLMHomeManager.currentNode)
-        
-//        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//
-//            let parameTime = parameModel(dp: .motionTime, value: Int(self.timeSlider.currentValue))
-//            KLMSmartNode.sharedInstacnce.sendMessage(parameTime, toNode: KLMHomeManager.currentNode)
-//
-//            DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//
-//                let parameOn = parameModel(dp: .motionPower, value: 1)
-//                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
-//
-//            }
-//        }
     }
 }
 

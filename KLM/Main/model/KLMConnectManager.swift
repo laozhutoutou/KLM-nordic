@@ -67,19 +67,13 @@ class KLMConnectManager {
     
     func connectToAllNodes(success: @escaping () -> Void, failure: @escaping () -> Void) {
         
-        self.success = success
-        self.failure = failure
-    
-        let parame = parameModel(dp: .power)
-        KLMSmartGroup.sharedInstacnce.readMessageAllNodes(parame) {
-            SVProgressHUD.dismiss()
-            self.success?()
-            self.success = nil
-        } failure: { error in
-            KLMShowError(error)
-            self.failure?()
-            self.failure = nil
+        //一个设备都没连接,  群组发送消息也可以发送出去，没报异常。所以要添加这个
+        if !MeshNetworkManager.bearer.isOpen {
+            failure()
+            return
         }
+    
+        success()
     }
     
     //单例
