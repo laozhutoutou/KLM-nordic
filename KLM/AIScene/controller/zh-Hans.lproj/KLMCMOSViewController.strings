@@ -1,12 +1,12 @@
 
-"v4V-gd-BZN.text" = "打开实时检测";
+"v4V-gd-BZN.text" = "打开/关闭按变化检测";
 
 "bIb-T5-TuZ.text" = "使用场合";
 
-"yGf-Oc-87c.normalTitle" = "时间间隔(秒)";
+"yGf-Oc-87c.normalTitle" = "秒";
 
-"3ad-66-XpU.normalTitle" = "时间间隔(分)";
+"3ad-66-XpU.normalTitle" = "分钟";
 
-"U5b-Fb-eKu.normalTitle" = "定时检测";
+"U5b-Fb-eKu.normalTitle" = "按时间";
 
-"crX-Zb-Qv7.normalTitle" = "实时检测";
+"crX-Zb-Qv7.normalTitle" = "按变化";

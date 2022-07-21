@@ -226,6 +226,9 @@ class KLMSmartGroup: NSObject {
                 do {
                     
                     try MeshNetworkManager.instance.send(message, to: group, using: model.boundApplicationKeys.first!)
+                    //开始定时
+                    KLMMessageTime.sharedInstacnce.delegate = self
+                    KLMMessageTime.sharedInstacnce.startTime()
                     
                 } catch {
                     

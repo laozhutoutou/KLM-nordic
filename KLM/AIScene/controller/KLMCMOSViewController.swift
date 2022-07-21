@@ -76,15 +76,16 @@ class KLMCMOSViewController: UIViewController, Editable {
     
     private func setupUI() {
         
-        navigationItem.title = LANGLOC("Interval & occasion change")
+        navigationItem.title = LANGLOC("Sensing & occasion change")
         
         //滑条
+        //秒
         let viewLeft: CGFloat = 20
         let sliderWidth = KLMScreenW - viewLeft * 2
         let secondSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: secondTimeBgView.height), minValue: 5, maxValue: 60, step: 1)
         secondSlider.getValueTitle = { value in
             
-            return String(format: "%lds", Int(value))
+            return String(format: "%ld%@", Int(value), LANGLOC("s"))
         }
         secondSlider.currentValue = secondSlider.minValue
         secondSlider.delegate = self
@@ -95,7 +96,7 @@ class KLMCMOSViewController: UIViewController, Editable {
         let mimuteSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: minuteTimeBgView.height), minValue: 10, maxValue: 120, step: 2)
         mimuteSlider.getValueTitle = { value in
             
-            return String(format: "%ldm", Int(value))
+            return String(format: "%ld%@", Int(value), LANGLOC("m"))
         }
         mimuteSlider.currentValue = mimuteSlider.minValue
         mimuteSlider.delegate = self
@@ -217,6 +218,12 @@ class KLMCMOSViewController: UIViewController, Editable {
         if sender.isOn {
             let parame = parameModel(dp: .colorTest, value: "0000")
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        } else { //关闭
+            //关闭发送20分钟
+            let value: String = (20 * 60).decimalTo4Hexadecimal()
+            let parame = parameModel(dp: .colorTest, value: value)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            mimuteSlider.currentValue = 20
         }
     }
     
@@ -284,6 +291,7 @@ extension KLMCMOSViewController: KLMSliderDelegate {
         }
         let parame = parameModel(dp: .colorTest, value: vv.decimalTo4Hexadecimal())
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        currentTime = UInt16(vv)
     }
 }
 
@@ -303,7 +311,7 @@ extension KLMCMOSViewController: KLMSmartNodeDelegate {
         
         if message?.dp ==  .colorTest, let value: Data = message?.value as? Data{
             hideEmptyView()
-            if isTimeControl == false {
+            if isTimeControl == false { //首次进来
                 
                 var time: UInt16 = 0
                 (value as NSData).getBytes(&time, length:2)

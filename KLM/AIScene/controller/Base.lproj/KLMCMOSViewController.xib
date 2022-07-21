@@ -37,7 +37,7 @@
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Timing sensing">
+                    <state key="normal" title="By time">
                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <state key="selected">
@@ -51,7 +51,7 @@
                     <rect key="frame" x="207" y="88" width="207" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Real-time sensing">
+                    <state key="normal" title="By change">
                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <state key="selected">
@@ -65,14 +65,14 @@
                     <rect key="frame" x="0.0" y="128" width="414" height="160"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ad-66-XpU">
-                            <rect key="frame" x="20" y="20" width="100" height="30"/>
+                            <rect key="frame" x="20" y="20" width="80" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="EcD-7t-zbL"/>
-                                <constraint firstAttribute="width" constant="100" id="vGh-un-F97"/>
+                                <constraint firstAttribute="width" constant="80" id="vGh-un-F97"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Time interval(m)">
+                            <state key="normal" title="Minutes">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <state key="selected">
@@ -83,10 +83,10 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGf-Oc-87c">
-                            <rect key="frame" x="140" y="20" width="100" height="30"/>
+                            <rect key="frame" x="120" y="20" width="80" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Time interval(s)">
+                            <state key="normal" title="Seconds">
                                 <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                             <state key="selected">
@@ -131,8 +131,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VAd-cl-voG">
                     <rect key="frame" x="0.0" y="128" width="414" height="160"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on real-time detection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4V-gd-BZN">
-                            <rect key="frame" x="20" y="20" width="165" height="16"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn on/off Sensing by change" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4V-gd-BZN">
+                            <rect key="frame" x="20" y="20" width="185" height="16"/>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>

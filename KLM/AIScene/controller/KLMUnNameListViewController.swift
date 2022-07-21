@@ -58,6 +58,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         event()
         
         KLMHomeManager.showTipView()
+        
     }
         
     func setupUI() {

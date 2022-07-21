@@ -147,9 +147,11 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Iced" = "冰鲜";
 "Meat" = "肉类";
 "Bread" = "面包";
-"Interval & occasion change" = "时间间隔和使用场合修改";
+"Sensing & occasion change" = "检测方式和使用场合修改";
 
 "Please make sure the device can not be connected with APP, otherwise use 'Settings reset'" = "请确认该设备能否正常连接APP，如果能请使用'设置复位'移除";
+"s" = "秒";
+"m" = "分";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";
