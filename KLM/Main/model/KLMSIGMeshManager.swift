@@ -193,12 +193,16 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
         
         if let unprovisionedDevice = UnprovisionedDevice(advertisementData: advertisementData){
             
-            let discoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue)
+            let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue)
             //过滤一下设备
             if unprovisionedDevice.uuid.uuidString.count >= 2 {
                 //以DD开头的设备是我们的
                 let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
                 if id == "DD" {
+                    KLMLog("rssi = \(discoveredPeripheral.rssi)")
+//                    if apptype == .test && discoveredPeripheral.rssi < -45{
+//                        return
+//                    }
                     self.delegate?.sigMeshManager(self, didScanedDevice: discoveredPeripheral)
                 }
             }

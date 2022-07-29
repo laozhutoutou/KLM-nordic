@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if apptype == .targetGN {
             let config = BuglyConfig()
             config.blockMonitorEnable = true
-            config.debugMode = true
+//            config.debugMode = true
             config.unexpectedTerminatingDetectionEnable = true
             config.delegate = self
             Bugly.start(withAppId: "02072c9ff3", config: config)

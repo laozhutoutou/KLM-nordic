@@ -49,7 +49,7 @@ class KLMTimer {
         }
     }
     
-    func timeIsValid() -> Bool {
+    private func timeIsValid() -> Bool {
         if let time = timer, time.isValid == true {
             return true
         }

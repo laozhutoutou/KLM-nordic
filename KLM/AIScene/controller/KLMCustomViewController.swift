@@ -270,7 +270,8 @@ class KLMCustomViewController: UIViewController, Editable {
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                
+                self.groupData.colorSensing = 2
+                self.sendData()
                 DispatchQueue.main.asyncAfter(deadline: 0.5) {
                     
                     //获取根VC
@@ -296,7 +297,8 @@ class KLMCustomViewController: UIViewController, Editable {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                
+                self.groupData.colorSensing = 2
+                self.sendData()
                 DispatchQueue.main.asyncAfter(deadline: 0.5) {
                     
                     //获取根VC

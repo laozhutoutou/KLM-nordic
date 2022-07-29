@@ -12,6 +12,7 @@ private enum itemType: Int, CaseIterable {
     case lightPower = 0
     case lightSetting
     case motion
+    case CMOS
     case rename
     case groupMembers
     
@@ -121,6 +122,10 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Energysavingsettings")
             cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
+            return cell
+        case itemType.CMOS.rawValue://颜色识别
+            let cell: KLMGroupColorSensingCell = KLMGroupColorSensingCell.cellWithTableView(tableView: tableView)
+            cell.model = self.groupData
             return cell
         default: break
             

@@ -554,19 +554,14 @@ class KLMService: NSObject {
     
     static func addGroup(meshId: Int, groupId: Int, groupName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let groupData: [String : Any] = [
-            "power": 1,
-            "customColor": "#FFFFFF",
-            "customColorTemp": 0,
-            "customLight": 100,
-            "energyPower": 0,
-            "autoDim": 1,
-            "brightness": 100]
+        let groupData: GroupData = GroupData()
+        let data = try! JSONEncoder().encode(groupData)
+        let groupDataStr = String(data: data, encoding: .utf8)
         
         let parame: [String : Any] = ["meshId": meshId,
                                       "groupId": groupId,
                                       "groupName": groupName,
-                                      "groupData": groupData.jsonPrint()
+                                      "groupData": groupDataStr as Any
         ]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/group"), params: parame) { responseObject, error in
             

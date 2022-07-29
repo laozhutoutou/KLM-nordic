@@ -152,6 +152,20 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Please make sure the device can not be connected with APP, otherwise use 'Settings reset'" = "请确认该设备能否正常连接APP，如果能请使用'设置复位'移除";
 "s" = "秒";
 "m" = "分";
+"Location permission" = "定位权限";
+"Please go to Settings and turn on the permissions" = "请到设置页面打开定位权限";
+"Settings" = "设置";
+"Connecting" = "连接中";
+"Send the WiFi information to the device" = "发送WiFi信息给设备";
+"The light failed to connect to WiFi. Maybe the WiFi password is incorrect" = "灯连接WiFi失败，也许是WiFi密码不正确";
+"View Commodity Image" = "查看商品图像";
+"View image right now？" = "是否立即查看图像？";
+"To obtain the best lighting, please direct the center of light beam at commodity. View image righ now to confirm, or view it later." = "为了保证调光效果，需将灯光中心对准目标商品，是否立即查看图像确认，或者以后在设置中查看";
+"Right now" = "立即";
+"Later" = "稍后";
+"Local Network permissions" = "本地网络权限";
+"Please check whether the Local Network permissions is turned on?" = "请检查本地网络是否打开？";
+
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

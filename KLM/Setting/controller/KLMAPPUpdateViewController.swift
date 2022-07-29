@@ -25,7 +25,7 @@ class KLMAPPUpdateViewController: UIViewController {
         self.navigationItem.title = LANGLOC("checkUpdate")
         iconImageView.layer.cornerRadius = 16
         iconImageView.clipsToBounds = true
-        versionLab.text = String(format: "%@: %@", LANGLOC("version"),KLM_APP_VERSION as! String)
+        versionLab.text = String(format: "%@: %@(%@)", LANGLOC("version"),KLM_APP_VERSION as! String, KLM_APP_BUILD as! String)
         
         let appName: String = KLM_APP_NAME as! String
         nameLab.text = appName

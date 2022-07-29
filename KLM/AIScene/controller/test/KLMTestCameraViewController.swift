@@ -31,6 +31,7 @@ class KLMTestCameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        
     }
     
     @IBAction func downLoad(_ sender: Any) {

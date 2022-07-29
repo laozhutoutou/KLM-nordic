@@ -138,6 +138,10 @@ class KLMMesh {
                 return
             }
             
+            if apptype == .test { //测试版APP不提示
+                return
+            }
+            
             var message: String = error.userInfo["egMsg"] as! String
             if Bundle.isChineseLanguage() {
                 message = error.userInfo["error"] as! String
@@ -173,6 +177,9 @@ class KLMMesh {
                         return
                     }
                     
+                    if apptype == .test { //测试版APP不提示
+                        return
+                    }
                     ///弹出提示框
                     KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("DataUploadFail"))
                     

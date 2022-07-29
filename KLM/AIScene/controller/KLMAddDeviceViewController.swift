@@ -142,10 +142,10 @@ class KLMAddDeviceViewController: UIViewController {
     func connectDevice(model: DiscoveredPeripheral) {
         
         ///没网不能添加设备
-        if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("NetWorkTip"))
-            return
-        }
+//        if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
+//            SVProgressHUD.showInfo(withStatus: LANGLOC("NetWorkTip"))
+//            return
+//        }
         
         SVProgressHUD.show(withStatus: "Connecting...")
         SVProgressHUD.setDefaultMaskType(.black)
@@ -281,10 +281,6 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = device
         
-        //发送分类指令
-        let parame = parameModel(dp: .category, value: self.category!)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        
         if apptype == .test {
             
             if KLMMesh.save() {
@@ -301,6 +297,10 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
             }
         }
         
+        //发送分类指令
+        let parame = parameModel(dp: .category, value: self.category!)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
         //正式APP
         device.name = self.deviceName
         if KLMMesh.save() {
@@ -308,12 +308,19 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
             //刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
 
-            //跳转页面
-            DispatchQueue.main.asyncAfter(deadline: 0.5){
-
+            //弹框
+            let vc = UIAlertController.init(title: LANGLOC("View image right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View image righ now to confirm, or view it later."), preferredStyle: .alert)
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
+                
+                let vc = KLMPicDownloadViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
+                
                 let vc = KLMDeviceEditViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
-            }
+            }))
+            self.present(vc, animated: true)
         }
     }
     

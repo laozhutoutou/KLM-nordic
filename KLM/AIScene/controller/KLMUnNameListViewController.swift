@@ -57,8 +57,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         event()
         
-        KLMHomeManager.showTipView()
-        
     }
         
     func setupUI() {
@@ -100,6 +98,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         ///初始化数据
         initData()
+        
         ///检查版本
         if apptype == .targetGN || apptype == .targetsGW {
             checkVersion()
@@ -107,12 +106,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     }
     
     @objc func initData() {
-        
+                
         //蓝牙连接需要一定时间，搞个加载动画
         showEmptyView()
-        DispatchQueue.main.asyncAfter(deadline: 2) {
-            self.hideEmptyView()
-        }
         
         ///先填充本地数据
         if let home = KLMMesh.loadHome() { ///本地存有家庭
@@ -127,7 +123,11 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
         
         KLMService.getMeshList { response in
-
+            
+            DispatchQueue.main.asyncAfter(deadline: 2) {
+                self.hideEmptyView()
+            }
+            
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
 
@@ -142,6 +142,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
                         ///本地的和服务器一样
                         KLMLog("本地和服务器的一样")
+                        
                     } else {
                         ///本地的比服务器旧，拉取服务器的数据
                         KLMLog("本地的比服务器旧")
@@ -185,7 +186,8 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             }
 
         } failure: { error in
-            
+            self.hideEmptyView()
+            KLMHttpShowError(error)
         }
     }
 
@@ -215,18 +217,18 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     }
     
     @objc func newDevice() {
-        
+                
         if KLMMesh.isCanEditMesh() == false {
             return
         }
-        
+
         if apptype == .test {
-            
+
             let vc = KLMAddDeviceTestViewController()
             navigationController?.pushViewController(vc, animated: true)
             return
         }
-        
+
         let vc = KLMAddDeviceViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

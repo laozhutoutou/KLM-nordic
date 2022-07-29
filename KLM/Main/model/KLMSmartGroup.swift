@@ -272,7 +272,7 @@ extension KLMSmartGroup: MeshNetworkDelegate {
                     self.successBlock?()
                     self.successBlock = nil
                     return
-                }
+                } 
             }
         default:
             break

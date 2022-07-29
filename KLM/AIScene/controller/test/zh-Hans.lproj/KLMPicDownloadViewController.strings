@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; normalTitle = "Download"; ObjectID = "22S-sV-ock"; */
+"22S-sV-ock.normalTitle" = "下载";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "9qG-zB-VcX"; */
+"9qG-zB-VcX.text" = "Wi-Fi密码";
+
+/* Class = "UILabel"; text = "Wi-Fi"; ObjectID = "Xag-q9-AFS"; */
+"Xag-q9-AFS.text" = "Wi-Fi名称";
+
+/* Class = "UITextField"; placeholder = "Please  enter the Wi-Fi"; ObjectID = "dBy-ei-oof"; */
+"dBy-ei-oof.placeholder" = "请输入Wi-Fi名称";
+
+/* Class = "UITextField"; placeholder = "Please enter the password"; ObjectID = "vhH-cd-DVL"; */
+"vhH-cd-DVL.placeholder" = "请输入Wi-Fi密码";

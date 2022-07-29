@@ -124,7 +124,10 @@ extension KLMProvisionManager: GattBearerDelegate {
         }
         //节点添加完成
         if KLMMesh.save() {
-
+            
+            ///刷新首页
+            NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
+            
             KLMLog("node add success")
             DispatchQueue.main.asyncAfter(deadline: 1) {
 

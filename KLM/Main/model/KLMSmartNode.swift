@@ -70,8 +70,10 @@ class KLMSmartNode: NSObject {
              .factoryTest,
              .colorTest,
              .motion,
+             .cameraPic,
              .factoryTestResule:
             parameString = parame.value as! String
+
         default:
             break
         }
@@ -179,9 +181,11 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         err.code = Int(status)
                         err.dp = dp
                         err.message = LANGLOC("Dataexception")
-    
                         if status == 2 {
                             err.message = LANGLOC("turnOnLightTip")
+                        }
+                        if dp == .cameraPic && status == 1 {
+                            err.message = LANGLOC("The light failed to connect to WiFi. Maybe the WiFi password is incorrect")
                         }
                         self.delegate?.smartNode(self, didfailure: err)
 
@@ -246,12 +250,22 @@ extension KLMSmartNode: MeshNetworkDelegate {
         if let parameters = message.parameters {
             
             KLMLog("消息发送成功 = \(parameters.hex)")
-            
+            if parameters.count >= 1 {
+                
+                //开始计时
+                KLMMessageTime.sharedInstacnce.delegate = self
+                
+                let dpData = parameters[0]
+                let dp = DPType(rawValue: Int(dpData))
+                if dp == .cameraPic {
+                    KLMMessageTime.sharedInstacnce.messageTimeout = 15
+                } else {
+                    KLMMessageTime.sharedInstacnce.messageTimeout = 6
+                }
+                KLMMessageTime.sharedInstacnce.startTime()
+            }
         }
-           
-        //开始计时
-        KLMMessageTime.sharedInstacnce.delegate = self
-        KLMMessageTime.sharedInstacnce.startTime()
+        
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {

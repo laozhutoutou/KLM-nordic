@@ -31,6 +31,9 @@ class KLMPhotoEditViewController: UIViewController {
     ///当前配方结构
     var recipe: Recipe = Recipe()
     
+    //分组数据
+    var groupData: GroupData = GroupData()
+    
     //当前配方
     var currentRecipe: Int = 0 {
         
@@ -85,6 +88,9 @@ class KLMPhotoEditViewController: UIViewController {
                 KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
             }
             
+        } else {
+            
+            setupGroupData()
         }
     }
     
@@ -126,6 +132,26 @@ class KLMPhotoEditViewController: UIViewController {
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
     }
+    
+    private func setupGroupData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+        }
+        
+        SVProgressHUD.show()
+        KLMService.selectGroup(groupId: address) { response in
+            SVProgressHUD.dismiss()
+            guard let model = response as? GroupData else { return  }
+            self.groupData = model
+            
+        } failure: { error in
+            SVProgressHUD.dismiss()
+
+        }
+    }
+    
     //点选
     @objc func handleTap(tap: UITapGestureRecognizer) {
         
@@ -235,6 +261,19 @@ class KLMPhotoEditViewController: UIViewController {
         }
     }
     
+    private func sendGroupData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+        }
+        KLMService.updateGroup(groupId: address, groupData: self.groupData) { response in
+            
+        } failure: { error in
+            
+        }
+    }
+    
     /// 屏幕上的点转化为图片上的坐标点
     /// - Parameter point: 屏幕上的点
     /// - Returns: 图片上的坐标点
@@ -304,6 +343,8 @@ class KLMPhotoEditViewController: UIViewController {
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                self.groupData.colorSensing = 2
+                self.sendGroupData()
                 
                 DispatchQueue.main.asyncAfter(deadline: 1) {
                     
@@ -329,7 +370,8 @@ class KLMPhotoEditViewController: UIViewController {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                
+                self.groupData.colorSensing = 2
+                self.sendGroupData()
                 DispatchQueue.main.asyncAfter(deadline: 1) {
                     
                     //获取根VC

@@ -11,6 +11,8 @@ import CoreBluetooth
 
 class KLMConnectManager {
     
+    let timer: KLMTimer = KLMTimer()
+    
     //蓝牙连接状态
     var state: CBManagerState?
     
@@ -69,6 +71,9 @@ class KLMConnectManager {
         
         //一个设备都没连接,  群组发送消息也可以发送出去，没报异常。所以要添加这个
         if !MeshNetworkManager.bearer.isOpen {
+            var err = MessageError()
+            err.message = LANGLOC("deviceNearbyTip")
+            KLMShowError(err)
             failure()
             return
         }
