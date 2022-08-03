@@ -219,11 +219,12 @@ extension NetworkConnection: CBCentralManagerDelegate {
             
             //记录当前kCBAdvDataManufacturerData
             let bearer = GattBearer(target: peripheral)
-//            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
-//
-//                let subData = data.suffix(from: 2).hex
-//                bearer.nodeUUID = subData
-//            }
+            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+
+                let subData = data.suffix(from: 2).hex
+                bearer.nodeUUID = subData
+                KLMLog("nodeUUID = \(subData)")
+            }
             proxies.append(bearer)
             bearer.delegate = self
             bearer.dataDelegate = self

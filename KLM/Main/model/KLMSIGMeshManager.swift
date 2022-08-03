@@ -200,9 +200,9 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
                 let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
                 if id == "DD" {
                     KLMLog("rssi = \(discoveredPeripheral.rssi)")
-//                    if apptype == .test && discoveredPeripheral.rssi < -45{
-//                        return
-//                    }
+                    if apptype == .test && discoveredPeripheral.rssi < -52{
+                        return
+                    }
                     self.delegate?.sigMeshManager(self, didScanedDevice: discoveredPeripheral)
                 }
             }

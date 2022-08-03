@@ -49,6 +49,9 @@ class KLMDeviceEditViewController: UIViewController, Editable {
  
     var isVersionFirst = true
     
+    //来自设备添加
+    var isFromAddDevice: Bool = false
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -62,8 +65,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         super.viewWillAppear(animated)
         
         KLMSmartNode.sharedInstacnce.delegate = self
-        
-        setupNodeMessage()
         
         checkVerison()
     }
@@ -140,7 +141,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         KLMService.checkVersion(type: "bluetooth") { response in
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
             self.tableView.reloadData()
-            self.showUpdateView()
+            self.setupNodeMessage()
         } failure: { error in
             
         }
@@ -162,7 +163,41 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 self.navigationController?.pushViewController(vc, animated: true)
                 
             } cancel: {
+                if bleData.isForceUpdate {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    //弹框
+                    if self.isFromAddDevice {
+                        let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
+                        vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
+                            
+                            let vc = KLMPicDownloadViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }))
+                        vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
+                            
+                            
+                        }))
+                        self.present(vc, animated: true)
+                    }
+                    
+                }
+            } noNeedUpdate: {
                 
+                if self.isFromAddDevice {
+                    
+                    let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
+                    vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
+                        
+                        let vc = KLMPicDownloadViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }))
+                    vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
+                        
+                        
+                    }))
+                    self.present(vc, animated: true)
+                }
             }
         }
         
@@ -177,7 +212,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
 extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
-        
         
         ///版本号2字节，开关1，颜色识别1，motion 3（开关，亮度，时间）
         if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
@@ -314,7 +348,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.downLoadPic.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("View Commodity Image")
+            cell.leftTitle = LANGLOC("View commodity position")
             cell.rightTitle = ""
             return cell
 //        case itemType.passengerFlow.rawValue:

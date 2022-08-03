@@ -67,7 +67,7 @@ Updatecomplete = "Update complete";
 Softwareupdate = "Software update";
 Update = "Update";
 CreateHomeTip = "Please goto About > Store Management create a store";
-admin_permissions_tips = "Require administrator privileges";
+admin_permissions_tips = "Administrator only";
 FeedBackContentEmptyTip = "Please describe your problems";
 FeedBackContactEmptyTip = "Phone number/Email?";
 

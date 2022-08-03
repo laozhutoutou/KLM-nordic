@@ -131,18 +131,22 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
 
-                if let home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
+                if var home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
                     ///比较是服务器的新还是本地的新
                     let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
                     let meshData = KLMMesh.getMeshNetwork(meshConfiguration: mesh.meshConfiguration)
                     if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
                         KLMLog("本地比服务器的新")
                         self.commitLoalDataToServer()
-
+                        //变更mesh中管理员ID
+                        home.adminId = mesh.adminId
+                        KLMMesh.saveHome(home: home)
                     } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
                         ///本地的和服务器一样
                         KLMLog("本地和服务器的一样")
-                        
+                        //变更mesh中管理员ID
+                        home.adminId = mesh.adminId
+                        KLMMesh.saveHome(home: home)
                     } else {
                         ///本地的比服务器旧，拉取服务器的数据
                         KLMLog("本地的比服务器旧")
@@ -208,6 +212,13 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     @objc func tapSearch() {
         
+        if apptype == .test {
+            
+            let vc = KLMTestAllTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
+        
         let vc = KLMSearchViewController()
         let nav = KLMNavigationViewController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
@@ -222,6 +233,13 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             return
         }
 
+//        if apptype == .test {
+//
+//            let vc = KLMAddDeviceViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+//            return
+//        }
+        
         if apptype == .test {
 
             let vc = KLMAddDeviceTestViewController()

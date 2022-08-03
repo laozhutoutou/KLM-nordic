@@ -114,7 +114,7 @@ extension KLMTool {
 
 extension KLMTool {
     
-    static public func checkBluetoothVersion(newestVersion: KLMVersion.KLMVersionData, bleversion: String, viewController: UIViewController, comfirm: @escaping () -> (), cancel: @escaping () -> ()) {
+    static public func checkBluetoothVersion(newestVersion: KLMVersion.KLMVersionData, bleversion: String, viewController: UIViewController, comfirm: @escaping () -> (), cancel: @escaping () -> (), noNeedUpdate: @escaping () -> ()) {
         
         //最新版本 -- 服务器查询
         let newVersion: String = newestVersion.fileVersion
@@ -134,15 +134,15 @@ extension KLMTool {
                 comfirm()
                 
             }))
-            if newestVersion.isForceUpdate == false { //强制更新
+            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: { action in
                 
-                vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: { action in
-                    
-                    cancel()
-                }))
-            }
+                cancel()
+            }))
             
             viewController.present(vc, animated: true)
+        } else {
+            
+            noNeedUpdate()
         }
     }
 }

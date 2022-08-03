@@ -67,6 +67,6 @@
     <resources>
         <image name="icon_device_select" width="23" height="23"/>
         <image name="icon_set_up" width="16" height="16"/>
-        <image name="img_scene" width="132" height="114"/>
+        <image name="img_scene" width="114" height="132"/>
     </resources>
 </document>

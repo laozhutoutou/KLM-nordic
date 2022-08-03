@@ -26,8 +26,6 @@ class KLMAddDeviceViewController: UIViewController {
     var deviceName = ""
     var category: Int!
     
-    var isHaveDevice: Bool = false
-    
     var messageTimer: Timer?
     ///超时时间
     var messageTimeout: Int = 20
@@ -87,8 +85,16 @@ class KLMAddDeviceViewController: UIViewController {
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
         
+        //刷新
+        let header = KLMRefreshHeader.init {[weak self] in
+            guard let self = self else { return }
+            self.searchDevice()
+        }
+        self.tableView.mj_header = header
+        
     }
     
+    //重新搜索
     func researchDevice() {
         
         //开始计时
@@ -116,10 +122,9 @@ class KLMAddDeviceViewController: UIViewController {
         
         stopTime()
         
-        self.isHaveDevice = true
-        
         contentView.isHidden = false
         searchView.isHidden = true
+        self.tableView.mj_header?.endRefreshing()
     }
     
     func searchDevice() {
@@ -129,8 +134,7 @@ class KLMAddDeviceViewController: UIViewController {
         
         discoveredPeripherals.removeAll()
         self.tableView.reloadData()
-        
-        isHaveDevice = false
+
         contentView.isHidden = true
         searchView.isHidden = false
         
@@ -177,7 +181,7 @@ class KLMAddDeviceViewController: UIViewController {
             KLMLog("时间超时")
             stopTime()
             
-            if self.isHaveDevice == false { //没有设备
+            if self.discoveredPeripherals.count == 0 { //没有设备
 
                 self.noFoundDevice()
             }
@@ -224,8 +228,6 @@ extension KLMAddDeviceViewController: UITableViewDelegate, UITableViewDataSource
 extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didScanedDevice device: DiscoveredPeripheral) {
-        
-        isHaveDevice = true
         
         if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == device.peripheral }) {
             discoveredPeripherals[index] = device
@@ -307,20 +309,10 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
             
             //刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
-
-            //弹框
-            let vc = UIAlertController.init(title: LANGLOC("View image right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View image righ now to confirm, or view it later."), preferredStyle: .alert)
-            vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
-                
-                let vc = KLMPicDownloadViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-            }))
-            vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
-                
-                let vc = KLMDeviceEditViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-            }))
-            self.present(vc, animated: true)
+            
+            let vc = KLMDeviceEditViewController()
+            vc.isFromAddDevice = true
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

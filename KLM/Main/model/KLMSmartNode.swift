@@ -258,7 +258,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 let dpData = parameters[0]
                 let dp = DPType(rawValue: Int(dpData))
                 if dp == .cameraPic {
-                    KLMMessageTime.sharedInstacnce.messageTimeout = 15
+                    KLMMessageTime.sharedInstacnce.messageTimeout = 20
                 } else {
                     KLMMessageTime.sharedInstacnce.messageTimeout = 6
                 }
@@ -310,11 +310,11 @@ extension Node {
         return self.name ?? "Unknow name"
     }
     
-    /// uuid 前面6个字节
+    
     var UUIDString: String {
         
         let string = self.uuid.uuidString.replacingOccurrences(of: "-", with: "")
-        let substring = string.substring(to: 12)
+        let substring = string[4,12]
         return substring
     }
     
@@ -322,13 +322,13 @@ extension Node {
 
 ///给扩展增加存储属性
 extension GattBearer {
-    private static var Node_KEY: Void?
+    private static var Node_KEY = true
     var nodeUUID: String {
         get {
-            (objc_getAssociatedObject(self, &Self.Node_KEY) as? String) ?? ""
+            return (objc_getAssociatedObject(self, &Self.Node_KEY) as? String) ?? ""
         }
         set {
-            (objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_ASSIGN))
+            objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_COPY)
         }
     }
 }

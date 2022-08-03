@@ -22,7 +22,6 @@ class KLMImagePickerController: UIImagePickerController {
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
             KLMSmartNode.sharedInstacnce.delegate = self
-            self.checkBleVersion()
             self.checkNetworkVersion()
         }
         
@@ -219,7 +218,7 @@ class KLMImagePickerController: UIImagePickerController {
         ///bluetooth mcu
         KLMService.checkVersion(type: "bluetooth") { response in
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
-            self.showUpdateView()
+            self.checkBleVersion()
         } failure: { error in
             
         }
@@ -245,6 +244,10 @@ class KLMImagePickerController: UIImagePickerController {
                 self.present(nav, animated: true)
                 
             } cancel: {
+                if bleData.isForceUpdate {
+                    self.dismiss(animated: true)
+                }
+            } noNeedUpdate: {
                 
             }
 

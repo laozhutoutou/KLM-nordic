@@ -18,6 +18,7 @@ class KLMDFUTestViewController: UIViewController {
     @IBOutlet weak var passField: UITextField!
     
     @IBOutlet weak var upGradeBtn: UIButton!
+    @IBOutlet weak var selectwifiBtn: UIButton!
     
     private var mClearFlash: Bool = false
     private var mUrlEnable: Bool = true
@@ -45,10 +46,13 @@ class KLMDFUTestViewController: UIViewController {
             SSIDField.text = result.SSID
             passField.text = result.password
         } else {
-            ///获取手机连接的WiFi
             
+            let ssid = KLMLocationManager.getCurrentWifiName()
+            SSIDField.text = ssid
         }
         
+        selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
+        selectwifiBtn.layer.cornerRadius = selectwifiBtn.height/2
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         
         Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
@@ -68,6 +72,15 @@ class KLMDFUTestViewController: UIViewController {
         if isPresent {
             navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        //弹出定位弹框
+        KLMLocationManager.shared.getLocation {
+            
+        } failure: {
+            
+        }
     }
     
     @IBAction func upgrade(_ sender: Any) {
@@ -80,6 +93,26 @@ class KLMDFUTestViewController: UIViewController {
             
             self.sendBinVersion()
             
+        } failure: {
+            
+        }
+    }
+    
+    @IBAction func selectWifi(_ sender: Any) {
+        
+        KLMLocationManager.shared.getLocation {
+            
+            //弹框
+            let vc = KLMWifiSelectViewController()
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            vc.wifiBlock = {[weak self] model in
+                guard let self = self else { return  }
+                self.SSIDField.text = model.WiFiName
+                self.passField.text = model.WiFiPass
+                
+            }
+            self.present(vc, animated: true)
         } failure: {
             
         }
@@ -195,6 +228,17 @@ class KLMDFUTestViewController: UIViewController {
         }
     }
     
+    @objc func appWillEnterForeground(){
+        KLMLog("周期 ---将进入前台通知")
+        //获取WiFi
+        if let ssid = KLMLocationManager.getCurrentWifiName() {
+            self.SSIDField.text = ssid
+            if let wifilist = KLMWiFiManager.getWifiLists(), let model = wifilist.first(where: {$0.WiFiName == ssid}) {
+                self.passField.text = model.WiFiPass
+            }
+        }
+    }
+    
     @objc func dimiss() {
         
         dismiss(animated: true, completion: nil)
@@ -291,6 +335,8 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                 isTureWiFi = false
                                 ///存储wifi信息
                                 KLMHomeManager.cacheWIFIMsg(SSID: self.SSIDField.text!, password: self.passField.text!)
+                                let model = KLMWiFiModel.init(WiFiName: self.SSIDField.text!, WiFiPass: self.passField.text!)
+                                KLMWiFiManager.saveWiFiName(wifiModel: model)
                             }
                             
                             let progress: Float = Float(PP) / 100.0 * 0.7
