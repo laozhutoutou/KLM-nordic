@@ -56,11 +56,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         NotificationCenter.default.removeObserver(self)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -84,9 +79,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         DispatchQueue.main.asyncAfter(deadline: 5) {
             self.hideEmptyView()
         }
-        
-//        KLMHomeManager.showTipView()
-        
     }
     
     func setupUI() {
@@ -156,8 +148,12 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         }
         
         if isVersionFirst {
+            isVersionFirst = false
             KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
                 
+                if bleData.isForceUpdate {
+                    self.isVersionFirst = true
+                }
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -165,7 +161,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             } cancel: {
                 if bleData.isForceUpdate {
                     self.navigationController?.popViewController(animated: true)
-                } else {
+                } else { //普通升级
                     //弹框
                     if self.isFromAddDevice {
                         let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
@@ -175,17 +171,14 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                             self.navigationController?.pushViewController(vc, animated: true)
                         }))
                         vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
-                            
-                            
+
                         }))
                         self.present(vc, animated: true)
                     }
-                    
                 }
-            } noNeedUpdate: {
+            } noNeedUpdate: { //不需要升级
                 
                 if self.isFromAddDevice {
-                    
                     let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
                     vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
                         
@@ -193,18 +186,10 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                         self.navigationController?.pushViewController(vc, animated: true)
                     }))
                     vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
-                        
-                        
                     }))
                     self.present(vc, animated: true)
                 }
             }
-        }
-        
-        if bleData.isForceUpdate { //强制更新，每次都弹框
-            
-        } else { //普通更新，只弹框一次
-            isVersionFirst = false
         }
     }
 }

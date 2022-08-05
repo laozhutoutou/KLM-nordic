@@ -17,7 +17,7 @@
                 <outlet property="ROK" destination="h86-BT-9K1" id="4fP-6H-hnQ"/>
                 <outlet property="WWOK" destination="bqZ-Jx-blL" id="gqR-3P-JN2"/>
                 <outlet property="falseBtn" destination="f2x-bP-mcH" id="4Hs-h1-TOB"/>
-                <outlet property="imageView" destination="cRz-Ju-Wfp" id="Vns-qG-u58"/>
+                <outlet property="playView" destination="oEb-9L-lW8" id="VRw-OS-E8D"/>
                 <outlet property="view" destination="z2L-kz-D96" id="ugB-4G-jTM"/>
             </connections>
         </placeholder>
@@ -183,25 +183,26 @@
                                 <action selector="downLoadPic:" destination="-1" eventType="touchUpInside" id="CIa-Pm-kt2"/>
                             </connections>
                         </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cRz-Ju-Wfp">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oEb-9L-lW8">
                             <rect key="frame" x="15" y="76" width="384" height="180"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="180" id="uuZ-tj-8qc"/>
+                                <constraint firstAttribute="height" constant="180" id="v67-qK-6tm"/>
                             </constraints>
-                        </imageView>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="oEb-9L-lW8" secondAttribute="trailing" constant="15" id="ArE-fV-cNy"/>
                         <constraint firstItem="DRb-0V-GJR" firstAttribute="leading" secondItem="T6W-l9-XMg" secondAttribute="leading" constant="15" id="GBe-IT-xAf"/>
                         <constraint firstItem="hKk-uG-MQK" firstAttribute="top" secondItem="T6W-l9-XMg" secondAttribute="top" id="GjV-L4-zWk"/>
                         <constraint firstItem="f2x-bP-mcH" firstAttribute="centerY" secondItem="zQ6-qL-dSu" secondAttribute="centerY" id="NWc-z2-5aM"/>
-                        <constraint firstItem="cRz-Ju-Wfp" firstAttribute="top" secondItem="DRb-0V-GJR" secondAttribute="bottom" constant="10" id="O0B-dn-Lew"/>
-                        <constraint firstItem="zQ6-qL-dSu" firstAttribute="top" secondItem="cRz-Ju-Wfp" secondAttribute="bottom" constant="10" id="eYZ-2c-w39"/>
+                        <constraint firstItem="zQ6-qL-dSu" firstAttribute="top" secondItem="oEb-9L-lW8" secondAttribute="bottom" constant="10" id="VfR-0X-cUh"/>
+                        <constraint firstItem="oEb-9L-lW8" firstAttribute="leading" secondItem="T6W-l9-XMg" secondAttribute="leading" constant="15" id="Xco-Iv-lG6"/>
+                        <constraint firstItem="oEb-9L-lW8" firstAttribute="top" secondItem="DRb-0V-GJR" secondAttribute="bottom" constant="10" id="b21-VO-N8i"/>
                         <constraint firstItem="hKk-uG-MQK" firstAttribute="leading" secondItem="T6W-l9-XMg" secondAttribute="leading" constant="15" id="gpS-QB-7ex"/>
                         <constraint firstItem="zQ6-qL-dSu" firstAttribute="leading" secondItem="T6W-l9-XMg" secondAttribute="leading" constant="60" id="jod-su-IRJ"/>
-                        <constraint firstAttribute="trailing" secondItem="cRz-Ju-Wfp" secondAttribute="trailing" constant="15" id="of6-E5-dzD"/>
                         <constraint firstItem="DRb-0V-GJR" firstAttribute="top" secondItem="hKk-uG-MQK" secondAttribute="bottom" constant="10" id="oxq-NS-s5g"/>
-                        <constraint firstItem="cRz-Ju-Wfp" firstAttribute="leading" secondItem="T6W-l9-XMg" secondAttribute="leading" constant="15" id="qsj-B4-QxI"/>
                         <constraint firstAttribute="trailing" secondItem="f2x-bP-mcH" secondAttribute="trailing" constant="60" id="r5g-uI-dfW"/>
                     </constraints>
                 </view>
@@ -232,7 +233,7 @@
                 <constraint firstAttribute="trailing" secondItem="MhG-ij-Fws" secondAttribute="trailing" id="wwa-dq-8QX"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="-9351" y="150"/>
+            <point key="canvasLocation" x="-9353.6231884057979" y="150"/>
         </view>
     </objects>
     <resources>

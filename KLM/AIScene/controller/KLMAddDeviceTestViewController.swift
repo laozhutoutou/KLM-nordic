@@ -154,21 +154,7 @@ class KLMAddDeviceTestViewController: UIViewController {
         KLMMeshManager.shared.startScan()
         
     }
-    
-    //连接设备
-//    func connectDevice(model: DiscoveredPeripheral) {
-//
-//        ///没网不能添加设备
-//        if KLMHomeManager.sharedInstacnce.networkStatus == .NetworkStatusNotReachable {
-//            SVProgressHUD.showInfo(withStatus: LANGLOC("NetWorkTip"))
-//            return
-//        }
-//
-//        SVProgressHUD.show(withStatus: "Connecting...")
-//        SVProgressHUD.setDefaultMaskType(.black)
-//        KLMSIGMeshManager.sharedInstacnce.startConnect(discoveredPeripheral: model)
-//    }
-    
+        
     //开始计时
     private func startTime() {
         
@@ -262,7 +248,6 @@ extension KLMAddDeviceTestViewController: KLMMeshManagerDelegate {
     func meshManager(_ manager: KLMMeshManager, didActiveDevice device: Node) {
         KLMLog("配网成功")
         if KLMMesh.save() {
-            
             if let index = discoveredPeripherals.firstIndex(where: {$0.device.uuid == device.uuid}) {
                 totalDevcie += 1
                 if let cell: KLMDeviceAddTestCell = self.tableView.cellForRow(at: IndexPath.init(row: index, section: 0)) as? KLMDeviceAddTestCell {

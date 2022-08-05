@@ -93,7 +93,7 @@ Dataexception = "Data exception";
 DataUploadFail = "Data upload failed, please check the network connection";
 NetWorkTip = "Please make sure the network can be connected";
 deleteStoreTip = "Please ensure that all lights have been reset, otherwise they will not be searched";
-deviceNearbyTip = "Make sure your device is powered on and nearby, and has not been reset.";
+deviceNearbyTip = "Make sure the device is powered on and nearby.Otherwise,check if it is connected by others or out of order.";
 
 
 

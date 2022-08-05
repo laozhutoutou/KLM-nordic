@@ -130,7 +130,7 @@ class KLMNetworking: NSObject {
                         KLMLog("用户在其他地方登录")
                         let appdelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.enterLoginUIOtherLogin()
-                        
+                        return
                     }
                     
                     let msg = model.msg

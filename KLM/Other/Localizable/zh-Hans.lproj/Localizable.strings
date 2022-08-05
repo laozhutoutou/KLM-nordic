@@ -93,7 +93,7 @@ Dataexception = "数据异常";
 DataUploadFail = "数据上传不成功，请检查网络连接";
 NetWorkTip = "请确保网络可以连接";
 deleteStoreTip = "请确保所有灯已经被复位, 否则将搜索不到这些灯";
-deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。还有未被重置。";
+deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。否则，要确认设备是否已被他人连接，或者故障。";
 "Bluetooth signal is too weak" = "蓝牙信号太弱";
 "Please check WiFi name or password" = "请检查WiFi名称或者密码是否有误";
 "Upgrade interrupted, please keep networks open" = "更新中断, 请保证网络正常";
@@ -153,7 +153,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "s" = "秒";
 "m" = "分";
 "Location permission" = "定位权限";
-"Please go to Settings and turn on the permissions" = "请到设置页面打开定位权限";
+"Please go to Settings and turn on the permissions" = "请到设置页面打开权限";
 "Settings" = "设置";
 "Connecting" = "连接中";
 "Send the WiFi information to the device" = "发送WiFi信息给设备";
@@ -165,7 +165,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Later" = "稍后";
 "Local Network permissions" = "本地网络权限";
 "Please check whether the Local Network permissions is turned on?" = "请检查本地网络是否打开？";
-
+"Bluetooth permission" = "蓝牙权限";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

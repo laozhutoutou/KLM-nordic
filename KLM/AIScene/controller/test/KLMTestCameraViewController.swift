@@ -10,11 +10,13 @@ import CoreBluetooth
 import nRFMeshProvision
 import SVProgressHUD
 import Kingfisher
+import WebKit
 
 class KLMTestCameraViewController: UIViewController {
     
     @IBOutlet weak var ipTextField: UITextField!
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var imageBgView: UIView!
+    var webView: WKWebView?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,8 +39,8 @@ class KLMTestCameraViewController: UIViewController {
     @IBAction func downLoad(_ sender: Any) {
                 
         SVProgressHUD.show()
-        let parameTime = parameModel(dp: .cameraPic)
-        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+        let parame = parameModel(dp: .cameraPic)
+        KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
     }
 }
 
@@ -55,28 +57,15 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
                 KLMLog("ip = \(ip)")
                 ipTextField.text = ip
                 let url = URL.init(string: ip)
-                
-                /// forceRefresh 不需要缓存
-                imageView.kf.indicatorType = .activity
-//                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh])
-                
-                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
-
-                    switch result {
-                    case .success(let value):
-                        // The image was set to image view:
-                        print(value.image)
-
-                        ///测试使用 - 保存图片到相册
-                        SVProgressHUD.show(withStatus: "保存到手机")
-//                        let data: Data = try! Data.init(contentsOf: url!)
-//                        let image: UIImage = UIImage.init(data: data)!
-                        UIImageWriteToSavedPhotosAlbum(value.image, self, #selector(self.saveImage(image:didFinishSavingWithError:contextInfo:)), nil)
-
-                    case .failure(let error):
-                        print(error) // The error happens
-                    }
+                if webView == nil {
+                    webView = WKWebView.init()
+                    webView?.frame = imageBgView.bounds
+                    imageBgView.addSubview(webView!)
+                    webView?.navigationDelegate = self
                 }
+                webView?.showEmptyView()
+                let request = URLRequest(url: url!)
+                webView?.load(request)
             }
         }
     }
@@ -85,16 +74,30 @@ extension KLMTestCameraViewController: KLMSmartNodeDelegate {
         KLMShowError(error)
         
     }
-    
-    @objc private func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: AnyObject) {
-            var showMessage = ""
-            if error != nil{
-                showMessage = "保存失败"
-            }else{
-                showMessage = "保存成功"
-            }
-            SVProgressHUD.showInfo(withStatus: showMessage)
-            
-        }
 }
 
+extension KLMTestCameraViewController: WKNavigationDelegate {
+    
+    //页面开始加载时调用
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        KLMLog("开始加载")
+    }
+    //当内容开始返回时调用
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        webView.hideEmptyView()
+        KLMLog("内容返回")
+    }
+    
+    // 页面加载完成之后调用
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        KLMLog("加载完成")
+    }
+    
+    //页面加载失败时调用
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        webView.hideEmptyView()
+        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
+        SVProgressHUD.dismiss(withDelay: 3)
+        KLMLog("页面加载失败\(error)")
+    }
+}

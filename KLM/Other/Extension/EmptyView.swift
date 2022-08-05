@@ -16,7 +16,7 @@ extension UIView {
         if emptyView == nil {
             
             emptyView = UIView.init()
-            emptyView.backgroundColor = appBackGroupColor
+            emptyView.backgroundColor = .white
             emptyView.tag = 100
             emptyView.alpha = 0
             addSubview(emptyView)

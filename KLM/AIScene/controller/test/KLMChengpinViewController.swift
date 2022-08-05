@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 class KLMChengpinViewController: UIViewController {
     
@@ -17,7 +18,8 @@ class KLMChengpinViewController: UIViewController {
     @IBOutlet weak var OKBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
     
-    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var playView: UIView!
+    var webView: WKWebView?
     
     var OKBtnArray: [UIButton]!
     
@@ -33,7 +35,6 @@ class KLMChengpinViewController: UIViewController {
         
         navigationItem.title = "成品测试"
         
-
         OKBtnArray = [WWOK,ROK,GOK,BOK]
         
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
@@ -119,9 +120,15 @@ extension KLMChengpinViewController: KLMSmartNodeDelegate {
                 KLMLog("ip = \(ip)")
                 let url = URL.init(string: ip)
                 
-                /// forceRefresh 不需要缓存
-                imageView.kf.indicatorType = .activity
-                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh])
+                if webView == nil {
+                    webView = WKWebView.init()
+                    webView?.frame = playView.bounds
+                    playView.addSubview(webView!)
+                    webView?.navigationDelegate = self
+                }
+                webView?.showEmptyView()
+                let request = URLRequest(url: url!)
+                webView?.load(request)
             }
         }
     }
@@ -141,5 +148,31 @@ extension KLMChengpinViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
+    }
+}
+
+extension KLMChengpinViewController: WKNavigationDelegate {
+    
+    //页面开始加载时调用
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        KLMLog("开始加载")
+    }
+    //当内容开始返回时调用
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        webView.hideEmptyView()
+        KLMLog("内容返回")
+    }
+    
+    // 页面加载完成之后调用
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        KLMLog("加载完成")
+    }
+    
+    //页面加载失败时调用
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        webView.hideEmptyView()
+        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
+        SVProgressHUD.dismiss(withDelay: 3)
+        KLMLog("页面加载失败\(error)")
     }
 }

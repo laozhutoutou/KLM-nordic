@@ -12,6 +12,7 @@ import NetworkExtension
 import SystemConfiguration
 import SwiftUI
 import AVFoundation
+import WebKit
 
 class KLMPicDownloadViewController: UIViewController {
     
@@ -20,14 +21,8 @@ class KLMPicDownloadViewController: UIViewController {
     @IBOutlet weak var downLoadBtn: UIButton!
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var selectwifiBtn: UIButton!
-    @IBOutlet weak var imageView: UIImageView!
     
-    var player: AVPlayer?
-    var palyerItem: AVPlayerItem?
-    
-    deinit {
-        palyerItem?.removeObserver(self, forKeyPath: "status", context: nil)
-    }
+    var webView: WKWebView?
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -37,8 +32,6 @@ class KLMPicDownloadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        imageView.isHidden = true
         
         navigationItem.title = LANGLOC("View commodity position")
         selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
@@ -73,24 +66,6 @@ class KLMPicDownloadViewController: UIViewController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        
-        //测试
-//        let ip: String = "http://pgcvideo-cdn.xiaodutv.com/2709512979_3389490478_20200109153928.mp4?Cache-Control%3Dmax-age%3A8640000%26responseExpires%3DSat%2C_18_Apr_2020_15%3A40%3A20_GMT=&xcode=21958c342f4ee6c4584ce06d904dbb55b291ad05a60eb995&time=1659174959&_=1659091697264"
-//        KLMLog("ip = \(ip)")
-//        let url = URL.init(string: ip)
-//        if player == nil, let url = url {
-//            let playerItem = AVPlayerItem.init(url: url)
-//            playerItem.addObserver(self, forKeyPath: "status", options: .new, context: nil)
-//            player = AVPlayer.init(playerItem: playerItem)
-//            self.palyerItem = playerItem
-//            player?.rate = 1.0
-//            let playerLayer = AVPlayerLayer.init(player: player)
-//            playerLayer.videoGravity = .resizeAspect
-//            playerLayer.frame = playView.bounds
-//            playView.layer.addSublayer(playerLayer)
-//            player?.play()
-//        }
-        
     }
 
     @IBAction func downLoad(_ sender: Any) {
@@ -187,26 +162,6 @@ class KLMPicDownloadViewController: UIViewController {
             }
         }
     }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "status" {
-            switch self.palyerItem!.status{
-            case .readyToPlay:
-                //准备播放
-                KLMLog("准备播放")
-            case .failed:
-                //播放失败
-                KLMLog("播放失败")
-                KLMLog("error = \(self.palyerItem?.error)")
-            case.unknown:
-                //未知情况
-                KLMLog("未知错误")
-                KLMLog("error = \(self.palyerItem?.error)")
-            default:
-                break
-            }
-        }
-    }
 }
 
 extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
@@ -220,63 +175,19 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
             KLMWiFiManager.saveWiFiName(wifiModel: model)
             
             if let data = message?.value as? [UInt8], data.count >= 4 {
-                //bmp_stream
-                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
-//                let ip: String = "http://pgcvideo-cdn.xiaodutv.com/2709512979_3389490478_20200109153928.mp4?Cache-Control%3Dmax-age%3A8640000%26responseExpires%3DSat%2C_18_Apr_2020_15%3A40%3A20_GMT=&xcode=21958c342f4ee6c4584ce06d904dbb55b291ad05a60eb995&time=1659174959&_=1659091697264"
+                //bmp_stream  stream
+                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp_stream"
                 KLMLog("ip = \(ip)")
                 let url = URL.init(string: ip)
-//                if player == nil, let url = url {
-//                    let playerItem = AVPlayerItem.init(url: url)
-//                    playerItem.addObserver(self, forKeyPath: "status", options: .new, context: nil)
-//                    player = AVPlayer.init(playerItem: playerItem)
-//                    self.palyerItem = playerItem
-//                    player?.rate = 1.0
-//                    let playerLayer = AVPlayerLayer.init(player: player)
-//                    playerLayer.videoGravity = .resizeAspect
-//                    playerLayer.frame = playView.bounds
-//                    playView.layer.addSublayer(playerLayer)
-//                    player?.play()
-//                }
-                /// forceRefresh 不需要缓存
-                /// 逆时针90度
-                imageView.transform = CGAffineTransform(rotationAngle: CGFloat(-Float.pi / 2))
-                imageView.kf.indicatorType = .activity
-                ///forceRefresh
-                imageView.kf.setImage(with: url, placeholder: nil, options: nil) { result in
-
-                    switch result {
-                    case .success(let value):
-                        // The image was set to image view:
-                        print(value.image)
-
-                    case .failure(let error):
-                        KLMLog("error = \(error)") // The error happens
-                        if error.errorCode ==  1002 {
-                            SVProgressHUD.showInfo(withStatus: LANGLOC("Request timed out."))
-                            return
-                        }
-                        if error.errorCode == 1001 {
-
-                            //检查本地网络情况
-                            let alertController = UIAlertController(title: LANGLOC("Local Network permissions"), message: LANGLOC("Please check whether the Local Network permissions is turned on?"), preferredStyle: .alert)
-                            let settingsAction = UIAlertAction(title: LANGLOC("Settings"), style: .default) { (_) -> Void in
-                                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                                    return
-                                }
-                                if UIApplication.shared.canOpenURL(settingsUrl) {
-                                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
-                                }
-                            }
-                            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-                            alertController.addAction(cancelAction)
-                            alertController.addAction(settingsAction)
-                            KLMKeyWindow?.rootViewController?.present(alertController, animated: true)
-                            return
-                        }
-                        SVProgressHUD.showInfo(withStatus: error.errorDescription)
-                        SVProgressHUD.dismiss(withDelay: 5)
-                    }
+                if webView == nil {
+                    webView = WKWebView.init()
+                    webView?.frame = playView.bounds
+                    playView.addSubview(webView!)
+                    webView?.navigationDelegate = self
                 }
+                webView?.showEmptyView()
+                let request = URLRequest(url: url!)
+                webView?.load(request)
             }
         }
     }
@@ -285,3 +196,36 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
         KLMShowError(error)
     }
 }
+
+extension KLMPicDownloadViewController: WKNavigationDelegate {
+    
+//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+//
+//        KLMLog("type = \(String(describing: navigationResponse.response.mimeType)), fileName = \(String(describing: navigationResponse.response.suggestedFilename))")
+//        decisionHandler(.download)
+//    }
+    
+    //页面开始加载时调用
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        KLMLog("开始加载")
+    }
+    //当内容开始返回时调用
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        webView.hideEmptyView()
+        KLMLog("内容返回")
+    }
+    
+    // 页面加载完成之后调用
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        KLMLog("加载完成")
+    }
+    
+    //页面加载失败时调用
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        webView.hideEmptyView()
+        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
+        SVProgressHUD.dismiss(withDelay: 3)
+        KLMLog("页面加载失败\(error)")
+    }
+}
+

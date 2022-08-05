@@ -181,10 +181,14 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         
-        if central.state != .poweredOn {
-            KLMLog("Central is not powered on")
-        } else {
+        if central.state == .poweredOn {
             startScanning()
+        } else {
+            KLMLog("Central is not powered on")
+            if central.state == .unauthorized {
+                //弹框
+                KLMBlueToothManager.showUnauthorizedAlert()
+            }
         }
     }
     

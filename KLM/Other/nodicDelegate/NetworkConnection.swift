@@ -181,6 +181,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
 //            SVProgressHUD.showInfo(withStatus: "app一定已授权,蓝牙是关闭状态")
         case .unauthorized:
             print("app一定未授权,蓝牙是否开启不知")
+            KLMBlueToothManager.showUnauthorizedAlert()
 //            SVProgressHUD.showInfo(withStatus: "app一定未授权,蓝牙是否开启不知")
         case .resetting:
             proxies.forEach { $0.close() }

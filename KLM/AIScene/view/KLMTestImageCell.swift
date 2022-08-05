@@ -7,39 +7,55 @@
 
 import UIKit
 import Kingfisher
+import WebKit
 
 class KLMTestImageCell: UICollectionViewCell {
 
-    @IBOutlet weak var imageView: UIImageView!
+    var webView: WKWebView?
     
     var url: String? {
         didSet {
             let url = URL.init(string: url!)
-            /// forceRefresh 不需要缓存
-            imageView.kf.indicatorType = .activity            
-            imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
-
-                switch result {
-                case .success(let value):
-                    // The image was set to image view:
-                    print(value.image)
-
-                case .failure(let error):
-                    print(error) // The error happens
-                }
+            if webView == nil {
+                webView = WKWebView.init()
+                webView?.frame = self.bounds
+                self.addSubview(webView!)
+                webView?.navigationDelegate = self
             }
+            webView?.showEmptyView()
+            let request = URLRequest(url: url!)
+            webView?.load(request)
         }
-    }
-    
-    func setImageWith(url: String) {
-        
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
     }
+}
 
+extension KLMTestImageCell: WKNavigationDelegate {
+    
+    //页面开始加载时调用
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        KLMLog("开始加载")
+    }
+    //当内容开始返回时调用
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        webView.hideEmptyView()
+        KLMLog("内容返回")
+    }
+    
+    // 页面加载完成之后调用
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        KLMLog("加载完成")
+    }
+    
+    //页面加载失败时调用
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        webView.hideEmptyView()
+        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
+        SVProgressHUD.dismiss(withDelay: 3)
+        KLMLog("页面加载失败\(error)")
+    }
 }

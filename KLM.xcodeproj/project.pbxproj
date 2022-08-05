@@ -216,6 +216,9 @@
 		E4C3466828338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4C3466928338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4C3466A28338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
+		E4C435C6289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
+		E4C435C7289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
+		E4C435C8289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
 		E4C4A0A1286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
 		E4C4A0A2286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
 		E4C4A0A3286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
@@ -989,6 +992,7 @@
 		E4C3465C283378E1000852DE /* KLMAddDeviceTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAddDeviceTestViewController.xib; sourceTree = "<group>"; };
 		E4C3466328338573000852DE /* KLMDeviceAddTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceAddTestCell.swift; sourceTree = "<group>"; };
 		E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddTestCell.xib; sourceTree = "<group>"; };
+		E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBlueToothManager.swift; sourceTree = "<group>"; };
 		E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferViewController.swift; sourceTree = "<group>"; };
 		E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferCell.swift; sourceTree = "<group>"; };
 		E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAdminTransferCell.xib; sourceTree = "<group>"; };
@@ -1386,6 +1390,7 @@
 				E45175B6281BD74200BCD644 /* KLMTimer.swift */,
 				E44DB39A2840A7F800710C66 /* KLMAlertController.swift */,
 				E4CD7496288E81160046489F /* KLMLocationManager.swift */,
+				E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2328,6 +2333,7 @@
 				E4A65FCF2670B06400FE6866 /* OSCommonImage.m in Sources */,
 				E4A65FCC2670B06400FE6866 /* RSColorPickerView.m in Sources */,
 				E4C4A0A9286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
+				E4C435C6289BA769008EA308 /* KLMBlueToothManager.swift in Sources */,
 				E476178126DE11C2008225BB /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */,
 				E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */,
@@ -2494,6 +2500,7 @@
 				E4C57E5228055B1F00E7AB54 /* OSCommonImage.m in Sources */,
 				E4C57E5328055B1F00E7AB54 /* RSColorPickerView.m in Sources */,
 				E4C4A0AA286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
+				E4C435C7289BA769008EA308 /* KLMBlueToothManager.swift in Sources */,
 				E4C57E5428055B1F00E7AB54 /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4C57E5528055B1F00E7AB54 /* SimpleOnOffGet.swift in Sources */,
 				E4C57E5628055B1F00E7AB54 /* KLMSmartNode.swift in Sources */,
@@ -2660,6 +2667,7 @@
 				E4C57F2928055C7C00E7AB54 /* OSCommonImage.m in Sources */,
 				E4C57F2A28055C7C00E7AB54 /* RSColorPickerView.m in Sources */,
 				E4C4A0AB286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
+				E4C435C8289BA769008EA308 /* KLMBlueToothManager.swift in Sources */,
 				E4C57F2B28055C7C00E7AB54 /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4C57F2C28055C7C00E7AB54 /* SimpleOnOffGet.swift in Sources */,
 				E4C57F2D28055C7C00E7AB54 /* KLMSmartNode.swift in Sources */,

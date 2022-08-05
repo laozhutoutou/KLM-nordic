@@ -16,25 +16,11 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="164" height="174"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="saR-Es-5w6">
-                        <rect key="frame" x="0.0" y="0.0" width="164" height="174"/>
-                    </imageView>
-                </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="aby-V4-Zjl"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <constraints>
-                <constraint firstAttribute="bottom" secondItem="saR-Es-5w6" secondAttribute="bottom" id="0j3-ts-9zY"/>
-                <constraint firstItem="saR-Es-5w6" firstAttribute="leading" secondItem="yil-2c-cMT" secondAttribute="leading" id="bcE-bs-ANr"/>
-                <constraint firstItem="saR-Es-5w6" firstAttribute="top" secondItem="yil-2c-cMT" secondAttribute="top" id="coy-tj-U5d"/>
-                <constraint firstAttribute="trailing" secondItem="saR-Es-5w6" secondAttribute="trailing" id="vd5-4m-Gq6"/>
-            </constraints>
             <size key="customSize" width="112" height="158"/>
-            <connections>
-                <outlet property="imageView" destination="saR-Es-5w6" id="sWZ-Fq-mO6"/>
-            </connections>
-            <point key="canvasLocation" x="-143" y="49"/>
+            <point key="canvasLocation" x="-613" y="73"/>
         </collectionViewCell>
     </objects>
 </document>
