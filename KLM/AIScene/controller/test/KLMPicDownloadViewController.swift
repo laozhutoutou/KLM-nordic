@@ -21,8 +21,23 @@ class KLMPicDownloadViewController: UIViewController {
     @IBOutlet weak var downLoadBtn: UIButton!
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var selectwifiBtn: UIButton!
+    ///图片
+    @IBOutlet weak var imageView: UIImageView!
+    
+    //旧的WiFi名称
+    var oldWifiName: String?
     
     var webView: WKWebView?
+    lazy var wkConfig: WKWebViewConfiguration = {
+        let wkConfig = WKWebViewConfiguration.init()
+        let jScript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'); document.getElementsByTagName('head')[0].appendChild(meta);"
+        let wkUScript = WKUserScript.init(source: jScript, injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
+        let wkUController = WKUserContentController.init()
+        wkUController.addUserScript(wkUScript)
+        wkConfig.userContentController = wkUController
+        return wkConfig
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -32,6 +47,10 @@ class KLMPicDownloadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        imageView.isHidden = true
+        
+//        playView.transform = CGAffineTransform(rotationAngle:  -CGFloat.pi / 2)
         
         navigationItem.title = LANGLOC("View commodity position")
         selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
@@ -69,6 +88,14 @@ class KLMPicDownloadViewController: UIViewController {
     }
 
     @IBAction func downLoad(_ sender: Any) {
+        
+        ///页面加载中，同时WiFi名称没改变，需要再加载
+//        if let webView = webView {
+//            if webView.isLoading && oldWifiName == self.SSIDField.text{
+//                SVProgressHUD.showInfo(withStatus: LANGLOC(""))
+//                return
+//            }
+//        }
         
         KLMLocationManager.shared.getLocation {
             
@@ -174,20 +201,54 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
             let model = KLMWiFiModel.init(WiFiName: self.SSIDField.text!, WiFiPass: self.passField.text!)
             KLMWiFiManager.saveWiFiName(wifiModel: model)
             
+            //            oldWifiName = SSIDField.text
             if let data = message?.value as? [UInt8], data.count >= 4 {
-                //bmp_stream  stream
+                //bmp_stream  bmp
                 let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp_stream"
                 KLMLog("ip = \(ip)")
                 let url = URL.init(string: ip)
-                if webView == nil {
-                    webView = WKWebView.init()
-                    webView?.frame = playView.bounds
-                    playView.addSubview(webView!)
-                    webView?.navigationDelegate = self
+//                                            if webView == nil {
+//                                                webView = WKWebView.init(frame: playView.bounds, configuration: wkConfig)
+//                                                playView.addSubview(webView!)
+//                                                webView?.navigationDelegate = self
+//                                            }
+//                                            webView?.showEmptyView()
+//                                            let request = URLRequest(url: url!)
+//                                            webView?.load(request)
+                
+                imageView.transform = CGAffineTransform(rotationAngle: CGFloat(-Float.pi / 2))
+                imageView.kf.indicatorType = .activity
+                imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
+
+                    switch result {
+                    case .success(let value):
+                        // The image was set to image view:
+                        print(value.image)
+
+                    case .failure(let error):
+                        KLMLog("error = \(error)") // The error happens
+                        if error.errorCode ==  1002 {
+                            SVProgressHUD.showInfo(withStatus: LANGLOC("Request timed out."))
+                            return
+                        }
+                        if error.errorCode == 1001 {
+                            //检查本地网络情况
+                            let alertController = UIAlertController(title: LANGLOC("Local Network permissions"), message: LANGLOC("Please check whether the Local Network permissions is turned on?"), preferredStyle: .alert)
+                            let settingsAction = UIAlertAction(title: LANGLOC("Settings"), style: .default) { (_) -> Void in
+                                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                                    return
+                                }
+                                if UIApplication.shared.canOpenURL(settingsUrl) {
+                                    UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+                                }
+                            }
+                            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .default, handler: nil)
+                            alertController.addAction(cancelAction)
+                            alertController.addAction(settingsAction)
+                            KLMKeyWindow?.rootViewController?.present(alertController, animated: true)
+                        }
+                    }
                 }
-                webView?.showEmptyView()
-                let request = URLRequest(url: url!)
-                webView?.load(request)
             }
         }
     }
@@ -218,6 +279,14 @@ extension KLMPicDownloadViewController: WKNavigationDelegate {
     // 页面加载完成之后调用
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         KLMLog("加载完成")
+//        webView.evaluateJavaScript("document.body.scrollHeight") { response, error in
+//            let height: Float = response as! Float
+//            KLMLog("height = \(height)")
+//        }
+//        webView.evaluateJavaScript("document.body.scrollWidth") { response, error in
+//            let width: Float = response as! Float
+//            KLMLog("width = \(width)")
+//        }
     }
     
     //页面加载失败时调用

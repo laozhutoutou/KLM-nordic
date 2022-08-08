@@ -166,6 +166,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Local Network permissions" = "本地网络权限";
 "Please check whether the Local Network permissions is turned on?" = "请检查本地网络是否打开？";
 "Bluetooth permission" = "蓝牙权限";
+"The device do not support, Check if the version of device is newest" = "设备不支持此功能，检查设备固件版本是否是最新的";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

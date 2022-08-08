@@ -31,7 +31,7 @@ class KLMLoginViewController: UIViewController {
     private func setupUI() {
         
         KLMLog("login")
-        
+//        navigationItem.title = LANGLOC("Log in via Email")
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
         
@@ -67,6 +67,10 @@ class KLMLoginViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any) {
+        
+//        let vc = KLMLoginPhoneViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+//        return
         
         guard let mailText = KLMTool.isEmptyString(string: mailTextField.text) else {
             SVProgressHUD.showInfo(withStatus: mailTextField.placeholder)

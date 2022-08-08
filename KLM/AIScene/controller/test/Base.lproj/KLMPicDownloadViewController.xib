@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="SSIDField" destination="dBy-ei-oof" id="mZl-us-4IK"/>
                 <outlet property="downLoadBtn" destination="22S-sV-ock" id="kRc-ex-OVZ"/>
+                <outlet property="imageView" destination="RHk-jG-rm3" id="4uf-JP-AZb"/>
                 <outlet property="passField" destination="vhH-cd-DVL" id="s95-89-jPt"/>
                 <outlet property="playView" destination="Op3-JG-0EW" id="GcH-8d-Lw6"/>
                 <outlet property="selectwifiBtn" destination="kHl-v3-Ch9" id="KZ1-ef-hky"/>
@@ -97,7 +98,18 @@
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-JG-0EW">
                     <rect key="frame" x="20" y="271" width="374" height="506"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RHk-jG-rm3">
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="506"/>
+                        </imageView>
+                    </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="RHk-jG-rm3" secondAttribute="trailing" id="97w-A1-nhJ"/>
+                        <constraint firstItem="RHk-jG-rm3" firstAttribute="leading" secondItem="Op3-JG-0EW" secondAttribute="leading" id="HpL-3g-Sqb"/>
+                        <constraint firstAttribute="bottom" secondItem="RHk-jG-rm3" secondAttribute="bottom" id="P9a-bR-fgJ"/>
+                        <constraint firstItem="RHk-jG-rm3" firstAttribute="top" secondItem="Op3-JG-0EW" secondAttribute="top" id="pJ9-Xw-XbI"/>
+                    </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="pG6-x9-wWU"/>

@@ -183,7 +183,6 @@ extension KLMPassengerFlowViewController: KLMSmartNodeDelegate {
                 
                 /// forceRefresh 不需要缓存
                 imageView.kf.indicatorType = .activity
-                
                 imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
 
                     switch result {
