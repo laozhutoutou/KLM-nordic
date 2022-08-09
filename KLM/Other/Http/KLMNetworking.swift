@@ -191,8 +191,10 @@ class KLMService: NSObject {
     
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let parame = ["email": email]
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("open/email/code"), params: parame) { responseObject, error in
+        let scope = Bundle.isChineseLanguage() ? 1 : 2
+        let parame = ["email": email,
+                      "scope": scope] as [String : Any]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("open/email/codeByScope"), params: parame) { responseObject, error in
             
             if error == nil {
                 success(responseObject as AnyObject)

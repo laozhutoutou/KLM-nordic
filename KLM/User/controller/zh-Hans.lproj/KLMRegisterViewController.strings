@@ -1,18 +1,42 @@
 
-/* Class = "UITextField"; placeholder = "请输入验证码"; ObjectID = "BAv-wk-DtO"; */
-"BAv-wk-DtO.placeholder" = "请输入验证码";
+/* Class = "UITextField"; placeholder = "Enter code"; ObjectID = "1Lg-Jt-Xh3"; */
+"1Lg-Jt-Xh3.placeholder" = "输入验证码";
 
-/* Class = "UITextField"; placeholder = "请输入邮箱"; ObjectID = "CGe-Xx-sCh"; */
-"CGe-Xx-sCh.placeholder" = "请输入邮箱";
+/* Class = "UITextField"; placeholder = "Enter password again"; ObjectID = "25L-Hu-yox"; */
+"25L-Hu-yox.placeholder" = "再次输入密码";
 
-/* Class = "UIButton"; normalTitle = "获取验证码"; ObjectID = "YeN-S3-ElN"; */
-"YeN-S3-ElN.normalTitle" = "获取验证码";
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "3V1-mB-CXQ"; */
+"3V1-mB-CXQ.placeholder" = "邮箱";
 
-/* Class = "UITextField"; placeholder = "请输入密码"; ObjectID = "cMp-WP-un3"; */
-"cMp-WP-un3.placeholder" = "请输入密码";
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "62M-hV-2d7"; */
+"62M-hV-2d7.normalTitle" = "Button";
 
-/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "ygx-gk-u6c"; */
-"ygx-gk-u6c.normalTitle" = "注册";
+/* Class = "UILabel"; text = "Password"; ObjectID = "OEA-B8-o7d"; */
+"OEA-B8-o7d.text" = "密码";
 
-//fEK-dZ-vLy
-"fEK-dZ-vLy.placeholder" = "请再次输入密码";
+/* Class = "UITextField"; placeholder = "Enter password"; ObjectID = "PF4-tW-t2w"; */
+"PF4-tW-t2w.placeholder" = "输入密码";
+
+/* Class = "UILabel"; text = "Nickname"; ObjectID = "VNc-Xo-3rq"; */
+"VNc-Xo-3rq.text" = "昵称";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YDK-1V-f9U"; */
+"YDK-1V-f9U.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "eKi-Li-jsa"; */
+"eKi-Li-jsa.text" = "邮箱";
+
+/* Class = "UIButton"; normalTitle = "Send"; ObjectID = "kgf-KE-sYX"; */
+"kgf-KE-sYX.normalTitle" = "发送";
+
+/* Class = "UILabel"; text = "Code"; ObjectID = "l39-nr-N7P"; */
+"l39-nr-N7P.text" = "验证码";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "mbh-gK-lXk"; */
+"mbh-gK-lXk.text" = "密码";
+
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "oAE-Q0-4ai"; */
+"oAE-Q0-4ai.normalTitle" = "注册";
+
+/* Class = "UITextField"; placeholder = "Enter nickName"; ObjectID = "zhz-Yw-45O"; */
+"zhz-Yw-45O.placeholder" = "输入昵称";

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SVProgressHUD
 import RxSwift
 import RxCocoa
 

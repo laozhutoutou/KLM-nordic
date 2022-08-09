@@ -754,6 +754,7 @@
 		D169C4C10F75E649FC07A2CD /* Pods_KLM_GN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D63C4375E30CF303A5FEB69A /* Pods-KLM_GW.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_GW.debug.xcconfig"; path = "Target Support Files/Pods-KLM_GW/Pods-KLM_GW.debug.xcconfig"; sourceTree = "<group>"; };
 		E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E40123FA28A20AF6007436DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMRegisterViewController.strings"; sourceTree = "<group>"; };
 		E414585227BCE41B00C181E3 /* KLMSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSettingsViewController.swift; sourceTree = "<group>"; };
 		E414585327BCE41B00C181E3 /* KLMSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMSettingsViewController.xib; sourceTree = "<group>"; };
 		E414585627BCE6EE00C181E3 /* KLMChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -795,8 +796,6 @@
 		E46B544D27698BD800F3D5E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMLoginViewController.strings; sourceTree = "<group>"; };
 		E46B544F27698BD800F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMLoginViewController.strings"; sourceTree = "<group>"; };
 		E46B54512769906200F3D5E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMRegisterViewController.xib; sourceTree = "<group>"; };
-		E46B54542769906400F3D5E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMRegisterViewController.strings; sourceTree = "<group>"; };
-		E46B54562769906700F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMRegisterViewController.strings"; sourceTree = "<group>"; };
 		E46B5458276997F600F3D5E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMHomeAddViewController.xib; sourceTree = "<group>"; };
 		E46B545B276997F800F3D5E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMHomeAddViewController.strings; sourceTree = "<group>"; };
 		E46B545D276997F900F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMHomeAddViewController.strings"; sourceTree = "<group>"; };
@@ -2917,8 +2916,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E46B54512769906200F3D5E5 /* Base */,
-				E46B54542769906400F3D5E5 /* en */,
-				E46B54562769906700F3D5E5 /* zh-Hans */,
+				E40123FA28A20AF6007436DB /* zh-Hans */,
 			);
 			name = KLMRegisterViewController.xib;
 			sourceTree = "<group>";

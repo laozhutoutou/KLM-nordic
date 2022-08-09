@@ -140,7 +140,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     }
     
     func showUpdateView() {
-        
+        return
         guard let bleData = self.BLEVersionData,
               let bleV = BLEVersion else {
             

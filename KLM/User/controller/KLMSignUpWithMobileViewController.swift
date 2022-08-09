@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class KLMSignUpWithMobileViewController: UIViewController {
     
@@ -31,13 +33,28 @@ class KLMSignUpWithMobileViewController: UIViewController {
     var messageTimer: Timer?
     ///当前秒
     var currentTime: Int = 60
-    
     var codeTitle: String?
+    
+    ///数据
+    var regionName: String? {
+        didSet {
+            regionLab.text = regionName
+        }
+    }
+    var regionCode: String? {
+        didSet{
+            countryCodeLab.text = "+\(regionCode ?? "")"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationItem.title = LANGLOC("Sign Up with Mobile")
+        
+        setupUI()
+        
+        events()
     }
 
     private func setupUI() {
@@ -49,6 +66,22 @@ class KLMSignUpWithMobileViewController: UIViewController {
         signupBtn.clipsToBounds = true
         
         codeTitle = verCodeBtn.currentTitle
+        
+        ///监控输入
+        Observable.combineLatest(phoneField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty,  nickNameField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, nickNameText, passAgainText  in
+            
+            if mailText.isEmpty ||  passwordText.isEmpty || codeText.isEmpty || nickNameText.isEmpty || passAgainText.isEmpty {
+                return false
+            } else {
+                return true
+            }
+        }.bind(to: signupBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
+    }
+    
+    private func events() {
+        
+        
     }
     
     ///获取验证码
@@ -57,7 +90,13 @@ class KLMSignUpWithMobileViewController: UIViewController {
         
     }
     
+    //注册
     @IBAction func register(_ sender: Any) {
+        
+        guard let regionName = regionName else {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please choose a region"))
+            return
+        }
         
         
     }
@@ -68,11 +107,17 @@ class KLMSignUpWithMobileViewController: UIViewController {
         let vc = KLMCountryCodeViewController()
         vc.backCountryCode = { [weak self] country, code in
             guard let self = self else { return }
-            
+            self.regionName = country
+            self.regionCode = code
         }
         let nav = KLMNavigationViewController.init(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
+    }
+    
+    @IBAction func signUpWithEmail(_ sender: Any) {
+        
+        
     }
     
     private func startTimer() {

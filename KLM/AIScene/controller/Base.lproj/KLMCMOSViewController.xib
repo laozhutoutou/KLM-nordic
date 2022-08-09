@@ -193,6 +193,16 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zr1-UN-vib">
+                    <rect key="frame" x="40" y="432.5" width="334" height="46"/>
+                    <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="46" id="HDU-Ik-iqd"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Confirm"/>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -201,8 +211,10 @@
                 <constraint firstItem="U5b-Fb-eKu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5CN-DM-MNZ"/>
                 <constraint firstItem="7XD-pi-FTk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="661-n5-E4x"/>
                 <constraint firstItem="VAd-cl-voG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8Dy-Ih-4hp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Zr1-UN-vib" secondAttribute="trailing" constant="40" id="96V-f0-ED2"/>
                 <constraint firstItem="bIb-T5-TuZ" firstAttribute="top" secondItem="uuE-bw-un7" secondAttribute="bottom" constant="20" id="D8o-Jb-Hj5"/>
                 <constraint firstItem="U5b-Fb-eKu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="HaB-yI-X5e"/>
+                <constraint firstItem="Zr1-UN-vib" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="NVg-ey-S9a"/>
                 <constraint firstItem="crX-Zb-Qv7" firstAttribute="leading" secondItem="U5b-Fb-eKu" secondAttribute="trailing" id="VIo-oi-Ngr"/>
                 <constraint firstItem="uuE-bw-un7" firstAttribute="top" secondItem="U5b-Fb-eKu" secondAttribute="bottom" id="Vhk-ez-ecx"/>
                 <constraint firstItem="crX-Zb-Qv7" firstAttribute="width" secondItem="U5b-Fb-eKu" secondAttribute="width" id="cMU-5X-hYO"/>
@@ -216,9 +228,10 @@
                 <constraint firstItem="uuE-bw-un7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="taM-ve-jk7"/>
                 <constraint firstItem="VAd-cl-voG" firstAttribute="height" secondItem="uuE-bw-un7" secondAttribute="height" id="vav-xH-g9D"/>
                 <constraint firstItem="uuE-bw-un7" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ym5-iX-DZf"/>
+                <constraint firstItem="Zr1-UN-vib" firstAttribute="top" secondItem="7XD-pi-FTk" secondAttribute="bottom" constant="50" id="zpo-dP-fBd"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-2639.130434782609" y="-301.33928571428572"/>
+            <point key="canvasLocation" x="-3891" y="-244"/>
         </view>
         <tapGestureRecognizer id="5ZJ-h5-Ifd">
             <connections>
