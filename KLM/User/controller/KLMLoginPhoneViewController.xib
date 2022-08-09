@@ -155,12 +155,12 @@
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dxd-jj-fzL">
-                            <rect key="frame" x="337" y="0.0" width="32" height="45"/>
+                            <rect key="frame" x="327" y="0.0" width="32" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="VL0-Mf-NZB"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                            <state key="normal" image="icon_login_eyeClose"/>
                             <connections>
                                 <action selector="eyeBtn:" destination="-1" eventType="touchUpInside" id="DM3-Qw-T1B"/>
                             </connections>
@@ -181,7 +181,7 @@
                         <constraint firstItem="20P-cF-iq3" firstAttribute="centerY" secondItem="GhR-Ln-D0d" secondAttribute="centerY" id="6n3-Ri-tbs"/>
                         <constraint firstAttribute="bottom" secondItem="Dxd-jj-fzL" secondAttribute="bottom" id="IMO-aP-z3v"/>
                         <constraint firstItem="Dxd-jj-fzL" firstAttribute="top" secondItem="GhR-Ln-D0d" secondAttribute="top" id="X0r-SS-B2i"/>
-                        <constraint firstAttribute="trailing" secondItem="Dxd-jj-fzL" secondAttribute="trailing" constant="15" id="Y8g-uW-5av"/>
+                        <constraint firstAttribute="trailing" secondItem="Dxd-jj-fzL" secondAttribute="trailing" constant="25" id="Y8g-uW-5av"/>
                         <constraint firstItem="jOf-du-EUf" firstAttribute="centerY" secondItem="GhR-Ln-D0d" secondAttribute="centerY" id="Z0K-Cd-2mb"/>
                         <constraint firstItem="jOf-du-EUf" firstAttribute="leading" secondItem="GhR-Ln-D0d" secondAttribute="leading" constant="105" id="cK2-4P-auh"/>
                         <constraint firstAttribute="bottom" secondItem="GWc-tF-KBz" secondAttribute="bottom" id="dF1-aq-QAt"/>
@@ -237,7 +237,7 @@
                 <constraint firstItem="Hcg-8H-z1n" firstAttribute="leading" secondItem="DhO-Nm-CIC" secondAttribute="leading" constant="15" id="z6e-Lo-9io"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-3804" y="-446"/>
+            <point key="canvasLocation" x="-4432" y="-429"/>
         </view>
         <tapGestureRecognizer id="0d6-5I-m5Y">
             <connections>

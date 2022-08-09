@@ -9,7 +9,7 @@
 "3V1-mB-CXQ.placeholder" = "邮箱";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "62M-hV-2d7"; */
-"62M-hV-2d7.normalTitle" = "Button";
+"62M-hV-2d7.normalTitle" = "";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "OEA-B8-o7d"; */
 "OEA-B8-o7d.text" = "密码";
@@ -21,7 +21,7 @@
 "VNc-Xo-3rq.text" = "昵称";
 
 /* Class = "UIButton"; normalTitle = "Button"; ObjectID = "YDK-1V-f9U"; */
-"YDK-1V-f9U.normalTitle" = "Button";
+"YDK-1V-f9U.normalTitle" = "";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "eKi-Li-jsa"; */
 "eKi-Li-jsa.text" = "邮箱";

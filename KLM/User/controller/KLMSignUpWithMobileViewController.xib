@@ -141,12 +141,12 @@
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Yu-LF-Z0O">
-                            <rect key="frame" x="337" y="0.0" width="32" height="45"/>
+                            <rect key="frame" x="327" y="0.0" width="32" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="I0K-Cg-Vwt"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                            <state key="normal" image="icon_login_eyeClose"/>
                             <connections>
                                 <action selector="eyeBtn:" destination="-1" eventType="touchUpInside" id="crj-4k-qmF"/>
                             </connections>
@@ -166,7 +166,7 @@
                         <constraint firstItem="fiy-Rb-X4s" firstAttribute="leading" secondItem="Ars-ZX-gN9" secondAttribute="leading" id="Ncg-Zu-nOt"/>
                         <constraint firstAttribute="trailing" secondItem="1NH-tQ-S92" secondAttribute="trailing" id="Xk7-tN-iUZ"/>
                         <constraint firstAttribute="trailing" secondItem="hkN-Wk-N9a" secondAttribute="trailing" id="aiO-m5-Vtp"/>
-                        <constraint firstAttribute="trailing" secondItem="5Yu-LF-Z0O" secondAttribute="trailing" constant="15" id="dFr-Lv-Uua"/>
+                        <constraint firstAttribute="trailing" secondItem="5Yu-LF-Z0O" secondAttribute="trailing" constant="25" id="dFr-Lv-Uua"/>
                         <constraint firstItem="hkN-Wk-N9a" firstAttribute="centerY" secondItem="Ars-ZX-gN9" secondAttribute="centerY" id="fwE-Oo-PV9"/>
                         <constraint firstItem="5Yu-LF-Z0O" firstAttribute="top" secondItem="Ars-ZX-gN9" secondAttribute="top" id="gsh-34-eev"/>
                         <constraint firstAttribute="bottom" secondItem="5Yu-LF-Z0O" secondAttribute="bottom" id="h0K-fk-l2k"/>
@@ -206,12 +206,12 @@
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2EX-nD-KSg">
-                            <rect key="frame" x="337" y="0.0" width="32" height="45"/>
+                            <rect key="frame" x="327" y="0.0" width="32" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="Xbg-hl-wXZ"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                            <state key="normal" image="icon_login_eyeClose"/>
                             <connections>
                                 <action selector="againEye:" destination="-1" eventType="touchUpInside" id="V2M-7C-rbi"/>
                             </connections>
@@ -235,7 +235,7 @@
                         <constraint firstItem="qHE-R9-tQo" firstAttribute="centerY" secondItem="Zyx-t1-2a7" secondAttribute="centerY" id="Lh5-kU-IaQ"/>
                         <constraint firstItem="xyD-BE-45n" firstAttribute="leading" secondItem="Zyx-t1-2a7" secondAttribute="leading" id="fkO-fL-bKt"/>
                         <constraint firstItem="qHE-R9-tQo" firstAttribute="leading" secondItem="Zyx-t1-2a7" secondAttribute="leading" constant="105" id="lcX-l0-BTa"/>
-                        <constraint firstAttribute="trailing" secondItem="2EX-nD-KSg" secondAttribute="trailing" constant="15" id="qMd-EJ-VdR"/>
+                        <constraint firstAttribute="trailing" secondItem="2EX-nD-KSg" secondAttribute="trailing" constant="25" id="qMd-EJ-VdR"/>
                         <constraint firstItem="xyD-BE-45n" firstAttribute="centerY" secondItem="Zyx-t1-2a7" secondAttribute="centerY" id="uOF-Dy-R4D"/>
                     </constraints>
                 </view>

@@ -1,15 +1,21 @@
 
-/* Class = "UIButton"; normalTitle = "忘记密码"; ObjectID = "83u-FT-LVG"; */
+/* Class = "UITextField"; placeholder = "Enter password"; ObjectID = "2XX-y5-dm8"; */
+"2XX-y5-dm8.placeholder" = "输入密码";
+
+/* Class = "UIButton"; normalTitle = "Forgot Password"; ObjectID = "83u-FT-LVG"; */
 "83u-FT-LVG.normalTitle" = "忘记密码";
 
-/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "CTQ-NG-57s"; */
+/* Class = "UIButton"; normalTitle = "Log In"; ObjectID = "CTQ-NG-57s"; */
 "CTQ-NG-57s.normalTitle" = "登录";
 
-/* Class = "UITextField"; placeholder = "请输入邮箱"; ObjectID = "R4M-M3-I25"; */
-"R4M-M3-I25.placeholder" = "请输入邮箱";
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "LpF-dv-nJ6"; */
+"LpF-dv-nJ6.placeholder" = "邮箱";
 
-/* Class = "UIButton"; normalTitle = "去注册"; ObjectID = "dbi-hy-HMp"; */
-"dbi-hy-HMp.normalTitle" = "去注册";
+/* Class = "UILabel"; text = "Password"; ObjectID = "Pbs-tH-svJ"; */
+"Pbs-tH-svJ.text" = "密码";
 
-/* Class = "UITextField"; placeholder = "请输入密码"; ObjectID = "tGC-bl-r5s"; */
-"tGC-bl-r5s.placeholder" = "请输入密码";
+/* Class = "UIButton"; normalTitle = "Sign Up"; ObjectID = "dbi-hy-HMp"; */
+"dbi-hy-HMp.normalTitle" = "注册";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "wzd-ft-pTV"; */
+"wzd-ft-pTV.text" = "邮箱";

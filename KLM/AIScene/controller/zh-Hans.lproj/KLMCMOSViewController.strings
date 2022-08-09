@@ -1,12 +1,18 @@
 
-"v4V-gd-BZN.text" = "打开/关闭按变化检测";
+/* Class = "UILabel"; text = "Time interval(s)"; ObjectID = "C85-I7-zOh"; */
+"C85-I7-zOh.text" = "时间间隔(秒)";
 
-"bIb-T5-TuZ.text" = "使用场合";
+/* Class = "UIButton"; normalTitle = "In minutes"; ObjectID = "V3T-nk-A7X"; */
+"V3T-nk-A7X.normalTitle" = "按分钟";
 
-"yGf-Oc-87c.normalTitle" = "秒";
+/* Class = "UIButton"; normalTitle = "Confirm"; ObjectID = "aOr-cp-jNi"; */
+"aOr-cp-jNi.normalTitle" = "确定";
 
-"3ad-66-XpU.normalTitle" = "分钟";
+/* Class = "UILabel"; text = "Time interval(m)"; ObjectID = "lxW-8L-wZk"; */
+"lxW-8L-wZk.text" = "时间间隔(分钟)";
 
-"U5b-Fb-eKu.normalTitle" = "按时间";
+/* Class = "UIButton"; normalTitle = "In seconds"; ObjectID = "mv3-dc-pPe"; */
+"mv3-dc-pPe.normalTitle" = "按秒";
 
-"crX-Zb-Qv7.normalTitle" = "按变化";
+/* Class = "UILabel"; text = "Use occasion"; ObjectID = "qgE-JD-prH"; */
+"qgE-JD-prH.text" = "使用场合";

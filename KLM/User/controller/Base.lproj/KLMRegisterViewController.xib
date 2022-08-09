@@ -86,12 +86,12 @@
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDK-1V-f9U">
-                            <rect key="frame" x="337" y="0.0" width="32" height="45"/>
+                            <rect key="frame" x="327" y="0.0" width="32" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="N2h-wM-vbt"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                            <state key="normal" image="icon_login_eyeClose"/>
                             <connections>
                                 <action selector="eyeBtn:" destination="-1" eventType="touchUpInside" id="ByO-LH-KNj"/>
                             </connections>
@@ -114,7 +114,7 @@
                         <constraint firstItem="mbh-gK-lXk" firstAttribute="centerY" secondItem="dFy-9L-Pth" secondAttribute="centerY" id="Ule-aa-gD0"/>
                         <constraint firstItem="mbh-gK-lXk" firstAttribute="leading" secondItem="dFy-9L-Pth" secondAttribute="leading" id="kdM-DI-R3b"/>
                         <constraint firstAttribute="trailing" secondItem="PF4-tW-t2w" secondAttribute="trailing" id="mKt-EN-r1N"/>
-                        <constraint firstAttribute="trailing" secondItem="YDK-1V-f9U" secondAttribute="trailing" constant="15" id="pme-DW-DlZ"/>
+                        <constraint firstAttribute="trailing" secondItem="YDK-1V-f9U" secondAttribute="trailing" constant="25" id="pme-DW-DlZ"/>
                         <constraint firstAttribute="bottom" secondItem="eUQ-sG-vQZ" secondAttribute="bottom" id="qeX-s3-gIM"/>
                         <constraint firstItem="PF4-tW-t2w" firstAttribute="centerY" secondItem="dFy-9L-Pth" secondAttribute="centerY" id="xKp-K2-qlQ"/>
                     </constraints>
@@ -151,12 +151,12 @@
                             <textInputTraits key="textInputTraits" keyboardType="alphabet" secureTextEntry="YES"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62M-hV-2d7">
-                            <rect key="frame" x="337" y="0.0" width="32" height="45"/>
+                            <rect key="frame" x="327" y="0.0" width="32" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="32" id="XCH-Wc-uWv"/>
                             </constraints>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="Button" image="icon_login_eyeClose"/>
+                            <state key="normal" image="icon_login_eyeClose"/>
                             <connections>
                                 <action selector="againEye:" destination="-1" eventType="touchUpInside" id="cAq-kh-8ct"/>
                             </connections>
@@ -175,7 +175,7 @@
                         <constraint firstItem="25L-Hu-yox" firstAttribute="centerY" secondItem="KWJ-D9-G1L" secondAttribute="centerY" id="7Md-vW-Anc"/>
                         <constraint firstAttribute="trailing" secondItem="nCi-Sw-CEB" secondAttribute="trailing" id="8qF-Lc-bR7"/>
                         <constraint firstItem="62M-hV-2d7" firstAttribute="top" secondItem="KWJ-D9-G1L" secondAttribute="top" id="FO1-LC-Tw6"/>
-                        <constraint firstAttribute="trailing" secondItem="62M-hV-2d7" secondAttribute="trailing" constant="15" id="K4j-EW-5Xl"/>
+                        <constraint firstAttribute="trailing" secondItem="62M-hV-2d7" secondAttribute="trailing" constant="25" id="K4j-EW-5Xl"/>
                         <constraint firstItem="OEA-B8-o7d" firstAttribute="centerY" secondItem="KWJ-D9-G1L" secondAttribute="centerY" id="Xps-jT-lbr"/>
                         <constraint firstAttribute="bottom" secondItem="nCi-Sw-CEB" secondAttribute="bottom" id="c2f-KG-y4J"/>
                         <constraint firstItem="nCi-Sw-CEB" firstAttribute="leading" secondItem="KWJ-D9-G1L" secondAttribute="leading" id="jHO-L8-5bA"/>
