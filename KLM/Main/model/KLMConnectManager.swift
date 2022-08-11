@@ -11,7 +11,11 @@ import CoreBluetooth
 
 class KLMConnectManager {
     
-    let timer: KLMTimer = KLMTimer()
+    private lazy var timer: KLMTimer = {
+        let timer = KLMTimer()
+        timer.delegate = self
+        return timer
+    }()
     
     //蓝牙连接状态
     var state: CBManagerState?
@@ -29,21 +33,22 @@ class KLMConnectManager {
 //            return
 //        }
         
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+        self.success = success
+        self.failure = failure
+        
         //检查是否composition
         if !node.isCompositionDataReceived {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")
             SVProgressHUD.setDefaultMaskType(.black)
-
+            
+            timer.startTimer(timeOut: 10)
             KLMSIGMeshManager.sharedInstacnce.delegate = self
             KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: node)
             return
         }
-        
-        KLMSmartNode.sharedInstacnce.delegate = self
-        
-        self.success = success
-        self.failure = failure
         
         let parame = parameModel(dp: .power)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: node)
@@ -129,22 +134,38 @@ extension KLMConnectManager: KLMSIGMeshManagerDelegate {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
         
+        timer.stopTimer()
+        
         ///提交数据到服务器
         if KLMMesh.save() {
             
         }
         
-        SVProgressHUD.showSuccess(withStatus: "Please tap again")
+        self.success?()
+        self.success = nil
         
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
         
+        timer.stopTimer()
         KLMShowError(error)
+        self.failure?()
+        self.failure = nil
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
         
 
+    }
+}
+
+extension KLMConnectManager: KLMTimerDelegate {
+    
+    func timeDidTimeout(_ timer: KLMTimer) {
+        //提示错误
+        SVProgressHUD.showInfo(withStatus: "Composition timed out")
+        self.failure?()
+        self.failure = nil
     }
 }

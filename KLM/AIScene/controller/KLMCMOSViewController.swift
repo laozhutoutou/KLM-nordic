@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class KLMCMOSViewController: UIViewController, Editable {
     
@@ -45,6 +47,8 @@ class KLMCMOSViewController: UIViewController, Editable {
             secondBtn.isSelected = Float(currentTime) > secondSlider.maxValue ? false : true
             mimuteView.isHidden = Float(currentTime) > secondSlider.maxValue ? false : true
             secondView.isHidden = Float(currentTime) > secondSlider.maxValue ? true : false
+            mimuteBtn.titleLabel?.font = Float(currentTime) > secondSlider.maxValue ? UIFont.boldSystemFont(ofSize: 18) : UIFont.systemFont(ofSize: 15)
+            secondBtn.titleLabel?.font = Float(currentTime) > secondSlider.maxValue ? UIFont.systemFont(ofSize: 15) : UIFont.boldSystemFont(ofSize: 18)
             if Float(currentTime) > secondSlider.maxValue  { //分钟
                 mimuteSlider.currentValue = Float(currentTime) / 60
             } else if currentTime != 0 {
@@ -97,10 +101,10 @@ class KLMCMOSViewController: UIViewController, Editable {
         minuteTimeBgView.addSubview(mimuteSlider)
         
         //切换按钮
-        secondBtn.setTitleColor(.white, for: .selected)
-        mimuteBtn.setTitleColor(.white, for: .selected)
-        secondBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
-        mimuteBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+//        secondBtn.setTitleColor(.white, for: .selected)
+//        mimuteBtn.setTitleColor(.white, for: .selected)
+//        secondBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+//        mimuteBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
         
         //分类
         let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
@@ -155,31 +159,21 @@ class KLMCMOSViewController: UIViewController, Editable {
     //秒
     @IBAction func secondClick(_ sender: UIButton) {
         
-        secondBtn.isSelected = true
-        secondView.isHidden = false
-        
-        mimuteBtn.isSelected = false
-        mimuteView.isHidden = true
+        currentTime = UInt16(secondSlider.currentValue)
     }
     
     //分
     @IBAction func minuteClick(_ sender: UIButton) {
         
-        secondBtn.isSelected = false
-        secondView.isHidden = true
+        currentTime = UInt16(mimuteSlider.currentValue) * 60
         
-        mimuteBtn.isSelected = true
-        mimuteView.isHidden = false
     }
     
     @IBAction func confirmClick(_ sender: Any) {
         
         isTimeControl = true
         SVProgressHUD.show()
-        var vv: Int = Int(secondSlider.currentValue)
-        if mimuteBtn.isSelected {
-            vv = Int(mimuteSlider.currentValue) * 60
-        }
+        let vv: Int = Int(currentTime)
         let parame = parameModel(dp: .colorTest, value: vv.decimalTo4Hexadecimal())
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
@@ -240,15 +234,12 @@ extension KLMCMOSViewController: KLMSliderDelegate {
     
     func KLMSliderWith(slider: KLMSlider, value: Float) {
         
-//        isTimeControl = true
-//        var vv = Int(value)
-//        if slider == mimuteSlider {
-//
-//            vv = vv * 60
-//        }
-//        let parame = parameModel(dp: .colorTest, value: vv.decimalTo4Hexadecimal())
-//        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-//        currentTime = UInt16(vv)
+        var vv = Int(value)
+        if slider == mimuteSlider {
+
+            vv = vv * 60
+        }
+        currentTime = UInt16(vv)
     }
 }
 

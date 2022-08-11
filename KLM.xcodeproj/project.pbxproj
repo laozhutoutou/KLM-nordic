@@ -243,6 +243,12 @@
 		E4C435C6289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
 		E4C435C7289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
 		E4C435C8289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
+		E4C43E4328A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C43E4128A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift */; };
+		E4C43E4428A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C43E4128A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift */; };
+		E4C43E4528A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C43E4128A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift */; };
+		E4C43E4628A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C43E4228A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib */; };
+		E4C43E4728A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C43E4228A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib */; };
+		E4C43E4828A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C43E4228A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib */; };
 		E4C4A0A1286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
 		E4C4A0A2286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
 		E4C4A0A3286E9E1C00450A52 /* KLMAdminTransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */; };
@@ -659,6 +665,54 @@
 		E4C80D4327F7EC2400DA5155 /* KLMChartsTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */; };
 		E4CBED742750D81000A21936 /* KLMUserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */; };
 		E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */; };
+		E4CD304E28A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD304C28A4AD3B000C4CA3 /* KLMAudioViewController.swift */; };
+		E4CD304F28A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD304C28A4AD3B000C4CA3 /* KLMAudioViewController.swift */; };
+		E4CD305028A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD304C28A4AD3B000C4CA3 /* KLMAudioViewController.swift */; };
+		E4CD305128A4AD3B000C4CA3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CD304D28A4AD3B000C4CA3 /* KLMAudioViewController.xib */; };
+		E4CD305228A4AD3B000C4CA3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CD304D28A4AD3B000C4CA3 /* KLMAudioViewController.xib */; };
+		E4CD305328A4AD3B000C4CA3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4CD304D28A4AD3B000C4CA3 /* KLMAudioViewController.xib */; };
+		E4CD306428A4D4B7000C4CA3 /* 10.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305628A4D4B7000C4CA3 /* 10.wav */; };
+		E4CD306528A4D4B7000C4CA3 /* 10.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305628A4D4B7000C4CA3 /* 10.wav */; };
+		E4CD306628A4D4B7000C4CA3 /* 10.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305628A4D4B7000C4CA3 /* 10.wav */; };
+		E4CD306728A4D4B7000C4CA3 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305728A4D4B7000C4CA3 /* 11.wav */; };
+		E4CD306828A4D4B7000C4CA3 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305728A4D4B7000C4CA3 /* 11.wav */; };
+		E4CD306928A4D4B7000C4CA3 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305728A4D4B7000C4CA3 /* 11.wav */; };
+		E4CD306A28A4D4B7000C4CA3 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305828A4D4B7000C4CA3 /* 13.wav */; };
+		E4CD306B28A4D4B7000C4CA3 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305828A4D4B7000C4CA3 /* 13.wav */; };
+		E4CD306C28A4D4B7000C4CA3 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305828A4D4B7000C4CA3 /* 13.wav */; };
+		E4CD306D28A4D4B7000C4CA3 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305928A4D4B7000C4CA3 /* 12.wav */; };
+		E4CD306E28A4D4B7000C4CA3 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305928A4D4B7000C4CA3 /* 12.wav */; };
+		E4CD306F28A4D4B7000C4CA3 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305928A4D4B7000C4CA3 /* 12.wav */; };
+		E4CD307028A4D4B7000C4CA3 /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305A28A4D4B7000C4CA3 /* 9.wav */; };
+		E4CD307128A4D4B7000C4CA3 /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305A28A4D4B7000C4CA3 /* 9.wav */; };
+		E4CD307228A4D4B7000C4CA3 /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305A28A4D4B7000C4CA3 /* 9.wav */; };
+		E4CD307328A4D4B7000C4CA3 /* 8.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305B28A4D4B7000C4CA3 /* 8.wav */; };
+		E4CD307428A4D4B7000C4CA3 /* 8.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305B28A4D4B7000C4CA3 /* 8.wav */; };
+		E4CD307528A4D4B7000C4CA3 /* 8.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305B28A4D4B7000C4CA3 /* 8.wav */; };
+		E4CD307628A4D4B7000C4CA3 /* 6.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305C28A4D4B7000C4CA3 /* 6.wav */; };
+		E4CD307728A4D4B7000C4CA3 /* 6.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305C28A4D4B7000C4CA3 /* 6.wav */; };
+		E4CD307828A4D4B7000C4CA3 /* 6.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305C28A4D4B7000C4CA3 /* 6.wav */; };
+		E4CD307928A4D4B7000C4CA3 /* 7.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305D28A4D4B7000C4CA3 /* 7.wav */; };
+		E4CD307A28A4D4B7000C4CA3 /* 7.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305D28A4D4B7000C4CA3 /* 7.wav */; };
+		E4CD307B28A4D4B7000C4CA3 /* 7.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305D28A4D4B7000C4CA3 /* 7.wav */; };
+		E4CD307C28A4D4B7000C4CA3 /* 5.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305E28A4D4B7000C4CA3 /* 5.wav */; };
+		E4CD307D28A4D4B7000C4CA3 /* 5.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305E28A4D4B7000C4CA3 /* 5.wav */; };
+		E4CD307E28A4D4B7000C4CA3 /* 5.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305E28A4D4B7000C4CA3 /* 5.wav */; };
+		E4CD307F28A4D4B7000C4CA3 /* 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305F28A4D4B7000C4CA3 /* 4.wav */; };
+		E4CD308028A4D4B7000C4CA3 /* 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305F28A4D4B7000C4CA3 /* 4.wav */; };
+		E4CD308128A4D4B7000C4CA3 /* 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD305F28A4D4B7000C4CA3 /* 4.wav */; };
+		E4CD308228A4D4B7000C4CA3 /* 0.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306028A4D4B7000C4CA3 /* 0.wav */; };
+		E4CD308328A4D4B7000C4CA3 /* 0.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306028A4D4B7000C4CA3 /* 0.wav */; };
+		E4CD308428A4D4B7000C4CA3 /* 0.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306028A4D4B7000C4CA3 /* 0.wav */; };
+		E4CD308528A4D4B7000C4CA3 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306128A4D4B7000C4CA3 /* 1.wav */; };
+		E4CD308628A4D4B7000C4CA3 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306128A4D4B7000C4CA3 /* 1.wav */; };
+		E4CD308728A4D4B7000C4CA3 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306128A4D4B7000C4CA3 /* 1.wav */; };
+		E4CD308828A4D4B7000C4CA3 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306228A4D4B7000C4CA3 /* 3.wav */; };
+		E4CD308928A4D4B7000C4CA3 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306228A4D4B7000C4CA3 /* 3.wav */; };
+		E4CD308A28A4D4B7000C4CA3 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306228A4D4B7000C4CA3 /* 3.wav */; };
+		E4CD308B28A4D4B7000C4CA3 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306328A4D4B7000C4CA3 /* 2.wav */; };
+		E4CD308C28A4D4B7000C4CA3 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306328A4D4B7000C4CA3 /* 2.wav */; };
+		E4CD308D28A4D4B7000C4CA3 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CD306328A4D4B7000C4CA3 /* 2.wav */; };
 		E4CD7490288E67030046489F /* KLMPicDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD748E288E67030046489F /* KLMPicDownloadViewController.swift */; };
 		E4CD7491288E67030046489F /* KLMPicDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD748E288E67030046489F /* KLMPicDownloadViewController.swift */; };
 		E4CD7492288E67030046489F /* KLMPicDownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CD748E288E67030046489F /* KLMPicDownloadViewController.swift */; };
@@ -807,8 +861,6 @@
 		E46B546B2769BA7100F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMJoinHomeViewController.strings"; sourceTree = "<group>"; };
 		E46B546C2769CFEE00F3D5E5 /* KLMForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		E46B54712769D53B00F3D5E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMForgetPasswordViewController.xib; sourceTree = "<group>"; };
-		E46B54742769D53F00F3D5E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMForgetPasswordViewController.strings; sourceTree = "<group>"; };
-		E46B54762769D54100F3D5E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMForgetPasswordViewController.strings"; sourceTree = "<group>"; };
 		E46E00CB28740FF1001D29E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMAdminTransferViewController.xib; sourceTree = "<group>"; };
 		E46E00CE28741005001D29E4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMAdminTransferViewController.strings"; sourceTree = "<group>"; };
 		E4729A7626AE92A400DC7D59 /* KLMTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KLMTestViewController.swift; sourceTree = "<group>"; };
@@ -1023,6 +1075,9 @@
 		E4C3466328338573000852DE /* KLMDeviceAddTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceAddTestCell.swift; sourceTree = "<group>"; };
 		E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddTestCell.xib; sourceTree = "<group>"; };
 		E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBlueToothManager.swift; sourceTree = "<group>"; };
+		E4C43E4028A34D6B005EAE63 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMForgetPasswordViewController.strings"; sourceTree = "<group>"; };
+		E4C43E4128A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhoneForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		E4C43E4228A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMPhoneForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		E4C4A09F286E9E1C00450A52 /* KLMAdminTransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferViewController.swift; sourceTree = "<group>"; };
 		E4C4A0A7286EA1CD00450A52 /* KLMAdminTransferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAdminTransferCell.swift; sourceTree = "<group>"; };
 		E4C4A0A8286EA1CD00450A52 /* KLMAdminTransferCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAdminTransferCell.xib; sourceTree = "<group>"; };
@@ -1044,6 +1099,22 @@
 		E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMChartsTestViewController.xib; sourceTree = "<group>"; };
 		E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUserInfoCell.swift; sourceTree = "<group>"; };
 		E4CBED732750D81000A21936 /* KLMUserInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMUserInfoCell.xib; sourceTree = "<group>"; };
+		E4CD304C28A4AD3B000C4CA3 /* KLMAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAudioViewController.swift; sourceTree = "<group>"; };
+		E4CD304D28A4AD3B000C4CA3 /* KLMAudioViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAudioViewController.xib; sourceTree = "<group>"; };
+		E4CD305628A4D4B7000C4CA3 /* 10.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 10.wav; sourceTree = "<group>"; };
+		E4CD305728A4D4B7000C4CA3 /* 11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 11.wav; sourceTree = "<group>"; };
+		E4CD305828A4D4B7000C4CA3 /* 13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 13.wav; sourceTree = "<group>"; };
+		E4CD305928A4D4B7000C4CA3 /* 12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 12.wav; sourceTree = "<group>"; };
+		E4CD305A28A4D4B7000C4CA3 /* 9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 9.wav; sourceTree = "<group>"; };
+		E4CD305B28A4D4B7000C4CA3 /* 8.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 8.wav; sourceTree = "<group>"; };
+		E4CD305C28A4D4B7000C4CA3 /* 6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6.wav; sourceTree = "<group>"; };
+		E4CD305D28A4D4B7000C4CA3 /* 7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 7.wav; sourceTree = "<group>"; };
+		E4CD305E28A4D4B7000C4CA3 /* 5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5.wav; sourceTree = "<group>"; };
+		E4CD305F28A4D4B7000C4CA3 /* 4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4.wav; sourceTree = "<group>"; };
+		E4CD306028A4D4B7000C4CA3 /* 0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0.wav; sourceTree = "<group>"; };
+		E4CD306128A4D4B7000C4CA3 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
+		E4CD306228A4D4B7000C4CA3 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
+		E4CD306328A4D4B7000C4CA3 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
 		E4CD748E288E67030046489F /* KLMPicDownloadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPicDownloadViewController.swift; sourceTree = "<group>"; };
 		E4CD7496288E81160046489F /* KLMLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMLocationManager.swift; sourceTree = "<group>"; };
 		E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCMOSViewController.swift; sourceTree = "<group>"; };
@@ -1239,6 +1310,8 @@
 				E4C258482859EAD60080192A /* KLMPhotoEditMoreViewController.xib */,
 				E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */,
 				E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */,
+				E4CD304C28A4AD3B000C4CA3 /* KLMAudioViewController.swift */,
+				E4CD304D28A4AD3B000C4CA3 /* KLMAudioViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -1437,6 +1510,7 @@
 		E48B525A26672A0C0006CDA7 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				E4CD305428A4D494000C4CA3 /* File */,
 				E4EB5F17273BB16000C502C1 /* Cache */,
 				E4E2845E26A2E8F0006C120E /* nodicDelegate */,
 				E48E608A2692A02100E630ED /* recipe */,
@@ -1590,6 +1664,8 @@
 				E460BF6A28A0DE8C0045F2B6 /* KLMLoginPhoneViewController.xib */,
 				E46B546C2769CFEE00F3D5E5 /* KLMForgetPasswordViewController.swift */,
 				E46B54722769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib */,
+				E4C43E4128A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift */,
+				E4C43E4228A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib */,
 				E460BF7128A0EDA30045F2B6 /* KLMCountryCodeViewController.swift */,
 				E460BF7228A0EDA30045F2B6 /* KLMCountryCodeViewController.xib */,
 			);
@@ -1758,6 +1834,35 @@
 				E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		E4CD305428A4D494000C4CA3 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				E4CD305528A4D4B7000C4CA3 /* audio */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		E4CD305528A4D4B7000C4CA3 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				E4CD305628A4D4B7000C4CA3 /* 10.wav */,
+				E4CD305728A4D4B7000C4CA3 /* 11.wav */,
+				E4CD305828A4D4B7000C4CA3 /* 13.wav */,
+				E4CD305928A4D4B7000C4CA3 /* 12.wav */,
+				E4CD305A28A4D4B7000C4CA3 /* 9.wav */,
+				E4CD305B28A4D4B7000C4CA3 /* 8.wav */,
+				E4CD305C28A4D4B7000C4CA3 /* 6.wav */,
+				E4CD305D28A4D4B7000C4CA3 /* 7.wav */,
+				E4CD305E28A4D4B7000C4CA3 /* 5.wav */,
+				E4CD305F28A4D4B7000C4CA3 /* 4.wav */,
+				E4CD306028A4D4B7000C4CA3 /* 0.wav */,
+				E4CD306128A4D4B7000C4CA3 /* 1.wav */,
+				E4CD306228A4D4B7000C4CA3 /* 3.wav */,
+				E4CD306328A4D4B7000C4CA3 /* 2.wav */,
+			);
+			path = audio;
 			sourceTree = "<group>";
 		};
 		E4E2845E26A2E8F0006C120E /* nodicDelegate */ = {
@@ -1956,6 +2061,7 @@
 				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */,
 				E4C258442859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
+				E4CD307628A4D4B7000C4CA3 /* 6.wav in Resources */,
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
@@ -1968,6 +2074,7 @@
 				E49B42DA26C21D1E0056C7EE /* KLMOneSwitchCell.xib in Resources */,
 				E414C0CE27D5D9D100DFD409 /* KLMGroupMotionViewController.xib in Resources */,
 				E49B42E426C21D6D0056C7EE /* KLMGroupDeviceAddToViewController.xib in Resources */,
+				E4CD306428A4D4B7000C4CA3 /* 10.wav in Resources */,
 				E495D1242678833300AA50B9 /* KLMGroupDeviceEditViewController.xib in Resources */,
 				E4C57D7B280403BD00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */,
 				E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */,
@@ -1975,17 +2082,21 @@
 				E497A70F27D8B88000DA7AF7 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E49B42DF26C21D4F0056C7EE /* KLMGroupTransferListViewController.xib in Resources */,
 				E48B6410270FF00300C2BC27 /* KLMGroupDeviceAddCell.xib in Resources */,
+				E4CD308B28A4D4B7000C4CA3 /* 2.wav in Resources */,
 				E48B52C3266783D80006CDA7 /* InfoPlist.strings in Resources */,
 				E4F2D473273504E4007FA07E /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B7286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
+				E4CD307928A4D4B7000C4CA3 /* 7.wav in Resources */,
 				E46B54652769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib in Resources */,
+				E4CD306D28A4D4B7000C4CA3 /* 12.wav in Resources */,
 				E414C0DB27D5E3C700DFD409 /* KLMAllDeviceViewController.xib in Resources */,
 				E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01B92893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E460BF8628A0FDA00045F2B6 /* KLMSignUpWithMobileViewController.xib in Resources */,
 				E4935C20271527D500BD2DD6 /* BLEDFU.zip in Resources */,
 				E46B5457276997F600F3D5E5 /* KLMHomeAddViewController.xib in Resources */,
+				E4CD306A28A4D4B7000C4CA3 /* 13.wav in Resources */,
 				E42C638E287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4FE0CE3271FB9AA001EEABD /* KLMLightOnOffCell.xib in Resources */,
@@ -1993,16 +2104,22 @@
 				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
 				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
 				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
+				E4CD307F28A4D4B7000C4CA3 /* 4.wav in Resources */,
 				E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */,
 				E414C0D327D5DD2B00DFD409 /* KLMGroupPowerCell.xib in Resources */,
+				E4C43E4628A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
 				E4A660522671F6CC00FE6866 /* KLMAddDeviceViewController.xib in Resources */,
 				E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */,
+				E4CD308228A4D4B7000C4CA3 /* 0.wav in Resources */,
+				E4CD307C28A4D4B7000C4CA3 /* 5.wav in Resources */,
 				E46B544927698BD300F3D5E5 /* KLMLoginViewController.xib in Resources */,
 				E414585A27BCE8AC00C181E3 /* KLMChangePasswordViewController.xib in Resources */,
 				E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */,
 				E4C642FC279E9DA1003FA554 /* KLMGroupCell.xib in Resources */,
 				E4EBE61F271144AC006111BF /* KLMTestCameraViewController.xib in Resources */,
+				E4CD307328A4D4B7000C4CA3 /* 8.wav in Resources */,
 				E49B42CB26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib in Resources */,
+				E4CD307028A4D4B7000C4CA3 /* 9.wav in Resources */,
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
 				E4C2584B2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AC286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
@@ -2011,8 +2128,12 @@
 				E460BF7628A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
 				E460BF7B28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00C828740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
+				E4CD305128A4AD3B000C4CA3 /* KLMAudioViewController.xib in Resources */,
 				E49B42F326C21E150056C7EE /* KLMSettingSwichCell.xib in Resources */,
 				E46B545E27699B2D00F3D5E5 /* KLMHomeEditViewController.xib in Resources */,
+				E4CD308828A4D4B7000C4CA3 /* 3.wav in Resources */,
+				E4CD306728A4D4B7000C4CA3 /* 11.wav in Resources */,
+				E4CD308528A4D4B7000C4CA3 /* 1.wav in Resources */,
 				E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */,
 				E4C80D4327F7EC2400DA5155 /* KLMChartsTestViewController.xib in Resources */,
 				E460BF7E28A0EEF80045F2B6 /* sortedNameCH.plist in Resources */,
@@ -2044,6 +2165,7 @@
 				E4C57EC428055B1F00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57EC528055B1F00E7AB54 /* KLMUserInfoCell.xib in Resources */,
 				E4C258452859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
+				E4CD307728A4D4B7000C4CA3 /* 6.wav in Resources */,
 				E4C57EC628055B1F00E7AB54 /* KLMChengpinViewController.xib in Resources */,
 				E4C57EC728055B1F00E7AB54 /* KLMBaseTableViewCell.xib in Resources */,
 				E4C57EC828055B1F00E7AB54 /* KLMCustomViewController.xib in Resources */,
@@ -2056,6 +2178,7 @@
 				E4C57ECE28055B1F00E7AB54 /* KLMOneSwitchCell.xib in Resources */,
 				E4C57ECF28055B1F00E7AB54 /* KLMGroupMotionViewController.xib in Resources */,
 				E4C57ED028055B1F00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */,
+				E4CD306528A4D4B7000C4CA3 /* 10.wav in Resources */,
 				E4C57ED128055B1F00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */,
 				E4C57ED228055B1F00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */,
 				E4C57ED328055B1F00E7AB54 /* KLMSettingViewController.xib in Resources */,
@@ -2063,17 +2186,21 @@
 				E4C57ED528055B1F00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57ED628055B1F00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
 				E4C57ED728055B1F00E7AB54 /* KLMGroupDeviceAddCell.xib in Resources */,
+				E4CD308C28A4D4B7000C4CA3 /* 2.wav in Resources */,
 				E4C57ED928055B1F00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57EDA28055B1F00E7AB54 /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
+				E4CD307A28A4D4B7000C4CA3 /* 7.wav in Resources */,
 				E4C57EDB28055B1F00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
+				E4CD306E28A4D4B7000C4CA3 /* 12.wav in Resources */,
 				E4C57EDC28055B1F00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
 				E4C57EDD28055B1F00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01BA2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E460BF8728A0FDA00045F2B6 /* KLMSignUpWithMobileViewController.xib in Resources */,
 				E4C57EDE28055B1F00E7AB54 /* BLEDFU.zip in Resources */,
 				E4C57EDF28055B1F00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
+				E4CD306B28A4D4B7000C4CA3 /* 13.wav in Resources */,
 				E42C638F287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4C57EE028055B1F00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4C57EE128055B1F00E7AB54 /* KLMLightOnOffCell.xib in Resources */,
@@ -2081,16 +2208,22 @@
 				E4C57EE228055B1F00E7AB54 /* KLMDeviceEditViewController.xib in Resources */,
 				E4C57EE328055B1F00E7AB54 /* LaunchScreen.storyboard in Resources */,
 				E4C57EE428055B1F00E7AB54 /* KLMGroupSelectCell.xib in Resources */,
+				E4CD308028A4D4B7000C4CA3 /* 4.wav in Resources */,
 				E4C57EE528055B1F00E7AB54 /* KLMGroupViewController.xib in Resources */,
 				E4C57EE628055B1F00E7AB54 /* KLMGroupPowerCell.xib in Resources */,
+				E4C43E4728A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
 				E4C57EE728055B1F00E7AB54 /* KLMAddDeviceViewController.xib in Resources */,
 				E4C57EE828055B1F00E7AB54 /* Localizable.strings in Resources */,
+				E4CD308328A4D4B7000C4CA3 /* 0.wav in Resources */,
+				E4CD307D28A4D4B7000C4CA3 /* 5.wav in Resources */,
 				E4C57EE928055B1F00E7AB54 /* KLMLoginViewController.xib in Resources */,
 				E4C57EEA28055B1F00E7AB54 /* KLMChangePasswordViewController.xib in Resources */,
 				E4C57EEB28055B1F00E7AB54 /* KLMTestViewController.xib in Resources */,
 				E4C57EEC28055B1F00E7AB54 /* KLMGroupCell.xib in Resources */,
 				E4C57EED28055B1F00E7AB54 /* KLMTestCameraViewController.xib in Resources */,
+				E4CD307428A4D4B7000C4CA3 /* 8.wav in Resources */,
 				E4C57EEE28055B1F00E7AB54 /* CMDeviceNamePopViewController.xib in Resources */,
+				E4CD307128A4D4B7000C4CA3 /* 9.wav in Resources */,
 				E4C57EEF28055B1F00E7AB54 /* KLMDeviceAddCell.xib in Resources */,
 				E4C2584C2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AD286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
@@ -2099,8 +2232,12 @@
 				E460BF7728A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
 				E460BF7C28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00C928740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
+				E4CD305228A4AD3B000C4CA3 /* KLMAudioViewController.xib in Resources */,
 				E4C57EF128055B1F00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57EF228055B1F00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
+				E4CD308928A4D4B7000C4CA3 /* 3.wav in Resources */,
+				E4CD306828A4D4B7000C4CA3 /* 11.wav in Resources */,
+				E4CD308628A4D4B7000C4CA3 /* 1.wav in Resources */,
 				E4C57EF328055B1F00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
 				E4C57EF428055B1F00E7AB54 /* KLMChartsTestViewController.xib in Resources */,
 				E460BF7F28A0EEF80045F2B6 /* sortedNameCH.plist in Resources */,
@@ -2132,6 +2269,7 @@
 				E4C57F9B28055C7C00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57F9C28055C7C00E7AB54 /* KLMUserInfoCell.xib in Resources */,
 				E4C258462859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
+				E4CD307828A4D4B7000C4CA3 /* 6.wav in Resources */,
 				E4C57F9D28055C7C00E7AB54 /* KLMChengpinViewController.xib in Resources */,
 				E4C57F9E28055C7C00E7AB54 /* KLMBaseTableViewCell.xib in Resources */,
 				E4C57F9F28055C7C00E7AB54 /* KLMCustomViewController.xib in Resources */,
@@ -2144,6 +2282,7 @@
 				E4C57FA528055C7C00E7AB54 /* KLMOneSwitchCell.xib in Resources */,
 				E4C57FA628055C7C00E7AB54 /* KLMGroupMotionViewController.xib in Resources */,
 				E4C57FA728055C7C00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */,
+				E4CD306628A4D4B7000C4CA3 /* 10.wav in Resources */,
 				E4C57FA828055C7C00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */,
 				E4C57FA928055C7C00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */,
 				E4C57FAA28055C7C00E7AB54 /* KLMSettingViewController.xib in Resources */,
@@ -2151,17 +2290,21 @@
 				E4C57FAC28055C7C00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57FAD28055C7C00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
 				E4C57FAE28055C7C00E7AB54 /* KLMGroupDeviceAddCell.xib in Resources */,
+				E4CD308D28A4D4B7000C4CA3 /* 2.wav in Resources */,
 				E4C57FB028055C7C00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57FB128055C7C00E7AB54 /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
+				E4CD307B28A4D4B7000C4CA3 /* 7.wav in Resources */,
 				E4C57FB228055C7C00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
+				E4CD306F28A4D4B7000C4CA3 /* 12.wav in Resources */,
 				E4C57FB328055C7C00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
 				E4C57FB428055C7C00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01BB2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E460BF8828A0FDA00045F2B6 /* KLMSignUpWithMobileViewController.xib in Resources */,
 				E4C57FB528055C7C00E7AB54 /* BLEDFU.zip in Resources */,
 				E4C57FB628055C7C00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
+				E4CD306C28A4D4B7000C4CA3 /* 13.wav in Resources */,
 				E42C6390287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4C57FB728055C7C00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4C57FB828055C7C00E7AB54 /* KLMLightOnOffCell.xib in Resources */,
@@ -2169,16 +2312,22 @@
 				E4C57FB928055C7C00E7AB54 /* KLMDeviceEditViewController.xib in Resources */,
 				E4C57FBA28055C7C00E7AB54 /* LaunchScreen.storyboard in Resources */,
 				E4C57FBB28055C7C00E7AB54 /* KLMGroupSelectCell.xib in Resources */,
+				E4CD308128A4D4B7000C4CA3 /* 4.wav in Resources */,
 				E4C57FBC28055C7C00E7AB54 /* KLMGroupViewController.xib in Resources */,
 				E4C57FBD28055C7C00E7AB54 /* KLMGroupPowerCell.xib in Resources */,
+				E4C43E4828A36024005EAE63 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
 				E4C57FBE28055C7C00E7AB54 /* KLMAddDeviceViewController.xib in Resources */,
 				E4C57FBF28055C7C00E7AB54 /* Localizable.strings in Resources */,
+				E4CD308428A4D4B7000C4CA3 /* 0.wav in Resources */,
+				E4CD307E28A4D4B7000C4CA3 /* 5.wav in Resources */,
 				E4C57FC028055C7C00E7AB54 /* KLMLoginViewController.xib in Resources */,
 				E4C57FC128055C7C00E7AB54 /* KLMChangePasswordViewController.xib in Resources */,
 				E4C57FC228055C7C00E7AB54 /* KLMTestViewController.xib in Resources */,
 				E4C57FC328055C7C00E7AB54 /* KLMGroupCell.xib in Resources */,
 				E4C57FC428055C7C00E7AB54 /* KLMTestCameraViewController.xib in Resources */,
+				E4CD307528A4D4B7000C4CA3 /* 8.wav in Resources */,
 				E4C57FC528055C7C00E7AB54 /* CMDeviceNamePopViewController.xib in Resources */,
+				E4CD307228A4D4B7000C4CA3 /* 9.wav in Resources */,
 				E4C57FC628055C7C00E7AB54 /* KLMDeviceAddCell.xib in Resources */,
 				E4C2584D2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AE286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
@@ -2187,8 +2336,12 @@
 				E460BF7828A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
 				E460BF7D28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00CA28740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
+				E4CD305328A4AD3B000C4CA3 /* KLMAudioViewController.xib in Resources */,
 				E4C57FC828055C7C00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
 				E4C57FC928055C7C00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
+				E4CD308A28A4D4B7000C4CA3 /* 3.wav in Resources */,
+				E4CD306928A4D4B7000C4CA3 /* 11.wav in Resources */,
+				E4CD308728A4D4B7000C4CA3 /* 1.wav in Resources */,
 				E4C57FCA28055C7C00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
 				E4C57FCB28055C7C00E7AB54 /* KLMChartsTestViewController.xib in Resources */,
 				E460BF8028A0EEF80045F2B6 /* sortedNameCH.plist in Resources */,
@@ -2401,6 +2554,7 @@
 				E498A78226671BEC00C78D50 /* AppDelegate.swift in Sources */,
 				E4A65FD02670B06400FE6866 /* BitmapDrawManipulator.m in Sources */,
 				E4DE01AF289380DE00F69C45 /* KLMWifiSelectViewController.swift in Sources */,
+				E4CD304E28A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */,
 				E4A65FD12670B06400FE6866 /* BitmapCropManipulator.m in Sources */,
 				E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */,
 				E495D1232678833300AA50B9 /* KLMGroupDeviceEditViewController.swift in Sources */,
@@ -2499,6 +2653,7 @@
 				E4FE0CE1271FB99A001EEABD /* KLMLightOnOffCell.swift in Sources */,
 				E414585827BCE6EE00C181E3 /* KLMChangePasswordViewController.swift in Sources */,
 				E4EBE61E271144AC006111BF /* KLMTestCameraViewController.swift in Sources */,
+				E4C43E4328A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift in Sources */,
 				E4E28442269EFF82006C120E /* SimpleOnOffClientDelegate.swift in Sources */,
 				E45175B7281BD74200BCD644 /* KLMTimer.swift in Sources */,
 				E4E28430269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */,
@@ -2571,6 +2726,7 @@
 				E4C57E5B28055B1F00E7AB54 /* AppDelegate.swift in Sources */,
 				E4C57E5C28055B1F00E7AB54 /* BitmapDrawManipulator.m in Sources */,
 				E4DE01B0289380DE00F69C45 /* KLMWifiSelectViewController.swift in Sources */,
+				E4CD304F28A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */,
 				E4C57E5D28055B1F00E7AB54 /* BitmapCropManipulator.m in Sources */,
 				E4C57E5E28055B1F00E7AB54 /* KLMSlider.swift in Sources */,
 				E4C57E5F28055B1F00E7AB54 /* KLMGroupDeviceEditViewController.swift in Sources */,
@@ -2669,6 +2825,7 @@
 				E4C57EB028055B1F00E7AB54 /* KLMLightOnOffCell.swift in Sources */,
 				E4C57EB128055B1F00E7AB54 /* KLMChangePasswordViewController.swift in Sources */,
 				E4C57EB228055B1F00E7AB54 /* KLMTestCameraViewController.swift in Sources */,
+				E4C43E4428A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift in Sources */,
 				E4C57EB328055B1F00E7AB54 /* SimpleOnOffClientDelegate.swift in Sources */,
 				E45175B8281BD74200BCD644 /* KLMTimer.swift in Sources */,
 				E4C57EB428055B1F00E7AB54 /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */,
@@ -2741,6 +2898,7 @@
 				E4C57F3228055C7C00E7AB54 /* AppDelegate.swift in Sources */,
 				E4C57F3328055C7C00E7AB54 /* BitmapDrawManipulator.m in Sources */,
 				E4DE01B1289380DE00F69C45 /* KLMWifiSelectViewController.swift in Sources */,
+				E4CD305028A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */,
 				E4C57F3428055C7C00E7AB54 /* BitmapCropManipulator.m in Sources */,
 				E4C57F3528055C7C00E7AB54 /* KLMSlider.swift in Sources */,
 				E4C57F3628055C7C00E7AB54 /* KLMGroupDeviceEditViewController.swift in Sources */,
@@ -2839,6 +2997,7 @@
 				E4C57F8728055C7C00E7AB54 /* KLMLightOnOffCell.swift in Sources */,
 				E4C57F8828055C7C00E7AB54 /* KLMChangePasswordViewController.swift in Sources */,
 				E4C57F8928055C7C00E7AB54 /* KLMTestCameraViewController.swift in Sources */,
+				E4C43E4528A36024005EAE63 /* KLMPhoneForgotPasswordViewController.swift in Sources */,
 				E4C57F8A28055C7C00E7AB54 /* SimpleOnOffClientDelegate.swift in Sources */,
 				E45175B9281BD74200BCD644 /* KLMTimer.swift in Sources */,
 				E4C57F8B28055C7C00E7AB54 /* GenericDefaultTransitionTimeServerDelegate.swift in Sources */,
@@ -2953,8 +3112,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E46B54712769D53B00F3D5E5 /* Base */,
-				E46B54742769D53F00F3D5E5 /* en */,
-				E46B54762769D54100F3D5E5 /* zh-Hans */,
+				E4C43E4028A34D6B005EAE63 /* zh-Hans */,
 			);
 			name = KLMForgetPasswordViewController.xib;
 			sourceTree = "<group>";

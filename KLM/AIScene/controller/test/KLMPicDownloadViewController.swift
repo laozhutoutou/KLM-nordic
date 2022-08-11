@@ -203,8 +203,8 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
             
             //            oldWifiName = SSIDField.text
             if let data = message?.value as? [UInt8], data.count >= 4 {
-                //bmp_stream  bmp
-                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp_stream"
+                //bmp_stream视频  bmp
+                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
                 KLMLog("ip = \(ip)")
                 let url = URL.init(string: ip)
 //                                            if webView == nil {

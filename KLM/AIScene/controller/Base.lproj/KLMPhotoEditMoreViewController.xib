@@ -190,7 +190,7 @@
                 <constraint firstAttribute="trailing" secondItem="Smp-Eg-z2y" secondAttribute="trailing" id="jha-qA-732"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-7320" y="-347"/>
+            <point key="canvasLocation" x="-7754" y="-164"/>
         </view>
         <tapGestureRecognizer id="aUZ-Jr-REb">
             <connections>

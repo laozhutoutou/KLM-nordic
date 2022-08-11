@@ -377,7 +377,7 @@
                 <constraint firstItem="0wI-od-1WK" firstAttribute="top" secondItem="z8E-4K-yyX" secondAttribute="bottom" id="xfk-4y-Uyl"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-3658" y="-508"/>
+            <point key="canvasLocation" x="-3814" y="-544"/>
         </view>
         <tapGestureRecognizer id="e8W-nb-PFE">
             <connections>

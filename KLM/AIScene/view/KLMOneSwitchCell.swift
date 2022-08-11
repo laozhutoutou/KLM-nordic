@@ -21,23 +21,8 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        //添加手势
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
-//        tap.numberOfTapsRequired = 3
-//        addGestureRecognizer(tap)
     }
     
-    @objc func tap() {
-        
-        KLMLog("连续点击")
-        if cameraOnOff != 1 { //自动颜色开关没打开
-            SVProgressHUD.showInfo(withStatus: LANGLOC("Please power on ") + LANGLOC("Devicecoloursensing"))
-            return
-        }
-        let vc = KLMCMOSViewController()
-        currentViewController()?.navigationController?.pushViewController(vc, animated: true)
-    }
-
     @IBAction func switchClick(_ sender: UISwitch) {
         
         SVProgressHUD.show()

@@ -35,6 +35,7 @@ extension KLMSmartNodeDelegate {
 class KLMSmartNode: NSObject {
     
     var currentNode: Node?
+//    var messageNodes: [Node] = [Node]()
     
     static let sharedInstacnce = KLMSmartNode()
     private override init(){
@@ -46,6 +47,7 @@ class KLMSmartNode: NSObject {
     
     func sendMessage(_ parame: parameModel, toNode node: Node) {
         
+//        messageNodes.append(node)
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
@@ -100,6 +102,7 @@ class KLMSmartNode: NSObject {
     
     func readMessage(_ parame: parameModel, toNode node: Node) {
        
+//        messageNodes.append(node)
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
@@ -124,6 +127,7 @@ class KLMSmartNode: NSObject {
     /// 删除节点
     func resetNode(node: Node) {
         
+//        messageNodes.append(node)
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
@@ -152,6 +156,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
         }
 
         ///不是当前节点的消息不处理
+        
         if source != currentNode?.unicastAddress {
             KLMLog("别的节点回的消息")
             return
@@ -188,7 +193,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                             err.message = LANGLOC("The light failed to connect to WiFi. Maybe the WiFi password is incorrect")
                         }
                         if status == 0xFF { //没有这个dp点
-                            err.message = LANGLOC("The device do not support, Check if the version of device is newest")
+                            err.message = LANGLOC("The device do not support")
                         }
                         self.delegate?.smartNode(self, didfailure: err)
 
@@ -321,6 +326,14 @@ extension Node {
         return substring
     }
     
+    ///没有摄像头
+    var noCamera: Bool {
+        let index = uuid.uuidString[2,2]
+        if index == "00" {
+            return true
+        }
+        return false
+    }
 }
 
 ///给扩展增加存储属性

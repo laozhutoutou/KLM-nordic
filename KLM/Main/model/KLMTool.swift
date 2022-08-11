@@ -83,6 +83,30 @@ extension KLMTool {
         }
         return tt
     }
+    
+    ///根据code获取国家名称
+    static func getCountryNameByPhoneCode(phoneCode: String) -> String? {
+        var name: String?
+        let sortedName = Bundle.isChineseLanguage() ? "sortedNameCH" : "sortedNameEN"
+        let path = Bundle.main.path(forResource: sortedName, ofType: "plist")
+        let sortedNameDict = NSDictionary(contentsOfFile: path ?? "") as! [String: Any]
+        for values in sortedNameDict.values {
+            let nameLists: [String] = values as! [String]
+            for string in nameLists {
+                let array = string.components(separatedBy: "+")
+                let countryName = array.first?.trimmingCharacters(in: CharacterSet.whitespaces)
+                let code = array.last
+                if code == phoneCode {
+                    name = countryName
+                    break
+                }
+            }
+            if name != nil {
+                break
+            }
+        }
+        return name
+    }
 }
 
 extension KLMTool {

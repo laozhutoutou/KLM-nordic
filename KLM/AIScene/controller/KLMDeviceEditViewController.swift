@@ -32,7 +32,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     var deviceGroups: [Group] = [Group]()
     
-    //1 打开
+    //1 打开 颜色识别
     var cameraSwitch = 1
     //灯开关
     var lightSwitch = 0
@@ -101,6 +101,12 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         checkGroup()
         
         sendFlash()
+        
+        ///语音
+        //添加手势
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
+        tap.numberOfTapsRequired = 3
+        contentView.addGestureRecognizer(tap)
     }
     
     //灯闪烁
@@ -140,7 +146,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     }
     
     func showUpdateView() {
-        return
+    
         guard let bleData = self.BLEVersionData,
               let bleV = BLEVersion else {
             
@@ -164,6 +170,9 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 } else { //普通升级
                     //弹框
                     if self.isFromAddDevice {
+                        if KLMHomeManager.currentNode.noCamera == true {
+                            return
+                        }
                         let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
                         vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
                             
@@ -179,6 +188,9 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             } noNeedUpdate: { //不需要升级
                 
                 if self.isFromAddDevice {
+                    if KLMHomeManager.currentNode.noCamera == true {
+                        return
+                    }
                     let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
                     vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
                         
@@ -191,6 +203,17 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 }
             }
         }
+    }
+    
+    @objc func tap() {
+        
+        KLMLog("连续点击")
+        if cameraSwitch != 1 { //自动颜色开关没打开
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Devicecoloursensing"))
+            return
+        }
+        let vc = KLMAudioViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -258,6 +281,16 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        if KLMHomeManager.currentNode.noCamera == true {
+            switch indexPath.row {
+            case itemType.CMOS.rawValue,
+                itemType.motion.rawValue,
+                itemType.downLoadPic.rawValue:
+                return 0
+            default:
+                break
+            }
+        }
         return 56
     }
     
@@ -440,7 +473,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }
         case itemType.CMOS.rawValue:
             if cameraSwitch != 1 { //自动颜色开关没打开
-                SVProgressHUD.showInfo(withStatus: LANGLOC("Please power on ") + LANGLOC("Devicecoloursensing"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Devicecoloursensing"))
                 return
             }
             let vc = KLMCMOSViewController()
@@ -450,12 +483,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //            let vc = KLMTestViewController()
 //            navigationController?.pushViewController(vc, animated: true)
         case itemType.downLoadPic.rawValue:
-            if apptype == .test {
-                
-                let vc = KLMTestCameraViewController()
-                navigationController?.pushViewController(vc, animated: true)
-                return
-            }
+            
             let vc = KLMPicDownloadViewController()
             navigationController?.pushViewController(vc, animated: true)
             

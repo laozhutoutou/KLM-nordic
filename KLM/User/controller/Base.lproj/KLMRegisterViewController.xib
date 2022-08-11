@@ -306,7 +306,7 @@
                 <constraint firstItem="Qsp-q3-djo" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="xLZ-cd-uQM"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-6059" y="-825"/>
+            <point key="canvasLocation" x="-5962" y="-760"/>
         </view>
     </objects>
     <resources>
