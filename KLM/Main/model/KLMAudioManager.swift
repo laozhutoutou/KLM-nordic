@@ -52,7 +52,6 @@ class KLMAudioManager: NSObject {
             
             playFront()
         }
-        
     }
     
     private func playIndex() {
@@ -123,8 +122,6 @@ class KLMAudioManager: NSObject {
             let parameOn = parameModel.init(dp: .audio, value: 3)
             KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
             
-            stopPlay()
-            
         } else {
             
             switch playOrder {
@@ -138,8 +135,6 @@ class KLMAudioManager: NSObject {
                 guard let currentNode = currentNode else { return  }
                 let parameOn = parameModel.init(dp: .audio, value: 3)
                 KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
-                
-                stopPlay()
             }
         }
     }

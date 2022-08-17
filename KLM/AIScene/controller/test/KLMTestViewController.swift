@@ -68,7 +68,6 @@ class KLMTestViewController: UIViewController {
             Glab.text = "\(Int(sender.value))"
         case 3:
             Blab.text = "\(Int(sender.value))"
-        
         default:
             break
         }

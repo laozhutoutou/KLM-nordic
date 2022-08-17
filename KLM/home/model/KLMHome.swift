@@ -13,7 +13,7 @@ struct KLMBaseModel: Codable {
     var msg: String
     var egMsg: String?
 }
-
+///列表数据
 struct KLMHome: Codable {
     
     var data: KLMHomeData
@@ -24,8 +24,8 @@ struct KLMHome: Codable {
     struct KLMHomeModel: Codable {
         var meshName: String
         var id: Int ///meshID 
-        var adminId: Int?///管理员ID
-        var meshConfiguration: String
+        var adminId: Int///管理员ID
+//        var meshConfiguration: String
     }
 }
 
@@ -36,7 +36,7 @@ struct KLMHistory: Codable {
         var searchContent: String
     }
 }
-
+///mesh具体数据
 struct KLMMeshInfo: Codable {
     
     var data: KLMMeshInfoData

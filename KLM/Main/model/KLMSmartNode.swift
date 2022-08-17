@@ -167,7 +167,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 if parameters.count >= 3 {
                     
                     var response = parameModel()
-                        
                     ///状态 0为成功  其他为失败
                     let status = parameters[0]
                     /// dp点

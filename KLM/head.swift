@@ -142,11 +142,11 @@ func KLMHttpShowError(_ error: NSError) {
 var baseUrl: String {
     switch apptype {
     case .targetGN,
-            .test,
-         .targetsGW:
+            .test:
+//         .targetsGW:
         return "https://light.kaiwaresz.com/"
-//    case .targetsGW:
-//        return "https://ai.kaiwaresz.com/"
+    case .targetsGW:
+        return "https://ai.kaiwaresz.com/"
     }
 }
 

@@ -408,7 +408,7 @@ class KLMService: NSObject {
     }
     ///获取mesh列表
     static func getMeshList(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
-        
+        /// api/mesh/adminId/new
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/adminId"), params: nil) { responseObject, error in
             
             if error == nil {
@@ -739,32 +739,32 @@ class KLMService: NSObject {
         }
     }
     
-    static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
-        
-        //查询版本
-        let url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
-//        if apptype == .targetsGW {
-//            url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
+//    static func checkAppVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+//
+//        //查询版本
+//        let url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
+////        if apptype == .targetsGW {
+////            url = "https://itunes.apple.com/lookup?id=\(AppleStoreID)"
+////        }
+//        KLMLog("url = \(url)")
+//        KLMNetworking.jsonManagerWithHeader(head: nil).post(url, parameters: nil, progress: nil) { task, responseObject in
+//
+//            KLMLog("查询成功:\(responseObject)")
+//            guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject], dic["resultCount"] as? Int == 1 else {
+//                return
+//            }
+//
+//            guard let results: [AnyObject] = dic["results"] as? [AnyObject], let resultFirst: [String : AnyObject] = results.first as? [String : AnyObject], let newVersion = resultFirst["version"] else { return  }
+//
+//            KLMLog("newVersion = \(newVersion)")
+//            success(newVersion)
+//
+//        } failure: { task, error in
+//
+//            KLMLog("查询失败:\(error)")
+//            let resultDic = ["error": error.localizedDescription]
+//            let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
+//            failure(error)
 //        }
-        KLMLog("url = \(url)")
-        KLMNetworking.jsonManagerWithHeader(head: nil).post(url, parameters: nil, progress: nil) { task, responseObject in
-            
-            KLMLog("查询成功:\(responseObject)")
-            guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject], dic["resultCount"] as? Int == 1 else {
-                return
-            }
-            
-            guard let results: [AnyObject] = dic["results"] as? [AnyObject], let resultFirst: [String : AnyObject] = results.first as? [String : AnyObject], let newVersion = resultFirst["version"] else { return  }
-            
-            KLMLog("newVersion = \(newVersion)")
-            success(newVersion)
-            
-        } failure: { task, error in
-            
-            KLMLog("查询失败:\(error)")
-            let resultDic = ["error": error.localizedDescription]
-            let error = NSError.init(domain: "", code: -1, userInfo: resultDic as [String : Any])
-            failure(error)
-        }
-    }
+//    }
 }
