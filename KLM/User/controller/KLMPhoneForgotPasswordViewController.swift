@@ -47,7 +47,7 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("Forgot Password")
+        navigationItem.title = LANGLOC("Forgot Mobile Password")
         
         setupUI()
         
@@ -78,25 +78,69 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
     
     private func events() {
         
-        
+        ///默认填充中国
+        regionCode = "86"
+        regionName = KLMTool.getCountryNameByPhoneCode(phoneCode: regionCode!)
     }
     
     ///获取验证码
     @IBAction func sendCode(_ sender: Any) {
         
+        guard let text = KLMTool.isEmptyString(string: phoneField.text) else {
+            SVProgressHUD.showInfo(withStatus: phoneField.placeholder)
+            return
+        }
         
+        if !KLMVerifyManager.isPhone(phone: text) {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The mobile number format is incorrect"))
+            return
+        }
+        
+        SVProgressHUD.show()
+        KLMService.getPhoneCode(phone: text) { _ in
+            
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Verification code has been sent"))
+            
+            ///开始倒计时
+            self.startTimer()
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
     
     @IBAction func done(_ sender: Any) {
         
-        guard let regionName = regionName else {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("Please choose a region"))
+//        guard let regionName = regionName else {
+//            SVProgressHUD.showInfo(withStatus: LANGLOC("Please choose a region"))
+//            return
+//        }
+        
+        //比较两次密码
+        if passTextField.text != passAgainField.text {
+            
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The password entered again is different"))
             return
         }
         
+        SVProgressHUD.show()
+        KLMService.forgetMobilePassword(mobile: phoneField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
+            
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            self.navigationController?.popViewController(animated: true)
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
         
     }
     
+    @IBAction func forgotEmailPassword(_ sender: Any) {
+        
+        let vc = KLMForgetPasswordViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
     ///选择地区
     @IBAction func tapRegion(_ sender: Any) {
         

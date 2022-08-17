@@ -138,6 +138,7 @@ enum DPType: Int {
     case motion = 18 //节能
     case factoryTest = 19
     case factoryTestResule = 20
+    case audio = 88 //语音播报
     case checkVersion = 99
     case DFU = 100
     case PWM = 101

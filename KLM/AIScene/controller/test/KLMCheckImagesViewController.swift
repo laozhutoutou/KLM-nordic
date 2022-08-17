@@ -71,7 +71,6 @@ class KLMCheckImagesViewController: UIViewController {
                 print(error)
             }
         }
-        
     }
 }
 

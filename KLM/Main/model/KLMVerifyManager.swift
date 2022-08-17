@@ -16,4 +16,10 @@ class KLMVerifyManager {
         return emailPredicate.evaluate(with: email)
     }
     
+    ///是否是手机号
+    static func isPhone(phone: String) -> Bool {
+        let phoneRegex: String = "^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phoneTest.evaluate(with: phone)
+    }
 }

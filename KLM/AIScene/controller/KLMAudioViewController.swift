@@ -6,55 +6,36 @@
 //
 
 import UIKit
-import AVFAudio
 
 class KLMAudioViewController: UIViewController {
     
-    var audioPlayer: AVAudioPlayer?
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //设置类别
-        try? AVAudioSession.sharedInstance().setCategory(.playback)
-        //启动音频会话管理,此时会阻断后台音乐的播放.
-        try? AVAudioSession.sharedInstance().setActive(true)
     }
     
-    deinit {
-        
-        audioPlayer?.stop()
-        try? AVAudioSession.sharedInstance().setActive(false)
-    }
 
     @IBAction func audioSwitch(_ sender: UISwitch) {
         
+        KLMAudioManager.shared.stopPlay()
         if sender.isOn {
             
-            stopPlay()
-            
-            let path = Bundle.main.path(forResource: "2", ofType: "wav")
-            if audioPlayer == nil {
-                audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path!))
-                audioPlayer?.delegate = self
-                audioPlayer?.prepareToPlay()
-                audioPlayer?.volume = 1
+            if KLMAudioManager.shared.currentNode !=  KLMHomeManager.currentNode {
+                KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
             }
-            audioPlayer?.play()
+            //打开语音播报
+            DispatchQueue.main.asyncAfter(deadline: 1) {
+                
+                let parameOn = parameModel.init(dp: .audio, value: 1)
+                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: KLMHomeManager.currentNode)
+            }
+            
+        } else { //关闭
+            
+            let parame = parameModel.init(dp: .audio, value: 2)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            
         }
     }
     
-    private func stopPlay() {
-        
-        audioPlayer?.stop()
-        audioPlayer = nil
-    }
-}
-
-extension KLMAudioViewController: AVAudioPlayerDelegate {
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        
-        stopPlay()
-        KLMLog("结束播放")
-    }
 }

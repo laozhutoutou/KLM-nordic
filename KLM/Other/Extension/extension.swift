@@ -116,6 +116,9 @@ extension NSNotification.Name {
     static let homeDeleteSuccess = NSNotification.Name.init("homeDeleteSuccess")
     static let dataUpdate = NSNotification.Name.init("dataUpdate")
     static let mainPageRefresh = NSNotification.Name.init("mainPageRefresh")
+    
+    ///登录账号
+    static let loginPageRefresh = NSNotification.Name.init("loginPageRefresh")
 }
 
 extension String {

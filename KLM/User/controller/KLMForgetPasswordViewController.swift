@@ -31,7 +31,7 @@ class KLMForgetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("Forgot Password")
+        navigationItem.title = LANGLOC("Forgot Email Password")
         
         doneBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         doneBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
@@ -91,7 +91,7 @@ class KLMForgetPasswordViewController: UIViewController {
         KLMService.forgetPassword(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             
         } failure: { error in
             KLMHttpShowError(error)

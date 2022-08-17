@@ -120,6 +120,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
 
             ///渲染首页
             self.setupData()
+            
         }
         
         KLMService.getMeshList { response in
@@ -134,6 +135,13 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 if var home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
                     ///比较是服务器的新还是本地的新
                     let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
+                    ///获取Mesh数据
+                    KLMService.getMeshInfo(id: mesh.id) { response in
+                        
+                    } failure: { error in
+                        
+                    }
+
                     let meshData = KLMMesh.getMeshNetwork(meshConfiguration: mesh.meshConfiguration)
                     if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
                         KLMLog("本地比服务器的新")
@@ -232,13 +240,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         if KLMMesh.isCanEditMesh() == false {
             return
         }
-
-//        if apptype == .test {
-//
-//            let vc = KLMAddDeviceViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-//            return
-//        }
         
         if apptype == .test {
 
@@ -254,6 +255,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     @objc func homeListClick() {
         
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
         KLMService.getMeshList { response in
             SVProgressHUD.dismiss()
             self.homes = response as! [KLMHome.KLMHomeModel]

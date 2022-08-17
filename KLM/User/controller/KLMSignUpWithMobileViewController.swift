@@ -29,6 +29,7 @@ class KLMSignUpWithMobileViewController: UIViewController {
     @IBOutlet weak var regionLab: UILabel!
     @IBOutlet weak var countryCodeLab: UILabel!
     
+    
     //倒计时
     var messageTimer: Timer?
     ///当前秒
@@ -81,28 +82,62 @@ class KLMSignUpWithMobileViewController: UIViewController {
     
     private func events() {
         
-        
+        ///默认填充中国
+        regionCode = "86"
+        regionName = KLMTool.getCountryNameByPhoneCode(phoneCode: regionCode!)
     }
     
     ///获取验证码
     @IBAction func sendCode(_ sender: Any) {
         
+        guard let text = KLMTool.isEmptyString(string: phoneField.text) else {
+            SVProgressHUD.showInfo(withStatus: phoneField.placeholder)
+            return
+        }
         
+        if !KLMVerifyManager.isPhone(phone: text) {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The mobile number format is incorrect"))
+            return
+        }
+        
+        SVProgressHUD.show()
+        KLMService.getPhoneCode(phone: text) { _ in
+            
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Verification code has been sent"))
+            
+            ///开始倒计时
+            self.startTimer()
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
     
     //注册
     @IBAction func register(_ sender: Any) {
         
-        guard let regionName = regionName else {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("Please choose a region"))
+        //比较两次密码
+        if passTextField.text != passAgainField.text {
+            
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The password entered again is different"))
             return
         }
         
-        
+        SVProgressHUD.show()
+        KLMService.signUp(telephone: phoneField.text!, password: passTextField.text!, code: codeTextField.text!, nickName: nickNameField.text!) { _ in
+            
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            self.navigationController?.popViewController(animated: true)
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
     
     ///选择地区
     @IBAction func tapRegion(_ sender: Any) {
+        
+        return
         
         let vc = KLMCountryCodeViewController()
         vc.backCountryCode = { [weak self] country, code in
@@ -117,7 +152,8 @@ class KLMSignUpWithMobileViewController: UIViewController {
     
     @IBAction func signUpWithEmail(_ sender: Any) {
         
-        
+        let vc = KLMRegisterViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func startTimer() {

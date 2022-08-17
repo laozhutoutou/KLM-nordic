@@ -36,7 +36,7 @@ class KLMRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("Sign Up")
+        navigationItem.title = LANGLOC("Sign up with Email")
         
         signupBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
         signupBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor.withAlphaComponent(0.5)), for: .disabled)
@@ -85,7 +85,7 @@ class KLMRegisterViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         
-        //比价两次密码
+        //比较两次密码
         if passTextField.text != passAgainField.text {
             
             SVProgressHUD.showInfo(withStatus: LANGLOC("The password entered again is different"))
@@ -96,7 +96,7 @@ class KLMRegisterViewController: UIViewController {
         KLMService.register(email: mailTextField.text!, password: passTextField.text!, code: codeTextField.text!, nickName: nickNameField.text!) { _ in
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
             
         } failure: { error in
             KLMHttpShowError(error)

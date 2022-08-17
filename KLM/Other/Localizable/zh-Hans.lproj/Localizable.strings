@@ -120,7 +120,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "WiFi initialization" = "初始化WiFi";
 "Connect to the internet via Wi-Fi" = "通过Wi-Fi连接网络";
 "Sign Up" = "注册";
-"Forgot Password" = "忘记密码";
+"Forgot Email Password" = "忘记邮箱密码";
 "Please remove all lights from the group" = "请先把分组中的设备移除";
 "Please turn on " = "请打开 ";
 "Failed to get the address from the server. Please make sure the network is normal and then refresh the page" = "从服务器获取地址失败，请确保网络正常同时刷新页面";
@@ -167,6 +167,10 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Please check whether the Local Network permissions is turned on?" = "请检查本地网络是否打开？";
 "Bluetooth permission" = "蓝牙权限";
 "The device do not support" = "设备不支持此功能";
+"Sign Up with Mobile" = "手机号注册";
+"The mobile number format is incorrect" = "手机号码格式不对";
+"Sign up with Email" = "邮箱注册";
+"Forgot Mobile Password" = "忘记手机号密码";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

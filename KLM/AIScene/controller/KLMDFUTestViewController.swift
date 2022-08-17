@@ -188,17 +188,17 @@ class KLMDFUTestViewController: UIViewController {
         
         //64
         let url: String = KLMUrl("api/file/download/\(BLEVersionData.id)")
-        var urlBytes: [UInt8] = [UInt8](url.data(using: String.Encoding.ascii)!)
+        var urlBytes: [UInt8] = [UInt8](url.data(using: .utf8)!)
         urlBytes = urlBytes + [UInt8].init(repeating: 0, count: 64 - urlBytes.count)
         //32
-        var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: String.Encoding.ascii)!)
+        var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: .utf8)!)
         urlSSIDBytes = urlSSIDBytes + [UInt8].init(repeating: 0, count: 32 - urlSSIDBytes.count)
         //32
-        var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: String.Encoding.ascii)!)
+        var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: .utf8)!)
         urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 32 - urlPasswordBytes.count)
         //token  256 - 32
         let token: String = KLMGetUserDefault("token") as! String
-        var tokenBytes: [UInt8] = [UInt8](token.data(using: String.Encoding.ascii)!)
+        var tokenBytes: [UInt8] = [UInt8](token.data(using: .utf8)!)
         tokenBytes = tokenBytes + [UInt8].init(repeating: 0, count: 256 - 32 - tokenBytes.count)
         
         let bytes: [UInt8] = EspDataUtils.mergeBytes(bytes: [0x00], moreBytes:
@@ -285,7 +285,9 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                     SVProgressHUD.show(withStatus: LANGLOC("Version is OK"))
                     
                     ///开始发送数据
-                    espOtaStart()
+                    DispatchQueue.main.asyncAfter(deadline: 1) {
+                        self.espOtaStart()
+                    }
                 }
             }
             ///开始接收到更新数据

@@ -20,6 +20,11 @@ class KLMLoginViewController: UIViewController {
     ///是否是其他用户登录
     var isOtherLogin: Bool = false
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +35,8 @@ class KLMLoginViewController: UIViewController {
     
     private func setupUI() {
         
+        setupData()
+        
         KLMLog("login")
 //        navigationItem.title = LANGLOC("Log in via Email")
         logBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .normal)
@@ -38,14 +45,6 @@ class KLMLoginViewController: UIViewController {
         logBtn.layer.cornerRadius = logBtn.height / 2
         logBtn.clipsToBounds = true
         
-        if let username = KLMGetUserDefault("username") {
-            mailTextField.text = username as? String
-        }
-
-        if let password = KLMGetUserDefault("password") {
-            passTextField.text = password as? String
-        }
-        
         ///监控输入
         Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty) { mailText, passwordText  -> Bool in
             return mailText.count > 0 && passwordText.count > 0
@@ -53,6 +52,19 @@ class KLMLoginViewController: UIViewController {
         .map{$0}
         .bind(to: logBtn.rx.isEnabled)
         .disposed(by: disposeBag)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .loginPageRefresh, object: nil)
+    }
+    
+    @objc func setupData() {
+        
+        if let username = KLMGetUserDefault("username") {
+            mailTextField.text = username as? String
+        }
+
+        if let password = KLMGetUserDefault("password") {
+            passTextField.text = password as? String
+        }
     }
     
     private func events() {
@@ -98,15 +110,25 @@ class KLMLoginViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         
-        let register = KLMRegisterViewController()
-        navigationController?.pushViewController(register, animated: true)
+//        if apptype == .targetsGW {
+            let register = KLMRegisterViewController()
+            navigationController?.pushViewController(register, animated: true)
+//            return
+//        }
+//        let register = KLMSignUpWithMobileViewController()
+//        navigationController?.pushViewController(register, animated: true)
         
     }
     
     @IBAction func forgetPass(_ sender: Any) {
         
-        let vc = KLMForgetPasswordViewController()
-        navigationController?.pushViewController(vc, animated: true)
+//        if apptype == .targetsGW {
+            let vc = KLMForgetPasswordViewController()
+            navigationController?.pushViewController(vc, animated: true)
+//            return
+//        }
+//        let vc = KLMPhoneForgotPasswordViewController()
+//        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func eyeBtn(_ sender: UIButton) {

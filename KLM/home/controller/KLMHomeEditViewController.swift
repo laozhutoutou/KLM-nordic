@@ -234,7 +234,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         } else {
             cell.leftTitle = user?.nickname ?? LANGLOC("unknowUser")
         }
-        cell.rightTitle = user?.email
+        cell.rightTitle = user?.username
         return cell
         
     }

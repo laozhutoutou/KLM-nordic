@@ -167,10 +167,10 @@ class KLMPicDownloadViewController: UIViewController {
         let urlPassword: String = self.passField.text!
         
         //32
-        var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: String.Encoding.ascii)!)
+        var urlSSIDBytes: [UInt8] = [UInt8](urlSSID.data(using: .utf8)!)
         urlSSIDBytes = urlSSIDBytes + [UInt8].init(repeating: 0, count: 32 - urlSSIDBytes.count)
         //32
-        var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: String.Encoding.ascii)!)
+        var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: .utf8)!)
         urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 32 - urlPasswordBytes.count)
         
         let parameters = Data.init(bytes: (urlSSIDBytes + urlPasswordBytes), count: (urlSSIDBytes + urlPasswordBytes).count)
@@ -246,7 +246,10 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
                             alertController.addAction(cancelAction)
                             alertController.addAction(settingsAction)
                             KLMKeyWindow?.rootViewController?.present(alertController, animated: true)
+                            return
                         }
+                        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
+                        SVProgressHUD.dismiss(withDelay: 3)
                     }
                 }
             }

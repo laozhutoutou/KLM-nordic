@@ -135,8 +135,8 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     }
     
     func checkVerison() {
-        ///bluetooth mcu
-        KLMService.checkVersion(type: "bluetooth") { response in
+        
+        KLMService.checkBlueToothVersion { response in
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
             self.tableView.reloadData()
             self.setupNodeMessage()

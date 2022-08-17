@@ -188,7 +188,7 @@ class KLMNetworking: NSObject {
 }
 
 class KLMService: NSObject {
-    
+    ///获取邮箱验证码
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let scope = Bundle.isChineseLanguage() ? 1 : 2
@@ -203,7 +203,21 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///获取手机验证码
+    static func getPhoneCode(phone: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+//        let scope = Bundle.isChineseLanguage() ? 1 : 2
+        let parame = ["phone": phone]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("open/sms/code"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    ///登录
     static func login(username: String, password: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["username": username,
@@ -231,7 +245,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///邮箱注册
     static func register(email: String, password: String, code: String, nickName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["email": email,
@@ -241,20 +255,68 @@ class KLMService: NSObject {
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
             
             if error == nil {
+                
+                ///存储个人账号密码
+                KLMSetUserDefault("username", email)
+                KLMSetUserDefault("password", password)
+                
+                NotificationCenter.default.post(name: .loginPageRefresh, object: nil)
+                
                 success(responseObject as AnyObject)
             } else {
                 failure(error!)
             }
         }
     }
-    
+    ///手机号注册
+    static func signUp(telephone: String, password: String, code: String, nickName: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["telephone": telephone,
+                      "password": password,
+                      "code": code,
+                      "nickname": nickName]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/register"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                ///存储个人账号密码
+                KLMSetUserDefault("username", telephone)
+                KLMSetUserDefault("password", password)
+                
+                NotificationCenter.default.post(name: .loginPageRefresh, object: nil)
+                
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    ///修改密码
     static func updatePassword(oldPassword: String, newPassword: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let email = KLMGetUserDefault("username") as! String
-        let parame = ["email": email,
+        let username = KLMGetUserDefault("username") as! String
+        let parame = ["username": username,
                       "oldPassword": oldPassword,
                       "newPassword": newPassword]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/update/password"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                KLMSetUserDefault("password", newPassword)
+                
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    ///忘记邮箱密码
+    static func forgetPassword(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["email": email,
+                      "password": password,
+                      "code": code]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/forget/password"), params: parame) { responseObject, error in
             
             if error == nil {
                 success(responseObject as AnyObject)
@@ -264,9 +326,10 @@ class KLMService: NSObject {
         }
     }
     
-    static func forgetPassword(email: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+    ///忘记手机密码
+    static func forgetMobilePassword(mobile: String, password: String, code: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let parame = ["email": email,
+        let parame = ["telephone": mobile,
                       "password": password,
                       "code": code]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/forget/password"), params: parame) { responseObject, error in
@@ -343,7 +406,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///获取mesh列表
     static func getMeshList(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/adminId"), params: nil) { responseObject, error in
@@ -442,12 +505,12 @@ class KLMService: NSObject {
             }
         }
     }
-    
-    static func transferAdmin(meshId: Int, fromId: Int, toEmail: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+    ///转移管理员
+    static func transferAdmin(meshId: Int, fromId: Int, to id: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame: [String : Any] = ["meshId": meshId,
-                      "userId": fromId,
-                      "email": toEmail]
+                      "userId": "\(fromId)",
+                      "id": "\(id)"]
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/transfer/mesh"), params: parame) { responseObject, error in
             
             if error == nil {
@@ -526,6 +589,27 @@ class KLMService: NSObject {
     
     static func checkVersion(type: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMVersion.self, from: responseObject!)
+                let data = model?.data
+                success(data as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func checkBlueToothVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        ///bluetooth mcu
+        var type = "bluetooth"
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+            type = "mcu"
+        }
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
             
             if error == nil {

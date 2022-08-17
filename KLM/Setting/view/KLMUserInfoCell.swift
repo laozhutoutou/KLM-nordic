@@ -17,7 +17,7 @@ class KLMUserInfoCell: KLMBaseTableViewCell {
         
         guard let user = KLMUser.getUserInfo() else { return }
         nickNameLab.text = user.nickname
-        emailLab.text = user.email
+        emailLab.text = user.username
     }
     
     override func awakeFromNib() {

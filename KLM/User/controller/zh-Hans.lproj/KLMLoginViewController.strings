@@ -9,7 +9,7 @@
 "CTQ-NG-57s.normalTitle" = "登录";
 
 /* Class = "UITextField"; placeholder = "Email"; ObjectID = "LpF-dv-nJ6"; */
-"LpF-dv-nJ6.placeholder" = "邮箱";
+"LpF-dv-nJ6.placeholder" = "账号";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "Pbs-tH-svJ"; */
 "Pbs-tH-svJ.text" = "密码";
@@ -18,4 +18,4 @@
 "dbi-hy-HMp.normalTitle" = "注册";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "wzd-ft-pTV"; */
-"wzd-ft-pTV.text" = "邮箱";
+"wzd-ft-pTV.text" = "账号";

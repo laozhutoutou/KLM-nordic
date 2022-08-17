@@ -61,6 +61,7 @@ class KLMSmartNode: NSObject {
              .motionTime,
              .motionLight,
              .category,
+             .audio,
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
@@ -154,13 +155,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
             KLMLog("别的手机发的消息")
             return
         }
-
-        ///不是当前节点的消息不处理
-        
-        if source != currentNode?.unicastAddress {
-            KLMLog("别的节点回的消息")
-            return
-        }
         
         ///收到回复，停止计时
         KLMMessageTime.sharedInstacnce.stopTime()
@@ -174,12 +168,34 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     
                     var response = parameModel()
                         
-                    ///有error
+                    ///状态 0为成功  其他为失败
                     let status = parameters[0]
+                    /// dp点
                     let dpData = parameters[1]
+                    /// 数据
                     let value: Data = parameters.suffix(from: 2)
                     
                     let dp = DPType(rawValue: Int(dpData))
+                    response.dp = dp
+                    
+                    //语音播报
+                    if dp == .audio {
+                        
+//                        let index: Int = Int(value.bytes[0])
+                        if value.count >= 2 {
+                            let secondIndex = Int(value.bytes[1])
+                            KLMAudioManager.shared.startPlay(type: secondIndex)
+                        }
+                        return
+                    }
+                    
+
+                    ///不是当前节点的消息不处理
+                    if source != currentNode?.unicastAddress {
+                        KLMLog("别的节点回的消息")
+                        return
+                    }
+                    
                     if status != 0 { ///返回错误
 
                         var err = MessageError()
@@ -196,11 +212,23 @@ extension KLMSmartNode: MeshNetworkDelegate {
                             err.message = LANGLOC("The device do not support")
                         }
                         self.delegate?.smartNode(self, didfailure: err)
-
                         return
                     }
                     
-                    response.dp = dp
+                    //返回成功也要卡住一些错误数据
+                    switch dp {
+                    case .cameraPic:
+                        if value.count > 4 { ///数据有误
+                            var err = MessageError()
+                            err.code = 1
+                            err.dp = dp
+                            err.message = LANGLOC("The device do not support")
+                            self.delegate?.smartNode(self, didfailure: err)
+                            return
+                        }
+                    default:
+                        break
+                    }
                     
                     switch response.dp {
                     case .power,

@@ -41,9 +41,10 @@ struct KLMMeshInfo: Codable {
     
     var data: KLMMeshInfoData
     struct KLMMeshInfoData: Codable {
+        var id: Int ///meshID
         var meshConfiguration: String
-        var meshName: String?
-        var adminId: Int
+        var meshName: String
+        var adminId: Int///管理员ID
     }
 }
 
@@ -52,7 +53,7 @@ struct KLMMeshUser: Codable {
     var data: [KLMMeshUserData]
     struct KLMMeshUserData: Codable {
         var id: Int ///用户ID
-        var email: String
+        var email: String?
         var username: String?
         var nickname: String?
     }

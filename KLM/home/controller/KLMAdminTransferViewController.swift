@@ -63,7 +63,7 @@ class KLMAdminTransferViewController: UIViewController {
             SVProgressHUD.show()
             let user = self.meshUsers![self.selectIndex]
             let loginUser = KLMUser.getUserInfo()!
-            KLMService.transferAdmin(meshId: self.meshId, fromId: loginUser.id, toEmail: user.email) { response in
+            KLMService.transferAdmin(meshId: self.meshId, fromId: loginUser.id, to: user.id) { response in
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Successful transfer"))
                 
                 if var loadHome = KLMMesh.loadHome(),  loadHome.id == self.meshId {///转移的是当前mesh

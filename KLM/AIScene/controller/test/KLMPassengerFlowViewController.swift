@@ -51,10 +51,7 @@ class KLMPassengerFlowViewController: UIViewController {
         SVProgressHUD.show()
         let parame = parameModel(dp: .passengerFlow)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
-        
-//        let parameTime = parameModel(dp: .cameraPic)
-//        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
-        
+                
     }
     
     private func setupCharts() {

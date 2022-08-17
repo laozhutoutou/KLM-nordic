@@ -147,7 +147,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jOf-du-EUf">
-                            <rect key="frame" x="105" y="7.5" width="279" height="30"/>
+                            <rect key="frame" x="90" y="7.5" width="294" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="awQ-vy-ls0"/>
                             </constraints>
@@ -183,7 +183,7 @@
                         <constraint firstItem="Dxd-jj-fzL" firstAttribute="top" secondItem="GhR-Ln-D0d" secondAttribute="top" id="X0r-SS-B2i"/>
                         <constraint firstAttribute="trailing" secondItem="Dxd-jj-fzL" secondAttribute="trailing" constant="25" id="Y8g-uW-5av"/>
                         <constraint firstItem="jOf-du-EUf" firstAttribute="centerY" secondItem="GhR-Ln-D0d" secondAttribute="centerY" id="Z0K-Cd-2mb"/>
-                        <constraint firstItem="jOf-du-EUf" firstAttribute="leading" secondItem="GhR-Ln-D0d" secondAttribute="leading" constant="105" id="cK2-4P-auh"/>
+                        <constraint firstItem="jOf-du-EUf" firstAttribute="leading" secondItem="GhR-Ln-D0d" secondAttribute="leading" constant="90" id="cK2-4P-auh"/>
                         <constraint firstAttribute="bottom" secondItem="GWc-tF-KBz" secondAttribute="bottom" id="dF1-aq-QAt"/>
                         <constraint firstAttribute="trailing" secondItem="GWc-tF-KBz" secondAttribute="trailing" id="jqn-yw-0Vh"/>
                     </constraints>
