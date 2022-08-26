@@ -56,6 +56,8 @@ class KLMSignUpWithMobileViewController: UIViewController {
         setupUI()
         
         events()
+        
+        NotificationCenter.default.post(name: .loginPageRefresh, object: nil)
     }
 
     private func setupUI() {

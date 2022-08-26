@@ -21,6 +21,7 @@ targets.each do |t|
     pod 'Charts' #图表
     pod 'KeychainAccess', '~> 4.2.2'
     pod 'Bugly'
+    pod 'HandyJSON'
   end
 end
 

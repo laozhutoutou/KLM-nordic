@@ -128,7 +128,7 @@ class KLMCMOSViewController: UIViewController, Editable {
         let parame = parameModel(dp: .category)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: 1) {
             let parame = parameModel(dp: .colorTest)
             KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         }

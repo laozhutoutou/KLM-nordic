@@ -409,7 +409,7 @@ class KLMService: NSObject {
     ///获取mesh列表
     static func getMeshList(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         /// api/mesh/adminId/new
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/adminId"), params: nil) { responseObject, error in
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/mesh/adminId/new"), params: nil) { responseObject, error in
             
             if error == nil {
                 
@@ -675,7 +675,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///查询群组信息
     static func selectGroup(groupId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let mesh = KLMMesh.loadHome()!
@@ -685,7 +685,9 @@ class KLMService: NSObject {
             
             if error == nil {
                 let model = try? JSONDecoder().decode(KLMGroupModel.self, from: responseObject!)
-                let groupData = KLMTool.getModelFromString(GroupData.self, from: model?.data.groupData)
+                let groupData = KLMTool.jsonToModel(model?.data.groupData, GroupData.self)
+                ///这个方法，假如字符串没有key，模型有，模型key不是可选，就转化不出来。可选后可以转化但是key的值为nil,不会有默认值。
+//                let groupData = KLMTool.getModelFromString(GroupData.self, from: model?.data.groupData)
                 success(groupData as AnyObject)
                 
             } else {

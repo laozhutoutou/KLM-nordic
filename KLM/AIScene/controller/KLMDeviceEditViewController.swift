@@ -209,7 +209,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         
         KLMLog("连续点击")
         if cameraSwitch != 1 { //自动颜色开关没打开
-            SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Devicecoloursensing"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
             return
         }
         let vc = KLMAudioViewController()
@@ -473,7 +473,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }
         case itemType.CMOS.rawValue:
             if cameraSwitch != 1 { //自动颜色开关没打开
-                SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Devicecoloursensing"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
                 return
             }
             let vc = KLMCMOSViewController()

@@ -35,7 +35,6 @@ extension KLMSmartNodeDelegate {
 class KLMSmartNode: NSObject {
     
     var currentNode: Node?
-//    var messageNodes: [Node] = [Node]()
     
     static let sharedInstacnce = KLMSmartNode()
     private override init(){
@@ -47,7 +46,6 @@ class KLMSmartNode: NSObject {
     
     func sendMessage(_ parame: parameModel, toNode node: Node) {
         
-//        messageNodes.append(node)
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
@@ -74,6 +72,7 @@ class KLMSmartNode: NSObject {
              .colorTest,
              .motion,
              .cameraPic,
+             .hardwareInfo,
              .factoryTestResule:
             parameString = parame.value as! String
 
@@ -103,7 +102,6 @@ class KLMSmartNode: NSObject {
     
     func readMessage(_ parame: parameModel, toNode node: Node) {
        
-//        messageNodes.append(node)
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
@@ -128,7 +126,6 @@ class KLMSmartNode: NSObject {
     /// 删除节点
     func resetNode(node: Node) {
         
-//        messageNodes.append(node)
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
@@ -148,8 +145,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        KLMLog("mess = \(message.parameters?.hex)")
-        
         ///过滤消息，不是当前手机发出的消息不处理。（这个可以不加，因为不是当前手机的信息nordic底层已经处理）
         if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
             KLMLog("别的手机发的消息")
@@ -167,6 +162,10 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 if parameters.count >= 3 {
                     
                     var response = parameModel()
+                    if message.opCode.hex() == "00DD00FF" {
+                        KLMLog("读到的消息是 = \(parameters.hex)")
+                        response.opCode = .read
+                    }
                     ///状态 0为成功  其他为失败
                     let status = parameters[0]
                     /// dp点
@@ -180,7 +179,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     //语音播报
                     if dp == .audio {
                         
-//                        let index: Int = Int(value.bytes[0])
                         if value.count >= 2 {
                             let secondIndex = Int(value.bytes[1])
                             KLMAudioManager.shared.startPlay(type: secondIndex)
@@ -188,7 +186,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         return
                     }
                     
-
                     ///不是当前节点的消息不处理
                     if source != currentNode?.unicastAddress {
                         KLMLog("别的节点回的消息")
@@ -209,6 +206,9 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         }
                         if status == 0xFF { //没有这个dp点
                             err.message = LANGLOC("The device do not support")
+                        }
+                        if status == 0xFE { //摄像头有问题
+                            err.message = LANGLOC("Camera failure")
                         }
                         self.delegate?.smartNode(self, didfailure: err)
                         return
@@ -245,6 +245,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     case .color,
                          .cameraPic,
                          .checkVersion,
+                         .hardwareInfo,
                          .deviceSetting:
                         
                         response.value = [UInt8](value)
@@ -294,6 +295,8 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 let dp = DPType(rawValue: Int(dpData))
                 if dp == .cameraPic {
                     KLMMessageTime.sharedInstacnce.messageTimeout = 20
+                } else if dp == .power{
+                    KLMMessageTime.sharedInstacnce.messageTimeout = 4
                 } else {
                     KLMMessageTime.sharedInstacnce.messageTimeout = 6
                 }
@@ -339,14 +342,16 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
 
 extension Node {
     
+    private static var Node_KEY = true
+    private static var Version_KEY = true
+    
     /// 节点的名称
     var nodeName: String {
         
         return self.name ?? "Unknow name"
     }
-    
-    
-    var UUIDString: String {
+    ///节点uuid对应的广播数据
+    var nodeuuidString: String {
         
         let string = self.uuid.uuidString.replacingOccurrences(of: "-", with: "")
         let substring = string[4,12]
@@ -361,17 +366,56 @@ extension Node {
         }
         return false
     }
+    ///是否在线
+    var isOnline: Bool {
+        get {
+            return (objc_getAssociatedObject(self, &Self.Node_KEY) as? Bool) ?? false
+        }
+        set {
+            objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_COPY)
+        }
+    }
+     
+    var version: String {
+        get {
+            return (objc_getAssociatedObject(self, &Self.Version_KEY) as? String) ?? ""
+        }
+        set {
+            objc_setAssociatedObject(self, &Self.Version_KEY, newValue, .OBJC_ASSOCIATION_COPY)
+        }
+    }
 }
 
 ///给扩展增加存储属性
 extension GattBearer {
     private static var Node_KEY = true
-    var nodeUUID: String {
+    var manufacturer: String {
         get {
             return (objc_getAssociatedObject(self, &Self.Node_KEY) as? String) ?? ""
         }
         set {
             objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_COPY)
         }
+    }
+    
+    var nodeUUID: String {
+        var uuid = ""
+        if manufacturer.count >= 12 {
+            uuid = manufacturer[0,12]
+        }
+        return uuid
+    }
+    
+    var version: String {
+        
+        var version = ""
+        if manufacturer.count == 16 {
+            let first: Int = Int(nodeUUID[12,2])!
+            let second: Int = Int(nodeUUID[14,1])!
+            let third: Int = Int(nodeUUID[15,1])!
+            version = "\(first).\(second).\(third)"
+            KLMLog("设备版本：\(version)")
+        }
+        return version
     }
 }

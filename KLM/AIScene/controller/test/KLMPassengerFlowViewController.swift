@@ -99,7 +99,7 @@ class KLMPassengerFlowViewController: UIViewController {
         model.num = currentValues
         
         ///记录最近的3条记录
-        let key = "passengerRecode" + KLMHomeManager.currentNode.UUIDString
+        let key = "passengerRecode" + KLMHomeManager.currentNode.nodeuuidString
         if var ree = KLMCache.getCache(passengerRecode.self, key: key) { ///有缓存
             if ree.list.count >= 3 {
                 ree.list.removeFirst()

@@ -13,6 +13,7 @@ PODS:
     - SwiftAlgorithms (~> 1.0)
   - CryptoSwift (1.4.0)
   - DZNEmptyDataSet (1.8.1)
+  - HandyJSON (5.0.2)
   - IQKeyboardManagerSwift (6.5.9)
   - JKSwiftExtension (1.6.9):
     - Kingfisher
@@ -42,6 +43,7 @@ DEPENDENCIES:
   - Bugly
   - Charts
   - DZNEmptyDataSet (~> 1.8.1)
+  - HandyJSON
   - IQKeyboardManagerSwift (~> 6.5.6)
   - JKSwiftExtension (~> 1.6.8)
   - KeychainAccess (~> 4.2.2)
@@ -62,6 +64,7 @@ SPEC REPOS:
     - Charts
     - CryptoSwift
     - DZNEmptyDataSet
+    - HandyJSON
     - IQKeyboardManagerSwift
     - JKSwiftExtension
     - KeychainAccess
@@ -83,6 +86,7 @@ SPEC CHECKSUMS:
   Charts: cfa4e911e6dc289582c2fe011a0e87c03d96727f
   CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
   IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   JKSwiftExtension: f3a19d386eaf663d06349dd370cba0cbf402cdf6
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
@@ -98,6 +102,6 @@ SPEC CHECKSUMS:
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   YBPopupMenu: 3a02e89860bb0568ba477aee609bc3f25e5bd339
 
-PODFILE CHECKSUM: 6225c730c227b06be1e44c6a874bad2a1c5eb52d
+PODFILE CHECKSUM: ca115576c170294a67546ff7c4f5da3712d123d5
 
 COCOAPODS: 1.11.3

@@ -16,8 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device colour sensing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iak-61-wD1">
-                        <rect key="frame" x="15" y="16" width="151" height="18"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iak-61-wD1">
+                        <rect key="frame" x="15" y="16" width="75" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -82,7 +82,7 @@
                 <outlet property="offBtn" destination="vsG-6e-h3g" id="DaR-Os-kXc"/>
                 <outlet property="onBtn" destination="pvb-pF-5fe" id="QBO-pz-Oak"/>
             </connections>
-            <point key="canvasLocation" x="241" y="-29"/>
+            <point key="canvasLocation" x="-113" y="8"/>
         </tableViewCell>
     </objects>
 </document>

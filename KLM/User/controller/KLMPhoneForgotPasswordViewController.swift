@@ -144,6 +144,8 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
     ///选择地区
     @IBAction func tapRegion(_ sender: Any) {
         
+        return
+        
         let vc = KLMCountryCodeViewController()
         vc.backCountryCode = { [weak self] country, code in
             guard let self = self else { return }

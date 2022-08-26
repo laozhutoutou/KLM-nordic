@@ -21,8 +21,7 @@ addDevice = "添加设备";
 newGroup = "新建分组";
 groupDeleteTip = "确认删除该分组?";
 groupSelectDelete = "删除分组";
-deviceMoveOutGroupTip = "确认删除该设备";
-deviceMoveOutGroup = "确认删除该设备";
+deviceMoveOutGroupTip = "确认删除设备";
 connectSuccess = "连接成功";
 connectFailure = "连接失败";
 geDevice = "个设备";
@@ -48,7 +47,7 @@ noGroup = "暂无分组";
 searchDeviceTip = "请确保设备已经连接电源，且位于手机附近";
 DFUVersionTip = "最新版本";
 
-Devicecoloursensing = "自动颜色识别";
+"Auto Mode" = "全自动模式";
 Software = "软件";
 Version = "版本";
 deleteDevice = "删除设备";
@@ -130,7 +129,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Please enter store name" = "请输入商场名称";
 "Administrator transfer" = "转移管理员";
 "Do not show" = "不再提示";
-"Auto Mode has been changed. The sensor on the light detects commodity automatically every 20 minutes by default. For test purpose, tap one time in a row on “Device colour sensing” item to set time intervals with “Device colour sensing” on. Time interval can be changed from 5 seconds to 60 seconds. Turn on the light again, the time interval will be reset to 20 minutes." = "全自动模式（即“自动颜色识别”为打开状态）已经修改为默认间隔20分钟检测一次商品。对于测试目的，可以修改时间间隔，在“自动颜色识别”打开的情况下，点击“自动颜色识别”菜单项，即可进入时间间隔设置，时间间隔调节范围从5秒至60秒。要想时间间隔恢复至默认值20分钟，可以用APP或物理开关关灯后再打开即可恢复默认时间间隔。";
+"Auto Mode has been changed. The sensor on the light detects commodity automatically every 20 minutes by default. For test purpose, tap one time in a row on “Auto Mode” item to set time intervals with “Auto Mode” on. Time interval can be changed from 5 seconds to 60 seconds. Turn on the light again, the time interval will be reset to 20 minutes." = "全自动模式（即“全自动模式”为打开状态）已经修改为默认间隔20分钟检测一次商品。对于测试目的，可以修改时间间隔，在“全自动模式”打开的情况下，点击“全自动模式”菜单项，即可进入时间间隔设置，时间间隔调节范围从5秒至60秒。要想时间间隔恢复至默认值20分钟，可以用APP或物理开关关灯后再打开即可恢复默认时间间隔。";
 "Please select use occasion" = "请选择使用场合";
 "Groceries" = "果蔬副食";
 "Clothing & Accs" = "服装百货";
@@ -148,6 +147,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Meat" = "肉类";
 "Bread" = "面包";
 "Sensing & occasion change" = "检测方式和使用场合修改";
+"Occasion change" = "使用场合修改";
 
 "Please make sure the device can not be connected with APP, otherwise use 'Settings reset'" = "请确认该设备能否正常连接APP，如果能请使用'设置复位'移除";
 "s" = "秒";
@@ -171,6 +171,11 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "The mobile number format is incorrect" = "手机号码格式不对";
 "Sign up with Email" = "邮箱注册";
 "Forgot Mobile Password" = "忘记手机号密码";
+"Please select devices" = "请选择设备";
+"Select at most %d lights" = "最多选择%d个灯";
+"Add devices" = "添加设备";
+"Delete devices" = "删除设备";
+"Camera failure" = "摄像头故障";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

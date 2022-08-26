@@ -67,7 +67,7 @@ class KLMTestSectionTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 6
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -75,16 +75,18 @@ class KLMTestSectionTableViewController: UITableViewController {
         if indexPath.row == 0 {
             cell.textLabel?.text = "版本号：  \(BLEVersion)"
             cell.contentView.addSubview(resetBtn)
-        }else if indexPath.row == 1 {
+        } else if indexPath.row == 1 {
             cell.textLabel?.text = "PCBA测试"
         } else if indexPath.row == 2 {
             cell.textLabel?.text = "驱动测试"
         } else if indexPath.row == 3 {
             cell.textLabel?.text = "成品测试"
-        } else if indexPath.row == 4{
+        } else if indexPath.row == 4 {
             cell.textLabel?.text = "老化测试"
-        } else if indexPath.row == 5{
+        } else if indexPath.row == 5 {
             cell.textLabel?.text = "包装测试"
+        } else if indexPath.row == 6 {
+            cell.textLabel?.text = "硬件信息查询"
         }
         
         return cell
@@ -114,6 +116,10 @@ class KLMTestSectionTableViewController: UITableViewController {
         } else if indexPath.row == 5{
             
             let vc = KLMBaoZhuangTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        } else if indexPath.row == 6{
+            
+            let vc = KLMTestVersionViewController()
             navigationController?.pushViewController(vc, animated: true)
         }
     }

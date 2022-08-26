@@ -188,6 +188,16 @@ class KLMPicDownloadViewController: UIViewController {
                 self.passField.text = model.WiFiPass
             }
         }
+        
+        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
+            
+            if ssidText.isEmpty || passwordText.isEmpty{
+                return false
+            } else {
+                return true
+            }
+        }.bind(to: downLoadBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 }
 
@@ -227,10 +237,6 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
 
                     case .failure(let error):
                         KLMLog("error = \(error)") // The error happens
-                        if error.errorCode ==  1002 {
-                            SVProgressHUD.showInfo(withStatus: LANGLOC("Request timed out."))
-                            return
-                        }
                         if error.errorCode == 1001 {
                             //检查本地网络情况
                             let alertController = UIAlertController(title: LANGLOC("Local Network permissions"), message: LANGLOC("Please check whether the Local Network permissions is turned on?"), preferredStyle: .alert)

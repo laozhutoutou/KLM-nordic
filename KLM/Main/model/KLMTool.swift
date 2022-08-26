@@ -8,6 +8,7 @@
 import Foundation
 import KeychainAccess
 import SwiftUI
+import HandyJSON
 
 class KLMTool {
     
@@ -169,4 +170,26 @@ extension KLMTool {
             noNeedUpdate()
         }
     }
+}
+
+extension KLMTool {
+    
+    ///JSON字符串转模型，使用该方法，假如字符串没有某个key,但是模型有，这个时候模型中的key值不会Nil，保留默认值。
+    static func jsonToModel(_ jsonStr:String?,_ modelType:HandyJSON.Type) ->BaseModel {
+        
+        guard let jsonStr = isEmptyString(string: jsonStr) else {
+            KLMLog("jsonoModel:字符串为空")
+            return BaseModel()
+        }
+
+        return modelType.deserialize(from: jsonStr)  as! BaseModel
+        
+    }
+}
+
+class BaseModel: HandyJSON {
+    required init() {}
+    func mapping(mapper: HelpingMapper) {   //自定义解析规则，日期数字颜色，如果要指定解析格式，子类实现重写此方法即可
+
+      }
 }

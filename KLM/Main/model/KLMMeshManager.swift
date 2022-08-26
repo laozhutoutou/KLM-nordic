@@ -241,17 +241,6 @@ extension KLMMeshManager: MeshNetworkDelegate {
             return
         }
         
-        //假如时间超时，再收到消息不再处理
-//        if let node = nodes.first(where: {$0.unicastAddress == source}) {
-//            if let index = discoveredPeripherals.firstIndex(where: {$0.device.uuid == node.uuid}) {
-//                //超时后定时无效
-//                if timers.first(where: {$0.tag == index})?.timeIsValid() == false {
-//
-//                    return
-//                }
-//            }
-//        }
-        
         switch message {
         case let status as ConfigAppKeyStatus://node add app key success
             if status.status == .success{

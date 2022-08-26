@@ -99,7 +99,7 @@ let KLM_APP_VERSION = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
 let KLM_APP_BUILD = Bundle.main.infoDictionary?["CFBundleVersion"]
 
 /*** UserDefaults ***/
-func KLMSetUserDefault(_ key : String, _ value : Any?) -> Void{
+func KLMSetUserDefault(_ key : String, _ value : Any?) -> Void {
     
     UserDefaults.standard.setValue(value, forKey: key)
     UserDefaults.standard.synchronize()
@@ -140,14 +140,14 @@ func KLMHttpShowError(_ error: NSError) {
 
 ///国内版
 var baseUrl: String {
-    switch apptype {
-    case .targetGN,
-            .test:
+//    switch apptype {
+//    case .targetGN,
+//            .test,
 //         .targetsGW:
-        return "https://light.kaiwaresz.com/"
-    case .targetsGW:
+//        return "https://light.kaiwaresz.com/"
+//    case .targetsGW:
         return "https://ai.kaiwaresz.com/"
-    }
+//    }
 }
 
 func KLMUrl(_ url: String) -> String {

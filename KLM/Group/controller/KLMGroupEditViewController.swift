@@ -200,6 +200,20 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             } failure: {
                 
             }
+        case itemType.CMOS.rawValue:
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToGroup(group: KLMHomeManager.currentGroup) { [weak self] in
+                
+                guard let self = self else { return }
+                
+                let vc = KLMGroupUseOccasionViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } failure: {
+                
+            }
         
         default:
             break

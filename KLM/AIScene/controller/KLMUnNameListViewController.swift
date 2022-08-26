@@ -31,6 +31,8 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     var nodes: [Node] = [Node]()
     //家庭数据源
     var homes: [KLMHome.KLMHomeModel] = []
+    ///服务器上的版本
+    var BLEVersionData: KLMVersion.KLMVersionData?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -40,7 +42,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.barTintColor =  rgba(247, 247, 247, 1)
-
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,9 +101,12 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         ///初始化数据
         initData()
         
+        ///查询蓝牙版本
+//        checkBlueToothVersion()
+        
         ///检查版本
         if apptype == .targetGN || apptype == .targetsGW {
-            checkVersion()
+            checkAPPVersion()
         }
     }
     
@@ -136,9 +141,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
                 ///获取Mesh数据
                 KLMService.getMeshInfo(id: currentHome.id) { response in
-                    DispatchQueue.main.asyncAfter(deadline: 1.5) {
-                        self.hideEmptyView()
-                    }
+                    self.hideEmptyView()
                     let meshInfo = response as! KLMMeshInfo.KLMMeshInfoData
                     if var home = KLMMesh.loadHome(), home.id == currentHome.id {///本地存在和服务器也有
                         
@@ -187,7 +190,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 self.homeBtn.setTitle(nil, for: .normal)
                 if KLMMesh.loadHome() != nil {///本地存有家庭
                     ///清空数据
-                    KLMMesh.removeHome()
+                    KLMMesh.deleteHome()
 
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
 
@@ -282,7 +285,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
     }
     
-    private func checkVersion() {
+    private func checkAPPVersion() {
         
         KLMService.checkVersion(type: "ios") { response in
             
@@ -308,6 +311,17 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 self.showUpdateView()
             }
             ///每隔一段时间提示一次
+        } failure: { error in
+            
+        }
+    }
+    
+    ///查询服务器上蓝牙版本
+    private func checkBlueToothVersion() {
+        
+        KLMService.checkBlueToothVersion { response in
+            self.BLEVersionData = response as? KLMVersion.KLMVersionData
+            self.collectionView.reloadData()
         } failure: { error in
             
         }
@@ -428,7 +442,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
             
         } failure: {
-
+            
         }
     }
     
@@ -607,5 +621,35 @@ extension KLMUnNameListViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         
         KLMShowError(error)
+    }
+}
+
+extension KLMUnNameListViewController: GattDelegate {
+    
+    func bearerDidOpen(_ bearer: Bearer) {
+        ///直连的连接上了
+
+    }
+    
+    func bearer(_ bearer: Bearer, didClose error: Error?) {
+        KLMLog("首页设备一个都没连接")
+        ///一个都没连
+        nodes.forEach({$0.isOnline = false})
+        self.collectionView.reloadData()
+    }
+    
+    func bearerDidDiscover(_ bearer: Bearer) {
+        DispatchQueue.main.asyncAfter(deadline: 1) { ///隔一秒钟，等页面刷新出来再开始
+            
+            if let bearer = bearer as? GattBearer {
+                if let index = self.nodes.firstIndex(where: {$0.nodeuuidString == bearer.nodeUUID}) {
+                    let node = self.nodes[index]
+                    node.isOnline = true
+                    let indexPath = IndexPath.init(item: index, section: 0)
+                    self.collectionView.reloadItems(at: [indexPath])
+                    KLMLog("连接的设备：\(node.nodeName)")
+                }
+            }
+        }
     }
 }

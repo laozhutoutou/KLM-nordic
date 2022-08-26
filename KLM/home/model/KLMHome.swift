@@ -85,15 +85,16 @@ struct KLMGroupModel: Codable {
     }
 }
 
-class GroupData: Codable {
-    var power: Int = 1
-    var customColor: String = "#FFFFFF"
-    var customColorTemp: Int = 0
-    var customLight: Int = 100
-    var energyPower: Int = 0
-    var autoDim: Int = 1
-    var brightness: Int = 100
-    var colorSensing: Int = 1 //1 开 2-关
+class GroupData: BaseModel, Codable {
+    var power: Int = 1 //开关 1-开 2-关
+    var customColor: String = "#FFFFFF" //自定义颜色
+    var customColorTemp: Int = 0 //自定义色温
+    var customLight: Int = 100 //自定义亮度
+    var energyPower: Int = 0 //节能开关
+    var autoDim: Int = 1 //节能时间 单位分钟
+    var brightness: Int = 100 //节能亮度
+    var colorSensing: Int = 1 //自动模式1 开 2-关
+    var useOccasion: Int = 2 //使用场合
 }
 
 struct ProvisionerAddress: Codable {

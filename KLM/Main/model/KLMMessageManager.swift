@@ -138,6 +138,7 @@ enum DPType: Int {
     case motion = 18 //节能
     case factoryTest = 19
     case factoryTestResule = 20
+    case hardwareInfo = 21
     case audio = 88 //语音播报
     case checkVersion = 99
     case DFU = 100
@@ -146,11 +147,15 @@ enum DPType: Int {
     case AllDp = 0xFF
 }
 
+enum opCodeType {
+    case send ///发送消息 00DB00FF
+    case read ///读取消息 00DD00FF
+}
 struct parameModel {
     
     var dp: DPType?
     var value: Any = 0
-    
+    var opCode: opCodeType = .send
 }
 
 struct RuntimeVendorMessage: VendorMessage {

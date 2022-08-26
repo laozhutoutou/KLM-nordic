@@ -36,6 +36,7 @@ class KLMGroupDeviceEditViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceRemoveFromGroup, object: nil)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addDevice))
         
@@ -58,9 +59,31 @@ class KLMGroupDeviceEditViewController: UIViewController {
     
     @objc func addDevice() {
         
-        let vc = KLMGroupDeviceAddTableViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let point: CGPoint = CGPoint.init(x: KLMScreenW - 30, y: KLM_TopHeight)
+        let titles: [String] = [LANGLOC("Add devices"), LANGLOC("Delete devices")]
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 150) { popupMenu in
+            popupMenu?.priorityDirection = .right
+            popupMenu?.arrowHeight = 0
+            popupMenu?.minSpace = 30
+            popupMenu?.isShadowShowing = false
+            popupMenu?.delegate = self
+            popupMenu?.cornerRadius = 0
+        }
+    }
+}
+
+extension KLMGroupDeviceEditViewController: YBPopupMenuDelegate {
+    
+    func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
         
+        if index == 0 {
+            
+            let vc = KLMGroupDeviceAddTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = KLMGroupDeleteDevicesController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -119,29 +142,29 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         
         let deviceModel: Node = self.deviceLists[indexPath.item]
         
-        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
-            
-            let aler = UIAlertController.init(title: LANGLOC("deviceMoveOutGroupTip"), message: LANGLOC("deviceMoveOutGroup"), preferredStyle: .alert)
-            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
-                
-                if KLMMesh.isCanEditMesh() == false {
-                    return
-                }
-                
-                //设备移出分组
-                SVProgressHUD.show()
-                
-                //设备从当前群组中移除
-                KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: KLMHomeManager.currentGroup)
-                
-            }
-            aler.addAction(cancel)
-            aler.addAction(sure)
-            self.present(aler, animated: true, completion: nil)
-            
-            completionHandler(true)
-        }
+//        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+//
+//            let aler = UIAlertController.init(title: LANGLOC("deviceMoveOutGroupTip"), message: nil, preferredStyle: .alert)
+//            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
+//            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+//
+//                if KLMMesh.isCanEditMesh() == false {
+//                    return
+//                }
+//
+//                //设备移出分组
+//                SVProgressHUD.show()
+//
+//                //设备从当前群组中移除
+//                KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: KLMHomeManager.currentGroup)
+//
+//            }
+//            aler.addAction(cancel)
+//            aler.addAction(sure)
+//            self.present(aler, animated: true, completion: nil)
+//
+//            completionHandler(true)
+//        }
         
         //转移
         let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("transfer")) { action, sourceView, completionHandler in
@@ -154,7 +177,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         }
         
         editAction.backgroundColor = appMainThemeColor
-        let actions = UISwipeActionsConfiguration.init(actions: [deleteAction, editAction])
+        let actions = UISwipeActionsConfiguration.init(actions: [editAction])
         return actions
     }
 }

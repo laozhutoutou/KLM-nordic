@@ -253,6 +253,14 @@ extension Int {
     }
 }
 
+extension UInt32 {
+
+    func hex() -> String {
+        return String(format: "%08X", self)
+    }
+    
+}
+
 extension UIColor {
     
     /// color转化成16进制字符串 HSB

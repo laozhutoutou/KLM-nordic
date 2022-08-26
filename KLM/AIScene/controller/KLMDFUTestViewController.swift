@@ -237,6 +237,16 @@ class KLMDFUTestViewController: UIViewController {
                 self.passField.text = model.WiFiPass
             }
         }
+        
+        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
+            
+            if ssidText.isEmpty || passwordText.isEmpty{
+                return false
+            } else {
+                return true
+            }
+        }.bind(to: upGradeBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
     
     @objc func dimiss() {
@@ -341,7 +351,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                                 KLMWiFiManager.saveWiFiName(wifiModel: model)
                             }
                             
-                            let progress: Float = Float(PP) / 100.0 * 0.7
+                            let progress: Float = Float(PP) / 100.0
                             SVProgressHUD.showProgress(progress, status: "\(Int(progress * 100))" + "%")
                         case 0xFC:
                             timer.startTimer(timeOut: 100)

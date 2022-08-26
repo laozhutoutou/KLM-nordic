@@ -47,30 +47,22 @@ class KLMMesh {
         KLMCache.setCache(model: home, key: "home")
         KLMCache.setCache(model: home, key: "home\(home!.id)")
     }
-    ///删除存储的家庭
+    ///删除存储的家庭 针对当前存储的家庭
     static func removeHome() {
         KLMCache.removeObject(key: "home")
+    }
+    ///删除存储的家庭 包括缓存的家庭
+    static func deleteHome() {
+        if let home = KLMMesh.loadHome() {
+            KLMCache.removeObject(key: "home\(home.id)")
+        }
+        KLMMesh.removeHome()
     }
     ///根据meshid获取本地保存的数据
     static func getHome(homeId: Int) -> KLMMeshInfo.KLMMeshInfoData? {
         return KLMCache.getCache(KLMMeshInfo.KLMMeshInfoData.self, key: "home\(homeId)")
     }
     
-    ///加载本地缓存的mesh数据
-//    static func loadLocalMeshData () {
-//        
-//        var loaded = false
-//        do {
-//            loaded = try MeshNetworkManager.instance.load()
-//        } catch {
-//            print(error)
-//            // ignore
-//        }
-//        
-//        if loaded {
-//            (UIApplication.shared.delegate as! AppDelegate).meshNetworkDidChange()
-//        }
-//    }
     ///mesh数据写入本地
     static func loadHomeMeshData(meshConfiguration: String) {
         

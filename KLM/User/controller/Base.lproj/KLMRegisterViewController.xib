@@ -183,7 +183,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hOP-M4-Dlq">
-                    <rect key="frame" x="15" y="243" width="384" height="45"/>
+                    <rect key="frame" x="15" y="288" width="384" height="45"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffj-X6-1eY" userLabel="line">
                             <rect key="frame" x="0.0" y="44.5" width="384" height="0.5"/>
@@ -238,7 +238,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsp-q3-djo">
-                    <rect key="frame" x="15" y="288" width="384" height="45"/>
+                    <rect key="frame" x="15" y="243" width="384" height="45"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IO-VE-69x" userLabel="line">
                             <rect key="frame" x="0.0" y="44.5" width="384" height="0.5"/>
@@ -282,7 +282,6 @@
                 <constraint firstItem="1Lg-Jt-Xh3" firstAttribute="leading" secondItem="3V1-mB-CXQ" secondAttribute="leading" id="5xF-Fp-25g"/>
                 <constraint firstItem="dFy-9L-Pth" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="62c-YT-KNp"/>
                 <constraint firstItem="KWJ-D9-G1L" firstAttribute="top" secondItem="dFy-9L-Pth" secondAttribute="bottom" id="BbU-xk-geY"/>
-                <constraint firstItem="oAE-Q0-4ai" firstAttribute="top" secondItem="Qsp-q3-djo" secondAttribute="bottom" constant="30" id="EDQ-g5-Bin"/>
                 <constraint firstItem="dFy-9L-Pth" firstAttribute="height" secondItem="oKC-4w-4zp" secondAttribute="height" id="EDl-Cf-Wyc"/>
                 <constraint firstItem="hOP-M4-Dlq" firstAttribute="height" secondItem="oKC-4w-4zp" secondAttribute="height" id="Fjc-Fa-GZQ"/>
                 <constraint firstItem="KWJ-D9-G1L" firstAttribute="trailing" secondItem="oKC-4w-4zp" secondAttribute="trailing" id="G1q-Pa-Bh9"/>
@@ -294,13 +293,14 @@
                 <constraint firstItem="Qsp-q3-djo" firstAttribute="height" secondItem="oKC-4w-4zp" secondAttribute="height" id="LR1-3N-W6f"/>
                 <constraint firstItem="oKC-4w-4zp" firstAttribute="leading" secondItem="yDR-FH-Uzd" secondAttribute="leading" constant="15" id="M8Y-l0-okc"/>
                 <constraint firstItem="oKC-4w-4zp" firstAttribute="top" secondItem="yDR-FH-Uzd" secondAttribute="top" constant="20" id="N2F-Ap-ikC"/>
+                <constraint firstItem="hOP-M4-Dlq" firstAttribute="top" secondItem="Qsp-q3-djo" secondAttribute="bottom" id="Oig-BD-Ii9"/>
+                <constraint firstItem="oAE-Q0-4ai" firstAttribute="top" secondItem="hOP-M4-Dlq" secondAttribute="bottom" constant="30" id="SOV-8j-ayk"/>
                 <constraint firstItem="hOP-M4-Dlq" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="WjQ-SO-jYO"/>
                 <constraint firstItem="oAE-Q0-4ai" firstAttribute="trailing" secondItem="oKC-4w-4zp" secondAttribute="trailing" id="h4b-xs-ry9"/>
-                <constraint firstItem="hOP-M4-Dlq" firstAttribute="top" secondItem="KWJ-D9-G1L" secondAttribute="bottom" id="jKG-Hq-pST"/>
+                <constraint firstItem="Qsp-q3-djo" firstAttribute="top" secondItem="KWJ-D9-G1L" secondAttribute="bottom" id="iCT-n9-8Jg"/>
                 <constraint firstItem="hOP-M4-Dlq" firstAttribute="trailing" secondItem="oKC-4w-4zp" secondAttribute="trailing" id="kda-ua-sTI"/>
                 <constraint firstItem="yDR-FH-Uzd" firstAttribute="trailing" secondItem="oKC-4w-4zp" secondAttribute="trailing" constant="15" id="kqe-TB-S0E"/>
                 <constraint firstItem="oAE-Q0-4ai" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="lSU-xy-Vb1"/>
-                <constraint firstItem="Qsp-q3-djo" firstAttribute="top" secondItem="hOP-M4-Dlq" secondAttribute="bottom" id="lsq-JL-11l"/>
                 <constraint firstItem="KWJ-D9-G1L" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="paN-uk-ChH"/>
                 <constraint firstItem="dFy-9L-Pth" firstAttribute="top" secondItem="oKC-4w-4zp" secondAttribute="bottom" id="wTt-b8-El8"/>
                 <constraint firstItem="Qsp-q3-djo" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="xLZ-cd-uQM"/>

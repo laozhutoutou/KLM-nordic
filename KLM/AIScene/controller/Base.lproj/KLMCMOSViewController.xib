@@ -193,7 +193,7 @@
                 <constraint firstItem="V3T-nk-A7X" firstAttribute="leading" secondItem="cVk-Kk-Aez" secondAttribute="leading" id="vaE-vk-QOF"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-3217" y="-100"/>
+            <point key="canvasLocation" x="-3281" y="-242"/>
         </view>
         <tapGestureRecognizer id="MuO-VR-xQQ">
             <connections>

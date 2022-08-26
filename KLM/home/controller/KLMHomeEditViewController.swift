@@ -120,7 +120,7 @@ class KLMHomeEditViewController: UIViewController {
                 ///删除mesh（1、mesh清除配置。2、清除家庭数据。3、刷新页面）
                 if KLMMesh.loadHome()?.id == self.meshId {///删除的是当前mesh
                     
-                    KLMMesh.removeHome()
+                    KLMMesh.deleteHome()
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
                     SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                     self.navigationController?.popViewController(animated: true)

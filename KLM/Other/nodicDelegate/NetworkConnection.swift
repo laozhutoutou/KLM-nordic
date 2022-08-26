@@ -170,7 +170,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
         switch central.state {
         case .poweredOn:
             if isStarted && isConnectionModeAutomatic &&
-               proxies.count < NetworkConnection.maxConnections {
+                proxies.count < NetworkConnection.maxConnections {
                 central.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
             }
         case .poweredOff:
@@ -178,11 +178,11 @@ extension NetworkConnection: CBCentralManagerDelegate {
             proxies.forEach { $0.close() }
             proxies.removeAll()
             isOpen = false
-//            SVProgressHUD.showInfo(withStatus: "app一定已授权,蓝牙是关闭状态")
+            //            SVProgressHUD.showInfo(withStatus: "app一定已授权,蓝牙是关闭状态")
         case .unauthorized:
             print("app一定未授权,蓝牙是否开启不知")
             KLMBlueToothManager.showUnauthorizedAlert()
-//            SVProgressHUD.showInfo(withStatus: "app一定未授权,蓝牙是否开启不知")
+            //            SVProgressHUD.showInfo(withStatus: "app一定未授权,蓝牙是否开启不知")
         case .resetting:
             proxies.forEach { $0.close() }
             proxies.removeAll()
@@ -204,34 +204,62 @@ extension NetworkConnection: CBCentralManagerDelegate {
         } else {
             // Is it a Node Identity beacon?
             guard let nodeIdentity = advertisementData.nodeIdentity,
-                meshNetwork.matches(hash: nodeIdentity.hash, random: nodeIdentity.random) else {
+                  meshNetwork.matches(hash: nodeIdentity.hash, random: nodeIdentity.random) else {
                 // A Node from another mesh network.
                 return
             }
         }
         
+        ///扫描到设备
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
             return
         }
         
-        if proxies.count >= NetworkConnection.maxConnections {
-            central.stopScan()
-        } else {
+        let bearer = GattBearer(target: peripheral)
+        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
             
-            //记录当前kCBAdvDataManufacturerData
-            let bearer = GattBearer(target: peripheral)
-            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+            let subData = data.suffix(from: 2).hex
+            bearer.manufacturer = subData
+            KLMLog("nodeUUID = \(subData)")
+        }
+        
+        ///将数据传输出去
+        if let delegate = delegate as? GattDelegate {
+            delegate.bearerDidDiscover(bearer)
+        }
+        
+        if proxies.count >= NetworkConnection.maxConnections {
 
-                let subData = data.suffix(from: 2).hex
-                bearer.nodeUUID = subData
-                KLMLog("nodeUUID = \(subData)")
-            }
+        } else {
             proxies.append(bearer)
             bearer.delegate = self
             bearer.dataDelegate = self
             bearer.logger = logger
             bearer.open()
         }
+        
+//        guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
+//            return
+//        }
+//
+//        if proxies.count >= NetworkConnection.maxConnections {
+//            central.stopScan()
+//        } else {
+//
+//            //记录当前kCBAdvDataManufacturerData
+//            let bearer = GattBearer(target: peripheral)
+//            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+//
+//                let subData = data.suffix(from: 2).hex
+//                bearer.nodeUUID = subData
+//                KLMLog("nodeUUID = \(subData)")
+//            }
+//            proxies.append(bearer)
+//            bearer.delegate = self
+//            bearer.dataDelegate = self
+//            bearer.logger = logger
+//            bearer.open()
+//        }
     }
 }
 
@@ -276,4 +304,10 @@ extension NetworkConnection: GattBearerDelegate, BearerDataDelegate {
         dataDelegate?.bearer(self, didDeliverData: data, ofType: type)
     }
     
+}
+
+///自定义
+public protocol GattDelegate: BearerDelegate {
+    
+    func bearerDidDiscover(_ bearer: Bearer)
 }

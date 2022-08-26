@@ -12,8 +12,9 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     
     //设备数据源
     var nodes: [Node] = [Node]()
-    private var selectedIndexPath: IndexPath?
-    
+    var selectNodes: [Node] = [Node]()
+    var currentIndex: Int = 0
+        
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -63,20 +64,35 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
         }
         
         //设备添加到群组
-        guard let selectedIndexPath = selectedIndexPath else { return  }
-        
-        //查询设备是否在线
-        let selectNode = self.nodes[selectedIndexPath.row]
+        if selectNodes.isEmpty {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please select devices"))
+            return
+        }
         
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
-        KLMConnectManager.shared.connectToNode(node: selectNode) {
-            SVProgressHUD.dismiss()
-            KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: KLMHomeManager.currentGroup)
+        next()
+        
+    }
+    
+    private func next() {
+        
+        if currentIndex >= selectNodes.count { ///全部添加完成
             
-        } failure: {
+            ///提交数据到服务器
+            if KLMMesh.save() {
+                
+            }
+
+            NotificationCenter.default.post(name: .deviceAddToGroup, object: nil)
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            self.navigationController?.popViewController(animated: true)
             
+            return
         }
+        
+        let selectNode = selectNodes[currentIndex]
+        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: KLMHomeManager.currentGroup)
     }
 
     // MARK: - Table view data source
@@ -97,16 +113,14 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let node = self.nodes[indexPath.row]
         let cell = KLMGroupDeviceAddCell.cellWithTableView(tableView: tableView)
         cell.model = node
-        if selectedIndexPath == indexPath {
+        if selectNodes.contains(where: {$0.uuid == node.uuid}) {
             cell.isShowSelect = true
-            
         } else {
-            
             cell.isShowSelect = false
-            
         }
         return cell
     }
@@ -114,9 +128,28 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        selectedIndexPath = indexPath
-        tableView.reloadData()
+        if selectNodes.count >= 3 {
+            
+            SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
+            return
+        }
         
+        let node = self.nodes[indexPath.row]
+        if let index = selectNodes.firstIndex(where: {$0.uuid == node.uuid}) {
+            selectNodes.remove(at: index)
+            tableView.reloadData()
+        } else {
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToNode(node: node) {
+                SVProgressHUD.dismiss()
+                self.selectNodes.append(node)
+                tableView.reloadData()
+            } failure: {
+                
+            }
+        }
     }
 }
 
@@ -125,20 +158,15 @@ extension KLMGroupDeviceAddTableViewController: KLMMessageManagerDelegate {
     
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
         
-        if error != nil {
-            
-            SVProgressHUD.showInfo(withStatus: error?.message)
-            return
-        }
-        
-        ///提交数据到服务器
-        if KLMMesh.save() {
-            
-        }
-        
-        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-        NotificationCenter.default.post(name: .deviceAddToGroup, object: nil)
-        self.navigationController?.popViewController(animated: true)
+        currentIndex += 1
+        next()
+//        if error != nil { //失败
+//
+//            next()
+////            SVProgressHUD.showInfo(withStatus: error?.message)
+//            return
+//        }
+    
     }
     
 }

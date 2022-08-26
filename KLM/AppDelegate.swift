@@ -131,6 +131,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection = NetworkConnection(to: meshNetwork)
         connection!.dataDelegate = meshNetworkManager
         connection!.logger = self
+        if let tabBar = window?.rootViewController as? KLMTabBarController, let nav: KLMNavigationViewController = tabBar.viewControllers?.first as? KLMNavigationViewController, let vc: KLMUnNameListViewController = nav.viewControllers.first as? KLMUnNameListViewController {
+            connection.delegate = vc
+        }
         meshNetworkManager.transmitter = connection
         connection.isConnectionModeAutomatic = true
         connection!.open()

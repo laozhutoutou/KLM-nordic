@@ -57,7 +57,8 @@ class KLMSmartGroup: NSObject {
              .flash,
              .motionTime,
              .motionLight,
-             .motionPower:
+             .motionPower,
+             .category:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
            

@@ -50,8 +50,8 @@ class KLMSelectNodesViewController: UIViewController, UITableViewDelegate, UITab
     private func resetNodes() {
         
         if let bearer = MeshNetworkManager.bearer.proxies.first{
-            if let connectNode = selectNodes.first(where: {$0.UUIDString == bearer.nodeUUID}) { //找到直连的设备
-                KLMLog("uuid = \(connectNode.UUIDString)")
+            if let connectNode = selectNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) { //找到直连的设备
+                KLMLog("uuid = \(connectNode.nodeuuidString)")
                 selectNodes.remove(connectNode)
                 selectNodes.append(connectNode)
             }
