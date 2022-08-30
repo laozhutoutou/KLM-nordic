@@ -128,17 +128,17 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if selectNodes.count >= 3 {
-            
-            SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
-            return
-        }
-        
         let node = self.nodes[indexPath.row]
         if let index = selectNodes.firstIndex(where: {$0.uuid == node.uuid}) {
             selectNodes.remove(at: index)
             tableView.reloadData()
         } else {
+            
+            if selectNodes.count >= 3 {
+                
+                SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
+                return
+            }
             
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)

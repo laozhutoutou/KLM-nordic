@@ -20,6 +20,8 @@ class KLMMotionViewController: UIViewController, Editable {
     
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
+    ///是否确认
+    var isConfirm: Bool = false
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -72,6 +74,7 @@ class KLMMotionViewController: UIViewController, Editable {
             
             return String(format: "%ld%%", Int(value))
         }
+        lightSlider.delegate = self
         lightSlider.currentValue = 0
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
@@ -89,11 +92,10 @@ class KLMMotionViewController: UIViewController, Editable {
         if sender.isOn == false {
             
             SVProgressHUD.show()
+            isConfirm = true
             //发送关闭指令
             let parame = parameModel(dp: .motion, value: "000000")
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-//            let parame1 = parameModel(dp: .motionPower, value: 0)
-//            KLMSmartNode.sharedInstacnce.sendMessage(parame1, toNode: KLMHomeManager.currentNode)
             
         } else {
             
@@ -103,6 +105,7 @@ class KLMMotionViewController: UIViewController, Editable {
     
     @IBAction func Comfirm(_ sender: Any) {
         
+        isConfirm = true
         SVProgressHUD.show()
         ///最后发送开指令
         let power = "01"
@@ -135,7 +138,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
             self.hideEmptyView()
         }
         
-        if message?.dp ==  .motion {
+        if isConfirm == true {
 
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
@@ -147,6 +150,19 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         autoDim.isOn = true
         KLMShowError(error)
+    }
+}
+
+extension KLMMotionViewController: KLMSliderDelegate {
+
+    func KLMSliderWith(slider: KLMSlider, value: Float) {
+        
+        ///最后发送开指令
+        let power = "03"
+        let time = Int(self.timeSlider.currentValue).decimalTo2Hexadecimal()
+        let light = Int(self.lightSlider.currentValue).decimalTo2Hexadecimal()
+        let parame = parameModel(dp: .motion, value: power + time + light)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
 }
 

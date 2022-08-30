@@ -70,7 +70,7 @@ class KLMImagePickerController: UIImagePickerController {
         let titleLab: UILabel = UILabel.init()
         titleLab.font = UIFont.systemFont(ofSize: 15)
         titleLab.textColor = .white
-        titleLab.text = LANGLOC("lightSet")
+        titleLab.text = LANGLOC("Take a picture")
         overLayView.addSubview(titleLab)
         titleLab.snp.makeConstraints { make in
             make.centerY.equalTo(closeBtn)
@@ -113,21 +113,21 @@ class KLMImagePickerController: UIImagePickerController {
         }
         
         //自定义
-        let customBtn = UIButton.init(type: .custom)
-        customBtn.setTitle(LANGLOC("custom"), for: .normal)
-        customBtn.setImage(UIImage.init(named: "icon_customize"), for: .normal)
-        customBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        customBtn.setTitleColor(.white, for: .normal)
-        customBtn.addTarget(self, action: #selector(customClick), for: .touchUpInside)
-        overLayView.addSubview(customBtn)
-        customBtn.snp.makeConstraints { make in
-            
-            make.centerY.equalTo(takePhotoBtn)
-            make.right.equalToSuperview().offset(-30)
-            make.height.equalTo(70)
-            make.width.equalTo(80)
-        }
-        customBtn.layoutButton(with: .top, imageTitleSpace: 7)
+//        let customBtn = UIButton.init(type: .custom)
+//        customBtn.setTitle(LANGLOC("custom"), for: .normal)
+//        customBtn.setImage(UIImage.init(named: "icon_customize"), for: .normal)
+//        customBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+//        customBtn.setTitleColor(.white, for: .normal)
+//        customBtn.addTarget(self, action: #selector(customClick), for: .touchUpInside)
+//        overLayView.addSubview(customBtn)
+//        customBtn.snp.makeConstraints { make in
+//
+//            make.centerY.equalTo(takePhotoBtn)
+//            make.right.equalToSuperview().offset(-30)
+//            make.height.equalTo(70)
+//            make.width.equalTo(80)
+//        }
+//        customBtn.layoutButton(with: .top, imageTitleSpace: 7)
     }
     
     //灯闪烁
@@ -190,14 +190,14 @@ class KLMImagePickerController: UIImagePickerController {
         
     }
     
-    @objc func customClick() {
-        
-        let vc = KLMCustomViewController()
-        let nav = KLMNavigationViewController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
-
-    }
+//    @objc func customClick() {
+//
+//        let vc = KLMCustomViewController()
+//        let nav = KLMNavigationViewController(rootViewController: vc)
+//        nav.modalPresentationStyle = .fullScreen
+//        present(nav, animated: true, completion: nil)
+//
+//    }
     //获取相册最近一张照片
     func latestAsset() -> PHAsset? {
         

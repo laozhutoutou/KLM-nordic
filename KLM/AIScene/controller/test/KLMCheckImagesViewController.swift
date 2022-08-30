@@ -124,6 +124,7 @@ extension KLMCheckImagesViewController: MeshNetworkDelegate {
             return
         }
         
+        
         switch message {
         case let message as UnknownMessage://收发消息
             if let parameters = message.parameters {
@@ -151,6 +152,12 @@ extension KLMCheckImagesViewController: MeshNetworkDelegate {
                         }
                         if dp == .cameraPic && status == 1 {
                             err.message = LANGLOC("The light failed to connect to WiFi. Maybe the WiFi password is incorrect")
+                        }
+                        if status == 0xFF { //没有这个dp点
+                            err.message = LANGLOC("The device do not support")
+                        }
+                        if status == 0xFE { //摄像头有问题
+                            err.message = LANGLOC("Camera failure")
                         }
                         KLMShowError(err)
                         return

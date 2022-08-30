@@ -25,7 +25,6 @@ deviceMoveOutGroupTip = "确认删除设备";
 connectSuccess = "连接成功";
 connectFailure = "连接失败";
 geDevice = "个设备";
-transfer = "转移";
 unGroup = "未分组";
 delete = "删除";
 sure = "确定";
@@ -174,8 +173,17 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Please select devices" = "请选择设备";
 "Select at most %d lights" = "最多选择%d个灯";
 "Add devices" = "添加设备";
-"Delete devices" = "删除设备";
+"Delete devices" = "批量删除设备";
 "Camera failure" = "摄像头故障";
+"Account deletion" = "注销账号";
+"Please delete or exit all stores first" = "请先删除或者退出所有商场";
+"Exit Store" = "退出商场";
+"Add new device timed out" = "添加设备超时";
+"Brightness" = "亮度调节";
+"Take a picture" = "拍照";
+"Devices transfer" = "批量转移设备";
+"Transfer" = "转移";
+"Select a group" = "选择一个分组";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

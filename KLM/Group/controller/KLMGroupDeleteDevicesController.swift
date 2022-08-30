@@ -14,26 +14,30 @@ class KLMGroupDeleteDevicesController: UITableViewController {
     var nodes: [Node] = [Node]()
     var selectNodes: [Node] = [Node]()
     var currentIndex: Int = 0
+    /// 是否来自转移
+    var isFromTransfer: Bool = false
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         KLMMessageManager.sharedInstacnce.delegate = self
+        setupData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = LANGLOC("Delete devices")
+        if isFromTransfer {
+            navigationItem.title = LANGLOC("Devices transfer")
+        }
         
         tableView.separatorStyle = .none
- 
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("delete"), target: self, action: #selector(finishClick))
-
-        setupData()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finishClick))
     }
     
-    func setupData(){
+    @objc private func setupData(){
         
         let network = MeshNetworkManager.instance.meshNetwork!
         let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
@@ -55,6 +59,13 @@ class KLMGroupDeleteDevicesController: UITableViewController {
         //设备删除
         if selectNodes.isEmpty {
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please select devices"))
+            return
+        }
+        
+        if isFromTransfer {
+            let vc = KLMGroupTransferListViewController()
+            vc.selectNodes = selectNodes
+            navigationController?.pushViewController(vc, animated: true)
             return
         }
         
@@ -125,17 +136,17 @@ class KLMGroupDeleteDevicesController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        if selectNodes.count >= 3 {
-            
-            SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
-            return
-        }
-        
         let node = self.nodes[indexPath.row]
         if let index = selectNodes.firstIndex(where: {$0.uuid == node.uuid}) {
             selectNodes.remove(at: index)
             tableView.reloadData()
         } else {
+            
+            if selectNodes.count >= 3 {
+                
+                SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
+                return
+            }
             
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)
@@ -159,5 +170,4 @@ extension KLMGroupDeleteDevicesController: KLMMessageManagerDelegate {
         next()
     
     }
-    
 }

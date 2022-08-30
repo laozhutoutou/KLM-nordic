@@ -120,16 +120,15 @@ class KLMSelectNodesViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        if selectNodes.count >= 6 {
-            SVProgressHUD.showInfo(withStatus: "最多选择\(selectNodes.count)个设备")
-            return
-        }
-        
+
         let node = self.nodes[indexPath.row]
         if let index = selectNodes.firstIndex(where: {$0.uuid == node.uuid}) {
             selectNodes.remove(at: index)
         } else {
+            if selectNodes.count >= 6 {
+                SVProgressHUD.showInfo(withStatus: "最多选择\(selectNodes.count)个设备")
+                return
+            }
             selectNodes.append(node)
         }
         tableView.reloadData()

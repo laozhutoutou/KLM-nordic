@@ -25,7 +25,6 @@ deviceMoveOutGroupTip = "Delete devices";
 connectSuccess = "Connect success";
 connectFailure = "Connect failure";
 geDevice = " Devices";
-transfer = "Move to other group";
 unGroup = "Ungrouped";
 delete = "Delete";
 sure = "Confirm";

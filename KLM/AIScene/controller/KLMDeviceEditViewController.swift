@@ -423,14 +423,16 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             
         case itemType.lightSetting.rawValue://灯光设置
             //是否有相机权限
-            KLMPhotoManager().photoAuthStatus { [weak self] in
-                guard let self = self else { return }
-                
-                let vc = KLMImagePickerController()
-                vc.sourceType = .camera
-                self.present(vc, animated: true, completion: nil)
-                
-            }
+//            KLMPhotoManager().photoAuthStatus { [weak self] in
+//                guard let self = self else { return }
+//
+//                let vc = KLMImagePickerController()
+//                vc.sourceType = .camera
+//                self.present(vc, animated: true, completion: nil)
+//
+//            }
+            let vc = KLMLightSettingController()
+            navigationController?.pushViewController(vc, animated: true)
             
         case itemType.motion.rawValue:
             let vc = KLMMotionViewController()

@@ -49,7 +49,7 @@ class KLMNetworking: NSObject {
         
         KLMNetworking.ShareInstance.networkingTool.responseSerializer = AFJSONResponseSerializer.init()
         KLMNetworking.ShareInstance.networkingTool.requestSerializer = AFJSONRequestSerializer.init()
-        KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 20
+        KLMNetworking.ShareInstance.networkingTool.requestSerializer.timeoutInterval = 10
         if let hee = head {
             for (key, value) in hee {
                 KLMNetworking.ShareInstance.networkingTool.requestSerializer.setValue(value, forHTTPHeaderField: key)
@@ -347,6 +347,23 @@ class KLMService: NSObject {
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in
             
             if error == nil {
+                ///清空数据
+                KLMMesh.logout()
+                
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    ///用户注销
+    static func deleteAccount(userid: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+//        let parame = ["userid": "\(userid)"]
+        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/user/by/\(userid)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
                 ///清空数据
                 KLMMesh.logout()
                 

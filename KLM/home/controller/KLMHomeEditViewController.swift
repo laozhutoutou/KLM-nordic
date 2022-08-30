@@ -8,7 +8,7 @@
 import UIKit
 import nRFMeshProvision
 
-class KLMHomeEditViewController: UIViewController {
+class KLMHomeEditViewController: UIViewController, Editable {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -36,6 +36,8 @@ class KLMHomeEditViewController: UIViewController {
         getMeshUserData()
         
         getMeshInfo()
+        
+        showEmptyView()
     }
     
     private func getMeshUserData() {
@@ -59,9 +61,13 @@ class KLMHomeEditViewController: UIViewController {
             SVProgressHUD.dismiss()
             self.meshInfo = response as? KLMMeshInfo.KLMMeshInfoData
             self.nameTextField.text = self.meshInfo?.meshName
+            if KLMMesh.isMeshManager(meshAdminId: self.meshInfo!.adminId) == false { ///不是管理员
+                self.deleteBtn.setTitle(LANGLOC("Exit Store"), for: .normal)
+            }
             self.tableView.reloadData()
+            self.hideEmptyView()
         } failure: { error in
-            
+            self.hideEmptyView()
             KLMHttpShowError(error)
         }
     }
@@ -98,8 +104,17 @@ class KLMHomeEditViewController: UIViewController {
     @IBAction func deleteMesh(_ sender: Any) {
         
         guard let meshIn = meshInfo else { return  }
-        if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+        if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {///不是管理员，退出商场
+            
+            let aler = UIAlertController.init(title: LANGLOC("Exit Store"), message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
+            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+                
+                
+            }
+            aler.addAction(cancel)
+            aler.addAction(sure)
+            self.present(aler, animated: true, completion: nil)
             return
         }
         

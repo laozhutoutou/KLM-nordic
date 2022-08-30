@@ -170,7 +170,7 @@ extension KLMSIGMeshManager {
             self.gattBearer?.close()
             
             var err = MessageError()
-            err.message = "Add light timeout"
+            err.message = LANGLOC("Add new device timed out")
             self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
             
         }

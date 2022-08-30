@@ -116,6 +116,18 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 { ///所有设备
             
             let cell: KLMGroupAllDeviceCell = KLMGroupAllDeviceCell.cellWithTableView(tableView: tableView)
+            cell.settingsBlock = {[weak self] in
+                
+                guard let self = self else { return }
+                if KLMMesh.isLoadMesh() == false {
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+                    return
+                }
+                
+                KLMHomeManager.sharedInstacnce.controllType = .AllDevices
+                let vc = KLMAllDeviceViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
             return cell
         }
         
@@ -146,8 +158,24 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             KLMHomeManager.sharedInstacnce.controllType = .AllDevices
-            let vc = KLMAllDeviceViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToAllNodes { [weak self] in
+                SVProgressHUD.dismiss()
+                guard let self = self else { return }
+                //是否有相机权限
+                KLMPhotoManager().photoAuthStatus { [weak self] in
+                    guard let self = self else { return }
+
+                    let vc = KLMImagePickerController()
+                    vc.sourceType = .camera
+                    self.present(vc, animated: true, completion: nil)
+
+                }
+            } failure: {
+                
+            }
             return
         }
         

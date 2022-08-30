@@ -780,6 +780,15 @@
 		E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */; };
 		E4E2845A26A1291A006C120E /* KLMSIGMeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */; };
 		E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E2845B26A278B9006C120E /* KLMMessageManager.swift */; };
+		E4E607BF28BDB43C00D0DF88 /* KLMLightSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607BE28BDB43C00D0DF88 /* KLMLightSettingController.swift */; };
+		E4E607C028BDB43C00D0DF88 /* KLMLightSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607BE28BDB43C00D0DF88 /* KLMLightSettingController.swift */; };
+		E4E607C128BDB43C00D0DF88 /* KLMLightSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607BE28BDB43C00D0DF88 /* KLMLightSettingController.swift */; };
+		E4E607C428BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607C228BDBC5400D0DF88 /* KLMBrightnessViewController.swift */; };
+		E4E607C528BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607C228BDBC5400D0DF88 /* KLMBrightnessViewController.swift */; };
+		E4E607C628BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607C228BDBC5400D0DF88 /* KLMBrightnessViewController.swift */; };
+		E4E607C728BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E607C328BDBC5400D0DF88 /* KLMBrightnessViewController.xib */; };
+		E4E607C828BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E607C328BDBC5400D0DF88 /* KLMBrightnessViewController.xib */; };
+		E4E607C928BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4E607C328BDBC5400D0DF88 /* KLMBrightnessViewController.xib */; };
 		E4EB5F19273BB18900C502C1 /* KLMCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EB5F18273BB18900C502C1 /* KLMCache.swift */; };
 		E4EBE61E271144AC006111BF /* KLMTestCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4EBE61C271144AC006111BF /* KLMTestCameraViewController.swift */; };
 		E4EBE61F271144AC006111BF /* KLMTestCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EBE61D271144AC006111BF /* KLMTestCameraViewController.xib */; };
@@ -1165,6 +1174,9 @@
 		E4E2844D269F00A1006C120E /* SimpleOnOffGet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleOnOffGet.swift; sourceTree = "<group>"; };
 		E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSIGMeshManager.swift; sourceTree = "<group>"; };
 		E4E2845B26A278B9006C120E /* KLMMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMessageManager.swift; sourceTree = "<group>"; };
+		E4E607BE28BDB43C00D0DF88 /* KLMLightSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMLightSettingController.swift; sourceTree = "<group>"; };
+		E4E607C228BDBC5400D0DF88 /* KLMBrightnessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBrightnessViewController.swift; sourceTree = "<group>"; };
+		E4E607C328BDBC5400D0DF88 /* KLMBrightnessViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBrightnessViewController.xib; sourceTree = "<group>"; };
 		E4E62ADF28605F380015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMSearchHistoryView.strings"; sourceTree = "<group>"; };
 		E4E62AE1286060440015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMGroupMotionViewController.strings"; sourceTree = "<group>"; };
 		E4E62AE3286060B20015239D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMGroupAllDeviceCell.strings"; sourceTree = "<group>"; };
@@ -1323,6 +1335,9 @@
 				E4C2584F2859ED4D0080192A /* KLMCMOSViewController.xib */,
 				E4CD304C28A4AD3B000C4CA3 /* KLMAudioViewController.swift */,
 				E4CD304D28A4AD3B000C4CA3 /* KLMAudioViewController.xib */,
+				E4E607BE28BDB43C00D0DF88 /* KLMLightSettingController.swift */,
+				E4E607C228BDBC5400D0DF88 /* KLMBrightnessViewController.swift */,
+				E4E607C328BDBC5400D0DF88 /* KLMBrightnessViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -2141,6 +2156,7 @@
 				E414585A27BCE8AC00C181E3 /* KLMChangePasswordViewController.xib in Resources */,
 				E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */,
 				E4C642FC279E9DA1003FA554 /* KLMGroupCell.xib in Resources */,
+				E4E607C728BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
 				E4EBE61F271144AC006111BF /* KLMTestCameraViewController.xib in Resources */,
 				E49B42CB26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib in Resources */,
 				E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */,
@@ -2231,6 +2247,7 @@
 				E4C57EE328055B1F00E7AB54 /* LaunchScreen.storyboard in Resources */,
 				E4C57EE428055B1F00E7AB54 /* KLMGroupSelectCell.xib in Resources */,
 				E4C57EE528055B1F00E7AB54 /* KLMGroupViewController.xib in Resources */,
+				E4E607C828BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
 				E4C57EE628055B1F00E7AB54 /* KLMGroupPowerCell.xib in Resources */,
 				E4D9E93A28B6343000F09739 /* KLMTestVersionViewController.xib in Resources */,
 				E4D7CD4828A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
@@ -2323,6 +2340,7 @@
 				E4C57FBA28055C7C00E7AB54 /* LaunchScreen.storyboard in Resources */,
 				E4C57FBB28055C7C00E7AB54 /* KLMGroupSelectCell.xib in Resources */,
 				E4C57FBC28055C7C00E7AB54 /* KLMGroupViewController.xib in Resources */,
+				E4E607C928BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
 				E4C57FBD28055C7C00E7AB54 /* KLMGroupPowerCell.xib in Resources */,
 				E4D9E93B28B6343000F09739 /* KLMTestVersionViewController.xib in Resources */,
 				E4D7CD4928A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
@@ -2623,10 +2641,12 @@
 				E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */,
 				E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */,
 				E4FE0CDE271FB6CC001EEABD /* EmptyView.swift in Sources */,
+				E4E607C428BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */,
 				E4A6607E2673486400FE6866 /* KLMDeviceAddCell.swift in Sources */,
 				E4C3466528338573000852DE /* KLMDeviceAddTestCell.swift in Sources */,
 				E4A65FD32670B06400FE6866 /* BitmapScaleManipulator.m in Sources */,
 				E4A65F2D266F0D8C00FE6866 /* KLMUnNameListViewController.swift in Sources */,
+				E4E607BF28BDB43C00D0DF88 /* KLMLightSettingController.swift in Sources */,
 				E4E2845C26A278B9006C120E /* KLMMessageManager.swift in Sources */,
 				E4A65FD22670B06400FE6866 /* BitmapRotationManipulator.m in Sources */,
 				E414585427BCE41B00C181E3 /* KLMSettingsViewController.swift in Sources */,
@@ -2799,10 +2819,12 @@
 				E4C57E8F28055B1F00E7AB54 /* KLMAddDeviceViewController.swift in Sources */,
 				E4C57E9028055B1F00E7AB54 /* KLMPhotoManager.swift in Sources */,
 				E4C57E9128055B1F00E7AB54 /* EmptyView.swift in Sources */,
+				E4E607C528BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */,
 				E4C57E9228055B1F00E7AB54 /* KLMDeviceAddCell.swift in Sources */,
 				E4C3466628338573000852DE /* KLMDeviceAddTestCell.swift in Sources */,
 				E4C57E9328055B1F00E7AB54 /* BitmapScaleManipulator.m in Sources */,
 				E4C57E9428055B1F00E7AB54 /* KLMUnNameListViewController.swift in Sources */,
+				E4E607C028BDB43C00D0DF88 /* KLMLightSettingController.swift in Sources */,
 				E4C57E9528055B1F00E7AB54 /* KLMMessageManager.swift in Sources */,
 				E4C57E9628055B1F00E7AB54 /* BitmapRotationManipulator.m in Sources */,
 				E4C57E9728055B1F00E7AB54 /* KLMSettingsViewController.swift in Sources */,
@@ -2975,10 +2997,12 @@
 				E4C57F6628055C7C00E7AB54 /* KLMAddDeviceViewController.swift in Sources */,
 				E4C57F6728055C7C00E7AB54 /* KLMPhotoManager.swift in Sources */,
 				E4C57F6828055C7C00E7AB54 /* EmptyView.swift in Sources */,
+				E4E607C628BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */,
 				E4C57F6928055C7C00E7AB54 /* KLMDeviceAddCell.swift in Sources */,
 				E4C3466728338573000852DE /* KLMDeviceAddTestCell.swift in Sources */,
 				E4C57F6A28055C7C00E7AB54 /* BitmapScaleManipulator.m in Sources */,
 				E4C57F6B28055C7C00E7AB54 /* KLMUnNameListViewController.swift in Sources */,
+				E4E607C128BDB43C00D0DF88 /* KLMLightSettingController.swift in Sources */,
 				E4C57F6C28055C7C00E7AB54 /* KLMMessageManager.swift in Sources */,
 				E4C57F6D28055C7C00E7AB54 /* BitmapRotationManipulator.m in Sources */,
 				E4C57F6E28055C7C00E7AB54 /* KLMSettingsViewController.swift in Sources */,
@@ -3611,7 +3635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.7.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GW";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjgw.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3643,7 +3667,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.7.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GW";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjgw.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";

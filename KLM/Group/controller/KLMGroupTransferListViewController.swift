@@ -17,14 +17,12 @@ class KLMGroupTransferListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var deviceStatus: deviceStatus = .deviceAddtoGroup
+    var deviceStatus: deviceStatus = .deviceDeleteFromGroup
     
     //选择的
     private var selectedIndexPath: IndexPath?
-    
-    //当前设备
-    var currentDevice: Node!
-    
+    var selectNodes: [Node]!
+    var currentIndex: Int = 0
     private var groups: [Group]!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +34,7 @@ class KLMGroupTransferListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("transfer")
+        navigationItem.title = LANGLOC("Select a group")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
@@ -46,7 +44,7 @@ class KLMGroupTransferListViewController: UIViewController {
     func setupData() {
         
         let network = MeshNetworkManager.instance.meshNetwork!
-        let model = KLMHomeManager.getModelFromNode(node: currentDevice)!
+        let model = KLMHomeManager.getModelFromNode(node: selectNodes.first!)!
         let alreadySubscribedGroups = model.subscriptions
         groups = network.groups.filter {
             !alreadySubscribedGroups.contains($0)
@@ -61,14 +59,27 @@ class KLMGroupTransferListViewController: UIViewController {
             return
         }
         
-        //设备添加到群组
-        guard let selectedIndexPath = selectedIndexPath else { return  }
+        if selectedIndexPath == nil {
+            return
+        }
         
         SVProgressHUD.show()
-        let group = groups[selectedIndexPath.row]
+        removeDevice()
         
-        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: currentDevice, withGroup: group)
+    }
+    
+    ///设备从旧分组移除
+    private func removeDevice() {
         
+        let selectNode = selectNodes[currentIndex]
+        KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: selectNode, withGroup: KLMHomeManager.currentGroup)
+    }
+    ///设备添加进新分组
+    private func addDevice() {
+        
+        let selectNode = selectNodes[currentIndex]
+        let group = groups[selectedIndexPath!.row]
+        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: group)
     }
     
     @objc func newGroup() {
@@ -126,6 +137,10 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
     
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
         
+        if KLMMesh.save() {
+            
+        }
+        
         if error != nil {
             
             SVProgressHUD.showInfo(withStatus: error?.message)
@@ -135,28 +150,29 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
         //设备添加进群组成功
         if self.deviceStatus == .deviceAddtoGroup {
             self.deviceStatus = .deviceDeleteFromGroup
-            ///提交数据到服务器
-            if KLMMesh.save() {
+            currentIndex += 1
+            if currentIndex >= selectNodes.count {
                 
-            }
-            //设备从当前群组中移除
-            KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: currentDevice, withGroup: KLMHomeManager.currentGroup)
-            
-        }
-        
-        //设备移除成功
-        if self.deviceStatus == .deviceDeleteFromGroup {
-            
-            ///提交数据到服务器
-            if KLMMesh.save() {
-                
-            }
-            
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            DispatchQueue.main.asyncAfter(deadline: 1) {
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 NotificationCenter.default.post(name: .deviceTransferSuccess, object: nil)
-                self.navigationController?.popViewController(animated: true)
+                ///KLMGroupDeviceEditViewController
+                var targetVC : UIViewController!
+                for controller in self.navigationController!.viewControllers {
+                    if controller.isKind(of: KLMGroupDeviceEditViewController.self) {
+                        targetVC = controller
+                    }
+                }
+                if targetVC != nil {
+                    self.navigationController?.popToViewController(targetVC, animated: true)
+                }
+            } else {
+                
+                removeDevice()
             }
+        } else { //设备移除成功
+            
+            self.deviceStatus = .deviceAddtoGroup
+            addDevice()
         }
     }
 }

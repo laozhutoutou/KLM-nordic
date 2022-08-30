@@ -60,6 +60,7 @@ class KLMSmartNode: NSObject {
              .motionLight,
              .category,
              .audio,
+             .brightness,
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
@@ -239,6 +240,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .motionLight,
                          .motionPower,
                          .category,
+                         .brightness,
                          .passengerFlow:
                         
                         response.value = Int(value.bytes[0])

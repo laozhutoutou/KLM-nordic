@@ -9,7 +9,7 @@ import UIKit
 
 class KLMSettingsViewController: UIViewController {
     
-    let titles = [LANGLOC("ChangePassword"),LANGLOC("logout")]
+    let titles = [LANGLOC("ChangePassword"),LANGLOC("logout"),LANGLOC("Account deletion")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 2
+        return titles.count
         
     }
     
@@ -80,9 +80,41 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
             alert.addAction(resetAction)
             alert.addAction(cancelAction)
             present(alert, animated: true)
-            
+        case 2: ///注销账号
+            ///账号下有mesh不能删除账号
+            SVProgressHUD.show()
+            KLMService.getMeshList { response in
+                SVProgressHUD.dismiss()
+                let homes = response as! [KLMHome.KLMHomeModel]
+                if homes.count > 0  { ///有商场不能删除
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Please delete or exit all stores first"))
+                    return
+                }
+                ///弹框
+                let alert = UIAlertController(title: LANGLOC("Account deletion"),
+                                              message: LANGLOC("Account deletion"),
+                                              preferredStyle: .alert)
+                let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
+                    SVProgressHUD.show()
+                    let user = KLMUser.getUserInfo()!
+                    KLMService.deleteAccount(userid: user.id) { response in
+                        SVProgressHUD.dismiss()
+                        ///进入登录页面
+                        (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
+                    } failure: { error in
+                        KLMHttpShowError(error)
+                    }
+
+                }
+                let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+                alert.addAction(resetAction)
+                alert.addAction(cancelAction)
+                self.present(alert, animated: true)
+                
+            } failure: { error in
+                KLMHttpShowError(error)
+            }
         default: break
-            
         }
     }
 }

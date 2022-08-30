@@ -10,7 +10,10 @@ import nRFMeshProvision
 
 class KLMGroupAllDeviceCell: KLMBaseTableViewCell {
     
+    typealias SettingsBlock = () -> Void
+    
     @IBOutlet weak var numLab: UILabel!
+    var settingsBlock: SettingsBlock?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,7 +28,9 @@ class KLMGroupAllDeviceCell: KLMBaseTableViewCell {
     
     @IBAction func settings(_ sender: Any) {
         
-        
+        if let settingsBlock = settingsBlock {
+            settingsBlock()
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
