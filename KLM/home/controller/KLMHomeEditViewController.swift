@@ -109,8 +109,27 @@ class KLMHomeEditViewController: UIViewController, Editable {
             let aler = UIAlertController.init(title: LANGLOC("Exit Store"), message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+                SVProgressHUD.show()
+                let user = KLMUser.getUserInfo()!
+                KLMService.signOutUser(meshId: self.meshId, userId: user.id) { response in
                 
-                
+                    if KLMMesh.loadHome()?.id == self.meshId {///退出的是当前mesh
+                        
+                        KLMMesh.removeHome()
+                        (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        self.navigationController?.popViewController(animated: true)
+                        
+                        NotificationCenter.default.post(name: .homeDeleteSuccess, object: nil)
+                        
+                    } else {
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        self.navigationController?.popViewController(animated: true)
+
+                    }
+                } failure: { error in
+                    KLMHttpShowError(error)
+                }
             }
             aler.addAction(cancel)
             aler.addAction(sure)

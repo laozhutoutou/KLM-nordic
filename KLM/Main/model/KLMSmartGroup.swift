@@ -48,29 +48,7 @@ class KLMSmartGroup: NSObject {
             return
         }
         
-        var parameString = ""
-        switch parame.dp {
-        case .power,
-             .colorTemp,
-             .light,
-             .cameraPower,
-             .flash,
-             .motionTime,
-             .motionLight,
-             .motionPower,
-             .category:
-            let value = parame.value as! Int
-            parameString = value.decimalTo2Hexadecimal()
-           
-        case .color,
-             .motion,
-             .recipe:
-            parameString = parame.value as! String
-           
-        default:
-            break
-        }
-        
+        let parameString = KLMSmartNode.getParameHexString(parame)
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)
@@ -133,28 +111,7 @@ class KLMSmartGroup: NSObject {
             return
         }
         
-        var parameString = ""
-        switch parame.dp {
-        case .power,
-             .colorTemp,
-             .light,
-             .cameraPower,
-             .flash,
-             .motionTime,
-             .motionLight,
-             .motionPower:
-            let value = parame.value as! Int
-            parameString = value.decimalTo2Hexadecimal()
-            
-        case .color,
-             .motion,
-             .recipe:
-            parameString = parame.value as! String
-            
-        default:
-            break
-        }
-        
+        let parameString = KLMSmartNode.getParameHexString(parame)
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1A", radix: 16) {
             let parameters = Data(hex: dpString + parameString)

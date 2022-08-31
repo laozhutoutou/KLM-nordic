@@ -110,17 +110,21 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             KLMConnectManager.shared.connectToAllNodes { [weak self] in
                 SVProgressHUD.dismiss()
                 guard let self = self else { return }
-                //是否有相机权限
-                KLMPhotoManager().photoAuthStatus { [weak self] in
-                    guard let self = self else { return }
-
-                    let vc = KLMImagePickerController()
-                    vc.sourceType = .camera
-                    self.present(vc, animated: true, completion: nil)
-
-                }
-            } failure: {
                 
+                let vc = KLMLightSettingController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                //是否有相机权限
+//                KLMPhotoManager().photoAuthStatus { [weak self] in
+//                    guard let self = self else { return }
+//
+//                    let vc = KLMImagePickerController()
+//                    vc.sourceType = .camera
+//                    self.present(vc, animated: true, completion: nil)
+//
+//                }
+            } failure: {
+
             }
             
         case itemType.motion.rawValue:

@@ -344,6 +344,7 @@ class KLMPhotoEditViewController: UIViewController {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.groupData.colorSensing = 2
+                self.groupData.customLight = self.lightValue
                 self.sendGroupData()
                 
                 DispatchQueue.main.asyncAfter(deadline: 1) {
@@ -371,6 +372,7 @@ class KLMPhotoEditViewController: UIViewController {
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.groupData.colorSensing = 2
+                self.groupData.customLight = self.lightValue
                 self.sendGroupData()
                 DispatchQueue.main.asyncAfter(deadline: 1) {
                     

@@ -141,7 +141,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             self.tableView.reloadData()
             self.setupNodeMessage()
         } failure: { error in
-            
+            self.setupNodeMessage()
         }
     }
     

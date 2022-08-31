@@ -49,38 +49,7 @@ class KLMSmartNode: NSObject {
         currentNode = node
         MeshNetworkManager.instance.delegate = self
         
-        var parameString = ""
-        switch parame.dp {
-        case .power,
-             .colorTemp,
-             .light,
-             .cameraPower,
-             .flash,
-             .motionTime,
-             .motionLight,
-             .category,
-             .audio,
-             .brightness,
-             .motionPower:
-            let value = parame.value as! Int
-            parameString = value.decimalTo2Hexadecimal()
-        case .color,
-             .recipe,
-             .PWM,
-             .checkVersion,
-             .DFU,
-             .factoryTest,
-             .colorTest,
-             .motion,
-             .cameraPic,
-             .hardwareInfo,
-             .factoryTestResule:
-            parameString = parame.value as! String
-
-        default:
-            break
-        }
-        
+        let parameString = KLMSmartNode.getParameHexString(parame)
         let model = KLMHomeManager.getModelFromNode(node: node)!
         //数据格式：比如，power dp 01 ,开 01 "0101"字符串转化成
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
@@ -339,6 +308,45 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
         var err = MessageError()
         err.message = LANGLOC("Connection timed out.") + LANGLOC("deviceNearbyTip")
         self.delegate?.smartNode(self, didfailure: err)
+    }
+}
+
+extension KLMSmartNode {
+    
+    ///通过参数获取参数hex字符串
+    static func getParameHexString(_ parame: parameModel) -> String {
+        var parameString = ""
+        switch parame.dp {
+        case .power,
+             .colorTemp,
+             .light,
+             .cameraPower,
+             .flash,
+             .motionTime,
+             .motionLight,
+             .category,
+             .audio,
+             .brightness,
+             .motionPower:
+            let value = parame.value as! Int
+            parameString = value.decimalTo2Hexadecimal()
+        case .color,
+             .recipe,
+             .PWM,
+             .checkVersion,
+             .DFU,
+             .factoryTest,
+             .colorTest,
+             .motion,
+             .cameraPic,
+             .hardwareInfo,
+             .factoryTestResule:
+            parameString = parame.value as! String
+
+        default:
+            break
+        }
+        return parameString
     }
 }
 

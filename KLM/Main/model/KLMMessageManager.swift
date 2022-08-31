@@ -230,7 +230,6 @@ class KLMMessageTime {
             self.delegate?.messageTimeDidTimeout(self)
         }
     }
-    
 }
 
 

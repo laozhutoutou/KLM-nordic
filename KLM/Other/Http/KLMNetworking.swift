@@ -14,9 +14,9 @@ typealias KLMResponseFailure = (_ error: NSError) -> Void
 typealias completionHandlerBlock = (_ responseObject: Data?, _ error: NSError?) -> Void
 
 enum HTTPMethod: String {
-    case post
-    case get
-    case delete
+    case post ///在请求体body中
+    case get ///拼接到url上
+    case delete ///拼接到url上
     case put
     case downLoad
 }
@@ -359,8 +359,8 @@ class KLMService: NSObject {
     ///用户注销
     static func deleteAccount(userid: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-//        let parame = ["userid": "\(userid)"]
-        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/user/by/\(userid)"), params: nil) { responseObject, error in
+        let parame = ["id": userid]
+        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/user/delete"), params: parame) { responseObject, error in
             
             if error == nil {
                 
@@ -587,12 +587,29 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///删除mesh成员
     static func deleteUser(meshId: Int, userId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame = ["meshId": meshId,
                       "userId": userId]
         KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/mesh/link"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                
+                success(responseObject as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    ///mesh成员退出mesh
+    static func signOutUser(meshId: Int, userId: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame = ["meshId": meshId,
+                      "userId": userId]
+        KLMNetworking.httpMethod(method: .delete, URLString: KLMUrl("api/mesh/signOut"), params: parame) { responseObject, error in
             
             if error == nil {
                 

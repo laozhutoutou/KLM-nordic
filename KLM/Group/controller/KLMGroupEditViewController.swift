@@ -170,20 +170,24 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)
             KLMConnectManager.shared.connectToGroup(group: KLMHomeManager.currentGroup) { [weak self] in
-                
+
                 guard let self = self else { return }
+                
+                let vc = KLMLightSettingController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
                 //是否有相机权限
-                KLMPhotoManager().photoAuthStatus { [weak self] in
-                    guard let self = self else { return }
-
-                    let vc = KLMImagePickerController()
-                    vc.sourceType = .camera
-                    self.tabBarController?.present(vc, animated: true, completion: nil)
-
-                }
+//                KLMPhotoManager().photoAuthStatus { [weak self] in
+//                    guard let self = self else { return }
+//
+//                    let vc = KLMImagePickerController()
+//                    vc.sourceType = .camera
+//                    self.tabBarController?.present(vc, animated: true, completion: nil)
+//
+//                }
             } failure: {
-                
-                
+
+
             }
             
         case itemType.motion.rawValue:

@@ -17,11 +17,19 @@ class KLMBrightnessViewController: UIViewController, Editable {
     }
     var lightSlider: KLMSlider!
     
+    ///分组和所有设备使用
+    var groupData: GroupData = GroupData()
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         KLMSmartNode.sharedInstacnce.delegate = self
-        setupData()
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+
+            setupData()
+        } else {
+            setupGroupData()
+        }
     }
     
     override func viewDidLoad() {
@@ -58,6 +66,36 @@ class KLMBrightnessViewController: UIViewController, Editable {
         let parame = parameModel(dp: .brightness)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
     }
+    
+    private func setupGroupData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+        }
+        
+        KLMService.selectGroup(groupId: address) { response in
+            guard let model = response as? GroupData else { return  }
+            self.groupData = model
+            //UI
+            self.lightValue = self.groupData.customLight
+        } failure: { error in
+            
+        }
+    }
+    
+    private func sendData() {
+        
+        var address: Int = 0
+        if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            address = Int(KLMHomeManager.currentGroup.address.address)
+        }
+        KLMService.updateGroup(groupId: address, groupData: self.groupData) { response in
+            
+        } failure: { error in
+            
+        }
+    }
 }
 
 extension KLMBrightnessViewController: KLMSmartNodeDelegate {
@@ -84,6 +122,35 @@ extension KLMBrightnessViewController: KLMSliderDelegate {
         
         let light = Int(value)
         let parame = parameModel(dp: .brightness, value: light)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                self.groupData.customLight = light
+                self.sendData()
+                KLMLog("success")
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+            
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
+
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        } else {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+                
+                self.groupData.customLight = light
+                self.sendData()
+                KLMLog("success")
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            } failure: { error in
+                KLMShowError(error)
+            }
+            
+        }
     }
 }

@@ -81,7 +81,8 @@ class KLMGroupMotionViewController: UIViewController, Editable {
             
             return String(format: "%ld%%", Int(value))
         }
-        lightSlider.currentValue = 0
+        lightSlider.currentValue = 100
+        lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
     }
@@ -172,7 +173,6 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         SVProgressHUD.show()
         //发送关闭指令
         let parame = parameModel(dp: .motion, value: "000000")
-//        let parame = parameModel(dp: .motionPower, value: 0)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
@@ -260,6 +260,38 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 KLMShowError(error)
             }
             
+        }
+    }
+}
+
+extension KLMGroupMotionViewController: KLMSliderDelegate {
+
+    func KLMSliderWith(slider: KLMSlider, value: Float) {
+        
+        ///最后发送开指令
+        let power = "03"
+        let time = Int(self.timeSlider.currentValue).decimalTo2Hexadecimal()
+        let light = Int(self.lightSlider.currentValue).decimalTo2Hexadecimal()
+        let parame = parameModel(dp: .motion, value: power + time + light)
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+            } failure: { error in
+                
+                KLMShowError(error)
+            }
+            
+        } else {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+                
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+            } failure: { error in
+                KLMShowError(error)
+            }
         }
     }
 }

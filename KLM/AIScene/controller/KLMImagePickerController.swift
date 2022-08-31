@@ -152,17 +152,14 @@ class KLMImagePickerController: UIImagePickerController {
     @objc func closeClick() {
         
         let string = "000002"
-
         let parame = parameModel(dp: .recipe, value: string)
-        
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
                 
                 
             } failure: { error in
-                
-                
+   
             }
         } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
