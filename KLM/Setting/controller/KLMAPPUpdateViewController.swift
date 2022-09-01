@@ -40,6 +40,11 @@ class KLMAPPUpdateViewController: UIViewController {
     
     @IBAction func updateClick(_ sender: Any) {
         
+        if apptype == .test {
+            SVProgressHUD.showInfo(withStatus: "app没上架市场，无法更新。")
+            return
+        }
+        
         SVProgressHUD.show()
         KLMService.checkVersion(type: "ios") { response in
             SVProgressHUD.dismiss()

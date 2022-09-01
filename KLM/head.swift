@@ -85,10 +85,10 @@ func rgb(_ r : CGFloat, _ g : CGFloat, _ b : CGFloat) -> UIColor {
     return rgba(r, g, b, 1.0)
 }
 
-//APP导航栏颜色 UIColor.white
+//APP导航栏颜色
 let navigationBarColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 ///APP主题颜色
-let appMainThemeColor = #colorLiteral(red: 0.168627451, green: 0.8862745098, blue: 0.9333333333, alpha: 1)
+let appMainThemeColor = #colorLiteral(red: 0, green: 0.8235294118, blue: 0.9019607843, alpha: 1)
 //APP背景颜色
 let appBackGroupColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
 

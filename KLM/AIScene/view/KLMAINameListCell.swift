@@ -41,7 +41,7 @@ class KLMAINameListCell: UICollectionViewCell {
         didSet{
             nameLab.text = model.nodeName
             if model.isOnline {
-                statuImage.backgroundColor = appMainThemeColor
+                statuImage.backgroundColor = .green
             } else {
                 statuImage.backgroundColor = .red
             }

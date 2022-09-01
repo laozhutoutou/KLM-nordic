@@ -458,7 +458,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         let warnAlert = UIAlertController(title: LANGLOC("deleteDevice"),
                                       message: LANGLOC("Please make sure the device can not be connected with APP, otherwise use 'Settings reset'"),
                                       preferredStyle: .alert)
-        let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .cancel) { _ in
+        let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .default) { _ in
             
             ///连接节点
             SVProgressHUD.show()
@@ -546,15 +546,18 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
                 return
             }
             
+            let vc = KLMLightSettingController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
             //是否有相机权限
-            KLMPhotoManager().photoAuthStatus { [weak self] in
-                guard let self = self else { return }
-
-                let vc = KLMImagePickerController()
-                vc.sourceType = .camera
-                self.tabBarController?.present(vc, animated: true, completion: nil)
-
-            }
+//            KLMPhotoManager().photoAuthStatus { [weak self] in
+//                guard let self = self else { return }
+//
+//                let vc = KLMImagePickerController()
+//                vc.sourceType = .camera
+//                self.tabBarController?.present(vc, animated: true, completion: nil)
+//
+//            }
             
         } failure: {
             
