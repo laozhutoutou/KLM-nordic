@@ -67,6 +67,7 @@ class KLMSignUpWithMobileViewController: UIViewController {
         
         signupBtn.layer.cornerRadius = signupBtn.height / 2
         signupBtn.clipsToBounds = true
+        verCodeBtn.setTitleColor(appMainThemeColor, for: .normal)
         
         codeTitle = verCodeBtn.currentTitle
         

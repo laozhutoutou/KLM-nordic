@@ -24,6 +24,7 @@ class KLMChangePasswordViewController: UIViewController {
         navigationItem.title = LANGLOC("ChangePassword")
 
         doneBtn.layer.cornerRadius = doneBtn.height / 2;
+        doneBtn.backgroundColor = appMainThemeColor
         
         ///监控输入
         Observable.combineLatest(oldTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { oldText, passwordText, passAgainText in

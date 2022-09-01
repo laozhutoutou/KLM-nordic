@@ -19,6 +19,8 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     @IBOutlet weak var lightContentView: UIView!
     @IBOutlet weak var lightBgView: UIView!
     
+    @IBOutlet weak var confirmBtn: UIButton!
+    
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
@@ -53,6 +55,10 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         
         offBtn.setBackgroundImage(UIImage.init(color: .white), for: .normal)
         offBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        
+        onBtn.setTitleColor(appMainThemeColor, for: .normal)
+        offBtn.setTitleColor(appMainThemeColor, for: .normal)
+        confirmBtn.backgroundColor = appMainThemeColor
         
         setupUI()
         

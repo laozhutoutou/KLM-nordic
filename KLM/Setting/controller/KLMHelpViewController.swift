@@ -26,6 +26,7 @@ class KLMHelpViewController: UIViewController {
         questionView.layer.cornerRadius = 6
         phoneField.layer.cornerRadius = 6
         commitBtn.layer.cornerRadius = commitBtn.height / 2
+        commitBtn.backgroundColor = appMainThemeColor
     }
 
     @IBAction func commit(_ sender: Any) {

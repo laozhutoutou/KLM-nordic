@@ -17,6 +17,7 @@ class KLMMotionViewController: UIViewController, Editable {
     @IBOutlet weak var lightBgView: UIView!
     
     @IBOutlet weak var autoDim: UISwitch!
+    @IBOutlet weak var doneBtn: UIButton!
     
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
@@ -41,6 +42,10 @@ class KLMMotionViewController: UIViewController, Editable {
         
         timeContentView.layer.cornerRadius = 16
         lightContentView.layer.cornerRadius = 16
+        
+        doneBtn.layer.cornerRadius = 8
+        doneBtn.backgroundColor = appMainThemeColor
+        autoDim.onTintColor = appMainThemeColor
         
         setupUI()
         

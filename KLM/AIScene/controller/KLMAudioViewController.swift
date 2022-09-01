@@ -9,9 +9,12 @@ import UIKit
 
 class KLMAudioViewController: UIViewController {
     
+    @IBOutlet weak var audioSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        audioSwitch.onTintColor = appMainThemeColor
     }
     
 

@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMGroupMotionViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="confirmBtn" destination="Gxx-x2-ctM" id="prN-wJ-Ll4"/>
                 <outlet property="contentView" destination="4El-cZ-rIR" id="eyu-sO-PHm"/>
                 <outlet property="lightBgView" destination="cxL-Pw-lvL" id="AZJ-l5-3Nt"/>
                 <outlet property="lightContentView" destination="UDm-8D-tGa" id="PWt-z4-Cex"/>
@@ -169,7 +170,7 @@
                 <constraint firstItem="jAm-gz-dys" firstAttribute="top" secondItem="kdj-fD-879" secondAttribute="top" constant="20" id="zn3-WG-5Ek"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-3914" y="3"/>
+            <point key="canvasLocation" x="-5113" y="-14"/>
         </view>
     </objects>
     <resources>

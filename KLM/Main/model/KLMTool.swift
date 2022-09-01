@@ -154,7 +154,7 @@ extension KLMTool {
             
             ///弹出更新框
             let vc = UIAlertController.init(title: LANGLOC("Softwareupdate"), message: "V \(newVersion)\n\(updateMsg)", preferredStyle: .alert)
-            vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .destructive, handler: { action in
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
                 
                 comfirm()
                 

@@ -16,6 +16,8 @@ class KLMJoinHomeViewController: UIViewController {
         super.viewDidLoad()
         
         comfirmBtn.layer.cornerRadius = comfirmBtn.height/2
+        comfirmBtn.backgroundColor = appMainThemeColor
+        
         navigationItem.title = LANGLOC("joinAStore")
     
     }

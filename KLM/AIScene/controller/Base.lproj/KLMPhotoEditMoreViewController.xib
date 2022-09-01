@@ -14,8 +14,10 @@
                 <outlet property="BBgView" destination="Md2-Gg-Dgb" id="3bw-FH-bUa"/>
                 <outlet property="GBgView" destination="ESi-ge-xWz" id="DL9-lV-gbd"/>
                 <outlet property="RBgView" destination="xGD-U2-HeP" id="SXz-L6-3Rc"/>
+                <outlet property="cancelBtn" destination="DUV-MB-dFt" id="OgB-qa-IDt"/>
                 <outlet property="categoryLab" destination="6zO-EF-kht" id="bYC-mO-c5y"/>
                 <outlet property="categoryView" destination="rsQ-1U-WJN" id="Z04-e8-3lN"/>
+                <outlet property="confirmBtn" destination="ir3-25-cLz" id="Ooi-e8-6I9"/>
                 <outlet property="contentView" destination="IE1-Kk-IrK" id="nJ9-gK-qyC"/>
                 <outlet property="view" destination="PBf-VY-a0E" id="FCk-hc-tIv"/>
             </connections>
@@ -190,7 +192,7 @@
                 <constraint firstAttribute="trailing" secondItem="Smp-Eg-z2y" secondAttribute="trailing" id="jha-qA-732"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-7754" y="-164"/>
+            <point key="canvasLocation" x="-8310" y="-163"/>
         </view>
         <tapGestureRecognizer id="aUZ-Jr-REb">
             <connections>

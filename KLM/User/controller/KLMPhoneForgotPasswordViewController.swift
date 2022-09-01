@@ -63,6 +63,7 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
         doneBtn.clipsToBounds = true
         
         codeTitle = verCodeBtn.currentTitle
+        verCodeBtn.setTitleColor(appMainThemeColor, for: .normal)
         
         ///监控输入
         Observable.combineLatest(phoneField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, passAgainText  in

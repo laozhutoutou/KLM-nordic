@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="autoDim" destination="Md9-gC-Lhg" id="z0h-Jc-TdL"/>
                 <outlet property="contentView" destination="dir-89-eLq" id="3eI-u1-Hoa"/>
+                <outlet property="doneBtn" destination="rdP-wX-Aav" id="ViW-nG-Rho"/>
                 <outlet property="lightBgView" destination="z5v-dN-b0Q" id="i2S-ht-E51"/>
                 <outlet property="lightContentView" destination="11d-IH-wpp" id="pOW-fw-ywW"/>
                 <outlet property="timeBgView" destination="YSz-HW-abv" id="hym-WQ-VyK"/>
@@ -137,7 +138,7 @@
                 <constraint firstItem="Md9-gC-Lhg" firstAttribute="leading" secondItem="SAl-A2-toj" secondAttribute="trailing" constant="40" id="y6M-jT-DgC"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-3780" y="0.0"/>
+            <point key="canvasLocation" x="-4194" y="-29"/>
         </view>
     </objects>
     <resources>

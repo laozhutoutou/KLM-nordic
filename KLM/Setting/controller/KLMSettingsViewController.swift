@@ -64,7 +64,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
             let alert = UIAlertController(title: LANGLOC("logout"),
                                           message: nil,
                                           preferredStyle: .alert)
-            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
+            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .default) { _ in
                 
                 SVProgressHUD.show()
                 KLMService.logout { response in
@@ -94,7 +94,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                 let alert = UIAlertController(title: LANGLOC("Account deletion"),
                                               message: LANGLOC("Account deletion"),
                                               preferredStyle: .alert)
-                let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .destructive) { _ in
+                let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .default) { _ in
                     SVProgressHUD.show()
                     let user = KLMUser.getUserInfo()!
                     KLMService.deleteAccount(userid: user.id) { response in

@@ -39,6 +39,10 @@ class KLMPhotoEditMoreViewController: UIViewController {
     var cancel: cancelBlock?
     var enhanceBlock: EnhanceBlock?
     
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var confirmBtn: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,6 +52,11 @@ class KLMPhotoEditMoreViewController: UIViewController {
     }
     
     private func setUI() {
+        
+        cancelBtn.layer.cornerRadius = cancelBtn.height/2
+        confirmBtn.layer.cornerRadius = cancelBtn.height/2
+        cancelBtn.backgroundColor = appMainThemeColor
+        confirmBtn.backgroundColor = appMainThemeColor
         
         //R滑条
         let viewLeft: CGFloat = 10

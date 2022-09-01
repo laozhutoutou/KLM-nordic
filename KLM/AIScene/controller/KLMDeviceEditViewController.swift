@@ -174,7 +174,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                             return
                         }
                         let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
-                        vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
+                        vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .cancel, handler: { action in
                             
                             let vc = KLMPicDownloadViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
@@ -192,7 +192,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                         return
                     }
                     let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
-                    vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .destructive, handler: { action in
+                    vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .cancel, handler: { action in
                         
                         let vc = KLMPicDownloadViewController()
                         self.navigationController?.pushViewController(vc, animated: true)
@@ -444,7 +444,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }
             
             let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .alert)
-            vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .destructive, handler: { action in
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .default, handler: { action in
                 SVProgressHUD.show()
                 KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
 

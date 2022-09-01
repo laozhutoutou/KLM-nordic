@@ -30,6 +30,8 @@ class KLMAdminTransferViewController: UIViewController {
     private func setUI() {
         
         navigationItem.title = LANGLOC("Administrator transfer")
+        doneBtn.layer.cornerRadius = doneBtn.height / 2
+        doneBtn.backgroundColor = appMainThemeColor
         
         ///监控输入
         self.rx.observeWeakly(Int.self, "selectIndex")

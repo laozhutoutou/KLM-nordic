@@ -40,6 +40,7 @@ class KLMGroupUseOccasionViewController: UIViewController, Editable {
         
         navigationItem.title = LANGLOC("Occasion change")
         confirmBtn.layer.cornerRadius = 8
+        confirmBtn.backgroundColor = appMainThemeColor
         
         //分类
         let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!

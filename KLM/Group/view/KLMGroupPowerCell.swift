@@ -47,6 +47,9 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
         
         offBtn.setBackgroundImage(UIImage.init(color: .white), for: .normal)
         offBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
+        
+        onBtn.setTitleColor(appMainThemeColor, for: .normal)
+        offBtn.setTitleColor(appMainThemeColor, for: .normal)
     }
     
     @IBAction func onClick(_ sender: Any) {

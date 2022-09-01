@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMAudioViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="audioSwitch" destination="31G-mF-WCE" id="TKP-oN-jTE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -42,7 +43,7 @@
                 <constraint firstItem="31G-mF-WCE" firstAttribute="top" secondItem="pXf-IG-sdu" secondAttribute="bottom" constant="20" id="qLF-tb-Cfq"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-57" y="84"/>
+            <point key="canvasLocation" x="-649" y="117"/>
         </view>
     </objects>
     <resources>

@@ -38,6 +38,7 @@ class KLMForgetPasswordViewController: UIViewController {
 
         doneBtn.layer.cornerRadius = doneBtn.height / 2;
         doneBtn.clipsToBounds = true
+        verCodeBtn.setTitleColor(appMainThemeColor, for: .normal)
         
         ///监控输入
         Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, passAgainText in

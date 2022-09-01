@@ -10,6 +10,7 @@ import nRFMeshProvision
 
 class KLMGroupDeviceAddToViewController: UIViewController {
     
+    @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     private var groups: [Group]!
@@ -32,7 +33,8 @@ class KLMGroupDeviceAddToViewController: UIViewController {
         super.viewDidLoad()
 
         navigationItem.title = LANGLOC("groupSetting")
-    
+        doneBtn.backgroundColor = appMainThemeColor
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
         setupData()

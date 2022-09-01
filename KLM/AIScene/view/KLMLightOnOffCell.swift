@@ -22,6 +22,8 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        OnOffSwitch.onTintColor = appMainThemeColor
+        
     }
     
     @IBAction func OnOff(_ sender: UISwitch) {

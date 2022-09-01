@@ -29,7 +29,7 @@ class KLMHomeEditViewController: UIViewController, Editable {
         
         navigationItem.title = LANGLOC("storeSettings")
         deleteBtn.layer.cornerRadius = deleteBtn.height / 2
-        
+        deleteBtn.backgroundColor = appMainThemeColor
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
         

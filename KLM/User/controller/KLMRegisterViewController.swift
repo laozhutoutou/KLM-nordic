@@ -43,6 +43,7 @@ class KLMRegisterViewController: UIViewController {
         
         signupBtn.layer.cornerRadius = signupBtn.height / 2
         signupBtn.clipsToBounds = true
+        verCodeBtn.setTitleColor(appMainThemeColor, for: .normal)
         
         ///监控输入
         Observable.combineLatest(mailTextField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty,  nickNameField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, nickNameText, passAgainText in

@@ -75,6 +75,7 @@ class KLMCMOSViewController: UIViewController, Editable {
         
         navigationItem.title = LANGLOC("Sensing & occasion change")
         confirmBtn.layer.cornerRadius = 8
+        confirmBtn.backgroundColor = appMainThemeColor
         
         //秒
         let viewLeft: CGFloat = 20

@@ -52,8 +52,10 @@ class KLMDFUTestViewController: UIViewController {
         }
         
         selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
+        selectwifiBtn.setTitleColor(appMainThemeColor, for: .normal)
         selectwifiBtn.layer.cornerRadius = selectwifiBtn.height/2
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
+        upGradeBtn.backgroundColor = appMainThemeColor
         
         Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
             

@@ -16,9 +16,6 @@ class KLMAPPUpdateViewController: UIViewController {
     
     @IBOutlet weak var nameLab: UILabel!
     
-    var myview: OpenGLView20!
-    var yuvData: NSData!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +28,7 @@ class KLMAPPUpdateViewController: UIViewController {
         nameLab.text = appName
         
         updateBtn.layer.cornerRadius = updateBtn.height / 2
+        updateBtn.backgroundColor = appMainThemeColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
     }

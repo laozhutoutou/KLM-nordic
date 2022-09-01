@@ -458,7 +458,7 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         let warnAlert = UIAlertController(title: LANGLOC("deleteDevice"),
                                       message: LANGLOC("Please make sure the device can not be connected with APP, otherwise use 'Settings reset'"),
                                       preferredStyle: .alert)
-        let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .destructive) { _ in
+        let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .cancel) { _ in
             
             ///连接节点
             SVProgressHUD.show()

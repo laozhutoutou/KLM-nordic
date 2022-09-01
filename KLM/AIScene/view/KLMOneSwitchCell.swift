@@ -20,7 +20,7 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        cameraSwitch.onTintColor = appMainThemeColor
     }
     
     @IBAction func switchClick(_ sender: UISwitch) {
