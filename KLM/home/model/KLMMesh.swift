@@ -38,12 +38,12 @@ class KLMMesh {
         
     }
     ///获取存储的家庭
-    static func loadHome() -> KLMMeshInfo.KLMMeshInfoData? {
-        return KLMCache.getCache(KLMMeshInfo.KLMMeshInfoData.self, key: "home")
+    static func loadHome() -> KLMHome.KLMHomeModel? {
+        return KLMCache.getCache(KLMHome.KLMHomeModel.self, key: "home")
         
     }
     ///保存选择的家庭
-    static func saveHome(home: KLMMeshInfo.KLMMeshInfoData?) {
+    static func saveHome(home: KLMHome.KLMHomeModel?) {
         KLMCache.setCache(model: home, key: "home")
         KLMCache.setCache(model: home, key: "home\(home!.id)")
     }
@@ -59,8 +59,8 @@ class KLMMesh {
         KLMMesh.removeHome()
     }
     ///根据meshid获取本地保存的数据
-    static func getHome(homeId: Int) -> KLMMeshInfo.KLMMeshInfoData? {
-        return KLMCache.getCache(KLMMeshInfo.KLMMeshInfoData.self, key: "home\(homeId)")
+    static func getHome(homeId: Int) -> KLMHome.KLMHomeModel? {
+        return KLMCache.getCache(KLMHome.KLMHomeModel.self, key: "home\(homeId)")
     }
     
     ///mesh数据写入本地

@@ -35,7 +35,6 @@ custom = "Customization";
 restorefactorysettings = "Settings Reset";
 setting = "Settings";
 reName = "Rename";
-groupSetting = "Group setting";
 Energysavingsettings = "Energy saving setting";
 allDeviceAutoEnergysaving = "All devices auto-dim";
 helpQuestionTip = "Please describe your problem(s) , or feedback, leave your name.";
@@ -47,8 +46,6 @@ searchDeviceTip = "Make sure your devices are powered on and nearby";
 DFUVersionTip = "Latest version";
 
 "Auto Mode" = "Auto Mode";
-Software = "Software";
-Version = "Version";
 deleteDevice = "Remove Device";
 research = "Search again";
 nodevicesfound = "No devices found";

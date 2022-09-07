@@ -111,13 +111,13 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     }
     
     @objc func initData() {
-                
+        
         //蓝牙连接需要一定时间，搞个加载动画
         showEmptyView()
         
         ///先填充本地数据
         if let home = KLMMesh.loadHome() { ///本地存有家庭
-
+            
             self.homeBtn.setTitle(home.meshName, for: .normal)
             self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
             ///存储mesh数据
@@ -129,76 +129,71 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         KLMService.getMeshList { response in
             
+//            DispatchQueue.main.asyncAfter(deadline: 2) {
+                self.hideEmptyView()
+//            }
+            
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
                 
-                var currentHome = meshList.first!
-                if let home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
-                    currentHome = mesh
-                }
-                
-                self.homeBtn.setTitle(currentHome.meshName, for: .normal)
-                self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
-                ///获取Mesh数据
-                KLMService.getMeshInfo(id: currentHome.id) { response in
-                    self.hideEmptyView()
-                    let meshInfo = response as! KLMMeshInfo.KLMMeshInfoData
-                    if var home = KLMMesh.loadHome(), home.id == currentHome.id {///本地存在和服务器也有
-                        
-                        ///比较是服务器的新还是本地的新
-                        let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
-                        let meshData = KLMMesh.getMeshNetwork(meshConfiguration: meshInfo.meshConfiguration)
-                        if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
-                            KLMLog("本地比服务器的新")
-                            self.commitLoalDataToServer()
-                            //变更mesh中管理员ID
-                            home.adminId = meshInfo.adminId
-                            KLMMesh.saveHome(home: home)
-                        } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
-                            ///本地的和服务器一样
-                            KLMLog("本地和服务器的一样")
-                            //变更mesh中管理员ID
-                            home.adminId = meshInfo.adminId
-                            KLMMesh.saveHome(home: home)
-                        } else {
-                            ///本地的比服务器旧，拉取服务器的数据
-                            KLMLog("本地的比服务器旧")
-                            ///存储当前家庭
-                            KLMMesh.saveHome(home: meshInfo)
-                            ///存储mesh数据
-                            KLMMesh.loadHomeMeshData(meshConfiguration: meshInfo.meshConfiguration)
-                            ///渲染首页
-                            self.setupData()
-                        }
-                        
-                    } else { ///选择第一个家庭
+                if var home = KLMMesh.loadHome(), let mesh = meshList.first(where: { $0.id == home.id }) {///本地存在和服务器也有
+                    ///比较是服务器的新还是本地的新
+                    let homeData = KLMMesh.getMeshNetwork(meshConfiguration: home.meshConfiguration)
+                    let meshData = KLMMesh.getMeshNetwork(meshConfiguration: mesh.meshConfiguration)
+                    if homeData.timestamp.timeIntervalSinceReferenceDate > meshData.timestamp.timeIntervalSinceReferenceDate { ///本地比服务器的新，提交本地的给服务器
+                        KLMLog("本地比服务器的新")
+                        self.commitLoalDataToServer()
+                        //变更mesh中管理员ID
+                        home.adminId = mesh.adminId
+                        KLMMesh.saveHome(home: home)
+                    } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
+                        ///本地的和服务器一样
+                        KLMLog("本地和服务器的一样")
+                        //变更mesh中管理员ID
+                        home.adminId = mesh.adminId
+                        KLMMesh.saveHome(home: home)
+                    } else {
+                        ///本地的比服务器旧，拉取服务器的数据
+                        KLMLog("本地的比服务器旧")
+                        let currentHome = mesh
+                        self.homeBtn.setTitle(currentHome.meshName, for: .normal)
+                        self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
                         ///存储当前家庭
-                        KLMMesh.saveHome(home: meshInfo)
+                        KLMMesh.saveHome(home: currentHome)
                         ///存储mesh数据
-                        KLMMesh.loadHomeMeshData(meshConfiguration: meshInfo.meshConfiguration)
+                        KLMMesh.loadHomeMeshData(meshConfiguration: currentHome.meshConfiguration)
                         ///渲染首页
                         self.setupData()
                     }
                     
-                } failure: { error in
-                    self.hideEmptyView()
-                    KLMHttpShowError(error)
+                } else {
+                    ///选择第一个家庭
+                    let firstHome = meshList.first!
+                    self.homeBtn.setTitle(firstHome.meshName, for: .normal)
+                    self.homeBtn.layoutButton(with: .right, imageTitleSpace: 5)
+                    ///存储当前家庭
+                    KLMMesh.saveHome(home: firstHome)
+                    ///存储mesh数据
+                    KLMMesh.loadHomeMeshData(meshConfiguration: firstHome.meshConfiguration)
+                    ///渲染首页
+                    self.setupData()
                 }
                 
             } else {///服务器没有家庭
-                self.hideEmptyView()
+                
                 self.homeBtn.setTitle(nil, for: .normal)
                 if KLMMesh.loadHome() != nil {///本地存有家庭
                     ///清空数据
-                    KLMMesh.deleteHome()
-
+                    KLMMesh.removeHome()
+                    
                     (UIApplication.shared.delegate as! AppDelegate).createNewMeshNetwork()
-
+                    
                 }
+                
                 ///渲染首页
                 self.setupData()
             }
-
+            
         } failure: { error in
             self.hideEmptyView()
             KLMHttpShowError(error)
@@ -400,22 +395,10 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
         //取缓存数据
         if let localHome = KLMMesh.getHome(homeId: selectHome.id) {
             KLMMesh.saveHome(home: localHome)
-            self.initData()
         } else {
-            showEmptyView()
-            ///获取Mesh数据
-            KLMService.getMeshInfo(id: selectHome.id) { response in
-                
-                let meshInfo = response as! KLMMeshInfo.KLMMeshInfoData
-                ///存储当前家庭
-                KLMMesh.saveHome(home: meshInfo)
-                self.initData()
-                
-            } failure: { error in
-                self.hideEmptyView()
-                KLMHttpShowError(error)
-            }
+            KLMMesh.saveHome(home: selectHome)
         }
+        self.initData()
     }
 }
 
@@ -642,7 +625,7 @@ extension KLMUnNameListViewController: GattDelegate {
     }
     
     func bearerDidDiscover(_ bearer: Bearer) {
-        DispatchQueue.main.asyncAfter(deadline: 1) { ///隔一秒钟，等页面刷新出来再开始
+        DispatchQueue.main.asyncAfter(deadline: 2) { ///隔一秒钟，等页面刷新出来再开始
             
             if let bearer = bearer as? GattBearer {
                 if let index = self.nodes.firstIndex(where: {$0.nodeuuidString == bearer.nodeUUID}) {

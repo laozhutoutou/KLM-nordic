@@ -16,6 +16,7 @@ enum deviceStatus {
 class KLMGroupTransferListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneBtn: UIButton!
     
     var deviceStatus: deviceStatus = .deviceDeleteFromGroup
     
@@ -35,6 +36,7 @@ class KLMGroupTransferListViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = LANGLOC("Select a group")
+        doneBtn.backgroundColor = appMainThemeColor
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         

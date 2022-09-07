@@ -25,7 +25,7 @@ struct KLMHome: Codable {
         var meshName: String
         var id: Int ///meshID 
         var adminId: Int///管理员ID
-//        var meshConfiguration: String
+        var meshConfiguration: String
     }
 }
 

@@ -209,7 +209,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
                 return
             }
         }
-        
+
         ///扫描到设备
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
             return
