@@ -149,9 +149,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     } else if homeData.timestamp.timeIntervalSinceReferenceDate == meshData.timestamp.timeIntervalSinceReferenceDate {
                         ///本地的和服务器一样
                         KLMLog("本地和服务器的一样")
-                        //变更mesh中管理员ID
-                        home.adminId = mesh.adminId
-                        KLMMesh.saveHome(home: home)
+                        KLMMesh.saveHome(home: mesh)
                     } else {
                         ///本地的比服务器旧，拉取服务器的数据
                         KLMLog("本地的比服务器旧")
@@ -625,7 +623,7 @@ extension KLMUnNameListViewController: GattDelegate {
     }
     
     func bearerDidDiscover(_ bearer: Bearer) {
-        DispatchQueue.main.asyncAfter(deadline: 2) { ///隔一秒钟，等页面刷新出来再开始
+        DispatchQueue.main.asyncAfter(deadline: 3) { ///隔一秒钟，等页面刷新出来再开始
             
             if let bearer = bearer as? GattBearer {
                 if let index = self.nodes.firstIndex(where: {$0.nodeuuidString == bearer.nodeUUID}) {

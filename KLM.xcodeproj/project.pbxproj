@@ -3572,7 +3572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3604,7 +3604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3635,7 +3635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GW";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjgw.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3667,7 +3667,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.1;
+				MARKETING_VERSION = 1.7.2;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GW";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjgw.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -189,13 +189,18 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
                 if KLMMesh.isCanEditMesh() == false {
                     return
                 }
-
-                //设备移出分组
+                
                 SVProgressHUD.show()
-
-                //设备从当前群组中移除
-                KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: KLMHomeManager.currentGroup)
-
+                KLMConnectManager.shared.connectToNode(node: deviceModel) { [weak self] in
+                    guard let self = self else { return }
+                    SVProgressHUD.dismiss()
+                    
+                    //设备从当前群组中移除
+                    KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: KLMHomeManager.currentGroup)
+                    
+                } failure: {
+                    
+                }
             }
             aler.addAction(cancel)
             aler.addAction(sure)
@@ -206,10 +211,23 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
 
         //转移
         let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("Transfer")) { action, sourceView, completionHandler in
-
-            let vc = KLMGroupTransferListViewController()
-            vc.selectNodes = [deviceModel]
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
+            
+            SVProgressHUD.show()
+            KLMConnectManager.shared.connectToNode(node: deviceModel) { [weak self] in
+                guard let self = self else { return }
+                SVProgressHUD.dismiss()
+                
+                let vc = KLMGroupTransferListViewController()
+                vc.selectNodes = [deviceModel]
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } failure: {
+                
+            }
 
             completionHandler(true)
         }

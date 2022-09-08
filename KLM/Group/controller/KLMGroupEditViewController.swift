@@ -151,8 +151,9 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             vc.modalTransitionStyle = .crossDissolve
             vc.nameBlock = {[weak self] name in
                 guard let self = self else { return  }
-                
+                ///修改群组名称时间戳不变,需要改动一下时间戳
                 KLMHomeManager.currentGroup.name = name
+                MeshNetworkManager.instance.meshNetwork?.meshName = "nRF Mesh Network"
                 
                 if KLMMesh.save() {
                     
