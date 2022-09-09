@@ -211,20 +211,6 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension KLMSearchViewController: KLMSIGMeshManagerDelegate {
-        
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
-        
-        SVProgressHUD.showSuccess(withStatus: "Please tap again")
-        
-    }
-    
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
-        
-        KLMShowError(error)
-    }
-}
-
  
 
 

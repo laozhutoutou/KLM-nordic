@@ -39,7 +39,7 @@ class KLMGroupEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("groupSetting")
+        navigationItem.title = LANGLOC("Group setting")
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .deviceRemoveFromGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .deviceAddToGroup, object: nil)

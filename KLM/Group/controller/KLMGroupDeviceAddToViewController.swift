@@ -32,7 +32,7 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("groupSetting")
+        navigationItem.title = LANGLOC("Group setting")
         doneBtn.backgroundColor = appMainThemeColor
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))

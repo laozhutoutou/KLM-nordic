@@ -618,21 +618,36 @@ extension KLMUnNameListViewController: GattDelegate {
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         KLMLog("首页设备一个都没连接")
         ///一个都没连
-        nodes.forEach({$0.isOnline = false})
-        self.collectionView.reloadData()
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            notConfiguredNodes.forEach({$0.isOnline = false})
+            self.collectionView.reloadData()
+        }
+//        nodes.forEach({$0.isOnline = false})
+//        self.collectionView.reloadData()
     }
     
     func bearerDidDiscover(_ bearer: Bearer) {
         DispatchQueue.main.asyncAfter(deadline: 3) { ///隔一秒钟，等页面刷新出来再开始
             
             if let bearer = bearer as? GattBearer {
-                if let index = self.nodes.firstIndex(where: {$0.nodeuuidString == bearer.nodeUUID}) {
-                    let node = self.nodes[index]
-                    node.isOnline = true
-                    let indexPath = IndexPath.init(item: index, section: 0)
-                    self.collectionView.reloadItems(at: [indexPath])
-                    KLMLog("连接的设备：\(node.nodeName)")
+                if let network = MeshNetworkManager.instance.meshNetwork {
+                    
+                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+                    if let node = notConfiguredNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) {
+                        node.isOnline = true
+                        self.collectionView.reloadData()
+                        KLMLog("连接的设备：\(node.nodeName)")
+                    }
                 }
+                //                if let index = self.nodes.firstIndex(where: {$0.nodeuuidString == bearer.nodeUUID}) {
+                //                    let node = self.nodes[index]
+                //                    node.isOnline = true
+                //                    let indexPath = IndexPath.init(item: index, section: 0)
+                //                    self.collectionView.reloadItems(at: [indexPath])
+                //                    KLMLog("连接的设备：\(node.nodeName)")
+                //                }
             }
         }
     }

@@ -342,7 +342,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.group.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("groupSetting")
+            cell.leftTitle = LANGLOC("Group setting")
             if self.deviceGroups.count <= 0 {
                 let string = LANGLOC("unGroup")
                 cell.rightTitle = string

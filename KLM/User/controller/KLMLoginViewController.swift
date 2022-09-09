@@ -46,6 +46,10 @@ class KLMLoginViewController: UIViewController {
         logBtn.clipsToBounds = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .loginPageRefresh, object: nil)
+        
+        if apptype == .targetsGW { ///国外版没有手机号
+            mailTextField.placeholder = LANGLOC("Email")
+        }
     }
     
     @objc func setupData() {
