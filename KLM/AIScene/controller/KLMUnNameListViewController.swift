@@ -280,7 +280,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     private func checkAPPVersion() {
         
-        KLMService.checkVersion(type: "ios") { response in
+        KLMService.checkAPPVersion{ response in
             
             guard let data = response as? KLMVersion.KLMVersionData else { return  }
             self.versionData = data
@@ -529,16 +529,6 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             
             let vc = KLMLightSettingController()
             self.navigationController?.pushViewController(vc, animated: true)
-            
-            //是否有相机权限
-//            KLMPhotoManager().photoAuthStatus { [weak self] in
-//                guard let self = self else { return }
-//
-//                let vc = KLMImagePickerController()
-//                vc.sourceType = .camera
-//                self.tabBarController?.present(vc, animated: true, completion: nil)
-//
-//            }
             
         } failure: {
             

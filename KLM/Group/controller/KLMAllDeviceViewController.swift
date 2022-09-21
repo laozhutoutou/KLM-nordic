@@ -135,7 +135,9 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
                 SVProgressHUD.dismiss()
                 guard let self = self else { return }
                 let vc = KLMGroupMotionViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
+                let nav = KLMNavigationViewController(rootViewController: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
             } failure: {
                 
             }

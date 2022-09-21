@@ -45,6 +45,8 @@ class KLMPhotoEditMoreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
 
         setUI()
         
@@ -111,13 +113,13 @@ class KLMPhotoEditMoreViewController: UIViewController {
         categoryLab.text = LANGLOC(title)
     }
     
-    
+    ///取消
     @IBAction func resetClick(_ sender: Any) {
         
         if let cancel = self.cancel {
             cancel()
         }
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
     
     //确定
@@ -126,7 +128,7 @@ class KLMPhotoEditMoreViewController: UIViewController {
         if let sure = self.sure {
             sure()
         }
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
         
     }
     
@@ -157,7 +159,14 @@ class KLMPhotoEditMoreViewController: UIViewController {
             self.categoryPopView = popupMenu
         }
     }
-    
+    ///相当于取消
+    @objc func dimiss() {
+        
+        if let cancel = self.cancel {
+            cancel()
+        }
+        dismiss(animated: true)
+    }
 }
 
 extension KLMPhotoEditMoreViewController: KLMSliderDelegate {

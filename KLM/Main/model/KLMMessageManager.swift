@@ -75,7 +75,6 @@ extension KLMMessageManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        //（这个可以不加，因为不是当前手机的信息nordic底层已经处理）
         if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
             KLMLog("别的手机发的消息")
             return

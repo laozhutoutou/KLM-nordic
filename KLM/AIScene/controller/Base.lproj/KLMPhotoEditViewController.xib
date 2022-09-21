@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMPhotoEditViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="RecipeLab" destination="vCI-eC-ebC" id="yK1-G1-6NG"/>
                 <outlet property="contentView" destination="eiX-MC-9tb" id="Kr5-y6-bqU"/>
                 <outlet property="imageView" destination="vrk-u4-PK4" id="fTo-5e-XSe"/>
                 <outlet property="lightBgView" destination="7tw-ME-efe" id="Aev-BK-dgL"/>
@@ -60,11 +61,19 @@
                         <action selector="moreClick:" destination="-1" eventType="touchUpInside" id="wSR-aS-rEw"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCI-eC-ebC">
+                    <rect key="frame" x="186" y="720" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="Ft9-eO-seJ"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vCI-eC-ebC" firstAttribute="top" secondItem="eiX-MC-9tb" secondAttribute="bottom" constant="8" id="10c-jy-sCb"/>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" constant="20" id="1Ck-c7-yqk"/>
+                <constraint firstItem="vCI-eC-ebC" firstAttribute="centerX" secondItem="7As-wc-ivO" secondAttribute="centerX" id="2pP-tJ-0pg"/>
                 <constraint firstItem="eiX-MC-9tb" firstAttribute="leading" secondItem="Ft9-eO-seJ" secondAttribute="leading" id="9Y9-Nx-Ybh"/>
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="trailing" secondItem="eiX-MC-9tb" secondAttribute="trailing" id="9cx-Ik-4gL"/>
                 <constraint firstItem="7tw-ME-efe" firstAttribute="top" secondItem="eiX-MC-9tb" secondAttribute="bottom" constant="60" id="Efs-1I-CFI"/>
@@ -77,7 +86,7 @@
                 <constraint firstItem="Ft9-eO-seJ" firstAttribute="bottom" secondItem="7tw-ME-efe" secondAttribute="bottom" constant="30" id="dUc-dH-q9l"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-7019" y="-70"/>
+            <point key="canvasLocation" x="-7746" y="0.0"/>
         </view>
     </objects>
     <resources>

@@ -209,12 +209,11 @@ extension NetworkConnection: CBCentralManagerDelegate {
                 return
             }
         }
-
+        
         ///扫描到设备
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
             return
         }
-        
         let bearer = GattBearer(target: peripheral)
         if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
             

@@ -354,13 +354,11 @@ class KLMCustomViewController: UIViewController, Editable {
                 
                 self.pickView.selectionColor = currentColor
                 self.colorTempSlider.currentValue = Float(colorTempValue)
-                self.lightSlider.currentValue = Float(lightValue)
             } else { //填充默认值
-                
                 self.pickView.selectionColor = .white
                 self.colorTempSlider.currentValue = 6
-                self.lightSlider.currentValue = 100
             }
+            self.lightSlider.currentValue = Float(lightValue)
         }
     }
 }

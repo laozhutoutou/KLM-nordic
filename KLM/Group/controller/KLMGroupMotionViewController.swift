@@ -69,6 +69,8 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     
     private func setupUI() {
         
+        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
+        
         //时间滑条
         let viewLeft: CGFloat = 20 + 16
         let sliderWidth = KLMScreenW - viewLeft * 2
@@ -187,6 +189,11 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 self.groupData.energyPower = 0
                 self.updateUI()
                 self.sendData()
+                
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    self.dismiss(animated: true)
+                }
+                
             } failure: { error in
                 
                 KLMShowError(error)
@@ -201,6 +208,10 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 self.groupData.energyPower = 0
                 self.updateUI()
                 self.sendData()
+                
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    self.dismiss(animated: true)
+                }
                 
             } failure: { error in
                 KLMShowError(error)
@@ -238,9 +249,9 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 self.groupData.autoDim = Int(self.timeSlider.currentValue)
                 self.sendData()
                 
-//                DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//                    self.navigationController?.popViewController(animated: true)
-//                }
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    self.dismiss(animated: true)
+                }
                 
             } failure: { error in
                 
@@ -258,15 +269,37 @@ class KLMGroupMotionViewController: UIViewController, Editable {
                 self.groupData.autoDim = Int(self.timeSlider.currentValue)
                 self.sendData()
                 
-//                DispatchQueue.main.asyncAfter(deadline: 0.5) {
-//                    self.navigationController?.popViewController(animated: true)
-//                }
+                DispatchQueue.main.asyncAfter(deadline: 1) {
+                    self.dismiss(animated: true)
+                }
                 
             } failure: { error in
                 KLMShowError(error)
             }
             
         }
+    }
+    
+    @objc func dimiss() {
+        
+        let parame = parameModel(dp: .motion, value: "040000")
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+            } failure: { error in
+                
+            }
+            
+        } else {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+                
+            } failure: { error in
+                
+            }
+        }
+        dismiss(animated: true)
     }
 }
 

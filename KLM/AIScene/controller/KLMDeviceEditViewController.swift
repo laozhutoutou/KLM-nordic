@@ -436,7 +436,9 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             
         case itemType.motion.rawValue:
             let vc = KLMMotionViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            let nav = KLMNavigationViewController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
         case itemType.reset.rawValue: //恢复出厂设置
             
             if KLMMesh.isCanEditMesh() == false {

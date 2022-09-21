@@ -41,6 +41,13 @@ class KLMHelpViewController: UIViewController {
             return
         }
         
+        ///不是手机同时不是邮箱
+        if !KLMVerifyManager.isPhone(phone: phone) && !KLMVerifyManager.isEmail(email: phone) {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Invalid contact"))
+            return
+        }
+        
+        
         SVProgressHUD.show()
         KLMService.feedBack(contacts: phone, content: question) { response in
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

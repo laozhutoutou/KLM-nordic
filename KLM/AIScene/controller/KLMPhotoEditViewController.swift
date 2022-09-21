@@ -34,11 +34,13 @@ class KLMPhotoEditViewController: UIViewController {
     //分组数据
     var groupData: GroupData = GroupData()
     
+    @IBOutlet weak var RecipeLab: UILabel!
+    
     //当前配方
     var currentRecipe: Int = 0 {
         
         didSet {
-            
+            RecipeLab.text = "\(currentRecipe)"
             self.lightBgView.isHidden = false
             lightLab.isHidden = false
             moreBtn.isHidden = false
@@ -82,10 +84,13 @@ class KLMPhotoEditViewController: UIViewController {
             
             if isFirst {
                 isFirst = false
-                SVProgressHUD.show()
                 //读取分类数据
                 let parame = parameModel(dp: .category)
                 KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+                DispatchQueue.main.after(0.5) {
+                    let parame = parameModel(dp: .light)
+                    KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+                }
             }
             
         } else {
@@ -103,6 +108,8 @@ class KLMPhotoEditViewController: UIViewController {
         self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
         
         setupUI()
+        
+        useGuide()
         
         imageData = self.originalImage.convert(toBitmapRGBA8: self.originalImage)
     }
@@ -133,6 +140,24 @@ class KLMPhotoEditViewController: UIViewController {
         lightBgView.addSubview(lightSlider)
     }
     
+    private func useGuide() {
+        
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            
+            if var index: Int = KLMGetUserDefault("userGuide") as? Int {
+                index += 1
+                if index > 3 {
+                    return
+                }
+                KLMSetUserDefault("userGuide", index)
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please click or draw a square on the photo"))
+            } else {
+                KLMSetUserDefault("userGuide", 1)
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please click or draw a square on the photo"))
+            }
+        }
+    }
+    
     private func setupGroupData() {
         
         var address: Int = 0
@@ -140,15 +165,15 @@ class KLMPhotoEditViewController: UIViewController {
             address = Int(KLMHomeManager.currentGroup.address.address)
         }
         
-        SVProgressHUD.show()
         KLMService.selectGroup(groupId: address) { response in
-            SVProgressHUD.dismiss()
+            
             guard let model = response as? GroupData else { return  }
             self.groupData = model
+            self.lightValue = self.groupData.customLight
+            self.lightSlider.currentValue = Float(self.lightValue)
             
         } failure: { error in
-            SVProgressHUD.dismiss()
-
+            
         }
     }
     
@@ -422,7 +447,9 @@ class KLMPhotoEditViewController: UIViewController {
             self.getRecipe()
             self.sendData()
         }
-        navigationController?.pushViewController(vc, animated: true)
+        let nav = KLMNavigationViewController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
     
     //修改了分类也要变更当前的配方
@@ -455,8 +482,14 @@ extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
         if let value = message?.value as? Int, message?.dp == .category {
-            SVProgressHUD.dismiss()
+            
             enhance.classification = value
+        }
+        
+        if let value = message?.value as? Int, message?.dp == .light {
+            
+            lightValue = value
+            lightSlider.currentValue = Float(lightValue)
         }
         
         if isFinish {

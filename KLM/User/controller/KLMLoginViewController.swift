@@ -127,6 +127,12 @@ class KLMLoginViewController: UIViewController {
             navigationController?.pushViewController(vc, animated: true)
             return
         }
+        ///账号是邮箱
+        if let text = mailTextField.text, KLMVerifyManager.isEmail(email: text) {
+            let vc = KLMForgetPasswordViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
         let vc = KLMPhoneForgotPasswordViewController()
         navigationController?.pushViewController(vc, animated: true)
     }

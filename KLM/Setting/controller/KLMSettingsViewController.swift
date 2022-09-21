@@ -74,6 +74,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                     
                 } failure: { error in
                     KLMHttpShowError(error)
+                    (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
                 }
             }
             let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)

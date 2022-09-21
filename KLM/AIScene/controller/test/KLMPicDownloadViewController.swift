@@ -154,6 +154,8 @@ class KLMPicDownloadViewController: UIViewController {
                     if err.code == NEHotspotConfigurationError.alreadyAssociated.rawValue { //当前连接的WiFi
                         KLMLog("是当前连接的WiFi")
                         self.sendWIfiMesssage()
+                    } else if err.code == NEHotspotConfigurationError.invalidWPAPassphrase.rawValue {
+                        SVProgressHUD.showInfo(withStatus: LANGLOC("Password error"))
                     } else {
                         SVProgressHUD.showInfo(withStatus: err.localizedDescription)
                     }

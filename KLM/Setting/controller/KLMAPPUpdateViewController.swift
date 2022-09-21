@@ -46,7 +46,7 @@ class KLMAPPUpdateViewController: UIViewController {
         }
         
         SVProgressHUD.show()
-        KLMService.checkVersion(type: "ios") { response in
+        KLMService.checkAPPVersion { response in
             SVProgressHUD.dismiss()
             guard let versionData = response as? KLMVersion.KLMVersionData else { return  }
             let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)

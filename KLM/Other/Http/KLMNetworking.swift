@@ -346,10 +346,10 @@ class KLMService: NSObject {
         
         KLMNetworking.httpMethod(URLString: KLMUrl("api/auth/logout"), params: nil) { responseObject, error in
             
+            ///清空数据
+            KLMMesh.logout()
+            
             if error == nil {
-                ///清空数据
-                KLMMesh.logout()
-                
                 success(responseObject as AnyObject)
             } else {
                 failure(error!)
@@ -620,10 +620,13 @@ class KLMService: NSObject {
             }
         }
     }
-    
-    static func checkVersion(type: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
-        
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
+    ///查询APP版本
+    static func checkAPPVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        var scope = 1
+        if apptype == .targetsGW {
+            scope = 2
+        }
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/ios/\(scope)"), params: nil) { responseObject, error in
             
             if error == nil {
                 
@@ -636,13 +639,15 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///查询固件
     static func checkBlueToothVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        ///bluetooth mcu
         var type = "bluetooth"
         if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
             type = "mcu"
+        }
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
+            type = "development"
         }
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
             
@@ -755,7 +760,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///获取地址
     static func getMeshProvisonerAddress(meshId: Int, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame: [String : Any] = ["meshId": meshId,

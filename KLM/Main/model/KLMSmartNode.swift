@@ -74,7 +74,6 @@ class KLMSmartNode: NSObject {
        
         currentNode = node
         MeshNetworkManager.instance.delegate = self
-        
         let model = KLMHomeManager.getModelFromNode(node: node)!
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1C", radix: 16) {
@@ -115,7 +114,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        ///过滤消息，不是当前手机发出的消息不处理。（这个可以不加，因为不是当前手机的信息nordic底层已经处理）
         if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
             KLMLog("别的手机发的消息")
             return

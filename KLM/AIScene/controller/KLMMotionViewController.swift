@@ -49,6 +49,8 @@ class KLMMotionViewController: UIViewController, Editable {
         
         setupUI()
         
+        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
+        
         ///显示空白页面
         showEmptyView()
         DispatchQueue.main.asyncAfter(deadline: 5) {
@@ -119,6 +121,13 @@ class KLMMotionViewController: UIViewController, Editable {
         let parame = parameModel(dp: .motion, value: power + time + light)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
+    
+    @objc func dimiss() {
+        
+        let parame = parameModel(dp: .motion, value: "040000")
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        dismiss(animated: true)
+    }
 }
 
 extension KLMMotionViewController: KLMSmartNodeDelegate {
@@ -147,7 +156,7 @@ extension KLMMotionViewController: KLMSmartNodeDelegate {
 
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true)
             }
         }
     }
