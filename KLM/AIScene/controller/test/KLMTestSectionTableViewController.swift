@@ -7,6 +7,17 @@
 
 import UIKit
 
+private enum itemType: Int, CaseIterable {
+    case version = 0
+    case PCBA
+    case Qudong
+    case Chengpin
+    case Laohua
+    case Baozhuang
+    case Yingjian
+    case Biaoding
+}
+
 class KLMTestSectionTableViewController: UITableViewController {
 
     var BLEVersion: String = "获取失败"
@@ -66,61 +77,62 @@ class KLMTestSectionTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 7
+        return itemType.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        if indexPath.row == 0 {
+        
+        switch indexPath.row {
+        case itemType.version.rawValue:
             cell.textLabel?.text = "版本号：  \(BLEVersion)"
             cell.contentView.addSubview(resetBtn)
-        } else if indexPath.row == 1 {
+        case itemType.PCBA.rawValue:
             cell.textLabel?.text = "PCBA测试"
-        } else if indexPath.row == 2 {
+        case itemType.Qudong.rawValue:
             cell.textLabel?.text = "驱动测试"
-        } else if indexPath.row == 3 {
+        case itemType.Chengpin.rawValue:
             cell.textLabel?.text = "成品测试"
-        } else if indexPath.row == 4 {
+        case itemType.Laohua.rawValue:
             cell.textLabel?.text = "老化测试"
-        } else if indexPath.row == 5 {
+        case itemType.Baozhuang.rawValue:
             cell.textLabel?.text = "包装测试"
-        } else if indexPath.row == 6 {
+        case itemType.Yingjian.rawValue:
             cell.textLabel?.text = "硬件信息查询"
+        case itemType.Biaoding.rawValue:
+            cell.textLabel?.text = "白平衡标定"
+        default:
+            break
         }
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
-            
+        
+        switch indexPath.row {
+        case itemType.PCBA.rawValue:
             let vc = KLMPCBASensorViewController()
             navigationController?.pushViewController(vc, animated: true)
-            
-        } else if indexPath.row == 2 {
-           
+        case itemType.Qudong.rawValue:
             let vc = KLMQudongTestViewController()
             navigationController?.pushViewController(vc, animated: true)
-            
-        } else if indexPath.row == 3 {
-            
+        case itemType.Chengpin.rawValue:
             let vc = KLMChengpinViewController()
             navigationController?.pushViewController(vc, animated: true)
-            
-        } else if indexPath.row == 4{
-            
+        case itemType.Laohua.rawValue:
             let vc = KLMLaoHuaTestViewController()
             navigationController?.pushViewController(vc, animated: true)
-            
-        } else if indexPath.row == 5{
-            
+        case itemType.Baozhuang.rawValue:
             let vc = KLMBaoZhuangTestViewController()
             navigationController?.pushViewController(vc, animated: true)
-        } else if indexPath.row == 6{
-            
+        case itemType.Yingjian.rawValue:
             let vc = KLMTestVersionViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case itemType.Biaoding.rawValue:
+            let vc = KLMTestBiaodingViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
         }
     }
     
@@ -142,7 +154,7 @@ extension KLMTestSectionTableViewController: KLMSmartNodeDelegate {
         }
     }
     
-    func smartNodeDidResetNode(_ manager: KLMSmartNode){
+    func smartNodeDidResetNode(_ manager: KLMSmartNode) {
         ///提交数据到服务器
         if KLMMesh.save() {
             

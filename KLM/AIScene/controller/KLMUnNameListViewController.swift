@@ -129,9 +129,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         KLMService.getMeshList { response in
             
-//            DispatchQueue.main.asyncAfter(deadline: 2) {
-                self.hideEmptyView()
-//            }
+            self.hideEmptyView()
             
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
@@ -514,24 +512,27 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
+//        let vc = KLMTLWOTAViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+        
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
             SVProgressHUD.dismiss()
             if apptype == .test {
-                
+
                 let vc = KLMTestSectionTableViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
-                
+
                 return
             }
-            
+
             let vc = KLMLightSettingController()
             self.navigationController?.pushViewController(vc, animated: true)
-            
+
         } failure: {
-            
+
         }
     }
 }

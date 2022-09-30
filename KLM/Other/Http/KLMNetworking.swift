@@ -126,10 +126,12 @@ class KLMNetworking: NSObject {
                     if model.code == 401 { //别人登录了
                         
                         ///清空数据
-                        KLMMesh.logout()
-                        KLMLog("用户在其他地方登录")
-                        let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                        appdelegate.enterLoginUIOtherLogin()
+                        if KLMGetUserDefault("token") != nil {
+                            KLMMesh.logout()
+                            KLMLog("用户在其他地方登录")
+                            let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                            appdelegate.enterLoginUIOtherLogin()
+                        }
                         return
                     }
                     
@@ -165,11 +167,13 @@ class KLMNetworking: NSObject {
                         
                         if StateCode == 400 { ///token过期，重新登录
                             ///清空数据
-                            KLMMesh.logout()
-                            KLMLog("token 失效")
-                            let appdelegate = UIApplication.shared.delegate as! AppDelegate
-                            appdelegate.enterLoginUI()
-                            
+                            if KLMGetUserDefault("token") != nil {
+                                
+                                KLMMesh.logout()
+                                KLMLog("token 失效")
+                                let appdelegate = UIApplication.shared.delegate as! AppDelegate
+                                appdelegate.enterLoginUI()
+                            }
                             //和别人登录一样返回401统一处理
                             let retureError = NSError.init(domain: "", code: 401, userInfo: resultDic as [String : Any])
                             completion(nil, retureError)
@@ -191,7 +195,10 @@ class KLMService: NSObject {
     ///获取邮箱验证码
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let scope = Bundle.isChineseLanguage() ? 1 : 2
+        var scope = 1
+        if apptype == .targetsGW {
+            scope = 2
+        }
         let parame = ["email": email,
                       "scope": scope] as [String : Any]
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("open/email/codeByScope"), params: parame) { responseObject, error in
@@ -649,6 +656,24 @@ class KLMService: NSObject {
         if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
             type = "development"
         }
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMVersion.self, from: responseObject!)
+                let data = model?.data
+                success(data as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    ///检查TLW服务器固件最新版本
+    static func checkTLWVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let type = "development"
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
             
             if error == nil {

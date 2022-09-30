@@ -127,7 +127,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                 //如果是开关 "0101"
                 KLMLog("messageResponse = \(parameters.hex)")
                 
-                if parameters.count >= 3 {
+                if parameters.count >= 2 {
                     
                     var response = parameModel()
                     if message.opCode.hex() == "00DD00FF" {
@@ -143,17 +143,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     
                     let dp = DPType(rawValue: Int(dpData))
                     response.dp = dp
-                    
-                    //语音播报
-                    if dp == .audio {
-                        
-                        if value.count >= 2 {
-                            let secondIndex = Int(value.bytes[1])
-                            KLMAudioManager.shared.startPlay(type: secondIndex)
-                        }
-                        return
-                    }
-                    
+                                        
                     ///不是当前节点的消息不处理
                     if source != currentNode?.unicastAddress {
                         KLMLog("别的节点回的消息")
@@ -178,6 +168,15 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         if status == 0xFE { //摄像头有问题
                             err.message = LANGLOC("Camera failure")
                         }
+                        self.delegate?.smartNode(self, didfailure: err)
+                        return
+                    }
+                    
+                    if value.count == 0 { ///没有字节
+                        var err = MessageError()
+                        err.code = Int(status)
+                        err.dp = dp
+                        err.message = LANGLOC("Dataexception")
                         self.delegate?.smartNode(self, didfailure: err)
                         return
                     }
@@ -215,6 +214,8 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .cameraPic,
                          .checkVersion,
                          .hardwareInfo,
+                         .audio,
+                         .biaoding,
                          .deviceSetting:
                         
                         response.value = [UInt8](value)
@@ -243,11 +244,6 @@ extension KLMSmartNode: MeshNetworkDelegate {
         default:
             break
         }
-        
-        //返回错误
-//        var err = MessageError()
-//        err.message = "Unknow message"
-//        self.delegate?.smartNode(self, didfailure: err)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {
@@ -325,6 +321,7 @@ extension KLMSmartNode {
              .category,
              .audio,
              .brightness,
+             
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
@@ -338,6 +335,7 @@ extension KLMSmartNode {
              .motion,
              .cameraPic,
              .hardwareInfo,
+             .biaoding,
              .factoryTestResule:
             parameString = parame.value as! String
 
@@ -397,9 +395,9 @@ extension Node {
 ///给扩展增加存储属性
 extension GattBearer {
     private static var Node_KEY = true
-    var manufacturer: String {
+    var manufacturer: Data {
         get {
-            return (objc_getAssociatedObject(self, &Self.Node_KEY) as? String) ?? ""
+            return (objc_getAssociatedObject(self, &Self.Node_KEY) as? Data) ?? Data.init()
         }
         set {
             objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_COPY)
@@ -408,22 +406,25 @@ extension GattBearer {
     
     var nodeUUID: String {
         var uuid = ""
-        if manufacturer.count >= 12 {
-            uuid = manufacturer[0,12]
+        if manufacturer.count >= 8 {
+            let data: Data = manufacturer[2...7]
+            uuid = data.hex
         }
         return uuid
     }
     
-    var version: String {
-        
-        var version = ""
-        if manufacturer.count == 16 {
-            let first: Int = Int(nodeUUID[12,2])!
-            let second: Int = Int(nodeUUID[14,1])!
-            let third: Int = Int(nodeUUID[15,1])!
-            version = "\(first).\(second).\(third)"
-            KLMLog("设备版本：\(version)")
-        }
-        return version
-    }
+//    var version: String {
+//        
+//        var version = ""
+//        if manufacturer.count == 16 {
+//            let first: Int = Int(nodeUUID[12,2])!
+//            let second: Int = Int(nodeUUID[14,1])!
+//            let third: Int = Int(nodeUUID[15,1])!
+//            version = "\(first).\(second).\(third)"
+//            KLMLog("设备版本：\(version)")
+//        }
+//        return version
+//    }
 }
+
+

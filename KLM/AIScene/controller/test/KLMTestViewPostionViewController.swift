@@ -14,16 +14,21 @@ import SwiftUI
 import AVFoundation
 import WebKit
 
-class KLMPicDownloadViewController: UIViewController {
+
+class KLMTestViewPostionViewController: UIViewController {
     
     @IBOutlet weak var SSIDField: UITextField!
     @IBOutlet weak var passField: UITextField!
-    ///下载按钮
-    @IBOutlet weak var downLoadBtn: UIButton!
+    
+    @IBOutlet weak var oldBtn: UIButton!
+    @IBOutlet weak var newBtn: UIButton!
+    
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var selectwifiBtn: UIButton!
     ///图片
     @IBOutlet weak var imageView: UIImageView!
+    
+    var isOld = true
     
     var webView: WKWebView?
     lazy var wkConfig: WKWebViewConfiguration = {
@@ -54,8 +59,6 @@ class KLMPicDownloadViewController: UIViewController {
         selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
         selectwifiBtn.layer.cornerRadius = selectwifiBtn.height/2
         selectwifiBtn.setTitleColor(appMainThemeColor, for: .normal)
-        downLoadBtn.layer.cornerRadius = downLoadBtn.height / 2
-        downLoadBtn.backgroundColor = appMainThemeColor
         
         ///填充WIFI信息
         if let result = KLMHomeManager.getWIFIMsg() {
@@ -67,6 +70,16 @@ class KLMPicDownloadViewController: UIViewController {
             let ssid = KLMLocationManager.getCurrentWifiName()
             SSIDField.text = ssid
         }
+
+        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
+            
+            if ssidText.isEmpty || passwordText.isEmpty{
+                return false
+            } else {
+                return true
+            }
+        }.bind(to: oldBtn.rx.isEnabled, newBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
         
         //弹出定位弹框
         KLMLocationManager.shared.getLocation {
@@ -82,21 +95,9 @@ class KLMPicDownloadViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
 
-    @IBAction func downLoad(_ sender: Any) {
+    @IBAction func oldBtnClick(_ sender: UIButton) {
         
-        ///页面加载中，同时WiFi名称没改变，需要再加载
-//        if let webView = webView {
-//            if webView.isLoading && oldWifiName == self.SSIDField.text{
-//                SVProgressHUD.showInfo(withStatus: LANGLOC(""))
-//                return
-//            }
-//        }
-        
-        if KLMTool.isEmptyString(string: SSIDField.text) == nil || KLMTool.isEmptyString(string: passField.text) == nil {
-            
-            return
-        }
-        
+        isOld = sender.tag == 1 ? false : true
         KLMLocationManager.shared.getLocation {
             
             //定位授权
@@ -105,6 +106,20 @@ class KLMPicDownloadViewController: UIViewController {
         } failure: {
             
         }
+    }
+    
+    @IBAction func success(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        let parame = parameModel(dp: .biaoding, value: "0301")
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+    }
+    
+    @IBAction func failure(_ sender: Any) {
+        
+        SVProgressHUD.show()
+        let parame = parameModel(dp: .biaoding, value: "0300")
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
     
     @IBAction func selectWifi(_ sender: Any) {
@@ -176,7 +191,9 @@ class KLMPicDownloadViewController: UIViewController {
         var urlPasswordBytes: [UInt8] = [UInt8](urlPassword.data(using: .utf8)!)
         urlPasswordBytes = urlPasswordBytes + [UInt8].init(repeating: 0, count: 32 - urlPasswordBytes.count)
         
-        let parameters = Data.init(bytes: (urlSSIDBytes + urlPasswordBytes), count: (urlSSIDBytes + urlPasswordBytes).count)
+        let index: [UInt8] = isOld == true ? [1] : [2]
+        
+        let parameters = Data.init(bytes: (urlSSIDBytes + urlPasswordBytes + index), count: (urlSSIDBytes + urlPasswordBytes + index).count)
         let allBytes: String = parameters.hex
         let parame = parameModel(dp: .cameraPic, value: allBytes)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -191,10 +208,20 @@ class KLMPicDownloadViewController: UIViewController {
                 self.passField.text = model.WiFiPass
             }
         }
+        
+        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
+            
+            if ssidText.isEmpty || passwordText.isEmpty{
+                return false
+            } else {
+                return true
+            }
+        }.bind(to: oldBtn.rx.isEnabled, newBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
     }
 }
 
-extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
+extension KLMTestViewPostionViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
@@ -253,6 +280,14 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
                 }
             }
         }
+        
+        if message?.dp == .biaoding, message?.opCode == .send {
+            
+            SVProgressHUD.showInfo(withStatus: "发送成功")
+            DispatchQueue.main.asyncAfter(deadline: 1) {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
@@ -260,7 +295,7 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
     }
 }
 
-extension KLMPicDownloadViewController: WKNavigationDelegate {
+extension KLMTestViewPostionViewController: WKNavigationDelegate {
     
 //    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
 //
@@ -299,4 +334,5 @@ extension KLMPicDownloadViewController: WKNavigationDelegate {
         KLMLog("页面加载失败\(error)")
     }
 }
+
 

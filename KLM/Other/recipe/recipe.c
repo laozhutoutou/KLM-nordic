@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include "recipe.h"
 #include <math.h>
+//#include <stdio.h>
+
 #define min3v(v1, v2, v3)   ((v1)>(v2)? ((v2)>(v3)?(v3):(v2)):((v1)>(v3)?(v3):(v1)))
 #define max3v(v1, v2, v3)   ((v1)<(v2)? ((v2)<(v3)?(v3):(v2)):((v1)<(v3)?(v3):(v1)))
 
@@ -329,15 +331,19 @@ Spectrum_Index get_spectrum_index_of_image(void * imgData, int imgW, int imgH, I
         RGBtoHSV100(&rgb, &hsv);
         real_colors[i] = get_color_hsv(hsv);
 //        LOGI("%d real color %d, pixel num %d", i, real_colors[i], color_dict[i]);
-        if (color_dict[i] > 0.7 * sum) return real_colors[i];
+//        printf("%d real color %d, pixel num %d\n", i, real_colors[i], color_dict[i]);
+//        if (color_dict[i] > 0.7 * sum) return real_colors[i];
     }
     int ncw = color_dict[COLD_BLACK] + color_dict[COLD_WHITE] + color_dict[COLD_CYAN_BLUE_PURPLE];
     int nnw = color_dict[NEUTRAL_GREEN] + color_dict[NEUTRAL_PINK];
     int nww = color_dict[WARM_RED] + color_dict[WARM_ORANGE_YELLOW]; // this should be before sort!!
 
     sort_array_and_indexes_int(color_dict, sorted_indexes_s, 0, 6, 0);
+//    for (int i = 0; i < 7; i++) {
+//        printf("pixel num %d, index pos %d, real color %d\n", color_dict[i], sorted_indexes_s[i], real_colors[sorted_indexes_s[i]]);
+//    }
     if (color_dict[0] > sum * 0.7) { // pure color
-        return (Spectrum_Index)real_colors[sorted_indexes_s[0]];
+        return real_colors[sorted_indexes_s[0]];
     }
     if (color_dict[0] + color_dict[1] > 0.9 * sum) {
         if (real_colors[sorted_indexes_s[1]] == COLD_BLACK) return (Spectrum_Index)real_colors[sorted_indexes_s[0]];

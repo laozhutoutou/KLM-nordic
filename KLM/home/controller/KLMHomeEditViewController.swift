@@ -194,6 +194,14 @@ class KLMHomeEditViewController: UIViewController, Editable {
             let alert = UIAlertController(title: LANGLOC("invitationCodetip"),
                                           message: code,
                                           preferredStyle: .alert)
+            ///修改标题
+            let title: NSMutableAttributedString = NSMutableAttributedString.init(string: alert.title!)
+            title.addAttribute(.font, value: UIFont.systemFont(ofSize: 15), range: NSRange(location: 0, length: alert.title!.count))
+            alert.setValue(title, forKey: "attributedTitle")
+            ///修改内容
+            let message: NSMutableAttributedString = NSMutableAttributedString.init(string: alert.message!)
+            message.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 15), range: NSRange(location: 0, length: alert.message!.count))
+            alert.setValue(message, forKey: "attributedMessage")
             
             let cancelAction = UIAlertAction(title: LANGLOC("close"), style: .cancel)
             alert.addAction(cancelAction)

@@ -18,6 +18,9 @@ class KLMApplicationManager {
         //键盘处理
         setupKeyboard()
         
+        ///交换点击按钮方法，可以给按钮设置点击间隔时间
+        UIButton.initializeSendMethod()
+        
         let token = KLMGetUserDefault("token")
         if token == nil {
             

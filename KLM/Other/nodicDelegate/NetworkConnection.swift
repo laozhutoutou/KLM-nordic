@@ -217,9 +217,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
         let bearer = GattBearer(target: peripheral)
         if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
             
-            let subData = data.suffix(from: 2).hex
-            bearer.manufacturer = subData
-            KLMLog("nodeUUID = \(subData)")
+            bearer.manufacturer = data
         }
         
         ///将数据传输出去

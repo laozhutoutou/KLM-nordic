@@ -39,7 +39,8 @@ class KLMLocationManager: NSObject {
         case .notDetermined:
             KLMLog("尚未设置定位")
             locaionManager.requestWhenInUseAuthorization()
-            failureBlock?()
+            locaionManager.delegate = self
+
         case .denied,
                 .restricted:
             KLMLog("用户拒绝")
@@ -91,4 +92,27 @@ class KLMLocationManager: NSObject {
     
     static let shared = KLMLocationManager()
     private override init(){}
+}
+
+extension KLMLocationManager: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .authorizedWhenInUse,
+                .authorizedAlways:
+            KLMLog("定位已经授权")
+            successBlock?()
+        case .notDetermined:
+            KLMLog("尚未设置定位")
+            
+        case .denied,
+                .restricted:
+            KLMLog("用户拒绝")
+            failureBlock?()
+        
+        default:
+            break
+        }
+    }
 }

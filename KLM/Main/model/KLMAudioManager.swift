@@ -21,14 +21,7 @@ class KLMAudioManager: NSObject {
     private var currentIndex: Int = 0
     private var playOrder: AudioIndex = .audioFront
     
-    var currentNode: Node? {
-        didSet {
-            //关掉上一个
-            guard let old = oldValue else { return }
-            let parame = parameModel.init(dp: .audio, value: 2)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: old)
-        }
-    }
+    var currentNode: Node?
     
     func startPlay(type: Int) {
         

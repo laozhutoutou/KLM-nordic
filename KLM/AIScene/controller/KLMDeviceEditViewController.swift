@@ -64,6 +64,20 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         checkVerison()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ///拦截导航栏返回
+        if navigationController?.viewControllers.firstIndex(of: self) == nil{
+            
+            ///发送语音关闭指令
+            KLMAudioManager.shared.stopPlay()
+            
+            ///关闭语音播报
+            let parame = parameModel.init(dp: .audio, value: 2)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -103,6 +117,9 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         sendFlash()
         
         ///语音
+        ///这个页面也可以语音播报，进来这个页面可能语音功能未关闭
+        KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
+        
         //添加手势
         let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
         tap.numberOfTapsRequired = 3
@@ -126,7 +143,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     @objc func setupNodeMessage() {
         
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            
             //获取状态
             let parame = parameModel(dp: .deviceSetting)
             KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -208,12 +224,19 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     @objc func tap() {
         
         KLMLog("连续点击")
+        ///没有摄像头没有此功能
+        if KLMHomeManager.currentNode.noCamera == true {
+            
+            return
+        }
         if cameraSwitch != 1 { //自动颜色开关没打开
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
             return
         }
         let vc = KLMAudioViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        let nav = KLMNavigationViewController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
     }
 }
 
@@ -249,6 +272,18 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             ///隐藏显示框
             self.hideEmptyView()
         }
+        ///语音播报
+        if message?.dp == .audio, let value = message?.value as? [UInt8] {
+            if message?.opCode == .read {
+        
+                if value.count >= 2 { ///设备端主动下发语音指令
+                    
+                    let secondIndex = Int(value[1])
+                    KLMAudioManager.shared.startPlay(type: secondIndex)
+                    
+                }
+            }
+        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
@@ -264,7 +299,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         ///从拍照页面返回来，如果灯是关闭的，不提示开灯操作
-        if error?.dp == .recipe {
+        if error?.dp == .recipe || error?.dp == .audio {
             return
         }
         KLMShowError(error)
@@ -400,8 +435,16 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             vc.nameBlock = {[weak self] name in
-                
                 guard let self = self else { return }
+                
+                if let network = MeshNetworkManager.instance.meshNetwork {
+                    
+                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+                    if notConfiguredNodes.contains(where: {$0.name == name}) {
+                        SVProgressHUD.showInfo(withStatus: LANGLOC("The name already exists"))
+                        return
+                    }
+                }
                 
                 KLMHomeManager.currentNode.name = name
                 

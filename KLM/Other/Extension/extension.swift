@@ -297,3 +297,122 @@ extension Dictionary {
     }
 }
 
+///给button增加点击间隔时间
+extension UIButton {
+    
+    private struct AssociatedKeys {
+        static var clickDurationTime = "my_clickDurationTime"
+        static var isIgnoreEvent = "my_isIgnoreEvent"
+    }
+    private var defaultDuration : TimeInterval {
+        get {
+            return 1
+        }
+    }
+    
+    var clickDurationTime : TimeInterval {
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.clickDurationTime, newValue as TimeInterval, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        
+        get {
+            if let clickDurationTime = objc_getAssociatedObject(self, &AssociatedKeys.clickDurationTime) as? TimeInterval {
+                return clickDurationTime
+            }
+            return defaultDuration
+        }
+        
+    }
+    
+    private var isIgnoreEvent: Bool {
+        set {
+            objc_setAssociatedObject(self, &AssociatedKeys.isIgnoreEvent, newValue as Bool, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        get {
+            if let isIgnoreEvent = objc_getAssociatedObject(self, &AssociatedKeys.isIgnoreEvent) as? Bool {
+                return isIgnoreEvent
+            }
+            return false
+        }
+        
+    }
+    
+    //重写的方法：
+    @objc func my_sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
+        
+        if self.isKind(of: UIButton.self) {
+            
+            clickDurationTime = clickDurationTime == 0 ? defaultDuration : clickDurationTime
+            if isIgnoreEvent {
+                return
+            } else if clickDurationTime > 0 {
+                isIgnoreEvent = true
+                // 在过了我们设置的duration之后，再将isIgnoreEvent置为false
+                DispatchQueue.main.asyncAfter(deadline: .now() + clickDurationTime) {
+                    self.isIgnoreEvent = false
+                }
+                
+                my_sendAction(action, to: target, for: event)
+                
+            } else {
+                my_sendAction(action, to: target, for: event)
+            }
+        }
+    }
+    
+    public class func initializeSendMethod() {
+        if self != UIButton.self {
+            return
+        }
+        
+        let orSel = #selector(UIButton.sendAction(_:to:for:))
+        let swSel = #selector(UIButton.my_sendAction(_:to:for:))
+        let orMethod = class_getInstanceMethod(self, orSel)
+        let swMethod = class_getInstanceMethod(self, swSel)
+        let didAddMethod : Bool = class_addMethod(self, orSel, method_getImplementation(swMethod!), method_getTypeEncoding(swMethod!))
+        if didAddMethod {
+            class_replaceMethod(self, swSel, method_getImplementation(orMethod!), method_getTypeEncoding(orMethod!))
+        } else {
+            method_exchangeImplementations(orMethod!, swMethod!)
+        }
+    }
+}
+
+///给button增加点击范围
+//extension UIButton {
+//
+//    private struct customEdgeInset {
+//
+//        static var top: String = "topkey"
+//        static var left: String = "leftkey"
+//        static var bottom: String = "bottomkey"
+//        static var right: String = "rightkey"
+//    }
+//    func setClickEdge(_ top: CGFloat,_ bot: CGFloat,_ left: CGFloat,_ right: CGFloat) {
+//
+//        objc_setAssociatedObject(self, &customEdgeInset.top, top, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+//        objc_setAssociatedObject(self, &customEdgeInset.left, left, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+//        objc_setAssociatedObject(self, &customEdgeInset.right, right, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+//        objc_setAssociatedObject(self, &customEdgeInset.bottom, bot, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+//    }
+//    private func returnRect() -> CGRect{
+//        let top: CGFloat = objc_getAssociatedObject(self, &customEdgeInset.top) as? CGFloat ?? 0
+//        let left: CGFloat = objc_getAssociatedObject(self, &customEdgeInset.left) as? CGFloat ?? 0
+//        let bot: CGFloat = objc_getAssociatedObject(self, &customEdgeInset.bottom) as? CGFloat ?? 0
+//        let right: CGFloat = objc_getAssociatedObject(self, &customEdgeInset.right) as? CGFloat ?? 0
+//        if top>0 || left>0 || bot>0 || right>0 {
+//            return CGRect(x: self.bounds.origin.x-left, y: self.bounds.origin.y-top, width: self.bounds.size.width+left+right, height: self.bounds.size.height+top+bot)
+//        }else {
+//            return self.bounds
+//        }
+//    }
+//    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//        let rect = returnRect()
+//        if rect.contains(point) {
+//            print("当前点击位置",point)
+//            return self
+//        }else {
+//            return nil
+//        }
+//    }
+//}

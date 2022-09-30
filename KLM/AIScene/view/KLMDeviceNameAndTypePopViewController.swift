@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import nRFMeshProvision
 
 typealias NameAndTypeBlock = (_ name: String, _ type: Int) -> Void
 
@@ -48,6 +49,17 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         guard let text = KLMTool.isEmptyString(string: textField.text) else {
             SVProgressHUD.showInfo(withStatus: textField.placeholder)
             return
+        }
+        
+        ///检查是否重名
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            if notConfiguredNodes.contains(where: {$0.name == text}) {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("The name already exists"))
+                return
+            }
+            
         }
         
         guard let cate = selectCategory  else {

@@ -188,6 +188,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Please click or draw a square on the photo" = "请在照片上点击或者滑动一个区域";
 "Password error" = "密码错误";
 "Invalid contact" = "无效的联系方式";
+"The name already exists" = "设备名已存在";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

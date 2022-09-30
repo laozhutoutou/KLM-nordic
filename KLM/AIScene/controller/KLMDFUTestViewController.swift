@@ -57,16 +57,6 @@ class KLMDFUTestViewController: UIViewController {
         upGradeBtn.layer.cornerRadius = upGradeBtn.height / 2
         upGradeBtn.backgroundColor = appMainThemeColor
         
-        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
-            
-            if ssidText.isEmpty || passwordText.isEmpty{
-                return false
-            } else {
-                return true
-            }
-        }.bind(to: upGradeBtn.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
         //弹出更新提示框
         KLMAlertController.showAlertWithTitle(title: LANGLOC("Warning"), message: LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process."))
 
@@ -79,13 +69,22 @@ class KLMDFUTestViewController: UIViewController {
         
         //弹出定位弹框
         KLMLocationManager.shared.getLocation {
-            
+            if KLMTool.isEmptyString(string: self.SSIDField.text) == nil {
+                
+                let ssid = KLMLocationManager.getCurrentWifiName()
+                self.SSIDField.text = ssid
+            }
         } failure: {
             
         }
     }
     
     @IBAction func upgrade(_ sender: Any) {
+        
+        if KLMTool.isEmptyString(string: SSIDField.text) == nil || KLMTool.isEmptyString(string: passField.text) == nil {
+            
+            return
+        }
         
         //连接节点成功
         SVProgressHUD.show()
@@ -112,6 +111,7 @@ class KLMDFUTestViewController: UIViewController {
                 guard let self = self else { return  }
                 self.SSIDField.text = model.WiFiName
                 self.passField.text = model.WiFiPass
+                
                 
             }
             self.present(vc, animated: true)
@@ -239,16 +239,6 @@ class KLMDFUTestViewController: UIViewController {
                 self.passField.text = model.WiFiPass
             }
         }
-        
-        Observable.combineLatest(SSIDField.rx.text.orEmpty, passField.rx.text.orEmpty) {ssidText, passwordText  in
-            
-            if ssidText.isEmpty || passwordText.isEmpty{
-                return false
-            } else {
-                return true
-            }
-        }.bind(to: upGradeBtn.rx.isEnabled)
-            .disposed(by: disposeBag)
     }
     
     @objc func dimiss() {
@@ -357,10 +347,10 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                         case 0xFC:
                             timer.startTimer(timeOut: 100)
                             KLMLog("正在搜索其他待升级设备")
-                            SVProgressHUD.show(withStatus: LANGLOC("Searching for other devices to be upgraded"))
+//                            SVProgressHUD.show(withStatus: LANGLOC("Searching for other devices to be upgraded"))
                         case 0xFF: ///其他设备在升级/Users/zhuyu/Desktop/Spring-Boot-Demo-master
                             KLMLog("Please wait while other devices are upgrading")
-                            SVProgressHUD.show(withStatus: LANGLOC("Please wait while other devices are upgrading"))
+//                            SVProgressHUD.show(withStatus: LANGLOC("Please wait while other devices are upgrading"))
                         case 0xFE: ///
                             KLMLog("其他设备连接不上")
                         case 0xFD: ///

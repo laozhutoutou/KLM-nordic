@@ -34,7 +34,7 @@ class KLMPCBASensorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "sensor测试"
+        navigationItem.title = "PCBA测试"
 
         OKBtnArray = [WWOK,ROK,GOK,BOK,stanbyOK]
         

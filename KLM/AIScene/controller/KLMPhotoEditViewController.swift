@@ -88,7 +88,7 @@ class KLMPhotoEditViewController: UIViewController {
                 let parame = parameModel(dp: .category)
                 KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
                 DispatchQueue.main.after(0.5) {
-                    let parame = parameModel(dp: .light)
+                    let parame = parameModel(dp: .brightness)
                     KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
                 }
             }
@@ -101,6 +101,8 @@ class KLMPhotoEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        RecipeLab.isHidden = true
         
         navigationItem.title = LANGLOC("lightSet")
         
@@ -130,7 +132,7 @@ class KLMPhotoEditViewController: UIViewController {
         //亮度滑条
         let viewLeft: CGFloat = 20
         let sliderWidth = KLMScreenW - viewLeft * 2
-        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 2)
+        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 1)
         lightSlider.getValueTitle = { value in
             return String(format: "%ld%%", Int(value))
         }

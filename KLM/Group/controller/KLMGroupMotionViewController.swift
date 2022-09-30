@@ -74,7 +74,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         //时间滑条
         let viewLeft: CGFloat = 20 + 16
         let sliderWidth = KLMScreenW - viewLeft * 2
-        let timeSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: timeBgView.height), minValue: 1, maxValue: 60, step: 2)
+        let timeSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: timeBgView.height), minValue: 1, maxValue: 60, step: 1)
         timeSlider.getValueTitle = { value in
             
             return String(format: "%ld", Int(value))
@@ -84,7 +84,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         timeBgView.addSubview(timeSlider)
         
         //亮度滑条
-        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 5)
+        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 1)
         lightSlider.getValueTitle = { value in
             
             return String(format: "%ld%%", Int(value))
