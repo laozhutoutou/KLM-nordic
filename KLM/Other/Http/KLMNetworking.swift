@@ -673,7 +673,7 @@ class KLMService: NSObject {
     ///检查TLW服务器固件最新版本
     static func checkTLWVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let type = "development"
+        let type = "mcu"
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
             
             if error == nil {

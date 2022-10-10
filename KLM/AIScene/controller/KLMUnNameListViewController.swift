@@ -267,6 +267,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
         guard titles.count > 0 else { return }
         YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 100) { popupMenu in
+//            popupMenu?.tableView.showsVerticalScrollIndicator = true
             popupMenu?.priorityDirection = .none
             popupMenu?.arrowPosition = 1
             popupMenu?.arrowHeight = 0

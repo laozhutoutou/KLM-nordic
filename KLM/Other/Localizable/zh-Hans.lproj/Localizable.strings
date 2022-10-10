@@ -189,6 +189,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Password error" = "密码错误";
 "Invalid contact" = "无效的联系方式";
 "The name already exists" = "设备名已存在";
+"Failed to get update package" = "获取更新包失败";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

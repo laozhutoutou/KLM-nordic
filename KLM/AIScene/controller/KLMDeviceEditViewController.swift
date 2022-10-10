@@ -152,12 +152,27 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     func checkVerison() {
         
-        KLMService.checkBlueToothVersion { response in
-            self.BLEVersionData = response as? KLMVersion.KLMVersionData
-            self.tableView.reloadData()
-            self.setupNodeMessage()
-        } failure: { error in
-            self.setupNodeMessage()
+        if KLMHomeManager.currentNode.noCamera { ///没有摄像头
+            KLMService.checkTLWVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.tableView.reloadData()
+                self.setupNodeMessage()
+                
+            } failure: { error in
+                
+                self.setupNodeMessage()
+            }
+
+        } else {
+            
+            KLMService.checkBlueToothVersion { response in
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.tableView.reloadData()
+                self.setupNodeMessage()
+            } failure: { error in
+                self.setupNodeMessage()
+            }
         }
     }
     
@@ -175,6 +190,13 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 
                 if bleData.isForceUpdate {
                     self.isVersionFirst = true
+                }
+                if KLMHomeManager.currentNode.noCamera {
+                    
+                    let vc = KLMTLWOTAViewController()
+                    vc.BLEVersionData = bleData
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
                 }
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData
@@ -509,6 +531,14 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 
             let value = bleV.compare(bleData.fileVersion)
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
+                
+                if KLMHomeManager.currentNode.noCamera {
+                    
+                    let vc = KLMTLWOTAViewController()
+                    vc.BLEVersionData = bleData
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+                }
                 
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData

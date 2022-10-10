@@ -26,9 +26,6 @@
 		E423DB7828DC66EB00EEBAFF /* KLMTLWOTAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423DB7628DC66EB00EEBAFF /* KLMTLWOTAViewController.swift */; };
 		E423DB7928DC66EB00EEBAFF /* KLMTLWOTAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423DB7628DC66EB00EEBAFF /* KLMTLWOTAViewController.swift */; };
 		E423DB7A28DC66EB00EEBAFF /* KLMTLWOTAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E423DB7628DC66EB00EEBAFF /* KLMTLWOTAViewController.swift */; };
-		E423DB7B28DC66EB00EEBAFF /* KLMTLWOTAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E423DB7728DC66EB00EEBAFF /* KLMTLWOTAViewController.xib */; };
-		E423DB7C28DC66EB00EEBAFF /* KLMTLWOTAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E423DB7728DC66EB00EEBAFF /* KLMTLWOTAViewController.xib */; };
-		E423DB7D28DC66EB00EEBAFF /* KLMTLWOTAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E423DB7728DC66EB00EEBAFF /* KLMTLWOTAViewController.xib */; };
 		E42C638E287E7766006620D1 /* OccasionPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E42C638D287E7766006620D1 /* OccasionPlist.plist */; };
 		E42C638F287E7766006620D1 /* OccasionPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E42C638D287E7766006620D1 /* OccasionPlist.plist */; };
 		E42C6390287E7766006620D1 /* OccasionPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E42C638D287E7766006620D1 /* OccasionPlist.plist */; };
@@ -246,9 +243,6 @@
 		E4C3466828338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4C3466928338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4C3466A28338573000852DE /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
-		E4C3589B28DDB8650040DA22 /* bleota.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4C3589A28DDB8650040DA22 /* bleota.bin */; };
-		E4C3589C28DDB8650040DA22 /* bleota.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4C3589A28DDB8650040DA22 /* bleota.bin */; };
-		E4C3589D28DDB8650040DA22 /* bleota.bin in Resources */ = {isa = PBXBuildFile; fileRef = E4C3589A28DDB8650040DA22 /* bleota.bin */; };
 		E4C435C6289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
 		E4C435C7289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
 		E4C435C8289BA769008EA308 /* KLMBlueToothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */; };
@@ -742,6 +736,9 @@
 		E4D9E93928B6343000F09739 /* KLMTestVersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D9E93528B6343000F09739 /* KLMTestVersionViewController.xib */; };
 		E4D9E93A28B6343000F09739 /* KLMTestVersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D9E93528B6343000F09739 /* KLMTestVersionViewController.xib */; };
 		E4D9E93B28B6343000F09739 /* KLMTestVersionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D9E93528B6343000F09739 /* KLMTestVersionViewController.xib */; };
+		E4DA5AD428F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DA5AD828F3CDD000B0F78F /* KLMTLWOTAViewController.xib */; };
+		E4DA5AD528F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DA5AD828F3CDD000B0F78F /* KLMTLWOTAViewController.xib */; };
+		E4DA5AD628F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DA5AD828F3CDD000B0F78F /* KLMTLWOTAViewController.xib */; };
 		E4DCCE8D282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
 		E4DCCE8E282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
 		E4DCCE8F282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */; };
@@ -855,7 +852,6 @@
 		E423DB7128DC141A00EEBAFF /* LibTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibTools.m; sourceTree = "<group>"; };
 		E423DB7228DC141A00EEBAFF /* LibTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibTools.h; sourceTree = "<group>"; };
 		E423DB7628DC66EB00EEBAFF /* KLMTLWOTAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTLWOTAViewController.swift; sourceTree = "<group>"; };
-		E423DB7728DC66EB00EEBAFF /* KLMTLWOTAViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTLWOTAViewController.xib; sourceTree = "<group>"; };
 		E42C638D287E7766006620D1 /* OccasionPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = OccasionPlist.plist; sourceTree = "<group>"; };
 		E42C6391287E7851006620D1 /* GroceriesPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = GroceriesPlist.plist; sourceTree = "<group>"; };
 		E4377E3826845DBA00F8DF0C /* KLMRefreshHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRefreshHeader.swift; sourceTree = "<group>"; };
@@ -1105,7 +1101,6 @@
 		E4C3465C283378E1000852DE /* KLMAddDeviceTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMAddDeviceTestViewController.xib; sourceTree = "<group>"; };
 		E4C3466328338573000852DE /* KLMDeviceAddTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceAddTestCell.swift; sourceTree = "<group>"; };
 		E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddTestCell.xib; sourceTree = "<group>"; };
-		E4C3589A28DDB8650040DA22 /* bleota.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = bleota.bin; sourceTree = "<group>"; };
 		E4C435C5289BA769008EA308 /* KLMBlueToothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBlueToothManager.swift; sourceTree = "<group>"; };
 		E4C4360C28A5FE0600DAA16D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMSignUpWithMobileViewController.xib; sourceTree = "<group>"; };
 		E4C4360F28A5FE0900DAA16D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMSignUpWithMobileViewController.strings"; sourceTree = "<group>"; };
@@ -1172,6 +1167,8 @@
 		E4D7CD4D28A9F28C00DC34B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMPhoneForgotPasswordViewController.strings"; sourceTree = "<group>"; };
 		E4D9E93428B6343000F09739 /* KLMTestVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestVersionViewController.swift; sourceTree = "<group>"; };
 		E4D9E93528B6343000F09739 /* KLMTestVersionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTestVersionViewController.xib; sourceTree = "<group>"; };
+		E4DA5AD728F3CDD000B0F78F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMTLWOTAViewController.xib; sourceTree = "<group>"; };
+		E4DA5ADA28F3CDD400B0F78F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMTLWOTAViewController.strings"; sourceTree = "<group>"; };
 		E4DCCE8B282D0B7B00200BE4 /* KLMPhotoEditMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPhotoEditMoreViewController.swift; sourceTree = "<group>"; };
 		E4DE01AD289380DD00F69C45 /* KLMWifiSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMWifiSelectViewController.swift; sourceTree = "<group>"; };
 		E4DE01B52893846A00F69C45 /* KLMWiFiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMWiFiModel.swift; sourceTree = "<group>"; };
@@ -1941,11 +1938,10 @@
 		E4DF91FC28DAAB73003A3DA7 /* TLWOTA */ = {
 			isa = PBXGroup;
 			children = (
-				E4C3589A28DDB8650040DA22 /* bleota.bin */,
 				E4DF91FD28DAABAE003A3DA7 /* OTAManager.swift */,
 				E4DF920528DAE2AF003A3DA7 /* BlueBaseBearer.swift */,
 				E423DB7628DC66EB00EEBAFF /* KLMTLWOTAViewController.swift */,
-				E423DB7728DC66EB00EEBAFF /* KLMTLWOTAViewController.xib */,
+				E4DA5AD828F3CDD000B0F78F /* KLMTLWOTAViewController.xib */,
 			);
 			path = TLWOTA;
 			sourceTree = "<group>";
@@ -2216,7 +2212,7 @@
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
 				E45D6AC9288FD2CA008BA65D /* KLMGroupColorSensingCell.xib in Resources */,
 				E460BF7628A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
-				E423DB7B28DC66EB00EEBAFF /* KLMTLWOTAViewController.xib in Resources */,
+				E4DA5AD428F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
 				E4D611D528B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
 				E460BF7B28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00C828740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
@@ -2237,7 +2233,6 @@
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
 				E4C5CC5F28AB856F00D77CE3 /* 10.wav in Resources */,
 				E498A78926671BEC00C78D50 /* Main.storyboard in Resources */,
-				E4C3589B28DDB8650040DA22 /* bleota.bin in Resources */,
 				E4C34660283378E1000852DE /* KLMAddDeviceTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2246,7 +2241,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4C3589C28DDB8650040DA22 /* bleota.bin in Resources */,
 				E45D6AC3288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA12897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4C57EBD28055B1F00E7AB54 /* Project.zip in Resources */,
@@ -2283,7 +2277,7 @@
 				E4C57ED528055B1F00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57ED628055B1F00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
 				E4C57ED728055B1F00E7AB54 /* KLMGroupDeviceAddCell.xib in Resources */,
-				E423DB7C28DC66EB00EEBAFF /* KLMTLWOTAViewController.xib in Resources */,
+				E4DA5AD528F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
 				E4C57ED928055B1F00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57EDA28055B1F00E7AB54 /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
@@ -2342,7 +2336,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4C3589D28DDB8650040DA22 /* bleota.bin in Resources */,
 				E45D6AC4288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA22897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4C57F9428055C7C00E7AB54 /* Project.zip in Resources */,
@@ -2379,7 +2372,7 @@
 				E4C57FAC28055C7C00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57FAD28055C7C00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
 				E4C57FAE28055C7C00E7AB54 /* KLMGroupDeviceAddCell.xib in Resources */,
-				E423DB7D28DC66EB00EEBAFF /* KLMTLWOTAViewController.xib in Resources */,
+				E4DA5AD628F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
 				E4C57FB028055C7C00E7AB54 /* InfoPlist.strings in Resources */,
 				E4C57FB128055C7C00E7AB54 /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
@@ -3483,6 +3476,15 @@
 				E4D7CD4D28A9F28C00DC34B8 /* zh-Hans */,
 			);
 			name = KLMPhoneForgotPasswordViewController.xib;
+			sourceTree = "<group>";
+		};
+		E4DA5AD828F3CDD000B0F78F /* KLMTLWOTAViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4DA5AD728F3CDD000B0F78F /* Base */,
+				E4DA5ADA28F3CDD400B0F78F /* zh-Hans */,
+			);
+			name = KLMTLWOTAViewController.xib;
 			sourceTree = "<group>";
 		};
 		E4DE01BD2893B78500F69C45 /* KLMWifiSelectViewController.xib */ = {

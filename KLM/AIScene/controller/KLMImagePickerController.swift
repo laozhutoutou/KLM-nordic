@@ -232,6 +232,17 @@ class KLMImagePickerController: UIImagePickerController {
             
             KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
                 
+                if KLMHomeManager.currentNode.noCamera {
+                    
+                    let vc = KLMTLWOTAViewController()
+                    vc.isPresent = true
+                    vc.BLEVersionData = bleData
+                    let nav = KLMNavigationViewController.init(rootViewController: vc)
+                    nav.modalPresentationStyle = .fullScreen
+                    self.present(nav, animated: true)
+                    return
+                }
+                
                 let vc = KLMDFUTestViewController()
                 vc.isPresent = true
                 vc.BLEVersionData = bleData

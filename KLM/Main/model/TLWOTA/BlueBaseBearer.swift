@@ -104,14 +104,10 @@ extension BlueBaseBearer: CBCentralManagerDelegate, CBPeripheralDelegate {
                 }
             }
         }
-        
-//        if OTACharacteristic == nil { ///没找到OTA特征
-//            close()
-//        }
     }
     
     open func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        
+        KLMLog("disconnect \(error?.localizedDescription)")
         if delegate != nil {
             delegate?.bearer(self, didClose: error)
         }
@@ -137,9 +133,11 @@ extension BlueBaseBearer {
             }
             return
         }
+        
+        basePeripheral.writeValue(data, for: characteristic, type: .withoutResponse)
+        
         if let complete = complete {
             complete()
         }
-        basePeripheral.writeValue(data, for: characteristic, type: .withoutResponse)
     }
 }
