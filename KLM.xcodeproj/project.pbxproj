@@ -35,7 +35,6 @@
 		E4377E3926845DBA00F8DF0C /* KLMRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377E3826845DBA00F8DF0C /* KLMRefreshHeader.swift */; };
 		E4377E432685AB7600F8DF0C /* KLMUpdateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */; };
 		E4377E492685B99500F8DF0C /* NSData+CRC16.m in Sources */ = {isa = PBXBuildFile; fileRef = E4377E482685B99400F8DF0C /* NSData+CRC16.m */; };
-		E44554E627C3711400E421DC /* KLMPassengerFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */; };
 		E44DB39B2840A7F800710C66 /* KLMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DB39A2840A7F800710C66 /* KLMAlertController.swift */; };
 		E44DB39C2840A7F800710C66 /* KLMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DB39A2840A7F800710C66 /* KLMAlertController.swift */; };
 		E44DB39D2840A7F800710C66 /* KLMAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44DB39A2840A7F800710C66 /* KLMAlertController.swift */; };
@@ -140,7 +139,6 @@
 		E492AD2F267C83C50028AF3E /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD26267C83C50028AF3E /* ChineseToPinyinResource.m */; };
 		E492AD30267C83C60028AF3E /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD27267C83C50028AF3E /* PinyinFormatter.m */; };
 		E492AD31267C83C60028AF3E /* PinYinForObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD28267C83C50028AF3E /* PinYinForObjc.m */; };
-		E4935C20271527D500BD2DD6 /* BLEDFU.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4935C1F271527D500BD2DD6 /* BLEDFU.zip */; };
 		E495D0DE2678428400AA50B9 /* KLMOneSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */; };
 		E495D10E2678521000AA50B9 /* KLMGroupEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */; };
 		E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */; };
@@ -213,7 +211,6 @@
 		E4A6607F2673486400FE6866 /* KLMDeviceAddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6607D2673486400FE6866 /* KLMDeviceAddCell.xib */; };
 		E4A6608C267360A200FE6866 /* KLMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */; };
 		E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */; };
-		E4AD43542744DDEE0049F11C /* Project.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4AD43532744DDEE0049F11C /* Project.zip */; };
 		E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */; };
 		E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */; };
 		E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */; };
@@ -270,7 +267,6 @@
 		E4C4A0B7286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */; };
 		E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */; };
 		E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C4A0BB286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib */; };
-		E4C57D7B280403BD00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */; };
 		E4C57E2E28055B1F00E7AB54 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4C57E2F28055B1F00E7AB54 /* SensorClientDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28435269EFF20006C120E /* SensorClientDelegate.swift */; };
 		E4C57E3028055B1F00E7AB54 /* KLMDFUTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */; };
@@ -279,7 +275,6 @@
 		E4C57E3328055B1F00E7AB54 /* KLMGroupDeviceAddToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D1B1267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift */; };
 		E4C57E3428055B1F00E7AB54 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD1B267C83C50028AF3E /* NSString+PinYin4Cocoa.m */; };
 		E4C57E3528055B1F00E7AB54 /* ChineseInclude.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD23267C83C50028AF3E /* ChineseInclude.m */; };
-		E4C57E3628055B1F00E7AB54 /* KLMPassengerFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */; };
 		E4C57E3828055B1F00E7AB54 /* KLMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */; };
 		E4C57E3928055B1F00E7AB54 /* GenericState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28445269EFFFC006C120E /* GenericState.swift */; };
 		E4C57E3A28055B1F00E7AB54 /* RSGenerateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FA32670B06300FE6866 /* RSGenerateOperation.m */; };
@@ -406,7 +401,6 @@
 		E4C57EB728055B1F00E7AB54 /* BGRSLoupeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FC32670B06300FE6866 /* BGRSLoupeLayer.m */; };
 		E4C57EB828055B1F00E7AB54 /* SceneServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28431269EFF02006C120E /* SceneServerDelegate.swift */; };
 		E4C57EB928055B1F00E7AB54 /* KLMUserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */; };
-		E4C57EBD28055B1F00E7AB54 /* Project.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4AD43532744DDEE0049F11C /* Project.zip */; };
 		E4C57EBE28055B1F00E7AB54 /* KLMUnNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */; };
 		E4C57EBF28055B1F00E7AB54 /* KLMSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414585327BCE41B00C181E3 /* KLMSettingsViewController.xib */; };
 		E4C57EC028055B1F00E7AB54 /* KLMMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42BE26C21A4A0056C7EE /* KLMMotionViewController.xib */; };
@@ -427,7 +421,6 @@
 		E4C57ECF28055B1F00E7AB54 /* KLMGroupMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414C0D027D5D9D100DFD409 /* KLMGroupMotionViewController.xib */; };
 		E4C57ED028055B1F00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42E626C21D6D0056C7EE /* KLMGroupDeviceAddToViewController.xib */; };
 		E4C57ED128055B1F00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D1222678833300AA50B9 /* KLMGroupDeviceEditViewController.xib */; };
-		E4C57ED228055B1F00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */; };
 		E4C57ED328055B1F00E7AB54 /* KLMSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A926676DED0006CDA7 /* KLMSettingViewController.xib */; };
 		E4C57ED428055B1F00E7AB54 /* KLMGroupEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */; };
 		E4C57ED528055B1F00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E497A71127D8B88000DA7AF7 /* KLMGroupAllDeviceCell.xib */; };
@@ -438,7 +431,6 @@
 		E4C57EDB28055B1F00E7AB54 /* KLMJoinHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54672769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib */; };
 		E4C57EDC28055B1F00E7AB54 /* KLMAllDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414C0D927D5E3C700DFD409 /* KLMAllDeviceViewController.xib */; };
 		E4C57EDD28055B1F00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476178026DE11C2008225BB /* KLMBaoZhuangTestViewController.xib */; };
-		E4C57EDE28055B1F00E7AB54 /* BLEDFU.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4935C1F271527D500BD2DD6 /* BLEDFU.zip */; };
 		E4C57EDF28055B1F00E7AB54 /* KLMHomeAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B5459276997F600F3D5E5 /* KLMHomeAddViewController.xib */; };
 		E4C57EE028055B1F00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */; };
 		E4C57EE128055B1F00E7AB54 /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
@@ -473,7 +465,6 @@
 		E4C57F0A28055C7C00E7AB54 /* KLMGroupDeviceAddToViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E495D1B1267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift */; };
 		E4C57F0B28055C7C00E7AB54 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD1B267C83C50028AF3E /* NSString+PinYin4Cocoa.m */; };
 		E4C57F0C28055C7C00E7AB54 /* ChineseInclude.m in Sources */ = {isa = PBXBuildFile; fileRef = E492AD23267C83C50028AF3E /* ChineseInclude.m */; };
-		E4C57F0D28055C7C00E7AB54 /* KLMPassengerFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */; };
 		E4C57F0F28055C7C00E7AB54 /* KLMBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */; };
 		E4C57F1028055C7C00E7AB54 /* GenericState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28445269EFFFC006C120E /* GenericState.swift */; };
 		E4C57F1128055C7C00E7AB54 /* RSGenerateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FA32670B06300FE6866 /* RSGenerateOperation.m */; };
@@ -600,7 +591,6 @@
 		E4C57F8E28055C7C00E7AB54 /* BGRSLoupeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A65FC32670B06300FE6866 /* BGRSLoupeLayer.m */; };
 		E4C57F8F28055C7C00E7AB54 /* SceneServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28431269EFF02006C120E /* SceneServerDelegate.swift */; };
 		E4C57F9028055C7C00E7AB54 /* KLMUserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */; };
-		E4C57F9428055C7C00E7AB54 /* Project.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4AD43532744DDEE0049F11C /* Project.zip */; };
 		E4C57F9528055C7C00E7AB54 /* KLMUnNameListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F2C266F0D8C00FE6866 /* KLMUnNameListViewController.xib */; };
 		E4C57F9628055C7C00E7AB54 /* KLMSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414585327BCE41B00C181E3 /* KLMSettingsViewController.xib */; };
 		E4C57F9728055C7C00E7AB54 /* KLMMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42BE26C21A4A0056C7EE /* KLMMotionViewController.xib */; };
@@ -621,7 +611,6 @@
 		E4C57FA628055C7C00E7AB54 /* KLMGroupMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414C0D027D5D9D100DFD409 /* KLMGroupMotionViewController.xib */; };
 		E4C57FA728055C7C00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42E626C21D6D0056C7EE /* KLMGroupDeviceAddToViewController.xib */; };
 		E4C57FA828055C7C00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D1222678833300AA50B9 /* KLMGroupDeviceEditViewController.xib */; };
-		E4C57FA928055C7C00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */; };
 		E4C57FAA28055C7C00E7AB54 /* KLMSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A926676DED0006CDA7 /* KLMSettingViewController.xib */; };
 		E4C57FAB28055C7C00E7AB54 /* KLMGroupEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */; };
 		E4C57FAC28055C7C00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E497A71127D8B88000DA7AF7 /* KLMGroupAllDeviceCell.xib */; };
@@ -632,7 +621,6 @@
 		E4C57FB228055C7C00E7AB54 /* KLMJoinHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54672769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib */; };
 		E4C57FB328055C7C00E7AB54 /* KLMAllDeviceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414C0D927D5E3C700DFD409 /* KLMAllDeviceViewController.xib */; };
 		E4C57FB428055C7C00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476178026DE11C2008225BB /* KLMBaoZhuangTestViewController.xib */; };
-		E4C57FB528055C7C00E7AB54 /* BLEDFU.zip in Resources */ = {isa = PBXBuildFile; fileRef = E4935C1F271527D500BD2DD6 /* BLEDFU.zip */; };
 		E4C57FB628055C7C00E7AB54 /* KLMHomeAddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B5459276997F600F3D5E5 /* KLMHomeAddViewController.xib */; };
 		E4C57FB728055C7C00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */; };
 		E4C57FB828055C7C00E7AB54 /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
@@ -858,7 +846,6 @@
 		E4377E422685AB7500F8DF0C /* KLMUpdateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUpdateManager.swift; sourceTree = "<group>"; };
 		E4377E472685B99400F8DF0C /* NSData+CRC16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CRC16.h"; sourceTree = "<group>"; };
 		E4377E482685B99400F8DF0C /* NSData+CRC16.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CRC16.m"; sourceTree = "<group>"; };
-		E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMPassengerFlowViewController.swift; sourceTree = "<group>"; };
 		E44DB39A2840A7F800710C66 /* KLMAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAlertController.swift; sourceTree = "<group>"; };
 		E44E4BC1280FE71100CF1C43 /* KLMVerifyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMVerifyManager.swift; sourceTree = "<group>"; };
 		E45175B6281BD74200BCD644 /* KLMTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTimer.swift; sourceTree = "<group>"; };
@@ -961,7 +948,6 @@
 		E492AD26267C83C50028AF3E /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyinResource.m; sourceTree = "<group>"; };
 		E492AD27267C83C50028AF3E /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinFormatter.m; sourceTree = "<group>"; };
 		E492AD28267C83C50028AF3E /* PinYinForObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinYinForObjc.m; sourceTree = "<group>"; };
-		E4935C1F271527D500BD2DD6 /* BLEDFU.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = BLEDFU.zip; sourceTree = "<group>"; };
 		E495D0DC2678428400AA50B9 /* KLMOneSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMOneSwitchCell.swift; sourceTree = "<group>"; };
 		E495D10C2678521000AA50B9 /* KLMGroupEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupEditViewController.swift; sourceTree = "<group>"; };
 		E495D10D2678521000AA50B9 /* KLMGroupEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMGroupEditViewController.xib; sourceTree = "<group>"; };
@@ -1084,7 +1070,6 @@
 		E4A6607D2673486400FE6866 /* KLMDeviceAddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDeviceAddCell.xib; sourceTree = "<group>"; };
 		E4A6608A267360A200FE6866 /* KLMBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBaseTableViewCell.swift; sourceTree = "<group>"; };
 		E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBaseTableViewCell.xib; sourceTree = "<group>"; };
-		E4AD43532744DDEE0049F11C /* Project.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = Project.zip; sourceTree = "<group>"; };
 		E4AEC96C266E022100E77178 /* KLMTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTableViewCell.swift; sourceTree = "<group>"; };
 		E4AEC96D266E022100E77178 /* KLMTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTableViewCell.xib; sourceTree = "<group>"; };
 		E4AEC99B266E239500E77178 /* KLMAPPUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMAPPUpdateViewController.swift; sourceTree = "<group>"; };
@@ -1113,8 +1098,6 @@
 		E4C4A0AF286EE22000450A52 /* KLMDeviceNameAndTypePopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDeviceNameAndTypePopViewController.swift; sourceTree = "<group>"; };
 		E4C4A0BA286EF70700450A52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMDeviceNameAndTypePopViewController.xib; sourceTree = "<group>"; };
 		E4C4A0BD286EF70E00450A52 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMDeviceNameAndTypePopViewController.strings"; sourceTree = "<group>"; };
-		E4C57D7C280403BD00E7AB54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMPassengerFlowViewController.xib; sourceTree = "<group>"; };
-		E4C57D7F280403C200E7AB54 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/KLMPassengerFlowViewController.strings; sourceTree = "<group>"; };
 		E4C57F0028055B1F00E7AB54 /* KLM_GW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KLM_GW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4C57F0128055B1F00E7AB54 /* KLM_GW.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = KLM_GW.plist; path = "/Users/zhuyu/KLM AIScene/KLM nordic/KLM_GW.plist"; sourceTree = "<absolute>"; };
 		E4C57FD728055C7C00E7AB54 /* KLM_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KLM_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1304,8 +1287,6 @@
 				E476178026DE11C2008225BB /* KLMBaoZhuangTestViewController.xib */,
 				E4CD748E288E67030046489F /* KLMPicDownloadViewController.swift */,
 				E45D6AC6288FCA01008BA65D /* KLMPicDownloadViewController.xib */,
-				E44554E427C3711400E421DC /* KLMPassengerFlowViewController.swift */,
-				E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */,
 				E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */,
 				E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */,
 				E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */,
@@ -1793,8 +1774,6 @@
 				E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */,
 				E498A78F26671BED00C78D50 /* Info.plist */,
 				E48B526326672B420006CDA7 /* head.swift */,
-				E4AD43532744DDEE0049F11C /* Project.zip */,
-				E4935C1F271527D500BD2DD6 /* BLEDFU.zip */,
 			);
 			path = KLM;
 			sourceTree = "<group>";
@@ -2129,7 +2108,6 @@
 			files = (
 				E45D6AC2288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA02897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
-				E4AD43542744DDEE0049F11C /* Project.zip in Resources */,
 				E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */,
 				E414585527BCE41B00C181E3 /* KLMSettingsViewController.xib in Resources */,
 				E4DE8BA82897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
@@ -2159,7 +2137,6 @@
 				E4C5CC5628AB856F00D77CE3 /* 15.wav in Resources */,
 				E49B42E426C21D6D0056C7EE /* KLMGroupDeviceAddToViewController.xib in Resources */,
 				E495D1242678833300AA50B9 /* KLMGroupDeviceEditViewController.xib in Resources */,
-				E4C57D7B280403BD00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */,
 				E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */,
 				E4C5CC5D28AB856F00D77CE3 /* 后.wav in Resources */,
 				E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */,
@@ -2177,7 +2154,6 @@
 				E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01B92893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E4C4360928A5FE0600DAA16D /* KLMSignUpWithMobileViewController.xib in Resources */,
-				E4935C20271527D500BD2DD6 /* BLEDFU.zip in Resources */,
 				E46B5457276997F600F3D5E5 /* KLMHomeAddViewController.xib in Resources */,
 				E42C638E287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4C5CC5A28AB856F00D77CE3 /* 2.wav in Resources */,
@@ -2243,7 +2219,6 @@
 			files = (
 				E45D6AC3288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA12897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
-				E4C57EBD28055B1F00E7AB54 /* Project.zip in Resources */,
 				E4C57EBE28055B1F00E7AB54 /* KLMUnNameListViewController.xib in Resources */,
 				E4C57EBF28055B1F00E7AB54 /* KLMSettingsViewController.xib in Resources */,
 				E4DE8BA92897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
@@ -2270,7 +2245,6 @@
 				E4C57ECF28055B1F00E7AB54 /* KLMGroupMotionViewController.xib in Resources */,
 				E4C57ED028055B1F00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */,
 				E4C57ED128055B1F00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */,
-				E4C57ED228055B1F00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */,
 				E4C64AFD28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */,
 				E4C57ED328055B1F00E7AB54 /* KLMSettingViewController.xib in Resources */,
 				E4C57ED428055B1F00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
@@ -2287,7 +2261,6 @@
 				E4C57EDD28055B1F00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01BA2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E4C4360A28A5FE0600DAA16D /* KLMSignUpWithMobileViewController.xib in Resources */,
-				E4C57EDE28055B1F00E7AB54 /* BLEDFU.zip in Resources */,
 				E4C57EDF28055B1F00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
 				E42C638F287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4D611D628B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
@@ -2338,7 +2311,6 @@
 			files = (
 				E45D6AC4288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA22897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
-				E4C57F9428055C7C00E7AB54 /* Project.zip in Resources */,
 				E4C57F9528055C7C00E7AB54 /* KLMUnNameListViewController.xib in Resources */,
 				E4C57F9628055C7C00E7AB54 /* KLMSettingsViewController.xib in Resources */,
 				E4DE8BAA2897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
@@ -2365,7 +2337,6 @@
 				E4C57FA628055C7C00E7AB54 /* KLMGroupMotionViewController.xib in Resources */,
 				E4C57FA728055C7C00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */,
 				E4C57FA828055C7C00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */,
-				E4C57FA928055C7C00E7AB54 /* KLMPassengerFlowViewController.xib in Resources */,
 				E4C64AFE28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */,
 				E4C57FAA28055C7C00E7AB54 /* KLMSettingViewController.xib in Resources */,
 				E4C57FAB28055C7C00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
@@ -2382,7 +2353,6 @@
 				E4C57FB428055C7C00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01BB2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E4C4360B28A5FE0600DAA16D /* KLMSignUpWithMobileViewController.xib in Resources */,
-				E4C57FB528055C7C00E7AB54 /* BLEDFU.zip in Resources */,
 				E4C57FB628055C7C00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
 				E42C6390287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4D611D728B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
@@ -2579,7 +2549,6 @@
 				E495D1B3267B5E0800AA50B9 /* KLMGroupDeviceAddToViewController.swift in Sources */,
 				E492AD29267C83C50028AF3E /* NSString+PinYin4Cocoa.m in Sources */,
 				E492AD2C267C83C50028AF3E /* ChineseInclude.m in Sources */,
-				E44554E627C3711400E421DC /* KLMPassengerFlowViewController.swift in Sources */,
 				E4DE01B62893846A00F69C45 /* KLMWiFiModel.swift in Sources */,
 				E4A6608C267360A200FE6866 /* KLMBaseTableViewCell.swift in Sources */,
 				E4E28446269EFFFC006C120E /* GenericState.swift in Sources */,
@@ -2762,7 +2731,6 @@
 				E4C57E3328055B1F00E7AB54 /* KLMGroupDeviceAddToViewController.swift in Sources */,
 				E4C57E3428055B1F00E7AB54 /* NSString+PinYin4Cocoa.m in Sources */,
 				E4C57E3528055B1F00E7AB54 /* ChineseInclude.m in Sources */,
-				E4C57E3628055B1F00E7AB54 /* KLMPassengerFlowViewController.swift in Sources */,
 				E4DE01B72893846A00F69C45 /* KLMWiFiModel.swift in Sources */,
 				E4C57E3828055B1F00E7AB54 /* KLMBaseTableViewCell.swift in Sources */,
 				E4C57E3928055B1F00E7AB54 /* GenericState.swift in Sources */,
@@ -2945,7 +2913,6 @@
 				E4C57F0A28055C7C00E7AB54 /* KLMGroupDeviceAddToViewController.swift in Sources */,
 				E4C57F0B28055C7C00E7AB54 /* NSString+PinYin4Cocoa.m in Sources */,
 				E4C57F0C28055C7C00E7AB54 /* ChineseInclude.m in Sources */,
-				E4C57F0D28055C7C00E7AB54 /* KLMPassengerFlowViewController.swift in Sources */,
 				E4DE01B82893846A00F69C45 /* KLMWiFiModel.swift in Sources */,
 				E4C57F0F28055C7C00E7AB54 /* KLMBaseTableViewCell.swift in Sources */,
 				E4C57F1028055C7C00E7AB54 /* GenericState.swift in Sources */,
@@ -3439,15 +3406,6 @@
 				E4C4A0BD286EF70E00450A52 /* zh-Hans */,
 			);
 			name = KLMDeviceNameAndTypePopViewController.xib;
-			sourceTree = "<group>";
-		};
-		E4C57D7D280403BD00E7AB54 /* KLMPassengerFlowViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E4C57D7C280403BD00E7AB54 /* Base */,
-				E4C57D7F280403C200E7AB54 /* en */,
-			);
-			name = KLMPassengerFlowViewController.xib;
 			sourceTree = "<group>";
 		};
 		E4C642FE279E9DA1003FA554 /* KLMGroupCell.xib */ = {

@@ -9,33 +9,14 @@ import UIKit
 
 class KLMTestVersionViewController: UIViewController {
 
-    @IBOutlet weak var currentgonglvLab: UILabel!
-    @IBOutlet weak var gonglvView: UIView!
-    @IBOutlet weak var gonglvLab: UILabel!
-    
-    @IBOutlet weak var currentqudongLab: UILabel!
-    @IBOutlet weak var qudongView: UIView!
-    @IBOutlet weak var qudongLab: UILabel!
-    
-    var gonglv: Int = 1 {
-        didSet {
-            gonglvLab.text = gonglvList[gonglv - 1]
-        }
-    }
-    var qudong: Int = 1 {
-        didSet {
-            qudongLab.text = qudongLIst[qudong - 1]
-        }
-    }
-    let gonglvList: [String] = ["35W","25W"]
-    let qudongLIst: [String] = ["diodes","ocx"]
-    
-    var isFirst: Bool = true
+    @IBOutlet weak var liaohaoLab: UILabel!
+    @IBOutlet weak var versionLab: UILabel!
+    var BLEVersion: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "硬件信息"
+        navigationItem.title = "料号和固件版本"
         
         KLMSmartNode.sharedInstacnce.delegate = self
         
@@ -43,65 +24,8 @@ class KLMTestVersionViewController: UIViewController {
         //读取数据
         let parame = parameModel(dp: .hardwareInfo)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
-    ///功率
-    @IBAction func tapGonglv(_ sender: Any) {
         
-        let menuViewrect: CGRect = gonglvView.convert(gonglvView.bounds, to: KLMKeyWindow)
-        let point: CGPoint = CGPoint.init(x: menuViewrect.origin.x, y: menuViewrect.origin.y + menuViewrect.size.height)
-        YBPopupMenu.show(at: point, titles: gonglvList, icons: nil, menuWidth: 150) { popupMenu in
-            popupMenu?.priorityDirection = .none
-            popupMenu?.arrowHeight = 0
-            popupMenu?.minSpace = menuViewrect.origin.x
-            popupMenu?.dismissOnSelected = true
-            popupMenu?.isShadowShowing = false
-            popupMenu?.delegate = self
-            popupMenu?.cornerRadius = 0
-            popupMenu?.tag = 100
-            
-        }
-    }
-    
-    ///驱动
-    @IBAction func tapQudong(_ sender: Any) {
-        
-        let menuViewrect: CGRect = qudongView.convert(qudongView.bounds, to: KLMKeyWindow)
-        let point: CGPoint = CGPoint.init(x: menuViewrect.origin.x, y: menuViewrect.origin.y + menuViewrect.size.height)
-        YBPopupMenu.show(at: point, titles: qudongLIst, icons: nil, menuWidth: 150) { popupMenu in
-            popupMenu?.priorityDirection = .none
-            popupMenu?.arrowHeight = 0
-            popupMenu?.minSpace = menuViewrect.origin.x
-            popupMenu?.dismissOnSelected = true
-            popupMenu?.isShadowShowing = false
-            popupMenu?.delegate = self
-            popupMenu?.cornerRadius = 0
-            
-        }
-    }
-    
-    @IBAction func confirmClick(_ sender: Any) {
-        
-        isFirst = false
-        SVProgressHUD.show()
-        
-        let gonglvv = gonglv.decimalTo2Hexadecimal()
-        let qudongg = qudong .decimalTo2Hexadecimal()
-        let parame = parameModel(dp: .hardwareInfo, value: gonglvv + qudongg)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
-}
-
-extension KLMTestVersionViewController: YBPopupMenuDelegate {
-    
-    func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
-        
-        if ybPopupMenu.tag == 100 { ///功率
-            gonglv = index + 1
-            
-        } else { ///驱动
-            qudong = index + 1
-
-        }
+        versionLab.text = BLEVersion
     }
 }
 
@@ -110,21 +34,27 @@ extension KLMTestVersionViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
         SVProgressHUD.dismiss()
+//        if let value = message?.value as? [UInt8], value.count >= 5 , message?.dp == .hardwareInfo {
+//
+//            let data: String = "\(value[0]).\(value[1]).\(value[2]).\(value[3])\(value[4])"
+//            liaohaoLab.text = data
+//        }
+        
         if let value = message?.value as? [UInt8], value.count >= 2 , message?.dp == .hardwareInfo {
             
-            if isFirst {
-                let gonglv = Int(value[0])
-                let qudong = Int(value[1])
-                if gonglv > 0 && qudong > 0{
-                    self.gonglv = gonglv
-                    self.qudong = qudong
-                    currentgonglvLab.text = gonglvList[gonglv - 1]
-                    currentqudongLab.text = qudongLIst[qudong - 1]
+            let gonglv = Int(value[0])
+            let qudong = Int(value[1])
+            if gonglv == 1 { //35W
+                if qudong == 1 { //diodes
+                    liaohaoLab.text = "1.10.19.0063"
+                } else { //ocx
+                    liaohaoLab.text = "1.10.19.0065"
                 }
-            } else {
-                SVProgressHUD.showInfo(withStatus: "成功")
-                DispatchQueue.main.asyncAfter(deadline: 1) {
-                    self.navigationController?.popViewController(animated: true)
+            } else { //25W
+                if qudong == 1 { //diodes
+                    liaohaoLab.text = "1.10.19.0064"
+                } else { //ocx
+                    liaohaoLab.text = "1.10.19.0066"
                 }
             }
         }

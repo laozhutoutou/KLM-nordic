@@ -215,10 +215,7 @@ extension KLMAddDeviceTestViewController: UITableViewDelegate, UITableViewDataSo
         if let index = selectedDevice.firstIndex(where: { $0.peripheral == discoveredPeripheral.peripheral }) {
             selectedDevice.remove(at: index)
         } else {
-            if discoveredPeripheral.rssi <= -90 {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("Bluetooth signal is too weak"))
-                return
-            }
+            
             if selectedDevice.count > 5 {
                 SVProgressHUD.showInfo(withStatus: "最多只能选择5个")
                 return

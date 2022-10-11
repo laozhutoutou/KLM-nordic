@@ -488,7 +488,7 @@ extension KLMPhotoEditViewController: KLMSmartNodeDelegate {
             enhance.classification = value
         }
         
-        if let value = message?.value as? Int, message?.dp == .light {
+        if let value = message?.value as? Int, message?.dp == .brightness {
             
             lightValue = value
             lightSlider.currentValue = Float(lightValue)

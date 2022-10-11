@@ -43,9 +43,9 @@ class KLMTLWOTAViewController: UIViewController {
     
     func downLoad() {
         
-        SVProgressHUD.show()
+        SVProgressHUD.show(withStatus: LANGLOC("Downloading"))
         KLMService.downLoadFile(id: BLEVersionData!.id) { response in
-            SVProgressHUD.dismiss()
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Success"))
             let data: NSData = response as! NSData
             KLMLog("data = \(data.count)")
             self.OTAData = data

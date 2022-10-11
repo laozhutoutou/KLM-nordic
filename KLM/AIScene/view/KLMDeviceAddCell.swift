@@ -38,11 +38,6 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
     
     @IBAction func connectClick(_ sender: Any) {
         
-        if model.rssi <= -90 {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("Bluetooth signal is too weak"))
-            return
-        }
-        
         if let con = connectBlock {
 
             con(self.model)

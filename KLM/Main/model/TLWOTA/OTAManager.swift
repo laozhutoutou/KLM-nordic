@@ -30,7 +30,7 @@ class OTAManager: NSObject {
     
     private var otaIndex: Int = -1
     private var offset: Int = 0
-    private var writeOTAInterval: Double = 0.006
+    private var writeOTAInterval: Double = 0.007
     private var sendFinish = false
     
     //单例
@@ -200,6 +200,11 @@ extension OTAManager: CBCentralManagerDelegate {
                 let uuid = subData.hex
                 KLMLog("nodeUUID = \(uuid)")
                 if uuid == currentNode.nodeuuidString { ///扫描到了设备
+                    //信号太差不给升级
+                    if RSSI.intValue < -80 {
+                        SVProgressHUD.show(withStatus: LANGLOC("Bluetooth signal is too weak"))
+                        return
+                    }
                     central.stopScan()
                     currentPeripheral = peripheral
                     ///连接设备

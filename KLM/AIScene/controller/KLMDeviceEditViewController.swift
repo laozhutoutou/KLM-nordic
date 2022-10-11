@@ -568,9 +568,6 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //            navigationController?.pushViewController(vc, animated: true)
 //            let vc = KLMTestCameraViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.passengerFlow.rawValue:
-//            let vc = KLMPassengerFlowViewController()
-//            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

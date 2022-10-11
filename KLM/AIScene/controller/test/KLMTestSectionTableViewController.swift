@@ -98,7 +98,7 @@ class KLMTestSectionTableViewController: UITableViewController {
         case itemType.Baozhuang.rawValue:
             cell.textLabel?.text = "包装测试"
         case itemType.Yingjian.rawValue:
-            cell.textLabel?.text = "硬件信息查询"
+            cell.textLabel?.text = "料号和固件版本查询"
         case itemType.Biaoding.rawValue:
             cell.textLabel?.text = "白平衡标定"
         default:
@@ -127,6 +127,7 @@ class KLMTestSectionTableViewController: UITableViewController {
             navigationController?.pushViewController(vc, animated: true)
         case itemType.Yingjian.rawValue:
             let vc = KLMTestVersionViewController()
+            vc.BLEVersion = BLEVersion
             navigationController?.pushViewController(vc, animated: true)
         case itemType.Biaoding.rawValue:
             let vc = KLMTestBiaodingViewController()
