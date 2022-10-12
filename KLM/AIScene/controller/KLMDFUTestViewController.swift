@@ -58,7 +58,7 @@ class KLMDFUTestViewController: UIViewController {
         upGradeBtn.backgroundColor = appMainThemeColor
         
         //弹出更新提示框
-        KLMAlertController.showAlertWithTitle(title: LANGLOC("Warning"), message: LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process."))
+        KLMAlertController.showAlertWithTitle(title: LANGLOC("Warning"), message: LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process."), sure: nil)
 
         //导航栏左边添加返回按钮
         if isPresent {

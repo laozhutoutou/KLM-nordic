@@ -98,12 +98,33 @@ extension BlueBaseBearer: CBCentralManagerDelegate, CBPeripheralDelegate {
                 if uuid == characteristic.uuid {
                     KLMLog("OTA characteristic found")
                     OTACharacteristic = characteristic
-                    if delegate != nil {
-                        delegate?.bearerDidOpen(self)
-                    }
-                }
+                    KLMLog("Enabling notifications...")
+                    basePeripheral.setNotifyValue(true, for: characteristic)
+//                    delegate?.bearerDidOpen(self)
+
+                }  
             }
         }
+    }
+    
+    open func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+        guard characteristic == OTACharacteristic, characteristic.isNotifying else {
+            return
+        }
+        
+        KLMLog("Data Out notifications enabled")
+        KLMLog("GATT Bearer open and ready")
+        delegate?.bearerDidOpen(self)
+    }
+    
+    open func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        guard characteristic == OTACharacteristic, let data = characteristic.value else {
+            return
+        }
+        KLMLog("<- 0x\(data.hex)")
+//        if let message = protocolHandler.reassemble(data) {
+//            dataDelegate?.bearer(self, didDeliverData: message.data, ofType: message.messageType)
+//        }
     }
     
     open func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {

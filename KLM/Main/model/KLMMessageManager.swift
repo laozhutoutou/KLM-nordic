@@ -111,10 +111,14 @@ extension KLMMessageManager: MeshNetworkDelegate {
     }
 }
 
-struct MessageError: Error {
+class BaseError: Error {
+    var message: String?
+}
+
+class MessageError: BaseError {
     
     var code: Int?
-    var message: String?
+//    var message: String?
     var dp: DPType?
 }
 

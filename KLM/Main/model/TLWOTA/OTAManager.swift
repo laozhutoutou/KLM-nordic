@@ -10,7 +10,7 @@ import nRFMeshProvision
 import CoreBluetooth
 
 typealias CallBackSuccess = () -> ()
-typealias CallBackFailure = () -> ()
+typealias CallBackFailure = (_ error: BaseError?) -> ()
 typealias CallBackProgress = (_ progress: Float) -> ()
 typealias SendPacketsFinishCallback = () -> ()
 
@@ -32,6 +32,7 @@ class OTAManager: NSObject {
     private var offset: Int = 0
     private var writeOTAInterval: Double = 0.007
     private var sendFinish = false
+    private var isStartScannig = false
     
     //单例
     static let shared = OTAManager()
@@ -70,6 +71,7 @@ class OTAManager: NSObject {
         OTAing = true
         otaIndex = -1
         offset = 0
+        isStartScannig = false
         
         ///扫描不上提示超时
         DispatchQueue.main.async {
@@ -82,10 +84,10 @@ class OTAManager: NSObject {
             if bearer.nodeUUID == currentNode.nodeuuidString {
                 KLMLog("断开直连设备的连接")
                 MeshNetworkManager.bearer.close()
-                DispatchQueue.main.asyncAfter(deadline: 2) {
-                    self.connectDevice()
-                }
-                return
+//                DispatchQueue.main.asyncAfter(deadline: 2) {
+//                    self.connectDevice()
+//                }
+//                return
             }
         }
         
@@ -100,8 +102,9 @@ class OTAManager: NSObject {
     
     private func startMeshConnectBeforeGATTOTA() {
         
-        if centralManager.state == .poweredOn, !centralManager.isScanning {
+        if centralManager.state == .poweredOn, isStartScannig == false {
             KLMLog("Start scan OTA device")
+            isStartScannig = true
             centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
         }
     }
@@ -109,29 +112,37 @@ class OTAManager: NSObject {
     ///连接设备超时
     @objc func meshConnectTimeoutBeforeGATTOTA() {
         KLMLog("OTA fail: startMeshConnect Timeout Before GATT OTA.")
-        otaFailAction()
+        let error = BaseError.init()
+        error.message = LANGLOC("Connecting TImeout")
+        otaFailAction(error)
     }
     ///扫描超时
     @objc func scanTimeout() {
         
         KLMLog("Scanning Time out")
-        otaFailAction()
+        let error = BaseError.init()
+        error.message = LANGLOC("Scanning Time out")
+        otaFailAction(error)
     }
     
-    private func otaFailAction() {
+    private func otaFailAction(_ error: BaseError?) {
         KLMLog("OTA fail")
         OTAing = false
         sendFinish = false
         centralManager.stopScan()
         ///关闭连接
         blueBearer?.close()
+        ///打开后台自动连接
+        MeshNetworkManager.bearer.open()
         DispatchQueue.main.async {
             NSObject.cancelPreviousPerformRequests(withTarget: self)
             ///
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.startSendGATTOTAPackets), object: nil)
         }
-        if let callBackFailure = callBackFailure {
-            callBackFailure()
+        DispatchQueue.main.asyncAfter(deadline: 2) {
+            if let callBackFailure = self.callBackFailure {
+                callBackFailure(error)
+            }
         }
     }
     
@@ -139,13 +150,21 @@ class OTAManager: NSObject {
         KLMLog("OTA success")
         OTAing = false
         sendFinish = false
-        if let callBackSuccess = callBackSuccess {
-            callBackSuccess()
+        blueBearer?.close()
+        centralManager.stopScan()
+        ///打开后台自动连接
+        MeshNetworkManager.bearer.open()
+        ///连接上才认为是成功,给多点时间连接
+        DispatchQueue.main.asyncAfter(deadline: 5) {
+            if let callBackSuccess = self.callBackSuccess {
+                callBackSuccess()
+            }
         }
     }
+    
     ///主动关闭
     func close() {
-        ///打开连接
+        ///打开后台自动连接
         MeshNetworkManager.bearer.open()
         KLMLog("Close OTA")
         OTAing = false
@@ -165,7 +184,8 @@ extension OTAManager: CBCentralManagerDelegate {
         KLMLog("central state \(central.state)")
         switch central.state {
         case .poweredOn:
-            if OTAing , !central.isScanning {
+            if OTAing , isStartScannig == false {
+                isStartScannig = true
                 centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
 
             }
@@ -205,7 +225,7 @@ extension OTAManager: CBCentralManagerDelegate {
                         SVProgressHUD.show(withStatus: LANGLOC("Bluetooth signal is too weak"))
                         return
                     }
-                    central.stopScan()
+                    centralManager.stopScan()
                     currentPeripheral = peripheral
                     ///连接设备
                     let bb = BlueBaseBearer(target: peripheral)
@@ -247,7 +267,9 @@ extension OTAManager: BearerDelegate {
                 if sendFinish {
                     otaSuccessAction()
                 } else {
-                    otaFailAction()
+                    let err = BaseError.init()
+                    err.message = error?.localizedDescription
+                    otaFailAction(err)
                 }
             }
         }

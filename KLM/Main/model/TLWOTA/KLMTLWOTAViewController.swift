@@ -18,10 +18,6 @@ class KLMTLWOTAViewController: UIViewController {
     ///更新包
     var OTAData: NSData?
     
-    deinit {
-        OTAManager.shared.close()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -69,8 +65,8 @@ class KLMTLWOTAViewController: UIViewController {
             guard let self = self else {return }
             self.otaSuccessAction()
             
-        } failAction: {
-            self.otaFailAction()
+        } failAction: {error in
+            self.otaFailAction(error)
         } progressAction: { progress in
             self.showOTAProgress(progress: progress)
         }
@@ -79,19 +75,25 @@ class KLMTLWOTAViewController: UIViewController {
     
     private func otaSuccessAction() {
         KLMLog("OTA success")
-        SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
-        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-            if self.isPresent {
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                self.navigationController?.popViewController(animated: true)
+        SVProgressHUD.dismiss()
+        KLMAlertController.showAlertWithTitle(title: LANGLOC("Updatecomplete"), message: nil, sure: {
+            
+//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
+            DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                if self.isPresent {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-        }
+        })
     }
     
-    private func otaFailAction() {
-        KLMLog("OTA fail")
-        SVProgressHUD.showInfo(withStatus: "OTA fail")
+    private func otaFailAction(_ error: BaseError?) {
+        KLMLog("OTA fail = \(error?.message)")
+        SVProgressHUD.dismiss()
+        KLMAlertController.showAlertWithTitle(title: LANGLOC("Upgrade failed"), message: error?.message, sure: nil)
+
     }
     
     private func showOTAProgress(progress: Float) {
