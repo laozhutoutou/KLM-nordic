@@ -48,7 +48,7 @@ extension KLMTestVersionViewController: KLMSmartNodeDelegate {
                 if qudong == 1 { //diodes
                     liaohaoLab.text = "1.10.19.0063"
                 } else { //ocx
-                    liaohaoLab.text = "1.10.19.0065"
+                    liaohaoLab.text = "1.10.19.0060"
                 }
             } else { //25W
                 if qudong == 1 { //diodes

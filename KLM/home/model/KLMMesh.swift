@@ -102,9 +102,6 @@ class KLMMesh {
             let meshNetwork = manager.meshNetwork!
             let provisioner: Provisioner =  (meshNetwork.provisioners.first)!
             address = 0x199A - address
-            if apptype == .test {///可能一个手机安装两个APP
-                address = address - 50
-            }
             let newAddress: Address = Address.init(address)
             print(newAddress.asString())
             if let node = provisioner.node {

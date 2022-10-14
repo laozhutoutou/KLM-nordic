@@ -27,8 +27,8 @@
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如发现料号或固件版本和实际不符，请重新烧录固件。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka5-ah-e3N">
-                    <rect key="frame" x="20" y="160" width="374" height="18"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如发现料号或固件版本和实际不符，请先点击下图ERASE按钮擦除设备数据，待数据擦除完成后再重新烧录固件。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka5-ah-e3N">
+                    <rect key="frame" x="20" y="160" width="374" height="54"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -51,24 +51,33 @@
                     <color key="textColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_liaohao" translatesAutoresizingMaskIntoConstraints="NO" id="Chm-9T-bQC">
+                    <rect key="frame" x="0.0" y="244" width="414" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="AF6-px-xIH"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="8Rm-c7-iHJ" firstAttribute="centerY" secondItem="Ut5-mU-ZmQ" secondAttribute="centerY" id="2Gw-jI-y9K"/>
+                <constraint firstItem="Chm-9T-bQC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6kN-iN-fzd"/>
                 <constraint firstItem="ipb-62-R9M" firstAttribute="leading" secondItem="yCk-Bn-K3s" secondAttribute="trailing" id="6xp-iv-WeX"/>
+                <constraint firstItem="Chm-9T-bQC" firstAttribute="top" secondItem="Ka5-ah-e3N" secondAttribute="bottom" constant="30" id="7Zx-bM-Mhb"/>
                 <constraint firstItem="Ut5-mU-ZmQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="EfP-tu-L66"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ka5-ah-e3N" secondAttribute="trailing" constant="20" id="HXx-hX-lhy"/>
                 <constraint firstItem="8Rm-c7-iHJ" firstAttribute="leading" secondItem="Ut5-mU-ZmQ" secondAttribute="trailing" id="Xvs-4s-kkI"/>
                 <constraint firstItem="yCk-Bn-K3s" firstAttribute="centerY" secondItem="Ut5-mU-ZmQ" secondAttribute="centerY" id="c5B-lY-U59"/>
                 <constraint firstItem="Ka5-ah-e3N" firstAttribute="leading" secondItem="Ut5-mU-ZmQ" secondAttribute="leading" id="cJC-Jg-YDD"/>
                 <constraint firstItem="yCk-Bn-K3s" firstAttribute="leading" secondItem="8Rm-c7-iHJ" secondAttribute="trailing" constant="30" id="mRd-Hz-cNH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Chm-9T-bQC" secondAttribute="trailing" id="ntg-KF-VSc"/>
                 <constraint firstItem="ipb-62-R9M" firstAttribute="centerY" secondItem="yCk-Bn-K3s" secondAttribute="centerY" id="oO8-7B-5xn"/>
                 <constraint firstItem="Ut5-mU-ZmQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pjh-Yq-PK9"/>
                 <constraint firstItem="Ka5-ah-e3N" firstAttribute="top" secondItem="Ut5-mU-ZmQ" secondAttribute="bottom" constant="30" id="xZr-80-5UX"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-645" y="100"/>
+            <point key="canvasLocation" x="-987" y="-224"/>
         </view>
         <tapGestureRecognizer id="Gvg-BG-JG6">
             <connections>
@@ -82,6 +91,7 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
+        <image name="img_liaohao" width="422" height="174"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

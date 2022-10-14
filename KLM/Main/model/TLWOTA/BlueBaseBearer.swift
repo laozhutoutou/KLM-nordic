@@ -4,8 +4,10 @@ import nRFMeshProvision
 
 ///OTA 特征
 let kOTA_CharacteristicsID: String = "00010203-0405-0607-0809-0A0B0C0D2B12"
+//let kOTA_CharacteristicsID: String = "2ADE"
 
 class BlueBaseBearer: NSObject, Bearer {
+    
     var dataDelegate: BearerDataDelegate?
     var supportedPduTypes: PduTypes = .networkPdu
     var isOpen: Bool = false
@@ -98,10 +100,10 @@ extension BlueBaseBearer: CBCentralManagerDelegate, CBPeripheralDelegate {
                 if uuid == characteristic.uuid {
                     KLMLog("OTA characteristic found")
                     OTACharacteristic = characteristic
-                    KLMLog("Enabling notifications...")
-                    basePeripheral.setNotifyValue(true, for: characteristic)
-//                    delegate?.bearerDidOpen(self)
-
+                    if characteristic.properties.contains(.notify) {
+                        KLMLog("Enabling notifications...")
+                        basePeripheral.setNotifyValue(true, for: characteristic)
+                    }
                 }  
             }
         }
@@ -122,9 +124,7 @@ extension BlueBaseBearer: CBCentralManagerDelegate, CBPeripheralDelegate {
             return
         }
         KLMLog("<- 0x\(data.hex)")
-//        if let message = protocolHandler.reassemble(data) {
-//            dataDelegate?.bearer(self, didDeliverData: message.data, ofType: message.messageType)
-//        }
+        dataDelegate?.bearer(self, didDeliverData: data, ofType: .networkPdu)
     }
     
     open func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {

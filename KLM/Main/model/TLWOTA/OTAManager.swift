@@ -139,6 +139,7 @@ class OTAManager: NSObject {
             ///
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.startSendGATTOTAPackets), object: nil)
         }
+        ///给时间 MeshNetworkManager.bearer.open()
         DispatchQueue.main.asyncAfter(deadline: 2) {
             if let callBackFailure = self.callBackFailure {
                 callBackFailure(error)
@@ -230,6 +231,7 @@ extension OTAManager: CBCentralManagerDelegate {
                     ///连接设备
                     let bb = BlueBaseBearer(target: peripheral)
                     bb.delegate = self
+                    bb.dataDelegate = self
                     blueBearer = bb
                     bb.open()
                     
@@ -249,8 +251,8 @@ extension OTAManager: CBCentralManagerDelegate {
     }
 }
 
-extension OTAManager: BearerDelegate {
-    
+extension OTAManager: BearerDelegate, BearerDataDelegate {
+
     func bearerDidOpen(_ bearer: Bearer) {
         ///设备连接上取消超时
         DispatchQueue.main.async {
@@ -272,6 +274,15 @@ extension OTAManager: BearerDelegate {
                     otaFailAction(err)
                 }
             }
+        }
+    }
+    ///设备回复数据
+    func bearer(_ bearer: nRFMeshProvision.Bearer, didDeliverData data: Data, ofType type: nRFMeshProvision.PduType) {
+        
+        if data.count >= 3, data[0] != 0 { ///设备回复错误
+            let err = BaseError.init()
+            err.message = LANGLOC("Device error,Please upgrade again")
+            otaFailAction(err)
         }
     }
 }

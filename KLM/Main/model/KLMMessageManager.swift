@@ -118,7 +118,6 @@ class BaseError: Error {
 class MessageError: BaseError {
     
     var code: Int?
-//    var message: String?
     var dp: DPType?
 }
 

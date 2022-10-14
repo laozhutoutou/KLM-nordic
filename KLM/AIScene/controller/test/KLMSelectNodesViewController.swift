@@ -124,14 +124,25 @@ class KLMSelectNodesViewController: UIViewController, UITableViewDelegate, UITab
         let node = self.nodes[indexPath.row]
         if let index = selectNodes.firstIndex(where: {$0.uuid == node.uuid}) {
             selectNodes.remove(at: index)
+            tableView.reloadData()
         } else {
+            
             if selectNodes.count >= 6 {
-                SVProgressHUD.showInfo(withStatus: "最多选择\(selectNodes.count)个设备")
+                
+                SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
                 return
             }
-            selectNodes.append(node)
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToNode(node: node) {
+                SVProgressHUD.dismiss()
+                self.selectNodes.append(node)
+                tableView.reloadData()
+            } failure: {
+                
+            }
         }
-        tableView.reloadData()
     }
 }
 
