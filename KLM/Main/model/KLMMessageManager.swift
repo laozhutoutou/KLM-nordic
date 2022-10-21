@@ -105,7 +105,7 @@ extension KLMMessageManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
         SVProgressHUD.dismiss()
-        var err = MessageError()
+        let err = MessageError()
         err.message = error.localizedDescription
         self.delegate?.messageManager(self, didHandleGroup: destination, error: err)
     }

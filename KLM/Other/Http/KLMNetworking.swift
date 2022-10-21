@@ -673,8 +673,14 @@ class KLMService: NSObject {
     ///检查TLW服务器固件最新版本
     static func checkTLWVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
-        let type = "mcu"
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)"), params: nil) { responseObject, error in
+        var type = "bluetooth"
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+            type = "mcu"
+        }
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
+            type = "development"
+        }
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)/2"), params: nil) { responseObject, error in
             
             if error == nil {
                 

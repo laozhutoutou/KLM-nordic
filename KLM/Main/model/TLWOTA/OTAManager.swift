@@ -113,7 +113,7 @@ class OTAManager: NSObject {
     @objc func meshConnectTimeoutBeforeGATTOTA() {
         KLMLog("OTA fail: startMeshConnect Timeout Before GATT OTA.")
         let error = BaseError.init()
-        error.message = LANGLOC("Connecting TImeout")
+        error.message = LANGLOC("Connecting Timeout")
         otaFailAction(error)
     }
     ///扫描超时
