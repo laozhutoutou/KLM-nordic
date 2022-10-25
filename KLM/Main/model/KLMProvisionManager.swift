@@ -133,7 +133,6 @@ extension KLMProvisionManager: GattBearerDelegate {
 
                 self.delegate?.provisionManagerNodeAddSuccess(self)
             }
-
         }
     }
 

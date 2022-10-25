@@ -31,8 +31,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     var nodes: [Node] = [Node]()
     //家庭数据源
     var homes: [KLMHome.KLMHomeModel] = []
-    ///服务器上的版本
-    var BLEVersionData: KLMVersion.KLMVersionData?
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -101,8 +99,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         ///初始化数据
         initData()
         
-        ///查询蓝牙版本
-//        checkBlueToothVersion()
         
         ///检查版本
         if apptype == .targetGN || apptype == .targetsGW {
@@ -307,18 +303,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             
         }
     }
-    
-    ///查询服务器上蓝牙版本
-    private func checkBlueToothVersion() {
         
-        KLMService.checkBlueToothVersion { response in
-            self.BLEVersionData = response as? KLMVersion.KLMVersionData
-            self.collectionView.reloadData()
-        } failure: { error in
-            
-        }
-    }
-    
     private func showUpdateView() {
         
         ///用英语
@@ -512,10 +497,7 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
-        
-//        let vc = KLMTLWOTAViewController()
-//        navigationController?.pushViewController(vc, animated: true)
-        
+                
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in

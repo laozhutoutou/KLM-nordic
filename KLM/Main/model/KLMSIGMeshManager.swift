@@ -169,7 +169,7 @@ extension KLMSIGMeshManager {
             self.gattBearer?.delegate = nil
             self.gattBearer?.close()
             
-            var err = MessageError()
+            let err = MessageError()
             err.message = LANGLOC("Add new device timed out")
             self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
             
@@ -215,6 +215,7 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
 }
 extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     
+    ///compostion
     func getCompositionData(node: Node) {
         
         self.currentNode = node
@@ -227,13 +228,47 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
             print(error)
         }
     }
+    ///给node添加appkey
+    func addAppkeyToNode(node: Node) {
+        
+        self.currentNode = node
+        MeshNetworkManager.instance.delegate = self
+        let applicationKey = MeshNetworkManager.instance.meshNetwork!.applicationKeys.first
+        let message = ConfigAppKeyAdd(applicationKey: applicationKey!)
+        do {
+            try MeshNetworkManager.instance.send(message, to: node)
+            
+        } catch  {
+            print(error)
+        }
+    }
+    ///给model添加AppKey
+    func addAppkeyToModel(node: Node) {
+        
+        self.currentNode = node
+        MeshNetworkManager.instance.delegate = self
+        let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
+        guard model.boundApplicationKeys.isEmpty else {
+            return
+        }
+        
+        let keys = self.currentNode.applicationKeysAvailableFor(model)
+        let applicationKey = keys.first
+        let message = ConfigModelAppBind(applicationKey: applicationKey!, to: model)!
+        
+        do {
+            try MeshNetworkManager.instance.send(message, to: self.currentNode)
+        } catch  {
+            print(error)
+        }
+    }
     
     func provisionManager(_ manager: KLMProvisionManager, didFailChange error: Error?) {
         
         //停止定时
         stopTime()
         
-        var err = MessageError()
+        let err = MessageError()
         err.message = error?.localizedDescription
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }
@@ -243,16 +278,15 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
         SVProgressHUD.show(withStatus: "composition")
         
         //composition
-        if let network = MeshNetworkManager.instance.meshNetwork {
-            
-            let node = network.node(for: self.discoveredPeripheral.device)!
-            if !node.isCompositionDataReceived {
-                KLMLog("start composition")
-                self.getCompositionData(node: node)
-            }
-        }
+//        if let network = MeshNetworkManager.instance.meshNetwork {
+//
+//            let node = network.node(for: self.discoveredPeripheral.device)!
+//            if !node.isCompositionDataReceived {
+//                KLMLog("start composition")
+//                self.getCompositionData(node: node)
+//            }
+//        }
     }
-    
 }
 
 extension KLMSIGMeshManager: BearerDelegate {
@@ -289,21 +323,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                 KLMLog("node appkey success")
                 SVProgressHUD.show(withStatus: "Add app key to model")
                 
-                //给自定义vendor model 配置APP key
-                let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
-                guard model.boundApplicationKeys.isEmpty else {
-                    return
-                }
-                
-                let keys = self.currentNode.applicationKeysAvailableFor(model)
-                let applicationKey = keys.first
-                let message = ConfigModelAppBind(applicationKey: applicationKey!, to: model)!
-                
-                do {
-                    try MeshNetworkManager.instance.send(message, to: self.currentNode)
-                } catch  {
-                    print(error)
-                }
+                self.addAppkeyToModel(node: self.currentNode)
                 
                 return
             }
@@ -318,14 +338,8 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                 return
             }
             
-            let applicationKey = MeshNetworkManager.instance.meshNetwork!.applicationKeys.first
-            let message = ConfigAppKeyAdd(applicationKey: applicationKey!)
-            do {
-                try MeshNetworkManager.instance.send(message, to: self.currentNode)
-                
-            } catch  {
-                print(error)
-            }
+            self.addAppkeyToNode(node: self.currentNode)
+
             return
             
         case let status as ConfigModelAppStatus:
@@ -348,7 +362,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
         //停止计时
         stopTime()
         
-        var err = MessageError()
+        let err = MessageError()
         err.message = "Add light failed"
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }

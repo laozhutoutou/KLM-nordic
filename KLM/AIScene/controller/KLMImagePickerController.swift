@@ -212,11 +212,25 @@ class KLMImagePickerController: UIImagePickerController {
     
     private func checkNetworkVersion() {
         
-        KLMService.checkBlueToothVersion { response in
-            self.BLEVersionData = response as? KLMVersion.KLMVersionData
-            self.checkBleVersion()
-        } failure: { error in
+        if KLMHomeManager.currentNode.noCamera { ///没有摄像头
+            KLMService.checkTLWVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.checkBleVersion()
+                
+            } failure: { error in
+                
+                self.checkBleVersion()
+            }
+
+        } else {
             
+            KLMService.checkBlueToothVersion { response in
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.checkBleVersion()
+            } failure: { error in
+                self.checkBleVersion()
+            }
         }
     }
     

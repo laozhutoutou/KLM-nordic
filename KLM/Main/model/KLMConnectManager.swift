@@ -43,16 +43,38 @@ class KLMConnectManager {
             //对于未composition的进行配置
             SVProgressHUD.show(withStatus: "Composition")
             SVProgressHUD.setDefaultMaskType(.black)
-            
+            KLMLog("Composition")
             timer.startTimer(timeOut: 10)
             KLMSIGMeshManager.sharedInstacnce.delegate = self
             KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: node)
             return
         }
         
+        //检查node是否绑定appkey
+        if node.applicationKeys.isEmpty {
+            
+            SVProgressHUD.show(withStatus: "Add app key to node")
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMLog("Add app key to node")
+            timer.startTimer(timeOut: 10)
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.addAppkeyToNode(node: node)
+            return
+        }
+        
+        //检查是否model绑定appkey
+        if let model = KLMHomeManager.getModelFromNode(node: node), model.boundApplicationKeys.isEmpty {
+            
+            SVProgressHUD.show(withStatus: "Add app key to model")
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMLog("Add app key to model")
+            timer.startTimer(timeOut: 10)
+            KLMSIGMeshManager.sharedInstacnce.delegate = self
+            KLMSIGMeshManager.sharedInstacnce.addAppkeyToModel(node: node)
+            return
+        }
         let parame = parameModel(dp: .power)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: node)
-        
     }
     
     func connectToGroup(group: Group, success: @escaping () -> Void, failure: @escaping () -> Void) {
@@ -96,7 +118,7 @@ extension KLMConnectManager {
     ///检查手机蓝牙状态
     static func checkBluetoothState() throws {
         
-        var err = MessageError()
+        let err = MessageError()
         switch KLMConnectManager.shared.state {
         case .poweredOff:
             ///弹出手机蓝牙提示框
@@ -164,7 +186,7 @@ extension KLMConnectManager: KLMTimerDelegate {
     
     func timeDidTimeout(_ timer: KLMTimer) {
         //提示错误
-        SVProgressHUD.showInfo(withStatus: "Composition timed out")
+        SVProgressHUD.showInfo(withStatus: "Composition or Appkey bound timed out")
         self.failure?()
         self.failure = nil
     }
