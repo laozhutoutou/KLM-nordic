@@ -6,19 +6,17 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
-  - Alamofire (5.4.4)
-  - BluetoothKit (0.4.0)
+  - Bugly (2.5.91)
   - CryptoSwift (1.4.0)
   - DZNEmptyDataSet (1.8.1)
   - HandyJSON (5.0.2)
-  - iOSDFULibrary (4.11.1):
-    - ZIPFoundation (= 0.9.11)
-  - IQKeyboardManagerSwift (6.5.6)
+  - IQKeyboardManagerSwift (6.5.9)
   - JKSwiftExtension (1.6.9):
     - Kingfisher
-  - Kingfisher (7.1.0)
+  - KeychainAccess (4.2.2)
+  - Kingfisher (7.1.2)
   - MJRefresh (3.5.0)
-  - nRFMeshProvision (3.1.4):
+  - nRFMeshProvision (3.1.5):
     - CryptoSwift (= 1.4.0)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
@@ -30,24 +28,19 @@ PODS:
   - SnapKitExtend (1.1.0):
     - SnapKit
   - SVProgressHUD (2.2.5)
-  - SwiftyJSON (5.0.1)
-  - TZImagePickerController (3.6.6)
   - YBPopupMenu (1.1.9)
-  - YYCache (1.0.4)
-  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - AFNetworking/NSURLSession (~> 3.2.1)
   - AFNetworking/Reachability (~> 3.2.1)
   - AFNetworking/Security (~> 3.2.1)
   - AFNetworking/Serialization (~> 3.2.1)
-  - Alamofire (~> 5.4.3)
-  - BluetoothKit (~> 0.4.0)
+  - Bugly
   - DZNEmptyDataSet (~> 1.8.1)
-  - HandyJSON (~> 5.0.2)
-  - iOSDFULibrary (~> 4.10)
+  - HandyJSON
   - IQKeyboardManagerSwift (~> 6.5.6)
   - JKSwiftExtension (~> 1.6.8)
+  - KeychainAccess (~> 4.2.2)
   - Kingfisher (~> 7.1.0)
   - MJRefresh (~> 3.5.0)
   - nRFMeshProvision (~> 3.1.2)
@@ -56,22 +49,18 @@ DEPENDENCIES:
   - SnapKit (~> 5.0.1)
   - SnapKitExtend (~> 1.1.0)
   - SVProgressHUD
-  - SwiftyJSON (~> 5.0.1)
-  - TZImagePickerController (~> 3.6.0)
   - YBPopupMenu (~> 1.1.2)
-  - YYCache (~> 1.0.4)
 
 SPEC REPOS:
   trunk:
     - AFNetworking
-    - Alamofire
-    - BluetoothKit
+    - Bugly
     - CryptoSwift
     - DZNEmptyDataSet
     - HandyJSON
-    - iOSDFULibrary
     - IQKeyboardManagerSwift
     - JKSwiftExtension
+    - KeychainAccess
     - Kingfisher
     - MJRefresh
     - nRFMeshProvision
@@ -81,37 +70,28 @@ SPEC REPOS:
     - SnapKit
     - SnapKitExtend
     - SVProgressHUD
-    - SwiftyJSON
-    - TZImagePickerController
     - YBPopupMenu
-    - YYCache
-    - ZIPFoundation
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
-  BluetoothKit: 00e189e01ba765e2689c46fbd8d0ede62984441b
+  Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
   CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
-  iOSDFULibrary: 3500ac00451aa7d8ec48a752e91099669a2c1d27
-  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
   JKSwiftExtension: f3a19d386eaf663d06349dd370cba0cbf402cdf6
-  Kingfisher: cdabaf49be7ee7cc124f0f276b355edf61903cf8
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
-  nRFMeshProvision: 4b3e185fd13b077c997aadca6f54806f5c577cd7
+  nRFMeshProvision: 8d93e5827501f166f1511c89a5540a610844ccf2
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SnapKitExtend: aa30cf37196195fae9c4354686cc7710184ebfcc
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
-  TZImagePickerController: edf61b8e87f26e3e445aa50eb66254bd7f4859db
   YBPopupMenu: 3a02e89860bb0568ba477aee609bc3f25e5bd339
-  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
-  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: 58e7362f9992e948bb2406604c64419ba86409c6
+PODFILE CHECKSUM: dacfea658f3852dec37e37657adf1221d07c5e95
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.3

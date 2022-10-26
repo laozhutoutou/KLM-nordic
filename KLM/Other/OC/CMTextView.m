@@ -20,7 +20,7 @@
 @implementation CMTextView
 
 @synthesize realTextColor;
-@synthesize placeholder;
+@synthesize placeholderTitle;
 @synthesize placeholderColor;
 
 #pragma mark -
@@ -50,12 +50,12 @@
 #pragma mark -
 #pragma mark Setter/Getters
 
-- (void)setPlaceholder:(NSString *)aPlaceholder {
-    if ([self.realText isEqualToString:placeholder] && ![self isFirstResponder]) {
+- (void)setPlaceholderTitle:(NSString *)aPlaceholder {
+    if ([self.realText isEqualToString:placeholderTitle] && ![self isFirstResponder]) {
         self.text = aPlaceholder;
     }
-    if (aPlaceholder != placeholder) {
-        placeholder = aPlaceholder;
+    if (aPlaceholder != placeholderTitle) {
+        placeholderTitle = aPlaceholder;
     }
     
     
@@ -65,25 +65,25 @@
 - (void)setPlaceholderColor:(UIColor *)aPlaceholderColor {
     placeholderColor = aPlaceholderColor;
     
-    if ([super.text isEqualToString:self.placeholder]) {
+    if ([super.text isEqualToString:self.placeholderTitle]) {
         self.textColor = self.placeholderColor;
     }
 }
 
 - (NSString *) text {
     NSString* text = [super text];
-    if ([text isEqualToString:self.placeholder]) return @"";
+    if ([text isEqualToString:self.placeholderTitle]) return @"";
     return text;
 }
 
 - (void) setText:(NSString *)text {
     if (([text isEqualToString:@""] || text == nil) && ![self isFirstResponder]) {
-        super.text = self.placeholder;
+        super.text = self.placeholderTitle;
     }else {
         super.text = text;
     }
     
-    if ([text isEqualToString:self.placeholder] || text == nil) {
+    if ([text isEqualToString:self.placeholderTitle] || text == nil) {
         self.textColor = self.placeholderColor;
     }else {
         self.textColor = self.realTextColor;
@@ -96,7 +96,7 @@
 
 - (void) beginEditing:(NSNotification*) notification {
     
-    if ([self.realText isEqualToString:self.placeholder]) {
+    if ([self.realText isEqualToString:self.placeholderTitle]) {
         super.text = nil;
         self.textColor = self.realTextColor;
     }
@@ -105,14 +105,14 @@
 - (void) endEditing:(NSNotification*) notification {
     
     if ([self.realText isEqualToString:@""] || self.realText == nil) {
-        super.text = self.placeholder;
+        super.text = self.placeholderTitle;
         self.textColor = self.placeholderColor;
     }
     
 }
 
 - (void) setTextColor:(UIColor *)textColor {
-    if ([self.realText isEqualToString:self.placeholder]) {
+    if ([self.realText isEqualToString:self.placeholderTitle]) {
         if ([textColor isEqual:self.placeholderColor]){
             [super setTextColor:textColor];
         } else {

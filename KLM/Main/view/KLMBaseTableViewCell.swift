@@ -13,7 +13,7 @@ class KLMBaseTableViewCell: UITableViewCell, Nibloadable {
         
         var cell = tableView.dequeueReusableCell(withIdentifier: String(describing: self))
         if cell == nil {
-                    
+    
             cell = Self.loadNib()
             
             let line = UIView()

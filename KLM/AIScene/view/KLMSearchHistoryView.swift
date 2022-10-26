@@ -7,10 +7,10 @@
 
 import UIKit
 
-protocol KLMSearchHistoryViewDelegate: class {
+protocol KLMSearchHistoryViewDelegate: AnyObject {
     
     func KLMSearchHistoryViewDidSelectHistory(text: String)
-    
+    func KLMSearchHistoryClearAll()
 }
 
 class KLMSearchHistoryView: UIView, Nibloadable {
@@ -18,15 +18,18 @@ class KLMSearchHistoryView: UIView, Nibloadable {
     @IBOutlet weak var collectionView: UICollectionView!
     static var myframe: CGRect!
         
-    var itemString: [String] = [String]()
+    var itemString: KLMHistory? {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
     
     weak var delegate:  KLMSearchHistoryViewDelegate?
     
     //清除历史记录
     @IBAction func deleteClick(_ sender: Any) {
         
-        KLMHomeManager.deleteHistoryCache()
-        reloadData()
+        self.delegate?.KLMSearchHistoryClearAll()
     }
     
     static func historyView(frame: CGRect) -> Self {
@@ -34,12 +37,6 @@ class KLMSearchHistoryView: UIView, Nibloadable {
         let view = Self.loadNib()
         myframe = frame
         return view
-    }
-    
-    func reloadData() {
-        let lists = KLMHomeManager.getHistoryLists()
-        itemString = lists
-        self.collectionView.reloadData()
     }
     
     override func awakeFromNib() {
@@ -69,19 +66,20 @@ class KLMSearchHistoryView: UIView, Nibloadable {
 extension KLMSearchHistoryView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return itemString.count
+        return itemString?.data.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TagCell
-        cell.tagLabel.text = self.itemString[indexPath.row]
+        let model = itemString?.data[indexPath.row]
+        cell.tagLabel.text = model?.searchContent
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let str = self.itemString[indexPath.row]
-        self.delegate?.KLMSearchHistoryViewDidSelectHistory(text: str)
+        let model = itemString?.data[indexPath.row]
+        self.delegate?.KLMSearchHistoryViewDidSelectHistory(text: model!.searchContent)
         
     }
 }

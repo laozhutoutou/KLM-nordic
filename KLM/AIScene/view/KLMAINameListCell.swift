@@ -18,6 +18,8 @@ class KLMAINameListCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var selectBtn: UIButton!
+    @IBOutlet weak var statuImage: UIImageView!
+    
     weak var delegate:  KLMAINameListCellDelegate?
     
     var isShowSelectBtn: Bool = false {
@@ -33,14 +35,16 @@ class KLMAINameListCell: UICollectionViewCell {
             selectBtn.isSelected =  selectBtnIsSelect
         }
     }
-    
-    
+
     var model: Node! {
         
         didSet{
-            
             nameLab.text = model.nodeName
-            
+            if model.isOnline {
+                statuImage.backgroundColor = .green
+            } else {
+                statuImage.backgroundColor = .red
+            }
         }
     }
     
@@ -49,6 +53,7 @@ class KLMAINameListCell: UICollectionViewCell {
         
         self.layer.cornerRadius = 8
         self.clipsToBounds = true
+        statuImage.layer.cornerRadius = statuImage.height / 2
         
         let tap = UILongPressGestureRecognizer.init(target: self, action: #selector(longPress))
         tap.minimumPressDuration = 1

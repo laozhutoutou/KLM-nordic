@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WebKit
 
 class KLMChengpinViewController: UIViewController {
     
@@ -14,12 +15,11 @@ class KLMChengpinViewController: UIViewController {
     @IBOutlet weak var GOK: UIButton!
     @IBOutlet weak var BOK: UIButton!
     
-    @IBOutlet weak var heibuOK: UIButton!
-    @IBOutlet weak var sekaOK: UIButton!
-    @IBOutlet weak var peifangOK: UIButton!
-    
     @IBOutlet weak var OKBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
+    
+    @IBOutlet weak var playView: UIView!
+    var webView: WKWebView?
     
     var OKBtnArray: [UIButton]!
     
@@ -34,8 +34,8 @@ class KLMChengpinViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "成品测试"
-
-        OKBtnArray = [WWOK,ROK,GOK,BOK,heibuOK,sekaOK,peifangOK]
+        
+        OKBtnArray = [WWOK,ROK,GOK,BOK]
         
         OKBtn.setBackgroundImage(UIImage.init(color: .green), for: .selected)
         falseBtn.setBackgroundImage(UIImage.init(color: .red), for: .selected)
@@ -78,31 +78,10 @@ class KLMChengpinViewController: UIViewController {
         }
     }
     
-    @IBAction func heibu(_ sender: Any) {
+    @IBAction func downLoadPic(_ sender: Any) {
         
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0303"
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
-    
-    @IBAction func seka(_ sender: Any) {
-        
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0304"
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-    }
-    
-    @IBAction func peifang(_ sender: Any) {
-        
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        let string = "0305"
-        let parame = parameModel(dp: .factoryTest, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        let parameTime = parameModel(dp: .cameraPic)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
     }
     
 }
@@ -126,42 +105,39 @@ extension KLMChengpinViewController: KLMSmartNodeDelegate {
             }
         }
         
-        //黑布
-        if let value = message?.value as? String, message?.dp == .factoryTest {
-            
-            if value == "0303"{
-                SVProgressHUD.dismiss()
-                heibuOK.isHidden = false
-            }
-        }
-        
-        //色卡
-        if let value = message?.value as? String, message?.dp == .factoryTest {
-            
-            if value == "0304"{
-                SVProgressHUD.dismiss()
-                sekaOK.isHidden = false
-            }
-        }
-        
-        //配方
-        if let value = message?.value as? String, message?.dp == .factoryTest {
-            
-            if value == "0305"{
-                SVProgressHUD.dismiss()
-                peifangOK.isHidden = false
-            }
-        }
-        
         //合格或者不合格
         if message?.dp == .factoryTestResule {
 //            SVProgressHUD.showSuccess(withStatus: "测试完成")
             //重置节点
             KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
         }
+        
+        if message?.dp ==  .cameraPic{
+            
+            if let data = message?.value as? [UInt8], data.count >= 4 {
+                
+                let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
+                KLMLog("ip = \(ip)")
+                let url = URL.init(string: ip)
+                
+                if webView == nil {
+                    webView = WKWebView.init()
+                    webView?.frame = playView.bounds
+                    playView.addSubview(webView!)
+                    webView?.navigationDelegate = self
+                }
+                webView?.showEmptyView()
+                let request = URLRequest(url: url!)
+                webView?.load(request)
+            }
+        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
         SVProgressHUD.showSuccess(withStatus: "测试完成")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {
             NotificationCenter.default.post(name: .deviceReset, object: nil)
@@ -172,5 +148,31 @@ extension KLMChengpinViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
+    }
+}
+
+extension KLMChengpinViewController: WKNavigationDelegate {
+    
+    //页面开始加载时调用
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        KLMLog("开始加载")
+    }
+    //当内容开始返回时调用
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        webView.hideEmptyView()
+        KLMLog("内容返回")
+    }
+    
+    // 页面加载完成之后调用
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        KLMLog("加载完成")
+    }
+    
+    //页面加载失败时调用
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        webView.hideEmptyView()
+        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
+        SVProgressHUD.dismiss(withDelay: 3)
+        KLMLog("页面加载失败\(error)")
     }
 }

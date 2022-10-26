@@ -57,7 +57,6 @@ class NetworkConnection: NSObject, Bearer {
     var proxies: [GattBearer] = []
     /// A flag set to `true` when any of the underlying bearers is open.
     var isOpen: Bool = false
-    var connectNode: String = ""
     
     weak var delegate: BearerDelegate?
     weak var dataDelegate: BearerDataDelegate?
@@ -167,15 +166,27 @@ class NetworkConnection: NSObject, Bearer {
 extension NetworkConnection: CBCentralManagerDelegate {
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        KLMConnectManager.shared.state = central.state
         switch central.state {
         case .poweredOn:
             if isStarted && isConnectionModeAutomatic &&
-               proxies.count < NetworkConnection.maxConnections {
+                proxies.count < NetworkConnection.maxConnections {
                 central.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
             }
-        case .poweredOff, .resetting:
+        case .poweredOff:
+            print("app一定已授权,蓝牙是关闭状态")
             proxies.forEach { $0.close() }
             proxies.removeAll()
+            isOpen = false
+            //            SVProgressHUD.showInfo(withStatus: "app一定已授权,蓝牙是关闭状态")
+        case .unauthorized:
+            print("app一定未授权,蓝牙是否开启不知")
+            KLMBlueToothManager.showUnauthorizedAlert()
+            //            SVProgressHUD.showInfo(withStatus: "app一定未授权,蓝牙是否开启不知")
+        case .resetting:
+            proxies.forEach { $0.close() }
+            proxies.removeAll()
+            isOpen = false
         default:
             break
         }
@@ -193,57 +204,59 @@ extension NetworkConnection: CBCentralManagerDelegate {
         } else {
             // Is it a Node Identity beacon?
             guard let nodeIdentity = advertisementData.nodeIdentity,
-                meshNetwork.matches(hash: nodeIdentity.hash, random: nodeIdentity.random) else {
+                  meshNetwork.matches(hash: nodeIdentity.hash, random: nodeIdentity.random) else {
                 // A Node from another mesh network.
                 return
             }
         }
         
+        ///扫描到设备
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
             return
         }
+        let bearer = GattBearer(target: peripheral)
+        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+            
+            bearer.manufacturer = data
+        }
+        
+        ///将数据传输出去
+        if let delegate = delegate as? GattDelegate {
+            delegate.bearerDidDiscover(bearer)
+        }
         
         if proxies.count >= NetworkConnection.maxConnections {
-            central.stopScan()
+
         } else {
-            
-            let bearer = GattBearer(target: peripheral)
             proxies.append(bearer)
-            //手动加的代码
-            //记录当前kCBAdvDataManufacturerData
-            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
-                
-                let subData = data.suffix(from: 2).hex
-                connectNode = subData
-            }
-            
             bearer.delegate = self
             bearer.dataDelegate = self
             bearer.logger = logger
-            
             bearer.open()
         }
         
-//        let bearer = GattBearer(target: peripheral)
-//        proxies.append(bearer)
-//        //手动加的代码
-//        //记录当前kCBAdvDataManufacturerData
-//
-//        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
-//
-//            let subData = data.suffix(from: 2).hex
-//            connectNode = subData
+//        guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
+//            return
 //        }
 //
-//        bearer.delegate = self
-//        bearer.dataDelegate = self
-//        bearer.logger = logger
+//        if proxies.count >= NetworkConnection.maxConnections {
+//            central.stopScan()
+//        } else {
 //
-//        // Is the limit reached?
-////        if proxies.count >= NetworkConnection.maxConnections {
-////            central.stopScan()
-////        }
-//        bearer.open()
+//            //记录当前kCBAdvDataManufacturerData
+//            let bearer = GattBearer(target: peripheral)
+//            if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+//
+//                let subData = data.suffix(from: 2).hex
+//                bearer.nodeUUID = subData
+//                KLMLog("nodeUUID = \(subData)")
+//            }
+//            proxies.append(bearer)
+//            bearer.delegate = self
+//            bearer.dataDelegate = self
+//            bearer.logger = logger
+//            bearer.open()
+//        }
     }
 }
 
@@ -288,4 +301,10 @@ extension NetworkConnection: GattBearerDelegate, BearerDataDelegate {
         dataDelegate?.bearer(self, didDeliverData: data, ofType: type)
     }
     
+}
+
+///自定义
+public protocol GattDelegate: BearerDelegate {
+    
+    func bearerDidDiscover(_ bearer: Bearer)
 }

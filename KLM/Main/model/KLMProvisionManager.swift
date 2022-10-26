@@ -19,6 +19,7 @@ class KLMProvisionManager: NSObject {
     
     private var provisioningManager: ProvisioningManager!
     var bearer: ProvisioningBearer!
+    /// 配网设备
     var discoveredPeripheral: DiscoveredPeripheral!
     weak var delegate:  KLMProvisionManagerDelegate?
     
@@ -34,6 +35,8 @@ class KLMProvisionManager: NSObject {
 extension KLMProvisionManager {
     
     func identify() {
+        
+        SVProgressHUD.show(withStatus: "identify")
         
         let manager = MeshNetworkManager.instance
         self.provisioningManager = try! manager.provision(unprovisionedDevice: self.discoveredPeripheral.device, over: self.bearer)
@@ -68,6 +71,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
         case .capabilitiesReceived(_)://identify完成
             
             KLMLog("identify success")
+            SVProgressHUD.show(withStatus: "provision")
             
             //provision
             if provisioningManager.networkKey == nil {
@@ -83,7 +87,6 @@ extension KLMProvisionManager: ProvisioningDelegate {
             } catch {
                 
                 KLMLog("error")
-                
                 self.delegate?.provisionManager(self, didFailChange: error)
         
             }
@@ -107,32 +110,34 @@ extension KLMProvisionManager: ProvisioningDelegate {
 }
 
 extension KLMProvisionManager: GattBearerDelegate {
-    
+
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         KLMLog("unprovision bearer close")
+        
         guard case .complete = provisioningManager.state else {
-            
+
             var err = MessageError()
             err.message = error?.localizedDescription
             KLMShowError(err)
-        
+            self.delegate?.provisionManager(self, didFailChange: error)
             return
         }
         //节点添加完成
-        if MeshNetworkManager.instance.save() {
+        if KLMMesh.save() {
+            
+            ///刷新首页
+            NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
             
             KLMLog("node add success")
-            
             DispatchQueue.main.asyncAfter(deadline: 1) {
-                
+
                 self.delegate?.provisionManagerNodeAddSuccess(self)
             }
-            
         }
     }
-    
+
     func bearerDidOpen(_ bearer: Bearer) {
-        
-        
+
+
     }
 }

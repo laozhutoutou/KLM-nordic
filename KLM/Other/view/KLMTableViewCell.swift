@@ -57,7 +57,6 @@ class KLMTableViewCell: UITableViewCell, Nibloadable {
                 self.leftImageWidthConstraint.constant = 0;
             }
         }
-    
     }
     
     static func cellWithTableView(tableView: UITableView) -> Self {

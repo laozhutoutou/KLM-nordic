@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 
 class KLMSettingSwichCell: KLMBaseTableViewCell {
 
@@ -16,8 +17,7 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
         super.awakeFromNib()
         if Bundle.isChineseLanguage() {
             CNBtn.isSelected = true
-        }
-        if Bundle.isEnglishLanguage() {
+        } else {
             ENBtn.isSelected = true
         }
     }
@@ -43,7 +43,8 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
     }
     
     func upDateUI() {
-        
+        //键盘完成按钮适配中英文
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = LANGLOC("finish")
         let delegate = UIApplication.shared.delegate as! AppDelegate
         delegate.enterMoreUI()
     }

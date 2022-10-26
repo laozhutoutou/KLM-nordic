@@ -21,12 +21,10 @@ addDevice = "Add new device";
 newGroup = "Create new group";
 groupDeleteTip = "Delete group";
 groupSelectDelete = "Delete group";
-deviceMoveOutGroupTip = "Delete device";
-deviceMoveOutGroup = "Delete device";
+deviceMoveOutGroupTip = "Delete devices";
 connectSuccess = "Connect success";
 connectFailure = "Connect failure";
 geDevice = " Devices";
-transfer = "Move to other group";
 unGroup = "Ungrouped";
 delete = "Delete";
 sure = "Confirm";
@@ -34,10 +32,9 @@ reNameGroup = "Rename group";
 groupMembers = "Group members";
 library = "Photos";
 custom = "Customization";
-restorefactorysettings = "Factory reset";
+restorefactorysettings = "Settings Reset";
 setting = "Settings";
 reName = "Rename";
-groupSetting = "Group setting";
 Energysavingsettings = "Energy saving setting";
 allDeviceAutoEnergysaving = "All devices auto-dim";
 helpQuestionTip = "Please describe your problem(s) , or feedback, leave your name.";
@@ -48,11 +45,8 @@ noGroup = "No groups";
 searchDeviceTip = "Make sure your devices are powered on and nearby";
 DFUVersionTip = "Latest version";
 
-Devicecoloursensing = "Device colour sensing";
-Software = "Software";
-Version = "Version";
+"Auto Mode" = "Auto Mode";
 deleteDevice = "Remove Device";
-deleteDeviceTip = "The device will only be removed from the local database. ";
 research = "Search again";
 nodevicesfound = "No devices found";
 
@@ -64,6 +58,49 @@ Reset = "Reset";
 Min = "min";
 Timeout = "Time out";
 Success = "Success";
-Updatecomplete = "Update complete";
+Updatecomplete = "Upgrade complete";
 Softwareupdate = "Software update";
 Update = "Update";
+CreateHomeTip = "Please goto About > Store Management create a store";
+admin_permissions_tips = "Administrator only";
+FeedBackContentEmptyTip = "Please describe your problems";
+FeedBackContactEmptyTip = "Phone number/Email?";
+
+Remove = "Remove";
+
+logout = "Log Out";
+storeManagement = "Store Management";
+createAStore = "Create a store";
+joinAStore = "Join a store";
+storeSettings = "Store Settings";
+close = "Close";
+deleteMember = "Delete Member";
+invitationCodetip = "Please offer the invitation code to others to join new store within 3 days";
+unknowUser = "Unknow user";
+AddMember = "Add member";
+
+ChangePassword = "Change Password";
+passwordWordDifferent = "The new password entered again is different";
+allDevice = "All devices";
+turnOnLightTip = "Please turn the light on";
+deleteStore = "Delete Store";
+Dataexception = "Data exception";
+DataUploadFail = "Data upload failed, please check the network connection";
+NetWorkTip = "Please make sure the network can be connected";
+deleteStoreTip = "Please ensure that all lights have been reset, otherwise they will not be searched";
+deviceNearbyTip = "Make sure the device is powered on and nearby.Otherwise,check if it is connected by others or out of order.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

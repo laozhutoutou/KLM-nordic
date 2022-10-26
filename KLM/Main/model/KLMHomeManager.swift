@@ -8,18 +8,17 @@
 import Foundation
 import nRFMeshProvision
 
+///sig bluetooth是没有这个的
+let companyIdentifier: UInt16 = 0xff00
+
 let KLMPhoneKey = "KLMPhoneKey"
 let KLMPasswordKey = "KLMPasswordKey"
-let KLMHomeId = "KLMHomeId"
-let KLMHistoryKey = "KLMHistoryKey"
-
-//历史记录最大存储条数
-let HistoryMaxCacheNum = 20
 
 //控制类型
 enum ControllType{
     case Device
     case Group
+    case AllDevices
 }
 
 class KLMHomeManager {
@@ -41,8 +40,7 @@ class KLMHomeManager {
     }
     //控制类型
     var controllType: ControllType?
-    
-    
+
     static var currentNode: Node {
         
         return  KLMHomeManager.sharedInstacnce.smartNode!
@@ -61,23 +59,12 @@ class KLMHomeManager {
         return  KLMHomeManager.sharedInstacnce.smartGroup!
     }
     
-    /// 当前连接的节点
-    static var currentConnectNode: Node? {
-        
-        if let network = MeshNetworkManager.instance.meshNetwork {
-            
-            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-            
-            for node in notConfiguredNodes {
-                if node.UUIDString == MeshNetworkManager.bearer.connectNode {
-                    
-                    return node
-                }
-            }
-        }
-        
-        return nil
+    ///网络状态
+    enum NetworkStatus {
+        case NetworkStatusOK
+        case NetworkStatusNotReachable
     }
+    var networkStatus: NetworkStatus = .NetworkStatusOK
     
     //单例
     static let sharedInstacnce = KLMHomeManager()
@@ -92,44 +79,20 @@ extension KLMHomeManager {
         KLMSetUserDefault(KLMPasswordKey, password)
     }
     
-    static func cacheHomeId(_ homeId: Int64) {
+    static func cacheWIFIMsg(SSID: String, password: String) {
         
-        KLMSetUserDefault(KLMHomeId, homeId)
+        KLMSetUserDefault("SSID", SSID)
+        KLMSetUserDefault("WIFIPassword", password)
     }
     
-    static func getHomeId() -> Int64{
+    static func getWIFIMsg() -> (SSID: String, password: String)? {
         
-         return KLMGetUserDefault(KLMHomeId) as! Int64
-    }
-    
-    static func deleteCache() {
-        
-        KLMSetUserDefault(KLMHomeId, nil)
+        let ssid = KLMGetUserDefault("SSID")
+        let pass = KLMGetUserDefault("WIFIPassword")
+        return (ssid, pass) as? (SSID: String, password: String)
         
     }
     
-    static func cacheHistoryLists(list: [String]) {
-        //最多存储20条记录
-        var lists = list
-        if lists.count > HistoryMaxCacheNum {
-            
-            lists.removeLast()
-        }
-        KLMSetUserDefault(KLMHistoryKey, lists)
-        
-    }
-    
-    static func getHistoryLists() -> [String] {
-        
-        return KLMGetUserDefault(KLMHistoryKey) as? [String] ?? [String]()
-        
-    }
-    
-    static func deleteHistoryCache() {
-        
-        KLMSetUserDefault(KLMHistoryKey, nil)
-        
-    }
 }
 
 extension KLMHomeManager {
@@ -141,7 +104,7 @@ extension KLMHomeManager {
         
         let models = node.primaryElement!.models
         for M in models {
-            if M.modelIdentifier == 4 {
+            if M.modelIdentifier == 2 && M.companyIdentifier == companyIdentifier {
                 return M
             }
         }
@@ -155,5 +118,29 @@ extension KLMHomeManager {
         
         return model.parentElement?.parentNode
     }
+}
+
+extension KLMHomeManager {
     
+    static func showTipView() {
+        
+        if KLMGetUserDefault("showTime") != nil {
+            return
+        }
+        
+        ///弹出提示框
+        let vc = UIAlertController.init(title: LANGLOC("Auto Mode"), message: LANGLOC("Auto Mode has been changed. The sensor on the light detects commodity automatically every 20 minutes by default. For test purpose, tap one time in a row on “Auto Mode” item to set time intervals with “Auto Mode” on. Time interval can be changed from 5 seconds to 60 seconds. Turn on the light again, the time interval will be reset to 20 minutes."), preferredStyle: .alert)
+        vc.addAction(UIAlertAction.init(title: LANGLOC("Do not show"), style: .destructive, handler: { action in
+            KLMSetUserDefault("showTime", 1)
+        }))
+        vc.addAction(UIAlertAction.init(title: LANGLOC("sure"), style: .default, handler: { action in
+            
+        }))
+        if let label: UILabel = vc.view.value(forKeyPath: "_messageLabel") as? UILabel {
+            
+            label.textAlignment = .left
+        }
+        
+        KLMKeyWindow?.rootViewController?.present(vc, animated: true, completion: nil)
+    }
 }

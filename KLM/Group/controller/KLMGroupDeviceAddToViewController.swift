@@ -10,10 +10,18 @@ import nRFMeshProvision
 
 class KLMGroupDeviceAddToViewController: UIViewController {
     
+    @IBOutlet weak var doneBtn: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
     private var groups: [Group]!
     private var selectedIndexPath: IndexPath?
+    
+    enum deviceStatus {
+        case deviceAddtoGroup
+        case deviceDeleteFromGroup
+    }
+    
+    var deviceStatus: deviceStatus = .deviceDeleteFromGroup
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,14 +32,19 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("groupSetting")
-    
+        navigationItem.title = LANGLOC("Group setting")
+        doneBtn.backgroundColor = appMainThemeColor
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
         setupData()
     }
     
     @objc func newGroup() {
+        
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
         
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
@@ -52,16 +65,23 @@ class KLMGroupDeviceAddToViewController: UIViewController {
                     let group = try? Group(name: name, address: address)
                     try? network.add(group: group!)
                     
-                    if MeshNetworkManager.instance.save() {
+                    if KLMMesh.save() {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
                         self.setupData()
+                        
+                        let mesh = KLMMesh.loadHome()!
+                        //提交分组到服务器
+                        KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
+                            KLMLog("分组提交成功到服务器")
+                            
+                        } failure: { error in
+                            KLMHttpShowError(error)
+                        }
                     }
                 }
-                
             }
-
         }
         present(vc, animated: true, completion: nil)
         
@@ -71,41 +91,81 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     func setupData() {
         
         let network = MeshNetworkManager.instance.meshNetwork!
-        
         let alreadySubscribedGroups = KLMHomeManager.currentModel.subscriptions
-        groups = network.groups.filter {
-            !alreadySubscribedGroups.contains($0)
+//        groups = network.groups.filter {
+//            !alreadySubscribedGroups.contains($0)
+//        }
+        groups = network.groups
+        if let index = groups.firstIndex(where: { item -> Bool in
+            
+            return alreadySubscribedGroups.contains(where: {$0.address == item.address})
+                
+        }) {
+            
+            selectedIndexPath = IndexPath.init(row: index, section: 0)
+
         }
+        
         self.tableView.reloadData()
     
     }
     
     @IBAction func finishClick(_ sender: Any) {
         
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
+        
         //设备添加到群组
         guard let selectedIndexPath = selectedIndexPath else { return  }
         
         SVProgressHUD.show()
-        let group = groups[selectedIndexPath.row]
         
-        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
+        if let oldGroup = KLMHomeManager.currentModel.subscriptions.first {
+            self.deviceStatus = .deviceDeleteFromGroup
+            ///将设备从旧分组删除
+            KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: oldGroup)
+        } else {
+            self.deviceStatus = .deviceAddtoGroup
+            let group = groups[selectedIndexPath.row]
+            KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
+        }
     }
 }
 
 extension KLMGroupDeviceAddToViewController: KLMMessageManagerDelegate {
     
-    
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
         
         if error != nil {
             
-            SVProgressHUD.showError(withStatus: error?.message)
+            SVProgressHUD.showInfo(withStatus: error?.message)
             return
         }
         
-        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-        NotificationCenter.default.post(name: .deviceAddToGroup, object: nil)
-        self.navigationController?.popViewController(animated: true)
+        if self.deviceStatus == .deviceDeleteFromGroup {
+            
+            self.deviceStatus = .deviceAddtoGroup
+            ///提交数据到服务器
+            if KLMMesh.save() {
+                
+            }
+            ///设备添加进新分组
+            let group = groups[selectedIndexPath!.row]
+            KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
+        }
+        
+        if self.deviceStatus == .deviceAddtoGroup {
+            
+            ///提交数据到服务器
+            if KLMMesh.save() {
+                
+            }
+            
+            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+            NotificationCenter.default.post(name: .deviceAddToGroup, object: nil)
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
 }

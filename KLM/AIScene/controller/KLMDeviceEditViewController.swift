@@ -13,45 +13,47 @@ private enum itemType: Int, CaseIterable {
     case lightSetting
     case CMOS
     case motion
-    case test
     case DFU
     case rename
     case group
     case reset
-    case sigleControl
-    case downLoadPic
+//    case sigleControl //单路控制
+    case downLoadPic //下载图像
+//    case passengerFlow //客流统计
+    
 }
 
-class KLMDeviceEditViewController: UIViewController {
+class KLMDeviceEditViewController: UIViewController, Editable {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var nameLab: UILabel!
     
-    var deviceGroups = [Group]()
+    var deviceGroups: [Group] = [Group]()
     
-    //1 打开
+    //1 打开 颜色识别
     var cameraSwitch = 1
     //灯开关
     var lightSwitch = 0
     
-    ///版本号
-    var MCUVersion: Int = 1
-    var BLEVersion: Int = 1
-    
+    ///蓝牙固件版本号
+    var BLEVersion: String?
+    ///服务器上的版本
+    var BLEVersionData: KLMVersion.KLMVersionData?
+
     //节能开关
     var motionValue: Bool = false
     //颜色测试
     var colorTest: Bool  = false
+ 
+    var isVersionFirst = true
+    
+    //来自设备添加
+    var isFromAddDevice: Bool = false
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +61,21 @@ class KLMDeviceEditViewController: UIViewController {
         
         KLMSmartNode.sharedInstacnce.delegate = self
         
-        setupNodeMessage()
+        checkVerison()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ///拦截导航栏返回
+        if navigationController?.viewControllers.firstIndex(of: self) == nil{
+            
+            ///发送语音关闭指令
+            KLMAudioManager.shared.stopPlay()
+            
+            ///关闭语音播报
+            let parame = parameModel.init(dp: .audio, value: 2)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        }
     }
     
     override func viewDidLoad() {
@@ -67,13 +83,16 @@ class KLMDeviceEditViewController: UIViewController {
         
         setupUI()
         
-        setupData()
+        event()
         
-        sendFlash()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(checkGroup), name: .deviceAddToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupNodeMessage), name: .refreshDeviceEdit, object: nil)
         
+        ///显示空白页面
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 5) {
+            self.hideEmptyView()
+        }
     }
     
     func setupUI() {
@@ -91,80 +110,209 @@ class KLMDeviceEditViewController: UIViewController {
         tableView.clipsToBounds = true
     }
     
+    func event() {
+        
+        checkGroup()
+        
+        sendFlash()
+        
+        ///语音
+        ///这个页面也可以语音播报，进来这个页面可能语音功能未关闭
+        KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
+        
+        //添加手势
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
+        tap.numberOfTapsRequired = 3
+        contentView.addGestureRecognizer(tap)
+    }
+    
     //灯闪烁
     func sendFlash() {
         
         let parame = parameModel(dp: .flash, value: 2)
-        
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         
     }
     
     ///查询设备所属分组
-    @objc func setupData() {
+    @objc func checkGroup() {
         deviceGroups = KLMHomeManager.currentModel.subscriptions
         self.tableView.reloadData()
     }
     
     @objc func setupNodeMessage() {
         
-        //获取状态
-        let parameTime = parameModel(dp: .AllDp)
-        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
-        
+        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+            //获取状态
+            let parame = parameModel(dp: .deviceSetting)
+            KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+        }
+
     }
     
+    func checkVerison() {
+        
+        if KLMHomeManager.currentNode.noCamera { ///没有摄像头
+            KLMService.checkTLWVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.tableView.reloadData()
+                self.setupNodeMessage()
+                
+            } failure: { error in
+                
+                self.setupNodeMessage()
+            }
+
+        } else {
+            
+            KLMService.checkBlueToothVersion { response in
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.tableView.reloadData()
+                self.setupNodeMessage()
+            } failure: { error in
+                self.setupNodeMessage()
+            }
+        }
+    }
+    
+    func showUpdateView() {
+    
+        guard let bleData = self.BLEVersionData,
+              let bleV = BLEVersion else {
+            
+            return
+        }
+        
+        if isVersionFirst {
+            isVersionFirst = false
+            KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
+                
+                if bleData.isForceUpdate {
+                    self.isVersionFirst = true
+                }
+                if KLMHomeManager.currentNode.noCamera {
+                    
+                    let vc = KLMTLWOTAViewController()
+                    vc.BLEVersionData = bleData
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+                }
+                let vc = KLMDFUTestViewController()
+                vc.BLEVersionData = bleData
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } cancel: {
+                if bleData.isForceUpdate {
+                    self.navigationController?.popViewController(animated: true)
+                } else { //普通升级
+                    //弹框
+                    if self.isFromAddDevice {
+                        if KLMHomeManager.currentNode.noCamera == true {
+                            return
+                        }
+                        let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
+                        vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .default, handler: { action in
+                            
+                            let vc = KLMPicDownloadViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }))
+                        vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
+
+                        }))
+                        self.present(vc, animated: true)
+                    }
+                }
+            } noNeedUpdate: { //不需要升级
+                
+                if self.isFromAddDevice {
+                    if KLMHomeManager.currentNode.noCamera == true {
+                        return
+                    }
+                    let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
+                    vc.addAction(UIAlertAction.init(title: LANGLOC("Right now"), style: .default, handler: { action in
+                        
+                        let vc = KLMPicDownloadViewController()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }))
+                    vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
+                    }))
+                    self.present(vc, animated: true)
+                }
+            }
+        }
+    }
+    
+    @objc func tap() {
+        
+        KLMLog("连续点击")
+        ///没有摄像头没有此功能
+        if KLMHomeManager.currentNode.noCamera == true {
+            
+            return
+        }
+        if cameraSwitch != 1 { //自动颜色开关没打开
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
+            return
+        }
+        let vc = KLMAudioViewController()
+        let nav = KLMNavigationViewController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true, completion: nil)
+    }
 }
 
 extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        SVProgressHUD.dismiss()
-        if message?.dp ==  .cameraPower{
+        ///版本号2字节，开关1，颜色识别1，motion 3（开关，亮度，时间）
+        if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
+            SVProgressHUD.dismiss()
+            /// 版本 0112  显示 1.1.2
+            let version = value[0...1]
+            let first: Int = Int(version[0])
+            let second: Int = Int((version[1] & 0xf0) >> 4)
+            let third: Int =  Int(version[1] & 0x0f)
+            BLEVersion = "\(first).\(second).\(third)"
+            self.showUpdateView()
             
-            let value = message?.value as! Int
-            self.cameraSwitch = value
+            ///开关
+            let power: Int = Int(value[2])
+            self.lightSwitch = power
+            
+            ///颜色识别
+            let cmos: Int = Int(value[3])
+            self.cameraSwitch = cmos
+            
+            ///节能
+            let motion: Int = Int(value[4])
+            self.motionValue = motion == 0 ? false : true
+            
+            ///刷新页面
             self.tableView.reloadData()
-            
+            ///隐藏显示框
+            self.hideEmptyView()
         }
+        ///语音播报
+        if message?.dp == .audio, let value = message?.value as? [UInt8] {
+            if message?.opCode == .read {
         
-        if message?.dp ==  .checkVersion, let value = message?.value as? String {//查询版本
-            
-            //0100  01蓝牙  00mcu
-            let BLE: Int = Int(value.substring(to: 2).hexadecimalToDecimal())!
-            BLEVersion = BLE
-            
-            //
-            let MCU: Int = Int(value.substring(from: 2).hexadecimalToDecimal())!
-            MCUVersion = MCU
-            
-            self.tableView.reloadData()
+                if value.count >= 2 { ///设备端主动下发语音指令
+                    
+                    let secondIndex = Int(value[1])
+                    KLMAudioManager.shared.startPlay(type: secondIndex)
+                    
+                }
+            }
         }
-        
-        if message?.dp ==  .motionPower{
-            let value = message?.value as! Int
-            self.motionValue = value == 0 ? false : true
-            self.tableView.reloadData()
-        }
-        
-        if message?.dp ==  .colorTest{
-            
-            let value = message?.value as! Int
-            self.colorTest = value == 2 ? false : true
-            self.tableView.reloadData()
-        }
-        if message?.dp ==  .power{
-            
-            let value = message?.value as! Int
-            self.lightSwitch = value
-            self.tableView.reloadData()
-        }
-        
-        KLMLog("success")
     }
     
-    func smartNodeDidResetNode(_ manager: KLMSmartNode){
+    func smartNodeDidResetNode(_ manager: KLMSmartNode) {
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
         
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         NotificationCenter.default.post(name: .deviceReset, object: nil)
@@ -172,6 +320,10 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        ///从拍照页面返回来，如果灯是关闭的，不提示开灯操作
+        if error?.dp == .recipe || error?.dp == .audio {
+            return
+        }
         KLMShowError(error)
     }
 }
@@ -186,6 +338,16 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        if KLMHomeManager.currentNode.noCamera == true {
+            switch indexPath.row {
+            case itemType.CMOS.rawValue,
+                itemType.motion.rawValue,
+                itemType.downLoadPic.rawValue:
+                return 0
+            default:
+                break
+            }
+        }
         return 56
     }
     
@@ -203,7 +365,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("lightSet")
             cell.rightTitle = ""
             return cell
-        case itemType.CMOS.rawValue:
+        case itemType.CMOS.rawValue://颜色识别
             let cell: KLMOneSwitchCell = KLMOneSwitchCell.cellWithTableView(tableView: tableView)
             cell.cameraOnOff = self.cameraSwitch
             return cell
@@ -227,23 +389,17 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("restorefactorysettings")
             cell.rightTitle = ""
             return cell
-        case itemType.DFU.rawValue://MCU
-            ///1.1 代表蓝牙版本是1，MCU版本是1，蓝牙在前面
+        case itemType.DFU.rawValue://
+            ///
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Software")
-            cell.rightTitle = LANGLOC("Version ") + "\(BLEVersion).\(MCUVersion)"
-            return cell
-        case itemType.test.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Devicecoloursensing") + LANGLOC("Test")
-            cell.rightTitle = self.colorTest == false ? LANGLOC("OFF") : LANGLOC("ON")
+            cell.rightTitle = LANGLOC("Version") + " " + (BLEVersion ?? "0")
             return cell
         case itemType.group.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("groupSetting")
+            cell.leftTitle = LANGLOC("Group setting")
             if self.deviceGroups.count <= 0 {
                 let string = LANGLOC("unGroup")
                 cell.rightTitle = string
@@ -258,18 +414,24 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 cell.rightTitle = string
             }
             return cell
-        case itemType.sigleControl.rawValue://
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "单独控制"
-            cell.rightTitle = ""
-            return cell
+//        case itemType.sigleControl.rawValue://
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "单路控制"
+//            cell.rightTitle = ""
+//            return cell
         case itemType.downLoadPic.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "下载图像"
+            cell.leftTitle = LANGLOC("View commodity position")
             cell.rightTitle = ""
             return cell
+//        case itemType.passengerFlow.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = LANGLOC("Customer Counting")
+//            cell.rightTitle = ""
+//            return cell
         default:
             break
         }
@@ -280,20 +442,35 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        
+        
         switch indexPath.row {
         case itemType.rename.rawValue://设备名称
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
+            
             let vc = CMDeviceNamePopViewController()
             vc.titleName = LANGLOC("Light")
             vc.text = KLMHomeManager.currentNode.name
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve
             vc.nameBlock = {[weak self] name in
-                
                 guard let self = self else { return }
+                
+                if let network = MeshNetworkManager.instance.meshNetwork {
+                    
+                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+                    if notConfiguredNodes.contains(where: {$0.name == name}) {
+                        SVProgressHUD.showInfo(withStatus: LANGLOC("The name already exists"))
+                        return
+                    }
+                }
                 
                 KLMHomeManager.currentNode.name = name
                 
-                if MeshNetworkManager.instance.save() {
+                if KLMMesh.save() {
                     
                     self.nameLab.text = KLMHomeManager.currentNode.name
                     self.tableView.reloadData()
@@ -311,21 +488,30 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             
         case itemType.lightSetting.rawValue://灯光设置
             //是否有相机权限
-            KLMPhotoManager().photoAuthStatus { [weak self] in
-                guard let self = self else { return }
-                
-                let vc = KLMImagePickerController()
-                vc.sourceType = UIImagePickerController.SourceType.camera
-                self.tabBarController?.present(vc, animated: true, completion: nil)
-                
-            }
+//            KLMPhotoManager().photoAuthStatus { [weak self] in
+//                guard let self = self else { return }
+//
+//                let vc = KLMImagePickerController()
+//                vc.sourceType = .camera
+//                self.present(vc, animated: true, completion: nil)
+//
+//            }
+            let vc = KLMLightSettingController()
+            navigationController?.pushViewController(vc, animated: true)
             
         case itemType.motion.rawValue:
             let vc = KLMMotionViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            let nav = KLMNavigationViewController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            present(nav, animated: true, completion: nil)
         case itemType.reset.rawValue: //恢复出厂设置
-            let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .actionSheet)
-            vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .destructive, handler: { action in
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
+            
+            let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .alert)
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .default, handler: { action in
                 SVProgressHUD.show()
                 KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
 
@@ -333,32 +519,55 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         case itemType.DFU.rawValue:///固件更新
-            //当前版本
-            let currentVersion: String = "\(BLEVersion).\(MCUVersion)"
-            //最新版本
-            let newestVersion: String = "\(BLENewestVersion).\(MCUNewestVersion)"
             
-            let value = currentVersion.compare(newestVersion)
+            guard let bleData = self.BLEVersionData else {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
+            guard let bleV = BLEVersion else {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
+
+            let value = bleV.compare(bleData.fileVersion)
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
                 
-                let vc = KLMDFUViewController()
-                vc.BLEVersion = BLEVersion
-                vc.MCUVersion = MCUVersion
+                if KLMHomeManager.currentNode.noCamera {
+                    
+                    let vc = KLMTLWOTAViewController()
+                    vc.BLEVersionData = bleData
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return
+                }
+                
+                let vc = KLMDFUTestViewController()
+                vc.BLEVersionData = bleData
                 navigationController?.pushViewController(vc, animated: true)
-                
+
             } else {
-                
+                 
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
             }
-        case itemType.sigleControl.rawValue://六路测试
-            let vc = KLMTestViewController()
+        case itemType.CMOS.rawValue:
+            if cameraSwitch != 1 { //自动颜色开关没打开
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
+                return
+            }
+            let vc = KLMCMOSViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case itemType.test.rawValue:
-            let vc = KLMText1ViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            
+//        case itemType.sigleControl.rawValue://六路测试
+//            let vc = KLMTestViewController()
+//            navigationController?.pushViewController(vc, animated: true)
         case itemType.downLoadPic.rawValue:
-            let vc = KLMTestCameraViewController()
+            
+            let vc = KLMPicDownloadViewController()
             navigationController?.pushViewController(vc, animated: true)
+            
+//            let vc = KLMRGBTestViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+//            let vc = KLMTestCameraViewController()
+//            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

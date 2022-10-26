@@ -6,15 +6,15 @@
 //
 
 import UIKit
- 
+import SwiftUI
+
 class KLMAPPUpdateViewController: UIViewController {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var versionLab: UILabel!
     @IBOutlet weak var updateBtn: UIButton!
     
-    var myview: OpenGLView20!
-    var yuvData: NSData!
+    @IBOutlet weak var nameLab: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,33 +24,83 @@ class KLMAPPUpdateViewController: UIViewController {
         iconImageView.clipsToBounds = true
         versionLab.text = String(format: "%@: %@", LANGLOC("version"),KLM_APP_VERSION as! String)
         
+        let appName: String = KLM_APP_NAME as! String
+        nameLab.text = appName
+        
         updateBtn.layer.cornerRadius = updateBtn.height / 2
+        updateBtn.backgroundColor = appMainThemeColor
         
-//        if let path = Bundle.main.path(forResource: "jpgimage1_image_640_480", ofType: "yuv"){
-//            yuvData = NSData.init(contentsOfFile: path)
-//
-//            self.myview = OpenGLView20.init(frame: CGRect.init(x: 20, y: 20, width: KLMScreenW - 40, height: 300))
-//            self.view.addSubview(self.myview)
-//
-//        }
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    
-//        self.myview.setVideoSize(640, height: 480)
-//        self.myview.displayYUV420pData(self.yuvData as Data?, width: 640, height: 480)
+    @objc func applicationBecomeActive() {
+        
+        versionLab.text = String(format: "%@: %@", LANGLOC("Version"),KLM_APP_VERSION as! String)
     }
-
+    
     @IBAction func updateClick(_ sender: Any) {
         
-        //查询版本
-//        KLMNetworking.ShareInstance.POST(URLString: "https://itunes.apple.com/lookup?id=1579633878", params: nil) { response in
-//            
-//        } failure: { error in
-//            
-//            KLMShowError(error)
-//        }
+        if apptype == .test {
+            SVProgressHUD.showInfo(withStatus: "app没上架市场，无法更新。")
+            return
+        }
+        
+        ///检查版本
+        if apptype == .targetGN || apptype == .targetsGW {
+            checkAPPVersion()
+        }
+        
+        if apptype == .targetSensetrack {
+            checkAppleStoreVersion()
+        }
+    }
+    
+    private func checkAPPVersion() {
+        
+        SVProgressHUD.show()
+        KLMService.checkAPPVersion { response in
+            SVProgressHUD.dismiss()
+            guard let versionData = response as? KLMVersion.KLMVersionData else { return  }
+            let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
+            
+            guard currentVersion.compare(versionData.fileVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
+            
+            ///跳转到appleStore
+            let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
+            if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
+                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
+            }
+            
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+    }
+    
+    private func checkAppleStoreVersion() {
+        
+        SVProgressHUD.show()
+        KLMService.checkAppleStoreAppVersion { response in
+            SVProgressHUD.dismiss()
+            guard let newVersion = response as? String else { return  }
+            let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
+            
+            guard currentVersion.compare(newVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
+                        
+            ///跳转到appleStore
+            let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
+            if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
+                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
+            }
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
 }

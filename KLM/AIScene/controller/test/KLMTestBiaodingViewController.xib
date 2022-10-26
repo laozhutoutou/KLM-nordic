@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMTestBiaodingViewController" customModule="KLM_GN" customModuleProvider="target">
+            <connections>
+                <outlet property="indexLab" destination="2Fg-zr-UMK" id="0as-hF-MKe"/>
+                <outlet property="startBtn" destination="LdP-Gz-LCn" id="PQy-BB-Z6w"/>
+                <outlet property="verifyBtn" destination="SzW-1n-4uM" id="zEF-SW-TpP"/>
+                <outlet property="verifyLab" destination="bZa-I4-J7q" id="2vM-Xc-mB9"/>
+                <outlet property="verifyView" destination="CdJ-9h-uks" id="blJ-MT-buI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未标定，请点击标定按钮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fg-zr-UMK">
+                    <rect key="frame" x="20" y="112" width="191" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdJ-9h-uks">
+                    <rect key="frame" x="0.0" y="257.5" width="414" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标定完成，请点击验证按钮" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7d-8b-gls">
+                            <rect key="frame" x="20" y="8" width="208" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SzW-1n-4uM">
+                            <rect key="frame" x="147" y="41.5" width="120" height="45"/>
+                            <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="f9v-Un-0Tw"/>
+                                <constraint firstAttribute="width" constant="120" id="yHe-HF-0iJ"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="验证">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="verify:" destination="-1" eventType="touchUpInside" id="tLT-WU-oSg"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZa-I4-J7q">
+                            <rect key="frame" x="207" y="126.5" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="W7d-8b-gls" firstAttribute="leading" secondItem="CdJ-9h-uks" secondAttribute="leading" constant="20" id="B7C-Cb-BDZ"/>
+                        <constraint firstItem="SzW-1n-4uM" firstAttribute="centerX" secondItem="CdJ-9h-uks" secondAttribute="centerX" id="GUW-H3-VA1"/>
+                        <constraint firstItem="W7d-8b-gls" firstAttribute="top" secondItem="CdJ-9h-uks" secondAttribute="top" constant="8" id="S8A-2q-oDJ"/>
+                        <constraint firstItem="bZa-I4-J7q" firstAttribute="top" secondItem="SzW-1n-4uM" secondAttribute="bottom" constant="40" id="YMy-Ku-NQl"/>
+                        <constraint firstItem="SzW-1n-4uM" firstAttribute="top" secondItem="W7d-8b-gls" secondAttribute="bottom" constant="13" id="bKY-ho-I0f"/>
+                        <constraint firstItem="bZa-I4-J7q" firstAttribute="centerX" secondItem="CdJ-9h-uks" secondAttribute="centerX" id="bNK-Hs-ki0"/>
+                        <constraint firstAttribute="height" constant="200" id="glY-6m-L8E"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LdP-Gz-LCn">
+                    <rect key="frame" x="147" y="192.5" width="120" height="45"/>
+                    <color key="backgroundColor" red="0.0" green="0.82352941180000006" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="45" id="270-Qw-4dp"/>
+                        <constraint firstAttribute="width" constant="120" id="bc6-Yq-cdf"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="标定">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="start:" destination="-1" eventType="touchUpInside" id="vs2-vH-OTv"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="2Fg-zr-UMK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="ESd-Tu-7oo"/>
+                <constraint firstItem="2Fg-zr-UMK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="F51-kf-fYF"/>
+                <constraint firstItem="LdP-Gz-LCn" firstAttribute="top" secondItem="2Fg-zr-UMK" secondAttribute="bottom" constant="60" id="GRo-G2-qZE"/>
+                <constraint firstItem="LdP-Gz-LCn" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="I7g-0o-yeR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CdJ-9h-uks" secondAttribute="trailing" id="i1Y-Io-sCf"/>
+                <constraint firstItem="CdJ-9h-uks" firstAttribute="top" secondItem="LdP-Gz-LCn" secondAttribute="bottom" constant="20" id="oG4-ob-hdN"/>
+                <constraint firstItem="CdJ-9h-uks" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vPM-xd-6vy"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="-1575" y="-35"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

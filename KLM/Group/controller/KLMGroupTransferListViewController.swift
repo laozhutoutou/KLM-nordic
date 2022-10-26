@@ -16,18 +16,14 @@ enum deviceStatus {
 class KLMGroupTransferListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var doneBtn: UIButton!
     
-    var deviceStatus: deviceStatus = .deviceAddtoGroup
+    var deviceStatus: deviceStatus = .deviceDeleteFromGroup
     
     //选择的
     private var selectedIndexPath: IndexPath?
-    
-    //原来设备所属分组
-    var originalGroup: Group!
-    
-    //当前设备
-    var currentDevice: Node!
-    
+    var selectNodes: [Node]!
+    var currentIndex: Int = 0
     private var groups: [Group]!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +35,8 @@ class KLMGroupTransferListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("transfer")
+        navigationItem.title = LANGLOC("Select a group")
+        doneBtn.backgroundColor = appMainThemeColor
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
@@ -49,7 +46,7 @@ class KLMGroupTransferListViewController: UIViewController {
     func setupData() {
         
         let network = MeshNetworkManager.instance.meshNetwork!
-        let model = KLMHomeManager.getModelFromNode(node: currentDevice)!
+        let model = KLMHomeManager.getModelFromNode(node: selectNodes.first!)!
         let alreadySubscribedGroups = model.subscriptions
         groups = network.groups.filter {
             !alreadySubscribedGroups.contains($0)
@@ -60,17 +57,38 @@ class KLMGroupTransferListViewController: UIViewController {
 
     @IBAction func finishClick(_ sender: Any) {
         
-        //设备添加到群组
-        guard let selectedIndexPath = selectedIndexPath else { return  }
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
+        
+        if selectedIndexPath == nil {
+            return
+        }
         
         SVProgressHUD.show()
-        let group = groups[selectedIndexPath.row]
-        
-        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: currentDevice, withGroup: group)
+        removeDevice()
         
     }
     
+    ///设备从旧分组移除
+    private func removeDevice() {
+        
+        let selectNode = selectNodes[currentIndex]
+        KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: selectNode, withGroup: KLMHomeManager.currentGroup)
+    }
+    ///设备添加进新分组
+    private func addDevice() {
+        
+        let selectNode = selectNodes[currentIndex]
+        let group = groups[selectedIndexPath!.row]
+        KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: selectNode, withGroup: group)
+    }
+    
     @objc func newGroup() {
+        
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
         
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
@@ -91,12 +109,22 @@ class KLMGroupTransferListViewController: UIViewController {
                     let group = try? Group(name: name, address: address)
                     try? network.add(group: group!)
                     
-                    if MeshNetworkManager.instance.save() {
+                    if KLMMesh.save() {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         NotificationCenter.default.post(name: .groupAddSuccess, object: nil)
                         self.setupData()
+                        
+                        let mesh = KLMMesh.loadHome()!
+                        //提交分组到服务器
+                        KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
+                            KLMLog("分组提交成功到服务器")
+
+                        } failure: { error in
+                            KLMHttpShowError(error)
+                        }
                     }
+                    
                 }
                 
             }
@@ -111,29 +139,42 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
     
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
         
+        if KLMMesh.save() {
+            
+        }
+        
         if error != nil {
             
-            SVProgressHUD.showError(withStatus: error?.message)
+            SVProgressHUD.showInfo(withStatus: error?.message)
             return
         }
         
         //设备添加进群组成功
         if self.deviceStatus == .deviceAddtoGroup {
             self.deviceStatus = .deviceDeleteFromGroup
-            
-            //设备从当前群组中移除
-            KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: currentDevice, withGroup: self.originalGroup)
-            
-        }
-        
-        //设备移除成功
-        if self.deviceStatus == .deviceDeleteFromGroup {
-            
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            DispatchQueue.main.asyncAfter(deadline: 1) {
+            currentIndex += 1
+            if currentIndex >= selectNodes.count {
+                
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 NotificationCenter.default.post(name: .deviceTransferSuccess, object: nil)
-                self.navigationController?.popViewController(animated: true)
+                ///KLMGroupDeviceEditViewController
+                var targetVC : UIViewController!
+                for controller in self.navigationController!.viewControllers {
+                    if controller.isKind(of: KLMGroupDeviceEditViewController.self) {
+                        targetVC = controller
+                    }
+                }
+                if targetVC != nil {
+                    self.navigationController?.popToViewController(targetVC, animated: true)
+                }
+            } else {
+                
+                removeDevice()
             }
+        } else { //设备移除成功
+            
+            self.deviceStatus = .deviceAddtoGroup
+            addDevice()
         }
     }
 }

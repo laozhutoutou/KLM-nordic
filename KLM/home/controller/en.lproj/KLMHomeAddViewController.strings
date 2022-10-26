@@ -1,0 +1,6 @@
+
+/* Class = "UITextField"; placeholder = "请输入商场名称"; ObjectID = "KhE-Tv-5oM"; */
+"KhE-Tv-5oM.placeholder" = "Enter";
+
+/* Class = "UILabel"; text = "商场名称："; ObjectID = "uoj-tW-Ru7"; */
+"uoj-tW-Ru7.text" = "Store Name：";

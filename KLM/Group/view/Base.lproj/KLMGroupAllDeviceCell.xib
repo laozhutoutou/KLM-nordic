@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sc7-ln-eSd" customClass="KLMGroupAllDeviceCell" customModule="KLM_GN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sc7-ln-eSd" id="Dk4-56-2aX">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有设备" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2pp-RF-z41">
+                        <rect key="frame" x="21" y="12" width="65.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0个设备" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFq-16-vIi">
+                        <rect key="frame" x="21" y="33.5" width="44.5" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.47843137250000001" green="0.47843137250000001" blue="0.47843137250000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lsl-Nn-uwN">
+                        <rect key="frame" x="260" y="0.0" width="60" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="DEc-0M-ALU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" image="icon_set_up">
+                            <color key="titleColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="settings:" destination="sc7-ln-eSd" eventType="touchUpInside" id="GLY-Ez-vJq"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="2pp-RF-z41" firstAttribute="leading" secondItem="Dk4-56-2aX" secondAttribute="leading" constant="21" id="8JM-Co-E8l"/>
+                    <constraint firstItem="LFq-16-vIi" firstAttribute="top" secondItem="2pp-RF-z41" secondAttribute="bottom" constant="2" id="Dg3-Op-uPR"/>
+                    <constraint firstItem="LFq-16-vIi" firstAttribute="leading" secondItem="2pp-RF-z41" secondAttribute="leading" id="KEN-uQ-g5Z"/>
+                    <constraint firstItem="Lsl-Nn-uwN" firstAttribute="top" secondItem="Dk4-56-2aX" secondAttribute="top" id="Lua-ZB-d5a"/>
+                    <constraint firstAttribute="trailing" secondItem="Lsl-Nn-uwN" secondAttribute="trailing" id="djJ-0X-hnc"/>
+                    <constraint firstAttribute="bottom" secondItem="Lsl-Nn-uwN" secondAttribute="bottom" id="eOm-pr-oas"/>
+                    <constraint firstItem="2pp-RF-z41" firstAttribute="top" secondItem="Dk4-56-2aX" secondAttribute="top" constant="12" id="lwW-FJ-2Sn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="wCH-Pc-OHw"/>
+            <connections>
+                <outlet property="numLab" destination="LFq-16-vIi" id="0wy-1z-K1q"/>
+            </connections>
+            <point key="canvasLocation" x="-1941" y="-125"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_set_up" width="20" height="20"/>
+    </resources>
+</document>

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMAPPUpdateViewController" customModule="KLM" customModuleProvider="target">
             <connections>
                 <outlet property="iconImageView" destination="cCy-F5-8gx" id="AW2-e6-rwm"/>
+                <outlet property="nameLab" destination="cFe-iD-Lxg" id="vzu-LP-mfr"/>
                 <outlet property="updateBtn" destination="DXh-8V-Gqh" id="Gob-tl-xKF"/>
                 <outlet property="versionLab" destination="kte-6h-dR3" id="Z39-zx-q2t"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -69,7 +70,7 @@
                 <constraint firstItem="cCy-F5-8gx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="uwZ-Zt-IHE"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <point key="canvasLocation" x="22" y="114"/>
+            <point key="canvasLocation" x="-288" y="117"/>
         </view>
     </objects>
     <resources>

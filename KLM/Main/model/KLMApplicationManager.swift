@@ -12,11 +12,14 @@ import IQKeyboardManagerSwift
 class KLMApplicationManager {
     
     func setupWindow(window : UIWindow) {
-        
+    
         setupSVHUD()
         
         //键盘处理
         setupKeyboard()
+        
+        ///交换点击按钮方法，可以给按钮设置点击间隔时间 有bug，侧滑无法点击
+//        UIButton.initializeSendMethod()
         
         let token = KLMGetUserDefault("token")
         if token == nil {
@@ -24,6 +27,7 @@ class KLMApplicationManager {
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.enterLoginUI()
         } else {
+            
             let appdelegate = UIApplication.shared.delegate as! AppDelegate
             appdelegate.enterMainUI()
         }
@@ -32,6 +36,7 @@ class KLMApplicationManager {
     func setupSVHUD() {
         
         SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setMinimumDismissTimeInterval(1.0)
     }
     
     private func setupKeyboard() {
@@ -39,8 +44,9 @@ class KLMApplicationManager {
         let manager =  IQKeyboardManager.shared
         manager.enable = true
         manager.shouldResignOnTouchOutside = true
-        manager.shouldToolbarUsesTextFieldTintColor = true;
-        manager.enableAutoToolbar = true;
+        manager.shouldToolbarUsesTextFieldTintColor = true
+        ///不显示工具条
+        manager.enableAutoToolbar = true
         manager.toolbarManageBehaviour = .byTag
         
     }

@@ -9,14 +9,9 @@ import UIKit
 import Photos
 
 class KLMImagePickerController: UIImagePickerController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
-            
-            sendFlash()
-        }
         
         self.delegate = self
         
@@ -27,7 +22,6 @@ class KLMImagePickerController: UIImagePickerController {
         
         //拍照
         let takePhotoBtn = UIButton.init(type: .custom)
-//        takePhotoBtn.setTitle("拍照", for: .normal)
         takePhotoBtn.backgroundColor = .white
         takePhotoBtn.layer.borderWidth = 7
         takePhotoBtn.layer.borderColor = rgb(129, 129, 129).cgColor
@@ -56,7 +50,7 @@ class KLMImagePickerController: UIImagePickerController {
         let titleLab: UILabel = UILabel.init()
         titleLab.font = UIFont.systemFont(ofSize: 15)
         titleLab.textColor = .white
-        titleLab.text = LANGLOC("lightSet")
+        titleLab.text = LANGLOC("Take a picture")
         overLayView.addSubview(titleLab)
         titleLab.snp.makeConstraints { make in
             make.centerY.equalTo(closeBtn)
@@ -65,6 +59,9 @@ class KLMImagePickerController: UIImagePickerController {
         
         //相册
         let libraryBtn = UIButton.init(type: .custom)
+        libraryBtn.setTitle(LANGLOC("library"), for: .normal)
+        libraryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        libraryBtn.setTitleColor(.white, for: .normal)
         libraryBtn.layer.cornerRadius = 5
         libraryBtn.clipsToBounds = true
         libraryBtn.addTarget(self, action: #selector(libraryClick), for: .touchUpInside)
@@ -75,57 +72,40 @@ class KLMImagePickerController: UIImagePickerController {
             make.left.equalToSuperview().offset(40)
             make.height.equalTo(40)
             make.width.equalTo(40)
-        }      
-        
-        if let latest = self.latestAsset() {
-            
-            PHImageManager.default().requestImage(for: latest, targetSize: .zero, contentMode: .aspectFill, options: nil) { result, info in
-                
-                libraryBtn.setImage(result, for: .normal)
+        }
+        ///异步请求
+        DispatchQueue.global().async{
 
+            if let latest = self.latestAsset() {
+
+                DispatchQueue.global().async{
+
+                    PHImageManager.default().requestImage(for: latest, targetSize: .zero, contentMode: .aspectFill, options: nil) { result, info in
+
+                        DispatchQueue.main.async{
+
+                            libraryBtn.setImage(result, for: .normal)
+                            libraryBtn.setTitle(nil, for: .normal)
+                        }
+                    }
+                }
             }
-        } else {
-            
-            libraryBtn.setTitle(LANGLOC("library"), for: .normal)
-            libraryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-            libraryBtn.setTitleColor(.white, for: .normal)
         }
-        
-        
-        //自定义
-        let customBtn = UIButton.init(type: .custom)
-        customBtn.setTitle(LANGLOC("custom"), for: .normal)
-        customBtn.setImage(UIImage.init(named: "icon_customize"), for: .normal)
-        customBtn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
-        customBtn.setTitleColor(.white, for: .normal)
-        customBtn.addTarget(self, action: #selector(customClick), for: .touchUpInside)
-        overLayView.addSubview(customBtn)
-        customBtn.snp.makeConstraints { make in
-            
-            make.centerY.equalTo(takePhotoBtn)
-            make.right.equalToSuperview().offset(-30)
-            make.height.equalTo(70)
-            make.width.equalTo(80)
-        }
-        customBtn.layoutButton(with: .top, imageTitleSpace: 7)
-    }
-    
-    //灯闪烁
-    func sendFlash() {
-        
-        let parame = parameModel(dp: .flash, value: 1)
-        
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        
     }
     
     @objc func closeClick() {
         
         let string = "000002"
-
         let parame = parameModel(dp: .recipe, value: string)
-
-        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+        if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                
+                
+            } failure: { error in
+   
+            }
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Device {
 
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
@@ -133,7 +113,7 @@ class KLMImagePickerController: UIImagePickerController {
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
 
             } failure: { error in
-                KLMShowError(error)
+                
             }
         }
         
@@ -151,15 +131,6 @@ class KLMImagePickerController: UIImagePickerController {
         
     }
     
-    @objc func customClick() {
-        
-        let vc = KLMCustomViewController()
-        vc.isModel = true
-        let nav = KLMNavigationViewController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
-
-    }
     //获取相册最近一张照片
     func latestAsset() -> PHAsset? {
         
@@ -179,7 +150,6 @@ extension KLMImagePickerController: UIImagePickerControllerDelegate & UINavigati
         
         let photoVc = KLMPhotoEditViewController()
         photoVc.originalImage = image
-        photoVc.isModel = true
         let nav = KLMNavigationViewController(rootViewController: photoVc)
         nav.modalPresentationStyle = .fullScreen
         picker.present(nav, animated: true, completion: nil)
@@ -189,3 +159,4 @@ extension KLMImagePickerController: UIImagePickerControllerDelegate & UINavigati
         picker.dismiss(animated: true, completion: nil)
     }
 }
+

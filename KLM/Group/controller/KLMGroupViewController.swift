@@ -4,7 +4,7 @@
 //
 //  Created by 朱雨 on 2021/6/2.
 //
-
+// 测试看看
 import UIKit
 import nRFMeshProvision
 
@@ -29,6 +29,14 @@ class KLMGroupViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceReset, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .dataUpdate, object: nil)
+        //刷新
+        let header = KLMRefreshHeader.init {
+            
+            NotificationCenter.default.post(name: .mainPageRefresh, object: nil)
+
+        }
+        self.tableView.mj_header = header
         
         setupData()
     }
@@ -40,10 +48,15 @@ class KLMGroupViewController: UIViewController {
             self.groups = network.groups
             self.tableView.reloadData()
         }
+        self.tableView.mj_header?.endRefreshing()
     }
     
     /// 更多
     @objc func moreClick() {
+                
+        if KLMMesh.isCanEditMesh() == false {
+            return
+        }
         
         let vc = CMDeviceNamePopViewController()
         vc.titleName = LANGLOC("Group")
@@ -51,7 +64,6 @@ class KLMGroupViewController: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = {[weak self] name in
             SVProgressHUD.show()
-            
             guard let self = self else { return }
             
             if let network = MeshNetworkManager.instance.meshNetwork,
@@ -63,15 +75,22 @@ class KLMGroupViewController: UIViewController {
                     let group = try? Group(name: name, address: address)
                     try? network.add(group: group!)
                     
-                    if MeshNetworkManager.instance.save() {
+                    if KLMMesh.save() {
                         
                         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         self.setupData()
+                        
+                        let mesh = KLMMesh.loadHome()!
+                        //提交分组到服务器
+                        KLMService.addGroup(meshId: mesh.id, groupId: Int(automaticAddress), groupName: name) { response in
+                            KLMLog("分组提交成功到服务器")
+
+                        } failure: { error in
+                            KLMHttpShowError(error)
+                        }
                     }
                 }
-                
             }
-            
         }
         self.tabBarController?.present(vc, animated: true, completion: nil)
         
@@ -83,7 +102,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return groups.count
+        return groups.count + 1
 
     }
 
@@ -94,9 +113,36 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let model: Group = groups[indexPath.row]
-        let cell = KLMGroupSelectCell.cellWithTableView(tableView: tableView)
+        if indexPath.row == 0 { ///所有设备
+            
+            let cell: KLMGroupAllDeviceCell = KLMGroupAllDeviceCell.cellWithTableView(tableView: tableView)
+            cell.settingsBlock = {[weak self] in
+                
+                guard let self = self else { return }
+                if KLMMesh.isLoadMesh() == false {
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+                    return
+                }
+                
+                KLMHomeManager.sharedInstacnce.controllType = .AllDevices
+                let vc = KLMAllDeviceViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            return cell
+        }
+        
+        let model: Group = groups[indexPath.row - 1]
+        let cell = KLMGroupCell.cellWithTableView(tableView: tableView)
         cell.model = model
+        cell.settingsBlock = {[weak self] cellGroup in
+            
+            guard let self = self else { return }
+            
+            KLMHomeManager.sharedInstacnce.smartGroup = cellGroup
+            
+            let vc = KLMGroupEditViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         return cell
 
     }
@@ -104,53 +150,115 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let model: Group = groups[indexPath.row]
-        
-        KLMHomeManager.sharedInstacnce.smartGroup = model
-        
-        let network = MeshNetworkManager.instance.meshNetwork!
-        let models = network.models(subscribedTo: model)
-        if models.isEmpty {
-
-            SVProgressHUD.showInfo(withStatus: "No Devices")
+        if indexPath.row == 0 { ///所有设备
+            
+            if KLMMesh.isLoadMesh() == false {
+                SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+                return
+            }
+            
+            KLMHomeManager.sharedInstacnce.controllType = .AllDevices
+            
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.black)
+            KLMConnectManager.shared.connectToAllNodes { [weak self] in
+                SVProgressHUD.dismiss()
+                guard let self = self else { return }
+                
+                let vc = KLMLightSettingController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                //是否有相机权限
+//                KLMPhotoManager().photoAuthStatus { [weak self] in
+//                    guard let self = self else { return }
+//
+//                    let vc = KLMImagePickerController()
+//                    vc.sourceType = .camera
+//                    self.present(vc, animated: true, completion: nil)
+//
+//                }
+            } failure: {
+                
+            }
             return
         }
         
-        //是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
+        let model: Group = groups[indexPath.row - 1]
+        KLMHomeManager.sharedInstacnce.smartGroup = model
+        
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToGroup(group: model) { [weak self] in
+            
             guard let self = self else { return }
-
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
-
+            
+            let vc = KLMLightSettingController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            //是否有相机权限
+//            KLMPhotoManager().photoAuthStatus { [weak self] in
+//                guard let self = self else { return }
+//
+//                let vc = KLMImagePickerController()
+//                vc.sourceType = .camera
+//                self.tabBarController?.present(vc, animated: true, completion: nil)
+//
+//            }
+        } failure: {
+            
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let model: Group = groups[indexPath.row]
+        if indexPath.row == 0 {
+            
+            return nil
+        }
+        
+        let model: Group = groups[indexPath.row - 1]
         
         let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+            
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
             
             let aler = UIAlertController.init(title: LANGLOC("groupDeleteTip"), message: LANGLOC("groupSelectDelete"), preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
                 
                 let network = MeshNetworkManager.instance.meshNetwork!
-                do {
-                    try network.remove(group: model)
+                let models = network.models(subscribedTo: model)
+                if models.count > 0 { //组里有设备不能删除
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Please remove all lights from the group"))
+                    return
+                }
+                SVProgressHUD.show()
+                KLMService.deleteGroup(groupId: Int(model.address.address)) { response in
                     
-                    if MeshNetworkManager.instance.save() {
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        self.setupData()
-                        
+                    do {
+                        try network.remove(group: model)
+                        if KLMMesh.save() {
+                            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                            self.setupData()
+                        }
+                    } catch {
+                        var erro = MessageError()
+                        erro.message = error.localizedDescription
+                        if let err = error as? MeshNetworkError{
+                            switch err {
+                            case .groupInUse: ///组里有设备
+                                erro.message = LANGLOC("Please remove all lights from the group")
+                            default:
+                                break
+                            }
+                        }
+                        KLMShowError(erro)
                     }
-                } catch {
-                    var err = MessageError()
-                    err.message = error.localizedDescription
-                    KLMShowError(err)
+                } failure: { error in
                     
+                    KLMHttpShowError(error)
                 }
                 
             }
@@ -161,17 +269,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
             completionHandler(true)
         }
         
-        //整组设置
-        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("groupSetting")) { action, sourceView, completionHandler in
-            
-            let vc = KLMGroupEditViewController()
-            vc.group = model
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-            completionHandler(true)
-        }
-        editAction.backgroundColor = appMainThemeColor
-        let actions = UISwipeActionsConfiguration.init(actions: [deleteAction, editAction])
+        let actions = UISwipeActionsConfiguration.init(actions: [deleteAction])
         return actions
     }
 }

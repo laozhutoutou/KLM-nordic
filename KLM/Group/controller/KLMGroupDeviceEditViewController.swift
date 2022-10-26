@@ -13,9 +13,6 @@ class KLMGroupDeviceEditViewController: UIViewController {
    
     @IBOutlet weak var tableView: UITableView!
     
-    //当前分组
-    var groupModel: Group!
-    
     //数据源
     lazy var deviceLists: [Node] = {
         let  deviceLists = [Node]()
@@ -28,19 +25,52 @@ class KLMGroupDeviceEditViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         KLMMessageManager.sharedInstacnce.delegate = self
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = self.groupModel.name
+        self.navigationItem.title = KLMHomeManager.currentGroup.name
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceTransferSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddToGroup, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceRemoveFromGroup, object: nil)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addDevice))
+        let addBar = UIButton()
+        addBar.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        addBar.contentMode = .scaleAspectFit
+        addBar.setImage(UIImage(named: "icon_group_new_scene"), for: .normal)
+        addBar.addTarget(self, action: #selector(addDevice), for: .touchUpInside)
+        
+        let addView = UIView(frame: addBar.frame)
+        addView.addSubview(addBar)
+        let addBarItem = UIBarButtonItem(customView: addView)
+        
+        let moreBar = UIButton()
+        moreBar.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        moreBar.contentMode = .scaleAspectFit
+        moreBar.setTitle("•••", for: .normal)
+        moreBar.setTitleColor(.black, for: .normal)
+        moreBar.titleLabel?.font = UIFont.boldSystemFont(ofSize: 17)
+        moreBar.addTarget(self, action: #selector(more), for: .touchUpInside)
+        
+        let moreView = UIView(frame: moreBar.frame)
+        moreView.addSubview(moreBar)
+        let moreBarItem = UIBarButtonItem(customView: moreView)
+        
+        let tempBarItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        tempBarItem.width = 15
+        navigationItem.rightBarButtonItems = [moreBarItem, tempBarItem, addBarItem]
+        
+//        let addBar = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addDevice))
+//        let tempBarItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+//        tempBarItem.width = 25
+        //        let addBar = UIBarButtonItem.init(title: "+", target: self, action: #selector(addDevice))
+        //        let moreBar = UIBarButtonItem.init(title: "...", target: self, action: #selector(more))
+//        let moreBar = UIBarButtonItem.init(icon: "icon_more_unselect", target: self, action: #selector(more))
+//        navigationItem.rightBarButtonItems = [moreBar, tempBarItem, addBar]
         
         setupData()
         
@@ -49,7 +79,7 @@ class KLMGroupDeviceEditViewController: UIViewController {
     @objc func setupData(){
         
         let network = MeshNetworkManager.instance.meshNetwork!
-        let models = network.models(subscribedTo: groupModel)
+        let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
         self.deviceLists.removeAll()
         for model in models {
             
@@ -62,9 +92,36 @@ class KLMGroupDeviceEditViewController: UIViewController {
     @objc func addDevice() {
         
         let vc = KLMGroupDeviceAddTableViewController()
-        vc.groupModel = groupModel
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func more() {
         
+        let point: CGPoint = CGPoint.init(x: KLMScreenW - 30, y: KLM_TopHeight)
+        let titles: [String] = [LANGLOC("Delete devices"), LANGLOC("Devices transfer")]
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 150) { popupMenu in
+            popupMenu?.priorityDirection = .right
+            popupMenu?.arrowHeight = 0
+            popupMenu?.minSpace = 30
+            popupMenu?.isShadowShowing = false
+            popupMenu?.delegate = self
+            popupMenu?.cornerRadius = 0
+        }
+    }
+}
+
+extension KLMGroupDeviceEditViewController: YBPopupMenuDelegate {
+    
+    func ybPopupMenu(_ ybPopupMenu: YBPopupMenu!, didSelectedAt index: Int) {
+        
+        if index == 0 {
+            let vc = KLMGroupDeleteDevicesController()
+            navigationController?.pushViewController(vc, animated: true)
+        } else {
+            let vc = KLMGroupDeleteDevicesController()
+            vc.isFromTransfer = true
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -85,7 +142,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         let deviceModel:  Node = self.deviceLists[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
 
-        cell.leftImage = "img_scene_48"
+        cell.leftImage = "img_scene_30"
         cell.leftTitle = deviceModel.nodeName
         return cell
     
@@ -98,52 +155,83 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        //是否有相机权限
-        KLMPhotoManager().photoAuthStatus { [weak self] in
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
+            SVProgressHUD.dismiss()
+            if apptype == .test {
+                
+                let vc = KLMTestSectionTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                return
+            }
             
-            let vc = KLMImagePickerController()
-            vc.sourceType = UIImagePickerController.SourceType.camera
-            self.tabBarController?.present(vc, animated: true, completion: nil)
+            let vc = KLMDeviceEditViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } failure: {
             
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        
+
         let deviceModel: Node = self.deviceLists[indexPath.item]
-        
+
         let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
-            
-            let aler = UIAlertController.init(title: LANGLOC("deviceMoveOutGroupTip"), message: LANGLOC("deviceMoveOutGroup"), preferredStyle: .alert)
+
+            let aler = UIAlertController.init(title: LANGLOC("deviceMoveOutGroupTip"), message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+
+                if KLMMesh.isCanEditMesh() == false {
+                    return
+                }
                 
-                //设备移出分组
                 SVProgressHUD.show()
-                
-                //设备从当前群组中移除
-                KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: self.groupModel)
-                
+                KLMConnectManager.shared.connectToNode(node: deviceModel) { [weak self] in
+                    guard let self = self else { return }
+                    SVProgressHUD.dismiss()
+                    
+                    //设备从当前群组中移除
+                    KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: deviceModel, withGroup: KLMHomeManager.currentGroup)
+                    
+                } failure: {
+                    
+                }
             }
             aler.addAction(cancel)
             aler.addAction(sure)
-            self.tabBarController?.present(aler, animated: true, completion: nil)
-            
+            self.present(aler, animated: true, completion: nil)
+
             completionHandler(true)
         }
-        
+
         //转移
-        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("transfer")) { action, sourceView, completionHandler in
+        let editAction = UIContextualAction.init(style: .normal, title: LANGLOC("Transfer")) { action, sourceView, completionHandler in
             
-            let vc = KLMGroupTransferListViewController()
-            vc.currentDevice =  deviceModel
-            vc.originalGroup = self.groupModel
-            self.navigationController?.pushViewController(vc, animated: true)
+            if KLMMesh.isCanEditMesh() == false {
+                return
+            }
             
+            SVProgressHUD.show()
+            KLMConnectManager.shared.connectToNode(node: deviceModel) { [weak self] in
+                guard let self = self else { return }
+                SVProgressHUD.dismiss()
+                
+                let vc = KLMGroupTransferListViewController()
+                vc.selectNodes = [deviceModel]
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            } failure: {
+                
+            }
+
             completionHandler(true)
         }
-        
+
         editAction.backgroundColor = appMainThemeColor
         let actions = UISwipeActionsConfiguration.init(actions: [deleteAction, editAction])
         return actions
@@ -151,21 +239,50 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
 }
 
 extension KLMGroupDeviceEditViewController: KLMMessageManagerDelegate {
-    
-    
+
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
-        
+
         if error != nil {
-            
-            SVProgressHUD.showError(withStatus: error?.message)
+
+            SVProgressHUD.showInfo(withStatus: error?.message)
             return
         }
-        
+        ///提交到服务器
+        if KLMMesh.save() {
+
+        }
+
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         NotificationCenter.default.post(name: .deviceRemoveFromGroup, object: nil)
-        
+
         self.setupData()
     }
+
+}
+
+extension KLMGroupDeviceEditViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     
+    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
+
+        let contentView = UIView()
+        
+        let image = UIImageView.init(image: UIImage.init(named: "img_Empty_Status"))
+        contentView.addSubview(image)
+        image.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        let titleLab = UILabel()
+        titleLab.text = LANGLOC("noDevice")
+        titleLab.font = UIFont.systemFont(ofSize: 14)
+        titleLab.textColor = rgba(0, 0, 0, 0.5)
+        contentView.addSubview(titleLab)
+        titleLab.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(image.snp.bottom).offset(10)
+        }
+        
+        return contentView
+    }
 }
 

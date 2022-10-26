@@ -4,83 +4,98 @@
 #include <stdlib.h>
 #include "recipe.h"
 #include <math.h>
+//#include <stdio.h>
+
 #define min3v(v1, v2, v3)   ((v1)>(v2)? ((v2)>(v3)?(v3):(v2)):((v1)>(v3)?(v3):(v1)))
 #define max3v(v1, v2, v3)   ((v1)<(v2)? ((v2)<(v3)?(v3):(v2)):((v1)<(v3)?(v3):(v1)))
 
+
+//#include <android/log.h>
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, "CameraView", __VA_ARGS__);
+
 typedef enum {
-    SPECTRUM_ROSEWOOD           = 0,   //0
-    SPECTRUM_CHAMPAGNE          = 1,   //1
-    SPECTRUM_COFFEE             = 2,   //2
-    SPECTRUM_WARM_WHITE         = 3,   //3
-    SPECTRUM_RED                = 4,   //4
-    SPECTRUM_ORANGE             = 5,   //5
-    SPECTRUM_YELLOW             = 6,   //6
-    SPECTRUM_YELLOW_GREEN       = 7,   //7
-    SPECTRUM_GREEN              = 8,   //8
-    SPECTRUM_GREEN_CYAN         = 9,   //9
-    SPECTRUM_CYAN               = 10,  //10
-    SPECTRUM_BLUE               = 11,  //11
-    SPECTRUM_PURPLE             = 12,  //12
-    SPECTRUM_PINK	              = 13,  //13
-    SPECTRUM_LIGHT_RED          = 14,  //14
-    SPECTRUM_LIGHT_ORANGE       = 15,  //15
-    SPECTRUM_LIGHT_YELLOW       = 16,  //16
-    SPECTRUM_LIGHT_YELLOW_GREEN = 17,  //17
-    SPECTRUM_LIGHT_GREEN        = 18,  //18
-    SPECTRUM_LIGHT_GREEN_CYAN   = 19,  //19
-    SPECTRUM_LIGHT_CYAN         = 20,  //20
-    SPECTRUM_LIGHT_BLUE         = 21,  //21
-    SPECTRUM_LIGHT_PURPLE       = 22,  //22
-    SPECTRUM_LIGHT_PINK	        = 23,  //23
-    SPECTRUM_BLACK              = 24,  //24
-    SPECTRUM_WHITE              = 25,  //25
-    SPECTRUM_3000K              = 26,  //26
-    SPECTRUM_3500K              = 27,  //27
-    SPECTRUM_4000K              = 28,  //28
-    SPECTRUM_FULL               = 29,  //29
+    SPECTRUM_ROSEWOOD            = 0,   //0
+    SPECTRUM_CHAMPAGNE              ,   //1
+    SPECTRUM_COFFEE                 ,   //2
+    SPECTRUM_WARM_WHITE             ,   //3
+    SPECTRUM_RED                    ,   //4
+    SPECTRUM_RED_ORANGE             ,
+    SPECTRUM_ORANGE                 ,   //5
+    SPECTRUM_ORANGE_YELLOW          ,
+    SPECTRUM_YELLOW                 ,   //6
+    SPECTRUM_YELLOW_GREEN           ,   //7
+    SPECTRUM_GREEN                  ,   //8
+    SPECTRUM_GREEN_CYAN             ,   //9
+    SPECTRUM_CYAN                   ,  //10
+    SPECTRUM_CYAN_BLUE              ,
+    SPECTRUM_BLUE                   ,  //11
+    SPECTRUM_BLUE_PURPLE            ,
+    SPECTRUM_PURPLE                 ,  //12
+    SPECTRUM_PINK	                ,  //13
+    SPECTRUM_LIGHT_RED              ,  //14
+    SPECTRUM_LIGHT_RED_ORANGE       ,
+    SPECTRUM_LIGHT_ORANGE           ,  //15
+    SPECTRUM_LIGHT_ORANGE_YELLOW    ,
+    SPECTRUM_LIGHT_YELLOW           ,  //16
+    SPECTRUM_LIGHT_YELLOW_GREEN     ,  //17
+    SPECTRUM_LIGHT_GREEN            ,  //18
+    SPECTRUM_LIGHT_GREEN_CYAN       ,  //19
+    SPECTRUM_LIGHT_CYAN             ,  //20
+    SPECTRUM_LIGHT_CYAN_BLUE        ,
+    SPECTRUM_LIGHT_BLUE             ,  //21
+    SPECTRUM_LIGHT_BLUE_PURPLE      ,
+    SPECTRUM_LIGHT_PURPLE           ,  //22
+    SPECTRUM_LIGHT_PINK	            ,  //23
+    SPECTRUM_BLACK                  ,  //24
+    SPECTRUM_WHITE                  ,  //25
+    SPECTRUM_3000K                  ,  //26
+    SPECTRUM_3500K                  ,  //27
+    SPECTRUM_4000K                  ,  //28
+    SPECTRUM_FULL                   ,  //29
+    SPECTRUM_3800K                  ,
     SPECTRUM_UNDEFINED,
 }Spectrum_Index;
 typedef enum {
-    COLOR_ROSEWOOD              ,   //0
-    COLOR_CHAMPAGNE             ,   //1
-    COLOR_COFFEE                ,   //2
-    COLOR_WARM_WHITE            ,   //3
-    COLOR_RED                   ,   //4
-    COLOR_ORANGE                ,   //5
-    COLOR_YELLOW                ,   //6
-    COLOR_YELLOW_GREEN          ,   //7
-    COLOR_GREEN                 ,   //8
-    COLOR_GREEN_CYAN            ,   //9
-    COLOR_CYAN                  ,  //10
-    COLOR_BLUE                  ,  //11
-    COLOR_PURPLE                ,  //12
-    COLOR_PINK	                ,  //13
-    COLOR_LIGHT_RED             ,  //14
-    COLOR_LIGHT_ORANGE          ,  //15
-    COLOR_LIGHT_YELLOW          ,  //16
-    COLOR_LIGHT_YELLOW_GREEN    ,  //17
-    COLOR_LIGHT_GREEN           ,  //18
-    COLOR_LIGHT_GREEN_CYAN      ,  //19
-    COLOR_LIGHT_CYAN            ,  //20
-    COLOR_LIGHT_BLUE            ,  //21
-    COLOR_LIGHT_PURPLE          ,  //22
-    COLOR_LIGHT_PINK	          ,  //23
-    COLOR_BLACK                 ,  //24
-    COLOR_WHITE                 ,  //25
-    COLOR_UNDEFINED,
-}Color_Index;
+    COLD_WHITE,
+    COLD_BLACK,
+    WARM_RED,
+    WARM_ORANGE_YELLOW,
+    NEUTRAL_GREEN,
+    NEUTRAL_PINK,
+    COLD_CYAN_BLUE_PURPLE,
+}Color_Index_S;
 typedef enum {
-    COLOR_BLACK_S,
-    COLOR_WHITE_S,
-    COLOR_RED_S,
-    COLOR_ORANGE_S,
-    COLOR_YELLOW_S,
-    COLOR_GREEN_S,
-    COLOR_CYAN_S,
-    COLOR_BLUE_S,
-    COLOR_PURPLE_S,
-    COLOR_UNDEFINED_S,
-}Color_Index_Simplified;
+    SPECTRUM_GROCERY_WHITE,
+    SPECTRUM_GROCERY_BLACK,
+    SPECTRUM_GROCERY_RED,
+    SPECTRUM_GROCERY_ORANGE,
+    SPECTRUM_GROCERY_YELLOW,
+    SPECTRUM_GROCERY_GREEN_CYAN,
+    SPECTRUM_GROCERY_BLUE,
+    SPECTRUM_GROCERY_PURPLE,
+    SPECTRUM_GROCERY_3000K,
+    SPECTRUM_GROCERY_3500K,
+    SPECTRUM_GROCERY_4000K,
+    SPECTRUM_GROCERY_DEFAULT,
+}Spectrum_Index_Grocery;
+typedef enum {
+    SPECTRUM_PLANT_WARM_WHITE,
+    SPECTRUM_PLANT_WHITE     ,
+    SPECTRUM_PLANT_BLACK     ,
+    SPECTRUM_PLANT_RED       ,
+    SPECTRUM_PLANT_ORANGE    ,
+    SPECTRUM_PLANT_YELLOW    ,
+    SPECTRUM_PLANT_GREEN     ,
+    SPECTRUM_PLANT_CYAN      ,
+    SPECTRUM_PLANT_BLUE      ,
+    SPECTRUM_PLANT_PURPLE    ,
+    SPECTRUM_PLANT_PINK      ,
+    SPECTRUM_PLANT_DARK_RED  ,
+    SPECTRUM_PLANT_3000K     ,
+    SPECTRUM_PLANT_3500K     ,
+    SPECTRUM_PLANT_4000K     ,
+    SPECTRUM_PLANT_DEFAULT   ,
+}Spectrum_Index_Plant;
 typedef struct{
     unsigned char  R;
     unsigned char  G;
@@ -104,22 +119,6 @@ typedef struct{
 }IMAGE_AREA;
 
 
-int if_color_warm(Color_Index color) {
-    if (color == COLOR_ROSEWOOD || color == COLOR_CHAMPAGNE || color == COLOR_COFFEE ||
-        color == COLOR_RED || color == COLOR_ORANGE|| color == COLOR_YELLOW|| color == COLOR_PINK ||
-        color == COLOR_LIGHT_RED || color == COLOR_LIGHT_ORANGE|| color == COLOR_LIGHT_YELLOW|| color == COLOR_LIGHT_PINK) return 1;
-    return 0;
-}
-int if_color_neutral(Color_Index color) {
-    if (color == COLOR_WARM_WHITE || color == COLOR_YELLOW_GREEN || color == COLOR_GREEN || color == COLOR_PURPLE || color == COLOR_BLACK ||
-        color == COLOR_LIGHT_YELLOW_GREEN|| color == COLOR_LIGHT_GREEN|| color == COLOR_LIGHT_PURPLE || color == COLOR_WHITE) return 1;
-    return 0;
-}
-int if_color_cold(Color_Index color) {
-    if (color == COLOR_GREEN_CYAN || color == COLOR_CYAN || color == COLOR_BLUE ||
-        color == COLOR_LIGHT_GREEN_CYAN|| color == COLOR_LIGHT_CYAN|| color == COLOR_LIGHT_BLUE) return 1;
-    return 0;
-}
 void RGBtoHSV100(const COLOR_RGB *rgb, COLOR_HSV *hsv){
     int h, s, v, maxVal, minVal, difVal;
     int r = rgb->R;
@@ -164,6 +163,14 @@ void YUVtoHSV100(const COLOR_YUV *yuv, COLOR_HSV *hsv){
     rgb.B = (unsigned char)(((b > 255) ? 255 : ((b < 0) ? 0: b)));
     RGBtoHSV100(&rgb, hsv);
 }
+void YUVtoRGB(const COLOR_YUV *yuv, COLOR_RGB *rgb) {
+    int r = yuv->Y + 1.37 * (yuv->V - 128);
+    int g = yuv->Y - 0.70 * (yuv->V - 128) - 0.34 * (yuv->U - 128);
+    int b = yuv->Y + 1.73 * (yuv->U - 128);
+    rgb->R = (unsigned char)(((r > 255) ? 255 : ((r < 0) ? 0: r)));
+    rgb->G = (unsigned char)(((g > 255) ? 255 : ((g < 0) ? 0: g)));
+    rgb->B = (unsigned char)(((b > 255) ? 255 : ((b < 0) ? 0: b)));
+}
 void sort_array_and_indexes_int(int * array, int * indexes, int start, int end, int if_set_indexes) {
     int i, j, max_index = -1, swap_temp;
     if (if_set_indexes) {
@@ -188,16 +195,90 @@ void sort_array_and_indexes_int(int * array, int * indexes, int start, int end, 
         }
     }
 }
-
-
-int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area, int * color_dict, int * sorted_indexes) {
+Spectrum_Index get_color_hsv(COLOR_HSV Hsv) {
+    if (Hsv.H < 10 || Hsv.H >= 300) { // red
+        if ((Hsv.H > 340 || Hsv.H < 10) && Hsv.S >= 40 && (Hsv.V > 15 && Hsv.V <= 40)) return SPECTRUM_ROSEWOOD;
+        if (Hsv.V <= 30) return SPECTRUM_BLACK;
+        if (Hsv.S <= 10) return SPECTRUM_WHITE;
+        if (Hsv.H >= 300 && Hsv.H < 343) {
+            if (Hsv.S < 40 && Hsv.V > 70) return SPECTRUM_LIGHT_PINK;
+            return SPECTRUM_PINK;
+        }
+        if (Hsv.S < 40 && Hsv.V > 70) return SPECTRUM_LIGHT_RED;
+        return SPECTRUM_RED;
+    } else if (Hsv.H >= 10 && Hsv.H < 58) { // orange
+        if (Hsv.H < 41 && Hsv.V > 15 && Hsv.V <= 40) return SPECTRUM_COFFEE;
+        if (Hsv.V <= 30) return SPECTRUM_BLACK;
+        if (Hsv.S <= 10) return SPECTRUM_WHITE;
+        if (Hsv.S <= 25) return SPECTRUM_WARM_WHITE;
+        if (Hsv.H < 30) { // red orange
+            if (Hsv.S < 40 && Hsv.V > 70) return SPECTRUM_LIGHT_RED_ORANGE;
+            return SPECTRUM_RED_ORANGE;
+        }
+        if (Hsv.H >= 45) { // orange yellow
+            if (Hsv.S < 40 && Hsv.H > 70) return SPECTRUM_LIGHT_ORANGE_YELLOW;
+            return SPECTRUM_ORANGE_YELLOW;
+        }
+        if (Hsv.S < 40 && Hsv.V > 70) return  SPECTRUM_LIGHT_ORANGE;
+        if (Hsv.S <= 50 && Hsv.V >= 50) return SPECTRUM_CHAMPAGNE;
+        return SPECTRUM_ORANGE;
+    } else if (Hsv.V <= 30) return SPECTRUM_BLACK;
+    else if (Hsv.S <= 10) return SPECTRUM_WHITE;
+    else if (Hsv.H >= 58 && Hsv.H < 68) { // yellow
+        if (Hsv.S < 40 && Hsv.H > 70) return SPECTRUM_LIGHT_YELLOW;
+        return SPECTRUM_YELLOW;
+    } else if (Hsv.H >= 68 && Hsv.H < 141) { //green
+        if (Hsv.S < 40 && Hsv.V > 70) {
+            if (Hsv.H < 89) return SPECTRUM_LIGHT_YELLOW_GREEN;
+            return SPECTRUM_LIGHT_GREEN;
+        } else {
+            if (Hsv.H < 89) return SPECTRUM_YELLOW_GREEN;
+            return SPECTRUM_GREEN;
+        }
+    } else if (Hsv.H >= 141 && Hsv.H < 211) { //cyan
+        if (Hsv.S < 40 && Hsv.V > 70) {
+            if (Hsv.H < 165) return SPECTRUM_LIGHT_GREEN_CYAN;
+            if (Hsv.H < 185) return SPECTRUM_LIGHT_CYAN;
+            return SPECTRUM_LIGHT_CYAN_BLUE;
+        } else {
+            if (Hsv.H < 165) return SPECTRUM_GREEN_CYAN;
+            if (Hsv.H < 185) return SPECTRUM_CYAN;
+            return SPECTRUM_CYAN_BLUE;
+        }
+    } else if (Hsv.H >= 211 && Hsv.H < 240) { //blue
+        if (Hsv.S < 40 && Hsv.V > 70) return SPECTRUM_LIGHT_BLUE;
+        else return SPECTRUM_BLUE;
+    } else if (Hsv.H >= 240 && Hsv.H < 300) { //purple
+        if (Hsv.S < 40 && Hsv.V > 70) {
+            if (Hsv.H < 260) return SPECTRUM_LIGHT_BLUE_PURPLE;
+            return SPECTRUM_LIGHT_PURPLE;
+        }
+        else {
+            if (Hsv.H < 260) return SPECTRUM_BLUE_PURPLE;
+            return SPECTRUM_PURPLE;
+        }
+    }
+    return SPECTRUM_WHITE;
+}
+Color_Index_S get_color_s_hsv(COLOR_HSV Hsv) {
+    if ((Hsv.H >= 340 || Hsv.H < 10) && (Hsv.S >= 40) && (Hsv.V > 15 && Hsv.V <= 40)) return WARM_RED;
+    else if ((Hsv.H >= 10 && Hsv.H < 41) && (Hsv.S >= 40) && (Hsv.V > 15 && Hsv.V <= 40)) return WARM_ORANGE_YELLOW;
+    else if (Hsv.V <= 30) return COLD_BLACK;
+    else if (Hsv.S <= 10) return COLD_WHITE;
+    else if ((Hsv.H >= 10 && Hsv.H < 58) && Hsv.S <= 25) return COLD_WHITE;
+    else if (Hsv.H < 340 && Hsv.H >= 300) return NEUTRAL_PINK;
+    else if (Hsv.H < 10 || Hsv.H >= 340) return WARM_RED;
+    else if (Hsv.H >= 10 && Hsv.H < 68) return WARM_ORANGE_YELLOW;
+    else if (Hsv.H >= 68 && Hsv.H < 141) return NEUTRAL_GREEN;
+    else return COLD_CYAN_BLUE_PURPLE;
+}
+Spectrum_Index get_spectrum_index_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
+    int color_dict[7] = {0}, sorted_indexes_s[7] = {0, 1, 2, 3, 4, 5, 6}, real_colors[7], sum = 0;
+    float avg_rgb[7][3] = {0};  // use rgb not hsv
     unsigned char * p = (unsigned char *)imgData;
     COLOR_RGB rgb;
     COLOR_HSV hsv;
     COLOR_YUV yuv;
-
-    float avg_hsv[9][3] = {0}, n_total_pixel = 0;
-    for (int i = 0; i < COLOR_UNDEFINED_S; i++) color_dict[i] = 0;
     for (int y = area->Y_Start; y < area->Y_End; y++) {
         for (int x = area->X_Start; x < area->X_End; x++) {
             if (format == IMAGE_FORMAT_RGBA) {
@@ -205,242 +286,227 @@ int get_main_color_of_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT for
                 rgb.G = p[(y * imgW + x) * 4 + 1];
                 rgb.B = p[(y * imgW + x) * 4 + 2];
                 RGBtoHSV100(&rgb, &hsv);
-            } else if (format == IMAGE_FORMAT_RGB) {
+            }
+            else if (format == IMAGE_FORMAT_RGB) {
                 rgb.R = p[(y * imgW + x) * 3 + 0];
                 rgb.G = p[(y * imgW + x) * 3 + 1];
                 rgb.B = p[(y * imgW + x) * 3 + 2];
                 RGBtoHSV100(&rgb, &hsv);
-            } else if (format == IMAGE_FORMAT_YUV420)  {
+            }
+            else if (format == IMAGE_FORMAT_YUV420)  {
                 yuv.Y = p[y * imgW + x];
                 yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
                 yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
                 YUVtoHSV100(&yuv, &hsv);
-            } else if (format == IMAGE_FORMAT_NV21) {
+            }
+            else if (format == IMAGE_FORMAT_NV21) {
                 yuv.Y = p[y * imgW + x];
                 yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
                 yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
                 YUVtoHSV100(&yuv, &hsv);
             }
-            if (hsv.H >= 300) hsv.H -= 360;
-            if (hsv.V <= 30) {
-                color_dict[COLOR_BLACK_S]++;
-                avg_hsv[COLOR_BLACK_S][0] += hsv.H;
-                avg_hsv[COLOR_BLACK_S][1] += hsv.S;
-                avg_hsv[COLOR_BLACK_S][2] += hsv.V;
-            } else if (hsv.S <= 10)  {
-                color_dict[COLOR_WHITE_S]++;
-                avg_hsv[COLOR_WHITE_S][0] += hsv.H;
-                avg_hsv[COLOR_WHITE_S][1] += hsv.S;
-                avg_hsv[COLOR_WHITE_S][2] += hsv.V;
-            } else if (hsv.H < 10 || hsv.H >= 300) {
-                color_dict[COLOR_RED_S]++;
-                avg_hsv[COLOR_RED_S][0] += hsv.H;
-                avg_hsv[COLOR_RED_S][1] += hsv.S;
-                avg_hsv[COLOR_RED_S][2] += hsv.V;
-            } else if (hsv.H >= 10 && hsv.H < 41) {
-                color_dict[COLOR_ORANGE_S]++;
-                avg_hsv[COLOR_ORANGE_S][0] += hsv.H;
-                avg_hsv[COLOR_ORANGE_S][1] += hsv.S;
-                avg_hsv[COLOR_ORANGE_S][2] += hsv.V;
-            } else if (hsv.H >= 41 && hsv.H < 68) {
-                color_dict[COLOR_YELLOW_S]++;
-                avg_hsv[COLOR_YELLOW_S][0] += hsv.H;
-                avg_hsv[COLOR_YELLOW_S][1] += hsv.S;
-                avg_hsv[COLOR_YELLOW_S][2] += hsv.V;
-            } else if (hsv.H >= 68 && hsv.H < 165) {
-                color_dict[COLOR_GREEN_S]++;
-                avg_hsv[COLOR_GREEN_S][0] += hsv.H;
-                avg_hsv[COLOR_GREEN_S][1] += hsv.S;
-                avg_hsv[COLOR_GREEN_S][2] += hsv.V;
-            } else if (hsv.H >= 165 && hsv.H < 200) {
-                color_dict[COLOR_CYAN_S]++;
-                avg_hsv[COLOR_CYAN_S][0] += hsv.H;
-                avg_hsv[COLOR_CYAN_S][1] += hsv.S;
-                avg_hsv[COLOR_CYAN_S][2] += hsv.V;
-            } else if (hsv.H >= 200 && hsv.H < 245) {
-                color_dict[COLOR_BLUE_S]++;
-                avg_hsv[COLOR_BLUE_S][0] += hsv.H;
-                avg_hsv[COLOR_BLUE_S][1] += hsv.S;
-                avg_hsv[COLOR_BLUE_S][2] += hsv.V;
-            } else if (hsv.H >= 245 && hsv.H < 300) {
-                color_dict[COLOR_PURPLE_S]++;
-                avg_hsv[COLOR_PURPLE_S][0] += hsv.H;
-                avg_hsv[COLOR_PURPLE_S][1] += hsv.S;
-                avg_hsv[COLOR_PURPLE_S][2] += hsv.V;
-            }
+            sum++;
+            int index = (int)get_color_s_hsv(hsv);
+            avg_rgb[index][0] += (float)rgb.R; //color
+            avg_rgb[index][1] += (float)rgb.G;
+            avg_rgb[index][2] += (float)rgb.B;
+            color_dict[index]++; // at last
         }
     }
-
-    for (int i = 0; i < 9; i++) {
-        if (color_dict[i] < 0.05 * (area->Y_End - area->Y_Start + 1) * (area->X_End - area->X_Start + 1)) {
+//    LOGI("sum %d", sum);
+    for (int i = 0; i < 7; i++) {
+        if (color_dict[i] < 0.05 * sum) {
+            sum -= color_dict[i];
             color_dict[i] = 0;
-            for (int j = 0; j < 3; j++)	avg_hsv[i][j] = 0;
             continue;
         }
-        for (int j = 0; j < 3; j++)	avg_hsv[i][j] /= color_dict[i];
-    }
-
-    //squeeze color_dict
-    if (color_dict[COLOR_BLACK_S] > 0 && avg_hsv[COLOR_BLACK_S][2] > 15) { // squeeze with black
-        for (int i = COLOR_RED_S; i <= COLOR_ORANGE_S; i++) {
-            if (color_dict[i] == 0) continue;
-            if (fabsf(avg_hsv[i][0] - avg_hsv[COLOR_BLACK_S][0]) <= 10 && avg_hsv[i][2] < 60) {
-                avg_hsv[i][0] = (avg_hsv[i][0] * color_dict[i] + avg_hsv[COLOR_BLACK_S][0] * color_dict[COLOR_BLACK_S]) / (color_dict[i] + color_dict[COLOR_BLACK_S]);
-                avg_hsv[i][1] = (avg_hsv[i][1] * color_dict[i] + avg_hsv[COLOR_BLACK_S][1] * color_dict[COLOR_BLACK_S]) / (color_dict[i] + color_dict[COLOR_BLACK_S]);
-                avg_hsv[i][2] = (avg_hsv[i][2] * color_dict[i] + avg_hsv[COLOR_BLACK_S][2] * color_dict[COLOR_BLACK_S]) / (color_dict[i] + color_dict[COLOR_BLACK_S]);
-                avg_hsv[COLOR_BLACK_S][0] = 0;
-                avg_hsv[COLOR_BLACK_S][1] = 0;
-                avg_hsv[COLOR_BLACK_S][2] = 0;
-                color_dict[i] += color_dict[COLOR_BLACK_S];
-                color_dict[COLOR_BLACK_S] = 0;
-                break;
-            }
+        for (int j = 0; j < 3; j++)	{
+            avg_rgb[i][j] /= color_dict[i];
         }
+        rgb.R = (unsigned char)avg_rgb[i][0];
+        rgb.G = (unsigned char)avg_rgb[i][1];
+        rgb.B = (unsigned char)avg_rgb[i][2];
+        RGBtoHSV100(&rgb, &hsv);
+        real_colors[i] = get_color_hsv(hsv);
+//        LOGI("%d real color %d, pixel num %d", i, real_colors[i], color_dict[i]);
+//        printf("%d real color %d, pixel num %d\n", i, real_colors[i], color_dict[i]);
+//        if (color_dict[i] > 0.7 * sum) return real_colors[i];
     }
-    for (int i = COLOR_RED_S; i < COLOR_PURPLE_S; i++) { //close color
-        if (color_dict[i] == 0 || color_dict[i + 1] == 0) continue;
-        if (fabsf(avg_hsv[i][0] - avg_hsv[i + 1][0]) <= 10) {
-            if (color_dict[i] >= color_dict[i + 1]) {
-                avg_hsv[i][0] = (avg_hsv[i][0] * color_dict[i] + avg_hsv[i + 1][0] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
-                avg_hsv[i][1] = (avg_hsv[i][1] * color_dict[i] + avg_hsv[i + 1][1] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
-                avg_hsv[i][2] = (avg_hsv[i][2] * color_dict[i] + avg_hsv[i + 1][2] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
-                avg_hsv[i + 1][0] = 0;
-                avg_hsv[i + 1][1] = 0;
-                avg_hsv[i + 1][2] = 0;
-                color_dict[i] += color_dict[i + 1];
-                color_dict[i + 1] = 0;
-            } else {
-                avg_hsv[i + 1][0] = (avg_hsv[i][0] * color_dict[i] + avg_hsv[i + 1][0] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
-                avg_hsv[i + 1][1] = (avg_hsv[i][1] * color_dict[i] + avg_hsv[i + 1][1] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
-                avg_hsv[i + 1][2] = (avg_hsv[i][2] * color_dict[i] + avg_hsv[i + 1][2] * color_dict[i + 1]) / (color_dict[i] + color_dict[i + 1]);
-                avg_hsv[i][0] = 0;
-                avg_hsv[i][1] = 0;
-                avg_hsv[i][2] = 0;
-                color_dict[i + 1] += color_dict[i];
-                color_dict[i] = 0;
-            }
-        }
+    int ncw = color_dict[COLD_BLACK] + color_dict[COLD_WHITE] + color_dict[COLD_CYAN_BLUE_PURPLE];
+    int nnw = color_dict[NEUTRAL_GREEN] + color_dict[NEUTRAL_PINK];
+    int nww = color_dict[WARM_RED] + color_dict[WARM_ORANGE_YELLOW]; // this should be before sort!!
+
+    sort_array_and_indexes_int(color_dict, sorted_indexes_s, 0, 6, 0);
+//    for (int i = 0; i < 7; i++) {
+//        printf("pixel num %d, index pos %d, real color %d\n", color_dict[i], sorted_indexes_s[i], real_colors[sorted_indexes_s[i]]);
+//    }
+    if (color_dict[0] > sum * 0.7) { // pure color
+        return real_colors[sorted_indexes_s[0]];
+    }
+    if (color_dict[0] + color_dict[1] > 0.9 * sum) {
+        if (real_colors[sorted_indexes_s[1]] == COLD_BLACK) return (Spectrum_Index)real_colors[sorted_indexes_s[0]];
     }
 
-    //set color index
-    sorted_indexes[COLOR_BLACK_S] = COLOR_BLACK; // black
-
-    if (avg_hsv[COLOR_WHITE_S][0] < 70 && avg_hsv[COLOR_WHITE_S][0] > 20 && avg_hsv[COLOR_WHITE_S][1] > 3) sorted_indexes[COLOR_WHITE_S] = COLOR_WARM_WHITE; // white
-    else sorted_indexes[COLOR_WHITE_S] = COLOR_WHITE;
-
-    if (color_dict[COLOR_RED_S] == 0) sorted_indexes[COLOR_RED_S] = COLOR_RED; //red
-    else if ((avg_hsv[COLOR_RED_S][0] > -20 && avg_hsv[COLOR_RED_S][0] < 10) && avg_hsv[COLOR_RED_S][2] <= 40)	sorted_indexes[COLOR_RED_S] = COLOR_ROSEWOOD;
-    else if (avg_hsv[COLOR_RED_S][0] < -17 || avg_hsv[COLOR_RED_S][1] <= 40) sorted_indexes[COLOR_RED_S] = COLOR_PINK;
-    else sorted_indexes[COLOR_RED_S] = COLOR_RED;//red
-
-    if (color_dict[COLOR_ORANGE_S] == 0) sorted_indexes[COLOR_ORANGE_S] = COLOR_ORANGE;
-    else if (avg_hsv[COLOR_ORANGE_S][1] <= 40 && avg_hsv[COLOR_ORANGE_S][2] >= 50) sorted_indexes[COLOR_ORANGE_S] = COLOR_CHAMPAGNE;
-    else if (avg_hsv[COLOR_ORANGE_S][2] <= 50) sorted_indexes[COLOR_ORANGE_S] = COLOR_COFFEE;
-    else sorted_indexes[COLOR_ORANGE_S] = COLOR_ORANGE;
-
-    if (avg_hsv[COLOR_YELLOW_S][1] <= 40 && avg_hsv[COLOR_YELLOW_S][2] >= 70) sorted_indexes[COLOR_YELLOW_S] = COLOR_LIGHT_YELLOW;
-    else sorted_indexes[COLOR_YELLOW_S] = COLOR_YELLOW;
-
-    if (avg_hsv[COLOR_GREEN_S][1] <= 40 && avg_hsv[COLOR_GREEN_S][2] >= 70) {
-        if (avg_hsv[COLOR_GREEN_S][0] < 89) sorted_indexes[COLOR_GREEN_S] = COLOR_LIGHT_YELLOW_GREEN;
-        else if (avg_hsv[COLOR_GREEN_S][0] > 141) sorted_indexes[COLOR_GREEN_S] = COLOR_LIGHT_GREEN_CYAN;
-        else sorted_indexes[COLOR_GREEN_S] = COLOR_LIGHT_GREEN;
-    }
-    else {
-        if (avg_hsv[COLOR_GREEN_S][0] < 89) sorted_indexes[COLOR_GREEN_S] = COLOR_YELLOW_GREEN;
-        else if (avg_hsv[COLOR_GREEN_S][0] > 141) sorted_indexes[COLOR_GREEN_S] = COLOR_GREEN_CYAN;
-        else sorted_indexes[COLOR_GREEN_S] = COLOR_GREEN;
-    }
-
-    if (avg_hsv[COLOR_CYAN_S][1] <= 40 && avg_hsv[COLOR_CYAN_S][2] >= 70) sorted_indexes[COLOR_CYAN_S] = COLOR_LIGHT_CYAN;
-    else sorted_indexes[COLOR_CYAN_S] = COLOR_CYAN;
-
-    if (avg_hsv[COLOR_BLUE_S][1] <= 40 && avg_hsv[COLOR_BLUE_S][2] >= 70) sorted_indexes[COLOR_BLUE_S] = COLOR_LIGHT_BLUE;
-    else sorted_indexes[COLOR_BLUE_S] = COLOR_BLUE;
-
-    if (avg_hsv[COLOR_PURPLE_S][1] <= 40 && avg_hsv[COLOR_PURPLE_S][2] >= 70) sorted_indexes[COLOR_PURPLE_S] = COLOR_LIGHT_PURPLE;
-    else sorted_indexes[COLOR_PURPLE_S] = COLOR_PURPLE;
-
-    sort_array_and_indexes_int(color_dict, sorted_indexes, 0, 8, 0);
-    return 1;
-}
-
-
-Spectrum_Index get_2_base_color_spectrum_index(Color_Index c_max, Color_Index c_min) {
-    if (if_color_warm(c_max) && if_color_warm(c_min)) return SPECTRUM_3000K;
-    if (if_color_cold(c_max) && if_color_cold(c_min)) return SPECTRUM_4000K;
-    if (c_max == COLOR_BLACK) {
-        if (if_color_warm(c_min)) return SPECTRUM_3000K;
-        if (if_color_neutral(c_min)) return SPECTRUM_3500K;
-        if (if_color_cold(c_min)) return SPECTRUM_4000K;
-    }
-    if (c_min == COLOR_BLACK) {
-        if (if_color_warm(c_max)) return SPECTRUM_3000K;
-        if (if_color_neutral(c_max)) return SPECTRUM_3500K;
-        if (if_color_cold(c_max)) return SPECTRUM_4000K;
-    }
-    return SPECTRUM_3500K;
-}
-
-
-Spectrum_Index getRecipeIndexOfImageROI(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
-    int i, color_dict[9] = {0}, sorted_indexes[9], sum = 0, nonzero_count = 0;
-    int c_max, c_min, c2, c_ww = 0, c_nw = 0, c_cw = 0;
-    int color_priority[26] = {3, 1, 2, 24, 23, 19, 17, 15, 13, 9, 7, 5, 11, 21, 22, 18, 16, 14, 12, 8, 6, 4, 10, 20, 0, 25};
-    get_main_color_of_image(imgData, imgW, imgH, format, area, color_dict, sorted_indexes);
-
-    for (i = 0; i < 9; i++) sum += color_dict[i];
-    if (color_dict[0] > sum * 0.7) return (Spectrum_Index)sorted_indexes[0];
-    for (i = 0; i < 9; i++) {
-        if (color_dict[i] > 50) nonzero_count++;
-        else break;
-    }
-    if (nonzero_count == 2) {
-        c_max = color_dict[0];
-        c_min = color_dict[1];
-        sum = c_max + c_min;
-        if ((c_max - c_min) >= 0.25 * sum) return (Spectrum_Index)sorted_indexes[0];
-        if ((c_max - c_min) >= 0.15 * sum) {
-            if (color_priority[sorted_indexes[0]] > color_priority[sorted_indexes[1]]) return (Spectrum_Index)sorted_indexes[0];
-            else return (Spectrum_Index)sorted_indexes[1];
-        }
-        else return get_2_base_color_spectrum_index((Color_Index)sorted_indexes[0], (Color_Index)sorted_indexes[1]);
-    } else if (nonzero_count > 2) {
-        sum = 0;
-        if (nonzero_count > 4) nonzero_count = 4;
-        for (i = 0; i < nonzero_count; i++) sum += color_dict[i];
-        c_max = color_dict[0];
-        c2 = color_dict[1];
-        if ((c_max - c2) >= 0.3 * sum) return (Spectrum_Index)sorted_indexes[0];
-        if (sorted_indexes[0] == COLOR_WHITE) return SPECTRUM_3500K;
-        for (i = 0; i < nonzero_count; i++) {
-            if (if_color_warm((Color_Index)sorted_indexes[i])) c_ww += color_dict[i];
-            else if (if_color_neutral((Color_Index)sorted_indexes[i])) c_nw += color_dict[i];
-            else if (if_color_cold((Color_Index)sorted_indexes[i])) c_cw += color_dict[i];
-        }
-        if (c_ww > 0.5 * sum) return SPECTRUM_3000K;
-        if (c_nw > 0.5 * sum) return SPECTRUM_3500K;
-        if (c_cw > 0.5 * sum) return SPECTRUM_4000K;
-        return SPECTRUM_3500K;
-    }
+    if (ncw > sum * 0.6) return SPECTRUM_4000K;
+    if (nnw > sum * 0.6) return SPECTRUM_3500K;
+    if (nww > sum * 0.6) return SPECTRUM_3000K;
+    if (ncw + nnw > 0.8) return SPECTRUM_3800K;
+    if (ncw + nww > 0.8) return SPECTRUM_3500K;
     return SPECTRUM_FULL;
 }
+Spectrum_Index_Grocery get_spectrum_index_of_grocery_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area, int category) {
+    if (category == Grocery_Bread) return SPECTRUM_GROCERY_DEFAULT;
+    int color_dict[8] = {0}, sum = 0;
+    unsigned char * p = (unsigned char *)imgData;
+    COLOR_RGB rgb;
+    COLOR_HSV hsv;
+    COLOR_YUV yuv;
+    for (int y = area->Y_Start; y <= area->Y_End; y++) {
+        for (int x = area->X_Start; x <= area->X_End; x++) {
+            if (format == IMAGE_FORMAT_RGBA) {
+                rgb.R = p[(y * imgW + x) * 4 + 0];
+                rgb.G = p[(y * imgW + x) * 4 + 1];
+                rgb.B = p[(y * imgW + x) * 4 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            }
+            else if (format == IMAGE_FORMAT_RGB) {
+                rgb.R = p[(y * imgW + x) * 3 + 0];
+                rgb.G = p[(y * imgW + x) * 3 + 1];
+                rgb.B = p[(y * imgW + x) * 3 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            }
+            else if (format == IMAGE_FORMAT_YUV420)  {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
+                yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            else if (format == IMAGE_FORMAT_NV21) {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
+                yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            sum++;
+            if (hsv.S <= 10 && hsv.V >= 40) color_dict[SPECTRUM_GROCERY_WHITE]++;
+            else if (hsv.V <= 20) color_dict[SPECTRUM_GROCERY_BLACK]++;
+            else if (hsv.H < 260 && hsv.H >= 211) color_dict[SPECTRUM_GROCERY_BLUE]++;
+            else if (hsv.H < 288 && hsv.H >= 260) color_dict[SPECTRUM_GROCERY_PURPLE]++;
+            else if (hsv.H < 211 && hsv.H >= 89) color_dict[SPECTRUM_GROCERY_GREEN_CYAN]++;
+            else if (hsv.H < 89 && hsv.H >= 45) color_dict[SPECTRUM_GROCERY_YELLOW]++;
+            else if (hsv.H < 45 && hsv.H >= 20) color_dict[SPECTRUM_GROCERY_ORANGE]++;
+            else color_dict[SPECTRUM_GROCERY_RED]++;
+        }
+    }
+    int nww = color_dict[SPECTRUM_GROCERY_RED] + color_dict[SPECTRUM_GROCERY_YELLOW] +
+              color_dict[SPECTRUM_GROCERY_ORANGE];
+    int ncw = color_dict[SPECTRUM_GROCERY_BLUE] + color_dict[SPECTRUM_GROCERY_PURPLE] +
+              color_dict[SPECTRUM_GROCERY_GREEN_CYAN] + color_dict[SPECTRUM_GROCERY_BLACK];
+    int nnw = 0;
+    if (category == Grocery_Iced) {
+        ncw += color_dict[SPECTRUM_GROCERY_WHITE];
+    } else {
+        nnw += color_dict[SPECTRUM_GROCERY_WHITE];
+    }
+    if (category == Grocery_Meat) {
+        if (nww > 0.65 * sum) return SPECTRUM_GROCERY_RED;
+        else if (nnw > 0.65 * sum) return SPECTRUM_GROCERY_WHITE;
+    } else {
+        for (int i = 0; i < 8; i++) {
+            if (color_dict[i] > 0.65 * sum) return i;
+        }
+    }
+    if (nww > 0.5 * sum) return SPECTRUM_GROCERY_3000K;
+    if (ncw > 0.5 * sum) return SPECTRUM_GROCERY_4000K;
+    if (nnw > 0.5 * sum) return SPECTRUM_GROCERY_3500K;
+    return SPECTRUM_GROCERY_DEFAULT;
+}
+Spectrum_Index_Plant get_spectrum_index_of_plant_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
+    int color_dict[12] = {0}, sum = 0;
+    unsigned char * p = (unsigned char *)imgData;
+    COLOR_RGB rgb;
+    COLOR_HSV hsv;
+    COLOR_YUV yuv;
+    for (int y = area->Y_Start; y <= area->Y_End; y++) {
+        for (int x = area->X_Start; x <= area->X_End; x++) {
+            if (format == IMAGE_FORMAT_RGBA) {
+                rgb.R = p[(y * imgW + x) * 4 + 0];
+                rgb.G = p[(y * imgW + x) * 4 + 1];
+                rgb.B = p[(y * imgW + x) * 4 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            }
+            else if (format == IMAGE_FORMAT_RGB) {
+                rgb.R = p[(y * imgW + x) * 3 + 0];
+                rgb.G = p[(y * imgW + x) * 3 + 1];
+                rgb.B = p[(y * imgW + x) * 3 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            }
+            else if (format == IMAGE_FORMAT_YUV420)  {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
+                yuv.V = p[(int)(imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            else if (format == IMAGE_FORMAT_NV21) {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2))];
+                yuv.V = p[(int)(imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            sum++;
+            if (hsv.H <= 50 && hsv.H >= 30 && hsv.S <= 20 && hsv.S >= 5 && hsv.V >= 60) color_dict[SPECTRUM_PLANT_WARM_WHITE]++;
+            else if (hsv.S <= 10 && hsv.V >= 40) color_dict[SPECTRUM_PLANT_WHITE]++;
+            else if (hsv.V <= 20) color_dict[SPECTRUM_PLANT_BLACK]++;
+            else if (hsv.H <= 20 && hsv.S >= 60 && hsv.V <= 60) color_dict[SPECTRUM_PLANT_DARK_RED]++;
+            else if (hsv.H >= 288 && hsv.H < 343) color_dict[SPECTRUM_PLANT_PINK]++;
+            else if (hsv.H >= 250 && hsv.H < 288) color_dict[SPECTRUM_PLANT_PURPLE]++;
+            else if (hsv.H >= 195 && hsv.H < 250) color_dict[SPECTRUM_PLANT_BLUE]++;
+            else if (hsv.H >= 151 && hsv.H <= 195) color_dict[SPECTRUM_PLANT_CYAN]++;
+            else if (hsv.H >= 78 && hsv.H <= 151) color_dict[SPECTRUM_PLANT_GREEN]++;
+            else if (hsv.H >= 45 && hsv.H <= 78) color_dict[SPECTRUM_PLANT_YELLOW]++;
+            else if (hsv.H >= 20 && hsv.H <= 45) color_dict[SPECTRUM_PLANT_ORANGE]++;
+            else color_dict[SPECTRUM_PLANT_RED]++;
+        }
+    }
+    int nww = color_dict[SPECTRUM_PLANT_RED] + color_dict[SPECTRUM_PLANT_ORANGE] +
+              color_dict[SPECTRUM_PLANT_YELLOW] + color_dict[SPECTRUM_PLANT_PINK] +
+              color_dict[SPECTRUM_PLANT_DARK_RED];
+    int ncw = color_dict[SPECTRUM_PLANT_BLACK] + color_dict[SPECTRUM_PLANT_GREEN] +
+              color_dict[SPECTRUM_PLANT_CYAN] + color_dict[SPECTRUM_PLANT_BLUE] +
+              color_dict[SPECTRUM_PLANT_PURPLE];
+    int nnw = color_dict[SPECTRUM_PLANT_WARM_WHITE] + color_dict[SPECTRUM_PLANT_WHITE];
+    for (int i = 0; i < 12; i++) {
+        if (color_dict[i] > 0.65 * sum) return i;
+    }
+    if (color_dict[SPECTRUM_PLANT_DARK_RED] + color_dict[SPECTRUM_PLANT_RED] > 0.65 * sum) return SPECTRUM_PLANT_RED;
+    if (nww > 0.5 * sum) return SPECTRUM_PLANT_3000K;
+    if (ncw > 0.5 * sum) return SPECTRUM_PLANT_4000K;
+    if (nnw > 0.5 * sum) return SPECTRUM_PLANT_3500K;
+    return SPECTRUM_PLANT_DEFAULT;
+}
 
-
-
-int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY){
-    //int radius = imgH / 10;
-    //if (radius < 20) radius = 20;
-    int radius = 3;
+int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY, COMMODITY_CATEGORY category) {
+    int radius = 5;
     int startX = clickX - radius < 0 ? 0: clickX - radius;
     int endX = clickX + radius >= imgW ? imgW - 1: clickX + radius;
     int startY = clickY - radius < 0 ? 0: clickY - radius;
     int endY = clickY + radius >= imgH ? imgH - 1: clickY + radius;
 
     IMAGE_AREA area = {startX, endX, startY, endY};
-    return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
+//    LOGI("%d, %d, %d, %d", startX, endX , startY, endY);
+    if (category >= Grocery_Fruits) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
+    else if (category == Plants) return get_spectrum_index_of_plant_image(imgData, imgW, imgH, format, &area);
+    else return get_spectrum_index_of_image(imgData, imgW, imgH, format, &area);
 }
-int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY){
+int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY, COMMODITY_CATEGORY category){
     IMAGE_AREA area = {startX, endX, startY, endY};
-    return getRecipeIndexOfImageROI(imgData, imgW, imgH, format, &area);
+    if (category >= Grocery_Fruits) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
+    else if (category == Plants) return get_spectrum_index_of_plant_image(imgData, imgW, imgH, format, &area);
+    else return get_spectrum_index_of_image(imgData, imgW, imgH, format, &area);
 }

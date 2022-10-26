@@ -7,14 +7,8 @@
 
 import UIKit
 
-enum CameraControlType: String {
-    case PASSIVE_COLOR_LIGHTING
-    case MANUAL_COLOR_LIGHTING
-}
-
 class KLMOneSwitchCell: KLMBaseTableViewCell {
 
-    
     @IBOutlet weak var cameraSwitch: UISwitch!
     
     var cameraOnOff: Int!{
@@ -24,25 +18,22 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
         }
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        
+        cameraSwitch.onTintColor = appMainThemeColor
     }
-
+    
     @IBAction func switchClick(_ sender: UISwitch) {
         
+        SVProgressHUD.show()
         if sender.isOn {
             
             let parame = parameModel(dp: .cameraPower, value: 1)
-            
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
         } else {//关
             
             let parame = parameModel(dp: .cameraPower, value: 2)
-            
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             
         }
@@ -52,7 +43,6 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
             NotificationCenter.default.post(name: .refreshDeviceEdit, object: nil)
         }
     }
-    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

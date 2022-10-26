@@ -3,7 +3,7 @@
 //  KLM
 //
 //  Created by 朱雨 on 2021/6/3.
-//
+//  设置按钮的点击间隔
 
 #ifndef KLM_Bridging_Header_h
 #define KLM_Bridging_Header_h
@@ -11,7 +11,6 @@
 #import "UIImage+TL.h"
 #import "UIBarButtonItem+TL.h"
 #import "CMSearchBar.h"
-#import <YYCache/YYCache.h>
 #import "RSColorPickerView.h"
 #import <YBPopupMenu.h>
 #import "DAConfig.h"
@@ -26,5 +25,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 #import <AFNetworking-umbrella.h>
 #import "OpenGLView20.h"
+#import <Bugly/Bugly.h>
+#import "LibTools.h"
 
 #endif /* KLM_Bridging_Header_h */

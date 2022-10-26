@@ -19,6 +19,7 @@ class CMDeviceNamePopViewController: UIViewController {
     var titleName: String = ""
     
     var nameBlock: NameBlock?
+    var cancelBlock: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +37,9 @@ class CMDeviceNamePopViewController: UIViewController {
 
     @IBAction func sure(_ sender: Any) {
         
-        guard let text = self.textField.text,text.isEmpty == false else {
-            
+        guard let text = KLMTool.isEmptyString(string: textField.text) else {
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please enter a name"))
             return
-            
         }
         
         if let nameB = nameBlock {
@@ -50,6 +50,9 @@ class CMDeviceNamePopViewController: UIViewController {
     }
     
     @IBAction func cancel(_ sender: Any) {
+        if let cancel = cancelBlock {
+            cancel()
+        }
         
         dismiss(animated: true, completion: nil)
     }

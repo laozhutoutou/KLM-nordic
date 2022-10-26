@@ -75,8 +75,12 @@ extension KLMMessageManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        switch message {
+        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
+            KLMLog("别的手机发的消息")
+            return
+        }
         
+        switch message {
         case let status as ConfigModelSubscriptionStatus://设备添加或者删除组
             
             if status.status == .success {
@@ -101,16 +105,20 @@ extension KLMMessageManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, failedToSendMessage message: MeshMessage, from localElement: Element, to destination: Address, error: Error) {
         SVProgressHUD.dismiss()
-        var err = MessageError()
+        let err = MessageError()
         err.message = error.localizedDescription
         self.delegate?.messageManager(self, didHandleGroup: destination, error: err)
     }
 }
 
-struct MessageError: Error {
-    
+class BaseError: Error {
     var message: String?
+}
+
+class MessageError: BaseError {
     
+    var code: Int?
+    var dp: DPType?
 }
 
 enum DPType: Int {
@@ -126,19 +134,32 @@ enum DPType: Int {
     case motionPower = 10
     case colorTest = 11
     case cameraPic = 12 //下载摄像头图像
+    case passengerFlowPower = 13 //客流统计开关
+    case passengerFlow = 14 //客流统计数据
+    case category = 15 //分类
+    case brightness = 17 //亮度
+    case motion = 18 //节能
     case factoryTest = 19
     case factoryTestResule = 20
+    case hardwareInfo = 21
+    case biaoding = 22 ///标定
+    case audio = 88 //语音播报
     case checkVersion = 99
     case DFU = 100
     case PWM = 101
+    case deviceSetting = 0xFE
     case AllDp = 0xFF
 }
 
+enum opCodeType {
+    case send ///发送消息 00DB00FF
+    case read ///读取消息 00DD00FF
+}
 struct parameModel {
     
-    var dp: DPType = .power
+    var dp: DPType?
     var value: Any = 0
-    
+    var opCode: opCodeType = .send
 }
 
 struct RuntimeVendorMessage: VendorMessage {
@@ -160,14 +181,29 @@ struct RuntimeVendorMessage: VendorMessage {
     }
 }
 
+protocol KLMMessageTimeDelegate: AnyObject {
+    
+    func messageTimeDidTimeout(_ manager: KLMMessageTime)
+}
+
+extension KLMMessageTimeDelegate {
+    
+    func messageTimeDidTimeout(_ manager: KLMMessageTime) {
+        
+    }
+}
+
 class KLMMessageTime {
     
     ///超时时间
-    let messageTimeout: Int = 6
+    var messageTimeout: Int = 6
+    
     ///当前秒
     var currentTime: Int = 0
     ///定时器
     var messageTimer: Timer?
+    
+    weak var delegate: KLMMessageTimeDelegate?
     
     static let sharedInstacnce = KLMMessageTime()
     private init(){}
@@ -194,10 +230,9 @@ class KLMMessageTime {
         currentTime += 1
         if currentTime > messageTimeout {//超时
             stopTime() 
-            SVProgressHUD.showError(withStatus: LANGLOC("Timeout"))
+            self.delegate?.messageTimeDidTimeout(self)
         }
     }
-    
 }
 
 

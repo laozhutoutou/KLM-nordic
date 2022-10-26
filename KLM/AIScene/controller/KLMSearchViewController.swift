@@ -42,6 +42,8 @@ class KLMSearchViewController: UIViewController {
         return searchLists
     }()
     
+    var historyData: KLMHistory?
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -59,7 +61,8 @@ class KLMSearchViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
-
+        
+        getHistoryData()
     }
     
     func setupUI() {
@@ -67,7 +70,6 @@ class KLMSearchViewController: UIViewController {
         self.view.backgroundColor = appBackGroupColor
         
         view.addSubview(self.historyView)
-        self.historyView.reloadData()
         
         navigationController?.view.addSubview(self.searchBar)
         self.searchBar.becomeFirstResponder()
@@ -76,6 +78,19 @@ class KLMSearchViewController: UIViewController {
         self.view.addSubview(self.tableView)
         
         self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(pushBack)) as? [UIBarButtonItem]
+    }
+    
+    func getHistoryData() {
+        
+        KLMService.getHistoryData(page: "1", limit: "20") { response in
+            
+            self.historyData = response as? KLMHistory
+            self.historyView.itemString = self.historyData
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
+
     }
     
     @objc func pushBack() {
@@ -97,13 +112,15 @@ class KLMSearchViewController: UIViewController {
         
         
         self.searchLists.removeAll()
-        let network = MeshNetworkManager.instance.meshNetwork!
-        let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
-        self.searchLists = notConfiguredNodes.filter({
-//            ($0.name?.contains(self.searchBar.text!))!
-            ($0.name?.range(of: self.searchBar.text!, options: .caseInsensitive) != nil)
-        })
-        self.tableView.reloadData()
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
+            self.searchLists = notConfiguredNodes.filter({
+                ($0.name?.range(of: self.searchBar.text!, options: .caseInsensitive) != nil)
+            })
+            self.tableView.reloadData()
+        }
+        
     }
 }
 
@@ -116,23 +133,13 @@ extension KLMSearchViewController: CMSearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: CMSearchBar) {
         
-        //存储历史记录
-        let (err, str) = isEmptyString(text: searchBar.text)
-        if err == false {
+        guard let test = searchBar.text else { return }
+        
+        KLMService.addSearch(searchContent: test) { response in
             
-            var list:[String] = KLMHomeManager.getHistoryLists()
-            //过滤重复记录
-            for string in list {
-                if string == str {
-                    return
-                }
-            }
-            list.insert(str, at: 0)
-            KLMHomeManager.cacheHistoryLists(list: list)
-            self.historyView.reloadData()
+        } failure: { error in
             
         }
-        
     }
 }
 
@@ -143,7 +150,19 @@ extension KLMSearchViewController: KLMSearchHistoryViewDelegate {
         self.searchBar.text = text
         self.searchStart()
     }
-
+    
+    func KLMSearchHistoryClearAll() {
+        
+        KLMService.clearAllHistory { response in
+            
+            ///清空数据
+            self.historyData?.data.removeAll()
+            self.historyView.itemString = self.historyData
+            
+        } failure: { error in
+            
+        }
+    }
 }
 
 extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
@@ -156,9 +175,9 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let deviceModel:  Node = self.searchLists[indexPath.row]
+        let deviceModel: Node = self.searchLists[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-        cell.leftImage = "img_scene_48"
+        cell.leftImage = "img_scene_30"
         cell.leftTitle = deviceModel.name
         return cell
         
@@ -167,40 +186,28 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let deviceModel:  Node = self.searchLists[indexPath.row]
-        
+        let deviceModel: Node = self.searchLists[indexPath.row]
         KLMHomeManager.sharedInstacnce.smartNode = deviceModel
         
-        if !MeshNetworkManager.bearer.isOpen {
-            SVProgressHUD.showInfo(withStatus: "Connecting...")
-            return
-        }
-        if !deviceModel.isCompositionDataReceived {
-            //对于未composition的进行配置
-            SVProgressHUD.show(withStatus: "Composition")
-            SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: deviceModel) { [weak self] in
+            guard let self = self else { return }
+            SVProgressHUD.dismiss()
+            if apptype == .test {
+                
+                let vc = KLMTestSectionTableViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+                return
+            }
             
-            KLMSIGMeshManager.sharedInstacnce.delegate = self
-            KLMSIGMeshManager.sharedInstacnce.getCompositionData(node: deviceModel)
-            return
+            let vc = KLMDeviceEditViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        } failure: {
+            
         }
-        
-        let vc = KLMDeviceEditViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-}
-
-extension KLMSearchViewController: KLMSIGMeshManagerDelegate {
-        
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
-        
-        SVProgressHUD.showSuccess(withStatus: "please tap again")
-        
-    }
-    
-    func sigMeshManager(_ manager: KLMSIGMeshManager, didFailToActiveDevice error: MessageError?){
-        
-        KLMShowError(error)
     }
 }
 

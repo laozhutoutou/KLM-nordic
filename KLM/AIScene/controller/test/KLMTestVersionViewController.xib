@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMTestVersionViewController" customModule="KLM_GN" customModuleProvider="target">
+            <connections>
+                <outlet property="liaohaoLab" destination="8Rm-c7-iHJ" id="gjA-ND-zt8"/>
+                <outlet property="versionLab" destination="ipb-62-R9M" id="rG1-Gg-BcF"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="料号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ut5-mU-ZmQ">
+                    <rect key="frame" x="20" y="112" width="46" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如发现料号或固件版本和实际不符，请先点击下图ERASE按钮擦除设备数据，待数据擦除完成后再重新烧录固件。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ka5-ah-e3N">
+                    <rect key="frame" x="20" y="160" width="374" height="54"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未获取到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rm-c7-iHJ">
+                    <rect key="frame" x="66" y="110.5" width="73.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="固件版本：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCk-Bn-K3s">
+                    <rect key="frame" x="169.5" y="112" width="76.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未获取到" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipb-62-R9M">
+                    <rect key="frame" x="246" y="110.5" width="73.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_liaohao" translatesAutoresizingMaskIntoConstraints="NO" id="Chm-9T-bQC">
+                    <rect key="frame" x="0.0" y="244" width="414" height="120"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="120" id="AF6-px-xIH"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="8Rm-c7-iHJ" firstAttribute="centerY" secondItem="Ut5-mU-ZmQ" secondAttribute="centerY" id="2Gw-jI-y9K"/>
+                <constraint firstItem="Chm-9T-bQC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6kN-iN-fzd"/>
+                <constraint firstItem="ipb-62-R9M" firstAttribute="leading" secondItem="yCk-Bn-K3s" secondAttribute="trailing" id="6xp-iv-WeX"/>
+                <constraint firstItem="Chm-9T-bQC" firstAttribute="top" secondItem="Ka5-ah-e3N" secondAttribute="bottom" constant="30" id="7Zx-bM-Mhb"/>
+                <constraint firstItem="Ut5-mU-ZmQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="EfP-tu-L66"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ka5-ah-e3N" secondAttribute="trailing" constant="20" id="HXx-hX-lhy"/>
+                <constraint firstItem="8Rm-c7-iHJ" firstAttribute="leading" secondItem="Ut5-mU-ZmQ" secondAttribute="trailing" id="Xvs-4s-kkI"/>
+                <constraint firstItem="yCk-Bn-K3s" firstAttribute="centerY" secondItem="Ut5-mU-ZmQ" secondAttribute="centerY" id="c5B-lY-U59"/>
+                <constraint firstItem="Ka5-ah-e3N" firstAttribute="leading" secondItem="Ut5-mU-ZmQ" secondAttribute="leading" id="cJC-Jg-YDD"/>
+                <constraint firstItem="yCk-Bn-K3s" firstAttribute="leading" secondItem="8Rm-c7-iHJ" secondAttribute="trailing" constant="30" id="mRd-Hz-cNH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Chm-9T-bQC" secondAttribute="trailing" id="ntg-KF-VSc"/>
+                <constraint firstItem="ipb-62-R9M" firstAttribute="centerY" secondItem="yCk-Bn-K3s" secondAttribute="centerY" id="oO8-7B-5xn"/>
+                <constraint firstItem="Ut5-mU-ZmQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="pjh-Yq-PK9"/>
+                <constraint firstItem="Ka5-ah-e3N" firstAttribute="top" secondItem="Ut5-mU-ZmQ" secondAttribute="bottom" constant="30" id="xZr-80-5UX"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="-1261" y="-125"/>
+        </view>
+        <tapGestureRecognizer id="Gvg-BG-JG6">
+            <connections>
+                <action selector="tapGonglv:" destination="-1" id="ffN-Z7-aVM"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="noy-9p-dg5">
+            <connections>
+                <action selector="tapQudong:" destination="-1" id="7wX-0V-7YY"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="img_liaohao" width="422" height="174"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

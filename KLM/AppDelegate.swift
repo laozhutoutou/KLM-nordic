@@ -21,27 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        setupSVHUD()
-        
-        setupKeyboard()
                 
         setUpNordic()
         
-//        KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
-//        window?.makeKeyAndVisible()
+        setupBugly()
+        
+        KLMApplicationManager.sharedInstacnce.setupWindow(window: window!)
+
         return true
-    }
-    
-    private func setupKeyboard() {
-        
-        let manager =  IQKeyboardManager.shared
-        manager.enable = true
-        manager.shouldResignOnTouchOutside = true
-        manager.shouldToolbarUsesTextFieldTintColor = true;
-        manager.enableAutoToolbar = true;
-        manager.toolbarManageBehaviour = .byTag
-        
     }
     
     func setUpNordic() {
@@ -57,24 +44,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 12.6 seconds (4.2 + 4.2 * 2), and 29.4 seconds (4.2 + 4.2 * 2 + 4.2 * 4).
         // Then, leave 10 seconds for until the incomplete message times out.
         //发送消息超时时间
-        meshNetworkManager.acknowledgmentMessageTimeout = 20.0
+//        meshNetworkManager.acknowledgmentMessageTimeout = 20.0
         meshNetworkManager.logger = self
+    
+    }
+    
+    func setupBugly() {
         
-        ///加载本地配置数据
-        var loaded = false
-        do {
-            loaded = try meshNetworkManager.load()
-        } catch {
-            print(error)
-            // ignore
+        if apptype == .targetGN {
+            let config = BuglyConfig()
+            config.blockMonitorEnable = true
+//            config.debugMode = true
+            config.unexpectedTerminatingDetectionEnable = true
+            config.delegate = self
+            Bugly.start(withAppId: "02072c9ff3", config: config)
         }
         
-        // If load failed, create a new MeshNetwork.
-        if !loaded {
-            createNewMeshNetwork()
-        } else {
-            meshNetworkDidChange()
-        }
     }
     
     func createNewMeshNetwork() {
@@ -83,23 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                       allocatedUnicastRange: [AddressRange(0x0001...0x199A)],
                                       allocatedGroupRange:   [AddressRange(0xC000...0xCC9A)],
                                       allocatedSceneRange:   [SceneRange(0x0001...0x3333)])
-        _ = meshNetworkManager.createNewMeshNetwork(withName: "Mesh Network", by: provisioner)
+        _ = meshNetworkManager.createNewMeshNetwork(withName: "nRF Mesh Network", by: provisioner)
         _ = meshNetworkManager.save()
-        
-        //创建一个APP key
-        if MeshNetworkManager.instance.meshNetwork!.applicationKeys.isEmpty {
-            
-            let newKey: Data! = Data.random128BitKey()
-            let network = MeshNetworkManager.instance.meshNetwork!
-            do {
-                try network.add(applicationKey: newKey, withIndex: 0, name: "new key")
-            } catch  {
-                print(error)
-            }
-            
-            _ =  MeshNetworkManager.instance.save()
-            
-        }
         
         meshNetworkDidChange()
     }
@@ -161,16 +131,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection = NetworkConnection(to: meshNetwork)
         connection!.dataDelegate = meshNetworkManager
         connection!.logger = self
+        if let tabBar = window?.rootViewController as? KLMTabBarController, let nav: KLMNavigationViewController = tabBar.viewControllers?.first as? KLMNavigationViewController, let vc: KLMUnNameListViewController = nav.viewControllers.first as? KLMUnNameListViewController {
+            connection.delegate = vc
+        }
         meshNetworkManager.transmitter = connection
         connection.isConnectionModeAutomatic = true
         connection!.open()
         
-        enterMainUI()
-    }
-    
-    func setupSVHUD() {
-        
-        SVProgressHUD.setDefaultStyle(.dark)
     }
     
     func enterMainUI() {
@@ -197,6 +164,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
         
+    }
+    
+    func enterLoginUIOtherLogin() {
+        
+        let login = KLMLoginViewController()
+        login.isOtherLogin = true
+        let nav = KLMNavigationViewController.init(rootViewController: login)
+        window?.rootViewController = nav
+        window?.makeKeyAndVisible()
     }
     
     //后台也可以运行定时器
@@ -291,6 +267,14 @@ extension LogCategory {
         return OSLog(subsystem: Bundle.main.bundleIdentifier!, category: rawValue)
     }
     
+}
+
+extension AppDelegate: BuglyDelegate {
+    
+    func attachment(for exception: NSException?) -> String? {
+        
+        return ""
+    }
 }
 
 

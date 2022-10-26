@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="KLMGroupColorSensingCell" id="i9H-qU-Byo" customClass="KLMGroupColorSensingCell" customModule="KLM_GN" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i9H-qU-Byo" id="7yN-nn-nrT">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iak-61-wD1">
+                        <rect key="frame" x="15" y="16" width="75" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-AW-fqO" userLabel="line">
+                        <rect key="frame" x="0.0" y="49.5" width="320" height="0.5"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="ofa-aU-tBk"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsG-6e-h3g">
+                        <rect key="frame" x="260" y="12.5" width="45" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="Aso-8K-MeL"/>
+                            <constraint firstAttribute="width" constant="45" id="D8P-eP-vaI"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Off">
+                            <color key="titleColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="offClick:" destination="i9H-qU-Byo" eventType="touchUpInside" id="pgI-TY-SWo"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvb-pF-5fe">
+                        <rect key="frame" x="205" y="12.5" width="45" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="45" id="ZpH-eQ-dTa"/>
+                            <constraint firstAttribute="height" constant="25" id="uRs-7c-CEc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="On">
+                            <color key="titleColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <state key="selected">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="onClick:" destination="i9H-qU-Byo" eventType="touchUpInside" id="mNx-th-I7W"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="CBa-AW-fqO" secondAttribute="trailing" id="AG0-I0-eLN"/>
+                    <constraint firstAttribute="trailing" secondItem="vsG-6e-h3g" secondAttribute="trailing" constant="15" id="E2D-GH-WT6"/>
+                    <constraint firstAttribute="bottom" secondItem="CBa-AW-fqO" secondAttribute="bottom" id="Glp-mv-vS7"/>
+                    <constraint firstItem="CBa-AW-fqO" firstAttribute="leading" secondItem="7yN-nn-nrT" secondAttribute="leading" id="Hly-Fn-3Bx"/>
+                    <constraint firstItem="iak-61-wD1" firstAttribute="leading" secondItem="7yN-nn-nrT" secondAttribute="leading" constant="15" id="QVr-8x-rEa"/>
+                    <constraint firstItem="pvb-pF-5fe" firstAttribute="centerY" secondItem="iak-61-wD1" secondAttribute="centerY" id="UJY-JU-Ygb"/>
+                    <constraint firstItem="vsG-6e-h3g" firstAttribute="leading" secondItem="pvb-pF-5fe" secondAttribute="trailing" constant="10" id="fZR-9W-lZz"/>
+                    <constraint firstItem="vsG-6e-h3g" firstAttribute="centerY" secondItem="iak-61-wD1" secondAttribute="centerY" id="jyg-U4-g8J"/>
+                    <constraint firstItem="iak-61-wD1" firstAttribute="centerY" secondItem="7yN-nn-nrT" secondAttribute="centerY" id="kuw-oP-diT"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="offBtn" destination="vsG-6e-h3g" id="DaR-Os-kXc"/>
+                <outlet property="onBtn" destination="pvb-pF-5fe" id="QBO-pz-Oak"/>
+            </connections>
+            <point key="canvasLocation" x="-113" y="8"/>
+        </tableViewCell>
+    </objects>
+</document>
