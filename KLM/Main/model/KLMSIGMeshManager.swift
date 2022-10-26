@@ -340,7 +340,6 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                 self.addAppkeyToModel(node: self.currentNode)
                 return
             }
-            
             self.addAppkeyToNode(node: self.currentNode)
             return
             
