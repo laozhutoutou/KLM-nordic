@@ -45,6 +45,18 @@ class KLMAPPUpdateViewController: UIViewController {
             return
         }
         
+        ///检查版本
+        if apptype == .targetGN || apptype == .targetsGW {
+            checkAPPVersion()
+        }
+        
+        if apptype == .targetSensetrack {
+            checkAppleStoreVersion()
+        }
+    }
+    
+    private func checkAPPVersion() {
+        
         SVProgressHUD.show()
         KLMService.checkAPPVersion { response in
             SVProgressHUD.dismiss()
@@ -66,33 +78,29 @@ class KLMAPPUpdateViewController: UIViewController {
         } failure: { error in
             KLMHttpShowError(error)
         }
+    }
+    
+    private func checkAppleStoreVersion() {
         
-//        KLMService.checkAppVersion { response in
-//            SVProgressHUD.dismiss()
-//            let newVersion: String = response as! String
-//            let currentVersion: String = String(format: "%@", KLM_APP_VERSION as! String)
-//
-//            let value = currentVersion.compare(newVersion)
-//            if value == .orderedAscending {//左操作数小于右操作数，需要升级
-//
-//                ///跳转到appleStore
-//                let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
-//                if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
-//                    UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
-//                }
-//
-//            } else {
-//
-//                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
-//            }
-//
-//        } failure: { error in
+        SVProgressHUD.show()
+        KLMService.checkAppleStoreAppVersion { response in
+            SVProgressHUD.dismiss()
+            guard let newVersion = response as? String else { return  }
+            let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
             
-//            KLMLog("查询失败:\(error)")
-//            var err = MessageError()
-//            err.message = error.localizedDescription
-//            KLMShowError(err)
-//        }
-        
+            guard currentVersion.compare(newVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
+                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                return
+            }
+                        
+            ///跳转到appleStore
+            let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
+            if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
+                UIApplication.shared.open(URL.init(string: url)!, options: [:], completionHandler: nil)
+            }
+            
+        } failure: { error in
+            KLMHttpShowError(error)
+        }
     }
 }

@@ -23,6 +23,8 @@ var AppleStoreID: String {
         return "1618735485"
     case .test:
         return "1584589375"
+    case .targetSensetrack:
+        return "6444004533"
     }
 }
 
@@ -31,6 +33,7 @@ enum AppType {
     case targetGN //国内版
     case targetsGW //国外版
     case test //测试版
+    case targetSensetrack
 }
 
 var apptype: AppType {
@@ -41,6 +44,8 @@ var apptype: AppType {
     return AppType.targetsGW
 #elseif target_Test
     return AppType.test
+#elseif target_Sensetrack
+    return AppType.targetSensetrack
 #endif
 }
 
@@ -88,7 +93,13 @@ func rgb(_ r : CGFloat, _ g : CGFloat, _ b : CGFloat) -> UIColor {
 //APP导航栏颜色
 let navigationBarColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 ///APP主题颜色
-let appMainThemeColor = #colorLiteral(red: 0, green: 0.8235294118, blue: 0.9019607843, alpha: 1)
+var appMainThemeColor: UIColor {
+    if apptype == .targetSensetrack {
+        return #colorLiteral(red: 0.7882352941, green: 0.8274509804, blue: 0, alpha: 1)
+    }
+    return #colorLiteral(red: 0, green: 0.8235294118, blue: 0.9019607843, alpha: 1)
+}
+//let appMainThemeColor = #colorLiteral(red: 0, green: 0.8235294118, blue: 0.9019607843, alpha: 1)
 //APP背景颜色
 let appBackGroupColor = #colorLiteral(red: 0.968627451, green: 0.968627451, blue: 0.968627451, alpha: 1)
 

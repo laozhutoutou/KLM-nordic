@@ -47,7 +47,7 @@ class KLMLoginViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .loginPageRefresh, object: nil)
         
-        if apptype == .targetsGW { ///国外版没有手机号
+        if apptype == .targetsGW || apptype == .targetSensetrack { ///国外版没有手机号
             mailTextField.placeholder = LANGLOC("Email")
         }
     }
@@ -110,7 +110,7 @@ class KLMLoginViewController: UIViewController {
     
     @IBAction func register(_ sender: Any) {
         
-        if apptype == .targetsGW {
+        if apptype == .targetsGW || apptype == .targetSensetrack {
             let register = KLMRegisterViewController()
             navigationController?.pushViewController(register, animated: true)
             return
@@ -122,7 +122,7 @@ class KLMLoginViewController: UIViewController {
     
     @IBAction func forgetPass(_ sender: Any) {
         
-        if apptype == .targetsGW {
+        if apptype == .targetsGW || apptype == .targetSensetrack {
             let vc = KLMForgetPasswordViewController()
             navigationController?.pushViewController(vc, animated: true)
             return

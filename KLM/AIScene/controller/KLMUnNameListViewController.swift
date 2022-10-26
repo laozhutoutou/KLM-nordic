@@ -99,10 +99,13 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         ///初始化数据
         initData()
         
-        
         ///检查版本
         if apptype == .targetGN || apptype == .targetsGW {
             checkAPPVersion()
+        }
+        
+        if apptype == .targetSensetrack {
+            checkAppleStoreVersion()
         }
     }
     
@@ -275,7 +278,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     
     private func checkAPPVersion() {
         
-        KLMService.checkAPPVersion{ response in
+        KLMService.checkAPPVersion { response in
             
             guard let data = response as? KLMVersion.KLMVersionData else { return  }
             self.versionData = data
@@ -298,7 +301,42 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                 
                 self.showUpdateView()
             }
-            ///每隔一段时间提示一次
+            
+        } failure: { error in
+            
+        }
+    }
+    
+    private func checkAppleStoreVersion() {
+        
+        KLMService.checkAppleStoreAppVersion { response in
+            
+            guard let newVersion = response as? String else { return  }
+            let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
+            
+            guard currentVersion.compare(newVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
+                return
+            }
+            
+            ///每个新版本提示一次
+            guard KLMGetUserDefault(newVersion) == nil else { return }
+            KLMSetUserDefault(newVersion, newVersion)
+            
+            ///弹出提示框
+            let vc = UIAlertController.init(title: LANGLOC("checkUpdate"), message: newVersion, preferredStyle: .alert)
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
+                
+                ///跳转到appleStore
+                let url: String = "http://itunes.apple.com/app/id\(AppleStoreID)?mt=8"
+                if UIApplication.shared.canOpenURL(URL.init(string: url)!) {
+                    UIApplication.shared.open(URL.init(string: url)!, options: [:]) { _ in
+                        
+                    }
+                }
+            }))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+            self.present(vc, animated: true, completion: nil)
+            
         } failure: { error in
             
         }

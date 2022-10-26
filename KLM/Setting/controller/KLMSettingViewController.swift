@@ -11,7 +11,6 @@ import nRFMeshProvision
 private enum itemType: Int, CaseIterable {
     case userInfo = 0
     case language
-//    case motion
     case update
     case help
     case home
@@ -44,6 +43,9 @@ class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableVi
         
         if indexPath.row == itemType.userInfo.rawValue {
             return 70
+        }
+        if apptype == .targetSensetrack && indexPath.row == itemType.language.rawValue {
+            return 0
         }
         return 56
     }

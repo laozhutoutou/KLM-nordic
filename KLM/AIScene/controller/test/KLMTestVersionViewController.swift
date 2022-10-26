@@ -50,12 +50,15 @@ extension KLMTestVersionViewController: KLMSmartNodeDelegate {
                 } else { //ocx
                     liaohaoLab.text = "1.10.19.0060"
                 }
-            } else { //25W
+            } else if gonglv == 2 { //25W
                 if qudong == 1 { //diodes
                     liaohaoLab.text = "1.10.19.0064"
                 } else { //ocx
                     liaohaoLab.text = "1.10.19.0066"
                 }
+            } else { //无摄像头
+                
+                liaohaoLab.text = "0.0.0.0"
             }
         }
     }

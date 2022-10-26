@@ -56,7 +56,12 @@ class KLMAudioManager: NSObject {
         //启动音频会话管理,此时会阻断后台音乐的播放.
         try? AVAudioSession.sharedInstance().setActive(true)
         
-        let path = Bundle.main.path(forResource: "\(currentIndex)", ofType: "wav")
+        var str = "\(currentIndex)_en"
+        if Bundle.isChineseLanguage() {
+            str = "\(currentIndex)"
+        }
+        
+        let path = Bundle.main.path(forResource: str, ofType: "wav")
         guard let path = path else { return }
         if audioPlayer == nil {
             audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))
@@ -76,7 +81,11 @@ class KLMAudioManager: NSObject {
         //启动音频会话管理,此时会阻断后台音乐的播放.
         try? AVAudioSession.sharedInstance().setActive(true)
         
-        let path = Bundle.main.path(forResource: "前", ofType: "wav")
+        var str = "前_en"
+        if Bundle.isChineseLanguage() {
+            str = "前"
+        }
+        let path = Bundle.main.path(forResource: str, ofType: "wav")
         guard let path = path else { return }
         if audioPlayer == nil {
             audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))
@@ -96,7 +105,12 @@ class KLMAudioManager: NSObject {
         //启动音频会话管理,此时会阻断后台音乐的播放.
         try? AVAudioSession.sharedInstance().setActive(true)
         
-        let path = Bundle.main.path(forResource: "后", ofType: "wav")
+        var str = "后_en"
+        if Bundle.isChineseLanguage() {
+            str = "后"
+        }
+        
+        let path = Bundle.main.path(forResource: str, ofType: "wav")
         guard let path = path else { return }
         if audioPlayer == nil {
             audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))

@@ -248,10 +248,6 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
         self.currentNode = node
         MeshNetworkManager.instance.delegate = self
         let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
-        guard model.boundApplicationKeys.isEmpty else {
-            return
-        }
-        
         let keys = self.currentNode.applicationKeysAvailableFor(model)
         let applicationKey = keys.first
         let message = ConfigModelAppBind(applicationKey: applicationKey!, to: model)!
@@ -278,14 +274,14 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
         SVProgressHUD.show(withStatus: "composition")
         
         //composition
-//        if let network = MeshNetworkManager.instance.meshNetwork {
-//
-//            let node = network.node(for: self.discoveredPeripheral.device)!
-//            if !node.isCompositionDataReceived {
-//                KLMLog("start composition")
-//                self.getCompositionData(node: node)
-//            }
-//        }
+        if let network = MeshNetworkManager.instance.meshNetwork {
+
+            let node = network.node(for: self.discoveredPeripheral.device)!
+            if !node.isCompositionDataReceived {
+                KLMLog("start composition")
+                self.getCompositionData(node: node)
+            }
+        }
     }
 }
 
@@ -323,8 +319,14 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                 KLMLog("node appkey success")
                 SVProgressHUD.show(withStatus: "Add app key to model")
                 
-                self.addAppkeyToModel(node: self.currentNode)
+                let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
+                guard model.boundApplicationKeys.isEmpty else { ///model已经绑定了appkey
+                    
+                    deviceConfigSuccess()
+                    return
+                }
                 
+                self.addAppkeyToModel(node: self.currentNode)
                 return
             }
         case is ConfigCompositionDataStatus:
@@ -333,25 +335,20 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
             SVProgressHUD.show(withStatus: "Add app key to node")
             
             //给node 配置app key
-            if !self.currentNode.applicationKeys.isEmpty {
+            if !self.currentNode.applicationKeys.isEmpty { ///node绑定了appkey,就给model绑定appkey
                 
+                self.addAppkeyToModel(node: self.currentNode)
                 return
             }
             
             self.addAppkeyToNode(node: self.currentNode)
-
             return
             
         case let status as ConfigModelAppStatus:
             if status.status == .success {
                 
-                //停止计时
-                stopTime()
+                deviceConfigSuccess()
                 
-                //整个流程配置完成
-                KLMLog("OTA model appkey success")
-                
-                self.delegate?.sigMeshManager(self, didActiveDevice: self.currentNode)
                 return
             }
             
@@ -385,5 +382,16 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                             from localElement: Element, to destination: Address) {
         
         self.delegate?.sigMeshManager(self, didSendMessage: message)
+    }
+    
+    private func deviceConfigSuccess() {
+        
+        //停止计时
+        stopTime()
+        
+        //整个流程配置完成
+        KLMLog("model appkey success")
+        
+        self.delegate?.sigMeshManager(self, didActiveDevice: self.currentNode)
     }
 }

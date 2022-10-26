@@ -2,7 +2,7 @@ use_frameworks!
 
 platform :ios, '13.0'
 
-targets = ['KLM_GN', 'KLM_GW', 'KLM_Test']
+targets = ['KLM_GN', 'KLM_GW', 'KLM_Test', 'KLM_Sensetrack']
 targets.each do |t|
   target t do
     pod 'nRFMeshProvision', '~> 3.1.2' #蓝牙mesh

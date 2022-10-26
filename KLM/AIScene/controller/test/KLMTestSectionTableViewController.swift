@@ -16,6 +16,7 @@ private enum itemType: Int, CaseIterable {
     case Baozhuang
     case Yingjian
     case Biaoding
+    case YingjianTest
 }
 
 class KLMTestSectionTableViewController: UITableViewController {
@@ -101,6 +102,8 @@ class KLMTestSectionTableViewController: UITableViewController {
             cell.textLabel?.text = "料号和固件版本查询"
         case itemType.Biaoding.rawValue:
             cell.textLabel?.text = "白平衡标定"
+        case itemType.YingjianTest.rawValue:
+            cell.textLabel?.text = "硬件信息"
         default:
             break
         }
@@ -132,6 +135,9 @@ class KLMTestSectionTableViewController: UITableViewController {
         case itemType.Biaoding.rawValue:
             let vc = KLMTestBiaodingViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case itemType.YingjianTest.rawValue:
+            let vc = KLMTestVersion1ViewController()
+            navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }
@@ -143,8 +149,9 @@ extension KLMTestSectionTableViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
+        SVProgressHUD.dismiss()
         if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
-            SVProgressHUD.dismiss()
+            
             /// 版本 0112  显示 1.1.2
             let version = value[0...1]
             let first: Int = Int(version[0])
