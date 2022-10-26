@@ -325,13 +325,12 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
                     deviceConfigSuccess()
                     return
                 }
-                
                 self.addAppkeyToModel(node: self.currentNode)
                 return
             }
         case is ConfigCompositionDataStatus:
             
-            KLMLog("composition success")
+            KLMLog("composition success.")
             SVProgressHUD.show(withStatus: "Add app key to node")
             
             //给node 配置app key
