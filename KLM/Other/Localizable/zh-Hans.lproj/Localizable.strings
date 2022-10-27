@@ -192,6 +192,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Failed to get update package" = "获取更新包失败";
 "Downloading" = "下载中";
 "Upgrade failed" = "升级失败";
+"Please ensure that the light is not connected by others, and tell others to power off the APP Bluetooth or kill the APP process" = "请确保灯没被别人连接，告知他人关闭APP蓝牙或者杀掉APP进程";
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时";

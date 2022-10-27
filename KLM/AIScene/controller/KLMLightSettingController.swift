@@ -54,7 +54,7 @@ class KLMLightSettingController: UITableViewController {
 
         } else if KLMHomeManager.sharedInstacnce.controllType == .Group {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
 
             } failure: { error in
 

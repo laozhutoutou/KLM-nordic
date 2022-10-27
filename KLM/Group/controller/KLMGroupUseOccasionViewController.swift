@@ -114,7 +114,7 @@ class KLMGroupUseOccasionViewController: UIViewController, Editable {
     @IBAction func confirmClick(_ sender: Any) {
         
         let parame = parameModel(dp: .category, value: selectCategory!.num)
-        KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+        KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
             
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             

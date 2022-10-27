@@ -63,7 +63,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             SVProgressHUD.show()
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] in
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] source  in
                 SVProgressHUD.dismiss()
                 KLMLog("success")
                 guard let self = self else { return }
@@ -76,7 +76,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
 
         } else {
             SVProgressHUD.show()
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) { [weak self] in
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) { [weak self] source in
                 SVProgressHUD.dismiss()
                 KLMLog("success")
                 guard let self = self else { return }
@@ -97,7 +97,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             SVProgressHUD.show()
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] in
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) { [weak self] source in
                 SVProgressHUD.dismiss()
                 KLMLog("success")
                 guard let self = self else { return }
@@ -117,7 +117,7 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
         } else {
             
             SVProgressHUD.show()
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) { [weak self] in
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) { [weak self] source in
                 SVProgressHUD.dismiss()
                 KLMLog("success")
                 guard let self = self else { return }

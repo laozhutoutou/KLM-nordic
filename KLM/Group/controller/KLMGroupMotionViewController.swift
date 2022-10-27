@@ -183,7 +183,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         let parame = parameModel(dp: .motion, value: "000000")
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
                 self.groupData.energyPower = 0
@@ -201,7 +201,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
@@ -239,7 +239,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         let parame = parameModel(dp: .motion, value: power + time + light)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 
                 print("success")
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
@@ -259,7 +259,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
             }
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
                 print("success")
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
@@ -285,7 +285,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         let parame = parameModel(dp: .motion, value: "040000")
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 
             } failure: { error in
                 
@@ -293,7 +293,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
             } failure: { error in
                 
@@ -314,7 +314,7 @@ extension KLMGroupMotionViewController: KLMSliderDelegate {
         let parame = parameModel(dp: .motion, value: power + time + light)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
             } failure: { error in
@@ -324,7 +324,7 @@ extension KLMGroupMotionViewController: KLMSliderDelegate {
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 

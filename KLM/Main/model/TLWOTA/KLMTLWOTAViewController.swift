@@ -27,9 +27,9 @@ class KLMTLWOTAViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tipLab.text = LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process.")
+        tipLab.text = LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process.") + LANGLOC("Please ensure that the light is not connected by others, and tell others to power off the APP Bluetooth or kill the APP process")
         
-        //导航栏左边添加返回按钮
+        //导航栏左边添加返回          按钮
         if isPresent {
             navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
         }

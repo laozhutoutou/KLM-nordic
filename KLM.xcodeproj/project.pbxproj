@@ -4484,7 +4484,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.7.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4520,7 +4520,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.0;
+				MARKETING_VERSION = 1.7.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";

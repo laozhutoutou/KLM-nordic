@@ -41,8 +41,9 @@ end
 #  pod 'MJRefresh', '~> 3.5.0'
 #  pod 'DZNEmptyDataSet', '~> 1.8.1' #数据为空时显示空白占位图
 #  pod 'Charts' #图表
-#  
+#
 #end
+
 #给第三方库增加bitcode 为NO，x-code更新到13.3 后无法打包
 post_install do |installer|
   installer.pods_project.targets.each do |target|

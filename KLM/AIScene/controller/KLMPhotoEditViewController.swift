@@ -265,7 +265,7 @@ class KLMPhotoEditViewController: UIViewController {
         let parame = parameModel(dp: .recipe, value: string)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 
                 print("success")
                 
@@ -278,7 +278,7 @@ class KLMPhotoEditViewController: UIViewController {
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
                 print("success")
                 
@@ -367,7 +367,7 @@ class KLMPhotoEditViewController: UIViewController {
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.groupData.colorSensing = 2
@@ -395,7 +395,7 @@ class KLMPhotoEditViewController: UIViewController {
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.groupData.colorSensing = 2

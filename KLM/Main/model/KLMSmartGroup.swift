@@ -16,12 +16,13 @@ class KLMSmartGroup: NSObject {
         
     }
     
-    typealias SuccessBlock = () -> Void
+    typealias SuccessBlock = (_ source: Address?) -> Void
     typealias FailureBlock = (_ error: MessageError?) -> Void
     
     var successBlock: SuccessBlock?
     var failureBlock: FailureBlock?
     
+    ///分组 send
     func sendMessage(_ parame: parameModel, toGroup group: Group,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         
         MeshNetworkManager.instance.delegate = self
@@ -42,7 +43,7 @@ class KLMSmartGroup: NSObject {
         }
         //一个设备都没连接
         if !MeshNetworkManager.bearer.isOpen {
-            var err = MessageError()
+            let err = MessageError()
             err.message = LANGLOC("deviceNearbyTip")
             failure(err)
             return
@@ -61,19 +62,19 @@ class KLMSmartGroup: NSObject {
                 do {
                     
                     try MeshNetworkManager.instance.send(message, to: group, using: model.boundApplicationKeys.first!)
-                    self.successBlock?()
+                    self.successBlock?(nil)
                     self.successBlock = nil
                     
                 } catch {
                     
-                    var err = MessageError()
+                    let err = MessageError()
                     err.message = error.localizedDescription
                     failure(err)
                     
                 }
             } else {
                 
-                var err = MessageError()
+                let err = MessageError()
                 err.message = LANGLOC("noDevice")
                 failure(err)
             }
@@ -105,7 +106,7 @@ class KLMSmartGroup: NSObject {
         
         //一个设备都没连接
         if !MeshNetworkManager.bearer.isOpen {
-            var err = MessageError()
+            let err = MessageError()
             err.message = LANGLOC("deviceNearbyTip")
             failure(err)
             return
@@ -122,7 +123,7 @@ class KLMSmartGroup: NSObject {
             guard !notConfiguredNodes.isEmpty else {
                 
                 //没有节点
-                var err = MessageError()
+                let err = MessageError()
                 err.message = LANGLOC("noDevice")
                 failure(err)
                 return
@@ -133,7 +134,7 @@ class KLMSmartGroup: NSObject {
             do {
                 //allNodes 为所有节点
                 try  MeshNetworkManager.instance.send(message, to: MeshAddress.init(.allNodes), using: model.boundApplicationKeys.first!)
-                self.successBlock?()
+                self.successBlock?(nil)
                 self.successBlock = nil
                 
             } catch {
@@ -146,6 +147,65 @@ class KLMSmartGroup: NSObject {
         }
     }
     
+    ///所有节点 read
+    func readMessageToAllNodes(_ parame: parameModel,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock)  {
+        
+        MeshNetworkManager.instance.delegate = self
+        
+        successBlock = success
+        failureBlock = failure
+        
+        do {
+            try KLMConnectManager.checkBluetoothState()
+            
+        } catch {
+            
+            if let errr = error as? MessageError {
+                failure(errr)
+                return
+            }
+        }
+        
+        //一个设备都没连接
+        if !MeshNetworkManager.bearer.isOpen {
+            let err = MessageError()
+            err.message = LANGLOC("deviceNearbyTip")
+            failure(err)
+            return
+        }
+        
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
+        if let opCode = UInt8("1C", radix: 16) {
+            let parameters = Data(hex: dpString)
+            KLMLog("readParameter = \(parameters.hex)")
+            let network = MeshNetworkManager.instance.meshNetwork!
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
+            guard !notConfiguredNodes.isEmpty else {
+                
+                //没有节点
+                var err = MessageError()
+                err.message = LANGLOC("noDevice")
+                failure(err)
+                return
+            }
+            
+            let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!)!
+            let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
+            do {
+                //allNodes 为所有节点
+                try  MeshNetworkManager.instance.send(message, to: MeshAddress.init(.allNodes), using: model.boundApplicationKeys.first!)
+                
+            } catch {
+                
+                var err = MessageError()
+                err.message = error.localizedDescription
+                failure(err)
+                
+            }
+        }
+    }
+    
+    ///分组 read
     func readMessage(_ parame: parameModel, toGroup group: Group, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         
         MeshNetworkManager.instance.delegate = self
@@ -226,20 +286,13 @@ extension KLMSmartGroup: MeshNetworkDelegate {
                 
                 if parameters.count >= 3 {
                     
-                    self.successBlock?()
-                    self.successBlock = nil
-                    return
+                    self.successBlock?(source)
+//                    self.successBlock = nil
                 } 
             }
         default:
             break
         }
-        
-        //返回错误
-//        var err = MessageError()
-//        err.message = "Unknow message"
-//        self.failureBlock?(err)
-//        self.failureBlock = nil
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {

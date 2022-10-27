@@ -226,7 +226,7 @@ class KLMCustomViewController: UIViewController, Editable {
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in
                 
                 KLMLog("success")
 
@@ -241,7 +241,7 @@ class KLMCustomViewController: UIViewController, Editable {
 
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
                 
                 KLMLog("success")
 
@@ -262,7 +262,7 @@ class KLMCustomViewController: UIViewController, Editable {
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.groupData.colorSensing = 2
@@ -292,7 +292,7 @@ class KLMCustomViewController: UIViewController, Editable {
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
                 
                 SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 self.groupData.colorSensing = 2
@@ -326,7 +326,7 @@ class KLMCustomViewController: UIViewController, Editable {
         let parame = parameModel(dp: .recipe, value: string)
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in
                 
                 
             } failure: { error in
@@ -337,7 +337,7 @@ class KLMCustomViewController: UIViewController, Editable {
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
 
         } else {
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
 
             } failure: { error in
                 
@@ -446,7 +446,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
             let parame = parameModel(dp: .colorTemp, value: vv)
             if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
                 
-                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in
                     
                     KLMLog("success")
                     
@@ -461,7 +461,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 
             } else {
                 
-                KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+                KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
                     
                     KLMLog("success")
                     
@@ -477,7 +477,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
             
             if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
                 
-                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+                KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in
                     
                     KLMLog("success")
                     
@@ -491,7 +491,7 @@ extension KLMCustomViewController: KLMSliderDelegate {
                 KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
             } else {
                 
-                KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+                KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
                     
                     KLMLog("success")
                     
@@ -521,7 +521,7 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in
                 
                 
             } failure: { error in
@@ -535,7 +535,7 @@ extension KLMCustomViewController: RSColorPickerViewDelegate {
             
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
 
                 KLMLog("success")
                 

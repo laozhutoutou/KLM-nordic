@@ -125,7 +125,7 @@ extension KLMBrightnessViewController: KLMSliderDelegate {
         
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
-            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {
+            KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
                 
                 self.groupData.customLight = light
                 self.sendData()
@@ -141,7 +141,7 @@ extension KLMBrightnessViewController: KLMSliderDelegate {
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         } else {
             
-            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
                 self.groupData.customLight = light
                 self.sendData()

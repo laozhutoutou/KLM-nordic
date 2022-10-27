@@ -83,7 +83,7 @@ class KLMConnectManager {
         self.failure = failure
     
         let parame = parameModel(dp: .power)
-        KLMSmartGroup.sharedInstacnce.readMessage(parame, toGroup: group) {
+        KLMSmartGroup.sharedInstacnce.readMessage(parame, toGroup: group) {source in
             SVProgressHUD.dismiss()
             self.success?()
             self.success = nil
