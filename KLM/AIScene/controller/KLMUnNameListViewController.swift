@@ -623,25 +623,26 @@ extension KLMUnNameListViewController: KLMSmartNodeDelegate {
 extension KLMUnNameListViewController: GattDelegate {
     
     func bearerDidOpen(_ bearer: Bearer) {
-        DispatchQueue.main.asyncAfter(deadline: 3) {
-            
-            ///直连的连接上了
-            let parame = parameModel(dp: .power)
-            KLMSmartGroup.sharedInstacnce.readMessageToAllNodes(parame) { [weak self] source in
-                guard let self = self else { return }
-                if let network = MeshNetworkManager.instance.meshNetwork {
-                    
-                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                    if let node = notConfiguredNodes.first(where: {$0.unicastAddress == source}) {
-                        node.isOnline = true
-                        self.collectionView.reloadData()
-                        KLMLog("连接的设备：\(node.nodeName)")
-                    }
-                }
-            } failure: { error in
-                
-            }
-        }
+        ///会出问题
+//        DispatchQueue.main.asyncAfter(deadline: 3) {
+//
+//            ///直连的连接上了
+//            let parame = parameModel(dp: .power)
+//            KLMSmartGroup.sharedInstacnce.readMessageToAllNodes(parame) { [weak self] source in
+//                guard let self = self else { return }
+//                if let network = MeshNetworkManager.instance.meshNetwork {
+//
+//                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+//                    if let node = notConfiguredNodes.first(where: {$0.unicastAddress == source}) {
+//                        node.isOnline = true
+//                        self.collectionView.reloadData()
+//                        KLMLog("连接的设备：\(node.nodeName)")
+//                    }
+//                }
+//            } failure: { error in
+//
+//            }
+//        }
         
     }
     

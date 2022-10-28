@@ -100,7 +100,7 @@ class KLMAPPUpdateViewController: UIViewController {
             }
             
         } failure: { error in
-            KLMHttpShowError(error)
+            SVProgressHUD.showInfo(withStatus: error.localizedDescription)
         }
     }
 }

@@ -129,7 +129,15 @@ class KLMSmartGroup: NSObject {
                 return
             }
             
-            let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!)!
+            ///可能节点没配置完成
+            guard let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!) else {
+                KLMConnectManager.shared.connectToNode(node: notConfiguredNodes.first!) {
+                    SVProgressHUD.showInfo(withStatus: "Please tap again.")
+                } failure: {
+                    
+                }
+                return
+            }
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
                 //allNodes 为所有节点
@@ -139,7 +147,7 @@ class KLMSmartGroup: NSObject {
                 
             } catch {
                 
-                var err = MessageError()
+                let err = MessageError()
                 err.message = error.localizedDescription
                 failure(err)
                 
@@ -183,13 +191,15 @@ class KLMSmartGroup: NSObject {
             guard !notConfiguredNodes.isEmpty else {
                 
                 //没有节点
-                var err = MessageError()
+                let err = MessageError()
                 err.message = LANGLOC("noDevice")
                 failure(err)
                 return
             }
-            
-            let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!)!
+            ///可能节点没配置完成
+            guard let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!) else {
+                return
+            }
             let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
             do {
                 //allNodes 为所有节点
@@ -197,7 +207,7 @@ class KLMSmartGroup: NSObject {
                 
             } catch {
                 
-                var err = MessageError()
+                let err = MessageError()
                 err.message = error.localizedDescription
                 failure(err)
                 
@@ -226,7 +236,7 @@ class KLMSmartGroup: NSObject {
 
         //一个设备都没连接,  群组发送消息也可以发送出去，没报异常。所以要添加这个
         if !MeshNetworkManager.bearer.isOpen {
-            var err = MessageError()
+            let err = MessageError()
             err.message = LANGLOC("deviceNearbyTip")
             failure(err)
             return
@@ -250,14 +260,14 @@ class KLMSmartGroup: NSObject {
                     
                 } catch {
                     
-                    var err = MessageError()
+                    let err = MessageError()
                     err.message = error.localizedDescription
                     failure(err)
                     
                 }
             } else {
                 
-                var err = MessageError()
+                let err = MessageError()
                 err.message = LANGLOC("noDevice")
                 err.code = -1
                 failure(err)
@@ -309,7 +319,7 @@ extension KLMSmartGroup: MeshNetworkDelegate {
         KLMMessageTime.sharedInstacnce.stopTime()
         
         SVProgressHUD.dismiss()
-        var err = MessageError()
+        let err = MessageError()
         err.message = error.localizedDescription
         failureBlock?(err)
         failureBlock = nil
@@ -322,7 +332,7 @@ extension KLMSmartGroup: KLMMessageTimeDelegate {
         
         ///超时后不再接收蓝牙消息
         MeshNetworkManager.instance.delegate = nil
-        var err = MessageError()
+        let err = MessageError()
         err.message = LANGLOC("Connection timed out.") + LANGLOC("deviceNearbyTip")
         failureBlock?(err)
         failureBlock = nil

@@ -820,10 +820,15 @@ class KLMService: NSObject {
 
             KLMLog("查询成功:\(responseObject)")
             guard let dic: [String: AnyObject] = responseObject as? [String : AnyObject], dic["resultCount"] as? Int == 1 else {
+                SVProgressHUD.dismiss()
                 return
             }
 
-            guard let results: [AnyObject] = dic["results"] as? [AnyObject], let resultFirst: [String : AnyObject] = results.first as? [String : AnyObject], let newVersion = resultFirst["version"] else { return  }
+            guard let results: [AnyObject] = dic["results"] as? [AnyObject], let resultFirst: [String : AnyObject] = results.first as? [String : AnyObject], let newVersion = resultFirst["version"] else {
+                SVProgressHUD.dismiss()
+                return
+                
+            }
 
             KLMLog("newVersion = \(newVersion)")
             success(newVersion)
