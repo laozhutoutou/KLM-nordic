@@ -27,7 +27,7 @@ class KLMTestVersion1ViewController: UIViewController {
             qudongLab.text = qudongLIst[qudong - 1]
         }
     }
-    let gonglvList: [String] = ["35W有摄像头","25W有摄像头","35W无摄像头"]
+    let gonglvList: [String] = ["35W有摄像头","25W有摄像头","35W无摄像头","25W无摄像头"]
     let qudongLIst: [String] = ["diodes","ocx"]
     
     var isFirst: Bool = true

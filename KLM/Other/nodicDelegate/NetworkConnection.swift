@@ -210,19 +210,25 @@ extension NetworkConnection: CBCentralManagerDelegate {
             }
         }
         
-        ///扫描到设备
-        guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
-            return
-        }
         let bearer = GattBearer(target: peripheral)
-        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data{
+        KLMLog("scanId = \(peripheral.identifier)")
+        if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
             
             bearer.manufacturer = data
+        } else { ///有时候扫描数据缺失，重新扫描
+            KLMLog("扫描数据缺失 - \(peripheral.identifier)")
+            centralManager.stopScan()
+            centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
         }
         
         ///将数据传输出去
         if let delegate = delegate as? GattDelegate {
             delegate.bearerDidDiscover(bearer)
+        }
+        
+        ///扫描到设备
+        guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {
+            return
         }
         
         if proxies.count >= NetworkConnection.maxConnections {

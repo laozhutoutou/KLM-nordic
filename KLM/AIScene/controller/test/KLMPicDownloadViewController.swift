@@ -51,7 +51,7 @@ class KLMPicDownloadViewController: UIViewController {
 //        playView.transform = CGAffineTransform(rotationAngle:  -CGFloat.pi / 2)
         
         navigationItem.title = LANGLOC("View commodity position")
-        selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
+        selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.1)
         selectwifiBtn.layer.cornerRadius = selectwifiBtn.height/2
         selectwifiBtn.setTitleColor(appMainThemeColor, for: .normal)
         downLoadBtn.layer.cornerRadius = downLoadBtn.height / 2

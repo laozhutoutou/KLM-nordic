@@ -196,7 +196,7 @@ class KLMService: NSObject {
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         var scope = 1
-        if apptype == .targetsGW {
+        if apptype == .targetsGW || apptype == .targetSensetrack {
             scope = 2
         }
         let parame = ["email": email,

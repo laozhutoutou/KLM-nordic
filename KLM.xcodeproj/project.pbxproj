@@ -1076,6 +1076,162 @@
 		E4D611D728B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D611D928B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib */; };
 		E4D7448A278533C80049B670 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4D7448D27853AA80049B670 /* KLMDFUTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */; };
+		E4D79C942914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
+		E4D79C952914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
+		E4D79C962914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
+		E4D79C972914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
+		E4D79C982914DF1F00B92082 /* spectrum_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6E2914DF1F00B92082 /* spectrum_16.png */; };
+		E4D79C992914DF1F00B92082 /* spectrum_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6E2914DF1F00B92082 /* spectrum_16.png */; };
+		E4D79C9A2914DF1F00B92082 /* spectrum_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6E2914DF1F00B92082 /* spectrum_16.png */; };
+		E4D79C9B2914DF1F00B92082 /* spectrum_16.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6E2914DF1F00B92082 /* spectrum_16.png */; };
+		E4D79C9C2914DF1F00B92082 /* spectrum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6F2914DF1F00B92082 /* spectrum_1.png */; };
+		E4D79C9D2914DF1F00B92082 /* spectrum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6F2914DF1F00B92082 /* spectrum_1.png */; };
+		E4D79C9E2914DF1F00B92082 /* spectrum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6F2914DF1F00B92082 /* spectrum_1.png */; };
+		E4D79C9F2914DF1F00B92082 /* spectrum_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6F2914DF1F00B92082 /* spectrum_1.png */; };
+		E4D79CA02914DF1F00B92082 /* spectrum_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C702914DF1F00B92082 /* spectrum_3.png */; };
+		E4D79CA12914DF1F00B92082 /* spectrum_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C702914DF1F00B92082 /* spectrum_3.png */; };
+		E4D79CA22914DF1F00B92082 /* spectrum_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C702914DF1F00B92082 /* spectrum_3.png */; };
+		E4D79CA32914DF1F00B92082 /* spectrum_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C702914DF1F00B92082 /* spectrum_3.png */; };
+		E4D79CA42914DF1F00B92082 /* spectrum_28.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C712914DF1F00B92082 /* spectrum_28.png */; };
+		E4D79CA52914DF1F00B92082 /* spectrum_28.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C712914DF1F00B92082 /* spectrum_28.png */; };
+		E4D79CA62914DF1F00B92082 /* spectrum_28.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C712914DF1F00B92082 /* spectrum_28.png */; };
+		E4D79CA72914DF1F00B92082 /* spectrum_28.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C712914DF1F00B92082 /* spectrum_28.png */; };
+		E4D79CA82914DF1F00B92082 /* spectrum_14.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C722914DF1F00B92082 /* spectrum_14.png */; };
+		E4D79CA92914DF1F00B92082 /* spectrum_14.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C722914DF1F00B92082 /* spectrum_14.png */; };
+		E4D79CAA2914DF1F00B92082 /* spectrum_14.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C722914DF1F00B92082 /* spectrum_14.png */; };
+		E4D79CAB2914DF1F00B92082 /* spectrum_14.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C722914DF1F00B92082 /* spectrum_14.png */; };
+		E4D79CAC2914DF1F00B92082 /* spectrum_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C732914DF1F00B92082 /* spectrum_15.png */; };
+		E4D79CAD2914DF1F00B92082 /* spectrum_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C732914DF1F00B92082 /* spectrum_15.png */; };
+		E4D79CAE2914DF1F00B92082 /* spectrum_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C732914DF1F00B92082 /* spectrum_15.png */; };
+		E4D79CAF2914DF1F00B92082 /* spectrum_15.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C732914DF1F00B92082 /* spectrum_15.png */; };
+		E4D79CB02914DF1F00B92082 /* spectrum_29.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C742914DF1F00B92082 /* spectrum_29.png */; };
+		E4D79CB12914DF1F00B92082 /* spectrum_29.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C742914DF1F00B92082 /* spectrum_29.png */; };
+		E4D79CB22914DF1F00B92082 /* spectrum_29.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C742914DF1F00B92082 /* spectrum_29.png */; };
+		E4D79CB32914DF1F00B92082 /* spectrum_29.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C742914DF1F00B92082 /* spectrum_29.png */; };
+		E4D79CB42914DF1F00B92082 /* spectrum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C752914DF1F00B92082 /* spectrum_2.png */; };
+		E4D79CB52914DF1F00B92082 /* spectrum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C752914DF1F00B92082 /* spectrum_2.png */; };
+		E4D79CB62914DF1F00B92082 /* spectrum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C752914DF1F00B92082 /* spectrum_2.png */; };
+		E4D79CB72914DF1F00B92082 /* spectrum_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C752914DF1F00B92082 /* spectrum_2.png */; };
+		E4D79CB82914DF1F00B92082 /* spectrum_6.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C762914DF1F00B92082 /* spectrum_6.png */; };
+		E4D79CB92914DF1F00B92082 /* spectrum_6.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C762914DF1F00B92082 /* spectrum_6.png */; };
+		E4D79CBA2914DF1F00B92082 /* spectrum_6.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C762914DF1F00B92082 /* spectrum_6.png */; };
+		E4D79CBB2914DF1F00B92082 /* spectrum_6.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C762914DF1F00B92082 /* spectrum_6.png */; };
+		E4D79CBC2914DF1F00B92082 /* spectrum_11.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C772914DF1F00B92082 /* spectrum_11.png */; };
+		E4D79CBD2914DF1F00B92082 /* spectrum_11.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C772914DF1F00B92082 /* spectrum_11.png */; };
+		E4D79CBE2914DF1F00B92082 /* spectrum_11.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C772914DF1F00B92082 /* spectrum_11.png */; };
+		E4D79CBF2914DF1F00B92082 /* spectrum_11.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C772914DF1F00B92082 /* spectrum_11.png */; };
+		E4D79CC02914DF1F00B92082 /* spectrum_39.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C782914DF1F00B92082 /* spectrum_39.png */; };
+		E4D79CC12914DF1F00B92082 /* spectrum_39.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C782914DF1F00B92082 /* spectrum_39.png */; };
+		E4D79CC22914DF1F00B92082 /* spectrum_39.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C782914DF1F00B92082 /* spectrum_39.png */; };
+		E4D79CC32914DF1F00B92082 /* spectrum_39.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C782914DF1F00B92082 /* spectrum_39.png */; };
+		E4D79CC42914DF1F00B92082 /* spectrum_38.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C792914DF1F00B92082 /* spectrum_38.png */; };
+		E4D79CC52914DF1F00B92082 /* spectrum_38.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C792914DF1F00B92082 /* spectrum_38.png */; };
+		E4D79CC62914DF1F00B92082 /* spectrum_38.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C792914DF1F00B92082 /* spectrum_38.png */; };
+		E4D79CC72914DF1F00B92082 /* spectrum_38.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C792914DF1F00B92082 /* spectrum_38.png */; };
+		E4D79CC82914DF1F00B92082 /* spectrum_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7A2914DF1F00B92082 /* spectrum_10.png */; };
+		E4D79CC92914DF1F00B92082 /* spectrum_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7A2914DF1F00B92082 /* spectrum_10.png */; };
+		E4D79CCA2914DF1F00B92082 /* spectrum_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7A2914DF1F00B92082 /* spectrum_10.png */; };
+		E4D79CCB2914DF1F00B92082 /* spectrum_10.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7A2914DF1F00B92082 /* spectrum_10.png */; };
+		E4D79CCC2914DF1F00B92082 /* spectrum_7.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7B2914DF1F00B92082 /* spectrum_7.png */; };
+		E4D79CCD2914DF1F00B92082 /* spectrum_7.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7B2914DF1F00B92082 /* spectrum_7.png */; };
+		E4D79CCE2914DF1F00B92082 /* spectrum_7.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7B2914DF1F00B92082 /* spectrum_7.png */; };
+		E4D79CCF2914DF1F00B92082 /* spectrum_7.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7B2914DF1F00B92082 /* spectrum_7.png */; };
+		E4D79CD02914DF1F00B92082 /* spectrum_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7C2914DF1F00B92082 /* spectrum_5.png */; };
+		E4D79CD12914DF1F00B92082 /* spectrum_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7C2914DF1F00B92082 /* spectrum_5.png */; };
+		E4D79CD22914DF1F00B92082 /* spectrum_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7C2914DF1F00B92082 /* spectrum_5.png */; };
+		E4D79CD32914DF1F00B92082 /* spectrum_5.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7C2914DF1F00B92082 /* spectrum_5.png */; };
+		E4D79CD42914DF1F00B92082 /* spectrum_12.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7D2914DF1F00B92082 /* spectrum_12.png */; };
+		E4D79CD52914DF1F00B92082 /* spectrum_12.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7D2914DF1F00B92082 /* spectrum_12.png */; };
+		E4D79CD62914DF1F00B92082 /* spectrum_12.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7D2914DF1F00B92082 /* spectrum_12.png */; };
+		E4D79CD72914DF1F00B92082 /* spectrum_12.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7D2914DF1F00B92082 /* spectrum_12.png */; };
+		E4D79CD82914DF1F00B92082 /* spectrum_13.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7E2914DF1F00B92082 /* spectrum_13.png */; };
+		E4D79CD92914DF1F00B92082 /* spectrum_13.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7E2914DF1F00B92082 /* spectrum_13.png */; };
+		E4D79CDA2914DF1F00B92082 /* spectrum_13.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7E2914DF1F00B92082 /* spectrum_13.png */; };
+		E4D79CDB2914DF1F00B92082 /* spectrum_13.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7E2914DF1F00B92082 /* spectrum_13.png */; };
+		E4D79CDC2914DF1F00B92082 /* spectrum_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7F2914DF1F00B92082 /* spectrum_4.png */; };
+		E4D79CDD2914DF1F00B92082 /* spectrum_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7F2914DF1F00B92082 /* spectrum_4.png */; };
+		E4D79CDE2914DF1F00B92082 /* spectrum_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7F2914DF1F00B92082 /* spectrum_4.png */; };
+		E4D79CDF2914DF1F00B92082 /* spectrum_4.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C7F2914DF1F00B92082 /* spectrum_4.png */; };
+		E4D79CE02914DF1F00B92082 /* spectrum_9.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C802914DF1F00B92082 /* spectrum_9.png */; };
+		E4D79CE12914DF1F00B92082 /* spectrum_9.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C802914DF1F00B92082 /* spectrum_9.png */; };
+		E4D79CE22914DF1F00B92082 /* spectrum_9.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C802914DF1F00B92082 /* spectrum_9.png */; };
+		E4D79CE32914DF1F00B92082 /* spectrum_9.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C802914DF1F00B92082 /* spectrum_9.png */; };
+		E4D79CE42914DF1F00B92082 /* spectrum_22.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C812914DF1F00B92082 /* spectrum_22.png */; };
+		E4D79CE52914DF1F00B92082 /* spectrum_22.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C812914DF1F00B92082 /* spectrum_22.png */; };
+		E4D79CE62914DF1F00B92082 /* spectrum_22.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C812914DF1F00B92082 /* spectrum_22.png */; };
+		E4D79CE72914DF1F00B92082 /* spectrum_22.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C812914DF1F00B92082 /* spectrum_22.png */; };
+		E4D79CE82914DF1F00B92082 /* spectrum_36.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C822914DF1F00B92082 /* spectrum_36.png */; };
+		E4D79CE92914DF1F00B92082 /* spectrum_36.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C822914DF1F00B92082 /* spectrum_36.png */; };
+		E4D79CEA2914DF1F00B92082 /* spectrum_36.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C822914DF1F00B92082 /* spectrum_36.png */; };
+		E4D79CEB2914DF1F00B92082 /* spectrum_36.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C822914DF1F00B92082 /* spectrum_36.png */; };
+		E4D79CEC2914DF1F00B92082 /* spectrum_37.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C832914DF1F00B92082 /* spectrum_37.png */; };
+		E4D79CED2914DF1F00B92082 /* spectrum_37.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C832914DF1F00B92082 /* spectrum_37.png */; };
+		E4D79CEE2914DF1F00B92082 /* spectrum_37.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C832914DF1F00B92082 /* spectrum_37.png */; };
+		E4D79CEF2914DF1F00B92082 /* spectrum_37.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C832914DF1F00B92082 /* spectrum_37.png */; };
+		E4D79CF02914DF1F00B92082 /* spectrum_23.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C842914DF1F00B92082 /* spectrum_23.png */; };
+		E4D79CF12914DF1F00B92082 /* spectrum_23.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C842914DF1F00B92082 /* spectrum_23.png */; };
+		E4D79CF22914DF1F00B92082 /* spectrum_23.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C842914DF1F00B92082 /* spectrum_23.png */; };
+		E4D79CF32914DF1F00B92082 /* spectrum_23.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C842914DF1F00B92082 /* spectrum_23.png */; };
+		E4D79CF42914DF1F00B92082 /* spectrum_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C852914DF1F00B92082 /* spectrum_8.png */; };
+		E4D79CF52914DF1F00B92082 /* spectrum_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C852914DF1F00B92082 /* spectrum_8.png */; };
+		E4D79CF62914DF1F00B92082 /* spectrum_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C852914DF1F00B92082 /* spectrum_8.png */; };
+		E4D79CF72914DF1F00B92082 /* spectrum_8.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C852914DF1F00B92082 /* spectrum_8.png */; };
+		E4D79CF82914DF1F00B92082 /* spectrum_35.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C862914DF1F00B92082 /* spectrum_35.png */; };
+		E4D79CF92914DF1F00B92082 /* spectrum_35.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C862914DF1F00B92082 /* spectrum_35.png */; };
+		E4D79CFA2914DF1F00B92082 /* spectrum_35.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C862914DF1F00B92082 /* spectrum_35.png */; };
+		E4D79CFB2914DF1F00B92082 /* spectrum_35.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C862914DF1F00B92082 /* spectrum_35.png */; };
+		E4D79CFC2914DF1F00B92082 /* spectrum_21.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C872914DF1F00B92082 /* spectrum_21.png */; };
+		E4D79CFD2914DF1F00B92082 /* spectrum_21.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C872914DF1F00B92082 /* spectrum_21.png */; };
+		E4D79CFE2914DF1F00B92082 /* spectrum_21.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C872914DF1F00B92082 /* spectrum_21.png */; };
+		E4D79CFF2914DF1F00B92082 /* spectrum_21.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C872914DF1F00B92082 /* spectrum_21.png */; };
+		E4D79D002914DF1F00B92082 /* spectrum_20.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C882914DF1F00B92082 /* spectrum_20.png */; };
+		E4D79D012914DF1F00B92082 /* spectrum_20.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C882914DF1F00B92082 /* spectrum_20.png */; };
+		E4D79D022914DF1F00B92082 /* spectrum_20.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C882914DF1F00B92082 /* spectrum_20.png */; };
+		E4D79D032914DF1F00B92082 /* spectrum_20.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C882914DF1F00B92082 /* spectrum_20.png */; };
+		E4D79D042914DF1F00B92082 /* spectrum_34.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C892914DF1F00B92082 /* spectrum_34.png */; };
+		E4D79D052914DF1F00B92082 /* spectrum_34.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C892914DF1F00B92082 /* spectrum_34.png */; };
+		E4D79D062914DF1F00B92082 /* spectrum_34.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C892914DF1F00B92082 /* spectrum_34.png */; };
+		E4D79D072914DF1F00B92082 /* spectrum_34.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C892914DF1F00B92082 /* spectrum_34.png */; };
+		E4D79D082914DF1F00B92082 /* spectrum_30.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8A2914DF1F00B92082 /* spectrum_30.png */; };
+		E4D79D092914DF1F00B92082 /* spectrum_30.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8A2914DF1F00B92082 /* spectrum_30.png */; };
+		E4D79D0A2914DF1F00B92082 /* spectrum_30.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8A2914DF1F00B92082 /* spectrum_30.png */; };
+		E4D79D0B2914DF1F00B92082 /* spectrum_30.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8A2914DF1F00B92082 /* spectrum_30.png */; };
+		E4D79D0C2914DF1F00B92082 /* spectrum_24.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8B2914DF1F00B92082 /* spectrum_24.png */; };
+		E4D79D0D2914DF1F00B92082 /* spectrum_24.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8B2914DF1F00B92082 /* spectrum_24.png */; };
+		E4D79D0E2914DF1F00B92082 /* spectrum_24.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8B2914DF1F00B92082 /* spectrum_24.png */; };
+		E4D79D0F2914DF1F00B92082 /* spectrum_24.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8B2914DF1F00B92082 /* spectrum_24.png */; };
+		E4D79D102914DF1F00B92082 /* spectrum_18.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8C2914DF1F00B92082 /* spectrum_18.png */; };
+		E4D79D112914DF1F00B92082 /* spectrum_18.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8C2914DF1F00B92082 /* spectrum_18.png */; };
+		E4D79D122914DF1F00B92082 /* spectrum_18.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8C2914DF1F00B92082 /* spectrum_18.png */; };
+		E4D79D132914DF1F00B92082 /* spectrum_18.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8C2914DF1F00B92082 /* spectrum_18.png */; };
+		E4D79D142914DF1F00B92082 /* spectrum_19.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8D2914DF1F00B92082 /* spectrum_19.png */; };
+		E4D79D152914DF1F00B92082 /* spectrum_19.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8D2914DF1F00B92082 /* spectrum_19.png */; };
+		E4D79D162914DF1F00B92082 /* spectrum_19.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8D2914DF1F00B92082 /* spectrum_19.png */; };
+		E4D79D172914DF1F00B92082 /* spectrum_19.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8D2914DF1F00B92082 /* spectrum_19.png */; };
+		E4D79D182914DF1F00B92082 /* spectrum_25.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8E2914DF1F00B92082 /* spectrum_25.png */; };
+		E4D79D192914DF1F00B92082 /* spectrum_25.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8E2914DF1F00B92082 /* spectrum_25.png */; };
+		E4D79D1A2914DF1F00B92082 /* spectrum_25.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8E2914DF1F00B92082 /* spectrum_25.png */; };
+		E4D79D1B2914DF1F00B92082 /* spectrum_25.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8E2914DF1F00B92082 /* spectrum_25.png */; };
+		E4D79D1C2914DF1F00B92082 /* spectrum_31.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8F2914DF1F00B92082 /* spectrum_31.png */; };
+		E4D79D1D2914DF1F00B92082 /* spectrum_31.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8F2914DF1F00B92082 /* spectrum_31.png */; };
+		E4D79D1E2914DF1F00B92082 /* spectrum_31.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8F2914DF1F00B92082 /* spectrum_31.png */; };
+		E4D79D1F2914DF1F00B92082 /* spectrum_31.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C8F2914DF1F00B92082 /* spectrum_31.png */; };
+		E4D79D202914DF1F00B92082 /* spectrum_27.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C902914DF1F00B92082 /* spectrum_27.png */; };
+		E4D79D212914DF1F00B92082 /* spectrum_27.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C902914DF1F00B92082 /* spectrum_27.png */; };
+		E4D79D222914DF1F00B92082 /* spectrum_27.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C902914DF1F00B92082 /* spectrum_27.png */; };
+		E4D79D232914DF1F00B92082 /* spectrum_27.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C902914DF1F00B92082 /* spectrum_27.png */; };
+		E4D79D242914DF1F00B92082 /* spectrum_33.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C912914DF1F00B92082 /* spectrum_33.png */; };
+		E4D79D252914DF1F00B92082 /* spectrum_33.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C912914DF1F00B92082 /* spectrum_33.png */; };
+		E4D79D262914DF1F00B92082 /* spectrum_33.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C912914DF1F00B92082 /* spectrum_33.png */; };
+		E4D79D272914DF1F00B92082 /* spectrum_33.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C912914DF1F00B92082 /* spectrum_33.png */; };
+		E4D79D282914DF1F00B92082 /* spectrum_32.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C922914DF1F00B92082 /* spectrum_32.png */; };
+		E4D79D292914DF1F00B92082 /* spectrum_32.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C922914DF1F00B92082 /* spectrum_32.png */; };
+		E4D79D2A2914DF1F00B92082 /* spectrum_32.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C922914DF1F00B92082 /* spectrum_32.png */; };
+		E4D79D2B2914DF1F00B92082 /* spectrum_32.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C922914DF1F00B92082 /* spectrum_32.png */; };
+		E4D79D2C2914DF1F00B92082 /* spectrum_26.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C932914DF1F00B92082 /* spectrum_26.png */; };
+		E4D79D2D2914DF1F00B92082 /* spectrum_26.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C932914DF1F00B92082 /* spectrum_26.png */; };
+		E4D79D2E2914DF1F00B92082 /* spectrum_26.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C932914DF1F00B92082 /* spectrum_26.png */; };
+		E4D79D2F2914DF1F00B92082 /* spectrum_26.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C932914DF1F00B92082 /* spectrum_26.png */; };
 		E4D7CD4728A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D7CD4B28A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib */; };
 		E4D7CD4828A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D7CD4B28A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib */; };
 		E4D7CD4928A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D7CD4B28A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib */; };
@@ -1530,6 +1686,45 @@
 		E4D611DB28B4C6930004BEC9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMGroupUseOccasionViewController.strings"; sourceTree = "<group>"; };
 		E4D74489278533C80049B670 /* EspDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspDataUtils.swift; sourceTree = "<group>"; };
 		E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUTestViewController.swift; sourceTree = "<group>"; };
+		E4D79C6D2914DF1F00B92082 /* spectrum_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_17.png; sourceTree = "<group>"; };
+		E4D79C6E2914DF1F00B92082 /* spectrum_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_16.png; sourceTree = "<group>"; };
+		E4D79C6F2914DF1F00B92082 /* spectrum_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_1.png; sourceTree = "<group>"; };
+		E4D79C702914DF1F00B92082 /* spectrum_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_3.png; sourceTree = "<group>"; };
+		E4D79C712914DF1F00B92082 /* spectrum_28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_28.png; sourceTree = "<group>"; };
+		E4D79C722914DF1F00B92082 /* spectrum_14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_14.png; sourceTree = "<group>"; };
+		E4D79C732914DF1F00B92082 /* spectrum_15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_15.png; sourceTree = "<group>"; };
+		E4D79C742914DF1F00B92082 /* spectrum_29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_29.png; sourceTree = "<group>"; };
+		E4D79C752914DF1F00B92082 /* spectrum_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_2.png; sourceTree = "<group>"; };
+		E4D79C762914DF1F00B92082 /* spectrum_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_6.png; sourceTree = "<group>"; };
+		E4D79C772914DF1F00B92082 /* spectrum_11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_11.png; sourceTree = "<group>"; };
+		E4D79C782914DF1F00B92082 /* spectrum_39.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_39.png; sourceTree = "<group>"; };
+		E4D79C792914DF1F00B92082 /* spectrum_38.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_38.png; sourceTree = "<group>"; };
+		E4D79C7A2914DF1F00B92082 /* spectrum_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_10.png; sourceTree = "<group>"; };
+		E4D79C7B2914DF1F00B92082 /* spectrum_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_7.png; sourceTree = "<group>"; };
+		E4D79C7C2914DF1F00B92082 /* spectrum_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_5.png; sourceTree = "<group>"; };
+		E4D79C7D2914DF1F00B92082 /* spectrum_12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_12.png; sourceTree = "<group>"; };
+		E4D79C7E2914DF1F00B92082 /* spectrum_13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_13.png; sourceTree = "<group>"; };
+		E4D79C7F2914DF1F00B92082 /* spectrum_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_4.png; sourceTree = "<group>"; };
+		E4D79C802914DF1F00B92082 /* spectrum_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_9.png; sourceTree = "<group>"; };
+		E4D79C812914DF1F00B92082 /* spectrum_22.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_22.png; sourceTree = "<group>"; };
+		E4D79C822914DF1F00B92082 /* spectrum_36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_36.png; sourceTree = "<group>"; };
+		E4D79C832914DF1F00B92082 /* spectrum_37.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_37.png; sourceTree = "<group>"; };
+		E4D79C842914DF1F00B92082 /* spectrum_23.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_23.png; sourceTree = "<group>"; };
+		E4D79C852914DF1F00B92082 /* spectrum_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_8.png; sourceTree = "<group>"; };
+		E4D79C862914DF1F00B92082 /* spectrum_35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_35.png; sourceTree = "<group>"; };
+		E4D79C872914DF1F00B92082 /* spectrum_21.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_21.png; sourceTree = "<group>"; };
+		E4D79C882914DF1F00B92082 /* spectrum_20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_20.png; sourceTree = "<group>"; };
+		E4D79C892914DF1F00B92082 /* spectrum_34.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_34.png; sourceTree = "<group>"; };
+		E4D79C8A2914DF1F00B92082 /* spectrum_30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_30.png; sourceTree = "<group>"; };
+		E4D79C8B2914DF1F00B92082 /* spectrum_24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_24.png; sourceTree = "<group>"; };
+		E4D79C8C2914DF1F00B92082 /* spectrum_18.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_18.png; sourceTree = "<group>"; };
+		E4D79C8D2914DF1F00B92082 /* spectrum_19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_19.png; sourceTree = "<group>"; };
+		E4D79C8E2914DF1F00B92082 /* spectrum_25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_25.png; sourceTree = "<group>"; };
+		E4D79C8F2914DF1F00B92082 /* spectrum_31.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_31.png; sourceTree = "<group>"; };
+		E4D79C902914DF1F00B92082 /* spectrum_27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_27.png; sourceTree = "<group>"; };
+		E4D79C912914DF1F00B92082 /* spectrum_33.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_33.png; sourceTree = "<group>"; };
+		E4D79C922914DF1F00B92082 /* spectrum_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_32.png; sourceTree = "<group>"; };
+		E4D79C932914DF1F00B92082 /* spectrum_26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_26.png; sourceTree = "<group>"; };
 		E4D7CD4A28A9F28600DC34B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMPhoneForgotPasswordViewController.xib; sourceTree = "<group>"; };
 		E4D7CD4D28A9F28C00DC34B8 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMPhoneForgotPasswordViewController.strings"; sourceTree = "<group>"; };
 		E4D9E93428B6343000F09739 /* KLMTestVersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestVersionViewController.swift; sourceTree = "<group>"; };
@@ -2306,6 +2501,7 @@
 		E4CD305428A4D494000C4CA3 /* File */ = {
 			isa = PBXGroup;
 			children = (
+				E4CD347D2913A0A800A82579 /* img */,
 				E4A0F7B52907BC5700150B0F /* audioEn */,
 				E4CD305528A4D4B7000C4CA3 /* audio */,
 			);
@@ -2336,6 +2532,60 @@
 				E4C5CC4C28AB856F00D77CE3 /* 前.wav */,
 			);
 			path = audio;
+			sourceTree = "<group>";
+		};
+		E4CD347D2913A0A800A82579 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				E4D79C6C2914DF1F00B92082 /* spectrum */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
+		E4D79C6C2914DF1F00B92082 /* spectrum */ = {
+			isa = PBXGroup;
+			children = (
+				E4D79C6D2914DF1F00B92082 /* spectrum_17.png */,
+				E4D79C6E2914DF1F00B92082 /* spectrum_16.png */,
+				E4D79C6F2914DF1F00B92082 /* spectrum_1.png */,
+				E4D79C702914DF1F00B92082 /* spectrum_3.png */,
+				E4D79C712914DF1F00B92082 /* spectrum_28.png */,
+				E4D79C722914DF1F00B92082 /* spectrum_14.png */,
+				E4D79C732914DF1F00B92082 /* spectrum_15.png */,
+				E4D79C742914DF1F00B92082 /* spectrum_29.png */,
+				E4D79C752914DF1F00B92082 /* spectrum_2.png */,
+				E4D79C762914DF1F00B92082 /* spectrum_6.png */,
+				E4D79C772914DF1F00B92082 /* spectrum_11.png */,
+				E4D79C782914DF1F00B92082 /* spectrum_39.png */,
+				E4D79C792914DF1F00B92082 /* spectrum_38.png */,
+				E4D79C7A2914DF1F00B92082 /* spectrum_10.png */,
+				E4D79C7B2914DF1F00B92082 /* spectrum_7.png */,
+				E4D79C7C2914DF1F00B92082 /* spectrum_5.png */,
+				E4D79C7D2914DF1F00B92082 /* spectrum_12.png */,
+				E4D79C7E2914DF1F00B92082 /* spectrum_13.png */,
+				E4D79C7F2914DF1F00B92082 /* spectrum_4.png */,
+				E4D79C802914DF1F00B92082 /* spectrum_9.png */,
+				E4D79C812914DF1F00B92082 /* spectrum_22.png */,
+				E4D79C822914DF1F00B92082 /* spectrum_36.png */,
+				E4D79C832914DF1F00B92082 /* spectrum_37.png */,
+				E4D79C842914DF1F00B92082 /* spectrum_23.png */,
+				E4D79C852914DF1F00B92082 /* spectrum_8.png */,
+				E4D79C862914DF1F00B92082 /* spectrum_35.png */,
+				E4D79C872914DF1F00B92082 /* spectrum_21.png */,
+				E4D79C882914DF1F00B92082 /* spectrum_20.png */,
+				E4D79C892914DF1F00B92082 /* spectrum_34.png */,
+				E4D79C8A2914DF1F00B92082 /* spectrum_30.png */,
+				E4D79C8B2914DF1F00B92082 /* spectrum_24.png */,
+				E4D79C8C2914DF1F00B92082 /* spectrum_18.png */,
+				E4D79C8D2914DF1F00B92082 /* spectrum_19.png */,
+				E4D79C8E2914DF1F00B92082 /* spectrum_25.png */,
+				E4D79C8F2914DF1F00B92082 /* spectrum_31.png */,
+				E4D79C902914DF1F00B92082 /* spectrum_27.png */,
+				E4D79C912914DF1F00B92082 /* spectrum_33.png */,
+				E4D79C922914DF1F00B92082 /* spectrum_32.png */,
+				E4D79C932914DF1F00B92082 /* spectrum_26.png */,
+			);
+			path = spectrum;
 			sourceTree = "<group>";
 		};
 		E4DF91FC28DAAB73003A3DA7 /* TLWOTA */ = {
@@ -2551,6 +2801,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D79D102914DF1F00B92082 /* spectrum_18.png in Resources */,
 				E45D6AC2288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA02897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4A65F2E266F0D8C00FE6866 /* KLMUnNameListViewController.xib in Resources */,
@@ -2558,26 +2809,32 @@
 				E4DE8BA82897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
 				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
+				E4D79CDC2914DF1F00B92082 /* spectrum_4.png in Resources */,
+				E4D79CC82914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4DE8BB02897B66800D28D17 /* KLMTestImageCell.xib in Resources */,
 				E46B54502769906200F3D5E5 /* KLMRegisterViewController.xib in Resources */,
 				E4A0F7D52907BC8700150B0F /* 13_en.wav in Resources */,
 				E4A0F7F32907BC8700150B0F /* 9_en.wav in Resources */,
+				E4D79CA82914DF1F00B92082 /* spectrum_14.png in Resources */,
 				E486366527DB342600F74DEB /* KLMQudongTestViewController.xib in Resources */,
 				E4A0F7F62907BC8700150B0F /* 14_en.wav in Resources */,
 				E42C6392287E7851006620D1 /* GroceriesPlist.plist in Resources */,
 				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E4A0F7B22907AEFA00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
+				E4D79D282914DF1F00B92082 /* spectrum_32.png in Resources */,
 				E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */,
 				E4C258442859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E477D94326D782C900612456 /* KLMChengpinViewController.xib in Resources */,
 				E4A0F7C92907BC8700150B0F /* 4_en.wav in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
+				E4D79D242914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4C5CC4E28AB856F00D77CE3 /* 13.wav in Resources */,
 				E46B54702769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib in Resources */,
 				E4C5CC5328AB856F00D77CE3 /* 14.wav in Resources */,
 				E4A0F7D22907BC8700150B0F /* 0_en.wav in Resources */,
 				E4A0F7FC2907BC8700150B0F /* 16_en.wav in Resources */,
+				E4D79CD82914DF1F00B92082 /* spectrum_13.png in Resources */,
 				E4C5CC5E28AB856F00D77CE3 /* 8.wav in Resources */,
 				E460BF6E28A0DE8C0045F2B6 /* KLMLoginPhoneViewController.xib in Resources */,
 				E4AEC96F266E022100E77178 /* KLMTableViewCell.xib in Resources */,
@@ -2586,45 +2843,63 @@
 				E49B42D026C21C950056C7EE /* KLMSearchHistoryView.xib in Resources */,
 				E49B42DA26C21D1E0056C7EE /* KLMOneSwitchCell.xib in Resources */,
 				E414C0CE27D5D9D100DFD409 /* KLMGroupMotionViewController.xib in Resources */,
+				E4D79CB82914DF1F00B92082 /* spectrum_6.png in Resources */,
 				E4C5CC5628AB856F00D77CE3 /* 15.wav in Resources */,
 				E49B42E426C21D6D0056C7EE /* KLMGroupDeviceAddToViewController.xib in Resources */,
 				E4A0F7EA2907BC8700150B0F /* 8_en.wav in Resources */,
+				E4D79CE82914DF1F00B92082 /* spectrum_36.png in Resources */,
 				E495D1242678833300AA50B9 /* KLMGroupDeviceEditViewController.xib in Resources */,
 				E4A0F7FF2907BC8700150B0F /* 15_en.wav in Resources */,
 				E48B52AB26676DED0006CDA7 /* KLMSettingViewController.xib in Resources */,
 				E4C5CC5D28AB856F00D77CE3 /* 后.wav in Resources */,
 				E495D10F2678521000AA50B9 /* KLMGroupEditViewController.xib in Resources */,
+				E4D79D202914DF1F00B92082 /* spectrum_27.png in Resources */,
 				E497A70F27D8B88000DA7AF7 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4A0F7ED2907BC8700150B0F /* 2_en.wav in Resources */,
 				E49B42DF26C21D4F0056C7EE /* KLMGroupTransferListViewController.xib in Resources */,
 				E48B6410270FF00300C2BC27 /* KLMGroupDeviceAddCell.xib in Resources */,
 				E4F2D473273504E4007FA07E /* KLMHomeViewController.xib in Resources */,
+				E4D79CB42914DF1F00B92082 /* spectrum_2.png in Resources */,
 				E4C4A0B7286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4C5CC5428AB856F00D77CE3 /* 4.wav in Resources */,
 				E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E46B54652769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C5CC4F28AB856F00D77CE3 /* 6.wav in Resources */,
 				E414C0DB27D5E3C700DFD409 /* KLMAllDeviceViewController.xib in Resources */,
+				E4D79D142914DF1F00B92082 /* spectrum_19.png in Resources */,
 				E476178226DE11C2008225BB /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4A0F7F92907BC8700150B0F /* 12_en.wav in Resources */,
 				E4DE01B92893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
+				E4D79CAC2914DF1F00B92082 /* spectrum_15.png in Resources */,
 				E4C4360928A5FE0600DAA16D /* KLMSignUpWithMobileViewController.xib in Resources */,
 				E46B5457276997F600F3D5E5 /* KLMHomeAddViewController.xib in Resources */,
+				E4D79D042914DF1F00B92082 /* spectrum_34.png in Resources */,
 				E42C638E287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4C5CC5A28AB856F00D77CE3 /* 2.wav in Resources */,
 				E492AD2A267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt in Resources */,
+				E4D79CA42914DF1F00B92082 /* spectrum_28.png in Resources */,
+				E4D79C982914DF1F00B92082 /* spectrum_16.png in Resources */,
+				E4D79CF82914DF1F00B92082 /* spectrum_35.png in Resources */,
 				E4FE0CE3271FB9AA001EEABD /* KLMLightOnOffCell.xib in Resources */,
 				E4C3466828338573000852DE /* KLMDeviceAddTestCell.xib in Resources */,
+				E4D79CD42914DF1F00B92082 /* spectrum_12.png in Resources */,
 				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
+				E4D79D0C2914DF1F00B92082 /* spectrum_24.png in Resources */,
+				E4D79CEC2914DF1F00B92082 /* spectrum_37.png in Resources */,
 				E4C5CC5728AB856F00D77CE3 /* 12.wav in Resources */,
+				E4D79D2C2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
 				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
+				E4D79CB02914DF1F00B92082 /* spectrum_29.png in Resources */,
 				E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */,
+				E4D79CBC2914DF1F00B92082 /* spectrum_11.png in Resources */,
 				E4C5CC5528AB856F00D77CE3 /* 1.wav in Resources */,
 				E414C0D327D5DD2B00DFD409 /* KLMGroupPowerCell.xib in Resources */,
+				E4D79CA02914DF1F00B92082 /* spectrum_3.png in Resources */,
 				E4D7CD4728A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
 				E4A660522671F6CC00FE6866 /* KLMAddDeviceViewController.xib in Resources */,
 				E4A0F7D82907BC8700150B0F /* 6_en.wav in Resources */,
+				E4D79CE02914DF1F00B92082 /* spectrum_9.png in Resources */,
 				E4A0F7CC2907BC8700150B0F /* 后_en.wav in Resources */,
 				E4C5CC5C28AB856F00D77CE3 /* 16.wav in Resources */,
 				E4C5CC5828AB856F00D77CE3 /* 0.wav in Resources */,
@@ -2634,10 +2909,15 @@
 				E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */,
 				E46B544927698BD300F3D5E5 /* KLMLoginViewController.xib in Resources */,
 				E414585A27BCE8AC00C181E3 /* KLMChangePasswordViewController.xib in Resources */,
+				E4D79D1C2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */,
+				E4D79C942914DF1F00B92082 /* spectrum_17.png in Resources */,
 				E4A0F7F02907BC8700150B0F /* 11_en.wav in Resources */,
+				E4D79CC02914DF1F00B92082 /* spectrum_39.png in Resources */,
 				E4C642FC279E9DA1003FA554 /* KLMGroupCell.xib in Resources */,
+				E4D79CCC2914DF1F00B92082 /* spectrum_7.png in Resources */,
 				E4E607C728BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
+				E4D79CE42914DF1F00B92082 /* spectrum_22.png in Resources */,
 				E49B42CB26C21BBE0056C7EE /* CMDeviceNamePopViewController.xib in Resources */,
 				E4C64AFC28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */,
 				E4A0F7CF2907BC8700150B0F /* 7_en.wav in Resources */,
@@ -2646,12 +2926,18 @@
 				E4C2584B2859ED4D0080192A /* KLMCMOSViewController.xib in Resources */,
 				E4C4A0AC286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4A0F7DB2907BC8700150B0F /* 3_en.wav in Resources */,
+				E4D79D182914DF1F00B92082 /* spectrum_25.png in Resources */,
 				E49B42D526C21CB50056C7EE /* KLMDeviceSearchView.xib in Resources */,
+				E4D79CF02914DF1F00B92082 /* spectrum_23.png in Resources */,
+				E4D79C9C2914DF1F00B92082 /* spectrum_1.png in Resources */,
 				E45D6AC9288FD2CA008BA65D /* KLMGroupColorSensingCell.xib in Resources */,
 				E4A0F7DE2907BC8700150B0F /* 10_en.wav in Resources */,
 				E460BF7628A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
+				E4D79CC42914DF1F00B92082 /* spectrum_38.png in Resources */,
 				E4DA5AD428F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
+				E4D79D002914DF1F00B92082 /* spectrum_20.png in Resources */,
 				E4D611D528B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
+				E4D79CFC2914DF1F00B92082 /* spectrum_21.png in Resources */,
 				E460BF7B28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00C828740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
 				E411273428F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */,
@@ -2664,12 +2950,15 @@
 				E4C5CC6028AB856F00D77CE3 /* 前.wav in Resources */,
 				E4C5CC5128AB856F00D77CE3 /* 5.wav in Resources */,
 				E4A0F7E42907BC8700150B0F /* 5_en.wav in Resources */,
+				E4D79D082914DF1F00B92082 /* spectrum_30.png in Resources */,
 				E460BF7E28A0EEF80045F2B6 /* sortedNameCH.plist in Resources */,
 				E4B0486927E5964000D03668 /* KLMDFUTestViewController.xib in Resources */,
 				E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
+				E4D79CD02914DF1F00B92082 /* spectrum_5.png in Resources */,
 				E4C5CC5928AB856F00D77CE3 /* 11.wav in Resources */,
 				E4C5CC5028AB856F00D77CE3 /* 7.wav in Resources */,
+				E4D79CF42914DF1F00B92082 /* spectrum_8.png in Resources */,
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
 				E4C5CC5F28AB856F00D77CE3 /* 10.wav in Resources */,
 				E498A78926671BEC00C78D50 /* Main.storyboard in Resources */,
@@ -2681,6 +2970,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D79D132914DF1F00B92082 /* spectrum_18.png in Resources */,
 				E4A0F8B92907E01B00150B0F /* KLMPicDownloadViewController.xib in Resources */,
 				E4A0F8BA2907E01B00150B0F /* KLMSelectNodesViewController.xib in Resources */,
 				E4A0F8BB2907E01B00150B0F /* KLMUnNameListViewController.xib in Resources */,
@@ -2688,26 +2978,32 @@
 				E4A0F8BC2907E01B00150B0F /* KLMSettingsViewController.xib in Resources */,
 				E4A0F8BD2907E01B00150B0F /* KLMCheckImagesViewController.xib in Resources */,
 				E4A0F8BE2907E01B00150B0F /* KLMMotionViewController.xib in Resources */,
+				E4D79CDF2914DF1F00B92082 /* spectrum_4.png in Resources */,
+				E4D79CCB2914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F8BF2907E01B00150B0F /* KLMAINameListCell.xib in Resources */,
 				E4A0F8C02907E01B00150B0F /* KLMTestImageCell.xib in Resources */,
 				E4A0F8C12907E01B00150B0F /* KLMRegisterViewController.xib in Resources */,
 				E4A0F8C22907E01B00150B0F /* 13_en.wav in Resources */,
+				E4D79CAB2914DF1F00B92082 /* spectrum_14.png in Resources */,
 				E4A0F8C32907E01B00150B0F /* 9_en.wav in Resources */,
 				E4A0F8C42907E01B00150B0F /* KLMQudongTestViewController.xib in Resources */,
 				E4A0F8C52907E01B00150B0F /* 14_en.wav in Resources */,
 				E4A0F8C62907E01B00150B0F /* GroceriesPlist.plist in Resources */,
 				E4A0F8C72907E01B00150B0F /* KLMPCBASensorViewController.xib in Resources */,
+				E4D79D2B2914DF1F00B92082 /* spectrum_32.png in Resources */,
 				E4A0F8C82907E01B00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
 				E4A0F8C92907E01B00150B0F /* KLMUserInfoCell.xib in Resources */,
 				E4A0F8CA2907E01B00150B0F /* KLMPhotoEditMoreViewController.xib in Resources */,
 				E4A0F8CB2907E01B00150B0F /* KLMChengpinViewController.xib in Resources */,
 				E4A0F8CC2907E01B00150B0F /* 4_en.wav in Resources */,
 				E4A0F8CD2907E01B00150B0F /* KLMBaseTableViewCell.xib in Resources */,
+				E4D79D272914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4A0F8CE2907E01B00150B0F /* KLMCustomViewController.xib in Resources */,
 				E4A0F8CF2907E01B00150B0F /* 13.wav in Resources */,
 				E4A0F8D02907E01B00150B0F /* KLMForgetPasswordViewController.xib in Resources */,
 				E4A0F8D12907E01B00150B0F /* 14.wav in Resources */,
 				E4A0F8D22907E01B00150B0F /* 0_en.wav in Resources */,
+				E4D79CDB2914DF1F00B92082 /* spectrum_13.png in Resources */,
 				E4A0F8D32907E01B00150B0F /* 16_en.wav in Resources */,
 				E4A0F8D42907E01B00150B0F /* 8.wav in Resources */,
 				E4A0F8D52907E01B00150B0F /* KLMLoginPhoneViewController.xib in Resources */,
@@ -2716,45 +3012,63 @@
 				E4A0F8D82907E01B00150B0F /* KLMAPPUpdateViewController.xib in Resources */,
 				E4A0F8D92907E01B00150B0F /* KLMSearchHistoryView.xib in Resources */,
 				E4A0F8DA2907E01B00150B0F /* KLMOneSwitchCell.xib in Resources */,
+				E4D79CBB2914DF1F00B92082 /* spectrum_6.png in Resources */,
 				E4A0F8DB2907E01B00150B0F /* KLMGroupMotionViewController.xib in Resources */,
 				E4A0F8DC2907E01B00150B0F /* 15.wav in Resources */,
 				E4A0F8DD2907E01B00150B0F /* KLMGroupDeviceAddToViewController.xib in Resources */,
+				E4D79CEB2914DF1F00B92082 /* spectrum_36.png in Resources */,
 				E4A0F8DE2907E01B00150B0F /* 8_en.wav in Resources */,
 				E4A0F8DF2907E01B00150B0F /* KLMGroupDeviceEditViewController.xib in Resources */,
 				E4A0F8E02907E01B00150B0F /* 15_en.wav in Resources */,
 				E4A0F8E12907E01B00150B0F /* KLMSettingViewController.xib in Resources */,
 				E4A0F8E22907E01B00150B0F /* 后.wav in Resources */,
+				E4D79D232914DF1F00B92082 /* spectrum_27.png in Resources */,
 				E4A0F8E32907E01B00150B0F /* KLMGroupEditViewController.xib in Resources */,
 				E4A0F8E42907E01B00150B0F /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4A0F8E52907E01B00150B0F /* 2_en.wav in Resources */,
 				E4A0F8E62907E01B00150B0F /* KLMGroupTransferListViewController.xib in Resources */,
 				E4A0F8E72907E01B00150B0F /* KLMGroupDeviceAddCell.xib in Resources */,
+				E4D79CB72914DF1F00B92082 /* spectrum_2.png in Resources */,
 				E4A0F8E82907E01B00150B0F /* KLMHomeViewController.xib in Resources */,
 				E4A0F8E92907E01B00150B0F /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4A0F8EA2907E01B00150B0F /* 4.wav in Resources */,
 				E4A0F8EB2907E01B00150B0F /* KLMRGBTestViewController.xib in Resources */,
 				E4A0F8EC2907E01B00150B0F /* KLMJoinHomeViewController.xib in Resources */,
 				E4A0F8ED2907E01B00150B0F /* 6.wav in Resources */,
+				E4D79D172914DF1F00B92082 /* spectrum_19.png in Resources */,
 				E4A0F8EE2907E01B00150B0F /* KLMAllDeviceViewController.xib in Resources */,
 				E4A0F8EF2907E01B00150B0F /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4A0F8F02907E01B00150B0F /* 12_en.wav in Resources */,
+				E4D79CAF2914DF1F00B92082 /* spectrum_15.png in Resources */,
 				E4A0F8F12907E01B00150B0F /* KLMWifiSelectViewController.xib in Resources */,
 				E4A0F8F22907E01B00150B0F /* KLMSignUpWithMobileViewController.xib in Resources */,
+				E4D79D072914DF1F00B92082 /* spectrum_34.png in Resources */,
 				E4A0F8F32907E01B00150B0F /* KLMHomeAddViewController.xib in Resources */,
 				E4A0F8F42907E01B00150B0F /* OccasionPlist.plist in Resources */,
 				E4A0F8F52907E01B00150B0F /* 2.wav in Resources */,
+				E4D79CA72914DF1F00B92082 /* spectrum_28.png in Resources */,
+				E4D79C9B2914DF1F00B92082 /* spectrum_16.png in Resources */,
+				E4D79CFB2914DF1F00B92082 /* spectrum_35.png in Resources */,
 				E4A0F8F62907E01B00150B0F /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4A0F8F72907E01B00150B0F /* KLMLightOnOffCell.xib in Resources */,
+				E4D79CD72914DF1F00B92082 /* spectrum_12.png in Resources */,
 				E4A0F8F82907E01B00150B0F /* KLMDeviceAddTestCell.xib in Resources */,
+				E4D79D0F2914DF1F00B92082 /* spectrum_24.png in Resources */,
+				E4D79CEF2914DF1F00B92082 /* spectrum_37.png in Resources */,
 				E4A0F8F92907E01B00150B0F /* KLMDeviceEditViewController.xib in Resources */,
+				E4D79D2F2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E4A0F8FA2907E01B00150B0F /* 12.wav in Resources */,
 				E4A0F8FB2907E01B00150B0F /* LaunchScreen.storyboard in Resources */,
+				E4D79CB32914DF1F00B92082 /* spectrum_29.png in Resources */,
 				E4A0F8FC2907E01B00150B0F /* KLMGroupSelectCell.xib in Resources */,
+				E4D79CBF2914DF1F00B92082 /* spectrum_11.png in Resources */,
 				E4A0F8FD2907E01B00150B0F /* KLMGroupViewController.xib in Resources */,
 				E4A0F8FE2907E01B00150B0F /* 1.wav in Resources */,
+				E4D79CA32914DF1F00B92082 /* spectrum_3.png in Resources */,
 				E4A0F8FF2907E01B00150B0F /* KLMGroupPowerCell.xib in Resources */,
 				E4A0F9002907E01B00150B0F /* KLMPhoneForgotPasswordViewController.xib in Resources */,
 				E4A0F9012907E01B00150B0F /* KLMAddDeviceViewController.xib in Resources */,
+				E4D79CE32914DF1F00B92082 /* spectrum_9.png in Resources */,
 				E4A0F9022907E01B00150B0F /* 6_en.wav in Resources */,
 				E4A0F9032907E01B00150B0F /* 后_en.wav in Resources */,
 				E4A0F9042907E01B00150B0F /* 16.wav in Resources */,
@@ -2764,10 +3078,15 @@
 				E4A0F9082907E01B00150B0F /* 3.wav in Resources */,
 				E4A0F9092907E01B00150B0F /* Localizable.strings in Resources */,
 				E4A0F90A2907E01B00150B0F /* KLMLoginViewController.xib in Resources */,
+				E4D79D1F2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4A0F90B2907E01B00150B0F /* KLMChangePasswordViewController.xib in Resources */,
+				E4D79C972914DF1F00B92082 /* spectrum_17.png in Resources */,
 				E4A0F90C2907E01B00150B0F /* KLMTestViewController.xib in Resources */,
+				E4D79CC32914DF1F00B92082 /* spectrum_39.png in Resources */,
 				E4A0F90D2907E01B00150B0F /* 11_en.wav in Resources */,
+				E4D79CCF2914DF1F00B92082 /* spectrum_7.png in Resources */,
 				E4A0F90E2907E01B00150B0F /* KLMGroupCell.xib in Resources */,
+				E4D79CE72914DF1F00B92082 /* spectrum_22.png in Resources */,
 				E4A0F90F2907E01B00150B0F /* KLMBrightnessViewController.xib in Resources */,
 				E4A0F9102907E01B00150B0F /* CMDeviceNamePopViewController.xib in Resources */,
 				E4A0F9112907E01B00150B0F /* KLMTestBiaodingViewController.xib in Resources */,
@@ -2776,12 +3095,18 @@
 				E4A0F9142907E01B00150B0F /* 9.wav in Resources */,
 				E4A0F9152907E01B00150B0F /* KLMCMOSViewController.xib in Resources */,
 				E4A0F9162907E01B00150B0F /* KLMAdminTransferCell.xib in Resources */,
+				E4D79D1B2914DF1F00B92082 /* spectrum_25.png in Resources */,
 				E4A0F9172907E01B00150B0F /* 3_en.wav in Resources */,
+				E4D79CF32914DF1F00B92082 /* spectrum_23.png in Resources */,
+				E4D79C9F2914DF1F00B92082 /* spectrum_1.png in Resources */,
 				E4A0F9182907E01B00150B0F /* KLMDeviceSearchView.xib in Resources */,
 				E4A0F9192907E01B00150B0F /* KLMGroupColorSensingCell.xib in Resources */,
 				E4A0F91A2907E01B00150B0F /* 10_en.wav in Resources */,
+				E4D79CC72914DF1F00B92082 /* spectrum_38.png in Resources */,
 				E4A0F91B2907E01B00150B0F /* KLMCountryCodeViewController.xib in Resources */,
+				E4D79D032914DF1F00B92082 /* spectrum_20.png in Resources */,
 				E4A0F91C2907E01B00150B0F /* KLMTLWOTAViewController.xib in Resources */,
+				E4D79CFF2914DF1F00B92082 /* spectrum_21.png in Resources */,
 				E4A0F91D2907E01B00150B0F /* KLMGroupUseOccasionViewController.xib in Resources */,
 				E4A0F91E2907E01B00150B0F /* sortedNameEN.plist in Resources */,
 				E4A0F91F2907E01B00150B0F /* KLMAdminTransferViewController.xib in Resources */,
@@ -2794,12 +3119,15 @@
 				E4A0F9262907E01B00150B0F /* 1_en.wav in Resources */,
 				E4A0F9272907E01B00150B0F /* 前.wav in Resources */,
 				E4A0F9282907E01B00150B0F /* 5.wav in Resources */,
+				E4D79D0B2914DF1F00B92082 /* spectrum_30.png in Resources */,
 				E4A0F9292907E01B00150B0F /* 5_en.wav in Resources */,
 				E4A0F92A2907E01B00150B0F /* sortedNameCH.plist in Resources */,
 				E4A0F92B2907E01B00150B0F /* KLMDFUTestViewController.xib in Resources */,
 				E4A0F92C2907E01B00150B0F /* KLMLaoHuaTestViewController.xib in Resources */,
+				E4D79CD32914DF1F00B92082 /* spectrum_5.png in Resources */,
 				E4A0F92E2907E01B00150B0F /* 11.wav in Resources */,
 				E4A0F92F2907E01B00150B0F /* 7.wav in Resources */,
+				E4D79CF72914DF1F00B92082 /* spectrum_8.png in Resources */,
 				E4A0F9302907E01B00150B0F /* KLMHelpViewController.xib in Resources */,
 				E4A0F9312907E01B00150B0F /* 10.wav in Resources */,
 				E4A0F9322907E01B00150B0F /* Main.storyboard in Resources */,
@@ -2811,24 +3139,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D79CC12914DF1F00B92082 /* spectrum_39.png in Resources */,
 				E45D6AC3288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4A0F7DC2907BC8700150B0F /* 3_en.wav in Resources */,
+				E4D79D092914DF1F00B92082 /* spectrum_30.png in Resources */,
 				E4DE8BA12897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4C57EBE28055B1F00E7AB54 /* KLMUnNameListViewController.xib in Resources */,
+				E4D79CA52914DF1F00B92082 /* spectrum_28.png in Resources */,
 				E4C57EBF28055B1F00E7AB54 /* KLMSettingsViewController.xib in Resources */,
 				E4A0F8002907BC8700150B0F /* 15_en.wav in Resources */,
 				E4DE8BA92897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
 				E4C57EC028055B1F00E7AB54 /* KLMMotionViewController.xib in Resources */,
 				E4A0F7E82907BC8700150B0F /* 1_en.wav in Resources */,
+				E4D79CC92914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F7CA2907BC8700150B0F /* 4_en.wav in Resources */,
 				E4C57EC128055B1F00E7AB54 /* KLMAINameListCell.xib in Resources */,
 				E4C581A028E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */,
+				E4D79C9D2914DF1F00B92082 /* spectrum_1.png in Resources */,
 				E4DE8BB12897B66800D28D17 /* KLMTestImageCell.xib in Resources */,
 				E4C57EC228055B1F00E7AB54 /* KLMRegisterViewController.xib in Resources */,
 				E4C57EC328055B1F00E7AB54 /* KLMQudongTestViewController.xib in Resources */,
 				E42C6393287E7851006620D1 /* GroceriesPlist.plist in Resources */,
+				E4D79D292914DF1F00B92082 /* spectrum_32.png in Resources */,
 				E4C57EC428055B1F00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57EC528055B1F00E7AB54 /* KLMUserInfoCell.xib in Resources */,
+				E4D79CD92914DF1F00B92082 /* spectrum_13.png in Resources */,
 				E4A0F7DF2907BC8700150B0F /* 10_en.wav in Resources */,
 				E4A0F7F72907BC8700150B0F /* 14_en.wav in Resources */,
 				E4C258452859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
@@ -2838,40 +3173,60 @@
 				E4C57EC928055B1F00E7AB54 /* KLMForgetPasswordViewController.xib in Resources */,
 				E460BF6F28A0DE8C0045F2B6 /* KLMLoginPhoneViewController.xib in Resources */,
 				E4C57ECA28055B1F00E7AB54 /* KLMTableViewCell.xib in Resources */,
+				E4D79CED2914DF1F00B92082 /* spectrum_37.png in Resources */,
 				E4C57ECB28055B1F00E7AB54 /* KLMPhotoEditViewController.xib in Resources */,
 				E4C57ECC28055B1F00E7AB54 /* KLMAPPUpdateViewController.xib in Resources */,
 				E4C57ECD28055B1F00E7AB54 /* KLMSearchHistoryView.xib in Resources */,
+				E4D79CD52914DF1F00B92082 /* spectrum_12.png in Resources */,
 				E4C57ECE28055B1F00E7AB54 /* KLMOneSwitchCell.xib in Resources */,
 				E4C57ECF28055B1F00E7AB54 /* KLMGroupMotionViewController.xib in Resources */,
 				E4C57ED028055B1F00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */,
 				E4A0F7F42907BC8700150B0F /* 9_en.wav in Resources */,
 				E4C57ED128055B1F00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */,
+				E4D79CCD2914DF1F00B92082 /* spectrum_7.png in Resources */,
+				E4D79CD12914DF1F00B92082 /* spectrum_5.png in Resources */,
+				E4D79C992914DF1F00B92082 /* spectrum_16.png in Resources */,
+				E4D79CE52914DF1F00B92082 /* spectrum_22.png in Resources */,
 				E4C64AFD28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */,
+				E4D79CFD2914DF1F00B92082 /* spectrum_21.png in Resources */,
+				E4D79D152914DF1F00B92082 /* spectrum_19.png in Resources */,
 				E4C57ED328055B1F00E7AB54 /* KLMSettingViewController.xib in Resources */,
 				E4C57ED428055B1F00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
+				E4D79CDD2914DF1F00B92082 /* spectrum_4.png in Resources */,
 				E4C57ED528055B1F00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57ED628055B1F00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
+				E4D79D2D2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E4C57ED728055B1F00E7AB54 /* KLMGroupDeviceAddCell.xib in Resources */,
 				E4DA5AD528F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
 				E4C57EDA28055B1F00E7AB54 /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
+				E4D79CF12914DF1F00B92082 /* spectrum_23.png in Resources */,
+				E4D79D1D2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4C57EDB28055B1F00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57EDC28055B1F00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
+				E4D79CAD2914DF1F00B92082 /* spectrum_15.png in Resources */,
 				E4C57EDD28055B1F00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01BA2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E4C4360A28A5FE0600DAA16D /* KLMSignUpWithMobileViewController.xib in Resources */,
 				E4A0F7E52907BC8700150B0F /* 5_en.wav in Resources */,
+				E4D79D212914DF1F00B92082 /* spectrum_27.png in Resources */,
 				E4C57EDF28055B1F00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
+				E4D79D252914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4A0F7B32907AEFA00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
 				E4A0F7FD2907BC8700150B0F /* 16_en.wav in Resources */,
 				E42C638F287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4D611D628B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
+				E4D79C952914DF1F00B92082 /* spectrum_17.png in Resources */,
 				E4C57EE028055B1F00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4C57EE128055B1F00E7AB54 /* KLMLightOnOffCell.xib in Resources */,
+				E4D79CB12914DF1F00B92082 /* spectrum_29.png in Resources */,
 				E4C3466928338573000852DE /* KLMDeviceAddTestCell.xib in Resources */,
+				E4D79D0D2914DF1F00B92082 /* spectrum_24.png in Resources */,
 				E4C57EE228055B1F00E7AB54 /* KLMDeviceEditViewController.xib in Resources */,
 				E4C57EE328055B1F00E7AB54 /* LaunchScreen.storyboard in Resources */,
+				E4D79CC52914DF1F00B92082 /* spectrum_38.png in Resources */,
+				E4D79CBD2914DF1F00B92082 /* spectrum_11.png in Resources */,
 				E4C57EE428055B1F00E7AB54 /* KLMGroupSelectCell.xib in Resources */,
 				E4C57EE528055B1F00E7AB54 /* KLMGroupViewController.xib in Resources */,
 				E4E607C828BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
@@ -2892,24 +3247,36 @@
 				E4C4A0AD286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4C57EF028055B1F00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
 				E45D6ACA288FD2CA008BA65D /* KLMGroupColorSensingCell.xib in Resources */,
+				E4D79CE12914DF1F00B92082 /* spectrum_9.png in Resources */,
 				E460BF7728A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
 				E460BF7C28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00C928740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
+				E4D79D192914DF1F00B92082 /* spectrum_25.png in Resources */,
 				E411273528F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */,
+				E4D79D052914DF1F00B92082 /* spectrum_34.png in Resources */,
+				E4D79CF92914DF1F00B92082 /* spectrum_35.png in Resources */,
+				E4D79CA92914DF1F00B92082 /* spectrum_14.png in Resources */,
 				E4C57EF128055B1F00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
+				E4D79CF52914DF1F00B92082 /* spectrum_8.png in Resources */,
+				E4D79CB92914DF1F00B92082 /* spectrum_6.png in Resources */,
 				E4C57EF228055B1F00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
 				E4C57EF328055B1F00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
 				E4C57EF428055B1F00E7AB54 /* KLMChartsTestViewController.xib in Resources */,
 				E460BF7F28A0EEF80045F2B6 /* sortedNameCH.plist in Resources */,
+				E4D79D112914DF1F00B92082 /* spectrum_18.png in Resources */,
 				E4C57EF528055B1F00E7AB54 /* KLMDFUTestViewController.xib in Resources */,
 				E4C57EF628055B1F00E7AB54 /* KLMLaoHuaTestViewController.xib in Resources */,
 				E4C57EF728055B1F00E7AB54 /* Assets.xcassets in Resources */,
 				E4C57EFA28055B1F00E7AB54 /* KLMHelpViewController.xib in Resources */,
+				E4D79CE92914DF1F00B92082 /* spectrum_36.png in Resources */,
 				E4A0F7E22907BC8700150B0F /* 前_en.wav in Resources */,
 				E4A0F7D92907BC8700150B0F /* 6_en.wav in Resources */,
 				E4A0F7EB2907BC8700150B0F /* 8_en.wav in Resources */,
+				E4D79D012914DF1F00B92082 /* spectrum_20.png in Resources */,
 				E4A0F7D02907BC8700150B0F /* 7_en.wav in Resources */,
 				E4A0F7D32907BC8700150B0F /* 0_en.wav in Resources */,
+				E4D79CA12914DF1F00B92082 /* spectrum_3.png in Resources */,
+				E4D79CB52914DF1F00B92082 /* spectrum_2.png in Resources */,
 				E4A0F7F12907BC8700150B0F /* 11_en.wav in Resources */,
 				E4A0F7EE2907BC8700150B0F /* 2_en.wav in Resources */,
 				E4A0F7D62907BC8700150B0F /* 13_en.wav in Resources */,
@@ -2922,24 +3289,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D79CC22914DF1F00B92082 /* spectrum_39.png in Resources */,
 				E45D6AC4288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4A0F7DD2907BC8700150B0F /* 3_en.wav in Resources */,
+				E4D79D0A2914DF1F00B92082 /* spectrum_30.png in Resources */,
 				E4DE8BA22897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4C57F9528055C7C00E7AB54 /* KLMUnNameListViewController.xib in Resources */,
+				E4D79CA62914DF1F00B92082 /* spectrum_28.png in Resources */,
 				E4C57F9628055C7C00E7AB54 /* KLMSettingsViewController.xib in Resources */,
 				E4A0F8012907BC8700150B0F /* 15_en.wav in Resources */,
 				E4DE8BAA2897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
 				E4C57F9728055C7C00E7AB54 /* KLMMotionViewController.xib in Resources */,
 				E4A0F7E92907BC8700150B0F /* 1_en.wav in Resources */,
+				E4D79CCA2914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F7CB2907BC8700150B0F /* 4_en.wav in Resources */,
 				E4C57F9828055C7C00E7AB54 /* KLMAINameListCell.xib in Resources */,
 				E4C581A128E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */,
+				E4D79C9E2914DF1F00B92082 /* spectrum_1.png in Resources */,
 				E4DE8BB22897B66800D28D17 /* KLMTestImageCell.xib in Resources */,
 				E4C57F9928055C7C00E7AB54 /* KLMRegisterViewController.xib in Resources */,
 				E4C57F9A28055C7C00E7AB54 /* KLMQudongTestViewController.xib in Resources */,
 				E42C6394287E7851006620D1 /* GroceriesPlist.plist in Resources */,
+				E4D79D2A2914DF1F00B92082 /* spectrum_32.png in Resources */,
 				E4C57F9B28055C7C00E7AB54 /* KLMPCBASensorViewController.xib in Resources */,
 				E4C57F9C28055C7C00E7AB54 /* KLMUserInfoCell.xib in Resources */,
+				E4D79CDA2914DF1F00B92082 /* spectrum_13.png in Resources */,
 				E4A0F7E02907BC8700150B0F /* 10_en.wav in Resources */,
 				E4A0F7F82907BC8700150B0F /* 14_en.wav in Resources */,
 				E4C258462859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
@@ -2949,40 +3323,60 @@
 				E4C57FA028055C7C00E7AB54 /* KLMForgetPasswordViewController.xib in Resources */,
 				E460BF7028A0DE8C0045F2B6 /* KLMLoginPhoneViewController.xib in Resources */,
 				E4C57FA128055C7C00E7AB54 /* KLMTableViewCell.xib in Resources */,
+				E4D79CEE2914DF1F00B92082 /* spectrum_37.png in Resources */,
 				E4C57FA228055C7C00E7AB54 /* KLMPhotoEditViewController.xib in Resources */,
 				E4C57FA328055C7C00E7AB54 /* KLMAPPUpdateViewController.xib in Resources */,
 				E4C57FA428055C7C00E7AB54 /* KLMSearchHistoryView.xib in Resources */,
+				E4D79CD62914DF1F00B92082 /* spectrum_12.png in Resources */,
 				E4C57FA528055C7C00E7AB54 /* KLMOneSwitchCell.xib in Resources */,
 				E4C57FA628055C7C00E7AB54 /* KLMGroupMotionViewController.xib in Resources */,
 				E4C57FA728055C7C00E7AB54 /* KLMGroupDeviceAddToViewController.xib in Resources */,
 				E4A0F7F52907BC8700150B0F /* 9_en.wav in Resources */,
 				E4C57FA828055C7C00E7AB54 /* KLMGroupDeviceEditViewController.xib in Resources */,
+				E4D79CCE2914DF1F00B92082 /* spectrum_7.png in Resources */,
+				E4D79CD22914DF1F00B92082 /* spectrum_5.png in Resources */,
+				E4D79C9A2914DF1F00B92082 /* spectrum_16.png in Resources */,
+				E4D79CE62914DF1F00B92082 /* spectrum_22.png in Resources */,
 				E4C64AFE28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */,
+				E4D79CFE2914DF1F00B92082 /* spectrum_21.png in Resources */,
+				E4D79D162914DF1F00B92082 /* spectrum_19.png in Resources */,
 				E4C57FAA28055C7C00E7AB54 /* KLMSettingViewController.xib in Resources */,
 				E4C57FAB28055C7C00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
+				E4D79CDE2914DF1F00B92082 /* spectrum_4.png in Resources */,
 				E4C57FAC28055C7C00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57FAD28055C7C00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
+				E4D79D2E2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E4C57FAE28055C7C00E7AB54 /* KLMGroupDeviceAddCell.xib in Resources */,
 				E4DA5AD628F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
 				E4C57FB128055C7C00E7AB54 /* KLMHomeViewController.xib in Resources */,
 				E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
+				E4D79CF22914DF1F00B92082 /* spectrum_23.png in Resources */,
+				E4D79D1E2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4C57FB228055C7C00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57FB328055C7C00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
+				E4D79CAE2914DF1F00B92082 /* spectrum_15.png in Resources */,
 				E4C57FB428055C7C00E7AB54 /* KLMBaoZhuangTestViewController.xib in Resources */,
 				E4DE01BB2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */,
 				E4C4360B28A5FE0600DAA16D /* KLMSignUpWithMobileViewController.xib in Resources */,
 				E4A0F7E62907BC8700150B0F /* 5_en.wav in Resources */,
+				E4D79D222914DF1F00B92082 /* spectrum_27.png in Resources */,
 				E4C57FB628055C7C00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
+				E4D79D262914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4A0F7B42907AEFA00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
 				E4A0F7FE2907BC8700150B0F /* 16_en.wav in Resources */,
 				E42C6390287E7766006620D1 /* OccasionPlist.plist in Resources */,
 				E4D611D728B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
+				E4D79C962914DF1F00B92082 /* spectrum_17.png in Resources */,
 				E4C57FB728055C7C00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				E4C57FB828055C7C00E7AB54 /* KLMLightOnOffCell.xib in Resources */,
+				E4D79CB22914DF1F00B92082 /* spectrum_29.png in Resources */,
 				E4C3466A28338573000852DE /* KLMDeviceAddTestCell.xib in Resources */,
+				E4D79D0E2914DF1F00B92082 /* spectrum_24.png in Resources */,
 				E4C57FB928055C7C00E7AB54 /* KLMDeviceEditViewController.xib in Resources */,
 				E4C57FBA28055C7C00E7AB54 /* LaunchScreen.storyboard in Resources */,
+				E4D79CC62914DF1F00B92082 /* spectrum_38.png in Resources */,
+				E4D79CBE2914DF1F00B92082 /* spectrum_11.png in Resources */,
 				E4C57FBB28055C7C00E7AB54 /* KLMGroupSelectCell.xib in Resources */,
 				E4C57FBC28055C7C00E7AB54 /* KLMGroupViewController.xib in Resources */,
 				E4E607C928BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
@@ -3003,24 +3397,36 @@
 				E4C4A0AE286EA1CD00450A52 /* KLMAdminTransferCell.xib in Resources */,
 				E4C57FC728055C7C00E7AB54 /* KLMDeviceSearchView.xib in Resources */,
 				E45D6ACB288FD2CA008BA65D /* KLMGroupColorSensingCell.xib in Resources */,
+				E4D79CE22914DF1F00B92082 /* spectrum_9.png in Resources */,
 				E460BF7828A0EDA30045F2B6 /* KLMCountryCodeViewController.xib in Resources */,
 				E460BF7D28A0EEF80045F2B6 /* sortedNameEN.plist in Resources */,
 				E46E00CA28740FF1001D29E4 /* KLMAdminTransferViewController.xib in Resources */,
+				E4D79D1A2914DF1F00B92082 /* spectrum_25.png in Resources */,
 				E411273628F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */,
+				E4D79D062914DF1F00B92082 /* spectrum_34.png in Resources */,
+				E4D79CFA2914DF1F00B92082 /* spectrum_35.png in Resources */,
+				E4D79CAA2914DF1F00B92082 /* spectrum_14.png in Resources */,
 				E4C57FC828055C7C00E7AB54 /* KLMSettingSwichCell.xib in Resources */,
+				E4D79CF62914DF1F00B92082 /* spectrum_8.png in Resources */,
+				E4D79CBA2914DF1F00B92082 /* spectrum_6.png in Resources */,
 				E4C57FC928055C7C00E7AB54 /* KLMHomeEditViewController.xib in Resources */,
 				E4C57FCA28055C7C00E7AB54 /* KLMBanchenpinViewController.xib in Resources */,
 				E4C57FCB28055C7C00E7AB54 /* KLMChartsTestViewController.xib in Resources */,
 				E460BF8028A0EEF80045F2B6 /* sortedNameCH.plist in Resources */,
+				E4D79D122914DF1F00B92082 /* spectrum_18.png in Resources */,
 				E4C57FCC28055C7C00E7AB54 /* KLMDFUTestViewController.xib in Resources */,
 				E4C57FCD28055C7C00E7AB54 /* KLMLaoHuaTestViewController.xib in Resources */,
 				E4C57FCE28055C7C00E7AB54 /* Assets.xcassets in Resources */,
 				E4C57FD128055C7C00E7AB54 /* KLMHelpViewController.xib in Resources */,
+				E4D79CEA2914DF1F00B92082 /* spectrum_36.png in Resources */,
 				E4A0F7E32907BC8700150B0F /* 前_en.wav in Resources */,
 				E4A0F7DA2907BC8700150B0F /* 6_en.wav in Resources */,
 				E4A0F7EC2907BC8700150B0F /* 8_en.wav in Resources */,
+				E4D79D022914DF1F00B92082 /* spectrum_20.png in Resources */,
 				E4A0F7D12907BC8700150B0F /* 7_en.wav in Resources */,
 				E4A0F7D42907BC8700150B0F /* 0_en.wav in Resources */,
+				E4D79CA22914DF1F00B92082 /* spectrum_3.png in Resources */,
+				E4D79CB62914DF1F00B92082 /* spectrum_2.png in Resources */,
 				E4A0F7F22907BC8700150B0F /* 11_en.wav in Resources */,
 				E4A0F7EF2907BC8700150B0F /* 2_en.wav in Resources */,
 				E4A0F7D72907BC8700150B0F /* 13_en.wav in Resources */,
@@ -4484,7 +4890,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.7.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4520,7 +4926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.7.4;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4542,7 +4948,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
@@ -4556,7 +4962,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4579,7 +4985,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4592,7 +4998,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.3;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";

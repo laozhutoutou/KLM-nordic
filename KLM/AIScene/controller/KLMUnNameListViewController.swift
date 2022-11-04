@@ -623,6 +623,7 @@ extension KLMUnNameListViewController: KLMSmartNodeDelegate {
 extension KLMUnNameListViewController: GattDelegate {
     
     func bearerDidOpen(_ bearer: Bearer) {
+
         ///会出问题
 //        DispatchQueue.main.asyncAfter(deadline: 3) {
 //
@@ -672,13 +673,6 @@ extension KLMUnNameListViewController: GattDelegate {
                         KLMLog("连接的设备：\(node.nodeName)")
                     }
                 }
-                //                if let index = self.nodes.firstIndex(where: {$0.nodeuuidString == bearer.nodeUUID}) {
-                //                    let node = self.nodes[index]
-                //                    node.isOnline = true
-                //                    let indexPath = IndexPath.init(item: index, section: 0)
-                //                    self.collectionView.reloadItems(at: [indexPath])
-                //                    KLMLog("连接的设备：\(node.nodeName)")
-                //                }
             }
         }
     }

@@ -62,7 +62,7 @@ class KLMSmartNode: NSObject {
                 try MeshNetworkManager.instance.send(message, to: model)
                 
             } catch {
-                var err = MessageError()
+                let err = MessageError()
                 err.message = error.localizedDescription
                 self.delegate?.smartNode(self, didfailure: err)
                 
@@ -85,7 +85,7 @@ class KLMSmartNode: NSObject {
                 try MeshNetworkManager.instance.send(message, to: model)
             } catch  {
                 
-                var err = MessageError()
+                let err = MessageError()
                 err.message = error.localizedDescription
                 self.delegate?.smartNode(self, didfailure: err)
             }
@@ -103,7 +103,7 @@ class KLMSmartNode: NSObject {
             try MeshNetworkManager.instance.send(message, to: node)
         } catch  {
             
-            var err = MessageError()
+            let err = MessageError()
             err.message = error.localizedDescription
             self.delegate?.smartNode(self, didfailure: err)
         }
@@ -412,19 +412,6 @@ extension GattBearer {
         }
         return uuid
     }
-    
-//    var version: String {
-//        
-//        var version = ""
-//        if manufacturer.count == 16 {
-//            let first: Int = Int(nodeUUID[12,2])!
-//            let second: Int = Int(nodeUUID[14,1])!
-//            let third: Int = Int(nodeUUID[15,1])!
-//            version = "\(first).\(second).\(third)"
-//            KLMLog("设备版本：\(version)")
-//        }
-//        return version
-//    }
 }
 
 
