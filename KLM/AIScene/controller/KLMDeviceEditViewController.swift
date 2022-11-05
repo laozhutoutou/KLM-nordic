@@ -67,15 +67,15 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         ///拦截导航栏返回
-        if navigationController?.viewControllers.firstIndex(of: self) == nil{
-            
-            ///发送语音关闭指令
-            KLMAudioManager.shared.stopPlay()
-            
-            ///关闭语音播报
-            let parame = parameModel.init(dp: .audio, value: 2)
-            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        }
+//        if navigationController?.viewControllers.firstIndex(of: self) == nil{
+//
+//            ///发送语音关闭指令
+//            KLMAudioManager.shared.stopPlay()
+//
+//            ///关闭语音播报
+//            let parame = parameModel.init(dp: .audio, value: 2)
+//            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+//        }
     }
     
     override func viewDidLoad() {
@@ -118,7 +118,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         
         ///语音
         ///这个页面也可以语音播报，进来这个页面可能语音功能未关闭
-        KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
+//        KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
         
         //添加手势
         let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
@@ -295,17 +295,17 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             self.hideEmptyView()
         }
         ///语音播报
-        if message?.dp == .audio, let value = message?.value as? [UInt8] {
-            if message?.opCode == .read {
-        
-                if value.count >= 2 { ///设备端主动下发语音指令
-                    
-                    let secondIndex = Int(value[1])
-                    KLMAudioManager.shared.startPlay(type: secondIndex)
-                    
-                }
-            }
-        }
+//        if message?.dp == .audio, let value = message?.value as? [UInt8] {
+//            if message?.opCode == .read {
+//
+//                if value.count >= 2 { ///设备端主动下发语音指令
+//
+//                    let secondIndex = Int(value[1])
+//                    KLMAudioManager.shared.startPlay(type: secondIndex)
+//
+//                }
+//            }
+//        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import AVFAudio
 import nRFMeshProvision
 
 enum AudioIndex {
@@ -15,162 +14,58 @@ enum AudioIndex {
     case audioBehind
 }
 
+enum AudioMode: Int {
+    case AudioModeBiaozhun = 1
+    case AudioModeSexi
+    case AudioModeHudong
+    case AudioModeMote
+}
+
 class KLMAudioManager: NSObject {
-    
-    private var audioPlayer: AVAudioPlayer?
-    private var currentIndex: Int = 0
-    private var playOrder: AudioIndex = .audioFront
     
     var currentNode: Node?
     
-    func startPlay(type: Int) {
-        
-        if type > 16 {
-            SVProgressHUD.showInfo(withStatus: "play index > 16")
-            
-            guard let currentNode = currentNode else { return  }
-            let parameOn = parameModel.init(dp: .audio, value: 3)
-            KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
-            
-            return
-        }
-        currentIndex = type
-        playOrder = .audioFront
-        KLMLog("index = \(type)")
-        if type == 15 || type == 16 {
-            
-            playIndex()
-            
-        } else {
-            
-            playFront()
+    func startPlay(index: Int, mode: Int) {
+
+        switch mode {
+        case AudioMode.AudioModeBiaozhun.rawValue: //标准
+            KLMAudioBiaozhunManager.shared.startPlay(index: index, mode: .AudioModeBiaozhun)
+        case AudioMode.AudioModeSexi.rawValue: //色系
+            KLMAudioBiaozhunManager.shared.startPlay(index: index, mode: .AudioModeSexi)
+        case 3: //互动
+            KLMAudioHudongManager.shared.startPlay(index: index)
+        case 4: //模特
+            KLMAudioMoteManager.shared.startPlay(index: index)
+        default:
+            break
         }
     }
     
-    private func playIndex() {
+    func playWithPath(path: String) {
         
-        stopPlay()
         
-        //设置类别
-        try? AVAudioSession.sharedInstance().setCategory(.playback)
-        //启动音频会话管理,此时会阻断后台音乐的播放.
-        try? AVAudioSession.sharedInstance().setActive(true)
-        
-        var str = "\(currentIndex)_en"
-        if Bundle.isChineseLanguage() {
-            str = "\(currentIndex)"
-        }
-        
-        let path = Bundle.main.path(forResource: str, ofType: "wav")
-        guard let path = path else { return }
-        if audioPlayer == nil {
-            audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.volume = 1
-        }
-        audioPlayer?.play()
-    }
-    
-    private func playFront() {
-        
-        stopPlay()
-        
-        //设置类别
-        try? AVAudioSession.sharedInstance().setCategory(.playback)
-        //启动音频会话管理,此时会阻断后台音乐的播放.
-        try? AVAudioSession.sharedInstance().setActive(true)
-        
-        var str = "前_en"
-        if Bundle.isChineseLanguage() {
-            str = "前"
-        }
-        let path = Bundle.main.path(forResource: str, ofType: "wav")
-        guard let path = path else { return }
-        if audioPlayer == nil {
-            audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.volume = 1
-        }
-        audioPlayer?.play()
-    }
-    
-    private func playBehind() {
-        
-        stopPlay()
-        
-        //设置类别
-        try? AVAudioSession.sharedInstance().setCategory(.playback)
-        //启动音频会话管理,此时会阻断后台音乐的播放.
-        try? AVAudioSession.sharedInstance().setActive(true)
-        
-        var str = "后_en"
-        if Bundle.isChineseLanguage() {
-            str = "后"
-        }
-        
-        let path = Bundle.main.path(forResource: str, ofType: "wav")
-        guard let path = path else { return }
-        if audioPlayer == nil {
-            audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))
-            audioPlayer?.delegate = self
-            audioPlayer?.prepareToPlay()
-            audioPlayer?.volume = 1
-        }
-        audioPlayer?.play()
-    }
-    
-    private func next() {
-        
-        if currentIndex == 15 || currentIndex == 16 {
-            
-            guard let currentNode = currentNode else { return  }
-            let parameOn = parameModel.init(dp: .audio, value: 3)
-            KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
-            
-        } else {
-            
-            switch playOrder {
-            case .audioFront:
-                playOrder = .audioIndex
-                playIndex()
-            case .audioIndex:
-                playOrder = .audioBehind
-                playBehind()
-            case .audioBehind:
-                guard let currentNode = currentNode else { return  }
-                let parameOn = parameModel.init(dp: .audio, value: 3)
-                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
-            }
-        }
     }
     
     func stopPlay() {
         
-        try? AVAudioSession.sharedInstance().setActive(false)
-        audioPlayer?.stop()
-        audioPlayer = nil
+        KLMAudioBiaozhunManager.shared.stopPlay()
+        KLMAudioHudongManager.shared.stopPlay()
+        KLMAudioMoteManager.shared.stopPlay()
+    }
+    
+    func sendStop() {
         
+        guard let currentNode = KLMAudioManager.shared.currentNode else { return  }
+        let parameOn = parameModel.init(dp: .audio, value: 5)
+        KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
     }
     
     deinit {
         
-        audioPlayer?.stop()
-        try? AVAudioSession.sharedInstance().setActive(false)
+        stopPlay()
     }
     
     static let shared = KLMAudioManager()
     private override init(){}
-}
-
-extension KLMAudioManager: AVAudioPlayerDelegate {
-    
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        
-        stopPlay()
-        KLMLog("结束播放")
-        next()
-    }
 }
 
