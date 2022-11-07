@@ -435,7 +435,6 @@
 		E4A0F8CC2907E01B00150B0F /* 4_en.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4A0F7B62907BC8400150B0F /* 4_en.wav */; };
 		E4A0F8CD2907E01B00150B0F /* KLMBaseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A6608B267360A200FE6866 /* KLMBaseTableViewCell.xib */; };
 		E4A0F8CE2907E01B00150B0F /* KLMCustomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42C826C21B0A0056C7EE /* KLMCustomViewController.xib */; };
-		E4A0F8CF2907E01B00150B0F /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3A28AB856C00D77CE3 /* 13.wav */; };
 		E4A0F8D02907E01B00150B0F /* KLMForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54722769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib */; };
 		E4A0F8D12907E01B00150B0F /* 14.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3F28AB856D00D77CE3 /* 14.wav */; };
 		E4A0F8D22907E01B00150B0F /* 0_en.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4A0F7B92907BC8400150B0F /* 0_en.wav */; };
@@ -478,7 +477,6 @@
 		E4A0F8F72907E01B00150B0F /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
 		E4A0F8F82907E01B00150B0F /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4A0F8F92907E01B00150B0F /* KLMDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */; };
-		E4A0F8FA2907E01B00150B0F /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4328AB856E00D77CE3 /* 12.wav */; };
 		E4A0F8FB2907E01B00150B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E4A0F8FC2907E01B00150B0F /* KLMGroupSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */; };
 		E4A0F8FD2907E01B00150B0F /* KLMGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */; };
@@ -529,7 +527,6 @@
 		E4A0F92A2907E01B00150B0F /* sortedNameCH.plist in Resources */ = {isa = PBXBuildFile; fileRef = E460BF7A28A0EEF80045F2B6 /* sortedNameCH.plist */; };
 		E4A0F92B2907E01B00150B0F /* KLMDFUTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4B0486B27E5964000D03668 /* KLMDFUTestViewController.xib */; };
 		E4A0F92C2907E01B00150B0F /* KLMLaoHuaTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E476177C26DE11A9008225BB /* KLMLaoHuaTestViewController.xib */; };
-		E4A0F92E2907E01B00150B0F /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4528AB856E00D77CE3 /* 11.wav */; };
 		E4A0F92F2907E01B00150B0F /* 7.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3C28AB856C00D77CE3 /* 7.wav */; };
 		E4A0F9302907E01B00150B0F /* KLMHelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42F026C21DD20056C7EE /* KLMHelpViewController.xib */; };
 		E4A0F9312907E01B00150B0F /* 10.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4B28AB856F00D77CE3 /* 10.wav */; };
@@ -1017,7 +1014,6 @@
 		E4C5819F28E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C5819B28E44D7E0066E753 /* KLMTestViewPostionViewController.xib */; };
 		E4C581A028E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C5819B28E44D7E0066E753 /* KLMTestViewPostionViewController.xib */; };
 		E4C581A128E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C5819B28E44D7E0066E753 /* KLMTestViewPostionViewController.xib */; };
-		E4C5CC4E28AB856F00D77CE3 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3A28AB856C00D77CE3 /* 13.wav */; };
 		E4C5CC4F28AB856F00D77CE3 /* 6.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3B28AB856C00D77CE3 /* 6.wav */; };
 		E4C5CC5028AB856F00D77CE3 /* 7.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3C28AB856C00D77CE3 /* 7.wav */; };
 		E4C5CC5128AB856F00D77CE3 /* 5.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC3D28AB856C00D77CE3 /* 5.wav */; };
@@ -1026,9 +1022,7 @@
 		E4C5CC5428AB856F00D77CE3 /* 4.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4028AB856D00D77CE3 /* 4.wav */; };
 		E4C5CC5528AB856F00D77CE3 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4128AB856D00D77CE3 /* 1.wav */; };
 		E4C5CC5628AB856F00D77CE3 /* 15.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4228AB856D00D77CE3 /* 15.wav */; };
-		E4C5CC5728AB856F00D77CE3 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4328AB856E00D77CE3 /* 12.wav */; };
 		E4C5CC5828AB856F00D77CE3 /* 0.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4428AB856E00D77CE3 /* 0.wav */; };
-		E4C5CC5928AB856F00D77CE3 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4528AB856E00D77CE3 /* 11.wav */; };
 		E4C5CC5A28AB856F00D77CE3 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4628AB856E00D77CE3 /* 2.wav */; };
 		E4C5CC5C28AB856F00D77CE3 /* 16.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4828AB856E00D77CE3 /* 16.wav */; };
 		E4C5CC5D28AB856F00D77CE3 /* 后.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4928AB856F00D77CE3 /* 后.wav */; };
@@ -1043,6 +1037,30 @@
 		E4C64AFC28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C64AF828E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib */; };
 		E4C64AFD28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C64AF828E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib */; };
 		E4C64AFE28E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C64AF828E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib */; };
+		E4C727DF2917E2FB00FC1C00 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DC2917E2FB00FC1C00 /* 11.wav */; };
+		E4C727E02917E2FB00FC1C00 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DC2917E2FB00FC1C00 /* 11.wav */; };
+		E4C727E12917E2FB00FC1C00 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DC2917E2FB00FC1C00 /* 11.wav */; };
+		E4C727E22917E2FB00FC1C00 /* 11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DC2917E2FB00FC1C00 /* 11.wav */; };
+		E4C727E32917E2FB00FC1C00 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DD2917E2FB00FC1C00 /* 13.wav */; };
+		E4C727E42917E2FB00FC1C00 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DD2917E2FB00FC1C00 /* 13.wav */; };
+		E4C727E52917E2FB00FC1C00 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DD2917E2FB00FC1C00 /* 13.wav */; };
+		E4C727E62917E2FB00FC1C00 /* 13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DD2917E2FB00FC1C00 /* 13.wav */; };
+		E4C727E72917E2FB00FC1C00 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DE2917E2FB00FC1C00 /* 12.wav */; };
+		E4C727E82917E2FB00FC1C00 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DE2917E2FB00FC1C00 /* 12.wav */; };
+		E4C727E92917E2FB00FC1C00 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DE2917E2FB00FC1C00 /* 12.wav */; };
+		E4C727EA2917E2FB00FC1C00 /* 12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727DE2917E2FB00FC1C00 /* 12.wav */; };
+		E4C727EE2917E32900FC1C00 /* sexi_12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EB2917E32900FC1C00 /* sexi_12.wav */; };
+		E4C727EF2917E32900FC1C00 /* sexi_12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EB2917E32900FC1C00 /* sexi_12.wav */; };
+		E4C727F02917E32900FC1C00 /* sexi_12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EB2917E32900FC1C00 /* sexi_12.wav */; };
+		E4C727F12917E32900FC1C00 /* sexi_12.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EB2917E32900FC1C00 /* sexi_12.wav */; };
+		E4C727F22917E32900FC1C00 /* sexi_13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EC2917E32900FC1C00 /* sexi_13.wav */; };
+		E4C727F32917E32900FC1C00 /* sexi_13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EC2917E32900FC1C00 /* sexi_13.wav */; };
+		E4C727F42917E32900FC1C00 /* sexi_13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EC2917E32900FC1C00 /* sexi_13.wav */; };
+		E4C727F52917E32900FC1C00 /* sexi_13.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727EC2917E32900FC1C00 /* sexi_13.wav */; };
+		E4C727F62917E32900FC1C00 /* sexi_11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727ED2917E32900FC1C00 /* sexi_11.wav */; };
+		E4C727F72917E32900FC1C00 /* sexi_11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727ED2917E32900FC1C00 /* sexi_11.wav */; };
+		E4C727F82917E32900FC1C00 /* sexi_11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727ED2917E32900FC1C00 /* sexi_11.wav */; };
+		E4C727F92917E32900FC1C00 /* sexi_11.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C727ED2917E32900FC1C00 /* sexi_11.wav */; };
 		E4C80D4227F7EC2400DA5155 /* KLMChartsTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C80D4027F7EC2400DA5155 /* KLMChartsTestViewController.swift */; };
 		E4C80D4327F7EC2400DA5155 /* KLMChartsTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */; };
 		E4CBED742750D81000A21936 /* KLMUserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */; };
@@ -1793,7 +1811,6 @@
 		E4C57FD828055C7C00E7AB54 /* KLM_Test.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = KLM_Test.plist; path = "/Users/zhuyu/KLM AIScene/KLM nordic/KLM_Test.plist"; sourceTree = "<absolute>"; };
 		E4C5819A28E44D7E0066E753 /* KLMTestViewPostionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestViewPostionViewController.swift; sourceTree = "<group>"; };
 		E4C5819B28E44D7E0066E753 /* KLMTestViewPostionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTestViewPostionViewController.xib; sourceTree = "<group>"; };
-		E4C5CC3A28AB856C00D77CE3 /* 13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 13.wav; sourceTree = "<group>"; };
 		E4C5CC3B28AB856C00D77CE3 /* 6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 6.wav; sourceTree = "<group>"; };
 		E4C5CC3C28AB856C00D77CE3 /* 7.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 7.wav; sourceTree = "<group>"; };
 		E4C5CC3D28AB856C00D77CE3 /* 5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 5.wav; sourceTree = "<group>"; };
@@ -1802,9 +1819,7 @@
 		E4C5CC4028AB856D00D77CE3 /* 4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 4.wav; sourceTree = "<group>"; };
 		E4C5CC4128AB856D00D77CE3 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		E4C5CC4228AB856D00D77CE3 /* 15.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 15.wav; sourceTree = "<group>"; };
-		E4C5CC4328AB856E00D77CE3 /* 12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 12.wav; sourceTree = "<group>"; };
 		E4C5CC4428AB856E00D77CE3 /* 0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0.wav; sourceTree = "<group>"; };
-		E4C5CC4528AB856E00D77CE3 /* 11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 11.wav; sourceTree = "<group>"; };
 		E4C5CC4628AB856E00D77CE3 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
 		E4C5CC4828AB856E00D77CE3 /* 16.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 16.wav; sourceTree = "<group>"; };
 		E4C5CC4928AB856F00D77CE3 /* 后.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "后.wav"; sourceTree = "<group>"; };
@@ -1817,6 +1832,12 @@
 		E4C64302279E9DA6003FA554 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMGroupCell.strings"; sourceTree = "<group>"; };
 		E4C64AF728E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestBiaodingViewController.swift; sourceTree = "<group>"; };
 		E4C64AF828E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMTestBiaodingViewController.xib; sourceTree = "<group>"; };
+		E4C727DC2917E2FB00FC1C00 /* 11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 11.wav; sourceTree = "<group>"; };
+		E4C727DD2917E2FB00FC1C00 /* 13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 13.wav; sourceTree = "<group>"; };
+		E4C727DE2917E2FB00FC1C00 /* 12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 12.wav; sourceTree = "<group>"; };
+		E4C727EB2917E32900FC1C00 /* sexi_12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sexi_12.wav; sourceTree = "<group>"; };
+		E4C727EC2917E32900FC1C00 /* sexi_13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sexi_13.wav; sourceTree = "<group>"; };
+		E4C727ED2917E32900FC1C00 /* sexi_11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sexi_11.wav; sourceTree = "<group>"; };
 		E4C74885288145DA003C8770 /* recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recipe.h; sourceTree = "<group>"; };
 		E4C80D4027F7EC2400DA5155 /* KLMChartsTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMChartsTestViewController.swift; sourceTree = "<group>"; };
 		E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMChartsTestViewController.xib; sourceTree = "<group>"; };
@@ -2712,10 +2733,10 @@
 				E4C5CC3C28AB856C00D77CE3 /* 7.wav */,
 				E4C5CC4A28AB856F00D77CE3 /* 8.wav */,
 				E4C5CC3E28AB856D00D77CE3 /* 9.wav */,
+				E4C727DC2917E2FB00FC1C00 /* 11.wav */,
+				E4C727DE2917E2FB00FC1C00 /* 12.wav */,
+				E4C727DD2917E2FB00FC1C00 /* 13.wav */,
 				E4C5CC4B28AB856F00D77CE3 /* 10.wav */,
-				E4C5CC4528AB856E00D77CE3 /* 11.wav */,
-				E4C5CC4328AB856E00D77CE3 /* 12.wav */,
-				E4C5CC3A28AB856C00D77CE3 /* 13.wav */,
 				E4C5CC3F28AB856D00D77CE3 /* 14.wav */,
 				E4C5CC4228AB856D00D77CE3 /* 15.wav */,
 				E4C5CC4828AB856E00D77CE3 /* 16.wav */,
@@ -2746,6 +2767,9 @@
 				E4CE88F7291616600040B878 /* sexi_8.wav */,
 				E4CE88F8291616600040B878 /* sexi_9.wav */,
 				E4CE88FD291616610040B878 /* sexi_10.wav */,
+				E4C727ED2917E32900FC1C00 /* sexi_11.wav */,
+				E4C727EB2917E32900FC1C00 /* sexi_12.wav */,
+				E4C727EC2917E32900FC1C00 /* sexi_13.wav */,
 				E4CE88FB291616610040B878 /* sexi_后.wav */,
 				E4CE88FE291616610040B878 /* sexi_前.wav */,
 			);
@@ -3047,6 +3071,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C727E32917E2FB00FC1C00 /* 13.wav in Resources */,
 				E4D79D102914DF1F00B92082 /* spectrum_18.png in Resources */,
 				E45D6AC2288FCA01008BA65D /* KLMPicDownloadViewController.xib in Resources */,
 				E4DE8BA02897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
@@ -3055,6 +3080,7 @@
 				E414585527BCE41B00C181E3 /* KLMSettingsViewController.xib in Resources */,
 				E4DE8BA82897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
 				E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */,
+				E4C727EE2917E32900FC1C00 /* sexi_12.wav in Resources */,
 				E4CE8973291633930040B878 /* hudong_1.wav in Resources */,
 				E4A65F3F266F459200FE6866 /* KLMAINameListCell.xib in Resources */,
 				E4D79CDC2914DF1F00B92082 /* spectrum_4.png in Resources */,
@@ -3078,7 +3104,6 @@
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
 				E4D79D242914DF1F00B92082 /* spectrum_33.png in Resources */,
-				E4C5CC4E28AB856F00D77CE3 /* 13.wav in Resources */,
 				E46B54702769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib in Resources */,
 				E4CE896F291633930040B878 /* hudongColor_1_后.wav in Resources */,
 				E4C5CC5328AB856F00D77CE3 /* 14.wav in Resources */,
@@ -3124,6 +3149,7 @@
 				E4CE8953291633930040B878 /* hudongNocolor_3.wav in Resources */,
 				E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E46B54652769BA6D00F3D5E5 /* KLMJoinHomeViewController.xib in Resources */,
+				E4C727E72917E2FB00FC1C00 /* 12.wav in Resources */,
 				E4C5CC4F28AB856F00D77CE3 /* 6.wav in Resources */,
 				E414C0DB27D5E3C700DFD409 /* KLMAllDeviceViewController.xib in Resources */,
 				E4D79D142914DF1F00B92082 /* spectrum_19.png in Resources */,
@@ -3150,10 +3176,10 @@
 				E4D79CD42914DF1F00B92082 /* spectrum_12.png in Resources */,
 				E4CE8983291633930040B878 /* hudong_5.wav in Resources */,
 				E4CE8907291616620040B878 /* sexi_9.wav in Resources */,
+				E4C727DF2917E2FB00FC1C00 /* 11.wav in Resources */,
 				E48B52F02667886B0006CDA7 /* KLMDeviceEditViewController.xib in Resources */,
 				E4D79D0C2914DF1F00B92082 /* spectrum_24.png in Resources */,
 				E4D79CEC2914DF1F00B92082 /* spectrum_37.png in Resources */,
-				E4C5CC5728AB856F00D77CE3 /* 12.wav in Resources */,
 				E4D79D2C2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E4CE8923291616620040B878 /* sexi_7.wav in Resources */,
 				E4CE897B291633930040B878 /* hudongNocolor_4.wav in Resources */,
@@ -3183,6 +3209,7 @@
 				E4CE8913291616620040B878 /* sexi_后.wav in Resources */,
 				E48B52D2266784B10006CDA7 /* Localizable.strings in Resources */,
 				E46B544927698BD300F3D5E5 /* KLMLoginViewController.xib in Resources */,
+				E4C727F62917E32900FC1C00 /* sexi_11.wav in Resources */,
 				E414585A27BCE8AC00C181E3 /* KLMChangePasswordViewController.xib in Resources */,
 				E4D79D1C2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4729A7926AE92A400DC7D59 /* KLMTestViewController.xib in Resources */,
@@ -3235,7 +3262,6 @@
 				E476177E26DE11A9008225BB /* KLMLaoHuaTestViewController.xib in Resources */,
 				E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */,
 				E4D79CD02914DF1F00B92082 /* spectrum_5.png in Resources */,
-				E4C5CC5928AB856F00D77CE3 /* 11.wav in Resources */,
 				E4C5CC5028AB856F00D77CE3 /* 7.wav in Resources */,
 				E4D79CF42914DF1F00B92082 /* spectrum_8.png in Resources */,
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
@@ -3243,6 +3269,7 @@
 				E4CE894B291633930040B878 /* hudongHuanying_1.wav in Resources */,
 				E498A78926671BEC00C78D50 /* Main.storyboard in Resources */,
 				E4C34660283378E1000852DE /* KLMAddDeviceTestViewController.xib in Resources */,
+				E4C727F22917E32900FC1C00 /* sexi_13.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3250,6 +3277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C727E62917E2FB00FC1C00 /* 13.wav in Resources */,
 				E4D79D132914DF1F00B92082 /* spectrum_18.png in Resources */,
 				E4A0F8B92907E01B00150B0F /* KLMPicDownloadViewController.xib in Resources */,
 				E4A0F8BA2907E01B00150B0F /* KLMSelectNodesViewController.xib in Resources */,
@@ -3258,6 +3286,7 @@
 				E4A0F93C2907E9EB00150B0F /* Assets_Sensetrack.xcassets in Resources */,
 				E4A0F8BC2907E01B00150B0F /* KLMSettingsViewController.xib in Resources */,
 				E4A0F8BD2907E01B00150B0F /* KLMCheckImagesViewController.xib in Resources */,
+				E4C727F12917E32900FC1C00 /* sexi_12.wav in Resources */,
 				E4CE8976291633930040B878 /* hudong_1.wav in Resources */,
 				E4A0F8BE2907E01B00150B0F /* KLMMotionViewController.xib in Resources */,
 				E4D79CDF2914DF1F00B92082 /* spectrum_4.png in Resources */,
@@ -3282,7 +3311,6 @@
 				E4A0F8CD2907E01B00150B0F /* KLMBaseTableViewCell.xib in Resources */,
 				E4D79D272914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4A0F8CE2907E01B00150B0F /* KLMCustomViewController.xib in Resources */,
-				E4A0F8CF2907E01B00150B0F /* 13.wav in Resources */,
 				E4CE8972291633930040B878 /* hudongColor_1_后.wav in Resources */,
 				E4A0F8D02907E01B00150B0F /* KLMForgetPasswordViewController.xib in Resources */,
 				E4A0F8D12907E01B00150B0F /* 14.wav in Resources */,
@@ -3327,6 +3355,7 @@
 				E4CE8956291633930040B878 /* hudongNocolor_3.wav in Resources */,
 				E4A0F8EA2907E01B00150B0F /* 4.wav in Resources */,
 				E4A0F8EB2907E01B00150B0F /* KLMRGBTestViewController.xib in Resources */,
+				E4C727EA2917E2FB00FC1C00 /* 12.wav in Resources */,
 				E4A0F8EC2907E01B00150B0F /* KLMJoinHomeViewController.xib in Resources */,
 				E4A0F8ED2907E01B00150B0F /* 6.wav in Resources */,
 				E4D79D172914DF1F00B92082 /* spectrum_19.png in Resources */,
@@ -3353,6 +3382,7 @@
 				E4D79CD72914DF1F00B92082 /* spectrum_12.png in Resources */,
 				E4CE8986291633930040B878 /* hudong_5.wav in Resources */,
 				E4CE890A291616620040B878 /* sexi_9.wav in Resources */,
+				E4C727E22917E2FB00FC1C00 /* 11.wav in Resources */,
 				E4A0F8F82907E01B00150B0F /* KLMDeviceAddTestCell.xib in Resources */,
 				E4D79D0F2914DF1F00B92082 /* spectrum_24.png in Resources */,
 				E4D79CEF2914DF1F00B92082 /* spectrum_37.png in Resources */,
@@ -3360,7 +3390,6 @@
 				E4D79D2F2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E4CE8926291616620040B878 /* sexi_7.wav in Resources */,
 				E4CE897E291633930040B878 /* hudongNocolor_4.wav in Resources */,
-				E4A0F8FA2907E01B00150B0F /* 12.wav in Resources */,
 				E4CE8952291633930040B878 /* hudongNocolor_1.wav in Resources */,
 				E4A0F8FB2907E01B00150B0F /* LaunchScreen.storyboard in Resources */,
 				E4D79CB32914DF1F00B92082 /* spectrum_29.png in Resources */,
@@ -3386,6 +3415,7 @@
 				E4CE8916291616620040B878 /* sexi_后.wav in Resources */,
 				E4A0F9082907E01B00150B0F /* 3.wav in Resources */,
 				E4A0F9092907E01B00150B0F /* Localizable.strings in Resources */,
+				E4C727F92917E32900FC1C00 /* sexi_11.wav in Resources */,
 				E4A0F90A2907E01B00150B0F /* KLMLoginViewController.xib in Resources */,
 				E4D79D1F2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4A0F90B2907E01B00150B0F /* KLMChangePasswordViewController.xib in Resources */,
@@ -3438,7 +3468,6 @@
 				E4A0F92B2907E01B00150B0F /* KLMDFUTestViewController.xib in Resources */,
 				E4A0F92C2907E01B00150B0F /* KLMLaoHuaTestViewController.xib in Resources */,
 				E4D79CD32914DF1F00B92082 /* spectrum_5.png in Resources */,
-				E4A0F92E2907E01B00150B0F /* 11.wav in Resources */,
 				E4A0F92F2907E01B00150B0F /* 7.wav in Resources */,
 				E4D79CF72914DF1F00B92082 /* spectrum_8.png in Resources */,
 				E4A0F9302907E01B00150B0F /* KLMHelpViewController.xib in Resources */,
@@ -3446,6 +3475,7 @@
 				E4CE894E291633930040B878 /* hudongHuanying_1.wav in Resources */,
 				E4A0F9322907E01B00150B0F /* Main.storyboard in Resources */,
 				E4A0F9332907E01B00150B0F /* KLMAddDeviceTestViewController.xib in Resources */,
+				E4C727F52917E32900FC1C00 /* sexi_13.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3463,6 +3493,7 @@
 				E4DE8BA12897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4C57EBE28055B1F00E7AB54 /* KLMUnNameListViewController.xib in Resources */,
 				E4D79CA52914DF1F00B92082 /* spectrum_28.png in Resources */,
+				E4C727E02917E2FB00FC1C00 /* 11.wav in Resources */,
 				E4CE8970291633930040B878 /* hudongColor_1_后.wav in Resources */,
 				E4C57EBF28055B1F00E7AB54 /* KLMSettingsViewController.xib in Resources */,
 				E4CE89A629163E7C0040B878 /* mote_2.wav in Resources */,
@@ -3497,6 +3528,7 @@
 				E4C57EC928055B1F00E7AB54 /* KLMForgetPasswordViewController.xib in Resources */,
 				E460BF6F28A0DE8C0045F2B6 /* KLMLoginPhoneViewController.xib in Resources */,
 				E4C57ECA28055B1F00E7AB54 /* KLMTableViewCell.xib in Resources */,
+				E4C727E42917E2FB00FC1C00 /* 13.wav in Resources */,
 				E4D79CED2914DF1F00B92082 /* spectrum_37.png in Resources */,
 				E4CE8980291633930040B878 /* hudongHuanying_3.wav in Resources */,
 				E4C57ECB28055B1F00E7AB54 /* KLMPhotoEditViewController.xib in Resources */,
@@ -3518,6 +3550,7 @@
 				E4D79CFD2914DF1F00B92082 /* spectrum_21.png in Resources */,
 				E4D79D152914DF1F00B92082 /* spectrum_19.png in Resources */,
 				E4C57ED328055B1F00E7AB54 /* KLMSettingViewController.xib in Resources */,
+				E4C727F32917E32900FC1C00 /* sexi_13.wav in Resources */,
 				E4C57ED428055B1F00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
 				E4D79CDD2914DF1F00B92082 /* spectrum_4.png in Resources */,
 				E4C57ED528055B1F00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
@@ -3530,6 +3563,7 @@
 				E4C4A0B8286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E4D79CF12914DF1F00B92082 /* spectrum_23.png in Resources */,
+				E4C727F72917E32900FC1C00 /* sexi_11.wav in Resources */,
 				E4D79D1D2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4C57EDB28055B1F00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57EDC28055B1F00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
@@ -3596,6 +3630,7 @@
 				E411273528F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */,
 				E4CE8910291616620040B878 /* sexi_2.wav in Resources */,
 				E4CE894C291633930040B878 /* hudongHuanying_1.wav in Resources */,
+				E4C727E82917E2FB00FC1C00 /* 12.wav in Resources */,
 				E4D79D052914DF1F00B92082 /* spectrum_34.png in Resources */,
 				E4D79CF92914DF1F00B92082 /* spectrum_35.png in Resources */,
 				E4D79CA92914DF1F00B92082 /* spectrum_14.png in Resources */,
@@ -3629,6 +3664,7 @@
 				E4A0F7EE2907BC8700150B0F /* 2_en.wav in Resources */,
 				E4A0F7D62907BC8700150B0F /* 13_en.wav in Resources */,
 				E4C57EFB28055B1F00E7AB54 /* Main.storyboard in Resources */,
+				E4C727EF2917E32900FC1C00 /* sexi_12.wav in Resources */,
 				E4C34661283378E1000852DE /* KLMAddDeviceTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3647,6 +3683,7 @@
 				E4DE8BA22897AE1F00D28D17 /* KLMSelectNodesViewController.xib in Resources */,
 				E4C57F9528055C7C00E7AB54 /* KLMUnNameListViewController.xib in Resources */,
 				E4D79CA62914DF1F00B92082 /* spectrum_28.png in Resources */,
+				E4C727E12917E2FB00FC1C00 /* 11.wav in Resources */,
 				E4CE8971291633930040B878 /* hudongColor_1_后.wav in Resources */,
 				E4C57F9628055C7C00E7AB54 /* KLMSettingsViewController.xib in Resources */,
 				E4CE89A729163E7C0040B878 /* mote_2.wav in Resources */,
@@ -3681,6 +3718,7 @@
 				E4C57FA028055C7C00E7AB54 /* KLMForgetPasswordViewController.xib in Resources */,
 				E460BF7028A0DE8C0045F2B6 /* KLMLoginPhoneViewController.xib in Resources */,
 				E4C57FA128055C7C00E7AB54 /* KLMTableViewCell.xib in Resources */,
+				E4C727E52917E2FB00FC1C00 /* 13.wav in Resources */,
 				E4D79CEE2914DF1F00B92082 /* spectrum_37.png in Resources */,
 				E4CE8981291633930040B878 /* hudongHuanying_3.wav in Resources */,
 				E4C57FA228055C7C00E7AB54 /* KLMPhotoEditViewController.xib in Resources */,
@@ -3702,6 +3740,7 @@
 				E4D79CFE2914DF1F00B92082 /* spectrum_21.png in Resources */,
 				E4D79D162914DF1F00B92082 /* spectrum_19.png in Resources */,
 				E4C57FAA28055C7C00E7AB54 /* KLMSettingViewController.xib in Resources */,
+				E4C727F42917E32900FC1C00 /* sexi_13.wav in Resources */,
 				E4C57FAB28055C7C00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
 				E4D79CDE2914DF1F00B92082 /* spectrum_4.png in Resources */,
 				E4C57FAC28055C7C00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
@@ -3714,6 +3753,7 @@
 				E4C4A0B9286EF70700450A52 /* KLMDeviceNameAndTypePopViewController.xib in Resources */,
 				E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */,
 				E4D79CF22914DF1F00B92082 /* spectrum_23.png in Resources */,
+				E4C727F82917E32900FC1C00 /* sexi_11.wav in Resources */,
 				E4D79D1E2914DF1F00B92082 /* spectrum_31.png in Resources */,
 				E4C57FB228055C7C00E7AB54 /* KLMJoinHomeViewController.xib in Resources */,
 				E4C57FB328055C7C00E7AB54 /* KLMAllDeviceViewController.xib in Resources */,
@@ -3780,6 +3820,7 @@
 				E411273628F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */,
 				E4CE8911291616620040B878 /* sexi_2.wav in Resources */,
 				E4CE894D291633930040B878 /* hudongHuanying_1.wav in Resources */,
+				E4C727E92917E2FB00FC1C00 /* 12.wav in Resources */,
 				E4D79D062914DF1F00B92082 /* spectrum_34.png in Resources */,
 				E4D79CFA2914DF1F00B92082 /* spectrum_35.png in Resources */,
 				E4D79CAA2914DF1F00B92082 /* spectrum_14.png in Resources */,
@@ -3813,6 +3854,7 @@
 				E4A0F7EF2907BC8700150B0F /* 2_en.wav in Resources */,
 				E4A0F7D72907BC8700150B0F /* 13_en.wav in Resources */,
 				E4C57FD228055C7C00E7AB54 /* Main.storyboard in Resources */,
+				E4C727F02917E32900FC1C00 /* sexi_12.wav in Resources */,
 				E4C34662283378E1000852DE /* KLMAddDeviceTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5270,7 +5312,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
@@ -5307,7 +5349,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

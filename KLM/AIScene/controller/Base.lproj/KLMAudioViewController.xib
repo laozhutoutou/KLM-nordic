@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMAudioViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="indexLab" destination="mOV-xN-Mgn" id="s6x-Yi-TBi"/>
                 <outlet property="modeLab" destination="WGT-2b-pGj" id="MRA-Ox-4gb"/>
                 <outlet property="modeView" destination="ROy-rh-kRE" id="1ps-HV-dZO"/>
                 <outlet property="spectrumImageView" destination="xGe-Bv-R8c" id="lsg-ik-AjT"/>
@@ -79,11 +80,19 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0.0.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOV-xN-Mgn">
+                    <rect key="frame" x="343" y="122" width="51" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mOV-xN-Mgn" secondAttribute="trailing" constant="20" id="0QO-JP-h5K"/>
                 <constraint firstItem="pXf-IG-sdu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="0uE-Po-8ou"/>
+                <constraint firstItem="mOV-xN-Mgn" firstAttribute="centerY" secondItem="pXf-IG-sdu" secondAttribute="centerY" id="E1G-Ba-CUE"/>
                 <constraint firstItem="ROy-rh-kRE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Epi-CI-5CS"/>
                 <constraint firstItem="Bi7-8L-qVv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="EqG-pM-PW0"/>
                 <constraint firstItem="pXf-IG-sdu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="Fhv-aE-TNk"/>
@@ -95,7 +104,7 @@
                 <constraint firstItem="xGe-Bv-R8c" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="szx-Pc-daW"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-1629" y="11"/>
+            <point key="canvasLocation" x="-1903" y="-36"/>
         </view>
         <tapGestureRecognizer id="aBB-Uu-qbj">
             <connections>

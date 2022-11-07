@@ -13,6 +13,8 @@ class KLMAudioViewController: UIViewController {
     @IBOutlet weak var modeLab: UILabel!
     @IBOutlet weak var spectrumImageView: UIImageView!
     
+    @IBOutlet weak var indexLab: UILabel!
+    
     let modeList = ["不播报", "标准模式", "色系模式", "互动模式", "模特模式"]
     var currentMode: Int = 0 {
         didSet {
@@ -38,7 +40,7 @@ class KLMAudioViewController: UIViewController {
     @objc func dimiss() {
         ///发送语音关闭指令
         KLMAudioManager.shared.stopPlay()
-        
+
         ///关闭语音播报
         let parame = parameModel.init(dp: .audio, value: 0)
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
@@ -74,7 +76,7 @@ extension KLMAudioViewController: KLMSmartNodeDelegate {
         if message?.dp == .audio, let value = message?.value as? [UInt8] {
             if message?.opCode == .read {
                 
-                if value.count >= 3 { ///设备端主动下发语音指令
+                if value.count == 3 { ///设备端主动下发语音指令
                     
                     let mode = Int(value[0])
                     let index = Int(value[1])
@@ -88,6 +90,10 @@ extension KLMAudioViewController: KLMSmartNodeDelegate {
                     } else {
                         spectrumImageView.image = UIImage.init()
                     }
+                    
+                } else if value.count == 5 {
+                    
+                    indexLab.text = "\(Int(value[1])).\(Int(value[2])).\(Int(value[3])).\(Int(value[4]))"
                     
                 } else { //获取到开关状态
                     

@@ -42,7 +42,7 @@ class KLMAudioBiaozhunManager: NSObject {
             
         } else { //色系
             
-            if index > 10 {
+            if index > 13 {
                 SVProgressHUD.showInfo(withStatus: "play index > 10")
                 
                 KLMAudioManager.shared.sendStop()

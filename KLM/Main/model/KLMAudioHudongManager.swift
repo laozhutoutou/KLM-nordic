@@ -20,11 +20,11 @@ class KLMAudioHudongManager: NSObject {
         currentIndex = index
         playOrder = .audioFront
         
-        if index == 0xFF {
+        if index == 0xFE {
             
             playHuanying()
             
-        } else if index == 0xFE {
+        } else if index == 0xFF {
             
             playNocolor()
             
@@ -91,7 +91,7 @@ class KLMAudioHudongManager: NSObject {
         //启动音频会话管理,此时会阻断后台音乐的播放.
         try? AVAudioSession.sharedInstance().setActive(true)
         
-        var str = "hudong_\(currentIndex)"
+        let str = "hudong_\(currentIndex)"
         
         let path = Bundle.main.path(forResource: str, ofType: "wav")
         guard let path = path else { return }
