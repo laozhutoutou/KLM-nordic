@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //发送消息超时时间
 //        meshNetworkManager.acknowledgmentMessageTimeout = 20.0
         meshNetworkManager.logger = self
-    
+        meshNetworkManager.delegate = KLMMeshNetworkManager.shared
     }
     
     func setupBugly() {

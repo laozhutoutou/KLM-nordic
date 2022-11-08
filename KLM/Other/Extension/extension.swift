@@ -119,6 +119,9 @@ extension NSNotification.Name {
     
     ///登录账号
     static let loginPageRefresh = NSNotification.Name.init("loginPageRefresh")
+    
+    ///蓝牙消息
+    static let meshMessageRec = NSNotification.Name.init("meshMessageRec")
 }
 
 extension String {

@@ -215,6 +215,34 @@ class KLMSmartGroup: NSObject {
         }
     }
     
+    func checkAllNodesOnline() {
+        
+        let parame = parameModel(dp: .power)
+        let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
+        if let opCode = UInt8("1C", radix: 16) {
+            let parameters = Data(hex: dpString)
+            KLMLog("readParameter = \(parameters.hex)")
+            let network = MeshNetworkManager.instance.meshNetwork!
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner })
+            guard !notConfiguredNodes.isEmpty else {
+                
+                return
+            }
+            ///可能节点没配置完成
+            guard let model = KLMHomeManager.getModelFromNode(node: notConfiguredNodes.first!) else {
+                return
+            }
+            let message = RuntimeVendorMessage(opCode: opCode, for: model, parameters: parameters)
+            do {
+                //allNodes 为所有节点
+                try  MeshNetworkManager.instance.send(message, to: MeshAddress.init(.allNodes), using: model.boundApplicationKeys.first!)
+                
+            } catch {
+                                
+            }
+        }
+    }
+    
     ///分组 read
     func readMessage(_ parame: parameModel, toGroup group: Group, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         

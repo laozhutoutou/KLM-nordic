@@ -108,6 +108,10 @@
 		E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */; };
 		E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */; };
 		E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */; };
+		E485C5FB291908D6004C0143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
+		E485C5FC291908D6004C0143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
+		E485C5FD291908D7004C0143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
+		E485C60029190905004C0143 /* LaunchScreenSensetrack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E485C5FE29190905004C0143 /* LaunchScreenSensetrack.storyboard */; };
 		E486366427DB342600F74DEB /* KLMQudongTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */; };
 		E486366527DB342600F74DEB /* KLMQudongTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */; };
 		E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E48AF165268EEDCB00140F1F /* KLMSlider.swift */; };
@@ -159,7 +163,6 @@
 		E498A78226671BEC00C78D50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E498A78126671BEC00C78D50 /* AppDelegate.swift */; };
 		E498A78926671BEC00C78D50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78726671BEC00C78D50 /* Main.storyboard */; };
 		E498A78B26671BED00C78D50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E498A78A26671BED00C78D50 /* Assets.xcassets */; };
-		E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E49B42BC26C21A4A0056C7EE /* KLMMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42BE26C21A4A0056C7EE /* KLMMotionViewController.xib */; };
 		E49B42C126C21AD90056C7EE /* KLMPhotoEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42C326C21AD90056C7EE /* KLMPhotoEditViewController.xib */; };
 		E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42C826C21B0A0056C7EE /* KLMCustomViewController.xib */; };
@@ -477,7 +480,6 @@
 		E4A0F8F72907E01B00150B0F /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
 		E4A0F8F82907E01B00150B0F /* KLMDeviceAddTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4C3466428338573000852DE /* KLMDeviceAddTestCell.xib */; };
 		E4A0F8F92907E01B00150B0F /* KLMDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */; };
-		E4A0F8FB2907E01B00150B0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E4A0F8FC2907E01B00150B0F /* KLMGroupSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */; };
 		E4A0F8FD2907E01B00150B0F /* KLMGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */; };
 		E4A0F8FE2907E01B00150B0F /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4C5CC4128AB856D00D77CE3 /* 1.wav */; };
@@ -797,7 +799,6 @@
 		E4C57EE028055B1F00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */; };
 		E4C57EE128055B1F00E7AB54 /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
 		E4C57EE228055B1F00E7AB54 /* KLMDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */; };
-		E4C57EE328055B1F00E7AB54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E4C57EE428055B1F00E7AB54 /* KLMGroupSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */; };
 		E4C57EE528055B1F00E7AB54 /* KLMGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */; };
 		E4C57EE628055B1F00E7AB54 /* KLMGroupPowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414C0D527D5DD2B00DFD409 /* KLMGroupPowerCell.xib */; };
@@ -986,7 +987,6 @@
 		E4C57FB728055C7C00E7AB54 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = E492AD1C267C83C50028AF3E /* unicode_to_hanyu_pinyin.txt */; };
 		E4C57FB828055C7C00E7AB54 /* KLMLightOnOffCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4FE0CE5271FB9AA001EEABD /* KLMLightOnOffCell.xib */; };
 		E4C57FB928055C7C00E7AB54 /* KLMDeviceEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52EE2667886B0006CDA7 /* KLMDeviceEditViewController.xib */; };
-		E4C57FBA28055C7C00E7AB54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E4C57FBB28055C7C00E7AB54 /* KLMGroupSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E495D11B2678586900AA50B9 /* KLMGroupSelectCell.xib */; };
 		E4C57FBC28055C7C00E7AB54 /* KLMGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E48B52A226676D8F0006CDA7 /* KLMGroupViewController.xib */; };
 		E4C57FBD28055C7C00E7AB54 /* KLMGroupPowerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414C0D527D5DD2B00DFD409 /* KLMGroupPowerCell.xib */; };
@@ -1231,6 +1231,10 @@
 		E4D3F99A286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */; };
 		E4D3F99B286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */; };
 		E4D3F99C286B0ACE0071B5AE /* KLMRGBTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */; };
+		E4D4FA39291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
+		E4D4FA3A291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
+		E4D4FA3B291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
+		E4D4FA3C291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
 		E4D611CA28B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */; };
 		E4D611CB28B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */; };
 		E4D611CC28B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */; };
@@ -1584,11 +1588,11 @@
 		E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestSectionTableViewController.swift; sourceTree = "<group>"; };
 		E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBanchenpinViewController.swift; sourceTree = "<group>"; };
 		E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBanchenpinViewController.xib; sourceTree = "<group>"; };
+		E485C5FF29190905004C0143 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreenSensetrack.storyboard; sourceTree = "<group>"; };
 		E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMQudongTestViewController.swift; sourceTree = "<group>"; };
 		E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMQudongTestViewController.xib; sourceTree = "<group>"; };
 		E48AF165268EEDCB00140F1F /* KLMSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSlider.swift; sourceTree = "<group>"; };
 		E48B523E2667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		E48B52422667268F0006CDA7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		E48B526326672B420006CDA7 /* head.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = head.swift; sourceTree = "<group>"; };
 		E48B5290266765540006CDA7 /* KLMApplicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMApplicationManager.swift; sourceTree = "<group>"; };
 		E48B529526676A0C0006CDA7 /* KLMTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTabBarController.swift; sourceTree = "<group>"; };
@@ -1886,6 +1890,7 @@
 		E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCMOSViewController.swift; sourceTree = "<group>"; };
 		E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRGBTestViewController.swift; sourceTree = "<group>"; };
 		E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMRGBTestViewController.xib; sourceTree = "<group>"; };
+		E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMeshNetworkManager.swift; sourceTree = "<group>"; };
 		E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupDeleteDevicesController.swift; sourceTree = "<group>"; };
 		E4D611CD28B4C1BA0004BEC9 /* KLMGroupUseOccasionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupUseOccasionViewController.swift; sourceTree = "<group>"; };
 		E4D611D828B4C6910004BEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMGroupUseOccasionViewController.xib; sourceTree = "<group>"; };
@@ -2324,6 +2329,7 @@
 				E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */,
 				E4E2845926A1291A006C120E /* KLMSIGMeshManager.swift */,
 				E4C3465728335025000852DE /* KLMMeshManager.swift */,
+				E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */,
 				E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */,
 				E4D74489278533C80049B670 /* EspDataUtils.swift */,
 				E4C2AECA280009D8007D36F6 /* KLMConnectManager.swift */,
@@ -2573,6 +2579,7 @@
 				E498A78A26671BED00C78D50 /* Assets.xcassets */,
 				E4A0F93B2907E9EB00150B0F /* Assets_Sensetrack.xcassets */,
 				E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */,
+				E485C5FE29190905004C0143 /* LaunchScreenSensetrack.storyboard */,
 				E498A78F26671BED00C78D50 /* Info.plist */,
 				E48B526326672B420006CDA7 /* head.swift */,
 			);
@@ -3183,11 +3190,11 @@
 				E4D79D2C2914DF1F00B92082 /* spectrum_26.png in Resources */,
 				E4CE8923291616620040B878 /* sexi_7.wav in Resources */,
 				E4CE897B291633930040B878 /* hudongNocolor_4.wav in Resources */,
-				E498A78E26671BED00C78D50 /* LaunchScreen.storyboard in Resources */,
 				E4CE894F291633930040B878 /* hudongNocolor_1.wav in Resources */,
 				E495D11D2678586900AA50B9 /* KLMGroupSelectCell.xib in Resources */,
 				E4D79CB02914DF1F00B92082 /* spectrum_29.png in Resources */,
 				E48B52A426676D8F0006CDA7 /* KLMGroupViewController.xib in Resources */,
+				E485C5FD291908D7004C0143 /* LaunchScreen.storyboard in Resources */,
 				E4D79CBC2914DF1F00B92082 /* spectrum_11.png in Resources */,
 				E4C5CC5528AB856F00D77CE3 /* 1.wav in Resources */,
 				E4CE899D29163E7C0040B878 /* mote_4.wav in Resources */,
@@ -3359,6 +3366,7 @@
 				E4A0F8EC2907E01B00150B0F /* KLMJoinHomeViewController.xib in Resources */,
 				E4A0F8ED2907E01B00150B0F /* 6.wav in Resources */,
 				E4D79D172914DF1F00B92082 /* spectrum_19.png in Resources */,
+				E485C60029190905004C0143 /* LaunchScreenSensetrack.storyboard in Resources */,
 				E4CE898E291633930040B878 /* hudongColor_2_后.wav in Resources */,
 				E4A0F8EE2907E01B00150B0F /* KLMAllDeviceViewController.xib in Resources */,
 				E4A0F8EF2907E01B00150B0F /* KLMBaoZhuangTestViewController.xib in Resources */,
@@ -3391,7 +3399,6 @@
 				E4CE8926291616620040B878 /* sexi_7.wav in Resources */,
 				E4CE897E291633930040B878 /* hudongNocolor_4.wav in Resources */,
 				E4CE8952291633930040B878 /* hudongNocolor_1.wav in Resources */,
-				E4A0F8FB2907E01B00150B0F /* LaunchScreen.storyboard in Resources */,
 				E4D79CB32914DF1F00B92082 /* spectrum_29.png in Resources */,
 				E4A0F8FC2907E01B00150B0F /* KLMGroupSelectCell.xib in Resources */,
 				E4D79CBF2914DF1F00B92082 /* spectrum_11.png in Resources */,
@@ -3504,6 +3511,7 @@
 				E4A0F7E82907BC8700150B0F /* 1_en.wav in Resources */,
 				E4D79CC92914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F7CA2907BC8700150B0F /* 4_en.wav in Resources */,
+				E485C5FC291908D6004C0143 /* LaunchScreen.storyboard in Resources */,
 				E4C57EC128055B1F00E7AB54 /* KLMAINameListCell.xib in Resources */,
 				E4CE892C291616620040B878 /* sexi_5.wav in Resources */,
 				E4C581A028E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */,
@@ -3592,7 +3600,6 @@
 				E4C3466928338573000852DE /* KLMDeviceAddTestCell.xib in Resources */,
 				E4D79D0D2914DF1F00B92082 /* spectrum_24.png in Resources */,
 				E4C57EE228055B1F00E7AB54 /* KLMDeviceEditViewController.xib in Resources */,
-				E4C57EE328055B1F00E7AB54 /* LaunchScreen.storyboard in Resources */,
 				E4CE8984291633930040B878 /* hudong_5.wav in Resources */,
 				E4D79CC52914DF1F00B92082 /* spectrum_38.png in Resources */,
 				E4D79CBD2914DF1F00B92082 /* spectrum_11.png in Resources */,
@@ -3694,6 +3701,7 @@
 				E4A0F7E92907BC8700150B0F /* 1_en.wav in Resources */,
 				E4D79CCA2914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F7CB2907BC8700150B0F /* 4_en.wav in Resources */,
+				E485C5FB291908D6004C0143 /* LaunchScreen.storyboard in Resources */,
 				E4C57F9828055C7C00E7AB54 /* KLMAINameListCell.xib in Resources */,
 				E4CE892D291616620040B878 /* sexi_5.wav in Resources */,
 				E4C581A128E44D7E0066E753 /* KLMTestViewPostionViewController.xib in Resources */,
@@ -3782,7 +3790,6 @@
 				E4C3466A28338573000852DE /* KLMDeviceAddTestCell.xib in Resources */,
 				E4D79D0E2914DF1F00B92082 /* spectrum_24.png in Resources */,
 				E4C57FB928055C7C00E7AB54 /* KLMDeviceEditViewController.xib in Resources */,
-				E4C57FBA28055C7C00E7AB54 /* LaunchScreen.storyboard in Resources */,
 				E4CE8985291633930040B878 /* hudong_5.wav in Resources */,
 				E4D79CC62914DF1F00B92082 /* spectrum_38.png in Resources */,
 				E4D79CBE2914DF1F00B92082 /* spectrum_11.png in Resources */,
@@ -4147,6 +4154,7 @@
 				E497A70D27D8B07D00DA7AF7 /* KLMGroupAllDeviceCell.swift in Sources */,
 				E4AEC96E266E022100E77178 /* KLMTableViewCell.swift in Sources */,
 				E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */,
+				E4D4FA39291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */,
 				E4E2844A269F006B006C120E /* SimpleOnOffSetUnacknowledged.swift in Sources */,
 				E4EB5F19273BB18900C502C1 /* KLMCache.swift in Sources */,
 				E4E2842E269ED132006C120E /* NetworkConnection.swift in Sources */,
@@ -4333,6 +4341,7 @@
 				E4A0F8582907E01B00150B0F /* KLMGroupAllDeviceCell.swift in Sources */,
 				E4A0F8592907E01B00150B0F /* KLMTableViewCell.swift in Sources */,
 				E4A0F85A2907E01B00150B0F /* KLMTestSectionTableViewController.swift in Sources */,
+				E4D4FA3C291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */,
 				E4A0F85B2907E01B00150B0F /* SimpleOnOffSetUnacknowledged.swift in Sources */,
 				E4A0F85C2907E01B00150B0F /* KLMCache.swift in Sources */,
 				E4A0F85D2907E01B00150B0F /* NetworkConnection.swift in Sources */,
@@ -4519,6 +4528,7 @@
 				E4C57E6D28055B1F00E7AB54 /* KLMGroupAllDeviceCell.swift in Sources */,
 				E4C57E6E28055B1F00E7AB54 /* KLMTableViewCell.swift in Sources */,
 				E4C57E6F28055B1F00E7AB54 /* KLMTestSectionTableViewController.swift in Sources */,
+				E4D4FA3A291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */,
 				E4C57E7028055B1F00E7AB54 /* SimpleOnOffSetUnacknowledged.swift in Sources */,
 				E4C57E7128055B1F00E7AB54 /* KLMCache.swift in Sources */,
 				E4C57E7228055B1F00E7AB54 /* NetworkConnection.swift in Sources */,
@@ -4705,6 +4715,7 @@
 				E4C57F4428055C7C00E7AB54 /* KLMGroupAllDeviceCell.swift in Sources */,
 				E4C57F4528055C7C00E7AB54 /* KLMTableViewCell.swift in Sources */,
 				E4C57F4628055C7C00E7AB54 /* KLMTestSectionTableViewController.swift in Sources */,
+				E4D4FA3B291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */,
 				E4C57F4728055C7C00E7AB54 /* SimpleOnOffSetUnacknowledged.swift in Sources */,
 				E4C57F4828055C7C00E7AB54 /* KLMCache.swift in Sources */,
 				E4C57F4928055C7C00E7AB54 /* NetworkConnection.swift in Sources */,
@@ -4924,6 +4935,14 @@
 			name = KLMAdminTransferViewController.xib;
 			sourceTree = "<group>";
 		};
+		E485C5FE29190905004C0143 /* LaunchScreenSensetrack.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E485C5FF29190905004C0143 /* Base */,
+			);
+			name = LaunchScreenSensetrack.storyboard;
+			sourceTree = "<group>";
+		};
 		E48B52D4266784B10006CDA7 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4956,7 +4975,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E498A78D26671BED00C78D50 /* Base */,
-				E48B52422667268F0006CDA7 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
