@@ -5416,7 +5416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5452,7 +5452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
