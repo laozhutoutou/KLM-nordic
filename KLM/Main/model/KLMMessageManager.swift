@@ -23,7 +23,7 @@ class KLMMessageManager: NSObject{
     ///   - group: 组
     func addNodeToGroup(withNode node: Node, withGroup group: Group) {
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         let model = KLMHomeManager.getModelFromNode(node: node)!
         if let message: ConfigMessage =
@@ -46,7 +46,7 @@ class KLMMessageManager: NSObject{
     ///   - group: 组
     func deleteNodeToGroup(withNode node: Node, withGroup group: Group) {
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         let model = KLMHomeManager.getModelFromNode(node: node)
         if let message: ConfigMessage =
@@ -75,10 +75,7 @@ extension KLMMessageManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
+        
         
         switch message {
         case let status as ConfigModelSubscriptionStatus://设备添加或者删除组

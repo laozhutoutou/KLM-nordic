@@ -18,7 +18,7 @@ class KLMCheckImagesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
           
     }
     
@@ -118,10 +118,7 @@ extension KLMCheckImagesViewController: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
+        
         
         
         switch message {

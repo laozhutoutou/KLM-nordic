@@ -71,7 +71,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeAddSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .homeDeleteSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(initData), name: .mainPageRefresh, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(meshMessageRecieve), name: .meshMessageRec, object: nil)
         
         let addBtn: UIBarButtonItem = UIBarButtonItem.init(icon: "icon_new_scene", target: self, action: #selector(newDevice))
         let searchBtn: UIBarButtonItem = UIBarButtonItem.init(icon: "icon_search", target: self, action: #selector(tapSearch))
@@ -89,6 +88,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             self.initData()
         }
         self.collectionView.mj_header = header
+        
+        ///设备是否在线
+        KLMMeshNetworkManager.shared.onlineDelegate = self
         
     }
     
@@ -622,31 +624,13 @@ extension KLMUnNameListViewController: KLMSmartNodeDelegate {
 }
 
 extension KLMUnNameListViewController: GattDelegate {
-    
-    @objc func meshMessageRecieve(noti: Notification) {
-        
-        if let address: Address = noti.object as? Address {
-            
-            if let network = MeshNetworkManager.instance.meshNetwork {
-                
-                let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                if let node = notConfiguredNodes.first(where: {$0.unicastAddress == address}) {
-                    node.isOnline = true
-                    self.collectionView.reloadData()
-                    KLMLog("连接的设备：\(node.nodeName)")
-                }
-            }
-        }
-    }
-    
+     
     func bearerDidOpen(_ bearer: Bearer) {
-        
-        ///会出问题
-        DispatchQueue.main.asyncAfter(deadline: 3) {
-            
+        ///连接上一个设备，然后查询其他设备是否在线
+        ///不加延时没效果，不知道具体原因
+        DispatchQueue.main.asyncAfter(deadline: 1) {
             KLMSmartGroup.sharedInstacnce.checkAllNodesOnline()
         }
-        
     }
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
@@ -658,13 +642,15 @@ extension KLMUnNameListViewController: GattDelegate {
             notConfiguredNodes.forEach({$0.isOnline = false})
             self.collectionView.reloadData()
         }
-//        nodes.forEach({$0.isOnline = false})
-//        self.collectionView.reloadData()
     }
     
     func bearerDidDiscover(_ bearer: Bearer) {
-        DispatchQueue.main.asyncAfter(deadline: 3) { ///隔一秒钟，等页面刷新出来再开始
-            
+        ///判断是否已经连接一个，有可能设备只能一个人直连，如果发现设备就认为是在线，就会出现误判
+        if MeshNetworkManager.bearer.isOpen == false {
+            return
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: 3) { ///间隔一点时间，因为发现设备还需要一点时间才能发消息，避免显示在线绿点，但无法发消息
             if let bearer = bearer as? GattBearer {
                 if let network = MeshNetworkManager.instance.meshNetwork {
                     
@@ -672,9 +658,25 @@ extension KLMUnNameListViewController: GattDelegate {
                     if let node = notConfiguredNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) {
                         node.isOnline = true
                         self.collectionView.reloadData()
-                        KLMLog("连接的设备：\(node.nodeName)")
+                        KLMLog("发现的设备：\(node.nodeName)")
                     }
                 }
+            }
+        }
+    }
+}
+
+extension KLMUnNameListViewController: MeshNetworkDelegate {
+    
+    func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
+        
+        if let network = MeshNetworkManager.instance.meshNetwork {
+    
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            if let node = notConfiguredNodes.first(where: {$0.unicastAddress == source}) {
+                node.isOnline = true
+                self.collectionView.reloadData()
+                KLMLog("连接的设备：\(node.nodeName)")
             }
         }
     }

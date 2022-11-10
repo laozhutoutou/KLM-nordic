@@ -196,12 +196,17 @@ class KLMService: NSObject {
     static func getCode(email: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         var scope = 1
-        if apptype == .targetsGW || apptype == .targetSensetrack {
+        var url = KLMUrl("open/email/codeByScope")
+        if apptype == .targetsGW {
             scope = 2
         }
-        let parame = ["email": email,
+        var parame = ["email": email,
                       "scope": scope] as [String : Any]
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("open/email/codeByScope"), params: parame) { responseObject, error in
+        if apptype == .targetSensetrack {
+            url = KLMUrl("open/email/codeByScopeAndApp")
+            parame["app"] = 1
+        }
+        KLMNetworking.httpMethod(method: .get, URLString: url, params: parame) { responseObject, error in
             
             if error == nil {
                 success(responseObject as AnyObject)

@@ -220,7 +220,7 @@ extension KLMMeshManager: KLMProvisionManagerDelegate {
     
     func getCompositionData(node: Node) {
                 
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         let message = ConfigCompositionDataGet()
         do {
             try MeshNetworkManager.instance.send(message, to: node)
@@ -235,10 +235,7 @@ extension KLMMeshManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
+        
         
         switch message {
         case let status as ConfigAppKeyStatus://node add app key success

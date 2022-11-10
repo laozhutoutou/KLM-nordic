@@ -165,7 +165,7 @@ extension KLMSIGMeshManager {
             stopTime()
             
             //超时不再接收消息
-            MeshNetworkManager.instance.delegate = nil
+            KLMMeshNetworkManager.shared.delegate = nil
             self.gattBearer?.delegate = nil
             self.gattBearer?.close()
             
@@ -219,7 +219,7 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     func getCompositionData(node: Node) {
         
         self.currentNode = node
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         let message = ConfigCompositionDataGet()
         do {
             try MeshNetworkManager.instance.send(message, to: node)
@@ -232,7 +232,7 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     func addAppkeyToNode(node: Node) {
         
         self.currentNode = node
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         let applicationKey = MeshNetworkManager.instance.meshNetwork!.applicationKeys.first
         let message = ConfigAppKeyAdd(applicationKey: applicationKey!)
         do {
@@ -246,7 +246,7 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     func addAppkeyToModel(node: Node) {
         
         self.currentNode = node
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         let model = KLMHomeManager.getModelFromNode(node: self.currentNode)!
         let keys = self.currentNode.applicationKeysAvailableFor(model)
         let applicationKey = keys.first
@@ -307,10 +307,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
+        
         
         switch message {
         case let status as ConfigAppKeyStatus://node add app key success

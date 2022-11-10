@@ -25,7 +25,7 @@ class KLMSmartGroup: NSObject {
     ///分组 send
     func sendMessage(_ parame: parameModel, toGroup group: Group,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         successBlock = success
         failureBlock = failure
@@ -88,7 +88,7 @@ class KLMSmartGroup: NSObject {
     ///   - failure: failure
     func sendMessageToAllNodes(_ parame: parameModel,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock)  {
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         successBlock = success
         failureBlock = failure
@@ -158,7 +158,7 @@ class KLMSmartGroup: NSObject {
     ///所有节点 read
     func readMessageToAllNodes(_ parame: parameModel,_ success: @escaping SuccessBlock, failure: @escaping FailureBlock)  {
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         successBlock = success
         failureBlock = failure
@@ -215,6 +215,7 @@ class KLMSmartGroup: NSObject {
         }
     }
     
+    ///给所有节点发消息，检查是否回复，确认在线状态
     func checkAllNodesOnline() {
         
         let parame = parameModel(dp: .power)
@@ -246,7 +247,7 @@ class KLMSmartGroup: NSObject {
     ///分组 read
     func readMessage(_ parame: parameModel, toGroup group: Group, _ success: @escaping SuccessBlock, failure: @escaping FailureBlock) {
         
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         successBlock = success
         failureBlock = failure
@@ -308,10 +309,7 @@ extension KLMSmartGroup: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
+        
         
         ///收到回复，停止计时
         KLMMessageTime.sharedInstacnce.stopTime()
@@ -359,7 +357,7 @@ extension KLMSmartGroup: KLMMessageTimeDelegate {
     func messageTimeDidTimeout(_ manager: KLMMessageTime) {
         
         ///超时后不再接收蓝牙消息
-        MeshNetworkManager.instance.delegate = nil
+        KLMMeshNetworkManager.shared.delegate = nil
         let err = MessageError()
         err.message = LANGLOC("Connection timed out.") + LANGLOC("deviceNearbyTip")
         failureBlock?(err)

@@ -123,7 +123,7 @@ class KLMDFUTestViewController: UIViewController {
     func sendBinVersion() {
         
         SVProgressHUD.show(withStatus: LANGLOC("Verify version"))
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         //开始计时
         timer.startTimer(timeOut: 40)
@@ -251,10 +251,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
+        
         
         ///不是当前节点的消息不处理
         if source != KLMHomeManager.currentNode.unicastAddress {

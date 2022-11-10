@@ -85,27 +85,42 @@ class KLMConnectManager {
         let parame = parameModel(dp: .power)
         KLMSmartGroup.sharedInstacnce.readMessage(parame, toGroup: group) {source in
             SVProgressHUD.dismiss()
-            self.success?()
-            self.success = nil
+            self.onSuccess()
         } failure: { error in
             KLMShowError(error)
-            self.failure?()
-            self.failure = nil
+            self.onFailure()
         }
     }
     
     func connectToAllNodes(success: @escaping () -> Void, failure: @escaping () -> Void) {
+        
+        self.success = success
+        self.failure = failure
         
         //一个设备都没连接,群组发送消息也可以发送出去，没报异常。所以要添加这个
         if !MeshNetworkManager.bearer.isOpen {
             var err = MessageError()
             err.message = LANGLOC("deviceNearbyTip")
             KLMShowError(err)
-            failure()
+            self.onFailure()
             return
         }
     
-        success()
+        self.onSuccess()
+    }
+    
+    private func onSuccess() {
+        
+        self.success?()
+        self.success = nil
+        self.failure = nil
+    }
+    
+    private func onFailure() {
+        
+        self.failure?()
+        self.failure = nil
+        self.success = nil
     }
     
     //单例
@@ -139,16 +154,15 @@ extension KLMConnectManager: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
         if message?.dp == .power {
-            self.success?()
-            self.success = nil
+            self.onSuccess()
+            
         }
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         
         KLMShowError(error)
-        self.failure?()
-        self.failure = nil
+        self.onFailure()
     }
 }
 
@@ -163,8 +177,7 @@ extension KLMConnectManager: KLMSIGMeshManagerDelegate {
             
         }
         
-        self.success?()
-        self.success = nil
+        self.onSuccess()
         
     }
     
@@ -172,8 +185,7 @@ extension KLMConnectManager: KLMSIGMeshManagerDelegate {
         
         timer.stopTimer()
         KLMShowError(error)
-        self.failure?()
-        self.failure = nil
+        self.onFailure()
     }
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didSendMessage message: MeshMessage) {
@@ -187,7 +199,6 @@ extension KLMConnectManager: KLMTimerDelegate {
     func timeDidTimeout(_ timer: KLMTimer) {
         //提示错误
         SVProgressHUD.showInfo(withStatus: "Composition or Appkey bound timed out")
-        self.failure?()
-        self.failure = nil
+        self.onFailure()
     }
 }

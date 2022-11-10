@@ -47,7 +47,7 @@ class KLMSmartNode: NSObject {
     func sendMessage(_ parame: parameModel, toNode node: Node) {
         
         currentNode = node
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         let parameString = KLMSmartNode.getParameHexString(parame)
         let model = KLMHomeManager.getModelFromNode(node: node)!
@@ -73,7 +73,7 @@ class KLMSmartNode: NSObject {
     func readMessage(_ parame: parameModel, toNode node: Node) {
        
         currentNode = node
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         let model = KLMHomeManager.getModelFromNode(node: node)!
         let dpString = parame.dp!.rawValue.decimalTo2Hexadecimal()
         if let opCode = UInt8("1C", radix: 16) {
@@ -96,7 +96,7 @@ class KLMSmartNode: NSObject {
     func resetNode(node: Node) {
         
         currentNode = node
-        MeshNetworkManager.instance.delegate = self
+        KLMMeshNetworkManager.shared.delegate = self
         
         let message = ConfigNodeReset()
         do {
@@ -113,11 +113,6 @@ class KLMSmartNode: NSObject {
 extension KLMSmartNode: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
-        
-        if manager.meshNetwork?.localProvisioner?.node?.unicastAddress != destination {
-            KLMLog("别的手机发的消息")
-            return
-        }
         
         ///收到回复，停止计时
         KLMMessageTime.sharedInstacnce.stopTime()
@@ -298,7 +293,7 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
     func messageTimeDidTimeout(_ manager: KLMMessageTime) {
         
         ///超时后不再接收蓝牙消息
-        MeshNetworkManager.instance.delegate = nil
+        KLMMeshNetworkManager.shared.delegate = nil
         var err = MessageError()
         err.message = LANGLOC("Connection timed out.") + LANGLOC("deviceNearbyTip")
         self.delegate?.smartNode(self, didfailure: err)
