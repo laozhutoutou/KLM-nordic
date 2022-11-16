@@ -5402,7 +5402,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
@@ -5416,7 +5416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5439,7 +5439,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5452,7 +5452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
