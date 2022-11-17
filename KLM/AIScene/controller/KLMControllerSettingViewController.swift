@@ -24,6 +24,8 @@ class KLMControllerSettingViewController: UIViewController, Editable {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameLab: UILabel!
     
+    @IBOutlet weak var iconImageView: UIImageView!
+    
     private var lightSwitch = 0
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,6 +63,8 @@ class KLMControllerSettingViewController: UIViewController, Editable {
         
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
+        
+        iconImageView.image = UIImage.init(named: KLMHomeManager.currentNode.icon)
     }
     
     func event() {

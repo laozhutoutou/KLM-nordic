@@ -348,6 +348,17 @@ extension Node {
     private static var Node_KEY = true
     private static var Version_KEY = true
     
+    var icon: String {
+        if qieXiang {
+            return "img_RCL"
+        } else if RGBControl {
+            return ""
+        } else if Dali {
+            return "img_DA"
+        }
+        return "img_scene"
+    }
+    
     /// 节点的名称
     var nodeName: String {
         
@@ -370,7 +381,7 @@ extension Node {
         return false
     }
     
-    ///切相控制器
+    ///切相控制器RCL
     var qieXiang: Bool {
         let index = uuid.uuidString[2,2]
         if index == "01" {

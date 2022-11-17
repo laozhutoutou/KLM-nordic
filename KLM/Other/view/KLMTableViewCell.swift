@@ -24,8 +24,8 @@ class KLMTableViewCell: UITableViewCell, Nibloadable {
         didSet {
             let image = UIImage(named: leftImage)
             self.leftImageView.image = image
-            leftImageWidthConstraint.constant = (image?.size.width)!
-            imageViewHeightConstraint.constant = (image?.size.height)!
+//            leftImageWidthConstraint.constant = (image?.size.width)!
+//            imageViewHeightConstraint.constant = (image?.size.height)!
         }
     }
     

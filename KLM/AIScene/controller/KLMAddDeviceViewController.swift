@@ -12,7 +12,8 @@ import CoreBluetooth
 typealias DiscoveredPeripheral = (
     device: UnprovisionedDevice,
     peripheral: CBPeripheral,
-    rssi: Int
+    rssi: Int,
+    iconNum: String
 )
 
 class KLMAddDeviceViewController: UIViewController {

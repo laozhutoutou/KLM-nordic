@@ -425,7 +425,6 @@
 		E4A0F8BC2907E01B00150B0F /* KLMSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E414585327BCE41B00C181E3 /* KLMSettingsViewController.xib */; };
 		E4A0F8BD2907E01B00150B0F /* KLMCheckImagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE8BA42897B29E00D28D17 /* KLMCheckImagesViewController.xib */; };
 		E4A0F8BE2907E01B00150B0F /* KLMMotionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49B42BE26C21A4A0056C7EE /* KLMMotionViewController.xib */; };
-		E4A0F8BF2907E01B00150B0F /* KLMAINameListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */; };
 		E4A0F8C02907E01B00150B0F /* KLMTestImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE8BAC2897B66800D28D17 /* KLMTestImageCell.xib */; };
 		E4A0F8C12907E01B00150B0F /* KLMRegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E46B54522769906200F3D5E5 /* KLMRegisterViewController.xib */; };
 		E4A0F8C22907E01B00150B0F /* 13_en.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4A0F7BA2907BC8400150B0F /* 13_en.wav */; };
@@ -1512,6 +1511,7 @@
 		E4EFF4402925E40C00470BA5 /* KLMControllerColorTempViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EFF4442925E40C00470BA5 /* KLMControllerColorTempViewController.xib */; };
 		E4EFF4412925E40C00470BA5 /* KLMControllerColorTempViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EFF4442925E40C00470BA5 /* KLMControllerColorTempViewController.xib */; };
 		E4EFF4422925E40C00470BA5 /* KLMControllerColorTempViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4EFF4442925E40C00470BA5 /* KLMControllerColorTempViewController.xib */; };
+		E4EFF44D292633ED00470BA5 /* KLMAINameListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4A65F3D266F459200FE6866 /* KLMAINameListCell.xib */; };
 		E4F2D472273504E4007FA07E /* KLMHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D470273504E4007FA07E /* KLMHomeViewController.swift */; };
 		E4F2D473273504E4007FA07E /* KLMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4F2D471273504E4007FA07E /* KLMHomeViewController.xib */; };
 		E4F2D475273505D8007FA07E /* KLMHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2D474273505D8007FA07E /* KLMHome.swift */; };
@@ -3340,7 +3340,6 @@
 				E4A0F8BE2907E01B00150B0F /* KLMMotionViewController.xib in Resources */,
 				E4D79CDF2914DF1F00B92082 /* spectrum_4.png in Resources */,
 				E4D79CCB2914DF1F00B92082 /* spectrum_10.png in Resources */,
-				E4A0F8BF2907E01B00150B0F /* KLMAINameListCell.xib in Resources */,
 				E4A0F8C02907E01B00150B0F /* KLMTestImageCell.xib in Resources */,
 				E4A0F8C12907E01B00150B0F /* KLMRegisterViewController.xib in Resources */,
 				E4CE8906291616620040B878 /* sexi_8.wav in Resources */,
@@ -3496,6 +3495,7 @@
 				E4A0F91A2907E01B00150B0F /* 10_en.wav in Resources */,
 				E4D79CC72914DF1F00B92082 /* spectrum_38.png in Resources */,
 				E4CE892A291616620040B878 /* sexi_4.wav in Resources */,
+				E4EFF44D292633ED00470BA5 /* KLMAINameListCell.xib in Resources */,
 				E4A0F91B2907E01B00150B0F /* KLMCountryCodeViewController.xib in Resources */,
 				E4CE895A291633930040B878 /* hudong_6.wav in Resources */,
 				E4D79D032914DF1F00B92082 /* spectrum_20.png in Resources */,

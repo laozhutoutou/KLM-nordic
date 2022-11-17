@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="KLMAINameListCell" customModule="KLM_GN" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="164" height="174"/>
+            <rect key="frame" x="0.0" y="0.0" width="296" height="174"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="164" height="174"/>
+                <rect key="frame" x="0.0" y="0.0" width="296" height="174"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Sl-T2-02U">
-                        <rect key="frame" x="14" y="14" width="100" height="22"/>
+                        <rect key="frame" x="14" y="14" width="232" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="IEb-kd-Rgz"/>
                         </constraints>
@@ -27,7 +27,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYt-xL-gPo">
-                        <rect key="frame" x="114" y="0.0" width="50" height="50"/>
+                        <rect key="frame" x="246" y="0.0" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="CDB-zK-QdD"/>
                             <constraint firstAttribute="height" constant="50" id="jTR-su-TVZ"/>
@@ -39,10 +39,10 @@
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_scene" translatesAutoresizingMaskIntoConstraints="NO" id="hlw-85-IcP">
-                        <rect key="frame" x="30" y="44" width="104" height="100"/>
+                        <rect key="frame" x="30" y="44" width="236" height="100"/>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AQ9-sU-svB">
-                        <rect key="frame" x="142" y="152" width="12" height="12"/>
+                        <rect key="frame" x="274" y="152" width="12" height="12"/>
                         <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="12" id="g1F-Yk-6GK"/>
@@ -66,17 +66,18 @@
                 <constraint firstAttribute="bottom" secondItem="hlw-85-IcP" secondAttribute="bottom" constant="30" id="uTY-ff-rtq"/>
                 <constraint firstItem="jYt-xL-gPo" firstAttribute="centerY" secondItem="0Sl-T2-02U" secondAttribute="centerY" id="yrU-Xw-2f1"/>
             </constraints>
-            <size key="customSize" width="112" height="158"/>
+            <size key="customSize" width="244" height="158"/>
             <connections>
+                <outlet property="iconImageView" destination="hlw-85-IcP" id="eMn-DR-Ltp"/>
                 <outlet property="nameLab" destination="0Sl-T2-02U" id="kBa-wE-1Ko"/>
                 <outlet property="selectBtn" destination="jYt-xL-gPo" id="Ioq-qm-P5n"/>
                 <outlet property="statuImage" destination="AQ9-sU-svB" id="0Nl-GC-ITd"/>
             </connections>
-            <point key="canvasLocation" x="-28" y="33"/>
+            <point key="canvasLocation" x="-673.91304347826087" y="-19.419642857142858"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="icon_device_select" width="23" height="23"/>
+        <image name="icon_device_select" width="20" height="20"/>
         <image name="icon_set_up" width="20" height="20"/>
         <image name="img_scene" width="114" height="132"/>
     </resources>

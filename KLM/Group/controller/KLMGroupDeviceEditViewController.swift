@@ -141,8 +141,7 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
         
         let deviceModel:  Node = self.deviceLists[indexPath.row]
         let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-
-        cell.leftImage = "img_scene_30"
+        cell.leftImage = deviceModel.icon
         cell.leftTitle = deviceModel.nodeName
         return cell
     

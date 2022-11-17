@@ -19,6 +19,7 @@ class KLMAINameListCell: UICollectionViewCell {
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var selectBtn: UIButton!
     @IBOutlet weak var statuImage: UIImageView!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     weak var delegate:  KLMAINameListCellDelegate?
     
@@ -40,6 +41,7 @@ class KLMAINameListCell: UICollectionViewCell {
         
         didSet{
             nameLab.text = model.nodeName
+            iconImageView.image = UIImage.init(named: model.icon)
             if model.isOnline {
                 statuImage.backgroundColor = .green
             } else {

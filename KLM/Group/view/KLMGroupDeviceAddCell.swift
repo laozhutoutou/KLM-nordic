@@ -13,6 +13,7 @@ class KLMGroupDeviceAddCell: KLMBaseTableViewCell {
     @IBOutlet weak var nameLab: UILabel!
     @IBOutlet weak var iconBtn: UIButton!
     
+    @IBOutlet weak var iconImageView: UIImageView!
     var isShowSelect: Bool! {
 
         didSet {
@@ -23,7 +24,7 @@ class KLMGroupDeviceAddCell: KLMBaseTableViewCell {
     var model: Node! {
         
         didSet{
-            
+            iconImageView.image = UIImage.init(named: model.icon)
             nameLab.text = model.nodeName
             
         }

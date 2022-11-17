@@ -15,12 +15,26 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
     @IBOutlet weak var UUIDLab: UILabel!
     @IBOutlet weak var rssiIcon: UIImageView!
     
+    @IBOutlet weak var iconImageView: UIImageView!
+    
     var model: DiscoveredPeripheral! {
         
         didSet {
             
             self.nameLab.text = model.device.name ?? "Unknown Device"
             UUIDLab.text = model.device.uuid.uuidString
+            var icon = "img_scene"
+            switch model.iconNum {
+            case "01":
+                icon = "img_RCL"
+            case "02":
+                icon = ""
+            case "03":
+                icon = "img_DA"
+            default:
+                break
+            }
+            iconImageView.image = UIImage.init(named: icon)
             updateRssi(model.rssi)
         }
     }
