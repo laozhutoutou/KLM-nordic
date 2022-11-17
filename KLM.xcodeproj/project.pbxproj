@@ -5404,7 +5404,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = AV8WJAN52Z;
+				DEVELOPMENT_TEAM = YB4C8GYL4D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5418,7 +5418,7 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.koopman-interlight.sensetrack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
@@ -5440,7 +5440,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AV8WJAN52Z;
+				DEVELOPMENT_TEAM = YB4C8GYL4D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5454,7 +5454,7 @@
 				);
 				MARKETING_VERSION = 1.1.1;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.koopman-interlight.sensetrack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
