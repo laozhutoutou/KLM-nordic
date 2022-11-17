@@ -1409,7 +1409,6 @@
 		E4D8FF1C2924809A00A20881 /* KLMControllerColorTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D8FF192924809A00A20881 /* KLMControllerColorTempViewController.swift */; };
 		E4D8FF1D2924809A00A20881 /* KLMControllerColorTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D8FF192924809A00A20881 /* KLMControllerColorTempViewController.swift */; };
 		E4D8FF1E2924809A00A20881 /* KLMControllerColorTempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D8FF192924809A00A20881 /* KLMControllerColorTempViewController.swift */; };
-		E4D8FF232924B40200A20881 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E498A78A26671BED00C78D50 /* Assets.xcassets */; };
 		E4D9E93628B6343000F09739 /* KLMTestVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D9E93428B6343000F09739 /* KLMTestVersionViewController.swift */; };
 		E4D9E93728B6343000F09739 /* KLMTestVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D9E93428B6343000F09739 /* KLMTestVersionViewController.swift */; };
 		E4D9E93828B6343000F09739 /* KLMTestVersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D9E93428B6343000F09739 /* KLMTestVersionViewController.swift */; };
@@ -3527,7 +3526,6 @@
 				E4A0F9312907E01B00150B0F /* 10.wav in Resources */,
 				E4CE894E291633930040B878 /* hudongHuanying_1.wav in Resources */,
 				E4A0F9322907E01B00150B0F /* Main.storyboard in Resources */,
-				E4D8FF232924B40200A20881 /* Assets.xcassets in Resources */,
 				E4A0F9332907E01B00150B0F /* KLMAddDeviceTestViewController.xib in Resources */,
 				E4C727F52917E32900FC1C00 /* sexi_13.wav in Resources */,
 			);
@@ -5496,7 +5494,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = AV8WJAN52Z;
+				DEVELOPMENT_TEAM = YB4C8GYL4D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5510,7 +5508,7 @@
 				);
 				MARKETING_VERSION = 1.1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.koopman-interlight.sensetrack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
@@ -5532,7 +5530,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = AV8WJAN52Z;
+				DEVELOPMENT_TEAM = YB4C8GYL4D;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5546,7 +5544,7 @@
 				);
 				MARKETING_VERSION = 1.1.0;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Sensetrack";
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjSensetrack.com;
+				PRODUCT_BUNDLE_IDENTIFIER = "nl.koopman-interlight.sensetrack";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";

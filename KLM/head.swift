@@ -24,7 +24,7 @@ var AppleStoreID: String {
     case .test:
         return "1584589375"
     case .targetSensetrack:
-        return "6444004533"
+        return "6444485625"
     }
 }
 
