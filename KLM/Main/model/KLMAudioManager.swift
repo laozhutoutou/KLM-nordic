@@ -29,7 +29,7 @@ class KLMAudioManager: NSObject {
     var currentIndex: Int = 0
     var playOrder: AudioIndex = .audioFront
     var currentMode: AudioMode = .AudioModeBiaozhun
-    
+        
     func startPlay(index: Int, mode: Int) {
         
         currentIndex = index
@@ -38,6 +38,7 @@ class KLMAudioManager: NSObject {
         switch currentMode {
         case .AudioModeBiaozhun, //标准
                 .AudioModeSexi: //色系
+
             KLMAudioBiaozhunManager.sharedBiaozhun.currentMode = currentMode
             KLMAudioBiaozhunManager.sharedBiaozhun.currentIndex = currentIndex
             KLMAudioBiaozhunManager.sharedBiaozhun.startPlay()
@@ -48,6 +49,7 @@ class KLMAudioManager: NSObject {
         case .AudioModeMote: //模特
             KLMAudioHudongManager.sharedHudong.currentIndex = currentIndex
             KLMAudioMoteManager.sharedMote.startPlay()
+
         }
     }
     
@@ -86,10 +88,12 @@ class KLMAudioManager: NSObject {
     }
     
     func next() {
+
         
     }
     
     static let shared = KLMAudioManager()
+
 //    private override init(){}
 }
 

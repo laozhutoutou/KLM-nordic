@@ -100,13 +100,7 @@ class KLMCMOSViewController: UIViewController, Editable {
         mimuteSlider.delegate = self
         self.mimuteSlider = mimuteSlider
         minuteTimeBgView.addSubview(mimuteSlider)
-        
-        //切换按钮
-//        secondBtn.setTitleColor(.white, for: .selected)
-//        mimuteBtn.setTitleColor(.white, for: .selected)
-//        secondBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
-//        mimuteBtn.setBackgroundImage(UIImage.init(color: appMainThemeColor), for: .selected)
-        
+                
         //分类
         let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
         let occations: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str), error: ())

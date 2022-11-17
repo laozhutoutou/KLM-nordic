@@ -33,7 +33,7 @@ class KLMAudioViewController: UIViewController {
         super.viewDidLoad()
         
         KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
-        
+        currentMode = 0
         navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
     }
     

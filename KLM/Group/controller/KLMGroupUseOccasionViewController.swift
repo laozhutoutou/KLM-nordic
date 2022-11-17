@@ -9,6 +9,18 @@ import UIKit
 
 class KLMGroupUseOccasionViewController: UIViewController, Editable {
     
+    @IBOutlet weak var secondBtn: UIButton!
+    @IBOutlet weak var mimuteBtn: UIButton!
+    //秒
+    @IBOutlet weak var secondView: UIView!
+    @IBOutlet weak var secondTimeBgView: UIView!
+    var secondSlider: KLMSlider!
+    
+    //分
+    @IBOutlet weak var mimuteView: UIView!
+    @IBOutlet weak var minuteTimeBgView: UIView!
+    var mimuteSlider: KLMSlider!
+    
     //分类
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var categoryLab: UILabel!
@@ -26,6 +38,24 @@ class KLMGroupUseOccasionViewController: UIViewController, Editable {
     ///分组数据
     var groupData: GroupData = GroupData()
     
+    var currentTime: UInt16 = 0 {
+        
+        didSet {
+            
+            mimuteBtn.isSelected = Float(currentTime) > secondSlider.maxValue ? true : false
+            secondBtn.isSelected = Float(currentTime) > secondSlider.maxValue ? false : true
+            mimuteView.isHidden = Float(currentTime) > secondSlider.maxValue ? false : true
+            secondView.isHidden = Float(currentTime) > secondSlider.maxValue ? true : false
+            mimuteBtn.titleLabel?.font = Float(currentTime) > secondSlider.maxValue ? UIFont.boldSystemFont(ofSize: 18) : UIFont.systemFont(ofSize: 15)
+            secondBtn.titleLabel?.font = Float(currentTime) > secondSlider.maxValue ? UIFont.systemFont(ofSize: 15) : UIFont.boldSystemFont(ofSize: 18)
+            if Float(currentTime) > secondSlider.maxValue  { //分钟
+                mimuteSlider.currentValue = Float(currentTime) / 60
+            } else if currentTime != 0 {
+                secondSlider.currentValue = Float(currentTime)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,9 +68,33 @@ class KLMGroupUseOccasionViewController: UIViewController, Editable {
 
     private func setupUI() {
         
-        navigationItem.title = LANGLOC("Occasion change")
+        navigationItem.title = LANGLOC("Sensing & occasion change")
         confirmBtn.layer.cornerRadius = 8
         confirmBtn.backgroundColor = appMainThemeColor
+        
+        //秒
+        let viewLeft: CGFloat = 20
+        let sliderWidth = KLMScreenW - viewLeft * 2
+        let secondSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: secondTimeBgView.height), minValue: 5, maxValue: 60, step: 1)
+        secondSlider.getValueTitle = { value in
+            
+            return String(format: "%ld%@", Int(value), LANGLOC("s"))
+        }
+        secondSlider.currentValue = secondSlider.minValue
+        secondSlider.delegate = self
+        self.secondSlider = secondSlider
+        secondTimeBgView.addSubview(secondSlider)
+        
+        //分钟
+        let mimuteSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: minuteTimeBgView.height), minValue: 10, maxValue: 120, step: 2)
+        mimuteSlider.getValueTitle = { value in
+            
+            return String(format: "%ld%@", Int(value), LANGLOC("m"))
+        }
+        mimuteSlider.currentValue = mimuteSlider.minValue
+        mimuteSlider.delegate = self
+        self.mimuteSlider = mimuteSlider
+        minuteTimeBgView.addSubview(mimuteSlider)
         
         //分类
         let str: String = Bundle.main.path(forResource: "OccasionPlist", ofType: "plist")!
@@ -78,6 +132,8 @@ class KLMGroupUseOccasionViewController: UIViewController, Editable {
         let title: String = allTypes.first(where: {$0.num == self.groupData.useOccasion})!.title
         selectCategory = KLMType.init(title: title, num: self.groupData.useOccasion)
         categoryLab.text = LANGLOC(title)
+        
+        currentTime = self.groupData.intervalTime
     }
     
     @IBAction func tapCategory(_ sender: UITapGestureRecognizer) {
@@ -111,16 +167,38 @@ class KLMGroupUseOccasionViewController: UIViewController, Editable {
         }
     }
     
+    //秒
+    @IBAction func secondClick(_ sender: UIButton) {
+        
+        currentTime = UInt16(secondSlider.currentValue)
+    }
+    
+    //分
+    @IBAction func minuteClick(_ sender: UIButton) {
+        
+        currentTime = UInt16(mimuteSlider.currentValue) * 60
+        
+    }
+    
     @IBAction func confirmClick(_ sender: Any) {
         
         let parame = parameModel(dp: .category, value: selectCategory!.num)
-        KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
+        KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
             
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            
-            self.groupData.useOccasion = self.selectCategory!.num
-            self.sendData()
-            
+            let vv: Int = Int(self.currentTime)
+            let time = parameModel(dp: .colorTest, value: vv.decimalTo4Hexadecimal())
+            KLMSmartGroup.sharedInstacnce.sendMessage(time, toGroup: KLMHomeManager.currentGroup) { source in
+                
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
+                self.groupData.useOccasion = self.selectCategory!.num
+                self.groupData.intervalTime = self.currentTime
+                self.sendData()
+                
+            } failure: { error in
+                KLMShowError(error)
+            }
+
         } failure: { error in
             KLMShowError(error)
         }
@@ -166,5 +244,18 @@ extension KLMGroupUseOccasionViewController: YBPopupMenuDelegate {
         
         categoryLab.text = LANGLOC(selectCategory!.title)
         KLMLog("selectCategory = \(selectCategory)")
+    }
+}
+
+extension KLMGroupUseOccasionViewController: KLMSliderDelegate {
+    
+    func KLMSliderWith(slider: KLMSlider, value: Float) {
+        
+        var vv = Int(value)
+        if slider == mimuteSlider {
+
+            vv = vv * 60
+        }
+        currentTime = UInt16(vv)
     }
 }

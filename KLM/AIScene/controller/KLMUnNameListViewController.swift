@@ -9,9 +9,15 @@ import UIKit
 import nRFMeshProvision
 import SVProgressHUD
 
+private enum DeviceType {
+    case deviceTypeLight
+    case deviceTypeController
+}
+
 class KLMUnNameListViewController: UIViewController,  Editable{
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     private var currentVersion: String!
     private var versionData: KLMVersion.KLMVersionData!
@@ -31,6 +37,16 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     var nodes: [Node] = [Node]()
     //家庭数据源
     var homes: [KLMHome.KLMHomeModel] = []
+    
+    @IBOutlet weak var trackLightBtn: UIButton!
+    @IBOutlet weak var controllerBtn: UIButton!
+    
+    private var deviceType: DeviceType = .deviceTypeLight {
+        didSet {
+            trackLightBtn.isSelected = deviceType == .deviceTypeLight ? true : false
+            controllerBtn.isSelected = deviceType == .deviceTypeLight ? false : true
+        }
+    }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
@@ -56,7 +72,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         setupUI()
         
         event()
-        
     }
         
     func setupUI() {
@@ -91,6 +106,8 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         ///设备是否在线
         KLMMeshNetworkManager.shared.onlineDelegate = self
+        
+        deviceType = .deviceTypeLight
         
     }
     
@@ -201,11 +218,16 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     @objc func setupData(){
         
         if let network = MeshNetworkManager.instance.meshNetwork {
-            
+            ///所有设备
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
             
             self.nodes.removeAll()
-            self.nodes = notConfiguredNodes
+            if deviceType == .deviceTypeLight {
+                self.nodes = notConfiguredNodes.filter({ $0.isCamera})
+            } else {
+                self.nodes = notConfiguredNodes.filter({ $0.isController})
+            }
+//            self.nodes = notConfiguredNodes
             self.collectionView.reloadData()
         }
         
@@ -268,7 +290,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             titles.append(model.meshName)
         }
         guard titles.count > 0 else { return }
-        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 100) { popupMenu in
+        YBPopupMenu.show(at: point, titles: titles, icons: nil, menuWidth: 150) { popupMenu in
 //            popupMenu?.tableView.showsVerticalScrollIndicator = true
             popupMenu?.priorityDirection = .none
             popupMenu?.arrowPosition = 1
@@ -404,6 +426,18 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             
         }
     }
+    
+    
+    @IBAction func trackLights(_ sender: Any) {
+        
+        deviceType = .deviceTypeLight
+        setupData()
+    }
+    
+    @IBAction func controller(_ sender: Any) {
+        deviceType = .deviceTypeController
+        setupData()
+    }
 }
 
 extension KLMUnNameListViewController: YBPopupMenuDelegate {
@@ -436,6 +470,10 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
             guard let self = self else { return } 
             SVProgressHUD.dismiss()
+            if model.isOnline == false {
+                model.isOnline = true
+                self.collectionView.reloadData()
+            }
             if apptype == .test {
 
                 let vc = KLMTestSectionTableViewController()
@@ -448,7 +486,12 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
             self.navigationController?.pushViewController(vc, animated: true)
             
         } failure: {
-            
+            if model.isOnline == true {
+                MeshNetworkManager.bearer.close()
+                MeshNetworkManager.bearer.open()
+                model.isOnline = false
+                self.collectionView.reloadData()
+            }
         }
     }
     
@@ -491,6 +534,8 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
         warnAlert.addAction(warncancelAction)
         self.present(warnAlert, animated: true)
     }
+    
+    
 }
 
 extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
@@ -544,6 +589,17 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
         KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
             guard let self = self else { return }
             SVProgressHUD.dismiss()
+            if node.isOnline == false {
+                node.isOnline = true
+                self.collectionView.reloadData()
+            }
+            
+            if node.isController {
+                
+                let vc = KLMControllerSettingViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                return
+            }
             if apptype == .test {
 
                 let vc = KLMTestSectionTableViewController()
@@ -556,7 +612,12 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
             self.navigationController?.pushViewController(vc, animated: true)
 
         } failure: {
-
+            if node.isOnline == true {
+                MeshNetworkManager.bearer.close()
+                MeshNetworkManager.bearer.open()
+                node.isOnline = false
+                self.collectionView.reloadData()
+            }
         }
     }
 }
@@ -650,19 +711,21 @@ extension KLMUnNameListViewController: GattDelegate {
             return
         }
         
-        DispatchQueue.main.asyncAfter(deadline: 3) { ///间隔一点时间，因为发现设备还需要一点时间才能发消息，避免显示在线绿点，但无法发消息
+//        DispatchQueue.main.asyncAfter(deadline: 3) { ///间隔一点时间，因为发现设备还需要一点时间才能发消息，避免显示在线绿点，但无法发消息
             if let bearer = bearer as? GattBearer {
                 if let network = MeshNetworkManager.instance.meshNetwork {
-                    
+
                     let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
                     if let node = notConfiguredNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) {
-                        node.isOnline = true
-                        self.collectionView.reloadData()
+                        if node.isOnline == false {
+                            node.isOnline = true
+                            self.collectionView.reloadData()
+                        }
                         KLMLog("发现的设备：\(node.nodeName)")
                     }
                 }
             }
-        }
+//        }
     }
 }
 
@@ -674,8 +737,10 @@ extension KLMUnNameListViewController: MeshNetworkDelegate {
     
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
             if let node = notConfiguredNodes.first(where: {$0.unicastAddress == source}) {
-                node.isOnline = true
-                self.collectionView.reloadData()
+                if node.isOnline == false {
+                    node.isOnline = true
+                    self.collectionView.reloadData()
+                }
                 KLMLog("连接的设备：\(node.nodeName)")
             }
         }

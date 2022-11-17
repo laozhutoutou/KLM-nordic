@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMControllerSettingViewController" customModule="KLM_GN" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="MrW-Qv-ApN" id="Bu8-sN-Cr5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="MrW-Qv-ApN">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrC-k6-yfj">
+                    <rect key="frame" x="16" y="107" width="358" height="70"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_scene" translatesAutoresizingMaskIntoConstraints="NO" id="Bth-BF-YhL">
+                            <rect key="frame" x="20" y="10" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="3ex-Eo-4Em"/>
+                                <constraint firstAttribute="height" constant="50" id="aAC-rs-IEu"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.89999997615814209" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fvR-H5-Ivq">
+                            <rect key="frame" x="91" y="25.333333333333343" width="42.666666666666657" height="19.333333333333329"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="fvR-H5-Ivq" firstAttribute="leading" secondItem="Bth-BF-YhL" secondAttribute="trailing" constant="21" id="Fvp-Os-1Wh"/>
+                        <constraint firstItem="fvR-H5-Ivq" firstAttribute="centerY" secondItem="Bth-BF-YhL" secondAttribute="centerY" id="MNS-rh-ZRq"/>
+                        <constraint firstItem="Bth-BF-YhL" firstAttribute="leading" secondItem="IrC-k6-yfj" secondAttribute="leading" constant="20" id="SsM-Wg-pWG"/>
+                        <constraint firstItem="Bth-BF-YhL" firstAttribute="centerY" secondItem="IrC-k6-yfj" secondAttribute="centerY" id="TAS-oq-lDD"/>
+                        <constraint firstAttribute="height" constant="70" id="Xj7-gN-S4E"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nr9-9Y-c8l">
+                    <rect key="frame" x="16" y="192" width="358" height="598"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="r89-Ly-SJe"/>
+                        <outlet property="delegate" destination="-1" id="7tl-uf-YcS"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="NCm-vC-RvU"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="NCm-vC-RvU" firstAttribute="trailing" secondItem="IrC-k6-yfj" secondAttribute="trailing" constant="16" id="QIu-0b-K0f"/>
+                <constraint firstItem="nr9-9Y-c8l" firstAttribute="top" secondItem="IrC-k6-yfj" secondAttribute="bottom" constant="15" id="aJT-hy-cP9"/>
+                <constraint firstItem="NCm-vC-RvU" firstAttribute="trailing" secondItem="nr9-9Y-c8l" secondAttribute="trailing" constant="16" id="f1Q-3R-id5"/>
+                <constraint firstItem="IrC-k6-yfj" firstAttribute="leading" secondItem="NCm-vC-RvU" secondAttribute="leading" constant="16" id="qLe-dU-Z1r"/>
+                <constraint firstItem="nr9-9Y-c8l" firstAttribute="leading" secondItem="NCm-vC-RvU" secondAttribute="leading" constant="16" id="tzi-fZ-F5h"/>
+                <constraint firstItem="IrC-k6-yfj" firstAttribute="top" secondItem="NCm-vC-RvU" secondAttribute="top" constant="16" id="wuE-iW-bHd"/>
+                <constraint firstItem="NCm-vC-RvU" firstAttribute="bottom" secondItem="nr9-9Y-c8l" secondAttribute="bottom" constant="20" id="yH7-N2-cFP"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="-3488" y="-259"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="img_scene" width="76" height="88"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

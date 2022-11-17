@@ -28,3 +28,4 @@ class KLMAudioMoteManager: KLMAudioManager {
     
     static let sharedMote = KLMAudioMoteManager()
 }
+

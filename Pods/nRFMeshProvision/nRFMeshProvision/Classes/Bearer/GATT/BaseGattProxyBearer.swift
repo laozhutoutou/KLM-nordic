@@ -107,8 +107,17 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
         if centralManager.state == .poweredOn && basePeripheral?.state == .disconnected {
             logger?.v(.bearer, "Connecting to \(basePeripheral.name ?? "Unknown Device")...")
             centralManager.connect(basePeripheral, options: nil)
+            ///timeout 自己加的代码
+            DispatchQueue.main.async {
+                self.perform(#selector(self.connectTimeout), with: nil, afterDelay: 10)
+            }
         }
         isOpened = true
+    }
+    
+    @objc func connectTimeout() {
+        logger?.v(.bearer, "Connecting Timeout...")
+        delegate?.bearer(self, didClose: nil)
     }
     
     open func close() {
@@ -313,6 +322,10 @@ open class BaseGattProxyBearer<Service: MeshService>: NSObject, Bearer, CBCentra
         logger?.v(.bearer, "Data Out notifications enabled")
         logger?.i(.bearer, "GATT Bearer open and ready")
         delegate?.bearerDidOpen(self)
+        ///自己加的代码
+        DispatchQueue.main.async {
+            NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.connectTimeout), object: nil)
+        }
     }
     
     open func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {

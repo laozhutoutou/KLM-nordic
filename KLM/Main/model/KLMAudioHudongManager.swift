@@ -13,6 +13,7 @@ class KLMAudioHudongManager: KLMAudioManager {
     
     func startPlay() {
         
+
         playOrder = .audioFront
         
         if currentIndex == 0xFE {
@@ -46,14 +47,14 @@ class KLMAudioHudongManager: KLMAudioManager {
     }
     
     private func playIndex() {
-        
+                
         let str = "hudong_\(currentIndex)"
         
         super.playWithPath(path: str)
     }
     
     private func playFront() {
-        
+
         let num = arc4random()%2 + 1
         random = Int(num)
         let str = "hudongColor_\(num)_前"
@@ -66,6 +67,7 @@ class KLMAudioHudongManager: KLMAudioManager {
         let str = "hudongColor_\(random)_后"
                 
         super.playWithPath(path: str)
+
     }
     
     override func next() {
@@ -90,4 +92,5 @@ class KLMAudioHudongManager: KLMAudioManager {
     
     static let sharedHudong = KLMAudioHudongManager()
 }
+
 

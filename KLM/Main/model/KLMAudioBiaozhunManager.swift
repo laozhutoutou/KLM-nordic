@@ -47,7 +47,6 @@ class KLMAudioBiaozhunManager: KLMAudioManager {
     }
     
     private func playIndex() {
-                
         var str = ""
         if currentMode == .AudioModeBiaozhun {
             str = "\(currentIndex)_en"
@@ -58,11 +57,12 @@ class KLMAudioBiaozhunManager: KLMAudioManager {
             str = "sexi_\(currentIndex)"
         }
         
+
         super.playWithPath(path: str)
     }
     
     private func playFront() {
-        
+
         var str = ""
         if currentMode == .AudioModeBiaozhun {
             str = "前_en"
@@ -72,12 +72,13 @@ class KLMAudioBiaozhunManager: KLMAudioManager {
         } else {
             str = "sexi_前"
         }
+
         
         super.playWithPath(path: str)
     }
     
     private func playBehind() {
-            
+
         var str = ""
         if currentMode == .AudioModeBiaozhun {
             str = "后_en"
@@ -87,8 +88,10 @@ class KLMAudioBiaozhunManager: KLMAudioManager {
         } else {
             str = "sexi_后"
         }
+
                 
         super.playWithPath(path: str)
+
     }
     
     override func next() {

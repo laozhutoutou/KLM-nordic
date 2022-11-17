@@ -95,6 +95,7 @@ class GroupData: BaseModel, Codable {
     var brightness: Int = 100 //节能亮度
     var colorSensing: Int = 1 //自动模式1 开 2-关
     var useOccasion: Int = 2 //使用场合
+    var intervalTime: UInt16 = 20 * 60 //全自动 - 间隔时间
 }
 
 struct ProvisionerAddress: Codable {

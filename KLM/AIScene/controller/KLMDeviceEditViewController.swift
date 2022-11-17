@@ -294,18 +294,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             ///隐藏显示框
             self.hideEmptyView()
         }
-        ///语音播报
-//        if message?.dp == .audio, let value = message?.value as? [UInt8] {
-//            if message?.opCode == .read {
-//
-//                if value.count >= 2 { ///设备端主动下发语音指令
-//
-//                    let secondIndex = Int(value[1])
-//                    KLMAudioManager.shared.startPlay(type: secondIndex)
-//
-//                }
-//            }
-//        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {

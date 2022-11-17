@@ -367,6 +367,52 @@ extension Node {
         }
         return false
     }
+    
+    ///切相控制器
+    var qieXiang: Bool {
+        let index = uuid.uuidString[2,2]
+        if index == "01" {
+            return true
+        }
+        return false
+    }
+    
+    ///rgb灯带控制器
+    var RGBControl: Bool {
+        let index = uuid.uuidString[2,2]
+        if index == "02" {
+            return true
+        }
+        return false
+    }
+    
+    ///Dali控制器
+    var Dali: Bool {
+        let index = uuid.uuidString[2,2]
+        if index == "03" {
+            return true
+        }
+        return false
+    }
+    
+    ///是控制器
+    var isController: Bool {
+        let index = uuid.uuidString[2,2]
+        if qieXiang || RGBControl || Dali {
+            return true
+        }
+        return false
+    }
+    
+    ///是摄像头
+    var isCamera: Bool {
+        let index = uuid.uuidString[2,2]
+        if noCamera || index == "DD" {
+            return true
+        }
+        return false
+    }
+    
     ///是否在线
     var isOnline: Bool {
         get {
