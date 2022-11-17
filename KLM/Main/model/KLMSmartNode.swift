@@ -211,6 +211,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .hardwareInfo,
                          .audio,
                          .biaoding,
+                         .controller,
                          .deviceSetting:
                         
                         response.value = [UInt8](value)
@@ -331,6 +332,7 @@ extension KLMSmartNode {
              .cameraPic,
              .hardwareInfo,
              .biaoding,
+             .controller,
              .factoryTestResule:
             parameString = parame.value as! String
 

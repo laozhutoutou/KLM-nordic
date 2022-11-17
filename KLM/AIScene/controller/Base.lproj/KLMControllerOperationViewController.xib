@@ -31,8 +31,8 @@
                         <constraint firstAttribute="width" constant="220" id="qhd-XF-VXA"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="颜色增强" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Yo-SU-f4l">
-                    <rect key="frame" x="16" y="354" width="58" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quick Select" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Yo-SU-f4l">
+                    <rect key="frame" x="16" y="354" width="81.666666666666671" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
@@ -47,8 +47,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GjE-3u-iEn">
                     <rect key="frame" x="16" y="570" width="358" height="210"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亮度调节" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgS-TM-Ksd">
-                            <rect key="frame" x="13" y="10" width="58" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brightness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgS-TM-Ksd">
+                            <rect key="frame" x="13" y="10" width="69.333333333333329" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -72,9 +72,13 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mX2-xS-rvh">
-                    <rect key="frame" x="337" y="101" width="37" height="34"/>
+                    <rect key="frame" x="330" y="101" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="FDr-N4-9NC"/>
+                        <constraint firstAttribute="width" constant="40" id="JKs-6z-xZh"/>
+                    </constraints>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="色温">
+                    <state key="normal" image="img_ColorTemp_Normal">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <connections>
@@ -92,7 +96,7 @@
                 <constraint firstItem="rk3-SX-shp" firstAttribute="trailing" secondItem="RHA-Tb-p8V" secondAttribute="trailing" constant="26" id="Oe0-dC-3K3"/>
                 <constraint firstItem="A9E-rK-Z7l" firstAttribute="centerX" secondItem="Fgd-dy-gy4" secondAttribute="centerX" id="TM8-IK-Nej"/>
                 <constraint firstItem="2Yo-SU-f4l" firstAttribute="leading" secondItem="rk3-SX-shp" secondAttribute="leading" constant="16" id="fNd-8C-NJk"/>
-                <constraint firstItem="rk3-SX-shp" firstAttribute="trailing" secondItem="mX2-xS-rvh" secondAttribute="trailing" constant="16" id="h2x-m7-PQk"/>
+                <constraint firstItem="rk3-SX-shp" firstAttribute="trailing" secondItem="mX2-xS-rvh" secondAttribute="trailing" constant="20" id="h2x-m7-PQk"/>
                 <constraint firstItem="GjE-3u-iEn" firstAttribute="leading" secondItem="rk3-SX-shp" secondAttribute="leading" constant="16" id="igF-hr-X54"/>
                 <constraint firstItem="rk3-SX-shp" firstAttribute="trailing" secondItem="GjE-3u-iEn" secondAttribute="trailing" constant="16" id="s75-5w-yyd"/>
                 <constraint firstItem="2Yo-SU-f4l" firstAttribute="top" secondItem="A9E-rK-Z7l" secondAttribute="bottom" constant="15" id="u7R-Ic-XXl"/>
@@ -103,6 +107,7 @@
         </view>
     </objects>
     <resources>
+        <image name="img_ColorTemp_Normal" width="447" height="447"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

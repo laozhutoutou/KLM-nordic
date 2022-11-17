@@ -474,6 +474,14 @@ extension KLMUnNameListViewController: KLMAINameListCellDelegate {
                 model.isOnline = true
                 self.collectionView.reloadData()
             }
+            
+            if model.isController {
+                
+                let vc = KLMControllerSettingViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                return
+            }
+            
             if apptype == .test {
 
                 let vc = KLMTestSectionTableViewController()
@@ -600,6 +608,7 @@ extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionVie
                 self.navigationController?.pushViewController(vc, animated: true)
                 return
             }
+            
             if apptype == .test {
 
                 let vc = KLMTestSectionTableViewController()

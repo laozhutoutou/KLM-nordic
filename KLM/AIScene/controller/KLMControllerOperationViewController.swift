@@ -18,9 +18,7 @@ class KLMControllerOperationViewController: UIViewController, Editable {
     let itemW:CGFloat = 25
     var lightValue: Int = 100
     var currentColor: UIColor = .white
-    
-    var isFinish = false
-    
+        
     lazy var ringSelectView: UIView = {
         let ring = UIView.init()
         ring.layer.borderWidth = 1.5
@@ -52,12 +50,7 @@ class KLMControllerOperationViewController: UIViewController, Editable {
         super.viewDidLoad()
 
         contentView.layer.cornerRadius = 16
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
-        //导航栏左边添加返回按钮
-        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
-        
-        
+    
         setupUI()
         
         showEmptyView()
@@ -152,34 +145,10 @@ class KLMControllerOperationViewController: UIViewController, Editable {
         KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
     
-    @objc func finish() {
-        
-        SVProgressHUD.show()
-        
-        isFinish = true
-        
-        let string = "000003"
-        let parame = parameModel(dp: .recipe, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        
-    }
-    
-    @objc func dimiss() {
-        
-        isFinish = false
-        ///发送取消命名
-        let string = "000002"
-        let parame = parameModel(dp: .recipe, value: string)
-        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func colorTempClick(_ sender: Any) {
         
         let vc = KLMControllerColorTempViewController()
-        let nav = KLMNavigationViewController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true, completion: nil)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -221,26 +190,11 @@ extension KLMControllerOperationViewController: KLMSmartNodeDelegate {
             self.lightSlider.currentValue = Float(lightValue)
         }
                 
-        if isFinish {
-            
-            SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-            DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                
-                //获取根VC
-                var  rootVC =  self.presentingViewController
-                while  let  parent = rootVC?.presentingViewController {
-                    rootVC = parent
-                }
-                //释放所有下级视图
-                rootVC?.dismiss(animated:  true , completion:  nil )
-            }
-        }
-        
         KLMLog("success")
     }
     
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
-        isFinish = false
+
         KLMShowError(error)
     }
 }

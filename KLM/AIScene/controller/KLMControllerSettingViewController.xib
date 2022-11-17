@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMControllerSettingViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="IrC-k6-yfj" id="wob-zn-qrB"/>
+                <outlet property="nameLab" destination="fvR-H5-Ivq" id="LKk-Un-xX4"/>
+                <outlet property="tableView" destination="nr9-9Y-c8l" id="xf9-vk-cc5"/>
                 <outlet property="view" destination="MrW-Qv-ApN" id="Bu8-sN-Cr5"/>
             </connections>
         </placeholder>

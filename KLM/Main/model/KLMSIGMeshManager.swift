@@ -201,7 +201,7 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
             //过滤一下设备
             if unprovisionedDevice.uuid.uuidString.count >= 2 {
                 //以DD开头的设备是我们的
-                let id = unprovisionedDevice.uuid.uuidString.substring(to: 4)
+                let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
                 if id == "DD" {
 //                    KLMLog("rssi = \(discoveredPeripheral.rssi)")
                     if apptype == .test && discoveredPeripheral.rssi < -52{

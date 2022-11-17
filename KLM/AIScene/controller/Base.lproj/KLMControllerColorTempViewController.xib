@@ -87,8 +87,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nWc-lc-Cum">
                     <rect key="frame" x="16" y="461" width="358" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="亮度调节" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-fW-nr8">
-                            <rect key="frame" x="13" y="10" width="58" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brightness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1zX-fW-nr8">
+                            <rect key="frame" x="13" y="10" width="69.333333333333329" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -176,7 +176,7 @@
                 <constraint firstItem="Rmd-GT-JLE" firstAttribute="centerY" secondItem="jP8-d5-ox8" secondAttribute="centerY" id="xU8-Mf-8bs"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-1160" y="-196.91943127962085"/>
+            <point key="canvasLocation" x="-1332" y="-239"/>
         </view>
     </objects>
     <resources>

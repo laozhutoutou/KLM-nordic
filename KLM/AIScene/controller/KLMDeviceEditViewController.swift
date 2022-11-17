@@ -115,11 +115,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         checkGroup()
         
         sendFlash()
-        
-        ///语音
-        ///这个页面也可以语音播报，进来这个页面可能语音功能未关闭
-//        KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
-        
+                
         //添加手势
         let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
         tap.numberOfTapsRequired = 3
@@ -147,7 +143,6 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             let parame = parameModel(dp: .deviceSetting)
             KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
         }
-
     }
     
     func checkVerison() {

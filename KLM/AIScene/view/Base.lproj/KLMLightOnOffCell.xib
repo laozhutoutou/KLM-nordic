@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On/Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyG-vw-YpS">
-                        <rect key="frame" x="16" y="15.5" width="49" height="19.5"/>
+                        <rect key="frame" x="16" y="15.5" width="49" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
             <connections>
                 <outlet property="OnOffSwitch" destination="GyU-Ni-USu" id="1rl-ve-mz6"/>
             </connections>
-            <point key="canvasLocation" x="197" y="-7"/>
+            <point key="canvasLocation" x="230" y="-27"/>
         </tableViewCell>
     </objects>
 </document>

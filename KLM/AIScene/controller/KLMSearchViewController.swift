@@ -202,6 +202,13 @@ extension KLMSearchViewController: UITableViewDelegate, UITableViewDataSource {
                 return
             }
             
+            if deviceModel.isController {
+                
+                let vc = KLMControllerSettingViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                return
+            }
+            
             let vc = KLMDeviceEditViewController()
             self.navigationController?.pushViewController(vc, animated: true)
             

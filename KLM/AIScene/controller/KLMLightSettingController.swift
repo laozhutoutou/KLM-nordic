@@ -182,8 +182,7 @@ class KLMLightSettingController: UITableViewController {
                 
             }
         case itemType.custome.rawValue:
-//            let vc = KLMCustomViewController()
-            let vc = KLMControllerOperationViewController()
+            let vc = KLMCustomViewController()
             let nav = KLMNavigationViewController(rootViewController: vc)
             nav.modalPresentationStyle = .fullScreen
             present(nav, animated: true, completion: nil)

@@ -114,15 +114,6 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
                 let vc = KLMLightSettingController()
                 self.navigationController?.pushViewController(vc, animated: true)
                 
-                //是否有相机权限
-//                KLMPhotoManager().photoAuthStatus { [weak self] in
-//                    guard let self = self else { return }
-//
-//                    let vc = KLMImagePickerController()
-//                    vc.sourceType = .camera
-//                    self.present(vc, animated: true, completion: nil)
-//
-//                }
             } failure: {
 
             }

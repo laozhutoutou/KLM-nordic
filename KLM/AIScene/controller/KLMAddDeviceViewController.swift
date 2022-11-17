@@ -310,6 +310,13 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
             //刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
             
+            if device.isController {
+                
+                let vc = KLMControllerSettingViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                return
+            }
+            
             let vc = KLMDeviceEditViewController()
             vc.isFromAddDevice = true
             self.navigationController?.pushViewController(vc, animated: true)

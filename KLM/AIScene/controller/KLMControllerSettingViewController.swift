@@ -18,7 +18,7 @@ private enum itemType: Int, CaseIterable {
     case reset
 }
 
-class KLMControllerSettingViewController: UIViewController {
+class KLMControllerSettingViewController: UIViewController, Editable {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contentView: UIView!
@@ -26,12 +26,26 @@ class KLMControllerSettingViewController: UIViewController {
     
     private var lightSwitch = 0
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+        setupNodeMessage()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
         
         event()
+        
+        ///显示空白页面
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 5) {
+            self.hideEmptyView()
+        }
     }
     
     func setupUI() {
@@ -52,6 +66,12 @@ class KLMControllerSettingViewController: UIViewController {
     func event() {
         
         
+    }
+    
+    func setupNodeMessage() {
+        
+        let parame = parameModel(dp: .deviceSetting)
+        KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
     }
 
 }
@@ -171,5 +191,39 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
             
             break
         }
+    }
+}
+
+extension KLMControllerSettingViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        
+        if message?.dp == .deviceSetting, let value = message?.value as? [UInt8] {
+            
+            ///开关
+            let power: Int = Int(value[2])
+            self.lightSwitch = power
+            
+            ///刷新页面
+            self.tableView.reloadData()
+            ///隐藏显示框
+            self.hideEmptyView()
+        }
+    }
+    
+    func smartNodeDidResetNode(_ manager: KLMSmartNode) {
+        ///提交数据到服务器
+        if KLMMesh.save() {
+            
+        }
+        
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+        NotificationCenter.default.post(name: .deviceReset, object: nil)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+        
+        KLMShowError(error)
     }
 }

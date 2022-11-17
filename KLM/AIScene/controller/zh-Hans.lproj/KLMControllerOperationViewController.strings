@@ -1,0 +1,9 @@
+
+/* Class = "UILabel"; text = "颜色增强"; ObjectID = "2Yo-SU-f4l"; */
+"2Yo-SU-f4l.text" = "快速选择";
+
+/* Class = "UIButton"; normalTitle = "色温"; ObjectID = "mX2-xS-rvh"; */
+"mX2-xS-rvh.normalTitle" = "";
+
+/* Class = "UILabel"; text = "亮度调节"; ObjectID = "sgS-TM-Ksd"; */
+"sgS-TM-Ksd.text" = "亮度调节";

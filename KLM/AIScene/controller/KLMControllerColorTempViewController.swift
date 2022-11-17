@@ -13,7 +13,7 @@ private enum ColortempType {
     case ColortempTypeCW
 }
 
-class KLMControllerColorTempViewController: UIViewController {
+class KLMControllerColorTempViewController: UIViewController, Editable {
 
     @IBOutlet weak var plateView: UIView!
     @IBOutlet weak var colortempImageView: UIImageView!
@@ -26,9 +26,20 @@ class KLMControllerColorTempViewController: UIViewController {
     @IBOutlet weak var lightBgView: UIView!
     @IBOutlet weak var WWLab: UILabel!
     @IBOutlet weak var CWLab: UILabel!
-    
-    private var lightValue: Int = 100
+
     private var lightSlider: KLMSlider!
+    
+    private var WWValue: Int = 255 {
+        didSet {
+            WWLab.text = "\(WWValue)"
+        }
+    }
+    
+    private var CWValue: Int = 0 {
+        didSet {
+            CWLab.text = "\(CWValue)"
+        }
+    }
     
     lazy var tapView: UIImageView = {
         let tapView = UIImageView()
@@ -37,6 +48,9 @@ class KLMControllerColorTempViewController: UIViewController {
         tapView.layer.borderColor = UIColor.black.cgColor
         tapView.layer.borderWidth = 1
         tapView.isHidden = true
+        tapView.layer.shadowColor = UIColor.white.cgColor
+        tapView.layer.shadowRadius = 7
+        tapView.layer.shadowOpacity = 0.5
         return tapView
     }()
     
@@ -60,14 +74,25 @@ class KLMControllerColorTempViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
+        
+        setupData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         contentView.layer.cornerRadius = 16
-        
-        navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
-        
+                
         setupUI()
+        
+        showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            self.hideEmptyView()
+        }
     }
     
     func setupUI() {
@@ -85,6 +110,7 @@ class KLMControllerColorTempViewController: UIViewController {
             return String(format: "%ld%%", Int(value))
         }
         lightSlider.delegate = self
+        lightSlider.currentValue = 50
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
         
@@ -99,6 +125,12 @@ class KLMControllerColorTempViewController: UIViewController {
         colorTempType = .ColortempTypeNormal
     }
     
+    private func setupData() {
+        
+        let parameTime = parameModel(dp: .controller)
+        KLMSmartNode.sharedInstacnce.readMessage(parameTime, toNode: KLMHomeManager.currentNode)
+    }
+    
     @objc func handleTap(tap: UITapGestureRecognizer) {
         
         let tapPoint = tap.location(in: plateView)
@@ -108,8 +140,9 @@ class KLMControllerColorTempViewController: UIViewController {
             let point = getPoint(point: tapPoint)
             tapView.center = point
             let (WW, CW) = getWWAndCW(point: point)
-            WWLab.text = "\(WW)"
-            CWLab.text = "\(CW)"
+            WWValue = WW
+            CWValue = CW
+            sendData()
         }
     }
     
@@ -126,17 +159,21 @@ class KLMControllerColorTempViewController: UIViewController {
             let point = getPoint(point: tapPoint)
             tapView.center = point
             let (WW, CW) = getWWAndCW(point: point)
-            WWLab.text = "\(WW)"
-            CWLab.text = "\(CW)"
+            WWValue = WW
+            CWValue = CW
             
         }else if pan.state == .ended {
-            
+            sendData()
         }
     }
     
-    @objc func dimiss() {
+    private func sendData() {
         
-        dismiss(animated: true, completion: nil)
+        let ww = WWValue.decimalTo2Hexadecimal()
+        let cw = CWValue.decimalTo2Hexadecimal()
+        let light = Int(lightSlider.currentValue).decimalTo2Hexadecimal()
+        let parame = parameModel(dp: .controller, value: ww + cw + light)
+        KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
     }
 
     @IBAction func normal(_ sender: UIButton) {
@@ -179,8 +216,9 @@ class KLMControllerColorTempViewController: UIViewController {
         
         ///分为255格
         let D = plateView.width / 8 * 6
-        let x = point.x - plateView.width / 8
-        let V: Int = Int(x * 255 / D)
+        var x = point.x - plateView.width / 8
+        ///四舍五入
+        let V: Int = Int(lround(x * 255 / D))
         switch colorTempType {
         case .ColortempTypeNormal:
             return (255 - V, V)
@@ -196,10 +234,27 @@ extension KLMControllerColorTempViewController: KLMSliderDelegate {
 
     func KLMSliderWith(slider: KLMSlider, value: Float) {
             
-        if slider == lightSlider { //亮度
-            let vv = Int(value)
-//            let parame = parameModel(dp: .light, value: vv)
-//            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+        sendData()
+    }
+}
+
+extension KLMControllerColorTempViewController: KLMSmartNodeDelegate {
+    
+    func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
+        if message?.dp == .controller, let value = message?.value as? [UInt8], message?.opCode == .read {
+            
+            if value.count >= 3 {
+                
+                WWValue = Int(value[0])
+                CWValue = Int(value[1])
+                lightSlider.currentValue = Float(Int(value[2]))
+            }
+            
         }
+    }
+    
+    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
+
+        KLMShowError(error)
     }
 }
