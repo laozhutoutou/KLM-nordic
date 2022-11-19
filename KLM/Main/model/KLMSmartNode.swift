@@ -352,7 +352,7 @@ extension Node {
         if qieXiang {
             return "img_RCL"
         } else if RGBControl {
-            return ""
+            return "img_RGBW"
         } else if Dali {
             return "img_DA"
         }

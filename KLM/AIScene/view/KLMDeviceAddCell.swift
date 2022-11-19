@@ -28,7 +28,7 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
             case "01":
                 icon = "img_RCL"
             case "02":
-                icon = ""
+                icon = "img_RGBW"
             case "03":
                 icon = "img_DA"
             default:
