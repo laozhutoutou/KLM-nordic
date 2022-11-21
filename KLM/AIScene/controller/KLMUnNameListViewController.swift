@@ -14,10 +14,14 @@ private enum DeviceType {
     case deviceTypeController
 }
 
+let tabTopHeight = 40.0
+
 class KLMUnNameListViewController: UIViewController,  Editable{
     
-    @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var scrollView: UIScrollView!
+    ///主视图
+    @IBOutlet weak var scrollView: NestScrollView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
     private var currentVersion: String!
     private var versionData: KLMVersion.KLMVersionData!
@@ -33,18 +37,38 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         return homeBtn
     }()
     
-    //设备数据源
-    var nodes: [Node] = [Node]()
     //家庭数据源
     var homes: [KLMHome.KLMHomeModel] = []
+    private var canScroll: Bool = true
     
     @IBOutlet weak var trackLightBtn: UIButton!
     @IBOutlet weak var controllerBtn: UIButton!
+    
+    lazy var trackLightVc: KLMTrackLightsMainViewController = {
+        let trackLightVc = KLMTrackLightsMainViewController()
+        return trackLightVc
+    }()
+    
+    lazy var controllerVc: KLMControllersMainViewController = {
+        let controllerVc = KLMControllersMainViewController()
+        return controllerVc
+    }()
+    ///水平滚动视图
+    lazy var HScrollView: UIScrollView = {
+        let HScrollView = UIScrollView.init()
+        HScrollView.isPagingEnabled = true
+        return HScrollView
+    }()
     
     private var deviceType: DeviceType = .deviceTypeLight {
         didSet {
             trackLightBtn.isSelected = deviceType == .deviceTypeLight ? true : false
             controllerBtn.isSelected = deviceType == .deviceTypeLight ? false : true
+            if deviceType == .deviceTypeLight {
+                HScrollView.contentOffset(x: 0, y: 0)
+            } else if deviceType == .deviceTypeController {
+                HScrollView.contentOffset(x: KLMScreenW, y: 0)
+            }
         }
     }
     
@@ -76,9 +100,39 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
     func setupUI() {
         
-        collectionView.backgroundColor = appBackGroupColor
+        ///左右滑动视图
+        let contentHeight = KLMScreenH - KLM_TopHeight - tabTopHeight - KLM_TabbarHeight
+        HScrollView.frame = CGRect.init(x: 0, y: 0, width: KLMScreenW, height: contentHeight)
+        HScrollView.contentSize = CGSizeMake(KLMScreenW * 2, contentHeight)
+        HScrollView.delegate = self
+        HScrollView.showsHorizontalScrollIndicator = false
+        contentView.addSubview(HScrollView)
         
-        self.collectionView.register(UINib(nibName: String(describing: KLMAINameListCell.self), bundle: nil), forCellWithReuseIdentifier: String(describing: KLMAINameListCell.self))
+        ///轨道灯
+        trackLightVc.view.frame = CGRect.init(x: 0, y: 0, width: KLMScreenW, height: contentHeight)
+        HScrollView.addSubview(trackLightVc.view)
+        trackLightVc.addDevice = { [weak self] in
+            guard let self = self else { return }
+            self.newDevice()
+        }
+        trackLightVc.refresh = { [weak self] in
+            guard let self = self else { return }
+            self.setupData()
+        }
+        
+        ///控制器
+        controllerVc.view.frame = CGRect.init(x: KLMScreenW, y: 0, width: KLMScreenW, height: contentHeight)
+        HScrollView.addSubview(controllerVc.view)
+        controllerVc.addDevice = { [weak self] in
+            guard let self = self else { return }
+            self.newDevice()
+        }
+        controllerVc.refresh = { [weak self] in
+            guard let self = self else { return }
+            self.setupData()
+        }
+        
+        contentViewHeight.constant = contentHeight
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceAddSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(setupData), name: .deviceNameUpdate, object: nil)
@@ -102,12 +156,15 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             guard let self = self else { return }
             self.initData()
         }
-        self.collectionView.mj_header = header
+        self.scrollView.mj_header = header
         
         ///设备是否在线
         KLMMeshNetworkManager.shared.onlineDelegate = self
         
+        ///默认选择轨道灯
         deviceType = .deviceTypeLight
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ScrollViewCanScroll), name: NSNotification.Name("ScrollViewCanScroll"), object: nil)
         
     }
     
@@ -221,17 +278,14 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             ///所有设备
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
             
-            self.nodes.removeAll()
-            if deviceType == .deviceTypeLight {
-                self.nodes = notConfiguredNodes.filter({ $0.isCamera})
-            } else {
-                self.nodes = notConfiguredNodes.filter({ $0.isController})
-            }
-//            self.nodes = notConfiguredNodes
-            self.collectionView.reloadData()
+            trackLightVc.nodes.removeAll()
+            controllerVc.nodes.removeAll()
+            trackLightVc.nodes = notConfiguredNodes.filter({ $0.isCamera})
+            controllerVc.nodes = notConfiguredNodes.filter({ $0.isController})
+            reloadData()
         }
         
-        self.collectionView.mj_header?.endRefreshing()
+        self.scrollView.mj_header?.endRefreshing()
         NotificationCenter.default.post(name: .dataUpdate, object: nil)
     }
     
@@ -431,12 +485,22 @@ class KLMUnNameListViewController: UIViewController,  Editable{
     @IBAction func trackLights(_ sender: Any) {
         
         deviceType = .deviceTypeLight
-        setupData()
+       
     }
     
     @IBAction func controller(_ sender: Any) {
         deviceType = .deviceTypeController
-        setupData()
+
+    }
+    ///刷新页面
+    private func reloadData() {
+        
+        trackLightVc.reloadData()
+        controllerVc.reloadData()
+    }
+    
+    @objc private func ScrollViewCanScroll() {
+        canScroll = true
     }
 }
 
@@ -449,6 +513,8 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
             return
         }
         
+        deviceType = .deviceTypeLight
+        
         //取缓存数据
         if let localHome = KLMMesh.getHome(homeId: selectHome.id) {
             KLMMesh.saveHome(home: localHome)
@@ -458,241 +524,7 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
         self.initData()
     }
 }
-
-extension KLMUnNameListViewController: KLMAINameListCellDelegate {
-    
-    func setItem(model: Node) {
-        
-        KLMHomeManager.sharedInstacnce.smartNode = model
-        
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
-            guard let self = self else { return } 
-            SVProgressHUD.dismiss()
-            if model.isOnline == false {
-                model.isOnline = true
-                self.collectionView.reloadData()
-            }
-            
-            if model.isController {
-                
-                let vc = KLMControllerSettingViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                return
-            }
-            
-            if apptype == .test {
-
-                let vc = KLMTestSectionTableViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-
-                return
-            }
-            
-            let vc = KLMDeviceEditViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        } failure: {
-            if model.isOnline == true {
-                MeshNetworkManager.bearer.close()
-                MeshNetworkManager.bearer.open()
-                model.isOnline = false
-                self.collectionView.reloadData()
-            }
-        }
-    }
-    
-    /// 长按删除
-    /// - Parameter model: 节点
-    func longPress(model: Node) {
-        
-        if KLMMesh.isCanEditMesh() == false {
-            return
-        }
-        
-        //弹出提示框
-        let warnAlert = UIAlertController(title: LANGLOC("deleteDevice"),
-                                      message: LANGLOC("Please make sure the device can not be connected with APP, otherwise use 'Settings reset'"),
-                                      preferredStyle: .alert)
-        let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .default) { _ in
-            
-            ///连接节点
-            SVProgressHUD.show()
-            KLMConnectManager.shared.connectToNode(node: model) { [weak self] in
-                guard let self = self else { return }
-                
-                //连接上，重置设备。
-                KLMSmartNode.sharedInstacnce.delegate = self
-                KLMSmartNode.sharedInstacnce.resetNode(node: model)
-                
-            } failure: {
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                //连接不上，直接删除设备
-                MeshNetworkManager.instance.meshNetwork!.remove(node: model)
-                if KLMMesh.save() {
-                    //删除成功
-                    self.setupData()
-                }
-            }
-            
-        }
-        let warncancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
-        warnAlert.addAction(warnresetAction)
-        warnAlert.addAction(warncancelAction)
-        self.present(warnAlert, animated: true)
-    }
-    
-    
-}
-
-extension KLMUnNameListViewController: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return self.nodes.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let itemWidth: CGFloat = (KLMScreenW - 16*2 - 15) / 2
-        let itemHeight: CGFloat = 174.0
-        return CGSize(width: itemWidth, height: itemHeight)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
-        return 16
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
-        return 15
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 20, left: 16, bottom: 20, right: 16)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let node = self.nodes[indexPath.item]
-        let cell: KLMAINameListCell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: KLMAINameListCell.self), for: indexPath) as! KLMAINameListCell
-        cell.model = node
-        cell.delegate = self
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let node = self.nodes[indexPath.item]
-        
-        //记录当前设备
-        KLMHomeManager.sharedInstacnce.smartNode = node
-                
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
-            guard let self = self else { return }
-            SVProgressHUD.dismiss()
-            if node.isOnline == false {
-                node.isOnline = true
-                self.collectionView.reloadData()
-            }
-            
-            if node.isController {
-                
-                let vc = KLMControllerSettingViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                return
-            }
-            
-            if apptype == .test {
-
-                let vc = KLMTestSectionTableViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-
-                return
-            }
-
-            let vc = KLMLightSettingController()
-            self.navigationController?.pushViewController(vc, animated: true)
-
-        } failure: {
-            if node.isOnline == true {
-                MeshNetworkManager.bearer.close()
-                MeshNetworkManager.bearer.open()
-                node.isOnline = false
-                self.collectionView.reloadData()
-            }
-        }
-    }
-}
  
-extension KLMUnNameListViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
-    
-    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
-        
-        return true
-    }
-    
-    func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
-
-        let contentView = UIView()
-        
-        let addBtn = UIButton()
-        addBtn.backgroundColor = appMainThemeColor
-        addBtn.setTitleColor(.white, for: .normal)
-        addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        addBtn.setTitle(LANGLOC("addDevice"), for: .normal)
-        addBtn.addTarget(self, action: #selector(newDevice), for: .touchUpInside)
-        addBtn.layer.cornerRadius = 20
-        contentView.addSubview(addBtn)
-        addBtn.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalTo(140)
-            make.height.equalTo(40)
-        }
-        
-        let titleLab = UILabel()
-        titleLab.text = LANGLOC("noDevice")
-        titleLab.font = UIFont.systemFont(ofSize: 14)
-        titleLab.textColor = rgba(0, 0, 0, 0.5)
-        contentView.addSubview(titleLab)
-        titleLab.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(addBtn.snp.top).offset(-20)
-        }
-        
-        let image = UIImageView.init(image: UIImage.init(named: "img_Empty_Status"))
-        contentView.addSubview(image)
-        image.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(titleLab.snp.top).offset(-20)
-        }
-        return contentView
-    }
-}
-
-extension KLMUnNameListViewController: KLMSmartNodeDelegate {
-    
-    func smartNodeDidResetNode(_ manager: KLMSmartNode) {
-        
-        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-        ///提交数据到服务器
-        if KLMMesh.save() {
-            self.setupData()
-        }
-    }
-    
-    func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
-        
-        KLMShowError(error)
-    }
-}
-
 extension KLMUnNameListViewController: GattDelegate {
      
     func bearerDidOpen(_ bearer: Bearer) {
@@ -710,7 +542,7 @@ extension KLMUnNameListViewController: GattDelegate {
             
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
             notConfiguredNodes.forEach({$0.isOnline = false})
-            self.collectionView.reloadData()
+            reloadData()
         }
     }
     
@@ -728,7 +560,7 @@ extension KLMUnNameListViewController: GattDelegate {
                     if let node = notConfiguredNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) {
                         if node.isOnline == false {
                             node.isOnline = true
-                            self.collectionView.reloadData()
+                            reloadData()
                         }
                         KLMLog("发现的设备：\(node.nodeName)")
                     }
@@ -748,9 +580,45 @@ extension KLMUnNameListViewController: MeshNetworkDelegate {
             if let node = notConfiguredNodes.first(where: {$0.unicastAddress == source}) {
                 if node.isOnline == false {
                     node.isOnline = true
-                    self.collectionView.reloadData()
+                    reloadData()
                 }
                 KLMLog("连接的设备：\(node.nodeName)")
+            }
+        }
+    }
+}
+
+extension KLMUnNameListViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+         
+        if scrollView == HScrollView {
+            let offset = scrollView.contentOffset.x / KLMScreenW
+            if offset == 0 {
+                deviceType = .deviceTypeLight
+            } else if offset == 1 {
+                deviceType = .deviceTypeController
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == self.scrollView {
+
+            if canScroll  {
+                
+                if scrollView.contentOffset.y >= 0 {
+                    scrollView.contentOffset = CGPoint.zero
+                    canScroll = false
+                    NotificationCenter.default.post(name: NSNotification.Name("collectionCanScroll"), object: nil, userInfo: nil)
+                }
+
+            } else  {
+                
+                scrollView.contentOffset = CGPoint.zero
+                NotificationCenter.default.post(name: NSNotification.Name("collectionCanScroll"), object: nil, userInfo: nil)
+                
+                
             }
         }
     }

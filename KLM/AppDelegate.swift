@@ -136,7 +136,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         connection = NetworkConnection(to: meshNetwork)
         connection!.dataDelegate = meshNetworkManager
         connection!.logger = self
-        if let tabBar = window?.rootViewController as? KLMTabBarController, let nav: KLMNavigationViewController = tabBar.viewControllers?.first as? KLMNavigationViewController, let vc: KLMUnNameListViewController = nav.viewControllers.first as? KLMUnNameListViewController {
+        
+        if let vc = getMainController() as? KLMUnNameListViewController {
             connection.delegate = vc
         }
         meshNetworkManager.transmitter = connection
@@ -178,6 +179,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = KLMNavigationViewController.init(rootViewController: login)
         window?.rootViewController = nav
         window?.makeKeyAndVisible()
+    }
+    
+    ///获取主控制器
+    func getMainController() -> UIViewController? {
+        
+        if let tabBar = window?.rootViewController as? KLMTabBarController, let nav: KLMNavigationViewController = tabBar.viewControllers?.first as? KLMNavigationViewController, let vc: KLMUnNameListViewController = nav.viewControllers.first as? KLMUnNameListViewController {
+            
+            return vc
+        }
+        return nil
     }
     
     //后台也可以运行定时器
@@ -281,5 +292,6 @@ extension AppDelegate: BuglyDelegate {
         return ""
     }
 }
+
 
 
