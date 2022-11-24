@@ -121,7 +121,7 @@ class OTAManager: NSObject {
         
         KLMLog("Scanning Time out")
         let error = BaseError.init()
-        error.message = LANGLOC("Scanning Time out") + LANGLOC("Please ensure that the light is not connected by others, and tell others to power off the APP Bluetooth or kill the APP process")
+        error.message = LANGLOC("Scanning Time out.") + LANGLOC("May be the light is connected by others, Please let others power off the APP Bluetooth or disconnect from the light")
         otaFailAction(error)
     }
     

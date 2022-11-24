@@ -315,7 +315,7 @@ extension KLMGroupMotionViewController: KLMSliderDelegate {
         if KLMHomeManager.sharedInstacnce.controllType == .AllDevices {
             
             KLMSmartGroup.sharedInstacnce.sendMessageToAllNodes(parame) {source in 
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
                 
             } failure: { error in
                 
@@ -326,7 +326,6 @@ extension KLMGroupMotionViewController: KLMSliderDelegate {
             
             KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in 
                 
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                 
             } failure: { error in
                 KLMShowError(error)

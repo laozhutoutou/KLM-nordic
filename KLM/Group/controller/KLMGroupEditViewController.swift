@@ -190,6 +190,20 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                 
                 guard let self = self else { return }
                 
+                ///如果组里面都是无摄像头的设备，不给点击
+                let network = MeshNetworkManager.instance.meshNetwork!
+                let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
+                var nodeLists = [Node]()
+                for model in models {
+                    
+                    let node = KLMHomeManager.getNodeFromModel(model: model)!
+                    nodeLists.append(node)
+                }
+                if nodeLists.contains(where: {$0.isCamera}) == false {
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+                    return
+                }
+                
                 let vc = KLMGroupMotionViewController()
                 let nav = KLMNavigationViewController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen
@@ -205,6 +219,20 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             KLMConnectManager.shared.connectToGroup(group: KLMHomeManager.currentGroup) { [weak self] in
                 
                 guard let self = self else { return }
+                
+                ///如果组里面都是无摄像头的设备，不给点击
+                let network = MeshNetworkManager.instance.meshNetwork!
+                let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
+                var nodeLists = [Node]()
+                for model in models {
+                    
+                    let node = KLMHomeManager.getNodeFromModel(model: model)!
+                    nodeLists.append(node)
+                }
+                if nodeLists.contains(where: {$0.isCamera}) == false {
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+                    return
+                }
                 
                 let vc = KLMGroupUseOccasionViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

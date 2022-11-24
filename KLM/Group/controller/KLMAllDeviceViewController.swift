@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import nRFMeshProvision
 
 private enum itemType: Int, CaseIterable {
     case lightPower = 0
@@ -125,6 +126,16 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
             KLMConnectManager.shared.connectToAllNodes { [weak self] in
                 SVProgressHUD.dismiss()
                 guard let self = self else { return }
+                
+                if let network = MeshNetworkManager.instance.meshNetwork {
+                    
+                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+                    if notConfiguredNodes.contains(where: {$0.isCamera}) == false {
+                        SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+                        return
+                    }
+                }
+                
                 let vc = KLMGroupMotionViewController()
                 let nav = KLMNavigationViewController(rootViewController: vc)
                 nav.modalPresentationStyle = .fullScreen

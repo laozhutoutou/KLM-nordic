@@ -226,7 +226,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                             self.setupData()
                         }
                     } catch {
-                        var erro = MessageError()
+                        let erro = MessageError()
                         erro.message = error.localizedDescription
                         if let err = error as? MeshNetworkError{
                             switch err {

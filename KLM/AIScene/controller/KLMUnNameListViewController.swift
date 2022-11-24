@@ -280,7 +280,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             
             trackLightVc.nodes.removeAll()
             controllerVc.nodes.removeAll()
-            trackLightVc.nodes = notConfiguredNodes.filter({ $0.isCamera})
+            trackLightVc.nodes = notConfiguredNodes.filter({ $0.isTracklight})
             controllerVc.nodes = notConfiguredNodes.filter({ $0.isController})
             reloadData()
         }

@@ -346,7 +346,6 @@ extension KLMSmartNode {
 extension Node {
     
     private static var Node_KEY = true
-    private static var Version_KEY = true
     
     var icon: String {
         if qieXiang {
@@ -370,6 +369,15 @@ extension Node {
         let string = self.uuid.uuidString.replacingOccurrences(of: "-", with: "")
         let substring = string[4,12]
         return substring
+    }
+    
+    ///有摄像头
+    var isCamera: Bool {
+        let index = uuid.uuidString[2,2]
+        if index == "DD" {
+            return true
+        }
+        return false
     }
     
     ///没有摄像头
@@ -410,17 +418,17 @@ extension Node {
     
     ///是控制器
     var isController: Bool {
-        let index = uuid.uuidString[2,2]
+        
         if qieXiang || RGBControl || Dali {
             return true
         }
         return false
     }
     
-    ///是摄像头
-    var isCamera: Bool {
-        let index = uuid.uuidString[2,2]
-        if noCamera || index == "DD" {
+    ///是轨道灯
+    var isTracklight: Bool {
+        
+        if noCamera || isCamera {
             return true
         }
         return false
@@ -433,15 +441,6 @@ extension Node {
         }
         set {
             objc_setAssociatedObject(self, &Self.Node_KEY, newValue, .OBJC_ASSOCIATION_COPY)
-        }
-    }
-     
-    var version: String {
-        get {
-            return (objc_getAssociatedObject(self, &Self.Version_KEY) as? String) ?? ""
-        }
-        set {
-            objc_setAssociatedObject(self, &Self.Version_KEY, newValue, .OBJC_ASSOCIATION_COPY)
         }
     }
 }
