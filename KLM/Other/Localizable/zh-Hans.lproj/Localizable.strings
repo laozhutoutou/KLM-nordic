@@ -192,7 +192,7 @@ deviceNearbyTip = "请确保设备已经连接电源，且位于手机附近。�
 "Failed to get update package" = "获取更新包失败";
 "Downloading" = "下载中";
 "Upgrade failed" = "升级失败";
-"May be the light is connected by others, Please let others power off the APP Bluetooth or disconnect from the light" = "该设备可能正在被其他人连接，请让其他人断开连接或者关闭蓝牙后再试";
+"Time out. Maybe the light is connected by others, please let others disconnect or turn off Bluetooth, and try again." = "扫描超时，该设备可能正在被其他人连接，请让其他人断开连接或者关闭蓝牙后再试";
 "Scanning Time out." = "扫描超时。";
 
 
