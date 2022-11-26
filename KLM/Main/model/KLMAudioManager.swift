@@ -43,7 +43,29 @@ class KLMAudioManager: NSObject {
             
         } else {
             
-            playFront()
+//            playFront()
+            
+            stopPlay()
+            
+            //设置类别
+            try? AVAudioSession.sharedInstance().setCategory(.playback)
+            //启动音频会话管理,此时会阻断后台音乐的播放.
+            try? AVAudioSession.sharedInstance().setActive(true)
+            
+            var str = "en_no_color"
+            if Bundle.isChineseLanguage() {
+                str = "ch_no_color"
+            }
+            let path = Bundle.main.path(forResource: str, ofType: "wav")
+            guard let path = path else { return }
+            if audioPlayer == nil {
+                audioPlayer = try! AVAudioPlayer.init(contentsOf: URL.init(fileURLWithPath: path))
+                audioPlayer?.delegate = self
+                audioPlayer?.prepareToPlay()
+                audioPlayer?.volume = 1
+            }
+            audioPlayer?.play()
+            
         }
     }
     
@@ -109,27 +131,31 @@ class KLMAudioManager: NSObject {
     
     private func next() {
         
-        if currentIndex == 15 || currentIndex == 16 {
-            
-            guard let currentNode = currentNode else { return  }
-            let parameOn = parameModel.init(dp: .audio, value: 3)
-            KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
-            
-        } else {
-            
-            switch playOrder {
-            case .audioFront:
-                playOrder = .audioIndex
-                playIndex()
-            case .audioIndex:
-                playOrder = .audioBehind
-                playBehind()
-            case .audioBehind:
-                guard let currentNode = currentNode else { return  }
-                let parameOn = parameModel.init(dp: .audio, value: 3)
-                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
-            }
-        }
+        guard let currentNode = currentNode else { return  }
+        let parameOn = parameModel.init(dp: .audio, value: 3)
+        KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
+        
+//        if currentIndex == 15 || currentIndex == 16 {
+//
+//            guard let currentNode = currentNode else { return  }
+//            let parameOn = parameModel.init(dp: .audio, value: 3)
+//            KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
+//
+//        } else {
+//
+//            switch playOrder {
+//            case .audioFront:
+//                playOrder = .audioIndex
+//                playIndex()
+//            case .audioIndex:
+//                playOrder = .audioBehind
+//                playBehind()
+//            case .audioBehind:
+//                guard let currentNode = currentNode else { return  }
+//                let parameOn = parameModel.init(dp: .audio, value: 3)
+//                KLMSmartNode.sharedInstacnce.sendMessage(parameOn, toNode: currentNode)
+//            }
+//        }
     }
     
     func stopPlay() {
