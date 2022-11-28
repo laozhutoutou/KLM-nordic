@@ -231,10 +231,11 @@ extension KLMAddDeviceTestViewController: KLMMeshManagerDelegate {
     func meshManager(_ manager: KLMMeshManager, didScanedDevice device: DiscoveredPeripheral){
         
         isHaveDevice = true
-        
+        ///
         if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == device.peripheral }) {
-            discoveredPeripherals[index] = device
-            tableView.reloadData()
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? KLMDeviceAddTestCell {
+                cell.updateRssi(device.rssi)
+            }
         } else {
             foundDevice()
             discoveredPeripherals.append(device)

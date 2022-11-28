@@ -53,7 +53,7 @@ class KLMDeviceAddTestCell: UITableViewCell, Nibloadable {
         return cell as! Self
     }
     
-    private func updateRssi(_ rssi: Int) {
+    func updateRssi(_ rssi: Int) {
         switch rssi {
         case -128:
             rssiIcon.image = nil

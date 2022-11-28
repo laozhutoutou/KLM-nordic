@@ -154,6 +154,7 @@ class KLMAddDeviceViewController: UIViewController {
         
         SVProgressHUD.show(withStatus: "Connecting...")
         SVProgressHUD.setDefaultMaskType(.black)
+        KLMLog("---------------\(model.device.uuid)")
         KLMSIGMeshManager.sharedInstacnce.startConnect(discoveredPeripheral: model)
     }
     
@@ -231,8 +232,8 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
     func sigMeshManager(_ manager: KLMSIGMeshManager, didScanedDevice device: DiscoveredPeripheral) {
         
         if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == device.peripheral }) {
-            discoveredPeripherals[index] = device
-            tableView.reloadData()
+//            discoveredPeripherals[index] = device
+//            tableView.reloadData()
         } else {
             foundDevice()
             discoveredPeripherals.append(device)
