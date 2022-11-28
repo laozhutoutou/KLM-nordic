@@ -68,13 +68,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         super.viewWillDisappear(animated)
         ///拦截导航栏返回
 //        if navigationController?.viewControllers.firstIndex(of: self) == nil{
-//
-//            ///发送语音关闭指令
-//            KLMAudioManager.shared.stopPlay()
-//
-//            ///关闭语音播报
-//            let parame = parameModel.init(dp: .audio, value: 2)
-//            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+
 //        }
     }
     
@@ -115,11 +109,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         checkGroup()
         
         sendFlash()
-        
-        ///语音
-        ///这个页面也可以语音播报，进来这个页面可能语音功能未关闭
-//        KLMAudioManager.shared.currentNode = KLMHomeManager.currentNode
-        
+                
         //添加手势
         let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(tap))
         tap.numberOfTapsRequired = 3
@@ -255,7 +245,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
             return
         }
-        let vc = KLMAudioViewController()
+        let vc = KLMAudioViewTestController()
         let nav = KLMNavigationViewController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
@@ -294,18 +284,6 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             ///隐藏显示框
             self.hideEmptyView()
         }
-        ///语音播报
-//        if message?.dp == .audio, let value = message?.value as? [UInt8] {
-//            if message?.opCode == .read {
-//
-//                if value.count >= 2 { ///设备端主动下发语音指令
-//
-//                    let secondIndex = Int(value[1])
-//                    KLMAudioManager.shared.startPlay(type: secondIndex)
-//
-//                }
-//            }
-//        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
