@@ -68,13 +68,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         super.viewWillDisappear(animated)
         ///拦截导航栏返回
 //        if navigationController?.viewControllers.firstIndex(of: self) == nil{
-//
-//            ///发送语音关闭指令
-//            KLMAudioManager.shared.stopPlay()
-//
-//            ///关闭语音播报
-//            let parame = parameModel.init(dp: .audio, value: 2)
-//            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+
 //        }
     }
     
@@ -250,7 +244,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             SVProgressHUD.showInfo(withStatus: LANGLOC("Please turn on ") + LANGLOC("Auto Mode"))
             return
         }
-        let vc = KLMAudioViewController()
+        let vc = KLMAudioViewTestController()
         let nav = KLMNavigationViewController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true, completion: nil)
