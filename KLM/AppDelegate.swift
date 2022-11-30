@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         setUpNordic()
         
-        setupBugly()
+//        setupBugly()
         
         if apptype == .targetSensetrack {
             Thread.sleep(forTimeInterval: 0.7)
