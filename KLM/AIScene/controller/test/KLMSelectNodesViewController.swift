@@ -127,7 +127,7 @@ class KLMSelectNodesViewController: UIViewController, UITableViewDelegate, UITab
             tableView.reloadData()
         } else {
             
-            if selectNodes.count >= 6 {
+            if selectNodes.count >= 20 {
                 
                 SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
                 return
