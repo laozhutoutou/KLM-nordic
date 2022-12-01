@@ -142,9 +142,9 @@ extension KLMMeshManager: CBCentralManagerDelegate {
                 let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
                 let type = unprovisionedDevice.uuid.uuidString[2,2]
                 if id == "DD" {
-                    if apptype == .test && RSSI.intValue < -52{
-                        return
-                    }
+//                    if apptype == .test && RSSI.intValue < -52{
+//                        return
+//                    }
                     let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue, type)
                     self.delegate?.meshManager(self, didScanedDevice: discoveredPeripheral)
                 }
