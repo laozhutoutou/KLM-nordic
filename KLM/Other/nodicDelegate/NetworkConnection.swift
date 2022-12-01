@@ -211,7 +211,7 @@ extension NetworkConnection: CBCentralManagerDelegate {
         }
         
         let bearer = GattBearer(target: peripheral)
-        KLMLog("scanId = \(peripheral.identifier)")
+//        KLMLog("scanId = \(peripheral.identifier)")
         if let data = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data {
             
             bearer.manufacturer = data
