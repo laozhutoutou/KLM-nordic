@@ -14,6 +14,7 @@ class KLMDeviceAddTestCell: UITableViewCell, Nibloadable {
     @IBOutlet weak var rssiIcon: UIImageView!
     @IBOutlet weak var iconSelect: UIButton!
     @IBOutlet weak var statusLab: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var model: DiscoveredPeripheral! {
         
@@ -40,6 +41,7 @@ class KLMDeviceAddTestCell: UITableViewCell, Nibloadable {
                 statusLab.text = "失败"
                 statusLab.textColor = .red
             }
+            stopActivity()
         }
     }
     
@@ -68,9 +70,22 @@ class KLMDeviceAddTestCell: UITableViewCell, Nibloadable {
         }
     }
     
+    func startActivity() {
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func stopActivity() {
+        
+        activityIndicator.isHidden = true
+        activityIndicator.stopAnimating()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         iconSelect.isHidden = true
+        activityIndicator.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

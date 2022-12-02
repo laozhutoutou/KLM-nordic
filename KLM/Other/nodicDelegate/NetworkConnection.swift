@@ -216,9 +216,9 @@ extension NetworkConnection: CBCentralManagerDelegate {
             
             bearer.manufacturer = data
         } else { ///有时候扫描数据缺失，重新扫描
-            KLMLog("扫描数据缺失 - \(peripheral.identifier)")
-            centralManager.stopScan()
-            centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
+//            KLMLog("扫描数据缺失 - \(peripheral.identifier)")
+//            centralManager.stopScan()
+//            centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
         }
         
         ///将数据传输出去

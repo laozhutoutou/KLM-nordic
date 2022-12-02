@@ -20,7 +20,6 @@ class KLMSelectNodesViewController: UIViewController, UITableViewDelegate, UITab
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        KLMSmartNode.sharedInstacnce.delegate = self
         
     }
     
@@ -77,6 +76,8 @@ class KLMSelectNodesViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     @IBAction func bottomClick(_ sender: Any) {
+        
+        KLMSmartNode.sharedInstacnce.delegate = self
         
         if selectNodes.isEmpty {
             SVProgressHUD.showInfo(withStatus: "请选择设备")

@@ -11,7 +11,6 @@ import nRFMeshProvision
 class KLMMeshNetworkManager: NSObject {
     
     public weak var delegate: MeshNetworkDelegate?
-    public weak var onlineDelegate: MeshNetworkDelegate?
     
     static let shared = KLMMeshNetworkManager()
     private override init(){}
@@ -27,7 +26,6 @@ extension KLMMeshNetworkManager: MeshNetworkDelegate {
         }
         
         delegate?.meshNetworkManager(manager, didReceiveMessage: message, sentFrom: source, to: destination)
-        onlineDelegate?.meshNetworkManager(manager, didReceiveMessage: message, sentFrom: source, to: destination)
     }
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didSendMessage message: MeshMessage, from localElement: Element, to destination: Address) {

@@ -17,6 +17,8 @@ protocol KLMMeshManagerDelegate: AnyObject {
     
     func meshManager(_ manager: KLMMeshManager, didFailToActiveDevice error: MessageError?, failDevice device: DiscoveredPeripheral)
     
+    func meshManager(_ manager: KLMMeshManager, didConnectDevice device: DiscoveredPeripheral)
+    
 }
 
 extension KLMMeshManagerDelegate {
@@ -35,6 +37,10 @@ extension KLMMeshManagerDelegate {
         
     }
     
+    func meshManager(_ manager: KLMMeshManager, didConnectDevice device: DiscoveredPeripheral) {
+        
+        
+    }
 }
 
 
@@ -89,10 +95,12 @@ extension KLMMeshManager {
     
     private func startConnect() {
         
+        SVProgressHUD.show(withStatus: "Connectting -- \(currentIndex + 1)")
+        
         ///开始定时
         let timer = KLMTimer.init()
         timer.tag = currentIndex
-        timer.startTimer(timeOut: 30)
+        timer.startTimer(timeOut: 20)
         timer.delegate = self
         timers.append(timer)
         
@@ -103,6 +111,8 @@ extension KLMMeshManager {
         bb.open()
         self.gattBearer = bb
         
+        delegate?.meshManager(self, didConnectDevice: device)
+        
     }
 }
 
@@ -111,7 +121,7 @@ extension KLMMeshManager: KLMTimerDelegate {
     func timeDidTimeout(_ timer: KLMTimer) {
         
         KLMLog("时间超时 - 第\(timer.tag + 1)个设备")
-        var err = MessageError()
+        let err = MessageError()
         err.message = "Add light timeout"
         self.delegate?.meshManager(self, didFailToActiveDevice: err, failDevice: discoveredPeripherals[timer.tag])
     }
@@ -142,9 +152,19 @@ extension KLMMeshManager: CBCentralManagerDelegate {
                 let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
                 let type = unprovisionedDevice.uuid.uuidString[2,2]
                 if id == "DD" {
-//                    if apptype == .test && RSSI.intValue < -52{
-//                        return
-//                    }
+                    
+                    //取消信号限制
+                    if let value = KLMGetUserDefault("SigalLimit") as? Bool, value == true {
+                        
+                        let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue, type)
+                        self.delegate?.meshManager(self, didScanedDevice: discoveredPeripheral)
+                        
+                        return
+                    }
+                    
+                    if RSSI.intValue < -52{
+                        return
+                    }
                     let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue, type)
                     self.delegate?.meshManager(self, didScanedDevice: discoveredPeripheral)
                 }
@@ -180,7 +200,7 @@ extension KLMMeshManager: KLMProvisionManagerDelegate {
         ///停止计时
         timers.first(where: {$0.tag == currentIndex})?.stopTimer()
         
-        var err = MessageError()
+        let err = MessageError()
         err.message = error?.localizedDescription
         self.delegate?.meshManager(self, didFailToActiveDevice: err, failDevice: manager.discoveredPeripheral)
         
@@ -195,7 +215,7 @@ extension KLMMeshManager: KLMProvisionManagerDelegate {
     
     func provisionManagerNodeAddSuccess(_ manager: KLMProvisionManager) {
         
-        SVProgressHUD.show(withStatus: "composition")
+        SVProgressHUD.show(withStatus: "composition -- \(currentIndex + 1)")
         //节点添加完成的开始composition，同时开始其他节点添加
         if let network = MeshNetworkManager.instance.meshNetwork {
             
@@ -234,8 +254,6 @@ extension KLMMeshManager: KLMProvisionManagerDelegate {
 extension KLMMeshManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
-        
-        
         
         switch message {
         case let status as ConfigAppKeyStatus://node add app key success
@@ -317,10 +335,10 @@ extension KLMMeshManager: MeshNetworkDelegate {
         //停止计时
         if let node = nodes.first(where: {$0.unicastAddress == source}) {
             if let index = discoveredPeripherals.firstIndex(where: {$0.device.uuid == node.uuid}) {
-                
+
                 timers.first(where: {$0.tag == index})?.stopTimer()
-                
-                var err = MessageError()
+
+                let err = MessageError()
                 err.message = "Add light failed"
                 self.delegate?.meshManager(self, didFailToActiveDevice: err, failDevice: discoveredPeripherals[index])
             }
@@ -338,7 +356,7 @@ extension KLMMeshManager: MeshNetworkDelegate {
                 timers.first(where: {$0.tag == index})?.stopTimer()
                 
                 SVProgressHUD.dismiss()
-                var err = MessageError()
+                let err = MessageError()
                 err.message = error.localizedDescription
                 self.delegate?.meshManager(self, didFailToActiveDevice: err, failDevice: discoveredPeripherals[index])
             }

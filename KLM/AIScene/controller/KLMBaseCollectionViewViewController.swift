@@ -68,7 +68,14 @@ class KLMBaseCollectionViewViewController: UIViewController {
         
         collectionView.reloadData()
     }
-
+    
+    func reloadData(node: Node) {
+        
+        if let index = nodes.firstIndex(where: {$0.uuid == node.uuid}) {
+            let indexPath = IndexPath.init(item: index, section: 0)
+            collectionView.reloadItems(at: [indexPath])
+        }
+    }
 }
 
 extension KLMBaseCollectionViewViewController: UICollectionViewDelegate, UICollectionViewDataSource,  UICollectionViewDelegateFlowLayout {

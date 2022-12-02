@@ -158,9 +158,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
         self.scrollView.mj_header = header
         
-        ///设备是否在线
-        KLMMeshNetworkManager.shared.onlineDelegate = self
-        
         ///默认选择轨道灯
         deviceType = .deviceTypeLight
         
@@ -492,11 +489,18 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         deviceType = .deviceTypeController
 
     }
-    ///刷新页面
+    ///刷新页面 -- 全部
     private func reloadData() {
         
         trackLightVc.reloadData()
         controllerVc.reloadData()
+    }
+    
+    ///刷新页面- 某一个
+    private func reloadData(node: Node) {
+        
+        trackLightVc.reloadData(node: node)
+        controllerVc.reloadData(node: node)
     }
     
     @objc private func ScrollViewCanScroll() {
@@ -528,63 +532,36 @@ extension KLMUnNameListViewController: YBPopupMenuDelegate {
 extension KLMUnNameListViewController: GattDelegate {
      
     func bearerDidOpen(_ bearer: Bearer) {
-        ///连接上一个设备，然后查询其他设备是否在线
-        ///不加延时没效果，不知道具体原因
-//        DispatchQueue.main.asyncAfter(deadline: 1) {
-//            KLMSmartGroup.sharedInstacnce.checkAllNodesOnline()
-//        }
+        
     }
     
     func bearer(_ bearer: Bearer, didClose error: Error?) {
         KLMLog("首页设备一个都没连接")
         ///一个都没连
-//        if let network = MeshNetworkManager.instance.meshNetwork {
-//            
-//            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-//            notConfiguredNodes.forEach({$0.isOnline = false})
-//            reloadData()
-//        }
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            notConfiguredNodes.forEach({$0.isOnline = false})
+            reloadData()
+        }
     }
     
     func bearerDidDiscover(_ bearer: Bearer) {
-        ///判断是否已经连接一个，有可能设备只能一个人直连，如果发现设备就认为是在线，就会出现误判
-        if MeshNetworkManager.bearer.isOpen == false {
-            return
-        }
         
-//        DispatchQueue.main.asyncAfter(deadline: 3) { ///间隔一点时间，因为发现设备还需要一点时间才能发消息，避免显示在线绿点，但无法发消息
-//            if let bearer = bearer as? GattBearer {
-//                if let network = MeshNetworkManager.instance.meshNetwork {
-//
-//                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-//                    if let node = notConfiguredNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) {
-//                        if node.isOnline == false {
-//                            node.isOnline = true
-//                            reloadData()
-//                        }
-////                        KLMLog("发现的设备：\(node.nodeName)")
-//                    }
-//                }
-//            }
-//        }
-    }
-}
+        DispatchQueue.main.asyncAfter(deadline: 3) { [self] in ///间隔一点时间，因为发现设备还需要一点时间才能发消息，避免显示在线绿点，但无法发消息
+            if let bearer = bearer as? GattBearer {
+                if let network = MeshNetworkManager.instance.meshNetwork {
 
-extension KLMUnNameListViewController: MeshNetworkDelegate {
-    
-    func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
-        
-//        if let network = MeshNetworkManager.instance.meshNetwork {
-//
-//            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-//            if let node = notConfiguredNodes.first(where: {$0.unicastAddress == source}) {
-//                if node.isOnline == false {
-//                    node.isOnline = true
-//                    reloadData()
-//                }
-////                KLMLog("连接的设备：\(node.nodeName)")
-//            }
-//        }
+                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+                    if let node = notConfiguredNodes.first(where: {$0.nodeuuidString == bearer.nodeUUID}) {
+                        if node.isOnline == false {
+                            node.isOnline = true
+                            self.reloadData(node: node)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -16,10 +16,12 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     @IBOutlet weak var categoryLab: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var categoryView: UIView!
-    
+        
     var nameAndTypeBlock: NameAndTypeBlock?
     var cancelBlock: (() -> Void)?
+    var allTypes: [KLMType] = [KLMType]()
     var categoryList: [KLMType] = [KLMType]()
+    //选择的场合
     var selectCategory: KLMType?
     var grocerySubTypes: [KLMType] = [KLMType]()
     var categoryPopView: YBPopupMenu?
@@ -42,6 +44,24 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         let groceries: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str1), error: ())
         grocerySubTypes = KLMTool.jsonToModel(type: KLMType.self, array: groceries as! [[String : Any]])!
         
+        setupData()
+    }
+    
+    private func setupData() {
+        
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            textField.text = "Light\(notConfiguredNodes.count + 1)"
+        }
+        
+        allTypes = categoryList + grocerySubTypes
+        var index = 2
+        if let ii = KLMGetUserDefault("Occation") {
+            index = ii as! Int
+        }
+        let title: String = allTypes.first(where: {$0.num == index})!.title
+        categoryLab.text = LANGLOC(title)
+        selectCategory = KLMType.init(title: title, num: index)
     }
     
     @IBAction func sure(_ sender: Any) {
@@ -137,6 +157,8 @@ extension KLMDeviceNameAndTypePopViewController: YBPopupMenuDelegate {
             categoryPopView?.dismiss()
             selectCategory = grocerySubTypes[index]
         }
+        
+        KLMSetUserDefault("Occation", selectCategory?.num)
         
         categoryLab.text = LANGLOC(selectCategory!.title)
         KLMLog("selectCategory = \(selectCategory)")

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -64,8 +64,12 @@
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xPt-VA-2dW">
+                        <rect key="frame" x="245" y="30" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="rDn-8M-oEA" firstAttribute="leading" secondItem="xPt-VA-2dW" secondAttribute="trailing" constant="5" id="8kX-8y-qu5"/>
                     <constraint firstItem="aMp-kS-c0o" firstAttribute="leading" secondItem="rDn-8M-oEA" secondAttribute="trailing" id="9Be-Ti-01K"/>
                     <constraint firstItem="JIY-fm-grq" firstAttribute="leading" secondItem="hap-gW-Dlv" secondAttribute="leading" id="9Mc-d6-sLp"/>
                     <constraint firstAttribute="bottom" secondItem="JIY-fm-grq" secondAttribute="bottom" id="AJw-w3-a7j"/>
@@ -74,6 +78,7 @@
                     <constraint firstItem="G21-3E-RWS" firstAttribute="top" secondItem="pdt-EE-czV" secondAttribute="bottom" constant="10" id="Emj-bZ-6QD"/>
                     <constraint firstAttribute="trailing" secondItem="3o4-NU-oYJ" secondAttribute="trailing" constant="10" id="Gaf-lV-ZQc"/>
                     <constraint firstItem="3o4-NU-oYJ" firstAttribute="centerY" secondItem="G21-3E-RWS" secondAttribute="centerY" id="OKZ-lK-rBD"/>
+                    <constraint firstItem="xPt-VA-2dW" firstAttribute="centerY" secondItem="hap-gW-Dlv" secondAttribute="centerY" id="QFd-6i-Py3"/>
                     <constraint firstItem="aMp-kS-c0o" firstAttribute="centerY" secondItem="hap-gW-Dlv" secondAttribute="centerY" id="V93-Fz-Vl8"/>
                     <constraint firstItem="rDn-8M-oEA" firstAttribute="centerY" secondItem="D9w-tX-iIx" secondAttribute="centerY" id="bSY-IY-s1Z"/>
                     <constraint firstItem="D9w-tX-iIx" firstAttribute="leading" secondItem="pdt-EE-czV" secondAttribute="trailing" constant="16" id="cdx-4M-0xN"/>
@@ -87,12 +92,13 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="UUIDLab" destination="3o4-NU-oYJ" id="Vyz-qx-FZC"/>
+                <outlet property="activityIndicator" destination="xPt-VA-2dW" id="tlt-Ba-PbX"/>
                 <outlet property="iconSelect" destination="aMp-kS-c0o" id="zGG-Bw-15U"/>
                 <outlet property="nameLab" destination="D9w-tX-iIx" id="smh-og-qKD"/>
                 <outlet property="rssiIcon" destination="G21-3E-RWS" id="boj-G5-h20"/>
                 <outlet property="statusLab" destination="rDn-8M-oEA" id="tvG-RL-Z6i"/>
             </connections>
-            <point key="canvasLocation" x="-2667" y="-577"/>
+            <point key="canvasLocation" x="-2755" y="-616"/>
         </tableViewCell>
     </objects>
     <resources>

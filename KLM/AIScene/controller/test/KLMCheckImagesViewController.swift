@@ -118,9 +118,6 @@ extension KLMCheckImagesViewController: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        
-        
-        
         switch message {
         case let message as UnknownMessage://收发消息
             if let parameters = message.parameters {

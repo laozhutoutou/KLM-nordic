@@ -12,6 +12,8 @@ class KLMAddDeviceTestViewController: UIViewController {
     
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var singnalSwitch: UISwitch!
+    
     var searchView: KLMDeviceSearchView!
     var emptyView: KLMSearchDeviceEmptyView!
     
@@ -26,9 +28,10 @@ class KLMAddDeviceTestViewController: UIViewController {
         didSet {
             if totalDevcie == selectedDevice.count {
                 KLMLog("设备已经完成配网，不管是成功或者失败")
+                SVProgressHUD.showInfo(withStatus: "ALL finish")
                 //刷新首页
                 NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
-                DispatchQueue.main.asyncAfter(deadline: 2) {
+                DispatchQueue.main.asyncAfter(deadline: 1) {
                     SVProgressHUD.dismiss()
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -61,6 +64,10 @@ class KLMAddDeviceTestViewController: UIViewController {
 
         setupUI()
         
+        if let value = KLMGetUserDefault("SigalLimit") as? Bool, value == true {
+            singnalSwitch.isOn = true
+        }
+        
     }
     
     func setupUI() {
@@ -89,6 +96,13 @@ class KLMAddDeviceTestViewController: UIViewController {
         
         tableView.layer.cornerRadius = 16
         tableView.clipsToBounds = true
+        
+        //刷新
+        let header = KLMRefreshHeader.init {[weak self] in
+            guard let self = self else { return }
+            self.searchDevice()
+        }
+        self.tableView.mj_header = header
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "添加", target: self, action: #selector(add))
     }
@@ -131,6 +145,8 @@ class KLMAddDeviceTestViewController: UIViewController {
     
     func foundDevice() {
         
+        self.tableView.mj_header?.endRefreshing()
+        
         stopTime()
         
         self.isHaveDevice = true
@@ -145,6 +161,7 @@ class KLMAddDeviceTestViewController: UIViewController {
         startTime()
         
         discoveredPeripherals.removeAll()
+        selectedDevice.removeAll()
         self.tableView.reloadData()
         
         isHaveDevice = false
@@ -155,6 +172,11 @@ class KLMAddDeviceTestViewController: UIViewController {
         
     }
         
+    @IBAction func signal(_ sender: UISwitch) {
+        
+        KLMSetUserDefault("SigalLimit", sender.isOn)
+    }
+    
     //开始计时
     private func startTime() {
         
@@ -264,6 +286,15 @@ extension KLMAddDeviceTestViewController: KLMMeshManagerDelegate {
                 cell.setStatus = 2
             }
             print("失败的设备 = \(index)")
+        }
+    }
+    
+    func meshManager(_ manager: KLMMeshManager, didConnectDevice device: DiscoveredPeripheral) {
+        
+        if let index = discoveredPeripherals.firstIndex(where: {$0.device.uuid == device.device.uuid}) {
+            if let cell: KLMDeviceAddTestCell = self.tableView.cellForRow(at: IndexPath.init(row: index, section: 0)) as? KLMDeviceAddTestCell {
+                cell.startActivity()
+            }
         }
     }
 }

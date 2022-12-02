@@ -204,9 +204,6 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
                 let type = unprovisionedDevice.uuid.uuidString[2,2]
                 if id == "DD" {
 
-//                    if apptype == .test && RSSI.intValue < -52{
-//                        return
-//                    }
                     let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue, type)
                     self.delegate?.sigMeshManager(self, didScanedDevice: discoveredPeripheral)
                 }
@@ -307,8 +304,6 @@ extension KLMSIGMeshManager: BearerDelegate {
 extension KLMSIGMeshManager: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
-        
-        
         
         switch message {
         case let status as ConfigAppKeyStatus://node add app key success
