@@ -102,7 +102,7 @@ class KLMLightSettingController: UITableViewController {
         
         if isVersionFirst {
             
-            KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
+            KLMTool.checkBluetoothVersion(newestVersion: bleData.fileVersion, bleversion: bleV, EnMessage: bleData.englishMessage, CNMessage: bleData.updateMessage, viewController: self) {
                 
                 if KLMHomeManager.currentNode.noCamera {
                     

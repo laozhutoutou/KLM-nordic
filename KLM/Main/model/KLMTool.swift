@@ -139,21 +139,20 @@ extension KLMTool {
 
 extension KLMTool {
     
-    static public func checkBluetoothVersion(newestVersion: KLMVersion.KLMVersionData, bleversion: String, viewController: UIViewController, comfirm: @escaping () -> (), cancel: @escaping () -> (), noNeedUpdate: @escaping () -> ()) {
+    static public func checkBluetoothVersion(newestVersion: String, bleversion: String, EnMessage: String, CNMessage: String, viewController: UIViewController, comfirm: @escaping () -> (), cancel: @escaping () -> (), noNeedUpdate: @escaping () -> ()) {
         
         //最新版本 -- 服务器查询
-        let newVersion: String = newestVersion.fileVersion
-        let value = bleversion.compare(newVersion)
+        let value = bleversion.compare(newestVersion)
         if value == .orderedAscending {//左操作数小于右操作数，需要升级
             
             ///更新消息
-            var updateMsg: String = newestVersion.englishMessage
+            var updateMsg: String = EnMessage
             if Bundle.isChineseLanguage() {///使用中文
-                updateMsg =  newestVersion.updateMessage
+                updateMsg =  CNMessage
             }
             
             ///弹出更新框
-            let vc = UIAlertController.init(title: LANGLOC("Softwareupdate"), message: "V \(newVersion)\n\(updateMsg)", preferredStyle: .alert)
+            let vc = UIAlertController.init(title: LANGLOC("Softwareupdate"), message: "V \(newestVersion)\n\(updateMsg)", preferredStyle: .alert)
             vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
                 
                 comfirm()

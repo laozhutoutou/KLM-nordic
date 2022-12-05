@@ -467,7 +467,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///修改mesh信息
     static func editMesh(id: Int, meshName: String?, meshConfiguration: String?, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         var parame = ["id": id] as [String : Any]
@@ -685,6 +685,30 @@ class KLMService: NSObject {
             type = "development"
         }
         KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)/2"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMVersion.self, from: responseObject!)
+                let data = model?.data
+                success(data as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    ///新型固件
+    static func checkNewHardwareVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        var type = "bluetooth"
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+            type = "mcu"
+        }
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
+            type = "development"
+        }
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)/3"), params: nil) { responseObject, error in
             
             if error == nil {
                 

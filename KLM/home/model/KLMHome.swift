@@ -70,13 +70,20 @@ struct KLMVersion: Codable {
     var data: KLMVersionData
     struct KLMVersionData: Codable {
         var id: Int
-        var fileUrl: String
         var fileVersion: String
         var updateMessage: String
         var isForceUpdate: Bool
         var englishMessage: String
+        var jsonData: KLMSubVersion?
+        struct KLMSubVersion: Codable {
+            var qieXiang: String?
+            var RGBControl: String?
+            var Dali: String?
+        }
     }
 }
+
+
 
 struct KLMGroupModel: Codable {
     var data: KLMGroupData

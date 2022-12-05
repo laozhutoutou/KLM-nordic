@@ -139,7 +139,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         }
     }
     
-    func checkVerison() {
+    private func checkVerison() {
         
         if KLMHomeManager.currentNode.noCamera { ///没有摄像头
             KLMService.checkTLWVersion { response in
@@ -175,7 +175,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         
         if isVersionFirst {
             isVersionFirst = false
-            KLMTool.checkBluetoothVersion(newestVersion: bleData, bleversion: bleV, viewController: self) {
+            KLMTool.checkBluetoothVersion(newestVersion: bleData.fileVersion, bleversion: bleV, EnMessage: bleData.englishMessage, CNMessage: bleData.updateMessage, viewController: self) {
                 
                 if bleData.isForceUpdate {
                     self.isVersionFirst = true
@@ -207,7 +207,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                             self.navigationController?.pushViewController(vc, animated: true)
                         }))
                         vc.addAction(UIAlertAction.init(title: LANGLOC("Later"), style: .cancel, handler: { action in
-
+                            
                         }))
                         self.present(vc, animated: true)
                     }

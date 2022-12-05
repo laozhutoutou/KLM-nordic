@@ -35,8 +35,6 @@ class KLMHomeEditViewController: UIViewController, Editable {
         
         getMeshUserData()
         
-        getMeshInfo()
-        
         showEmptyView()
     }
     
