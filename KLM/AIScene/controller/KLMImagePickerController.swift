@@ -91,6 +91,27 @@ class KLMImagePickerController: UIImagePickerController {
                 }
             }
         }
+        
+        ///闪灯
+        sendFlash()
+    }
+    
+    private func sendFlash() {
+        
+        let parame = parameModel(dp: .flash, value: 1)
+        
+        if KLMHomeManager.sharedInstacnce.controllType == .Device {
+
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+
+        } else if KLMHomeManager.sharedInstacnce.controllType == .Group {
+            
+            KLMSmartGroup.sharedInstacnce.sendMessage(parame, toGroup: KLMHomeManager.currentGroup) {source in
+
+            } failure: { error in
+
+            }
+        }
     }
     
     @objc func closeClick() {

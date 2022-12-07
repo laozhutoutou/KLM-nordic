@@ -16,10 +16,13 @@ private enum itemType: Int, CaseIterable {
 class KLMLightSettingController: UITableViewController {
     
     ///蓝牙固件版本号
-    var BLEVersion: String?
+    private var BLEVersion: String?
     ///服务器上的版本
-    var BLEVersionData: KLMVersion.KLMVersionData?
-    var isVersionFirst = true
+    private var BLEVersionData: KLMVersion.KLMVersionData?
+    private var isVersionFirst = true
+    
+    ///需要闪灯
+    var isNeedFrash: Bool = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,13 +43,15 @@ class KLMLightSettingController: UITableViewController {
         tableView.separatorStyle = .none
         
         ///发送闪灯
-        sendFlash()
+        if isNeedFrash {
+            sendFlash()
+        }
     }
     
     //灯闪烁
     private func sendFlash() {
         
-        let parame = parameModel(dp: .flash, value: 1)
+        let parame = parameModel(dp: .flash, value: 2)
         
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
 

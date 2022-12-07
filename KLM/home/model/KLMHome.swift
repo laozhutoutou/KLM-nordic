@@ -74,16 +74,15 @@ struct KLMVersion: Codable {
         var updateMessage: String
         var isForceUpdate: Bool
         var englishMessage: String
-        var jsonData: KLMSubVersion?
-        struct KLMSubVersion: Codable {
-            var qieXiang: String?
-            var RGBControl: String?
-            var Dali: String?
-        }
+        var jsonData: String?
     }
 }
 
-
+class KLMSubVersion: BaseModel, Codable {
+    var qieXiang: String?
+    var RGBControl: String?
+    var Dali: String?
+}
 
 struct KLMGroupModel: Codable {
     var data: KLMGroupData

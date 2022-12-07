@@ -134,7 +134,7 @@ let disposeBag = DisposeBag()
 func KLMShowError(_ error: MessageError?) {
     
     SVProgressHUD.showInfo(withStatus: error?.message)
-    SVProgressHUD.dismiss(withDelay: 1.5)
+    SVProgressHUD.dismiss(withDelay: 2)
 }
 
 /// 显示http请求错误
@@ -146,7 +146,7 @@ func KLMHttpShowError(_ error: NSError) {
         message = error.userInfo["error"] as! String
     }
     SVProgressHUD.showInfo(withStatus: message)
-    SVProgressHUD.dismiss(withDelay: 1.5)
+    SVProgressHUD.dismiss(withDelay: 2)
 }
 
 ///国内版

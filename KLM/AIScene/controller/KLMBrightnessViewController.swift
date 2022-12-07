@@ -50,7 +50,7 @@ class KLMBrightnessViewController: UIViewController, Editable {
         let sliderWidth = KLMScreenW - viewLeft * 2
         
         //亮度滑条
-        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 1)
+        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 1, maxValue: 100, step: 1)
         lightSlider.getValueTitle = { value in
 
             return String(format: "%ld%%", Int(value))
@@ -105,8 +105,6 @@ extension KLMBrightnessViewController: KLMSmartNodeDelegate {
         if message?.dp == .brightness, let value = message?.value as? Int {
             if message?.opCode == .read {
                 lightValue = value
-            } else {
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             }
         }
     }
@@ -130,7 +128,7 @@ extension KLMBrightnessViewController: KLMSliderDelegate {
                 self.groupData.customLight = light
                 self.sendData()
                 KLMLog("success")
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
             } failure: { error in
                 
                 KLMShowError(error)
@@ -146,7 +144,7 @@ extension KLMBrightnessViewController: KLMSliderDelegate {
                 self.groupData.customLight = light
                 self.sendData()
                 KLMLog("success")
-                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                
             } failure: { error in
                 KLMShowError(error)
             }

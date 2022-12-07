@@ -44,14 +44,17 @@ class OTAManager: NSObject {
     
     func startOTAWithOtaData(data: NSData?, node: Node?, successAction:@escaping CallBackSuccess, failAction: @escaping CallBackFailure, progressAction: @escaping CallBackProgress) -> Bool {
         if OTAing {
+            SVProgressHUD.showInfo(withStatus: "OTAing, can't call repeated.")
             KLMLog("OTAing, can't call repeated.")
             return false
         }
         guard let data = data, data.count > 0 else {
+            SVProgressHUD.showInfo(withStatus: "OTA data is invalid.")
             KLMLog("OTA data is invalid.")
             return false
         }
         guard let node = node else {
+            SVProgressHUD.showInfo(withStatus: "node is invaid.")
             KLMLog("node is invaid")
             return false
         }
@@ -80,16 +83,14 @@ class OTAManager: NSObject {
         }
         
         ///如果是直连设备，不会再广播，这个时候需要先断开直连设备
-        if let bearer = MeshNetworkManager.bearer.proxies.first {
-            if bearer.nodeUUID == currentNode.nodeuuidString {
-                KLMLog("断开直连设备的连接")
-                MeshNetworkManager.bearer.close()
-//                DispatchQueue.main.asyncAfter(deadline: 2) {
-//                    self.connectDevice()
-//                }
-//                return
-            }
-        }
+//        if let bearer = MeshNetworkManager.bearer.proxies.first {
+//            if bearer.nodeUUID == currentNode.nodeuuidString {
+//                KLMLog("断开直连设备的连接")
+//                MeshNetworkManager.bearer.close()
+//            }
+//        }
+        
+        MeshNetworkManager.bearer.close()
         
         connectDevice()
     }

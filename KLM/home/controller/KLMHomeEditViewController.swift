@@ -49,7 +49,6 @@ class KLMHomeEditViewController: UIViewController, Editable {
         } failure: { error in
             KLMHttpShowError(error)
         }
-
     }
     
     private func getMeshInfo() {

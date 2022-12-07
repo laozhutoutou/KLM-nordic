@@ -474,6 +474,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
 //
 //            }
             let vc = KLMLightSettingController()
+            vc.isNeedFrash = false
             navigationController?.pushViewController(vc, animated: true)
             
         case itemType.motion.rawValue:

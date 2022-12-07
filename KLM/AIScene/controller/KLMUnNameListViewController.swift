@@ -187,6 +187,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         //蓝牙连接需要一定时间，搞个加载动画
         showEmptyView()
+        DispatchQueue.main.asyncAfter(deadline: 1) {
+            self.hideEmptyView()
+        }
         
         ///先填充本地数据
         if let home = KLMMesh.loadHome() { ///本地存有家庭
@@ -201,8 +204,6 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
         
         KLMService.getMeshList { response in
-            
-            self.hideEmptyView()
             
             let meshList = response as! [KLMHome.KLMHomeModel]
             if meshList.count > 0 {///服务器有家庭
@@ -264,7 +265,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             }
             
         } failure: { error in
-            self.hideEmptyView()
+
             KLMHttpShowError(error)
         }
     }

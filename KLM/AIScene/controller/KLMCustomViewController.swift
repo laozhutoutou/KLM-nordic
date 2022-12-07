@@ -125,7 +125,7 @@ class KLMCustomViewController: UIViewController, Editable {
         colorTempBgView.addSubview(colorTempSlider)
         
         //亮度滑条
-        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 0, maxValue: 100, step: 1)
+        let lightSlider: KLMSlider = KLMSlider.init(frame: CGRect(x: 0, y: 0, width: sliderWidth, height: lightBgView.height), minValue: 1, maxValue: 100, step: 1)
         lightSlider.getValueTitle = { value in
 
             return String(format: "%ld%%", Int(value))

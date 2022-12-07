@@ -29,11 +29,13 @@ class KLMControllerSettingViewController: UIViewController, Editable {
     private var lightSwitch = 0
     
     ///蓝牙固件版本号
-    var BLEVersion: String?
+    private var BLEVersion: String?
     ///服务器上的版本
-    var BLEVersionData: KLMVersion.KLMVersionData?
+    private var BLEVersionData: KLMVersion.KLMVersionData?
+    ///子版本号
+    private var newVersion: String?
     
-    var isVersionFirst = true
+    private var isVersionFirst = true
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -84,6 +86,20 @@ class KLMControllerSettingViewController: UIViewController, Editable {
         KLMService.checkNewHardwareVersion { response in
             
             self.BLEVersionData = response as? KLMVersion.KLMVersionData
+            if let BB = self.BLEVersionData {
+                
+                var newVersion: String?
+                let jsonData: KLMSubVersion = KLMTool.jsonToModel(BB.jsonData, KLMSubVersion.self) as! KLMSubVersion
+                if KLMHomeManager.currentNode.qieXiang {
+                    newVersion = jsonData.qieXiang
+                } else if KLMHomeManager.currentNode.RGBControl {
+                    newVersion = jsonData.RGBControl
+                } else if KLMHomeManager.currentNode.Dali {
+                    newVersion = jsonData.Dali
+                }
+                self.newVersion = newVersion
+            }
+            
             self.tableView.reloadData()
             self.setupNodeMessage()
             
@@ -101,23 +117,12 @@ class KLMControllerSettingViewController: UIViewController, Editable {
     
     func showUpdateView() {
         
-        guard let bleData = self.BLEVersionData,
-              let bleV = BLEVersion else {
+        guard let bleData = self.BLEVersionData, let newVersion = self.newVersion,
+              let bleV = self.BLEVersion else {
             
             return
         }
-        
-        var newVersion: String?
-        if KLMHomeManager.currentNode.qieXiang {
-            newVersion = bleData.jsonData?.qieXiang
-        } else if KLMHomeManager.currentNode.RGBControl {
-            newVersion = bleData.jsonData?.RGBControl
-        } else if KLMHomeManager.currentNode.Dali {
-            newVersion = bleData.jsonData?.Dali
-        }
-        
-        guard let newVersion = newVersion else { return }
-        
+                
         if isVersionFirst {
             isVersionFirst = false
             
@@ -247,7 +252,7 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
             navigationController?.pushViewController(vc, animated: true)
         case itemType.DFU.rawValue:///固件更新
             
-            guard let bleData = self.BLEVersionData else {
+            guard let bleData = self.BLEVersionData, let newVersion = newVersion else {
                 SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
                 return
             }
@@ -256,7 +261,7 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
                 return
             }
 
-            let value = bleV.compare(bleData.fileVersion)
+            let value = bleV.compare(newVersion)
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
                 
                 let vc = KLMTLWOTAViewController()
