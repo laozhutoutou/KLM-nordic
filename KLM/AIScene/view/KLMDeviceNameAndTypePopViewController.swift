@@ -49,10 +49,10 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     
     private func setupData() {
         
-        if let network = MeshNetworkManager.instance.meshNetwork {
-            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-            textField.text = "Light\(notConfiguredNodes.count + 1)"
-        }
+//        if let network = MeshNetworkManager.instance.meshNetwork {
+//            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+//            textField.text = "Light\(notConfiguredNodes.count + 1)"
+//        }
         
         allTypes = categoryList + grocerySubTypes
         var index = 2
@@ -79,7 +79,6 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
                 SVProgressHUD.showInfo(withStatus: LANGLOC("The name already exists"))
                 return
             }
-            
         }
         
         guard let cate = selectCategory  else {

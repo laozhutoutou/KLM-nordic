@@ -147,7 +147,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     
                     if status != 0 { ///返回错误
 
-                        var err = MessageError()
+                        let err = MessageError()
                         err.code = Int(status)
                         err.dp = dp
                         err.message = LANGLOC("Dataexception")
@@ -168,7 +168,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     }
                     
                     if value.count == 0 { ///没有字节
-                        var err = MessageError()
+                        let err = MessageError()
                         err.code = Int(status)
                         err.dp = dp
                         err.message = LANGLOC("Dataexception")
@@ -180,7 +180,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                     switch dp {
                     case .cameraPic:
                         if value.count > 4 { ///数据有误
-                            var err = MessageError()
+                            let err = MessageError()
                             err.code = 1
                             err.dp = dp
                             err.message = LANGLOC("The device do not support")
@@ -202,6 +202,8 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .motionPower,
                          .category,
                          .brightness,
+                         .fenqu,
+                         .encryption,
                          .passengerFlow:
                         
                         response.value = Int(value.bytes[0])
@@ -272,7 +274,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
         KLMMessageTime.sharedInstacnce.stopTime()
         SVProgressHUD.dismiss()
         
-        var err = MessageError()
+        let err = MessageError()
         err.message = LANGLOC("deviceNearbyTip")
         
         do {
@@ -295,7 +297,7 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
         
         ///超时后不再接收蓝牙消息
         KLMMeshNetworkManager.shared.delegate = nil
-        var err = MessageError()
+        let err = MessageError()
         err.message = LANGLOC("Connection timed out.") + LANGLOC("deviceNearbyTip")
         self.delegate?.smartNode(self, didfailure: err)
     }

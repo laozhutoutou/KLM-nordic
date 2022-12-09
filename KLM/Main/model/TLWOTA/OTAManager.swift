@@ -28,9 +28,14 @@ class OTAManager: NSObject {
     var callBackProgress: CallBackProgress?
     var sendPacketFinishBlock: SendPacketsFinishCallback?
     
+    ///第几包，从0开始发
     private var otaIndex: Int = -1
     private var offset: Int = 0
     private var writeOTAInterval: Double = 0.007
+    private var perLength: Int = 16
+    /// 最大丢包次数，超过这个次数，提示失败
+    private var maxLostPackageTime = 10
+    private var lostPackageTime = 0
     private var sendFinish = false
     private var isStartScannig = false
     
@@ -74,6 +79,7 @@ class OTAManager: NSObject {
         OTAing = true
         otaIndex = -1
         offset = 0
+        lostPackageTime = 0
         isStartScannig = false
         
         ///扫描不上提示超时
@@ -106,7 +112,7 @@ class OTAManager: NSObject {
         if centralManager.state == .poweredOn, isStartScannig == false {
             KLMLog("Start scan OTA device")
             isStartScannig = true
-            centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
+            centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
         }
     }
     
@@ -130,6 +136,7 @@ class OTAManager: NSObject {
         KLMLog("OTA fail")
         OTAing = false
         sendFinish = false
+        lostPackageTime = 0
         centralManager.stopScan()
         ///关闭连接
         blueBearer?.close()
@@ -152,6 +159,7 @@ class OTAManager: NSObject {
         KLMLog("OTA success")
         OTAing = false
         sendFinish = false
+        lostPackageTime = 0
         blueBearer?.close()
         centralManager.stopScan()
         ///打开后台自动连接
@@ -178,6 +186,19 @@ class OTAManager: NSObject {
             NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.startSendGATTOTAPackets), object: nil)
         }
     }
+    
+    ///丢包继续传
+    private func continueUpgrade(index: Int) {
+        
+        OTAing = true
+        
+        ///比如index是10，对于APP来说是第9包，调用 startSendGATTOTAPackets otaIndex会加1
+        otaIndex = index - 2
+        offset = otaIndex * perLength + perLength
+        
+        ///开始发送数据
+        startSendGATTOTAPackets()
+    }
 }
 
 extension OTAManager: CBCentralManagerDelegate {
@@ -188,7 +209,7 @@ extension OTAManager: CBCentralManagerDelegate {
         case .poweredOn:
             if OTAing , isStartScannig == false {
                 isStartScannig = true
-                centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
+                centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: [CBCentralManagerScanOptionAllowDuplicatesKey : true])
 
             }
         case .poweredOff:
@@ -280,10 +301,44 @@ extension OTAManager: BearerDelegate, BearerDataDelegate {
     ///设备回复数据
     func bearer(_ bearer: nRFMeshProvision.Bearer, didDeliverData data: Data, ofType type: nRFMeshProvision.PduType) {
         
-        if data.count >= 3, data[0] != 0 { ///设备回复错误
-            let err = BaseError.init()
-            err.message = LANGLOC("Device error,Please upgrade again")
-            otaFailAction(err)
+        if data.count == 3, data[0] != 0 { ///设备回复错误
+            
+            if data[0] == 1 { //丢包
+                
+                lostPackageTime += 1
+                
+                //停止发送
+                OTAing = false
+                DispatchQueue.main.async {
+                    NSObject.cancelPreviousPerformRequests(withTarget: self)
+                    NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.startSendGATTOTAPackets), object: nil)
+                }
+
+                ///有可能回复错误的时候，APP端不断发送，sendFinish为true
+                sendFinish = false
+                
+                if lostPackageTime >= maxLostPackageTime {
+                    
+                    KLMLog("超过最大丢包数量")
+                    let err = BaseError.init()
+                    err.message = LANGLOC("The maximum number of package lost is exceeded.")
+                    otaFailAction(err)
+                    return
+                }
+                DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                    
+                    var index: UInt16 = 0
+                    (data[1...2] as NSData).getBytes(&index, length:2)
+                    KLMLog("丢失的包数 = \(index)")
+                    self.continueUpgrade(index: Int(index))
+                }
+                                
+            } else {
+                
+                let err = BaseError.init()
+                err.message = LANGLOC("Device error,Please upgrade again") + "error code - \(data[0])"
+                otaFailAction(err)
+            }
         }
     }
 }
@@ -291,6 +346,10 @@ extension OTAManager: BearerDelegate, BearerDataDelegate {
 extension OTAManager {
     
     @objc private func startSendGATTOTAPackets() {
+        
+        if OTAing == false {
+            return
+        }
         
         let lastLength = data.count - offset
         //OTA 结束包特殊处理
@@ -307,8 +366,8 @@ extension OTAManager {
             sendReadFirmwareVersion(complete: nil)
             sendStartOTA(complete: nil)
         }
-        
-        let writeLength = (lastLength >= 16) ? 16 : lastLength
+                
+        let writeLength = (lastLength >= perLength) ? perLength : lastLength
         let writeData = data.subdata(with: NSMakeRange(offset, writeLength))
         offset += writeLength
         let progress: Float = Float(offset) * 100 / Float(data.length)

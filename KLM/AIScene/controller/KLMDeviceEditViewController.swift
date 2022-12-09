@@ -19,7 +19,7 @@ private enum itemType: Int, CaseIterable {
     case reset
 //    case sigleControl //单路控制
     case downLoadPic //下载图像
-//    case passengerFlow //客流统计
+    case passengerFlow //客流统计
     
 }
 
@@ -403,12 +403,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("View commodity position")
             cell.rightTitle = ""
             return cell
-//        case itemType.passengerFlow.rawValue:
-//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-//            cell.isShowLeftImage = false
-//            cell.leftTitle = LANGLOC("Customer Counting")
-//            cell.rightTitle = ""
-//            return cell
+        case itemType.passengerFlow.rawValue:
+            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+            cell.isShowLeftImage = false
+            cell.leftTitle = "查询信息"
+            cell.rightTitle = ""
+            return cell
         default:
             break
         }
@@ -541,11 +541,10 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             
             let vc = KLMPicDownloadViewController()
             navigationController?.pushViewController(vc, animated: true)
+        case itemType.passengerFlow.rawValue:
+            let vc = KLMCheckVersionTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
             
-//            let vc = KLMRGBTestViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-//            let vc = KLMTestCameraViewController()
-//            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

@@ -1465,6 +1465,14 @@
 		E4DE01B92893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE01BD2893B78500F69C45 /* KLMWifiSelectViewController.xib */; };
 		E4DE01BA2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE01BD2893B78500F69C45 /* KLMWifiSelectViewController.xib */; };
 		E4DE01BB2893B78500F69C45 /* KLMWifiSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE01BD2893B78500F69C45 /* KLMWifiSelectViewController.xib */; };
+		E4DE23012941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE22FF2941D40500D9234B /* KLMCheckVersionTestViewController.swift */; };
+		E4DE23022941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE22FF2941D40500D9234B /* KLMCheckVersionTestViewController.swift */; };
+		E4DE23032941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE22FF2941D40500D9234B /* KLMCheckVersionTestViewController.swift */; };
+		E4DE23042941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE22FF2941D40500D9234B /* KLMCheckVersionTestViewController.swift */; };
+		E4DE23052941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE23002941D40500D9234B /* KLMCheckVersionTestViewController.xib */; };
+		E4DE23062941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE23002941D40500D9234B /* KLMCheckVersionTestViewController.xib */; };
+		E4DE23072941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE23002941D40500D9234B /* KLMCheckVersionTestViewController.xib */; };
+		E4DE23082941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE23002941D40500D9234B /* KLMCheckVersionTestViewController.xib */; };
 		E4DE8B902897A45800D28D17 /* KLMTestAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE8B8F2897A45800D28D17 /* KLMTestAllTableViewController.swift */; };
 		E4DE8B912897A45800D28D17 /* KLMTestAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE8B8F2897A45800D28D17 /* KLMTestAllTableViewController.swift */; };
 		E4DE8B922897A45800D28D17 /* KLMTestAllTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE8B8F2897A45800D28D17 /* KLMTestAllTableViewController.swift */; };
@@ -2018,6 +2026,8 @@
 		E4DE01B52893846A00F69C45 /* KLMWiFiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMWiFiModel.swift; sourceTree = "<group>"; };
 		E4DE01BC2893B78500F69C45 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMWifiSelectViewController.xib; sourceTree = "<group>"; };
 		E4DE01BF2893B78800F69C45 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMWifiSelectViewController.strings"; sourceTree = "<group>"; };
+		E4DE22FF2941D40500D9234B /* KLMCheckVersionTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCheckVersionTestViewController.swift; sourceTree = "<group>"; };
+		E4DE23002941D40500D9234B /* KLMCheckVersionTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMCheckVersionTestViewController.xib; sourceTree = "<group>"; };
 		E4DE8B8F2897A45800D28D17 /* KLMTestAllTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestAllTableViewController.swift; sourceTree = "<group>"; };
 		E4DE8B9B2897AE1F00D28D17 /* KLMSelectNodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSelectNodesViewController.swift; sourceTree = "<group>"; };
 		E4DE8B9C2897AE1F00D28D17 /* KLMSelectNodesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMSelectNodesViewController.xib; sourceTree = "<group>"; };
@@ -2183,6 +2193,8 @@
 				E4C64AF828E2AAC9001D7A0C /* KLMTestBiaodingViewController.xib */,
 				E4C5819A28E44D7E0066E753 /* KLMTestViewPostionViewController.swift */,
 				E4C5819B28E44D7E0066E753 /* KLMTestViewPostionViewController.xib */,
+				E4DE22FF2941D40500D9234B /* KLMCheckVersionTestViewController.swift */,
+				E4DE23002941D40500D9234B /* KLMCheckVersionTestViewController.xib */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -3344,6 +3356,7 @@
 				E4D79CC42914DF1F00B92082 /* spectrum_38.png in Resources */,
 				E4CE8927291616620040B878 /* sexi_4.wav in Resources */,
 				E4DA5AD428F3CDD000B0F78F /* KLMTLWOTAViewController.xib in Resources */,
+				E4DE23052941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */,
 				E4CE8957291633930040B878 /* hudong_6.wav in Resources */,
 				E4D79D002914DF1F00B92082 /* spectrum_20.png in Resources */,
 				E4D611D528B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
@@ -3556,6 +3569,7 @@
 				E4CE892A291616620040B878 /* sexi_4.wav in Resources */,
 				E4EFF44D292633ED00470BA5 /* KLMAINameListCell.xib in Resources */,
 				E4A0F91B2907E01B00150B0F /* KLMCountryCodeViewController.xib in Resources */,
+				E4DE23082941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */,
 				E4CE895A291633930040B878 /* hudong_6.wav in Resources */,
 				E4D79D032914DF1F00B92082 /* spectrum_20.png in Resources */,
 				E4A0F91C2907E01B00150B0F /* KLMTLWOTAViewController.xib in Resources */,
@@ -3614,6 +3628,7 @@
 				E4DE8BA92897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
 				E4CE8954291633930040B878 /* hudongNocolor_3.wav in Resources */,
 				E4C57EC028055B1F00E7AB54 /* KLMMotionViewController.xib in Resources */,
+				E4DE23062941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */,
 				E4A0F7E82907BC8700150B0F /* 1_en.wav in Resources */,
 				E4D79CC92914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F7CA2907BC8700150B0F /* 4_en.wav in Resources */,
@@ -3810,6 +3825,7 @@
 				E4DE8BAA2897B29E00D28D17 /* KLMCheckImagesViewController.xib in Resources */,
 				E4CE8955291633930040B878 /* hudongNocolor_3.wav in Resources */,
 				E4C57F9728055C7C00E7AB54 /* KLMMotionViewController.xib in Resources */,
+				E4DE23072941D40500D9234B /* KLMCheckVersionTestViewController.xib in Resources */,
 				E4A0F7E92907BC8700150B0F /* 1_en.wav in Resources */,
 				E4D79CCA2914DF1F00B92082 /* spectrum_10.png in Resources */,
 				E4A0F7CB2907BC8700150B0F /* 4_en.wav in Resources */,
@@ -4254,6 +4270,7 @@
 				E492AD2F267C83C50028AF3E /* ChineseToPinyinResource.m in Sources */,
 				E460BF7328A0EDA30045F2B6 /* KLMCountryCodeViewController.swift in Sources */,
 				E48B532D266881DC0006CDA7 /* extension.swift in Sources */,
+				E4DE23012941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */,
 				E4E2843A269EFF39006C120E /* GenericOnOffServerDelegate.swift in Sources */,
 				E492AD2B267C83C50028AF3E /* PinyinHelper.m in Sources */,
 				E4377E432685AB7600F8DF0C /* KLMUpdateManager.swift in Sources */,
@@ -4450,6 +4467,7 @@
 				E4A0F8452907E01B00150B0F /* ChineseToPinyinResource.m in Sources */,
 				E4A0F8462907E01B00150B0F /* KLMCountryCodeViewController.swift in Sources */,
 				E4A0F8472907E01B00150B0F /* extension.swift in Sources */,
+				E4DE23042941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */,
 				E4A0F8482907E01B00150B0F /* GenericOnOffServerDelegate.swift in Sources */,
 				E4A0F8492907E01B00150B0F /* PinyinHelper.m in Sources */,
 				E4A0F84A2907E01B00150B0F /* KLMUpdateManager.swift in Sources */,
@@ -4646,6 +4664,7 @@
 				E4C57E6228055B1F00E7AB54 /* ChineseToPinyinResource.m in Sources */,
 				E460BF7428A0EDA30045F2B6 /* KLMCountryCodeViewController.swift in Sources */,
 				E4C57E6328055B1F00E7AB54 /* extension.swift in Sources */,
+				E4DE23022941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */,
 				E4C57E6428055B1F00E7AB54 /* GenericOnOffServerDelegate.swift in Sources */,
 				E4C57E6528055B1F00E7AB54 /* PinyinHelper.m in Sources */,
 				E4C57E6628055B1F00E7AB54 /* KLMUpdateManager.swift in Sources */,
@@ -4842,6 +4861,7 @@
 				E4C57F3928055C7C00E7AB54 /* ChineseToPinyinResource.m in Sources */,
 				E460BF7528A0EDA30045F2B6 /* KLMCountryCodeViewController.swift in Sources */,
 				E4C57F3A28055C7C00E7AB54 /* extension.swift in Sources */,
+				E4DE23032941D40500D9234B /* KLMCheckVersionTestViewController.swift in Sources */,
 				E4C57F3B28055C7C00E7AB54 /* GenericOnOffServerDelegate.swift in Sources */,
 				E4C57F3C28055C7C00E7AB54 /* PinyinHelper.m in Sources */,
 				E4C57F3D28055C7C00E7AB54 /* KLMUpdateManager.swift in Sources */,

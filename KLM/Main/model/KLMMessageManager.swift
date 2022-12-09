@@ -140,6 +140,8 @@ enum DPType: Int {
     case factoryTestResule = 20
     case hardwareInfo = 21
     case biaoding = 22 ///标定
+    case fenqu = 0x17 ///分区
+    case encryption = 0x18 ///加密
     case controller = 30 ///控制器
     case audio = 88 //语音播报
     case checkVersion = 99

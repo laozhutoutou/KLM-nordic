@@ -4,7 +4,6 @@ import nRFMeshProvision
 
 ///OTA 特征
 let kOTA_CharacteristicsID: String = "00010203-0405-0607-0809-0A0B0C0D2B12"
-//let kOTA_CharacteristicsID: String = "2ADE"
 
 class BlueBaseBearer: NSObject, Bearer {
     
@@ -123,7 +122,7 @@ extension BlueBaseBearer: CBCentralManagerDelegate, CBPeripheralDelegate {
         guard characteristic == OTACharacteristic, let data = characteristic.value else {
             return
         }
-        KLMLog("<- 0x\(data.hex)")
+        KLMLog("<- 设备回复 = \(data.hex)")
         dataDelegate?.bearer(self, didDeliverData: data, ofType: .networkPdu)
     }
     
