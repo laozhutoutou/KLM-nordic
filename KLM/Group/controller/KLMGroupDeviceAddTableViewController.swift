@@ -134,7 +134,7 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
             tableView.reloadData()
         } else {
             
-            if selectNodes.count >= 3 {
+            if selectNodes.count >= 10 {
                 
                 SVProgressHUD.showInfo(withStatus: String.init(format: LANGLOC("Select at most %d lights"), selectNodes.count))
                 return

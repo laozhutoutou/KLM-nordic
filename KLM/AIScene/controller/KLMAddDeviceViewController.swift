@@ -33,6 +33,8 @@ class KLMAddDeviceViewController: UIViewController {
     ///当前秒
     var currentTime: Int = 0
     
+    var addType: DeviceType!
+    
     deinit {
         
         KLMSIGMeshManager.sharedInstacnce.stopScanning()
@@ -232,14 +234,33 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
     func sigMeshManager(_ manager: KLMSIGMeshManager, didScanedDevice device: DiscoveredPeripheral) {
         
         if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == device.peripheral }) {
-//            discoveredPeripherals[index] = device
-//            tableView.reloadData()
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? KLMDeviceAddCell {
+                cell.updateRssi(device.rssi)
+            }
         } else {
-            foundDevice()
-            discoveredPeripherals.append(device)
-            tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
+            
+            switch device.iconNum {
+            case "01",
+                 "02",
+                 "03":
+                if addType == .deviceTypeController {
+                    discoveredPeripherals.append(device)
+                    if discoveredPeripherals.count > 0 {
+                        foundDevice()
+                    }
+                    tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
+                }
+            
+            default:
+                if addType == .deviceTypeLight {
+                    discoveredPeripherals.append(device)
+                    if discoveredPeripherals.count > 0 {
+                        foundDevice()
+                    }
+                    tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
+                }
+            }
         }
-        
     }
     
     func sigMeshManagerDidConnetctUnprovisionDevice(_ manager: KLMSIGMeshManager) {

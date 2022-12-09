@@ -57,6 +57,7 @@ class KLMSIGMeshManager: NSObject {
     var discoveredPeripheral: DiscoveredPeripheral!
     private var provisioningManager: ProvisioningManager!
     var gattBearer: PBGattBearer?
+    var bearer1828: GattBearer?
     var provisonManager :KLMProvisionManager!
     
     var currentNode: Node!
@@ -169,6 +170,11 @@ extension KLMSIGMeshManager {
             self.gattBearer?.delegate = nil
             self.gattBearer?.close()
             
+            self.bearer1828?.delegate = nil
+            self.bearer1828?.close()
+            
+            stopScanning()
+            
             let err = MessageError()
             err.message = LANGLOC("Add new device timed out")
             self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
@@ -207,6 +213,33 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
                     let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue, type)
                     self.delegate?.sigMeshManager(self, didScanedDevice: discoveredPeripheral)
                 }
+            }
+        } else {///1828
+            
+            if let networkId = advertisementData.networkId {
+                guard MeshNetworkManager.instance.meshNetwork!.matches(networkId: networkId) else {
+                    // A Node from another mesh network.
+                    return
+                }
+            } else {
+                // Is it a Node Identity beacon?
+                guard let nodeIdentity = advertisementData.nodeIdentity,
+                      MeshNetworkManager.instance.meshNetwork!.matches(hash: nodeIdentity.hash, random: nodeIdentity.random) else {
+                    // A Node from another mesh network.
+                    return
+                }
+            }
+            
+            let bearer = GattBearer(target: peripheral)
+            if bearer.identifier == self.discoveredPeripheral.peripheral.identifier { ///找到添加的设备
+                
+                ///停止扫描
+                stopScanning()
+                
+                bearer.delegate = self
+                bearer.open()
+                bearer1828 = bearer
+
             }
         }
     }
@@ -270,15 +303,27 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
     
     func provisionManagerNodeAddSuccess(_ manager: KLMProvisionManager) {
         
-        SVProgressHUD.show(withStatus: "composition")
-        
-        //composition
-        if let network = MeshNetworkManager.instance.meshNetwork {
+        ///如果不是直连设备，切换当前为直连设备然后再继续
+        if let bearer = MeshNetworkManager.bearer.proxies.first{
+            
+            ///当前配网设备是直连设备
+            if bearer.identifier == self.discoveredPeripheral.peripheral.identifier {
+                
+                SVProgressHUD.show(withStatus: "composition")
+                //composition
+                if let network = MeshNetworkManager.instance.meshNetwork {
 
-            let node = network.node(for: self.discoveredPeripheral.device)!
-            if !node.isCompositionDataReceived {
-                KLMLog("start composition")
-                self.getCompositionData(node: node)
+                    let node = network.node(for: self.discoveredPeripheral.device)!
+                    if !node.isCompositionDataReceived {
+                        KLMLog("start composition")
+                        self.getCompositionData(node: node)
+                    }
+                }
+                
+            } else { ///不是直连设备，要切换直连
+                
+                SVProgressHUD.show(withStatus: "Reconnecting")
+                centralManager.scanForPeripherals(withServices: [MeshProxyService.uuid], options: nil)
             }
         }
     }
@@ -287,6 +332,26 @@ extension KLMSIGMeshManager: KLMProvisionManagerDelegate {
 extension KLMSIGMeshManager: BearerDelegate {
     
     func bearerDidOpen(_ bearer: Bearer) {
+        
+        if let bb: GattBearer = bearer as? GattBearer, bb == bearer1828 {
+            
+            MeshNetworkManager.bearer.isConnectionModeAutomatic = false
+            MeshNetworkManager.bearer.use(proxy: bb)
+            MeshNetworkManager.bearer.isConnectionModeAutomatic = true
+            ///开始发数据
+            //composition
+            SVProgressHUD.show(withStatus: "composition")
+            
+            if let network = MeshNetworkManager.instance.meshNetwork {
+
+                let node = network.node(for: self.discoveredPeripheral.device)!
+                if !node.isCompositionDataReceived {
+                    KLMLog("start composition")
+                    self.getCompositionData(node: node)
+                }
+            }
+            return
+        }
         
         ///连接成功停止计时
         stopTime()
@@ -364,7 +429,7 @@ extension KLMSIGMeshManager: MeshNetworkDelegate {
         stopTime()
         
         SVProgressHUD.dismiss()
-        var err = MessageError()
+        let err = MessageError()
         err.message = error.localizedDescription
         self.delegate?.sigMeshManager(self, didFailToActiveDevice: err)
     }

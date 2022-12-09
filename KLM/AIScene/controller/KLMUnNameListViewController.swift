@@ -9,7 +9,7 @@ import UIKit
 import nRFMeshProvision
 import SVProgressHUD
 
-private enum DeviceType {
+enum DeviceType {
     case deviceTypeLight
     case deviceTypeController
 }
@@ -318,6 +318,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         }
 
         let vc = KLMAddDeviceViewController()
+        vc.addType = deviceType
         navigationController?.pushViewController(vc, animated: true)
     }
     

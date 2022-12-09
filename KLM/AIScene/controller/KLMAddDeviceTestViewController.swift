@@ -238,8 +238,8 @@ extension KLMAddDeviceTestViewController: UITableViewDelegate, UITableViewDataSo
             selectedDevice.remove(at: index)
         } else {
             
-            if selectedDevice.count > 20 {
-                SVProgressHUD.showInfo(withStatus: "最多只能选择20个")
+            if selectedDevice.count > 10 {
+                SVProgressHUD.showInfo(withStatus: "最多只能选择10个")
                 return
             }
             selectedDevice.append(discoveredPeripheral)

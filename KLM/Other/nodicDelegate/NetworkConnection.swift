@@ -59,6 +59,7 @@ class NetworkConnection: NSObject, Bearer {
     var isOpen: Bool = false
     
     weak var delegate: BearerDelegate?
+//    weak var searchDeviceDelegate: BearerDelegate?
     weak var dataDelegate: BearerDataDelegate?
     weak var logger: LoggerDelegate? {
         didSet {
@@ -225,6 +226,10 @@ extension NetworkConnection: CBCentralManagerDelegate {
         if let delegate = delegate as? GattDelegate {
             delegate.bearerDidDiscover(bearer)
         }
+        
+//        if let delegate = searchDeviceDelegate as? GattDelegate {
+//            delegate.bearerDidDiscover(bearer)
+//        }
         
         ///扫描到设备
         guard !proxies.contains(where: { $0.identifier == peripheral.identifier }) else {

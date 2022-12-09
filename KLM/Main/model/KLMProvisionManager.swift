@@ -95,7 +95,7 @@ extension KLMProvisionManager: ProvisioningDelegate {
             
             KLMLog("provision success")
             
-            //关闭和未配网设备的连接
+            //关闭和未配网设备的连接--这个时候开始连接1828设备
             self.bearer.close()
         
         case let .fail(error):

@@ -58,7 +58,7 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
         }
     }
     
-    private func updateRssi(_ rssi: Int) {
+    func updateRssi(_ rssi: Int) {
         switch rssi {
         case -128:
             rssiIcon.image = nil
@@ -76,7 +76,7 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        rssiIcon.isHidden = true
+//        rssiIcon.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
