@@ -40,8 +40,9 @@ class KLMAddDeviceViewController: UIViewController {
         KLMSIGMeshManager.sharedInstacnce.stopScanning()
     }
     
-    private var discoveredPeripherals: [DiscoveredPeripheral] = []
-    private var selectedDevice: UnprovisionedDevice?
+//    private var discoveredPeripherals: [[DiscoveredPeripheral]] = []
+    private var highRssiList: [DiscoveredPeripheral] = []
+    private var lowRssiList: [DiscoveredPeripheral] = []
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -95,6 +96,9 @@ class KLMAddDeviceViewController: UIViewController {
         }
         self.tableView.mj_header = header
         
+//        discoveredPeripherals = [highRssiList, lowRssiList]
+//        discoveredPeripherals.append(highRssiList)
+//        discoveredPeripherals.append(lowRssiList)
     }
     
     //重新搜索
@@ -135,7 +139,9 @@ class KLMAddDeviceViewController: UIViewController {
         //开始计时
         startTime()
         
-        discoveredPeripherals.removeAll()
+        highRssiList.removeAll()
+        lowRssiList.removeAll()
+        
         self.tableView.reloadData()
 
         contentView.isHidden = true
@@ -185,7 +191,7 @@ class KLMAddDeviceViewController: UIViewController {
             KLMLog("时间超时")
             stopTime()
             
-            if self.discoveredPeripherals.count == 0 { //没有设备
+            if highRssiList.count == 0 && lowRssiList.count == 0 { //没有设备
 
                 self.noFoundDevice()
             }
@@ -195,10 +201,24 @@ class KLMAddDeviceViewController: UIViewController {
 
 extension KLMAddDeviceViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         
-        return discoveredPeripherals.count
-
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return highRssiList.count
+        }
+        return lowRssiList.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -208,9 +228,14 @@ extension KLMAddDeviceViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let discoveredPeripheral = discoveredPeripherals[indexPath.row]
         let cell = KLMDeviceAddCell.cellWithTableView(tableView: tableView)
-        cell.model = discoveredPeripheral
+        if indexPath.section == 0 {
+            let model = highRssiList[indexPath.row]
+            cell.model = model
+        } else {
+            let model = lowRssiList[indexPath.row]
+            cell.model = model
+        }
         cell.connectBlock = {[weak self] M in
 
             guard let self = self else { return }
@@ -233,31 +258,45 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
     
     func sigMeshManager(_ manager: KLMSIGMeshManager, didScanedDevice device: DiscoveredPeripheral) {
         
-        if let index = discoveredPeripherals.firstIndex(where: { $0.peripheral == device.peripheral }) {
+        if let index = highRssiList.firstIndex(where: { $0.peripheral == device.peripheral }) {
             if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? KLMDeviceAddCell {
                 cell.updateRssi(device.rssi)
             }
-        } else {
-            
-            switch device.iconNum {
-            case "01",
-                 "02",
-                 "03":
-                if addType == .deviceTypeController {
-                    discoveredPeripherals.append(device)
-                    if discoveredPeripherals.count > 0 {
-                        foundDevice()
-                    }
-                    tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
+            return
+        }
+        
+        if let index = lowRssiList.firstIndex(where: { $0.peripheral == device.peripheral }) {
+            if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 1)) as? KLMDeviceAddCell {
+                cell.updateRssi(device.rssi)
+            }
+            return
+        }
+        switch device.iconNum {
+        case "01",
+             "02",
+             "03":
+            if addType == .deviceTypeController {
+                foundDevice()
+                if device.rssi > -70 {
+                    highRssiList.append(device)
+                    tableView.insertRows(at: [IndexPath(row: highRssiList.count - 1, section: 0)], with: .fade)
+                } else {
+                    lowRssiList.append(device)
+                    tableView.insertRows(at: [IndexPath(row: lowRssiList.count - 1, section: 1)], with: .fade)
                 }
-            
-            default:
-                if addType == .deviceTypeLight {
-                    discoveredPeripherals.append(device)
-                    if discoveredPeripherals.count > 0 {
-                        foundDevice()
-                    }
-                    tableView.insertRows(at: [IndexPath(row: discoveredPeripherals.count - 1, section: 0)], with: .fade)
+            }
+        
+        default:
+            if addType == .deviceTypeLight {
+                foundDevice()
+                if device.rssi > -70 {
+                    highRssiList.append(device)
+                    tableView.insertRows(at: [IndexPath(row: highRssiList.count - 1, section: 0)], with: .fade)
+                  
+                } else {
+                    lowRssiList.append(device)
+                    tableView.insertRows(at: [IndexPath(row: lowRssiList.count - 1, section: 1)], with: .fade)
+                    
                 }
             }
         }

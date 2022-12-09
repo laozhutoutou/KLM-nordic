@@ -76,7 +76,7 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        rssiIcon.isHidden = true
+        rssiIcon.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
