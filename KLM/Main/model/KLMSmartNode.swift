@@ -345,19 +345,29 @@ extension KLMSmartNode {
     }
 }
 
+enum nodeDeviceType: String {
+    case camera = "DD"
+    case noCamera = "00"
+    case qieXiang = "01"
+    case RGBControl = "02"
+    case Dali = "03"
+}
+
 extension Node {
     
     private static var Node_KEY = true
     
     var icon: String {
-        if qieXiang {
+        switch deviceType {
+        case .qieXiang:
             return "img_RCL"
-        } else if RGBControl {
+        case .RGBControl:
             return "img_RGBW"
-        } else if Dali {
+        case .Dali:
             return "img_DA"
+        default:
+            return "img_scene"
         }
-        return "img_scene"
     }
     
     /// 节点的名称
@@ -373,67 +383,35 @@ extension Node {
         return substring
     }
     
-    ///有摄像头
-    var isCamera: Bool {
+    var deviceType: nodeDeviceType {
         let index = uuid.uuidString[2,2]
-        if index == "DD" {
-            return true
-        }
-        return false
-    }
-    
-    ///没有摄像头
-    var noCamera: Bool {
-        let index = uuid.uuidString[2,2]
-        if index == "00" {
-            return true
-        }
-        return false
-    }
-    
-    ///切相控制器RCL
-    var qieXiang: Bool {
-        let index = uuid.uuidString[2,2]
-        if index == "01" {
-            return true
-        }
-        return false
-    }
-    
-    ///rgb灯带控制器
-    var RGBControl: Bool {
-        let index = uuid.uuidString[2,2]
-        if index == "02" {
-            return true
-        }
-        return false
-    }
-    
-    ///Dali控制器
-    var Dali: Bool {
-        let index = uuid.uuidString[2,2]
-        if index == "03" {
-            return true
-        }
-        return false
+        let type = nodeDeviceType.init(rawValue: index) ?? .camera
+        return type
     }
     
     ///是控制器
     var isController: Bool {
         
-        if qieXiang || RGBControl || Dali {
+        switch deviceType {
+        case .qieXiang,
+                .RGBControl,
+                .Dali:
             return true
+        default:
+            return false
         }
-        return false
     }
     
     ///是轨道灯
     var isTracklight: Bool {
         
-        if noCamera || isCamera {
+        switch deviceType {
+        case .camera,
+                .noCamera:
             return true
+        default:
+            return false
         }
-        return false
     }
     
     ///是否在线

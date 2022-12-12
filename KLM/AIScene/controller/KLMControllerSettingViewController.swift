@@ -90,11 +90,11 @@ class KLMControllerSettingViewController: UIViewController, Editable {
                 
                 var newVersion: String?
                 let jsonData: KLMSubVersion = KLMTool.jsonToModel(BB.jsonData, KLMSubVersion.self) as! KLMSubVersion
-                if KLMHomeManager.currentNode.qieXiang {
+                if KLMHomeManager.currentNode.deviceType == .qieXiang {
                     newVersion = jsonData.qieXiang
-                } else if KLMHomeManager.currentNode.RGBControl {
+                } else if KLMHomeManager.currentNode.deviceType == .RGBControl {
                     newVersion = jsonData.RGBControl
-                } else if KLMHomeManager.currentNode.Dali {
+                } else if KLMHomeManager.currentNode.deviceType == .Dali {
                     newVersion = jsonData.Dali
                 }
                 self.newVersion = newVersion

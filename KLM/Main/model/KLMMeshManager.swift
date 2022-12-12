@@ -150,7 +150,9 @@ extension KLMMeshManager: CBCentralManagerDelegate {
             if unprovisionedDevice.uuid.uuidString.count >= 2 {
                 //以DD开头的设备是我们的
                 let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
-                let type = unprovisionedDevice.uuid.uuidString[2,2]
+                let index = unprovisionedDevice.uuid.uuidString[2,2]
+                let type = nodeDeviceType.init(rawValue: index) ?? .camera
+                
                 if id == "DD" {
                     
                     //取消信号限制

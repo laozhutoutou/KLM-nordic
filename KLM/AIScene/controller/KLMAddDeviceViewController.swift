@@ -13,7 +13,7 @@ typealias DiscoveredPeripheral = (
     device: UnprovisionedDevice,
     peripheral: CBPeripheral,
     rssi: Int,
-    iconNum: String
+    deviceType: nodeDeviceType
 )
 
 class KLMAddDeviceViewController: UIViewController {
@@ -271,10 +271,10 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
             }
             return
         }
-        switch device.iconNum {
-        case "01",
-             "02",
-             "03":
+        switch device.deviceType {
+        case .qieXiang,
+                .RGBControl,
+                .Dali:
             if addType == .deviceTypeController {
                 foundDevice()
                 if device.rssi > -70 {
@@ -285,14 +285,14 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
                     tableView.insertRows(at: [IndexPath(row: lowRssiList.count - 1, section: 1)], with: .fade)
                 }
             }
-        
+            
         default:
             if addType == .deviceTypeLight {
                 foundDevice()
                 if device.rssi > -70 {
                     highRssiList.append(device)
                     tableView.insertRows(at: [IndexPath(row: highRssiList.count - 1, section: 0)], with: .fade)
-                  
+                    
                 } else {
                     lowRssiList.append(device)
                     tableView.insertRows(at: [IndexPath(row: lowRssiList.count - 1, section: 1)], with: .fade)
@@ -317,14 +317,24 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         let vc = KLMDeviceNameAndTypePopViewController()
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
+        if let network = MeshNetworkManager.instance.meshNetwork {
+            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+            let luminaires = notConfiguredNodes.filter({$0.isTracklight})
+            let controllers = notConfiguredNodes.filter({$0.isController})
+            if addType == .deviceTypeLight {
+                vc.name = "Luminaire\(luminaires.count + 1)"
+            } else {
+                vc.name = "Controller\(luminaires.count + 1)"
+            }
+        }
         vc.nameAndTypeBlock = { [weak self] name, type in
-
+            
             guard let self = self else { return }
             self.deviceName = name
             self.category = type
             //开始配网
             KLMSIGMeshManager.sharedInstacnce.startActive()
-
+            
         }
         vc.cancelBlock = {
             

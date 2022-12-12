@@ -130,7 +130,7 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
                 if let network = MeshNetworkManager.instance.meshNetwork {
                     
                     let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                    if notConfiguredNodes.contains(where: {$0.isCamera}) == false {
+                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
                         SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                         return
                     }

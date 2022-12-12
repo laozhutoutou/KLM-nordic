@@ -141,7 +141,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     private func checkVerison() {
         
-        if KLMHomeManager.currentNode.noCamera { ///没有摄像头
+        if KLMHomeManager.currentNode.deviceType == .noCamera { ///没有摄像头
             KLMService.checkTLWVersion { response in
                 
                 self.BLEVersionData = response as? KLMVersion.KLMVersionData
@@ -180,7 +180,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 if bleData.isForceUpdate {
                     self.isVersionFirst = true
                 }
-                if KLMHomeManager.currentNode.noCamera {
+                if KLMHomeManager.currentNode.deviceType == .noCamera {
                     
                     let vc = KLMTLWOTAViewController()
                     vc.BLEVersionData = bleData
@@ -197,7 +197,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 } else { //普通升级
                     //弹框
                     if self.isFromAddDevice {
-                        if KLMHomeManager.currentNode.noCamera == true {
+                        if KLMHomeManager.currentNode.deviceType == .noCamera {
                             return
                         }
                         let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
@@ -215,7 +215,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
             } noNeedUpdate: { //不需要升级
                 
                 if self.isFromAddDevice {
-                    if KLMHomeManager.currentNode.noCamera == true {
+                    if KLMHomeManager.currentNode.deviceType == .noCamera {
                         return
                     }
                     let vc = UIAlertController.init(title: LANGLOC("View Commodity position right now？"), message: LANGLOC("To obtain the best lighting, please direct the center of light beam at commodity. View Commodity position righ now, or view it later."), preferredStyle: .alert)
@@ -236,7 +236,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
         
         KLMLog("连续点击")
         ///没有摄像头没有此功能
-        if KLMHomeManager.currentNode.noCamera == true {
+        if KLMHomeManager.currentNode.deviceType == .noCamera {
             
             return
         }
@@ -315,7 +315,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        if KLMHomeManager.currentNode.noCamera == true {
+        if KLMHomeManager.currentNode.deviceType == .noCamera {
             switch indexPath.row {
             case itemType.CMOS.rawValue,
                 itemType.motion.rawValue,
@@ -510,7 +510,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let value = bleV.compare(bleData.fileVersion)
             if value == .orderedAscending {//左操作数小于右操作数，需要升级
                 
-                if KLMHomeManager.currentNode.noCamera {
+                if KLMHomeManager.currentNode.deviceType == .noCamera {
                     
                     let vc = KLMTLWOTAViewController()
                     vc.BLEVersionData = bleData

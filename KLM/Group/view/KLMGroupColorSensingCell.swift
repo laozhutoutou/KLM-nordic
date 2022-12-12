@@ -64,7 +64,7 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                 if let network = MeshNetworkManager.instance.meshNetwork {
                     
                     let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                    if notConfiguredNodes.contains(where: {$0.isCamera}) == false {
+                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
                         SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                         return
                     }
@@ -95,7 +95,7 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                     let node = KLMHomeManager.getNodeFromModel(model: model)!
                     nodeLists.append(node)
                 }
-                if nodeLists.contains(where: {$0.isCamera}) == false {
+                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
                     SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                     return
                 }
@@ -125,7 +125,7 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                 if let network = MeshNetworkManager.instance.meshNetwork {
                     
                     let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                    if notConfiguredNodes.contains(where: {$0.isCamera}) == false {
+                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
                         SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                         return
                     }
@@ -157,7 +157,7 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                     let node = KLMHomeManager.getNodeFromModel(model: model)!
                     nodeLists.append(node)
                 }
-                if nodeLists.contains(where: {$0.isCamera}) == false {
+                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
                     SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                     return
                 }

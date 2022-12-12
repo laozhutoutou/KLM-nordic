@@ -24,12 +24,12 @@ class KLMDeviceAddCell: UITableViewCell, Nibloadable {
             self.nameLab.text = model.device.name ?? "Unknown Device"
             UUIDLab.text = model.device.uuid.uuidString
             var icon = "img_scene"
-            switch model.iconNum {
-            case "01":
+            switch model.deviceType {
+            case .qieXiang:
                 icon = "img_RCL"
-            case "02":
+            case .RGBControl:
                 icon = "img_RGBW"
-            case "03":
+            case .Dali:
                 icon = "img_DA"
             default:
                 break

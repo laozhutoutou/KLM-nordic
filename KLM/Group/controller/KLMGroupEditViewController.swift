@@ -199,7 +199,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                     let node = KLMHomeManager.getNodeFromModel(model: model)!
                     nodeLists.append(node)
                 }
-                if nodeLists.contains(where: {$0.isCamera}) == false {
+                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
                     SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                     return
                 }
@@ -229,7 +229,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                     let node = KLMHomeManager.getNodeFromModel(model: model)!
                     nodeLists.append(node)
                 }
-                if nodeLists.contains(where: {$0.isCamera}) == false {
+                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
                     SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
                     return
                 }

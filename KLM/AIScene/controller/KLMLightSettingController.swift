@@ -75,7 +75,7 @@ class KLMLightSettingController: UITableViewController {
     
     private func checkNetworkVersion() {
         
-        if KLMHomeManager.currentNode.noCamera { ///没有摄像头
+        if KLMHomeManager.currentNode.deviceType == .noCamera { ///没有摄像头
             KLMService.checkTLWVersion { response in
                 
                 self.BLEVersionData = response as? KLMVersion.KLMVersionData
@@ -109,7 +109,7 @@ class KLMLightSettingController: UITableViewController {
             
             KLMTool.checkBluetoothVersion(newestVersion: bleData.fileVersion, bleversion: bleV, EnMessage: bleData.englishMessage, CNMessage: bleData.updateMessage, viewController: self) {
                 
-                if KLMHomeManager.currentNode.noCamera {
+                if KLMHomeManager.currentNode.deviceType == .noCamera {
                     
                     let vc = KLMTLWOTAViewController()
                     vc.isPresent = true

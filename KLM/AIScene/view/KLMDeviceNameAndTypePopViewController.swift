@@ -16,6 +16,9 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     @IBOutlet weak var categoryLab: UILabel!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var categoryView: UIView!
+    
+    //设备名称
+    var name: String?
         
     var nameAndTypeBlock: NameAndTypeBlock?
     var cancelBlock: (() -> Void)?
@@ -48,11 +51,8 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     }
     
     private func setupData() {
-        
-//        if let network = MeshNetworkManager.instance.meshNetwork {
-//            let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-//            textField.text = "Light\(notConfiguredNodes.count + 1)"
-//        }
+                
+        textField.text = name
         
         allTypes = categoryList + grocerySubTypes
         var index = 2

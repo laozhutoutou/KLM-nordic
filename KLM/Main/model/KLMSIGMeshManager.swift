@@ -207,7 +207,8 @@ extension KLMSIGMeshManager: CBCentralManagerDelegate {
             if unprovisionedDevice.uuid.uuidString.count >= 2 {
                 //以DD开头的设备是我们的
                 let id = unprovisionedDevice.uuid.uuidString.substring(to: 2)
-                let type = unprovisionedDevice.uuid.uuidString[2,2]
+                let index = unprovisionedDevice.uuid.uuidString[2,2]
+                let type = nodeDeviceType.init(rawValue: index) ?? .camera
                 if id == "DD" {
 
                     let discoveredPeripheral: DiscoveredPeripheral = (unprovisionedDevice, peripheral, RSSI.intValue, type)
