@@ -8,10 +8,12 @@
 import UIKit
 
 class KLMNavigationViewController: UINavigationController, UINavigationControllerDelegate, UIGestureRecognizerDelegate {
-
+    
+    private var pushing: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         delegate = self
         
         self.interactivePopGestureRecognizer?.delegate = self
@@ -34,13 +36,21 @@ class KLMNavigationViewController: UINavigationController, UINavigationControlle
         }
         //不透明
         bar.isTranslucent = false
-
+        
         let barTitleDic = [NSAttributedString.Key.foregroundColor:UIColor.black,
                            NSAttributedString.Key.font:UIFont.systemFont(ofSize: 17)]
         bar.titleTextAttributes = barTitleDic
     }
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        
+        if pushing {
+            KLMLog("被拦截了")
+            return
+        } else {
+            pushing = true
+        }
+        
         //允许
         self.interactivePopGestureRecognizer?.isEnabled = true
         
@@ -60,6 +70,11 @@ class KLMNavigationViewController: UINavigationController, UINavigationControlle
             popController?.hidesBottomBarWhenPushed = false
         }
         return super.popToRootViewController(animated: animated)
+    }
+    
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        
+        pushing = false
     }
     
     @objc func pushBack() {
