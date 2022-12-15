@@ -1566,7 +1566,6 @@
 		01E65B96F9D57F39E4065E778FFC64F3 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		02084F3FF4C390607C2407E362184AD3 /* Algorithm.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Algorithm.swift; path = nRFMeshProvision/Classes/Provisioning/Algorithm.swift; sourceTree = "<group>"; };
 		0263AA70503D3368200B333B0CCE235E /* HexColorTransform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HexColorTransform.swift; path = Source/HexColorTransform.swift; sourceTree = "<group>"; };
-		02ADDAF1E3486A13324BFB30B61D92C3 /* Bugly.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Bugly.release.xcconfig; sourceTree = "<group>"; };
 		02F423848B0663512C3321A5EA4A5BD9 /* AEAD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AEAD.swift; path = Sources/CryptoSwift/AEAD/AEAD.swift; sourceTree = "<group>"; };
 		02F51001DA54FBDCEB67C0C24FFA082B /* BatchedCollection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BatchedCollection.swift; path = Sources/CryptoSwift/BatchedCollection.swift; sourceTree = "<group>"; };
 		0303BDD278FECD9776A248D045B0D2F3 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFHTTPSessionManager.h; path = AFNetworking/AFHTTPSessionManager.h; sourceTree = "<group>"; };
@@ -1824,7 +1823,7 @@
 		3B6057455F78EDE389B774D26AE27334 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+MJRefresh.h"; path = "MJRefresh/NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
 		3BE211F544F348BA01DDFC12990C3B4E /* ISO78164Padding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ISO78164Padding.swift; path = Sources/CryptoSwift/ISO78164Padding.swift; sourceTree = "<group>"; };
 		3BE92886B968B5C63C459495A39B8AA6 /* MJRefresh.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJRefresh.debug.xcconfig; sourceTree = "<group>"; };
-		3C550999EE6F7AFE806C127681FDC51E /* Pods-KLM_Test */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-KLM_Test"; path = Pods_KLM_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C550999EE6F7AFE806C127681FDC51E /* Pods_KLM_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CB9EB60FB2841154FA34F2390AB5D3A /* CryptoSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CryptoSwift-umbrella.h"; sourceTree = "<group>"; };
 		3D58061821F31E332A7C902CFB162EB8 /* Never.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Never.swift; path = RxSwift/Observables/Never.swift; sourceTree = "<group>"; };
 		3D7A62AE9144F7F7692D52831F51D472 /* YBPopupMenuAnimationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YBPopupMenuAnimationManager.h; path = Sources/YBPopupMenu/YBPopupMenuAnimationManager.h; sourceTree = "<group>"; };
@@ -2163,7 +2162,7 @@
 		851686247C58B9DF599CA4887088762D /* Rabbit+Foundation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Rabbit+Foundation.swift"; path = "Sources/CryptoSwift/Foundation/Rabbit+Foundation.swift"; sourceTree = "<group>"; };
 		853D0F14B5515B45784B47B7B023563A /* MJRefresh.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MJRefresh.release.xcconfig; sourceTree = "<group>"; };
 		85EEAF5155B3C48D0B12586E02509ED7 /* _RX.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _RX.m; path = RxCocoa/Runtime/_RX.m; sourceTree = "<group>"; };
-		8625EDF3918EDF1FF259FCDFCE5DC642 /* Pods-KLM_GW */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-KLM_GW"; path = Pods_KLM_GW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8625EDF3918EDF1FF259FCDFCE5DC642 /* Pods_KLM_GW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8641F706C8FA0168C5BEF2488E7D855B /* LightHSLStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LightHSLStatus.swift; path = "nRFMeshProvision/Classes/Mesh Messages/Lighting/LightHSLStatus.swift"; sourceTree = "<group>"; };
 		869A9C92761D6E25340587C9F6116C2E /* NSControl+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSControl+Rx.swift"; path = "RxCocoa/macOS/NSControl+Rx.swift"; sourceTree = "<group>"; };
 		86BABBDF27FC70864058AB00E04A7980 /* VendorMessage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VendorMessage.swift; path = "nRFMeshProvision/Classes/Mesh Messages/VendorMessage.swift"; sourceTree = "<group>"; };
@@ -2243,7 +2242,6 @@
 		9716351CEFFFF7F1C4C0BDCAE80844E0 /* _RXObjCRuntime.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = _RXObjCRuntime.m; path = RxCocoa/Runtime/_RXObjCRuntime.m; sourceTree = "<group>"; };
 		971D8E92F443533EDC5EB84CAD712224 /* SynchronizedOnType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SynchronizedOnType.swift; path = RxSwift/Concurrency/SynchronizedOnType.swift; sourceTree = "<group>"; };
 		975186D73FE596391EA199F5A4516D0A /* HistoricalSchedulerTimeConverter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HistoricalSchedulerTimeConverter.swift; path = RxSwift/Schedulers/HistoricalSchedulerTimeConverter.swift; sourceTree = "<group>"; };
-		9755E4F33572ECE2114A82CA21E8CD33 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		97590BB39DF909504540258074474AED /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "JKSwiftExtension/Classes/JKSwiftExtesion/FoundationExtension/Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		979486118B3E90C08386079D57962701 /* SnapKit */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97AF33DDFD739E4A500D638D9D4C3A3D /* SVProgressHUD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SVProgressHUD.release.xcconfig; sourceTree = "<group>"; };
@@ -2258,7 +2256,7 @@
 		9A0C7FCF2CCC88383AB1E51BC3E84914 /* RxCocoaObjCRuntimeError+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "RxCocoaObjCRuntimeError+Extensions.swift"; path = "RxCocoa/Common/RxCocoaObjCRuntimeError+Extensions.swift"; sourceTree = "<group>"; };
 		9A7B26E4D737E9CF8C5DDFDA191BB0FE /* ProxyFilter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProxyFilter.swift; path = nRFMeshProvision/Classes/ProxyFilter.swift; sourceTree = "<group>"; };
 		9AB973C92407A0068BF3720FB76B82A4 /* Pods-KLM_GW.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-KLM_GW.release.xcconfig"; sourceTree = "<group>"; };
-		9AF53A656B1271E88A1F1418162E180A /* Pods-KLM_GN */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-KLM_GN"; path = Pods_KLM_GN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AF53A656B1271E88A1F1418162E180A /* Pods_KLM_GN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0424002BEC9A4F62F6CEB4DA5E94FA /* LightLCOccupancyModeSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LightLCOccupancyModeSet.swift; path = "nRFMeshProvision/Classes/Mesh Messages/Lighting/LightLCOccupancyModeSet.swift"; sourceTree = "<group>"; };
 		9B13EB174E63E4C0D10CDD15C6FD8C1C /* ConfigModelPublicationStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfigModelPublicationStatus.swift; path = "nRFMeshProvision/Classes/Mesh Messages/Foundation/Configuration/ConfigModelPublicationStatus.swift"; sourceTree = "<group>"; };
 		9B350371506E6216EB45D43E9B4BE170 /* Models.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Models.swift; path = "nRFMeshProvision/Classes/Mesh API/Models.swift"; sourceTree = "<group>"; };
@@ -2409,7 +2407,6 @@
 		B8DFD70FD382D8902D65039AA91E2D2C /* ConfigModelAppUnbind.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConfigModelAppUnbind.swift; path = "nRFMeshProvision/Classes/Mesh Messages/Foundation/Configuration/ConfigModelAppUnbind.swift"; sourceTree = "<group>"; };
 		B8E4B912A2805791CB614FD6A37322EE /* GenericDeltaSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GenericDeltaSet.swift; path = "nRFMeshProvision/Classes/Mesh Messages/Generic/GenericDeltaSet.swift"; sourceTree = "<group>"; };
 		B8F9008B5BE756E009407C62D7E73322 /* UnprovisionedDeviceBeacon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnprovisionedDeviceBeacon.swift; path = "nRFMeshProvision/Classes/Layers/Network Layer/UnprovisionedDeviceBeacon.swift"; sourceTree = "<group>"; };
-		B914452D2FC13958E49D5D21DE6E4C8C /* Bugly.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Bugly.debug.xcconfig; sourceTree = "<group>"; };
 		B91AEB909F8338290C2A1195BF16DB77 /* MeshData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MeshData.swift; path = "nRFMeshProvision/Classes/Mesh Model/MeshData.swift"; sourceTree = "<group>"; };
 		B953B121DEC167F66ABA12DF716E53B2 /* MJRefreshAutoNormalFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshAutoNormalFooter.h; path = MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.h; sourceTree = "<group>"; };
 		B9705090661046E17F42657D12CCCB9E /* MJRefreshBackFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackFooter.m; path = MJRefresh/Base/MJRefreshBackFooter.m; sourceTree = "<group>"; };
@@ -3000,15 +2997,6 @@
 			path = "../Target Support Files/CryptoSwift";
 			sourceTree = "<group>";
 		};
-		0F95E68EDCF274355DBB7A499041E502 /* Bugly */ = {
-			isa = PBXGroup;
-			children = (
-				C104BD5737A771442F953E44E05F7B91 /* Frameworks */,
-				7A4A319CC571531A9084C135CF5D1F9E /* Support Files */,
-			);
-			path = Bugly;
-			sourceTree = "<group>";
-		};
 		1E66D15583C71C0113A2B07198954969 /* HandyJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -3526,16 +3514,6 @@
 			path = "Target Support Files/Pods-KLM_GN";
 			sourceTree = "<group>";
 		};
-		7A4A319CC571531A9084C135CF5D1F9E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				B914452D2FC13958E49D5D21DE6E4C8C /* Bugly.debug.xcconfig */,
-				02ADDAF1E3486A13324BFB30B61D92C3 /* Bugly.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Bugly";
-			sourceTree = "<group>";
-		};
 		7A9CF6A91BE40C68BC23D33398B1C083 /* SnapKitExtend */ = {
 			isa = PBXGroup;
 			children = (
@@ -3943,14 +3921,6 @@
 			path = "Target Support Files/Pods-KLM_Test";
 			sourceTree = "<group>";
 		};
-		C104BD5737A771442F953E44E05F7B91 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9755E4F33572ECE2114A82CA21E8CD33 /* Bugly.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		CB5E196F09CB66CC54348257C18FF35C /* JKSwiftExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -4064,7 +4034,6 @@
 			isa = PBXGroup;
 			children = (
 				06555ED5EB74B3EE47E0AD26F5B18937 /* AFNetworking */,
-				0F95E68EDCF274355DBB7A499041E502 /* Bugly */,
 				91A9BB8D43582A909BD24D178EB264C7 /* CryptoSwift */,
 				A2C55E69750A02C83F89CBDBEC075DDC /* DZNEmptyDataSet */,
 				1E66D15583C71C0113A2B07198954969 /* HandyJSON */,
@@ -4563,9 +4532,9 @@
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				E49D6D248DD1CEE584E6776B9164A1B2 /* MJRefresh */,
 				B4C001B7D2FB9649EC19C565872AF0D8 /* nRFMeshProvision */,
-				9AF53A656B1271E88A1F1418162E180A /* Pods-KLM_GN */,
-				8625EDF3918EDF1FF259FCDFCE5DC642 /* Pods-KLM_GW */,
-				3C550999EE6F7AFE806C127681FDC51E /* Pods-KLM_Test */,
+				9AF53A656B1271E88A1F1418162E180A /* Pods_KLM_GN.framework */,
+				8625EDF3918EDF1FF259FCDFCE5DC642 /* Pods_KLM_GW.framework */,
+				3C550999EE6F7AFE806C127681FDC51E /* Pods_KLM_Test.framework */,
 				BC432FD48A5932251F1CAFBC4BF74894 /* RxCocoa */,
 				FF8B264DFE802855D5D67E7CDDABFC3C /* RxRelay */,
 				809C5FAB588354C9BA37DC3EAB8CB45C /* RxSwift */,
@@ -4857,7 +4826,7 @@
 			);
 			name = "Pods-KLM_Test";
 			productName = Pods_KLM_Test;
-			productReference = 3C550999EE6F7AFE806C127681FDC51E /* Pods-KLM_Test */;
+			productReference = 3C550999EE6F7AFE806C127681FDC51E /* Pods_KLM_Test.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		10D88C24864319FF583AD6D156896F32 /* HandyJSON */ = {
@@ -4985,7 +4954,7 @@
 			);
 			name = "Pods-KLM_GW";
 			productName = Pods_KLM_GW;
-			productReference = 8625EDF3918EDF1FF259FCDFCE5DC642 /* Pods-KLM_GW */;
+			productReference = 8625EDF3918EDF1FF259FCDFCE5DC642 /* Pods_KLM_GW.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		4622BFEF3DC16E8BD15EEFC30D4D0084 /* RxRelay */ = {
@@ -5076,7 +5045,7 @@
 			);
 			name = "Pods-KLM_GN";
 			productName = Pods_KLM_GN;
-			productReference = 9AF53A656B1271E88A1F1418162E180A /* Pods-KLM_GN */;
+			productReference = 9AF53A656B1271E88A1F1418162E180A /* Pods_KLM_GN.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7AD0C6DCDC9CEC8A3C7C10C7FEE07BE6 /* RxCocoa */ = {
@@ -7737,7 +7706,6 @@
 		};
 		8321406B955E7EDAFA0EA0EA992A8E67 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B914452D2FC13958E49D5D21DE6E4C8C /* Bugly.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -8062,7 +8030,6 @@
 		};
 		A4EEB7570613B5558AF18867CEB3A8B1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 02ADDAF1E3486A13324BFB30B61D92C3 /* Bugly.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

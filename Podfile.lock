@@ -6,7 +6,6 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
-  - Bugly (2.5.91)
   - CryptoSwift (1.4.0)
   - DZNEmptyDataSet (1.8.1)
   - HandyJSON (5.0.2)
@@ -35,7 +34,6 @@ DEPENDENCIES:
   - AFNetworking/Reachability (~> 3.2.1)
   - AFNetworking/Security (~> 3.2.1)
   - AFNetworking/Serialization (~> 3.2.1)
-  - Bugly
   - DZNEmptyDataSet (~> 1.8.1)
   - HandyJSON
   - IQKeyboardManagerSwift (~> 6.5.6)
@@ -54,7 +52,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
-    - Bugly
     - CryptoSwift
     - DZNEmptyDataSet
     - HandyJSON
@@ -74,7 +71,6 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
   CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
@@ -92,6 +88,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YBPopupMenu: 3a02e89860bb0568ba477aee609bc3f25e5bd339
 
-PODFILE CHECKSUM: dacfea658f3852dec37e37657adf1221d07c5e95
+PODFILE CHECKSUM: 834c25136325fe08e1ec5331b3b91a79f4d882ec
 
 COCOAPODS: 1.11.3

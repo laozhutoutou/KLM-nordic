@@ -54,18 +54,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func setupBugly() {
-        
-        if apptype == .targetGN {
-            let config = BuglyConfig()
-            config.blockMonitorEnable = true
-//            config.debugMode = true
-            config.unexpectedTerminatingDetectionEnable = true
-            config.delegate = self
-            Bugly.start(withAppId: "02072c9ff3", config: config)
-        }
-        
-    }
+//    func setupBugly() {
+//        
+//        if apptype == .targetGN {
+//            let config = BuglyConfig()
+//            config.blockMonitorEnable = true
+////            config.debugMode = true
+//            config.unexpectedTerminatingDetectionEnable = true
+//            config.delegate = self
+//            Bugly.start(withAppId: "02072c9ff3", config: config)
+//        }
+//        
+//    }
     
     func createNewMeshNetwork() {
         // TODO: Implement creator
@@ -285,13 +285,6 @@ extension LogCategory {
     
 }
 
-extension AppDelegate: BuglyDelegate {
-    
-    func attachment(for exception: NSException?) -> String? {
-        
-        return ""
-    }
-}
 
 
 

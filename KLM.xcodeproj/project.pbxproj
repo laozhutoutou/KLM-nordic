@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27AD250D3450E0AA4AA0ED4B /* Pods_KLM_Sensetrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */; };
 		655A0BF70D8128BC46C2C660 /* Pods_KLM_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */; };
 		892694C4D998BE59151D19E2 /* Pods_KLM_GW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */; };
 		DB2304054AF7CF8FC4EC8ABC /* Pods_KLM_GN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D169C4C10F75E649FC07A2CD /* Pods_KLM_GN.framework */; };
@@ -418,7 +419,6 @@
 		E4A0F8B22907E01B00150B0F /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
 		E4A0F8B32907E01B00150B0F /* SceneServerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E28431269EFF02006C120E /* SceneServerDelegate.swift */; };
 		E4A0F8B42907E01B00150B0F /* KLMUserInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */; };
-		E4A0F8B62907E01B00150B0F /* Pods_KLM_GN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D169C4C10F75E649FC07A2CD /* Pods_KLM_GN.framework */; };
 		E4A0F8B72907E01B00150B0F /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E467161C283E03C900D02E41 /* NetworkExtension.framework */; };
 		E4A0F8B92907E01B00150B0F /* KLMPicDownloadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E45D6AC6288FCA01008BA65D /* KLMPicDownloadViewController.xib */; };
 		E4A0F8BA2907E01B00150B0F /* KLMSelectNodesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4DE8B9C2897AE1F00D28D17 /* KLMSelectNodesViewController.xib */; };
@@ -1568,12 +1568,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_Sensetrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2FE9701E30AF6A2260D2B1 /* Pods-KLM_Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_Test.release.xcconfig"; path = "Target Support Files/Pods-KLM_Test/Pods-KLM_Test.release.xcconfig"; sourceTree = "<group>"; };
 		7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0F184670DEF6156F33C01A /* Pods-KLM_Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_Test.debug.xcconfig"; path = "Target Support Files/Pods-KLM_Test/Pods-KLM_Test.debug.xcconfig"; sourceTree = "<group>"; };
 		8135F1AEA6A8CC51176CB660 /* Pods-KLM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM.debug.xcconfig"; path = "Target Support Files/Pods-KLM/Pods-KLM.debug.xcconfig"; sourceTree = "<group>"; };
+		A14E630A819DA78AC47A3D31 /* Pods-KLM_Sensetrack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_Sensetrack.debug.xcconfig"; path = "Target Support Files/Pods-KLM_Sensetrack/Pods-KLM_Sensetrack.debug.xcconfig"; sourceTree = "<group>"; };
 		A605CA183D51EA54B1A66E4B /* Pods-KLM_GN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_GN.debug.xcconfig"; path = "Target Support Files/Pods-KLM_GN/Pods-KLM_GN.debug.xcconfig"; sourceTree = "<group>"; };
-		D169C4C10F75E649FC07A2CD /* Pods_KLM_GN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF855EBE07C8D62C0B46DFD5 /* Pods-KLM_Sensetrack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_Sensetrack.release.xcconfig"; path = "Target Support Files/Pods-KLM_Sensetrack/Pods-KLM_Sensetrack.release.xcconfig"; sourceTree = "<group>"; };
 		D63C4375E30CF303A5FEB69A /* Pods-KLM_GW.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_GW.debug.xcconfig"; path = "Target Support Files/Pods-KLM_GW/Pods-KLM_GW.debug.xcconfig"; sourceTree = "<group>"; };
 		E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E40123FA28A20AF6007436DB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/KLMRegisterViewController.strings"; sourceTree = "<group>"; };
@@ -2105,8 +2107,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4A0F8B62907E01B00150B0F /* Pods_KLM_GN.framework in Frameworks */,
 				E4A0F8B72907E01B00150B0F /* NetworkExtension.framework in Frameworks */,
+				27AD250D3450E0AA4AA0ED4B /* Pods_KLM_Sensetrack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2133,9 +2135,9 @@
 			isa = PBXGroup;
 			children = (
 				E467161C283E03C900D02E41 /* NetworkExtension.framework */,
-				D169C4C10F75E649FC07A2CD /* Pods_KLM_GN.framework */,
 				7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */,
 				E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */,
+				173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2151,6 +2153,8 @@
 				ED01D0DB6214603C028997B8 /* Pods-KLM_GW.release.xcconfig */,
 				7C0F184670DEF6156F33C01A /* Pods-KLM_Test.debug.xcconfig */,
 				2E2FE9701E30AF6A2260D2B1 /* Pods-KLM_Test.release.xcconfig */,
+				A14E630A819DA78AC47A3D31 /* Pods-KLM_Sensetrack.debug.xcconfig */,
+				CF855EBE07C8D62C0B46DFD5 /* Pods-KLM_Sensetrack.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -4056,7 +4060,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-KLM_GN-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-KLM_Sensetrack-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4069,15 +4073,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KLM_GN/Pods-KLM_GN-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-KLM_Sensetrack/Pods-KLM_Sensetrack-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-KLM_GN/Pods-KLM_GN-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-KLM_Sensetrack/Pods-KLM_Sensetrack-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KLM_GN/Pods-KLM_GN-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KLM_Sensetrack/Pods-KLM_Sensetrack-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4A0F9352907E01B00150B0F /* ShellScript */ = {
@@ -4189,8 +4193,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "
-";
+			shellScript = "\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -5593,7 +5596,7 @@
 		};
 		E4A0F9372907E01B00150B0F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A605CA183D51EA54B1A66E4B /* Pods-KLM_GN.debug.xcconfig */;
+			baseConfigurationReference = A14E630A819DA78AC47A3D31 /* Pods-KLM_Sensetrack.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -5630,7 +5633,7 @@
 		};
 		E4A0F9382907E01B00150B0F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE7086D1A501DDCC6D8AA2FA /* Pods-KLM_GN.release.xcconfig */;
+			baseConfigurationReference = CF855EBE07C8D62C0B46DFD5 /* Pods-KLM_Sensetrack.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

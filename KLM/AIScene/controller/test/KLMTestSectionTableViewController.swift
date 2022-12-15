@@ -15,7 +15,7 @@ private enum itemType: Int, CaseIterable {
 //    case Laohua
 //    case Baozhuang
     case checkJiami
-//    case YingjianTest
+    case YingjianTest
     case Yingjian
 //    case Biaoding
 }
@@ -103,8 +103,8 @@ class KLMTestSectionTableViewController: UITableViewController {
             cell.textLabel?.text = "料号和固件版本查询"
 //        case itemType.Biaoding.rawValue:
 //            cell.textLabel?.text = "白平衡标定"
-//        case itemType.YingjianTest.rawValue:
-//            cell.textLabel?.text = "硬件信息"
+        case itemType.YingjianTest.rawValue:
+            cell.textLabel?.text = "硬件信息"
         case itemType.checkJiami.rawValue:
             cell.textLabel?.text = "查询加密状态"
         default:
@@ -138,9 +138,9 @@ class KLMTestSectionTableViewController: UITableViewController {
 //        case itemType.Biaoding.rawValue:
 //            let vc = KLMTestBiaodingViewController()
 //            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.YingjianTest.rawValue:
-//            let vc = KLMTestVersion1ViewController()
-//            navigationController?.pushViewController(vc, animated: true)
+        case itemType.YingjianTest.rawValue:
+            let vc = KLMTestVersion1ViewController()
+            navigationController?.pushViewController(vc, animated: true)
         case itemType.checkJiami.rawValue:
             let vc = KLMCheckVersionTestViewController()
             navigationController?.pushViewController(vc, animated: true)

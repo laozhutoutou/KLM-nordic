@@ -210,14 +210,6 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
                 let ip: String = "http://\(data[0]).\(data[1]).\(data[2]).\(data[3])/bmp"
                 KLMLog("ip = \(ip)")
                 let url = URL.init(string: ip)
-//                                            if webView == nil {
-//                                                webView = WKWebView.init(frame: playView.bounds, configuration: wkConfig)
-//                                                playView.addSubview(webView!)
-//                                                webView?.navigationDelegate = self
-//                                            }
-//                                            webView?.showEmptyView()
-//                                            let request = URLRequest(url: url!)
-//                                            webView?.load(request)
                 
                 imageView.transform = CGAffineTransform(rotationAngle: CGFloat(-Float.pi / 2))
                 imageView.kf.indicatorType = .activity
@@ -227,7 +219,7 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
                     case .success(let value):
                         // The image was set to image view:
                         print(value.image)
-
+                        
                     case .failure(let error):
                         KLMLog("error = \(error)") // The error happens
                         if error.errorCode == 1001 {
@@ -260,43 +252,4 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
     }
 }
 
-extension KLMPicDownloadViewController: WKNavigationDelegate {
-    
-//    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-//
-//        KLMLog("type = \(String(describing: navigationResponse.response.mimeType)), fileName = \(String(describing: navigationResponse.response.suggestedFilename))")
-//        decisionHandler(.download)
-//    }
-    
-    //页面开始加载时调用
-    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        KLMLog("开始加载")
-    }
-    //当内容开始返回时调用
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        webView.hideEmptyView()
-        KLMLog("内容返回")
-    }
-    
-    // 页面加载完成之后调用
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        KLMLog("加载完成")
-//        webView.evaluateJavaScript("document.body.scrollHeight") { response, error in
-//            let height: Float = response as! Float
-//            KLMLog("height = \(height)")
-//        }
-//        webView.evaluateJavaScript("document.body.scrollWidth") { response, error in
-//            let width: Float = response as! Float
-//            KLMLog("width = \(width)")
-//        }
-    }
-    
-    //页面加载失败时调用
-    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        webView.hideEmptyView()
-        SVProgressHUD.showInfo(withStatus: error.localizedDescription)
-        SVProgressHUD.dismiss(withDelay: 3)
-        KLMLog("页面加载失败\(error)")
-    }
-}
 
