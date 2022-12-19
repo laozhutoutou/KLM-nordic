@@ -10,7 +10,7 @@
 		27AD250D3450E0AA4AA0ED4B /* Pods_KLM_Sensetrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */; };
 		655A0BF70D8128BC46C2C660 /* Pods_KLM_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */; };
 		892694C4D998BE59151D19E2 /* Pods_KLM_GW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */; };
-		DB2304054AF7CF8FC4EC8ABC /* Pods_KLM_GN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D169C4C10F75E649FC07A2CD /* Pods_KLM_GN.framework */; };
+		DB2304054AF7CF8FC4EC8ABC /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		E411273428F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E411273828F9413500A1FBC3 /* KLMAudioViewController.xib */; };
 		E411273528F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E411273828F9413500A1FBC3 /* KLMAudioViewController.xib */; };
 		E411273628F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E411273828F9413500A1FBC3 /* KLMAudioViewController.xib */; };
@@ -2098,7 +2098,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB2304054AF7CF8FC4EC8ABC /* Pods_KLM_GN.framework in Frameworks */,
+				DB2304054AF7CF8FC4EC8ABC /* (null) in Frameworks */,
 				E467161D283E03C900D02E41 /* NetworkExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4193,7 +4193,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -5533,7 +5534,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
@@ -5547,9 +5548,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjdev.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjmcu.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";
@@ -5570,7 +5571,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5583,9 +5584,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.4;
+				MARKETING_VERSION = 1.7.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_GN";
-				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjdev.com;
+				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmjmcu.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KLM/Other/OC/KLM-Bridging-Header.h";

@@ -46,9 +46,9 @@ class KLMPicDownloadViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        imageView.isHidden = true
+        //        imageView.isHidden = true
         
-//        playView.transform = CGAffineTransform(rotationAngle:  -CGFloat.pi / 2)
+        //        playView.transform = CGAffineTransform(rotationAngle:  -CGFloat.pi / 2)
         
         navigationItem.title = LANGLOC("View commodity position")
         selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.1)
@@ -81,16 +81,16 @@ class KLMPicDownloadViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
-
+    
     @IBAction func downLoad(_ sender: Any) {
         
         ///页面加载中，同时WiFi名称没改变，需要再加载
-//        if let webView = webView {
-//            if webView.isLoading && oldWifiName == self.SSIDField.text{
-//                SVProgressHUD.showInfo(withStatus: LANGLOC(""))
-//                return
-//            }
-//        }
+        //        if let webView = webView {
+        //            if webView.isLoading && oldWifiName == self.SSIDField.text{
+        //                SVProgressHUD.showInfo(withStatus: LANGLOC(""))
+        //                return
+        //            }
+        //        }
         
         if KLMTool.isEmptyString(string: SSIDField.text) == nil || KLMTool.isEmptyString(string: passField.text) == nil {
             
@@ -192,6 +192,16 @@ class KLMPicDownloadViewController: UIViewController {
             }
         }
     }
+    
+    
+    @objc func saveImage(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        
+        if error == nil {
+            SVProgressHUD.showSuccess(withStatus: "保存成功")
+            return
+        }
+        SVProgressHUD.showError(withStatus: "保存失败")
+    }
 }
 
 extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
@@ -214,11 +224,16 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
                 imageView.transform = CGAffineTransform(rotationAngle: CGFloat(-Float.pi / 2))
                 imageView.kf.indicatorType = .activity
                 imageView.kf.setImage(with: url, placeholder: nil, options: [.forceRefresh]) { result in
-
+                    
                     switch result {
                     case .success(let value):
                         // The image was set to image view:
                         print(value.image)
+//                        SVProgressHUD.show(withStatus: "保存...")
+//                        let data: Data = try! Data.init(contentsOf: url!)
+//                        let image: UIImage = UIImage.init(data: data)!
+//                        UIImageWriteToSavedPhotosAlbum(value.image, self, #selector(self.saveImage(image:didFinishSavingWithError:contextInfo:)), nil)
+                        
                         
                     case .failure(let error):
                         KLMLog("error = \(error)") // The error happens
@@ -250,6 +265,8 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
     func smartNode(_ manager: KLMSmartNode, didfailure error: MessageError?) {
         KLMShowError(error)
     }
+    
+    
 }
 
 
