@@ -13,6 +13,8 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
     @IBOutlet weak var onBtn: UIButton!
     @IBOutlet weak var offBtn: UIButton!
     
+    @IBOutlet weak var autoModeLab: UILabel!
+    
     var model: GroupData! {
         didSet {
             if model.colorSensing == 2 { //关
@@ -47,6 +49,8 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
         
         onBtn.setTitleColor(appMainThemeColor, for: .normal)
         offBtn.setTitleColor(appMainThemeColor, for: .normal)
+        
+        autoModeLab.text = LANGLOC("Auto Mode")
     }
     
     @IBAction func onClick(_ sender: Any) {

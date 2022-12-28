@@ -27,6 +27,8 @@ class KLMControllerColorTempViewController: UIViewController, Editable {
     @IBOutlet weak var WWLab: UILabel!
     @IBOutlet weak var CWLab: UILabel!
 
+    @IBOutlet weak var brightLab: UILabel!
+    
     private var lightSlider: KLMSlider!
     
     private var WWValue: Int = 255 {
@@ -123,6 +125,8 @@ class KLMControllerColorTempViewController: UIViewController, Editable {
         plateView.addGestureRecognizer(panRecognizer)
         
         colorTempType = .ColortempTypeNormal
+        
+        brightLab.text = LANGLOC("Brightness")
     }
     
     private func setupData() {

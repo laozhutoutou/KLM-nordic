@@ -17,6 +17,12 @@ class KLMLoginViewController: UIViewController {
     @IBOutlet weak var passTextField: UITextField!
     @IBOutlet weak var logBtn: UIButton!
     @IBOutlet weak var eyeBtn: UIButton!
+    
+    @IBOutlet weak var accountLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+    @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var forgotPasswordBtn: UIButton!
+    
     ///是否是其他用户登录
     var isOtherLogin: Bool = false
     
@@ -49,7 +55,16 @@ class KLMLoginViewController: UIViewController {
         
         if apptype == .targetsGW || apptype == .targetSensetrack { ///国外版没有手机号
             mailTextField.placeholder = LANGLOC("Email")
+        } else {
+            mailTextField.placeholder = LANGLOC("Mobile number/Email")
         }
+        
+        accountLab.text = LANGLOC("Account")
+        passwordLab.text = LANGLOC("Password")
+        logBtn.setTitle(LANGLOC("Log In"), for: .normal)
+        signUpBtn.setTitle(LANGLOC("Sign Up"), for: .normal)
+        forgotPasswordBtn.setTitle(LANGLOC("Forgot Password"), for: .normal)
+        passTextField.placeholder = LANGLOC("Enter password")
     }
     
     @objc func setupData() {

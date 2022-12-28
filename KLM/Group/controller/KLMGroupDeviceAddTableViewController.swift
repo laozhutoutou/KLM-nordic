@@ -24,13 +24,13 @@ class KLMGroupDeviceAddTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("unGroup")
+        navigationItem.title = LANGLOC("Ungrouped")
         
         tableView.separatorStyle = .none
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finishClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("Done"), target: self, action: #selector(finishClick))
 
         setupData()
     }
@@ -184,7 +184,7 @@ extension KLMGroupDeviceAddTableViewController: DZNEmptyDataSetSource, DZNEmptyD
         }
         
         let titleLab = UILabel()
-        titleLab.text = LANGLOC("noDevice")
+        titleLab.text = LANGLOC("No devices")
         titleLab.font = UIFont.systemFont(ofSize: 14)
         titleLab.textColor = rgba(0, 0, 0, 0.5)
         contentView.addSubview(titleLab)

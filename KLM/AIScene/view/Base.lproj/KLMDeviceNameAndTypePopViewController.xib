@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMDeviceNameAndTypePopViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="cancelBtn" destination="6dO-71-Vg5" id="uDU-Ku-A9J"/>
                 <outlet property="categoryLab" destination="MXh-w0-Ue2" id="bm6-Os-zz0"/>
                 <outlet property="categoryView" destination="FuQ-dv-epm" id="BO8-ya-ynd"/>
+                <outlet property="confirmBtn" destination="FG3-2m-hyb" id="Jt2-dF-DBh"/>
                 <outlet property="contentView" destination="Wtf-Q5-xZB" id="fxW-L1-Ah9"/>
                 <outlet property="textField" destination="91m-iQ-6QX" id="MJk-Iz-Mnj"/>
+                <outlet property="titleLab" destination="cP6-Sr-0yI" id="up7-36-pda"/>
+                <outlet property="useOccasionLab" destination="bWD-8t-5hW" id="KwN-ux-BSg"/>
                 <outlet property="view" destination="ULz-os-Qj2" id="h3r-mN-BEY"/>
             </connections>
         </placeholder>

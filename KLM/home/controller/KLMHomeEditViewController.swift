@@ -14,6 +14,8 @@ class KLMHomeEditViewController: UIViewController, Editable {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var deleteBtn: UIButton!
     
+    @IBOutlet weak var storeNameLab: UILabel!
+    
     var meshInfo: KLMMeshInfo.KLMMeshInfoData?
     var meshId: Int!
     var meshUsers: KLMMeshUser?
@@ -27,11 +29,15 @@ class KLMHomeEditViewController: UIViewController, Editable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("storeSettings")
+        navigationItem.title = LANGLOC("Store Settings")
         deleteBtn.layer.cornerRadius = deleteBtn.height / 2
         deleteBtn.backgroundColor = appMainThemeColor
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("Done"), target: self, action: #selector(finish))
+        
+        storeNameLab.text = LANGLOC("Store Name") + "："
+        nameTextField.placeholder = LANGLOC("Please enter store name")
+        deleteBtn.setTitle(LANGLOC("Delete Store"), for: .normal)
         
         getMeshUserData()
         
@@ -73,7 +79,7 @@ class KLMHomeEditViewController: UIViewController, Editable {
         
         guard let meshIn = meshInfo else { return  }
         if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Administrator only"))
             return
         }
         
@@ -104,8 +110,8 @@ class KLMHomeEditViewController: UIViewController, Editable {
         if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {///不是管理员，退出商场
             
             let aler = UIAlertController.init(title: LANGLOC("Exit Store"), message: nil, preferredStyle: .alert)
-            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+            let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+            let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
                 SVProgressHUD.show()
                 let user = KLMUser.getUserInfo()!
                 KLMService.signOutUser(meshId: self.meshId, userId: user.id) { response in
@@ -142,9 +148,9 @@ class KLMHomeEditViewController: UIViewController, Editable {
             return
         }
         
-        let aler = UIAlertController.init(title: LANGLOC("deleteStore"), message: LANGLOC("deleteStoreTip"), preferredStyle: .alert)
-        let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+        let aler = UIAlertController.init(title: LANGLOC("Delete Store"), message: LANGLOC("Please ensure that all lights have been reset, otherwise they will not be searched"), preferredStyle: .alert)
+        let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+        let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
             
             SVProgressHUD.show()
             KLMService.deleteMesh(id: self.meshId) { response in
@@ -177,7 +183,7 @@ class KLMHomeEditViewController: UIViewController, Editable {
         
         guard let meshIn = meshInfo else { return  }
         if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Administrator only"))
             return
         }
         
@@ -188,7 +194,7 @@ class KLMHomeEditViewController: UIViewController, Editable {
             SVProgressHUD.dismiss()
             
             guard let code = response as? String else { return }
-            let alert = UIAlertController(title: LANGLOC("invitationCodetip"),
+            let alert = UIAlertController(title: LANGLOC("Please offer the invitation code to others to join new store within 3 days"),
                                           message: code,
                                           preferredStyle: .alert)
             ///修改标题
@@ -200,7 +206,7 @@ class KLMHomeEditViewController: UIViewController, Editable {
             message.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 15), range: NSRange(location: 0, length: alert.message!.count))
             alert.setValue(message, forKey: "attributedMessage")
             
-            let cancelAction = UIAlertAction(title: LANGLOC("close"), style: .cancel)
+            let cancelAction = UIAlertAction(title: LANGLOC("Close"), style: .cancel)
             alert.addAction(cancelAction)
             self.present(alert, animated: true)
             
@@ -248,7 +254,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
             
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("AddMember")
+            cell.leftTitle = LANGLOC("Add member")
             cell.leftLab.textColor = appMainThemeColor
             cell.rightTitle = ""
             return cell
@@ -271,7 +277,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
         if let meshIn = meshInfo, user?.id == meshIn.adminId{
             cell.leftTitle = LANGLOC("Administrator")
         } else {
-            cell.leftTitle = user?.nickname ?? LANGLOC("unknowUser")
+            cell.leftTitle = user?.nickname ?? LANGLOC("Unknow user")
         }
         cell.rightTitle = user?.username
         return cell
@@ -290,7 +296,7 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
             
             guard let meshIn = meshInfo else { return  }
             if KLMMesh.isMeshManager(meshAdminId: meshIn.adminId) == false {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Administrator only"))
                 return
             }
             
@@ -323,11 +329,11 @@ extension KLMHomeEditViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let user = self.meshUsers!.data[indexPath.row]
-        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("Delete")) { action, sourceView, completionHandler in
                 
-            let aler = UIAlertController.init(title: LANGLOC("deleteMember"), message: nil, preferredStyle: .alert)
-            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+            let aler = UIAlertController.init(title: LANGLOC("Delete Member"), message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+            let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
                 
                 SVProgressHUD.show()
                 KLMService.deleteUser(meshId: self.meshId, userId: user.id) { response in

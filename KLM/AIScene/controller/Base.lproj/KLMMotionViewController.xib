@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,8 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMMotionViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
                 <outlet property="autoDim" destination="Md9-gC-Lhg" id="z0h-Jc-TdL"/>
+                <outlet property="autoDimLab" destination="RjT-Rm-UpP" id="DjD-yK-QiW"/>
+                <outlet property="brightLab" destination="DVa-Zv-cWg" id="dpV-oe-zt5"/>
                 <outlet property="contentView" destination="dir-89-eLq" id="3eI-u1-Hoa"/>
                 <outlet property="doneBtn" destination="rdP-wX-Aav" id="ViW-nG-Rho"/>
+                <outlet property="energySavingLab" destination="SAl-A2-toj" id="4bR-u1-EF3"/>
                 <outlet property="lightBgView" destination="z5v-dN-b0Q" id="i2S-ht-E51"/>
                 <outlet property="lightContentView" destination="11d-IH-wpp" id="pOW-fw-ywW"/>
                 <outlet property="timeBgView" destination="YSz-HW-abv" id="hym-WQ-VyK"/>
@@ -27,13 +30,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dir-89-eLq">
-                    <rect key="frame" x="0.0" y="158" width="414" height="704"/>
+                    <rect key="frame" x="0.0" y="114" width="414" height="782"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZCE-yU-SjU">
                             <rect key="frame" x="16" y="0.0" width="382" height="130"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自动节能（分钟）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RjT-Rm-UpP">
-                                    <rect key="frame" x="13" y="24" width="114.5" height="17"/>
+                                    <rect key="frame" x="13.000000000000007" y="24" width="114.66666666666669" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -112,13 +115,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="节能设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAl-A2-toj">
-                    <rect key="frame" x="16" y="108" width="61.5" height="18"/>
+                    <rect key="frame" x="15.999999999999996" y="64" width="61.666666666666657" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Md9-gC-Lhg">
-                    <rect key="frame" x="117.5" y="101.5" width="51" height="31"/>
+                    <rect key="frame" x="117.66666666666669" y="57.666666666666657" width="51" height="31"/>
                     <color key="onTintColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <action selector="autoDimValue:" destination="-1" eventType="valueChanged" id="IFw-3q-Kgp"/>
@@ -138,7 +141,7 @@
                 <constraint firstItem="Md9-gC-Lhg" firstAttribute="leading" secondItem="SAl-A2-toj" secondAttribute="trailing" constant="40" id="y6M-jT-DgC"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-4194" y="-29"/>
+            <point key="canvasLocation" x="-3833" y="-147"/>
         </view>
     </objects>
     <resources>

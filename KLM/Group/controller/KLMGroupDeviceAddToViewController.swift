@@ -37,6 +37,8 @@ class KLMGroupDeviceAddToViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(newGroup))
         
+        doneBtn.setTitle(LANGLOC("Done"), for: .normal)
+        
         setupData()
     }
     
@@ -47,7 +49,7 @@ class KLMGroupDeviceAddToViewController: UIViewController {
         }
         
         let vc = CMDeviceNamePopViewController()
-        vc.titleName = LANGLOC("Group")
+        vc.titleName = LANGLOC("Groups")
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = {[weak self] name in

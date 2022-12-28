@@ -11,11 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMCustomViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="brightLab" destination="9AL-b0-dr7" id="byi-md-EH9"/>
                 <outlet property="colorItemsView" destination="GoM-vr-dBF" id="FAc-gB-Qck"/>
                 <outlet property="colorTempBgView" destination="UiR-tg-las" id="Pcm-aY-zeq"/>
+                <outlet property="colorTempLab" destination="zmP-lB-myF" id="bcc-Eo-Sfh"/>
                 <outlet property="contentView" destination="bDp-Ki-tUH" id="tOH-yK-UTF"/>
                 <outlet property="lightBgView" destination="PgE-Ub-6M8" id="jJu-cr-d34"/>
                 <outlet property="plateView" destination="PMo-wr-y1E" id="4Mb-T0-nh6"/>
+                <outlet property="quickSelectLab" destination="rUm-lp-4eI" id="TMb-Mb-TPH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -106,7 +109,7 @@
                 <constraint firstItem="PMo-wr-y1E" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="z39-fu-aDa"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-2500" y="-99"/>
+            <point key="canvasLocation" x="-2678" y="-69"/>
         </view>
     </objects>
     <resources>

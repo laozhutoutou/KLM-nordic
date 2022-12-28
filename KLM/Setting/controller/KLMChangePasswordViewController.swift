@@ -21,7 +21,7 @@ class KLMChangePasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("ChangePassword")
+        navigationItem.title = LANGLOC("Change Password")
 
         doneBtn.layer.cornerRadius = doneBtn.height / 2;
         doneBtn.backgroundColor = appMainThemeColor
@@ -37,12 +37,17 @@ class KLMChangePasswordViewController: UIViewController {
         }.bind(to: doneBtn.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        oldTextField.placeholder = LANGLOC("Please enter your old password")
+        passTextField.placeholder = LANGLOC("Please enter a new password")
+        passAgainField.placeholder = LANGLOC("Please enter the new password again")
+        doneBtn.setTitle(LANGLOC("Done"), for: .normal)
+        
     }
     
     @IBAction func done(_ sender: Any) {
         
         if passTextField.text != passAgainField.text {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("passwordWordDifferent"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("The new password entered again is different"))
             return
         }
         

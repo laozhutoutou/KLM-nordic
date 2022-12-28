@@ -11,6 +11,7 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
 
     @IBOutlet weak var OnOffSwitch: UISwitch!
     
+    @IBOutlet weak var onOffLab: UILabel!
     var isFirst: Bool = true
     
     var onOff: Int! {
@@ -24,6 +25,7 @@ class KLMLightOnOffCell: KLMBaseTableViewCell {
         // Initialization code
         OnOffSwitch.onTintColor = appMainThemeColor
         
+        onOffLab.text = LANGLOC("On/Off")
     }
     
     @IBAction func OnOff(_ sender: UISwitch) {

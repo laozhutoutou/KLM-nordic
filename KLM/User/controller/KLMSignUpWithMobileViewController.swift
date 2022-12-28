@@ -26,20 +26,26 @@ class KLMSignUpWithMobileViewController: UIViewController {
     @IBOutlet weak var eyeBtn: UIButton!
     @IBOutlet weak var eyaAgainBtn: UIButton!
     
-    @IBOutlet weak var regionLab: UILabel!
+    @IBOutlet weak var regionTipLab: UILabel!
     @IBOutlet weak var countryCodeLab: UILabel!
     
+    @IBOutlet weak var chooseRegionLab: UILabel!
+    @IBOutlet weak var phoneLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+    @IBOutlet weak var passwordAgainLab: UILabel!
+    @IBOutlet weak var nickNameLab: UILabel!
+    @IBOutlet weak var codeLab: UILabel!
+    @IBOutlet weak var emailSignUpBtn: UIButton!
     
     //倒计时
     var messageTimer: Timer?
     ///当前秒
     var currentTime: Int = 60
-    var codeTitle: String?
-    
+
     ///数据
     var regionName: String? {
         didSet {
-            regionLab.text = regionName
+            chooseRegionLab.text = regionName
         }
     }
     var regionCode: String? {
@@ -58,6 +64,7 @@ class KLMSignUpWithMobileViewController: UIViewController {
         events()
         
         NotificationCenter.default.post(name: .loginPageRefresh, object: nil)
+        
     }
 
     private func setupUI() {
@@ -69,8 +76,6 @@ class KLMSignUpWithMobileViewController: UIViewController {
         signupBtn.clipsToBounds = true
         verCodeBtn.setTitleColor(appMainThemeColor, for: .normal)
         
-        codeTitle = verCodeBtn.currentTitle
-        
         ///监控输入
         Observable.combineLatest(phoneField.rx.text.orEmpty, passTextField.rx.text.orEmpty, codeTextField.rx.text.orEmpty,  nickNameField.rx.text.orEmpty, passAgainField.rx.text.orEmpty) { mailText, passwordText, codeText, nickNameText, passAgainText  in
             
@@ -81,6 +86,23 @@ class KLMSignUpWithMobileViewController: UIViewController {
             }
         }.bind(to: signupBtn.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        regionTipLab.text = LANGLOC("Region")
+        chooseRegionLab.text = LANGLOC("Please choose a region")
+        phoneLab.text = LANGLOC("Phone")
+        passwordLab.text = LANGLOC("Password")
+        passwordAgainLab.text = LANGLOC("Password")
+        nickNameLab.text = LANGLOC("Nickname")
+        codeLab.text = LANGLOC("Code")
+        signupBtn.setTitle(LANGLOC("Sign Up"), for: .normal)
+        verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
+        emailSignUpBtn.setTitle(LANGLOC("Sign up with Email"), for: .normal)
+        
+        phoneField.placeholder = LANGLOC("Mobile number")
+        passTextField.placeholder = LANGLOC("Enter password")
+        passAgainField.placeholder = LANGLOC("Enter password again")
+        nickNameField.placeholder = LANGLOC("Enter nickName")
+        codeTextField.placeholder = LANGLOC("Enter code")
     }
     
     private func events() {
@@ -182,7 +204,7 @@ class KLMSignUpWithMobileViewController: UIViewController {
         if currentTime <= 0 {//结束
             stopTime()
             verCodeBtn.isEnabled = true
-            verCodeBtn.setTitle(codeTitle, for: .normal)
+            verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
         }
     }
     

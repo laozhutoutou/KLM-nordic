@@ -186,11 +186,11 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
 
         let deviceModel: Node = self.deviceLists[indexPath.item]
 
-        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("Delete")) { action, sourceView, completionHandler in
 
-            let aler = UIAlertController.init(title: LANGLOC("deviceMoveOutGroupTip"), message: nil, preferredStyle: .alert)
-            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+            let aler = UIAlertController.init(title: LANGLOC("Delete devices"), message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+            let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
 
                 if KLMMesh.isCanEditMesh() == false {
                     return
@@ -279,7 +279,7 @@ extension KLMGroupDeviceEditViewController: DZNEmptyDataSetSource, DZNEmptyDataS
         }
         
         let titleLab = UILabel()
-        titleLab.text = LANGLOC("noDevice")
+        titleLab.text = LANGLOC("No devices")
         titleLab.font = UIFont.systemFont(ofSize: 14)
         titleLab.textColor = rgba(0, 0, 0, 0.5)
         contentView.addSubview(titleLab)

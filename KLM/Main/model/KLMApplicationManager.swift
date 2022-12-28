@@ -45,7 +45,7 @@ class KLMApplicationManager {
         manager.enable = true
         manager.shouldResignOnTouchOutside = true
         manager.shouldToolbarUsesTextFieldTintColor = true
-        manager.toolbarDoneBarButtonItemText = LANGLOC("finish")
+        manager.toolbarDoneBarButtonItemText = LANGLOC("Done")
         ///不显示工具条
         manager.enableAutoToolbar = true
         manager.toolbarManageBehaviour = .byTag

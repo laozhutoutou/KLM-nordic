@@ -20,6 +20,10 @@ class KLMDFUTestViewController: UIViewController {
     @IBOutlet weak var upGradeBtn: UIButton!
     @IBOutlet weak var selectwifiBtn: UIButton!
     
+    @IBOutlet weak var WifiNameLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+    @IBOutlet weak var tipLab: UILabel!
+    
     private var mClearFlash: Bool = false
     private var mUrlEnable: Bool = true
     
@@ -77,6 +81,14 @@ class KLMDFUTestViewController: UIViewController {
         } failure: {
             
         }
+        
+        WifiNameLab.text = LANGLOC("Wi-Fi")
+        SSIDField.placeholder = LANGLOC("Please enter the Wi-Fi")
+        selectwifiBtn.setTitle(LANGLOC("Select Wi-Fi networks"), for: .normal)
+        passwordLab.text = LANGLOC("Password")
+        passField.placeholder = LANGLOC("Please enter the password")
+        upGradeBtn.setTitle(LANGLOC("Upgrade"), for: .normal)
+        tipLab.text = LANGLOC("Note:Please make sure that the light can connect to the Internet Via the Wi-Fi and password.")
     }
     
     @IBAction func upgrade(_ sender: Any) {
@@ -276,7 +288,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                 } else if message.parameters?.hex == "0001" {
                     
                     KLMLog("已经是最新版本，不需要升级")
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                     
                 } else {//正常
                     
@@ -300,7 +312,7 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
                     SVProgressHUD.show(withStatus: LANGLOC("Restarting"))
                     DispatchQueue.main.asyncAfter(deadline: 6) {
                         
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Upgrade complete"))
                         DispatchQueue.main.asyncAfter(deadline: 0.5) {
                             if self.isPresent {
                                 self.dismiss(animated: true, completion: nil)

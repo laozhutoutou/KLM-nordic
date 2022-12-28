@@ -133,7 +133,7 @@ extension KLMHomeManager {
         vc.addAction(UIAlertAction.init(title: LANGLOC("Do not show"), style: .destructive, handler: { action in
             KLMSetUserDefault("showTime", 1)
         }))
-        vc.addAction(UIAlertAction.init(title: LANGLOC("sure"), style: .default, handler: { action in
+        vc.addAction(UIAlertAction.init(title: LANGLOC("Confirm"), style: .default, handler: { action in
             
         }))
         if let label: UILabel = vc.view.value(forKeyPath: "_messageLabel") as? UILabel {

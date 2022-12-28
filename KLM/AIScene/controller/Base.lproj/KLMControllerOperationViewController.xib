@@ -11,10 +11,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMControllerOperationViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="brightLab" destination="sgS-TM-Ksd" id="qaX-id-vDZ"/>
                 <outlet property="colorItemsView" destination="RHA-Tb-p8V" id="gyc-m4-EMe"/>
                 <outlet property="contentView" destination="GjE-3u-iEn" id="4xm-Eg-7yM"/>
                 <outlet property="lightBgView" destination="eCu-vO-I4Q" id="Mw8-F8-ntt"/>
                 <outlet property="plateView" destination="A9E-rK-Z7l" id="zSB-ZC-XOb"/>
+                <outlet property="quickSelectLab" destination="2Yo-SU-f4l" id="bLj-Tu-m5g"/>
                 <outlet property="view" destination="Fgd-dy-gy4" id="Bjn-pH-PMA"/>
             </connections>
         </placeholder>

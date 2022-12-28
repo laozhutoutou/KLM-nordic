@@ -17,6 +17,13 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var categoryView: UIView!
     
+    @IBOutlet weak var titleLab: UILabel!
+    
+    @IBOutlet weak var useOccasionLab: UILabel!
+    
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var confirmBtn: UIButton!
+    
     //设备名称
     var name: String?
         
@@ -46,6 +53,12 @@ class KLMDeviceNameAndTypePopViewController: UIViewController {
         let str1: String = Bundle.main.path(forResource: "GroceriesPlist", ofType: "plist")!
         let groceries: NSArray = try! NSArray.init(contentsOf: URL.init(fileURLWithPath: str1), error: ())
         grocerySubTypes = KLMTool.jsonToModel(type: KLMType.self, array: groceries as! [[String : Any]])!
+        
+        titleLab.text = LANGLOC("Name the light")
+        textField.placeholder = LANGLOC("Please enter a name")
+        useOccasionLab.text = LANGLOC("Select use occasion")
+        cancelBtn.setTitle(LANGLOC("Cancel"), for: .normal)
+        confirmBtn.setTitle(LANGLOC("Confirm"), for: .normal)
         
         setupData()
     }

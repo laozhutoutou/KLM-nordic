@@ -216,7 +216,7 @@ extension KLMBaseCollectionViewViewController: KLMAINameListCellDelegate {
         }
         
         //弹出提示框
-        let warnAlert = UIAlertController(title: LANGLOC("deleteDevice"),
+        let warnAlert = UIAlertController(title: LANGLOC("Remove Device"),
                                       message: LANGLOC("Please make sure the device can not be connected with APP, otherwise use 'Settings reset'"),
                                       preferredStyle: .alert)
         let warnresetAction = UIAlertAction(title: LANGLOC("Remove"), style: .default) { _ in
@@ -241,7 +241,7 @@ extension KLMBaseCollectionViewViewController: KLMAINameListCellDelegate {
             }
             
         }
-        let warncancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+        let warncancelAction = UIAlertAction(title: LANGLOC("Cancel"), style: .cancel)
         warnAlert.addAction(warnresetAction)
         warnAlert.addAction(warncancelAction)
         self.present(warnAlert, animated: true)
@@ -280,7 +280,7 @@ extension KLMBaseCollectionViewViewController: DZNEmptyDataSetSource, DZNEmptyDa
         addBtn.backgroundColor = appMainThemeColor
         addBtn.setTitleColor(.white, for: .normal)
         addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        addBtn.setTitle(LANGLOC("addDevice"), for: .normal)
+        addBtn.setTitle(LANGLOC("Add new device"), for: .normal)
         addBtn.addTarget(self, action: #selector(newDevice), for: .touchUpInside)
         addBtn.layer.cornerRadius = 20
         contentView.addSubview(addBtn)
@@ -291,7 +291,7 @@ extension KLMBaseCollectionViewViewController: DZNEmptyDataSetSource, DZNEmptyDa
         }
 
         let titleLab = UILabel()
-        titleLab.text = LANGLOC("noDevice")
+        titleLab.text = LANGLOC("No devices")
         titleLab.font = UIFont.systemFont(ofSize: 14)
         titleLab.textColor = rgba(0, 0, 0, 0.5)
         contentView.addSubview(titleLab)

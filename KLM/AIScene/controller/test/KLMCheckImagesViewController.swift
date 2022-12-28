@@ -139,9 +139,9 @@ extension KLMCheckImagesViewController: MeshNetworkDelegate {
                         var err = MessageError()
                         err.code = Int(status)
                         err.dp = dp
-                        err.message = LANGLOC("Dataexception")
+                        err.message = LANGLOC("Data exception")
                         if status == 2 {
-                            err.message = LANGLOC("turnOnLightTip")
+                            err.message = LANGLOC("Please turn the light on")
                         }
                         if dp == .cameraPic && status == 1 {
                             err.message = LANGLOC("The light failed to connect to WiFi. Maybe the WiFi password is incorrect")

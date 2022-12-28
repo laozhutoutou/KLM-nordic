@@ -13,6 +13,8 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
     @IBOutlet weak var CNBtn: UIButton!
     @IBOutlet weak var ENBtn: UIButton!
     
+    @IBOutlet weak var languageLab: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         if Bundle.isChineseLanguage() {
@@ -20,6 +22,8 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
         } else {
             ENBtn.isSelected = true
         }
+        
+        languageLab.text = LANGLOC("Language")
     }
     
     @IBAction func CNClick(_ sender: Any) {
@@ -44,7 +48,7 @@ class KLMSettingSwichCell: KLMBaseTableViewCell {
     
     func upDateUI() {
         //键盘完成按钮适配中英文
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = LANGLOC("finish")
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = LANGLOC("Done")
         let delegate = UIApplication.shared.delegate as! AppDelegate
         delegate.enterMoreUI()
     }

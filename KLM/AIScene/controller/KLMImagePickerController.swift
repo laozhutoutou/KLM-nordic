@@ -59,7 +59,7 @@ class KLMImagePickerController: UIImagePickerController {
         
         //相册
         let libraryBtn = UIButton.init(type: .custom)
-        libraryBtn.setTitle(LANGLOC("library"), for: .normal)
+        libraryBtn.setTitle(LANGLOC("Photos"), for: .normal)
         libraryBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         libraryBtn.setTitleColor(.white, for: .normal)
         libraryBtn.layer.cornerRadius = 5

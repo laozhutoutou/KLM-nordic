@@ -26,12 +26,17 @@ class KLMRegisterViewController: UIViewController {
     @IBOutlet weak var eyeBtn: UIButton!
     @IBOutlet weak var eyaAgainBtn: UIButton!
     
+    @IBOutlet weak var emailLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+    @IBOutlet weak var passwordAgainLab: UILabel!
+    @IBOutlet weak var nickNameLab: UILabel!
+    @IBOutlet weak var codeLab: UILabel!
+    
+    
     //倒计时
     var messageTimer: Timer?
     ///当前秒
     var currentTime: Int = 60
-    
-    var codeTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +60,20 @@ class KLMRegisterViewController: UIViewController {
             }
         }.bind(to: signupBtn.rx.isEnabled)
             .disposed(by: disposeBag)
+                
+        emailLab.text = LANGLOC("Email")
+        passwordLab.text = LANGLOC("Password")
+        passwordAgainLab.text = LANGLOC("Password")
+        nickNameLab.text = LANGLOC("Nickname")
+        codeLab.text = LANGLOC("Code")
+        signupBtn.setTitle(LANGLOC("Sign Up"), for: .normal)
+        verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
         
-        codeTitle = verCodeBtn.currentTitle
-        
+        mailTextField.placeholder = LANGLOC("Email")
+        passTextField.placeholder = LANGLOC("Enter password")
+        passAgainField.placeholder = LANGLOC("Enter password again")
+        nickNameField.placeholder = LANGLOC("Enter nickName")
+        codeTextField.placeholder = LANGLOC("Enter code")
     }
     ///获取验证码
     @IBAction func sendCode(_ sender: Any) {
@@ -127,7 +143,7 @@ class KLMRegisterViewController: UIViewController {
         if currentTime <= 0 {//结束
             stopTime()
             verCodeBtn.isEnabled = true
-            verCodeBtn.setTitle(codeTitle, for: .normal)
+            verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
         }
     }
     

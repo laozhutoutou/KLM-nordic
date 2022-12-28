@@ -9,6 +9,9 @@ import UIKit
 
 class KLMJoinHomeViewController: UIViewController {
     
+    
+    @IBOutlet weak var titleLab: UILabel!
+    
     @IBOutlet weak var comfirmBtn: UIButton!
     @IBOutlet weak var invitationCodeTextField: UITextField!
     
@@ -18,7 +21,11 @@ class KLMJoinHomeViewController: UIViewController {
         comfirmBtn.layer.cornerRadius = comfirmBtn.height/2
         comfirmBtn.backgroundColor = appMainThemeColor
         
-        navigationItem.title = LANGLOC("joinAStore")
+        navigationItem.title = LANGLOC("Join a store")
+        
+        titleLab.text = LANGLOC("Please contact with the administrator to get an invitation")
+        invitationCodeTextField.placeholder = LANGLOC("Invitation code")
+        comfirmBtn.setTitle(LANGLOC("Confirm"), for: .normal)
     
     }
 

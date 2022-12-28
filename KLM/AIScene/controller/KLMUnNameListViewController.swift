@@ -163,6 +163,9 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         NotificationCenter.default.addObserver(self, selector: #selector(ScrollViewCanScroll), name: NSNotification.Name("ScrollViewCanScroll"), object: nil)
         
+        trackLightBtn.setTitle(LANGLOC("Luminaires"), for: .normal)
+        controllerBtn.setTitle(LANGLOC("Controllers"), for: .normal)
+        
     }
     
     func event() {
@@ -401,7 +404,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             KLMSetUserDefault(newVersion, newVersion)
             
             ///弹出提示框
-            let vc = UIAlertController.init(title: LANGLOC("checkUpdate"), message: newVersion, preferredStyle: .alert)
+            let vc = UIAlertController.init(title: LANGLOC("App update"), message: newVersion, preferredStyle: .alert)
             vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
                 
                 ///跳转到appleStore
@@ -412,7 +415,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
                     }
                 }
             }))
-            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil))
             self.present(vc, animated: true, completion: nil)
             
         } failure: { error in
@@ -428,7 +431,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
             updateMsg =  self.versionData.updateMessage
         }
         ///弹出提示框
-        let vc = UIAlertController.init(title: LANGLOC("checkUpdate"), message: "\(self.versionData.fileVersion)\n\(updateMsg)", preferredStyle: .alert)
+        let vc = UIAlertController.init(title: LANGLOC("App update"), message: "\(self.versionData.fileVersion)\n\(updateMsg)", preferredStyle: .alert)
         vc.addAction(UIAlertAction.init(title: LANGLOC("Update"), style: .default, handler: { action in
             
             ///跳转到appleStore
@@ -447,7 +450,7 @@ class KLMUnNameListViewController: UIViewController,  Editable{
         
         ///强制更新没有取消按钮
         if self.versionData.isForceUpdate == false{
-            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil))
         }
         
         self.present(vc, animated: true, completion: nil)

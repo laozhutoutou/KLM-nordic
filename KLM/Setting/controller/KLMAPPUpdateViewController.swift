@@ -19,10 +19,10 @@ class KLMAPPUpdateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = LANGLOC("checkUpdate")
+        self.navigationItem.title = LANGLOC("App update")
         iconImageView.layer.cornerRadius = 16
         iconImageView.clipsToBounds = true
-        versionLab.text = String(format: "%@: %@", LANGLOC("version"),KLM_APP_VERSION as! String)
+        versionLab.text = String(format: "%@: %@", LANGLOC("Version"),KLM_APP_VERSION as! String)
         
         let appName: String = KLM_APP_NAME as! String
         nameLab.text = appName
@@ -31,6 +31,9 @@ class KLMAPPUpdateViewController: UIViewController {
         updateBtn.backgroundColor = appMainThemeColor
         
         NotificationCenter.default.addObserver(self, selector: #selector(applicationBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        updateBtn.setTitle(LANGLOC("Upgrade the app"), for: .normal)
+        
     }
     
     @objc func applicationBecomeActive() {
@@ -64,7 +67,7 @@ class KLMAPPUpdateViewController: UIViewController {
             let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
             
             guard currentVersion.compare(versionData.fileVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                 return
             }
             
@@ -89,7 +92,7 @@ class KLMAPPUpdateViewController: UIViewController {
             let currentVersion = String(format: "%@", KLM_APP_VERSION as! String)
             
             guard currentVersion.compare(newVersion) == .orderedAscending else { //左操作数小于右操作数，需要升级
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                 return
             }
                         

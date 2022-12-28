@@ -9,12 +9,12 @@ import UIKit
 
 class KLMSettingsViewController: UIViewController {
     
-    let titles = [LANGLOC("ChangePassword"),LANGLOC("logout"),LANGLOC("Account deletion")]
+    let titles = [LANGLOC("Change Password"),LANGLOC("Log Out"),LANGLOC("Account deletion")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("setting")
+        navigationItem.title = LANGLOC("Settings")
     }
 }
 
@@ -61,10 +61,10 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
             
         case 1: ///退出登录
             
-            let alert = UIAlertController(title: LANGLOC("logout"),
+            let alert = UIAlertController(title: LANGLOC("Log Out"),
                                           message: nil,
                                           preferredStyle: .alert)
-            let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .default) { _ in
+            let resetAction = UIAlertAction(title: LANGLOC("Confirm"), style: .default) { _ in
                 
                 SVProgressHUD.show()
                 KLMService.logout { response in
@@ -77,7 +77,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                     (UIApplication.shared.delegate as! AppDelegate).enterLoginUI()
                 }
             }
-            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+            let cancelAction = UIAlertAction(title: LANGLOC("Cancel"), style: .cancel)
             alert.addAction(resetAction)
             alert.addAction(cancelAction)
             present(alert, animated: true)
@@ -95,7 +95,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                 let alert = UIAlertController(title: LANGLOC("Account deletion"),
                                               message: LANGLOC("Account deletion"),
                                               preferredStyle: .alert)
-                let resetAction = UIAlertAction(title: LANGLOC("sure"), style: .default) { _ in
+                let resetAction = UIAlertAction(title: LANGLOC("Confirm"), style: .default) { _ in
                     SVProgressHUD.show()
                     let user = KLMUser.getUserInfo()!
                     KLMService.deleteAccount(userid: user.id) { response in
@@ -107,7 +107,7 @@ extension KLMSettingsViewController: UITableViewDelegate, UITableViewDataSource 
                     }
 
                 }
-                let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .cancel)
+                let cancelAction = UIAlertAction(title: LANGLOC("Cancel"), style: .cancel)
                 alert.addAction(resetAction)
                 alert.addAction(cancelAction)
                 self.present(alert, animated: true)

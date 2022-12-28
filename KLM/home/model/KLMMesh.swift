@@ -170,7 +170,7 @@ class KLMMesh {
                         return
                     }
                     ///弹出提示框
-                    KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("DataUploadFail"))
+                    KLMAlertController.showAlertWithTitle(title: nil, message: LANGLOC("Data upload failed, please check the network connection"))
                     
                 }
             }
@@ -233,12 +233,12 @@ extension KLMMesh {
     static func isCanEditMesh() -> Bool {
         
         if isLoadMesh() == false {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please goto About > Store Management create a store"))
             return false
         }
         
         if isMeshManager() == false {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("admin_permissions_tips"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Administrator only"))
             return false
         }
         

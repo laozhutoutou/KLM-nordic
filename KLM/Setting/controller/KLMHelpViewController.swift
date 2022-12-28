@@ -14,30 +14,38 @@ class KLMHelpViewController: UIViewController {
     @IBOutlet weak var phoneField: UITextField!
     
     @IBOutlet weak var commitBtn: UIButton!
+    @IBOutlet weak var descLab: UILabel!
+    
+    @IBOutlet weak var contactLab: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("helpAdvice")
+        navigationItem.title = LANGLOC("Help & Feedback")
 
-        questionView.placeholderTitle = LANGLOC("helpQuestionTip")
+        questionView.placeholderTitle = LANGLOC("Please describe your problem(s) , or feedback, leave your name.")
         questionView.placeholderColor = rgba(0, 0, 0, 0.3)
         
         questionView.layer.cornerRadius = 6
         phoneField.layer.cornerRadius = 6
         commitBtn.layer.cornerRadius = commitBtn.height / 2
         commitBtn.backgroundColor = appMainThemeColor
+        
+        descLab.text = LANGLOC("Description")
+        contactLab.text = LANGLOC("Contact")
+        commitBtn.setTitle(LANGLOC("Commit"), for: .normal)
+        phoneField.placeholder = LANGLOC(" Phone number/Email")
     }
 
     @IBAction func commit(_ sender: Any) {
         
         guard let question = KLMTool.isEmptyString(string: questionView.text) else {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("FeedBackContentEmptyTip"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Please describe your problems"))
             return
         }
         
         guard let phone = KLMTool.isEmptyString(string: phoneField.text) else {
-            SVProgressHUD.showInfo(withStatus: LANGLOC("FeedBackContactEmptyTip"))
+            SVProgressHUD.showInfo(withStatus: LANGLOC("Phone number/Email?"))
             return
         }
         

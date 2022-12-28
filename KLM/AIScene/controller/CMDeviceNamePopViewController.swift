@@ -15,6 +15,8 @@ class CMDeviceNamePopViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleNameLab: UILabel!
     
+    @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var comfirmBtn: UIButton!
     var text: String?
     var titleName: String = ""
     
@@ -32,6 +34,10 @@ class CMDeviceNamePopViewController: UIViewController {
         contentView.layer.cornerRadius = 8
         
         titleNameLab.text = titleName
+        textField.placeholder = LANGLOC("Please enter a name")
+        cancelBtn.setTitle(LANGLOC("Cancel"), for: .normal)
+        comfirmBtn.setTitle(LANGLOC("Confirm"), for: .normal)
+        
         textField.text = text
     }
 

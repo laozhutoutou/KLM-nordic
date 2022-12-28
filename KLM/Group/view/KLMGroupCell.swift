@@ -24,7 +24,7 @@ class KLMGroupCell: KLMBaseTableViewCell {
             if let network = MeshNetworkManager.instance.meshNetwork {
                 
                 let models = network.models(subscribedTo: model)
-                self.numLab.text = String(format: "%d%@", models.count,LANGLOC("geDevice"))
+                self.numLab.text = String(format: "%d%@", models.count,LANGLOC(" Devices"))
             }
         }
     }

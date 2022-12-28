@@ -150,9 +150,9 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         let err = MessageError()
                         err.code = Int(status)
                         err.dp = dp
-                        err.message = LANGLOC("Dataexception")
+                        err.message = LANGLOC("Data exception")
                         if status == 2 {
-                            err.message = LANGLOC("turnOnLightTip")
+                            err.message = LANGLOC("Please turn the light on")
                         }
                         if dp == .cameraPic && status == 1 {
                             err.message = LANGLOC("The light failed to connect to WiFi. Maybe the WiFi password is incorrect")
@@ -171,7 +171,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         let err = MessageError()
                         err.code = Int(status)
                         err.dp = dp
-                        err.message = LANGLOC("Dataexception")
+                        err.message = LANGLOC("Data exception")
                         self.delegate?.smartNode(self, didfailure: err)
                         return
                     }
@@ -275,7 +275,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
         SVProgressHUD.dismiss()
         
         let err = MessageError()
-        err.message = LANGLOC("deviceNearbyTip")
+        err.message = LANGLOC("Make sure the device is powered on and nearby.Otherwise,check if it is connected by others or out of order.")
         
         do {
             try KLMConnectManager.checkBluetoothState()
@@ -298,7 +298,7 @@ extension KLMSmartNode: KLMMessageTimeDelegate {
         ///超时后不再接收蓝牙消息
         KLMMeshNetworkManager.shared.delegate = nil
         let err = MessageError()
-        err.message = LANGLOC("Connection timed out.") + LANGLOC("deviceNearbyTip")
+        err.message = LANGLOC("Connection timed out.") + LANGLOC("Make sure the device is powered on and nearby.Otherwise,check if it is connected by others or out of order.")
         self.delegate?.smartNode(self, didfailure: err)
     }
 }

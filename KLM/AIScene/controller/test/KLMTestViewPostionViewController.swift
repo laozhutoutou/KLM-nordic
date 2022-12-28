@@ -152,14 +152,14 @@ class KLMTestViewPostionViewController: UIViewController {
             if error == nil { //加入和无法加入都返回nil
                 let ssid = KLMLocationManager.getCurrentWifiName()
                 guard let ssid = ssid else {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("connectFailure"))
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Connect failure"))
                     return
                 }
                 if ssid == self.SSIDField.text { //加入了WiFi
                     KLMLog("入网成功")
                     self.sendWIfiMesssage()
                 } else {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("connectFailure"))
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Connect failure"))
                 }
             } else {
                 if let err = error as? NSError {
@@ -268,7 +268,7 @@ extension KLMTestViewPostionViewController: KLMSmartNodeDelegate {
                                     UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
                                 }
                             }
-                            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .default, handler: nil)
+                            let cancelAction = UIAlertAction(title: LANGLOC("Cancel"), style: .default, handler: nil)
                             alertController.addAction(cancelAction)
                             alertController.addAction(settingsAction)
                             KLMKeyWindow?.rootViewController?.present(alertController, animated: true)

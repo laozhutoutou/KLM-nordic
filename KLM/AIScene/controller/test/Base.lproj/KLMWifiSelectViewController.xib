@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,6 +12,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMWifiSelectViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
                 <outlet property="cancelBtn" destination="md7-NU-Jdc" id="Gbq-uY-M1B"/>
+                <outlet property="gotoBtn" destination="wVX-M1-KhT" id="i6M-2Z-gCI"/>
+                <outlet property="savedWifiLab" destination="5Yk-XU-NUM" id="pCG-NK-Og8"/>
+                <outlet property="selectWifiLab" destination="HGk-xJ-9Ed" id="tbY-2m-5lV"/>
                 <outlet property="tableView" destination="vA1-dP-Dg0" id="dQN-cu-8Ra"/>
                 <outlet property="view" destination="M19-Mf-j0x" id="NNg-0s-H4C"/>
             </connections>
@@ -107,12 +110,12 @@
                 <constraint firstItem="U6M-iP-peO" firstAttribute="bottom" secondItem="lNf-5x-h8j" secondAttribute="bottom" id="k23-TR-ttR"/>
                 <constraint firstAttribute="trailing" secondItem="SU8-j0-jO9" secondAttribute="trailing" id="saE-Cw-00D"/>
             </constraints>
-            <point key="canvasLocation" x="-3451" y="451"/>
+            <point key="canvasLocation" x="-3338" y="449"/>
         </view>
     </objects>
     <resources>
         <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

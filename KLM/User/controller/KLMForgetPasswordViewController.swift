@@ -21,12 +21,16 @@ class KLMForgetPasswordViewController: UIViewController {
     @IBOutlet weak var verCodeBtn: UIButton!
     @IBOutlet weak var eyeBtn: UIButton!
     @IBOutlet weak var eyaAgainBtn: UIButton!
+    
+    @IBOutlet weak var emailLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+    @IBOutlet weak var passwordAgainLab: UILabel!
+    @IBOutlet weak var codeLab: UILabel!
+    
     //倒计时
     var messageTimer: Timer?
     ///当前秒
     var currentTime: Int = 60
-    
-    var codeTitle: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +55,17 @@ class KLMForgetPasswordViewController: UIViewController {
         }.bind(to: doneBtn.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        codeTitle = verCodeBtn.currentTitle
+        emailLab.text = LANGLOC("Email")
+        passwordLab.text = LANGLOC("Password")
+        passwordAgainLab.text = LANGLOC("Password")
+        codeLab.text = LANGLOC("Code")
+        doneBtn.setTitle(LANGLOC("Done"), for: .normal)
+        verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
+        
+        mailTextField.placeholder = LANGLOC("Email")
+        passTextField.placeholder = LANGLOC("Enter password")
+        passAgainField.placeholder = LANGLOC("Enter password again")
+        codeTextField.placeholder = LANGLOC("Enter code")
         
     }
     
@@ -122,7 +136,7 @@ class KLMForgetPasswordViewController: UIViewController {
         if currentTime <= 0 {//结束
             stopTime()
             verCodeBtn.isEnabled = true
-            verCodeBtn.setTitle(codeTitle, for: .normal)
+            verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
         }
     }
     

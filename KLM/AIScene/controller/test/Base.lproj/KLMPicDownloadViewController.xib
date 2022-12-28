@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,9 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMPicDownloadViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
                 <outlet property="SSIDField" destination="dBy-ei-oof" id="mZl-us-4IK"/>
+                <outlet property="WifiNameLab" destination="Xag-q9-AFS" id="Jcr-oj-oyE"/>
                 <outlet property="downLoadBtn" destination="22S-sV-ock" id="kRc-ex-OVZ"/>
                 <outlet property="imageView" destination="RHk-jG-rm3" id="4uf-JP-AZb"/>
                 <outlet property="passField" destination="vhH-cd-DVL" id="s95-89-jPt"/>
+                <outlet property="passwordLab" destination="9qG-zB-VcX" id="Ie6-dI-Yxz"/>
                 <outlet property="playView" destination="Op3-JG-0EW" id="GcH-8d-Lw6"/>
                 <outlet property="selectwifiBtn" destination="kHl-v3-Ch9" id="KZ1-ef-hky"/>
                 <outlet property="view" destination="5jw-zS-1eF" id="0EX-lp-8cj"/>
@@ -26,19 +28,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wi-Fi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xag-q9-AFS">
-                    <rect key="frame" x="30" y="108" width="40.5" height="21"/>
+                    <rect key="frame" x="30" y="112" width="40.5" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qG-zB-VcX">
-                    <rect key="frame" x="30" y="184.5" width="74" height="21"/>
+                    <rect key="frame" x="30" y="188.5" width="74" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please  enter the Wi-Fi" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dBy-ei-oof">
-                    <rect key="frame" x="30" y="139" width="354" height="35"/>
+                    <rect key="frame" x="30" y="143" width="354" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="j7T-eW-1Wj"/>
                     </constraints>
@@ -46,7 +48,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95r-Ph-x7w" userLabel="line">
-                    <rect key="frame" x="30" y="174" width="354" height="0.5"/>
+                    <rect key="frame" x="30" y="178" width="354" height="0.5"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="dCG-OL-Hm1"/>
@@ -67,14 +69,14 @@
                     </connections>
                 </button>
                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yAc-Ur-Ddv" userLabel="line">
-                    <rect key="frame" x="30" y="250.5" width="354" height="0.5"/>
+                    <rect key="frame" x="30" y="254.5" width="354" height="0.5"/>
                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="akl-Xa-fHa"/>
                     </constraints>
                 </view>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter the password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vhH-cd-DVL">
-                    <rect key="frame" x="30" y="215.5" width="354" height="35"/>
+                    <rect key="frame" x="30" y="219.5" width="354" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="sb4-ur-Pbi"/>
                     </constraints>
@@ -82,7 +84,7 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHl-v3-Ch9">
-                    <rect key="frame" x="229" y="141.5" width="155" height="30"/>
+                    <rect key="frame" x="229" y="145.5" width="155" height="30"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="IUF-g2-Hof"/>
                         <constraint firstAttribute="width" constant="155" id="fbg-mp-hae"/>
@@ -97,10 +99,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-JG-0EW">
-                    <rect key="frame" x="20" y="271" width="374" height="506"/>
+                    <rect key="frame" x="20" y="275" width="374" height="502"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RHk-jG-rm3">
-                            <rect key="frame" x="0.0" y="0.0" width="374" height="506"/>
+                            <rect key="frame" x="0.0" y="0.0" width="374" height="502"/>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -142,7 +144,7 @@
                 <constraint firstItem="vhH-cd-DVL" firstAttribute="leading" secondItem="pG6-x9-wWU" secondAttribute="leading" constant="30" id="zsX-h2-RKk"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-6975" y="-1538"/>
+            <point key="canvasLocation" x="-7264" y="-1497"/>
         </view>
     </objects>
     <resources>

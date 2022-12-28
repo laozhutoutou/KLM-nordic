@@ -46,7 +46,7 @@ class KLMPhotoEditViewController: UIViewController {
             moreBtn.isHidden = false
             
             //完成
-            navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))  
+            navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("Done"), target: self, action: #selector(finish))  
         }
     }
     //当前亮度
@@ -104,7 +104,7 @@ class KLMPhotoEditViewController: UIViewController {
         
         RecipeLab.isHidden = true
         
-        navigationItem.title = LANGLOC("lightSet")
+        navigationItem.title = LANGLOC("Light setting")
         
         //导航栏左边添加返回按钮
         self.navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
@@ -140,6 +140,9 @@ class KLMPhotoEditViewController: UIViewController {
         lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
+        
+        lightLab.text = LANGLOC("Brightness")
+        moreBtn.setTitle(LANGLOC("More"), for: .normal)
     }
     
     private func useGuide() {

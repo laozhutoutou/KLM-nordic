@@ -38,7 +38,7 @@ class KLMLightSettingController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("lightSet")
+        navigationItem.title = LANGLOC("Light setting")
         tableView.rowHeight = 50
         tableView.separatorStyle = .none
         
@@ -163,7 +163,7 @@ class KLMLightSettingController: UITableViewController {
         case itemType.picture.rawValue:
             cell.leftTitle = LANGLOC("Take a picture")
         case itemType.custome.rawValue:
-            cell.leftTitle = LANGLOC("custom")
+            cell.leftTitle = LANGLOC("Customization")
         case itemType.light.rawValue:
             cell.leftTitle = LANGLOC("Brightness")
         default:

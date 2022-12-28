@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,10 +11,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMLoginViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="accountLab" destination="wzd-ft-pTV" id="8ZP-4y-wFD"/>
                 <outlet property="eyeBtn" destination="lb5-NJ-BCl" id="uMF-Oo-xL7"/>
+                <outlet property="forgotPasswordBtn" destination="83u-FT-LVG" id="dfV-eL-gZz"/>
                 <outlet property="logBtn" destination="CTQ-NG-57s" id="BIV-qX-aRb"/>
                 <outlet property="mailTextField" destination="LpF-dv-nJ6" id="56J-aQ-hF7"/>
                 <outlet property="passTextField" destination="2XX-y5-dm8" id="fxU-hw-OlX"/>
+                <outlet property="passwordLab" destination="Pbs-tH-svJ" id="Dgi-qa-N09"/>
+                <outlet property="signUpBtn" destination="dbi-hy-HMp" id="FXD-Hv-0Vi"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTQ-NG-57s">
-                    <rect key="frame" x="15" y="228" width="384" height="45"/>
+                    <rect key="frame" x="15" y="232" width="384" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="rQK-bQ-hK4"/>
                     </constraints>
@@ -37,7 +41,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dbi-hy-HMp">
-                    <rect key="frame" x="15" y="298" width="54" height="30"/>
+                    <rect key="frame" x="15" y="302" width="54" height="30"/>
                     <state key="normal" title="Sign Up">
                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -46,7 +50,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83u-FT-LVG">
-                    <rect key="frame" x="284" y="298" width="115" height="30"/>
+                    <rect key="frame" x="284" y="302" width="115" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <state key="normal" title="Forgot Password">
                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -56,7 +60,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Adv-Fa-CtQ">
-                    <rect key="frame" x="15" y="108" width="384" height="45"/>
+                    <rect key="frame" x="15" y="112" width="384" height="45"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pG0-YI-aSK" userLabel="line">
                             <rect key="frame" x="0.0" y="44.5" width="384" height="0.5"/>
@@ -95,7 +99,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7W2-yQ-mIR">
-                    <rect key="frame" x="15" y="153" width="384" height="45"/>
+                    <rect key="frame" x="15" y="157" width="384" height="45"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BfV-0v-y8b" userLabel="line">
                             <rect key="frame" x="0.0" y="44.5" width="384" height="0.5"/>
@@ -166,7 +170,7 @@
                 <constraint firstItem="dbi-hy-HMp" firstAttribute="leading" secondItem="CTQ-NG-57s" secondAttribute="leading" id="x7p-s0-BI4"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-4941" y="-581"/>
+            <point key="canvasLocation" x="-4626" y="-607"/>
         </view>
     </objects>
     <resources>

@@ -6,89 +6,62 @@
   
 */
 
-AiScene = "Devices";
-Group = "Groups";
-More = "About";
-language = "Language";
-checkUpdate = "App update";
-helpAdvice = "Help & Feedback";
-finish = "Done";
-version = "Version #";
-cancel = "Cancel";
-searchDeviceName = "Search device";
-lightSet = "Light setting";
-addDevice = "Add new device";
-newGroup = "Create new group";
-groupDeleteTip = "Delete group";
-groupSelectDelete = "Delete group";
-deviceMoveOutGroupTip = "Delete devices";
-connectSuccess = "Connect success";
-connectFailure = "Connect failure";
-geDevice = " Devices";
-unGroup = "Ungrouped";
-delete = "Delete";
-sure = "Confirm";
-reNameGroup = "Rename group";
-groupMembers = "Group members";
-library = "Photos";
-custom = "Customization";
-restorefactorysettings = "Settings Reset";
-setting = "Settings";
-reName = "Rename";
-Energysavingsettings = "Energy saving setting";
-allDeviceAutoEnergysaving = "All devices auto-dim";
-helpQuestionTip = "Please describe your problem(s) , or feedback, leave your name.";
 
-noDevice = "No devices";
-noGroup = "No groups";
 
-searchDeviceTip = "Make sure your devices are powered on and nearby";
-DFUVersionTip = "Latest version";
 
-"Auto Mode" = "Auto Mode";
-deleteDevice = "Remove Device";
-research = "Search again";
-nodevicesfound = "No devices found";
 
-ON = "On";
-OFF = "Off";
-Test = "test";
-Light = "Light";
-Reset = "Reset";
-Min = "min";
-Timeout = "Time out";
-Success = "Success";
-Updatecomplete = "Upgrade complete";
-Softwareupdate = "Software update";
-Update = "Update";
-CreateHomeTip = "Please goto About > Store Management create a store";
-admin_permissions_tips = "Administrator only";
-FeedBackContentEmptyTip = "Please describe your problems";
-FeedBackContactEmptyTip = "Phone number/Email?";
 
-Remove = "Remove";
 
-logout = "Log Out";
-storeManagement = "Store Management";
-createAStore = "Create a store";
-joinAStore = "Join a store";
-storeSettings = "Store Settings";
-close = "Close";
-deleteMember = "Delete Member";
-invitationCodetip = "Please offer the invitation code to others to join new store within 3 days";
-unknowUser = "Unknow user";
-AddMember = "Add member";
 
-ChangePassword = "Change Password";
-passwordWordDifferent = "The new password entered again is different";
-allDevice = "All devices";
-turnOnLightTip = "Please turn the light on";
-deleteStore = "Delete Store";
-Dataexception = "Data exception";
-DataUploadFail = "Data upload failed, please check the network connection";
-NetWorkTip = "Please make sure the network can be connected";
-deleteStoreTip = "Please ensure that all lights have been reset, otherwise they will not be searched";
-deviceNearbyTip = "Make sure the device is powered on and nearby.Otherwise,check if it is connected by others or out of order.";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

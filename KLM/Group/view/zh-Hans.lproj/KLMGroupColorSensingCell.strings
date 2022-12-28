@@ -1,9 +1,0 @@
-
-/* Class = "UILabel"; text = "Auto Mode"; ObjectID = "iak-61-wD1"; */
-"iak-61-wD1.text" = "全自动模式";
-
-/* Class = "UIButton"; normalTitle = "On"; ObjectID = "pvb-pF-5fe"; */
-"pvb-pF-5fe.normalTitle" = "开";
-
-/* Class = "UIButton"; normalTitle = "Off"; ObjectID = "vsG-6e-h3g"; */
-"vsG-6e-h3g.normalTitle" = "关";

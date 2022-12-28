@@ -64,7 +64,7 @@ class KLMAddDeviceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("addDevice")
+        navigationItem.title = LANGLOC("Add new device")
         self.contentView.isHidden = true
 
         //展示搜索页面
@@ -347,7 +347,7 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
     func sigMeshManager(_ manager: KLMSIGMeshManager, didActiveDevice device: Node) {
         
         //连接成功
-        SVProgressHUD.showSuccess(withStatus: LANGLOC("connectSuccess"))
+        SVProgressHUD.showSuccess(withStatus: LANGLOC("Connect success"))
         
         //停止
         KLMSIGMeshManager.sharedInstacnce.stopScanning()

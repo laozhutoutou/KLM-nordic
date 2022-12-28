@@ -59,7 +59,7 @@ class KLMGroupViewController: UIViewController {
         }
         
         let vc = CMDeviceNamePopViewController()
-        vc.titleName = LANGLOC("Group")
+        vc.titleName = LANGLOC("Groups")
         vc.modalPresentationStyle = .overCurrentContext
         vc.modalTransitionStyle = .crossDissolve
         vc.nameBlock = {[weak self] name in
@@ -120,7 +120,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 guard let self = self else { return }
                 if KLMMesh.isLoadMesh() == false {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Please goto About > Store Management create a store"))
                     return
                 }
                 
@@ -153,7 +153,7 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 0 { ///所有设备
             
             if KLMMesh.isLoadMesh() == false {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("CreateHomeTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Please goto About > Store Management create a store"))
                 return
             }
             
@@ -200,15 +200,15 @@ extension KLMGroupViewController: UITableViewDelegate, UITableViewDataSource {
         
         let model: Group = groups[indexPath.row - 1]
         
-        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("delete")) { action, sourceView, completionHandler in
+        let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("Delete")) { action, sourceView, completionHandler in
             
             if KLMMesh.isCanEditMesh() == false {
                 return
             }
             
-            let aler = UIAlertController.init(title: LANGLOC("groupDeleteTip"), message: LANGLOC("groupSelectDelete"), preferredStyle: .alert)
-            let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-            let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+            let aler = UIAlertController.init(title: LANGLOC("Delete group"), message: LANGLOC("Delete group"), preferredStyle: .alert)
+            let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+            let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
                 
                 let network = MeshNetworkManager.instance.meshNetwork!
                 let models = network.models(subscribedTo: model)
@@ -266,7 +266,7 @@ extension KLMGroupViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
         addBtn.backgroundColor = appMainThemeColor
         addBtn.setTitleColor(.white, for: .normal)
         addBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        addBtn.setTitle(LANGLOC("newGroup"), for: .normal)
+        addBtn.setTitle(LANGLOC("Create new group"), for: .normal)
         addBtn.addTarget(self, action: #selector(moreClick), for: .touchUpInside)
         addBtn.layer.cornerRadius = 20
         contentView.addSubview(addBtn)
@@ -277,7 +277,7 @@ extension KLMGroupViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
         }
         
         let titleLab = UILabel()
-        titleLab.text = LANGLOC("noGroup")
+        titleLab.text = LANGLOC("No groups")
         titleLab.font = UIFont.systemFont(ofSize: 14)
         titleLab.textColor = rgba(0, 0, 0, 0.5)
         contentView.addSubview(titleLab)

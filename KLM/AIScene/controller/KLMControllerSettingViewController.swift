@@ -61,7 +61,7 @@ class KLMControllerSettingViewController: UIViewController, Editable {
     
     func setupUI() {
         
-        self.navigationItem.title = LANGLOC("setting")
+        self.navigationItem.title = LANGLOC("Settings")
         nameLab.text = KLMHomeManager.currentNode.nodeName
         
         view.backgroundColor = appBackGroupColor
@@ -173,7 +173,7 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
             
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("lightSet")
+            cell.leftTitle = LANGLOC("Light setting")
             cell.rightTitle = ""
             return cell
         case itemType.DFU.rawValue://
@@ -187,14 +187,14 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
             
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("reName")
+            cell.leftTitle = LANGLOC("Rename")
             cell.rightTitle = KLMHomeManager.currentNode.nodeName
             return cell
         
         case itemType.reset.rawValue://恢复出厂设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("restorefactorysettings")
+            cell.leftTitle = LANGLOC("Settings Reset")
             cell.rightTitle = ""
             return cell
 
@@ -253,11 +253,11 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
         case itemType.DFU.rawValue:///固件更新
             
             guard let bleData = self.BLEVersionData, let newVersion = newVersion else {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                 return
             }
             guard let bleV = BLEVersion else {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                 return
             }
 
@@ -270,7 +270,7 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
 
             } else {
                  
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
             }
         case itemType.reset.rawValue: //恢复出厂设置
             
@@ -278,13 +278,13 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
                 return
             }
             
-            let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .alert)
+            let vc = UIAlertController.init(title: LANGLOC("Settings Reset"), message: nil, preferredStyle: .alert)
             vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .default, handler: { action in
                 SVProgressHUD.show()
                 KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
 
             }))
-            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         default:
             

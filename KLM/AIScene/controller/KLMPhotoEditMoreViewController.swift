@@ -21,6 +21,12 @@ class KLMPhotoEditMoreViewController: UIViewController {
     @IBOutlet weak var categoryView: UIView!
     @IBOutlet weak var categoryLab: UILabel!
     
+    @IBOutlet weak var enhanceLab: UILabel!
+    @IBOutlet weak var RenhanceLab: UILabel!
+    @IBOutlet weak var GenhanceLab: UILabel!
+    @IBOutlet weak var BenhanceLab: UILabel!
+    @IBOutlet weak var useOccasionLab: UILabel!
+    
     ///大分类
     var categoryList: [KLMType] = [KLMType]()
     var selectCategory: KLMType?
@@ -101,6 +107,14 @@ class KLMPhotoEditMoreViewController: UIViewController {
         grocerySubTypes = KLMTool.jsonToModel(type: KLMType.self, array: groceries as! [[String : Any]])!
         
         allTypes = categoryList + grocerySubTypes
+        
+        enhanceLab.text = LANGLOC("Enhance by RGB")
+        RenhanceLab.text = LANGLOC("R-Enhancement")
+        GenhanceLab.text = LANGLOC("G-Enhancement")
+        BenhanceLab.text = LANGLOC("B-Enhancement")
+        useOccasionLab.text = LANGLOC("Use occasion")
+        cancelBtn.setTitle(LANGLOC("Cancel"), for: .normal)
+        confirmBtn.setTitle(LANGLOC("Confirm"), for: .normal)
     }
     
     private func setupData() {

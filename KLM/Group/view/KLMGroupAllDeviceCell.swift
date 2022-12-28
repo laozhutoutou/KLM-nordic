@@ -12,17 +12,20 @@ class KLMGroupAllDeviceCell: KLMBaseTableViewCell {
     
     typealias SettingsBlock = () -> Void
     
+    @IBOutlet weak var allDevicesLab: UILabel!
     @IBOutlet weak var numLab: UILabel!
     var settingsBlock: SettingsBlock?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        allDevicesLab.text = LANGLOC("All devices")
+        
         if let network = MeshNetworkManager.instance.meshNetwork {
             
             let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
             
-            self.numLab.text = String(format: "%d%@", notConfiguredNodes.count,LANGLOC("geDevice"))
+            self.numLab.text = String(format: "%d%@", notConfiguredNodes.count,LANGLOC(" Devices"))
         }
     }
     

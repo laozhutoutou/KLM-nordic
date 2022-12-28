@@ -30,7 +30,7 @@ class KLMAllDeviceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("allDevice")
+        navigationItem.title = LANGLOC("All devices")
     }
     
     private func setupData() {
@@ -81,14 +81,14 @@ extension KLMAllDeviceViewController: UITableViewDelegate, UITableViewDataSource
         case itemType.lightSetting.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("lightSet")
+            cell.leftTitle = LANGLOC("Light setting")
             cell.rightTitle = ""
             return cell
         case itemType.motion.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
+            cell.leftTitle = LANGLOC("Energy saving setting")
+            cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("On") : LANGLOC("Off")
             return cell
         case itemType.CMOS.rawValue://颜色识别
             let cell: KLMGroupColorSensingCell = KLMGroupColorSensingCell.cellWithTableView(tableView: tableView)

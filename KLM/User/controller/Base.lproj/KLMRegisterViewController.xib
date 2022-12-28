@@ -11,13 +11,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMRegisterViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="codeLab" destination="l39-nr-N7P" id="OcC-KO-t04"/>
                 <outlet property="codeTextField" destination="1Lg-Jt-Xh3" id="Ehv-sL-8Ph"/>
+                <outlet property="emailLab" destination="eKi-Li-jsa" id="qWz-e0-qMX"/>
                 <outlet property="eyaAgainBtn" destination="62M-hV-2d7" id="3pR-f1-2Zm"/>
                 <outlet property="eyeBtn" destination="YDK-1V-f9U" id="eIG-bs-vY6"/>
                 <outlet property="mailTextField" destination="3V1-mB-CXQ" id="bCR-Mx-Bo3"/>
                 <outlet property="nickNameField" destination="zhz-Yw-45O" id="CIT-2Z-A3P"/>
+                <outlet property="nickNameLab" destination="VNc-Xo-3rq" id="JDX-xk-7hP"/>
                 <outlet property="passAgainField" destination="25L-Hu-yox" id="paR-sP-I1J"/>
                 <outlet property="passTextField" destination="PF4-tW-t2w" id="dem-2L-Vh5"/>
+                <outlet property="passwordAgainLab" destination="OEA-B8-o7d" id="alH-VN-bRy"/>
+                <outlet property="passwordLab" destination="mbh-gK-lXk" id="tYw-e9-S5H"/>
                 <outlet property="signupBtn" destination="oAE-Q0-4ai" id="8eK-S3-MPd"/>
                 <outlet property="verCodeBtn" destination="kgf-KE-sYX" id="NUR-uN-DEb"/>
                 <outlet property="view" destination="y0D-61-X8W" id="oRL-Ob-jjd"/>
@@ -306,7 +311,7 @@
                 <constraint firstItem="Qsp-q3-djo" firstAttribute="leading" secondItem="oKC-4w-4zp" secondAttribute="leading" id="xLZ-cd-uQM"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="-6026" y="-712"/>
+            <point key="canvasLocation" x="-5778" y="-702"/>
         </view>
     </objects>
     <resources>

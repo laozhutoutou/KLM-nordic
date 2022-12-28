@@ -14,6 +14,11 @@ class KLMWifiSelectViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cancelBtn: UIButton!
     
+    @IBOutlet weak var selectWifiLab: UILabel!
+    @IBOutlet weak var gotoBtn: UIButton!
+    
+    @IBOutlet weak var savedWifiLab: UILabel!
+    
     var WiFiLists: [KLMWiFiModel]!
     var wifiBlock: wifiBlock?
     
@@ -24,6 +29,11 @@ class KLMWifiSelectViewController: UIViewController {
         cancelBtn.backgroundColor = .lightGray.withAlphaComponent(0.5)
         
         WiFiLists = KLMWiFiManager.getWifiLists() ?? [KLMWiFiModel]()
+        
+        selectWifiLab.text = LANGLOC("Select Wi-Fi")
+        gotoBtn.setTitle(LANGLOC("Go to the system settings to select Wi-Fi  >"), for: .normal)
+        cancelBtn.setTitle(LANGLOC("Cancel"), for: .normal)
+        savedWifiLab.text = LANGLOC("Saved Wi-Fi networks")
     }
 
     @IBAction func setNetworks(_ sender: Any) {

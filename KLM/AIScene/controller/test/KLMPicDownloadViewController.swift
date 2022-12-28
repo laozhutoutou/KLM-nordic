@@ -25,6 +25,10 @@ class KLMPicDownloadViewController: UIViewController {
     ///图片
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var WifiNameLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+
+    
     var webView: WKWebView?
     lazy var wkConfig: WKWebViewConfiguration = {
         let wkConfig = WKWebViewConfiguration.init()
@@ -80,6 +84,14 @@ class KLMPicDownloadViewController: UIViewController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
+        WifiNameLab.text = LANGLOC("Wi-Fi")
+        SSIDField.placeholder = LANGLOC("Please enter the Wi-Fi")
+        selectwifiBtn.setTitle(LANGLOC("Select Wi-Fi networks"), for: .normal)
+        passwordLab.text = LANGLOC("Password")
+        passField.placeholder = LANGLOC("Please enter the password")
+        downLoadBtn.setTitle(LANGLOC("View"), for: .normal)
+       
     }
     
     @IBAction func downLoad(_ sender: Any) {
@@ -137,14 +149,14 @@ class KLMPicDownloadViewController: UIViewController {
             if error == nil { //加入和无法加入都返回nil
                 let ssid = KLMLocationManager.getCurrentWifiName()
                 guard let ssid = ssid else {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("connectFailure"))
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Connect failure"))
                     return
                 }
                 if ssid == self.SSIDField.text { //加入了WiFi
                     KLMLog("入网成功")
                     self.sendWIfiMesssage()
                 } else {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("connectFailure"))
+                    SVProgressHUD.showInfo(withStatus: LANGLOC("Connect failure"))
                 }
             } else {
                 if let err = error as? NSError {
@@ -248,7 +260,7 @@ extension KLMPicDownloadViewController: KLMSmartNodeDelegate {
                                     UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
                                 }
                             }
-                            let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .default, handler: nil)
+                            let cancelAction = UIAlertAction(title: LANGLOC("Cancel"), style: .default, handler: nil)
                             alertController.addAction(cancelAction)
                             alertController.addAction(settingsAction)
                             KLMKeyWindow?.rootViewController?.present(alertController, animated: true)

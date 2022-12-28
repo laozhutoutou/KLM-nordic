@@ -31,6 +31,8 @@ class KLMTLWOTAViewController: UIViewController {
         
         tipLab.text = LANGLOC("Please do not move the mobile phone. and keep the Bluetooth connection between the mobile phone and the light during the update process.")
         
+        upgradeBtn.setTitle(LANGLOC("Upgrade"), for: .normal)
+        
         //导航栏左边添加返回          按钮
         if isPresent {
             navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
@@ -78,9 +80,9 @@ class KLMTLWOTAViewController: UIViewController {
     private func otaSuccessAction() {
         KLMLog("OTA success")
         SVProgressHUD.dismiss()
-        KLMAlertController.showAlertWithTitle(title: LANGLOC("Updatecomplete"), message: nil, sure: {
+        KLMAlertController.showAlertWithTitle(title: LANGLOC("Upgrade complete"), message: nil, sure: {
             
-//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Updatecomplete"))
+//            SVProgressHUD.showSuccess(withStatus: LANGLOC("Upgrade complete"))
             DispatchQueue.main.asyncAfter(deadline: 0.5) {
                 if self.isPresent {
                     self.dismiss(animated: true, completion: nil)

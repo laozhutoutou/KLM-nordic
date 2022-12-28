@@ -17,13 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On/Off" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OyG-vw-YpS">
-                        <rect key="frame" x="16" y="15.5" width="49" height="19"/>
+                        <rect key="frame" x="16" y="15.666666666666664" width="49" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GyU-Ni-USu">
-                        <rect key="frame" x="255" y="9.5" width="51" height="31"/>
+                        <rect key="frame" x="255" y="9.6666666666666643" width="51" height="31"/>
                         <color key="onTintColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="OnOff:" destination="go0-X8-o5O" eventType="valueChanged" id="uAY-pq-6fl"/>
@@ -39,6 +39,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="OnOffSwitch" destination="GyU-Ni-USu" id="1rl-ve-mz6"/>
+                <outlet property="onOffLab" destination="OyG-vw-YpS" id="yGF-lE-03n"/>
             </connections>
             <point key="canvasLocation" x="230" y="-27"/>
         </tableViewCell>

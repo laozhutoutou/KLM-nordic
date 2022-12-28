@@ -72,7 +72,7 @@ class KLMAddDeviceTestViewController: UIViewController {
     
     func setupUI() {
         
-        navigationItem.title = LANGLOC("addDevice")
+        navigationItem.title = LANGLOC("Add new device")
         self.contentView.isHidden = true
 
         //展示搜索页面

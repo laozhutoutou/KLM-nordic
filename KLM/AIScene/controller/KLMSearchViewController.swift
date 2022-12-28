@@ -28,7 +28,7 @@ class KLMSearchViewController: UIViewController {
     
     lazy var searchBar: CMSearchBar = {
         let searchBar = CMSearchBar(frame: CGRect(x: 42, y: KLM_StatusBarHeight + 7, width: KLMScreenW - 42 - 17, height: 32))
-        searchBar.placeholder = LANGLOC("searchDeviceName")
+        searchBar.placeholder = LANGLOC("Search device")
         searchBar.backgroundColor = rgb(247, 247, 247)
         searchBar.layer.cornerRadius = 32 / 2
         searchBar.showsCancelButton = false

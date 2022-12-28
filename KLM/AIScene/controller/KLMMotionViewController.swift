@@ -19,6 +19,11 @@ class KLMMotionViewController: UIViewController, Editable {
     @IBOutlet weak var autoDim: UISwitch!
     @IBOutlet weak var doneBtn: UIButton!
     
+    @IBOutlet weak var energySavingLab: UILabel!
+    
+    @IBOutlet weak var autoDimLab: UILabel!
+    @IBOutlet weak var brightLab: UILabel!
+    
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     ///是否确认
@@ -35,7 +40,7 @@ class KLMMotionViewController: UIViewController, Editable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("Energysavingsettings")
+        navigationItem.title = LANGLOC("Energy saving setting")
         
         view.backgroundColor = appBackGroupColor
         contentView.backgroundColor = appBackGroupColor
@@ -57,6 +62,10 @@ class KLMMotionViewController: UIViewController, Editable {
             self.hideEmptyView()
         }
         
+        energySavingLab.text = LANGLOC("Energy saving setting")
+        autoDimLab.text = LANGLOC("Auto-dim(min)")
+        brightLab.text = LANGLOC("Brightness")
+        doneBtn.setTitle(LANGLOC("Confirm"), for: .normal)
     }
     
     private func setupUI() {

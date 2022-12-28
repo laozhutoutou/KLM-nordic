@@ -20,17 +20,14 @@ private enum itemType: Int, CaseIterable {
 class KLMSettingViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
-//    let images = ["icon_language","icon_language","icon_enegy_save","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
-//    let titles = ["个人信息",LANGLOC("language"),LANGLOC("allDeviceAutoEnergysaving"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("setting")]
-    
+        
     let images = ["icon_language","icon_language","icon_app_update","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice","icon_helpAndAdvice"]
-    let titles = ["个人信息",LANGLOC("language"),LANGLOC("checkUpdate"),LANGLOC("helpAdvice"), LANGLOC("storeManagement"),LANGLOC("setting")]
+    let titles = ["个人信息",LANGLOC("Language"),LANGLOC("App update"),LANGLOC("Help & Feedback"), LANGLOC("Store Management"),LANGLOC("Settings")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = LANGLOC("More")
+        self.navigationItem.title = LANGLOC("About")
         
     }
     

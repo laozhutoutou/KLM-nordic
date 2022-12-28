@@ -24,7 +24,7 @@ class KLMSearchDeviceEmptyView: UIView {
         }
         
         let titleLab = UILabel()
-        titleLab.text = LANGLOC("nodevicesfound")
+        titleLab.text = LANGLOC("No devices found")
         titleLab.font = UIFont.systemFont(ofSize: 14)
         titleLab.textColor = rgba(0, 0, 0, 0.5)
         self.addSubview(titleLab)
@@ -37,7 +37,7 @@ class KLMSearchDeviceEmptyView: UIView {
         research.backgroundColor = appMainThemeColor
         research.setTitleColor(.white, for: .normal)
         research.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        research.setTitle(LANGLOC("research"), for: .normal)
+        research.setTitle(LANGLOC("Search again"), for: .normal)
         research.addTarget(self, action: #selector(researchClick), for: .touchUpInside)
         research.layer.cornerRadius = 20
         self.addSubview(research)

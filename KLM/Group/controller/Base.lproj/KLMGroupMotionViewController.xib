@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,8 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMGroupMotionViewController" customModule="KLM_GN" customModuleProvider="target">
             <connections>
+                <outlet property="audoDimLab" destination="V8k-sE-fWj" id="sHE-Yd-3uF"/>
+                <outlet property="brightLab" destination="HmG-ym-4UH" id="LCz-xo-ADv"/>
                 <outlet property="confirmBtn" destination="Gxx-x2-ctM" id="prN-wJ-Ll4"/>
                 <outlet property="contentView" destination="4El-cZ-rIR" id="eyu-sO-PHm"/>
+                <outlet property="energySavingLab" destination="jAm-gz-dys" id="dhY-uM-UbV"/>
                 <outlet property="lightBgView" destination="cxL-Pw-lvL" id="AZJ-l5-3Nt"/>
                 <outlet property="lightContentView" destination="UDm-8D-tGa" id="PWt-z4-Cex"/>
                 <outlet property="offBtn" destination="t8u-SA-E8b" id="Qah-zx-7AG"/>
@@ -28,7 +31,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4El-cZ-rIR">
-                    <rect key="frame" x="0.0" y="158" width="414" height="704"/>
+                    <rect key="frame" x="0.0" y="162" width="414" height="700"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sKR-hh-sDd">
                             <rect key="frame" x="16" y="0.0" width="382" height="130"/>
@@ -113,13 +116,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="节能设置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jAm-gz-dys">
-                    <rect key="frame" x="16" y="108" width="61.5" height="18"/>
+                    <rect key="frame" x="16" y="112" width="61.5" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.14901960780000001" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t8u-SA-E8b">
-                    <rect key="frame" x="162.5" y="104.5" width="45" height="25"/>
+                    <rect key="frame" x="162.5" y="108.5" width="45" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="NjC-vd-3cT"/>
                         <constraint firstAttribute="width" constant="45" id="she-76-1O6"/>
@@ -137,7 +140,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gCD-U7-Lz6">
-                    <rect key="frame" x="97.5" y="104.5" width="45" height="25"/>
+                    <rect key="frame" x="97.5" y="108.5" width="45" height="25"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="45" id="JlJ-LE-OL3"/>
                         <constraint firstAttribute="height" constant="25" id="gPL-Qd-Jav"/>

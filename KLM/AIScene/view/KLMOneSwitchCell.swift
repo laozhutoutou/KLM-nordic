@@ -11,6 +11,8 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
 
     @IBOutlet weak var cameraSwitch: UISwitch!
     
+    @IBOutlet weak var autoModeLab: UILabel!
+    
     var cameraOnOff: Int!{
         
         didSet {
@@ -21,6 +23,8 @@ class KLMOneSwitchCell: KLMBaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         cameraSwitch.onTintColor = appMainThemeColor
+        
+        autoModeLab.text = LANGLOC("Auto Mode")
     }
     
     @IBAction func switchClick(_ sender: UISwitch) {

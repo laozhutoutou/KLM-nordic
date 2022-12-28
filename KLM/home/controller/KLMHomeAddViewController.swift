@@ -12,11 +12,16 @@ class KLMHomeAddViewController: UIViewController {
 
     @IBOutlet weak var nameTextField: UITextField!
     
+    @IBOutlet weak var storeNameLab: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("createAStore");
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
+        navigationItem.title = LANGLOC("Create a store");
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("Done"), target: self, action: #selector(finish))
+        
+        storeNameLab.text = LANGLOC("Store Name") + "："
+        nameTextField.placeholder = LANGLOC("Please enter store name")
     }
     
     @objc func finish() {

@@ -62,7 +62,7 @@ class KLMLocationManager: NSObject {
                 UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
             }
         }
-        let cancelAction = UIAlertAction(title: LANGLOC("cancel"), style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: LANGLOC("Cancel"), style: .default, handler: nil)
         alertController.addAction(cancelAction)
         alertController.addAction(settingsAction)
         KLMKeyWindow?.rootViewController?.present(alertController, animated: true)

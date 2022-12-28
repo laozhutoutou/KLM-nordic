@@ -19,7 +19,6 @@ private enum itemType: Int, CaseIterable {
     case reset
     //    case sigleControl //单路控制
     case downLoadPic //下载图像
-    
     case checkInfo //查询加密状态
     case YingjianTest //硬件测试
     case Yingjian //硬件
@@ -93,7 +92,7 @@ class KLMDeviceEditViewController: UIViewController, Editable {
     
     func setupUI() {
         
-        self.navigationItem.title = LANGLOC("setting")
+        self.navigationItem.title = LANGLOC("Settings")
         nameLab.text = KLMHomeManager.currentNode.nodeName
         
         view.backgroundColor = appBackGroupColor
@@ -299,7 +298,7 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
                 if value == 1 {
                     
                     guard let bleData = self.BLEVersionData else {
-                        SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                        SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                         return
                     }
                     
@@ -388,7 +387,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("lightSet")
+            cell.leftTitle = LANGLOC("Light setting")
             cell.rightTitle = ""
             return cell
         case itemType.CMOS.rawValue://颜色识别
@@ -398,21 +397,21 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
         case itemType.motion.rawValue://节能设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = self.motionValue == false ? LANGLOC("OFF") : LANGLOC("ON")
+            cell.leftTitle = LANGLOC("Energy saving setting")
+            cell.rightTitle = self.motionValue == false ? LANGLOC("Off") : LANGLOC("On")
             return cell
         case itemType.rename.rawValue:
             
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("reName")
+            cell.leftTitle = LANGLOC("Rename")
             cell.rightTitle = KLMHomeManager.currentNode.nodeName
             return cell
             
         case itemType.reset.rawValue://恢复出厂设置
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("restorefactorysettings")
+            cell.leftTitle = LANGLOC("Settings Reset")
             cell.rightTitle = ""
             return cell
         case itemType.DFU.rawValue://
@@ -427,7 +426,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.isShowLeftImage = false
             cell.leftTitle = LANGLOC("Group setting")
             if self.deviceGroups.count <= 0 {
-                let string = LANGLOC("unGroup")
+                let string = LANGLOC("Ungrouped")
                 cell.rightTitle = string
             } else {
                 var string = ""
@@ -523,15 +522,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             navigationController?.pushViewController(vc, animated: true)
             
         case itemType.lightSetting.rawValue://灯光设置
-            //是否有相机权限
-            //            KLMPhotoManager().photoAuthStatus { [weak self] in
-            //                guard let self = self else { return }
-            //
-            //                let vc = KLMImagePickerController()
-            //                vc.sourceType = .camera
-            //                self.present(vc, animated: true, completion: nil)
-            //
-            //            }
+            
             let vc = KLMLightSettingController()
             vc.isNeedFrash = false
             navigationController?.pushViewController(vc, animated: true)
@@ -547,22 +538,22 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 return
             }
             
-            let vc = UIAlertController.init(title: LANGLOC("restorefactorysettings"), message: nil, preferredStyle: .alert)
+            let vc = UIAlertController.init(title: LANGLOC("Settings Reset"), message: nil, preferredStyle: .alert)
             vc.addAction(UIAlertAction.init(title: LANGLOC("Reset"), style: .default, handler: { action in
                 SVProgressHUD.show()
                 KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
                 
             }))
-            vc.addAction(UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil))
+            vc.addAction(UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil))
             present(vc, animated: true, completion: nil)
         case itemType.DFU.rawValue:///固件更新
             
             guard let bleData = self.BLEVersionData else {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                 return
             }
             guard let bleV = BLEVersion else {
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
                 return
             }
             
@@ -590,7 +581,7 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 
             } else {
                 
-                SVProgressHUD.showInfo(withStatus: LANGLOC("DFUVersionTip"))
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
             }
         case itemType.CMOS.rawValue:
             if cameraSwitch != 1 { //自动颜色开关没打开

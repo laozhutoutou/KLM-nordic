@@ -34,7 +34,7 @@ class KLMGroupDeleteDevicesController: UITableViewController {
         
         tableView.separatorStyle = .none
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finishClick))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("Done"), target: self, action: #selector(finishClick))
     }
     
     @objc private func setupData(){
@@ -69,9 +69,9 @@ class KLMGroupDeleteDevicesController: UITableViewController {
             return
         }
         
-        let aler = UIAlertController.init(title: LANGLOC("deviceMoveOutGroupTip"), message: nil, preferredStyle: .alert)
-        let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+        let aler = UIAlertController.init(title: LANGLOC("Delete devices"), message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+        let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
             
             SVProgressHUD.show()
             SVProgressHUD.setDefaultMaskType(.black)

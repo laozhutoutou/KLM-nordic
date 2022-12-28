@@ -92,7 +92,7 @@ class KLMConnectManager {
         //一个设备都没连接,群组发送消息也可以发送出去，没报异常。所以要添加这个
         if !MeshNetworkManager.bearer.isOpen {
             var err = MessageError()
-            err.message = LANGLOC("deviceNearbyTip")
+            err.message = LANGLOC("Make sure the device is powered on and nearby.Otherwise,check if it is connected by others or out of order.")
             KLMShowError(err)
             self.onFailure()
             return

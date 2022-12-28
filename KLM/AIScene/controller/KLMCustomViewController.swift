@@ -23,6 +23,10 @@ class KLMCustomViewController: UIViewController, Editable {
     @IBOutlet weak var colorTempBgView: UIView!
     @IBOutlet weak var lightBgView: UIView!
     
+    @IBOutlet weak var quickSelectLab: UILabel!
+    @IBOutlet weak var colorTempLab: UILabel!
+    @IBOutlet weak var brightLab: UILabel!
+    
     let itemW:CGFloat = 25
     
     var cameraPower: Int = 0
@@ -75,10 +79,10 @@ class KLMCustomViewController: UIViewController, Editable {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = LANGLOC("custom")
+        navigationItem.title = LANGLOC("Customization")
         contentView.layer.cornerRadius = 16
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("finish"), target: self, action: #selector(finish))
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: LANGLOC("Done"), target: self, action: #selector(finish))
         //导航栏左边添加返回按钮
         navigationItem.leftBarButtonItems = UIBarButtonItem.item(withBackIconTarget: self, action: #selector(dimiss)) as? [UIBarButtonItem]
         
@@ -133,6 +137,10 @@ class KLMCustomViewController: UIViewController, Editable {
         lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
+        
+        quickSelectLab.text = LANGLOC("Quick Select")
+        colorTempLab.text = LANGLOC("Colour temperature")
+        brightLab.text = LANGLOC("Brightness")
     }
     
     private func setupData() {

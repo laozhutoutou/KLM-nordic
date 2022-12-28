@@ -1,9 +1,0 @@
-
-/* Class = "UIButton"; normalTitle = "Off"; ObjectID = "0Iw-ua-6Ys"; */
-"0Iw-ua-6Ys.normalTitle" = "关";
-
-/* Class = "UILabel"; text = "Light On/Off"; ObjectID = "GCO-JV-4au"; */
-"GCO-JV-4au.text" = "灯 打开/关闭";
-
-/* Class = "UIButton"; normalTitle = "On"; ObjectID = "xjd-JW-nB4"; */
-"xjd-JW-nB4.normalTitle" = "开";

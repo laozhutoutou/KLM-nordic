@@ -21,6 +21,11 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     
     @IBOutlet weak var confirmBtn: UIButton!
     
+    @IBOutlet weak var energySavingLab: UILabel!
+    
+    @IBOutlet weak var audoDimLab: UILabel!
+    @IBOutlet weak var brightLab: UILabel!
+    
     var timeSlider: KLMSlider!
     var lightSlider: KLMSlider!
     
@@ -31,7 +36,7 @@ class KLMGroupMotionViewController: UIViewController, Editable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = LANGLOC("Energysavingsettings")
+        navigationItem.title = LANGLOC("Energy saving setting")
         
         view.backgroundColor = appBackGroupColor
         contentView.backgroundColor = appBackGroupColor
@@ -93,6 +98,14 @@ class KLMGroupMotionViewController: UIViewController, Editable {
         lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
+        
+        energySavingLab.text = LANGLOC("Energy saving setting")
+        audoDimLab.text = LANGLOC("Auto-dim(min)")
+        brightLab.text = LANGLOC("Brightness")
+        confirmBtn.setTitle(LANGLOC("Confirm"), for: .normal)
+        onBtn.setTitle(LANGLOC("On"), for: .normal)
+        offBtn.setTitle(LANGLOC("Off"), for: .normal)
+        
     }
     
     

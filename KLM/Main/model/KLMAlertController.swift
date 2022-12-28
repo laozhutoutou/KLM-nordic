@@ -16,7 +16,7 @@ class KLMAlertController {
     static func showAlertWithTitle(title: String?, message: String?, sure: (() -> ())? = nil) {
         
         let aler = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
-        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default, handler: { action in
+        let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default, handler: { action in
             
             if let ss = sure {
                 ss()

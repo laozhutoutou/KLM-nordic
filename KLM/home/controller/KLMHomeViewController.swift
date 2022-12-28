@@ -23,7 +23,7 @@ class KLMHomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = LANGLOC("storeManagement");
+        self.navigationItem.title = LANGLOC("Store Management");
         
         tableView.backgroundColor = appBackGroupColor
         
@@ -90,9 +90,9 @@ extension KLMHomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell.leftLab.textColor = appMainThemeColor
         cell.line.isHidden = true
         if indexPath.section == 1 {
-            cell.leftTitle = LANGLOC("createAStore");
+            cell.leftTitle = LANGLOC("Create a store");
         } else {
-            cell.leftTitle = LANGLOC("joinAStore");
+            cell.leftTitle = LANGLOC("Join a store");
         }
         
         return cell

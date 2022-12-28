@@ -15,6 +15,7 @@ protocol KLMSearchHistoryViewDelegate: AnyObject {
 
 class KLMSearchHistoryView: UIView, Nibloadable {
     
+    @IBOutlet weak var historyLab: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     static var myframe: CGRect!
         
@@ -56,6 +57,7 @@ class KLMSearchHistoryView: UIView, Nibloadable {
         }
         self.collectionView.collectionViewLayout =  layout
         
+        historyLab.text = LANGLOC("History")
     }
     
     override func draw(_ rect: CGRect) {

@@ -29,6 +29,10 @@ class KLMCMOSViewController: UIViewController, Editable {
     
     @IBOutlet weak var confirmBtn: UIButton!
     
+    @IBOutlet weak var timeINtervalS: UILabel!
+    @IBOutlet weak var timeIntervalM: UILabel!
+    
+    @IBOutlet weak var useOccasionLab: UILabel!
     ///大分类
     var categoryList: [KLMType] = [KLMType]()
     var selectCategory: KLMType?
@@ -115,6 +119,14 @@ class KLMCMOSViewController: UIViewController, Editable {
         DispatchQueue.main.asyncAfter(deadline: 5) {
             self.hideEmptyView()
         }
+        
+        mimuteBtn.setTitle(LANGLOC("In minutes"), for: .normal)
+        secondBtn.setTitle(LANGLOC("In seconds"), for: .normal)
+        timeIntervalM.text = LANGLOC("Time interval(m)")
+        timeINtervalS.text = LANGLOC("Time interval(s)")
+        useOccasionLab.text = LANGLOC("Use occasion")
+        confirmBtn.setTitle(LANGLOC("Confirm"), for: .normal)
+        
     }
     
     private func setupData() {

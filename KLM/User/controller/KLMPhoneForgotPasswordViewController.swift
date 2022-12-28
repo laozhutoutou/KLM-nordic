@@ -23,19 +23,25 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
     @IBOutlet weak var eyeBtn: UIButton!
     @IBOutlet weak var eyaAgainBtn: UIButton!
     
-    @IBOutlet weak var regionLab: UILabel!
+    @IBOutlet weak var regionTipLab: UILabel!
     @IBOutlet weak var countryCodeLab: UILabel!
+    
+    @IBOutlet weak var chooseRegionLab: UILabel!
+    @IBOutlet weak var phoneLab: UILabel!
+    @IBOutlet weak var passwordLab: UILabel!
+    @IBOutlet weak var passwordAgainLab: UILabel!
+    @IBOutlet weak var codeLab: UILabel!
+    @IBOutlet weak var emailforgotBtn: UIButton!
     
     //倒计时
     var messageTimer: Timer?
     ///当前秒
     var currentTime: Int = 60
-    var codeTitle: String?
     
     ///数据
     var regionName: String? {
         didSet {
-            regionLab.text = regionName
+            chooseRegionLab.text = regionName
         }
     }
     var regionCode: String? {
@@ -62,7 +68,6 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
         doneBtn.layer.cornerRadius = doneBtn.height / 2
         doneBtn.clipsToBounds = true
         
-        codeTitle = verCodeBtn.currentTitle
         verCodeBtn.setTitleColor(appMainThemeColor, for: .normal)
         
         ///监控输入
@@ -75,6 +80,21 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
             }
         }.bind(to: doneBtn.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        regionTipLab.text = LANGLOC("Region")
+        chooseRegionLab.text = LANGLOC("Please choose a region")
+        phoneLab.text = LANGLOC("Phone")
+        passwordLab.text = LANGLOC("Password")
+        passwordAgainLab.text = LANGLOC("Password")
+        codeLab.text = LANGLOC("Code")
+        doneBtn.setTitle(LANGLOC("Done"), for: .normal)
+        verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
+        emailforgotBtn.setTitle(LANGLOC("Forgot Email Password"), for: .normal)
+        
+        phoneField.placeholder = LANGLOC("Mobile number")
+        passTextField.placeholder = LANGLOC("Enter password")
+        passAgainField.placeholder = LANGLOC("Enter password again")
+        codeTextField.placeholder = LANGLOC("Enter code")
     }
     
     private func events() {
@@ -181,7 +201,7 @@ class KLMPhoneForgotPasswordViewController: UIViewController {
         if currentTime <= 0 {//结束
             stopTime()
             verCodeBtn.isEnabled = true
-            verCodeBtn.setTitle(codeTitle, for: .normal)
+            verCodeBtn.setTitle(LANGLOC("Send verification code"), for: .normal)
         }
     }
     

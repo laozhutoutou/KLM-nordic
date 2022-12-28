@@ -18,7 +18,10 @@ class KLMControllerOperationViewController: UIViewController, Editable {
     let itemW:CGFloat = 25
     var lightValue: Int = 100
     var currentColor: UIColor = .white
-        
+    
+    @IBOutlet weak var quickSelectLab: UILabel!
+    @IBOutlet weak var brightLab: UILabel!
+    
     lazy var ringSelectView: UIView = {
         let ring = UIView.init()
         ring.layer.borderWidth = 1.5
@@ -88,6 +91,9 @@ class KLMControllerOperationViewController: UIViewController, Editable {
         lightSlider.delegate = self
         self.lightSlider = lightSlider
         lightBgView.addSubview(lightSlider)
+        
+        quickSelectLab.text = LANGLOC("Quick Select")
+        brightLab.text = LANGLOC("Brightness")
     }
     
     private func setupData() {

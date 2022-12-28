@@ -13,6 +13,7 @@ class KLMAdminTransferViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var doneBtn: UIButton!
+    
     var meshId: Int!
     var adminId: Int!///管理员ID
     var meshUsers: [KLMMeshUser.KLMMeshUserData]?
@@ -39,6 +40,7 @@ class KLMAdminTransferViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        doneBtn.setTitle(LANGLOC("Done"), for: .normal)
     }
     
     private func getMeshUserData() {
@@ -58,8 +60,8 @@ class KLMAdminTransferViewController: UIViewController {
     @IBAction func done(_ sender: Any) {
         
         let aler = UIAlertController.init(title: LANGLOC("Administrator transfer"), message: LANGLOC("You will not have administrative access rights for the store"), preferredStyle: .alert)
-        let cancel = UIAlertAction.init(title: LANGLOC("cancel"), style: .cancel, handler: nil)
-        let sure = UIAlertAction.init(title: LANGLOC("sure"), style: .default) { action in
+        let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
+        let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
             
             SVProgressHUD.show()
             let user = self.meshUsers![self.selectIndex]
@@ -122,7 +124,7 @@ extension KLMAdminTransferViewController: UITableViewDelegate, UITableViewDataSo
         
         let user = meshUsers?[indexPath.row]
         let cell: KLMAdminTransferCell = KLMAdminTransferCell.cellWithTableView(tableView: tableView)
-        cell.name = user?.nickname ?? LANGLOC("unknowUser")
+        cell.name = user?.nickname ?? LANGLOC("Unknow user")
         cell.isShowSelect = indexPath.row == selectIndex
         return cell
     }

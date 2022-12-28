@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -23,14 +23,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.40000000596046448" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-AW-fqO" userLabel="line">
-                        <rect key="frame" x="0.0" y="49.5" width="320" height="0.5"/>
+                        <rect key="frame" x="0.0" y="49.666666666666664" width="320" height="0.3333333333333357"/>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="ofa-aU-tBk"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsG-6e-h3g">
-                        <rect key="frame" x="260" y="12.5" width="45" height="25"/>
+                        <rect key="frame" x="260" y="12.666666666666664" width="45" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="Aso-8K-MeL"/>
                             <constraint firstAttribute="width" constant="45" id="D8P-eP-vaI"/>
@@ -48,7 +48,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvb-pF-5fe">
-                        <rect key="frame" x="205" y="12.5" width="45" height="25"/>
+                        <rect key="frame" x="205" y="12.666666666666664" width="45" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="ZpH-eQ-dTa"/>
                             <constraint firstAttribute="height" constant="25" id="uRs-7c-CEc"/>
@@ -79,10 +79,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="autoModeLab" destination="iak-61-wD1" id="XyY-Fz-sgE"/>
                 <outlet property="offBtn" destination="vsG-6e-h3g" id="DaR-Os-kXc"/>
                 <outlet property="onBtn" destination="pvb-pF-5fe" id="QBO-pz-Oak"/>
             </connections>
-            <point key="canvasLocation" x="-113" y="8"/>
+            <point key="canvasLocation" x="212" y="18"/>
         </tableViewCell>
     </objects>
 </document>

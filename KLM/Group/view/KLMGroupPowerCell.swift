@@ -14,6 +14,8 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
     @IBOutlet weak var onBtn: UIButton!
     @IBOutlet weak var offBtn: UIButton!
     
+    @IBOutlet weak var titleLab: UILabel!
+    
     fileprivate var isFirst: Bool = true
     
     var model: GroupData! {
@@ -50,6 +52,10 @@ class KLMGroupPowerCell: KLMBaseTableViewCell {
         
         onBtn.setTitleColor(appMainThemeColor, for: .normal)
         offBtn.setTitleColor(appMainThemeColor, for: .normal)
+        
+        titleLab.text = LANGLOC("Light On/Off")
+        onBtn.setTitle(LANGLOC("On"), for: .normal)
+        offBtn.setTitle(LANGLOC("Off"), for: .normal)
     }
     
     @IBAction func onClick(_ sender: Any) {

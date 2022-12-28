@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,6 +20,9 @@
                 <outlet property="secondBtn" destination="mv3-dc-pPe" id="W7c-fT-8c7"/>
                 <outlet property="secondTimeBgView" destination="UhN-oa-9tS" id="S79-pF-JU6"/>
                 <outlet property="secondView" destination="Cax-aP-fo2" id="D8w-Gn-NZp"/>
+                <outlet property="timeINtervalS" destination="C85-I7-zOh" id="f8K-EQ-5lg"/>
+                <outlet property="timeIntervalM" destination="lxW-8L-wZk" id="6Kd-wx-K8g"/>
+                <outlet property="useOccasionLab" destination="qgE-JD-prH" id="u6R-XK-xWu"/>
                 <outlet property="view" destination="hYQ-Bt-HGA" id="j71-ga-M7H"/>
             </connections>
         </placeholder>
@@ -29,7 +32,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3T-nk-A7X">
-                    <rect key="frame" x="0.0" y="88" width="207" height="40"/>
+                    <rect key="frame" x="0.0" y="92" width="207" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="In minutes">
@@ -43,7 +46,7 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cax-aP-fo2">
-                    <rect key="frame" x="0.0" y="128" width="414" height="130"/>
+                    <rect key="frame" x="0.0" y="132" width="414" height="130"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time interval(s)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C85-I7-zOh">
                             <rect key="frame" x="13" y="24" width="101" height="17"/>
@@ -70,7 +73,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6z-yu-o0b">
-                    <rect key="frame" x="0.0" y="128" width="414" height="130"/>
+                    <rect key="frame" x="0.0" y="132" width="414" height="130"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time interval(m)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxW-8L-wZk">
                             <rect key="frame" x="13" y="24" width="105.5" height="17"/>
@@ -97,7 +100,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Rh-8E-LdK">
-                    <rect key="frame" x="20" y="312.5" width="374" height="40"/>
+                    <rect key="frame" x="20" y="316.5" width="374" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6EQ-f5-SL2">
                             <rect key="frame" x="10" y="0.0" width="334" height="40"/>
@@ -131,13 +134,13 @@
                     </connections>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use occasion" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgE-JD-prH">
-                    <rect key="frame" x="158.5" y="278" width="97.5" height="19.5"/>
+                    <rect key="frame" x="158.5" y="282" width="97.5" height="19.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mv3-dc-pPe">
-                    <rect key="frame" x="207" y="88" width="207" height="40"/>
+                    <rect key="frame" x="207" y="92" width="207" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="KQx-Ez-nDp"/>
                     </constraints>
@@ -154,7 +157,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOr-cp-jNi">
-                    <rect key="frame" x="40" y="402.5" width="334" height="45"/>
+                    <rect key="frame" x="40" y="406.5" width="334" height="45"/>
                     <color key="backgroundColor" red="0.72156862749999995" green="0.090196078430000007" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="fr4-lQ-QGB"/>

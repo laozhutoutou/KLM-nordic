@@ -1,9 +1,0 @@
-
-/* Class = "UIButton"; normalTitle = "确定"; ObjectID = "Q25-6f-yt0"; */
-"Q25-6f-yt0.normalTitle" = "Confirm";
-
-/* Class = "UITextField"; placeholder = "请输入邀请码"; ObjectID = "U3K-KR-36k"; */
-"U3K-KR-36k.placeholder" = "Invitation code";
-
-/* Class = "UILabel"; text = "请联系管理员获取邀请码"; ObjectID = "pWm-Wf-bwh"; */
-"pWm-Wf-bwh.text" = "Please contact with the administrator to get an invitation";

@@ -96,16 +96,16 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
         case itemType.rename.rawValue:
             let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("reNameGroup")
+            cell.leftTitle = LANGLOC("Rename group")
             cell.rightTitle = KLMHomeManager.currentGroup.name
             return cell
         case itemType.groupMembers.rawValue:
             let cell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("groupMembers")
+            cell.leftTitle = LANGLOC("Group members")
             let network = MeshNetworkManager.instance.meshNetwork!
             let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
-            cell.rightTitle = String(format: "%d%@", models.count,LANGLOC("geDevice"))
+            cell.rightTitle = String(format: "%d%@", models.count,LANGLOC(" Devices"))
             return cell
         case itemType.lightPower.rawValue: ///开关
             let cell: KLMGroupPowerCell = KLMGroupPowerCell.cellWithTableView(tableView: tableView)
@@ -114,14 +114,14 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
         case itemType.lightSetting.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("lightSet")
+            cell.leftTitle = LANGLOC("Light setting")
             cell.rightTitle = ""
             return cell
         case itemType.motion.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = LANGLOC("Energysavingsettings")
-            cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("ON") : LANGLOC("OFF")
+            cell.leftTitle = LANGLOC("Energy saving setting")
+            cell.rightTitle = self.groupData.energyPower == 1 ? LANGLOC("On") : LANGLOC("Off")
             return cell
         case itemType.CMOS.rawValue://颜色识别
             let cell: KLMGroupColorSensingCell = KLMGroupColorSensingCell.cellWithTableView(tableView: tableView)
@@ -145,7 +145,7 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
             
             //修改组名称
             let vc = CMDeviceNamePopViewController()
-            vc.titleName = LANGLOC("Group")
+            vc.titleName = LANGLOC("Groups")
             vc.text = KLMHomeManager.currentGroup.name
             vc.modalPresentationStyle = .overCurrentContext
             vc.modalTransitionStyle = .crossDissolve

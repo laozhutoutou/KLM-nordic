@@ -11,6 +11,9 @@ class KLMDeviceSearchView: UIView, Nibloadable {
     
     @IBOutlet weak var contentView: UIView!
     
+    @IBOutlet weak var searchDeviceLab: UILabel!
+    
+    @IBOutlet weak var nearbyLab: UILabel!
     static var myframe: CGRect!
     
     static func deviceSearchView(frame: CGRect) -> KLMDeviceSearchView {
@@ -30,5 +33,8 @@ class KLMDeviceSearchView: UIView, Nibloadable {
         
         let ripperView = KLMRippleAnimationView(frame: contentView.bounds)
         contentView.addSubview(ripperView)
+        
+        searchDeviceLab.text = LANGLOC("Searching devices...")
+        nearbyLab.text = LANGLOC("Make sure your devices are powered on and nearby")
     }
 }
