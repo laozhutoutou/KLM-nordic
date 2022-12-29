@@ -8,7 +8,7 @@
 import UIKit
 import JKSwiftExtension
 
-struct tempColors {
+private struct tempColors {
     let maxTemp: Float = 4000
     let minTemp: Float = 3000
 }
@@ -38,7 +38,7 @@ class KLMCustomViewController: UIViewController, Editable {
     
     var isFinish = false
         
-    let colorTemp = tempColors()
+    private let colorTemp = tempColors()
     
     lazy var ringSelectView: UIView = {
         let ring = UIView.init()

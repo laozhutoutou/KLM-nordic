@@ -1250,6 +1250,14 @@
 		E4D4FA3A291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
 		E4D4FA3B291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
 		E4D4FA3C291A3A4700A618EC /* KLMMeshNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */; };
+		E4D60736295D6C75006955DC /* KLMDaliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D60734295D6C75006955DC /* KLMDaliViewController.swift */; };
+		E4D60737295D6C75006955DC /* KLMDaliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D60734295D6C75006955DC /* KLMDaliViewController.swift */; };
+		E4D60738295D6C75006955DC /* KLMDaliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D60734295D6C75006955DC /* KLMDaliViewController.swift */; };
+		E4D60739295D6C75006955DC /* KLMDaliViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D60734295D6C75006955DC /* KLMDaliViewController.swift */; };
+		E4D6073A295D6C75006955DC /* KLMDaliViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D60735295D6C75006955DC /* KLMDaliViewController.xib */; };
+		E4D6073B295D6C75006955DC /* KLMDaliViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D60735295D6C75006955DC /* KLMDaliViewController.xib */; };
+		E4D6073C295D6C75006955DC /* KLMDaliViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D60735295D6C75006955DC /* KLMDaliViewController.xib */; };
+		E4D6073D295D6C75006955DC /* KLMDaliViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D60735295D6C75006955DC /* KLMDaliViewController.xib */; };
 		E4D611CA28B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */; };
 		E4D611CB28B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */; };
 		E4D611CC28B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */; };
@@ -1921,6 +1929,8 @@
 		E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRGBTestViewController.swift; sourceTree = "<group>"; };
 		E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMRGBTestViewController.xib; sourceTree = "<group>"; };
 		E4D4FA38291A3A4700A618EC /* KLMMeshNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMMeshNetworkManager.swift; sourceTree = "<group>"; };
+		E4D60734295D6C75006955DC /* KLMDaliViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDaliViewController.swift; sourceTree = "<group>"; };
+		E4D60735295D6C75006955DC /* KLMDaliViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMDaliViewController.xib; sourceTree = "<group>"; };
 		E4D611C928B4B2CA0004BEC9 /* KLMGroupDeleteDevicesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupDeleteDevicesController.swift; sourceTree = "<group>"; };
 		E4D611CD28B4C1BA0004BEC9 /* KLMGroupUseOccasionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMGroupUseOccasionViewController.swift; sourceTree = "<group>"; };
 		E4D611D828B4C6910004BEC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/KLMGroupUseOccasionViewController.xib; sourceTree = "<group>"; };
@@ -2178,6 +2188,8 @@
 				E4EFF43C2925E39100470BA5 /* KLMControllerOperationViewController.xib */,
 				E4D8FF192924809A00A20881 /* KLMControllerColorTempViewController.swift */,
 				E4EFF4442925E40C00470BA5 /* KLMControllerColorTempViewController.xib */,
+				E4D60734295D6C75006955DC /* KLMDaliViewController.swift */,
+				E4D60735295D6C75006955DC /* KLMDaliViewController.xib */,
 				E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */,
 				E4B0486B27E5964000D03668 /* KLMDFUTestViewController.xib */,
 				E48E608E2692F6E800E630ED /* KLMMotionViewController.swift */,
@@ -3163,6 +3175,7 @@
 				E4A0F7C92907BC8700150B0F /* 4_en.wav in Resources */,
 				E4A6608D267360A200FE6866 /* KLMBaseTableViewCell.xib in Resources */,
 				E49B42C626C21B0A0056C7EE /* KLMCustomViewController.xib in Resources */,
+				E4D6073A295D6C75006955DC /* KLMDaliViewController.xib in Resources */,
 				E4D79D242914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E46B54702769D53B00F3D5E5 /* KLMForgetPasswordViewController.xib in Resources */,
 				E4CE896F291633930040B878 /* hudongColor_1_后.wav in Resources */,
@@ -3376,6 +3389,7 @@
 				E4A0F8CC2907E01B00150B0F /* 4_en.wav in Resources */,
 				E4A0F8CD2907E01B00150B0F /* KLMBaseTableViewCell.xib in Resources */,
 				E4D79D272914DF1F00B92082 /* spectrum_33.png in Resources */,
+				E4D6073D295D6C75006955DC /* KLMDaliViewController.xib in Resources */,
 				E4A0F8CE2907E01B00150B0F /* KLMCustomViewController.xib in Resources */,
 				E4CE8972291633930040B878 /* hudongColor_1_后.wav in Resources */,
 				E4A0F8D02907E01B00150B0F /* KLMForgetPasswordViewController.xib in Resources */,
@@ -3630,6 +3644,7 @@
 				E4C727F32917E32900FC1C00 /* sexi_13.wav in Resources */,
 				E4C57ED428055B1F00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
 				E4D79CDD2914DF1F00B92082 /* spectrum_4.png in Resources */,
+				E4D6073B295D6C75006955DC /* KLMDaliViewController.xib in Resources */,
 				E4C57ED528055B1F00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57ED628055B1F00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
 				E4D79D2D2914DF1F00B92082 /* spectrum_26.png in Resources */,
@@ -3827,6 +3842,7 @@
 				E4C727F42917E32900FC1C00 /* sexi_13.wav in Resources */,
 				E4C57FAB28055C7C00E7AB54 /* KLMGroupEditViewController.xib in Resources */,
 				E4D79CDE2914DF1F00B92082 /* spectrum_4.png in Resources */,
+				E4D6073C295D6C75006955DC /* KLMDaliViewController.xib in Resources */,
 				E4C57FAC28055C7C00E7AB54 /* KLMGroupAllDeviceCell.xib in Resources */,
 				E4C57FAD28055C7C00E7AB54 /* KLMGroupTransferListViewController.xib in Resources */,
 				E4D79D2E2914DF1F00B92082 /* spectrum_26.png in Resources */,
@@ -4315,6 +4331,7 @@
 				E4A65FD72670B06400FE6866 /* BitmapContextRep.m in Sources */,
 				E4A65F3E266F459200FE6866 /* KLMAINameListCell.swift in Sources */,
 				E4E28438269EFF2D006C120E /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */,
+				E4D60736295D6C75006955DC /* KLMDaliViewController.swift in Sources */,
 				E4E28434269EFF0F006C120E /* SceneSetupServerDelegate.swift in Sources */,
 				E4AEC99D266E239500E77178 /* KLMAPPUpdateViewController.swift in Sources */,
 				E48B52AA26676DED0006CDA7 /* KLMSettingViewController.swift in Sources */,
@@ -4512,6 +4529,7 @@
 				E4A0F89E2907E01B00150B0F /* BitmapContextRep.m in Sources */,
 				E4A0F89F2907E01B00150B0F /* KLMAINameListCell.swift in Sources */,
 				E4A0F8A02907E01B00150B0F /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */,
+				E4D60739295D6C75006955DC /* KLMDaliViewController.swift in Sources */,
 				E4A0F8A12907E01B00150B0F /* SceneSetupServerDelegate.swift in Sources */,
 				E4A0F8A22907E01B00150B0F /* KLMAPPUpdateViewController.swift in Sources */,
 				E4A0F8A32907E01B00150B0F /* KLMSettingViewController.swift in Sources */,
@@ -4709,6 +4727,7 @@
 				E4C57EA728055B1F00E7AB54 /* BitmapContextRep.m in Sources */,
 				E4C57EA828055B1F00E7AB54 /* KLMAINameListCell.swift in Sources */,
 				E4C57EA928055B1F00E7AB54 /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */,
+				E4D60737295D6C75006955DC /* KLMDaliViewController.swift in Sources */,
 				E4C57EAA28055B1F00E7AB54 /* SceneSetupServerDelegate.swift in Sources */,
 				E4C57EAB28055B1F00E7AB54 /* KLMAPPUpdateViewController.swift in Sources */,
 				E4C57EAC28055B1F00E7AB54 /* KLMSettingViewController.swift in Sources */,
@@ -4906,6 +4925,7 @@
 				E4C57F7E28055C7C00E7AB54 /* BitmapContextRep.m in Sources */,
 				E4C57F7F28055C7C00E7AB54 /* KLMAINameListCell.swift in Sources */,
 				E4C57F8028055C7C00E7AB54 /* GenericDefaultTransitionTimeClientDelegate.swift in Sources */,
+				E4D60738295D6C75006955DC /* KLMDaliViewController.swift in Sources */,
 				E4C57F8128055C7C00E7AB54 /* SceneSetupServerDelegate.swift in Sources */,
 				E4C57F8228055C7C00E7AB54 /* KLMAPPUpdateViewController.swift in Sources */,
 				E4C57F8328055C7C00E7AB54 /* KLMSettingViewController.swift in Sources */,

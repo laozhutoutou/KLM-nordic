@@ -248,8 +248,20 @@ extension KLMControllerSettingViewController: UITableViewDelegate, UITableViewDa
                         
         case itemType.lightSetting.rawValue://灯光设置
             
-            let vc = KLMControllerOperationViewController()
-            navigationController?.pushViewController(vc, animated: true)
+            switch KLMHomeManager.currentNode.deviceType {
+            case .RGBControl:
+                let vc = KLMControllerOperationViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            case .Dali:
+                let vc = KLMDaliViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            case .qieXiang:
+                let vc = KLMBrightnessViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            default:
+                break
+            }
+            
         case itemType.DFU.rawValue:///固件更新
             
             guard let bleData = self.BLEVersionData, let newVersion = newVersion else {
