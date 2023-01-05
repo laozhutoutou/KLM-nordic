@@ -19,9 +19,11 @@ private enum itemType: Int, CaseIterable {
     case reset
     //    case sigleControl //单路控制
     case downLoadPic //下载图像
-    case checkInfo //查询加密状态
-    case YingjianTest //硬件测试
-    case Yingjian //硬件
+    case powerSetting //功率调整
+//    case CustomerCounting
+//    case checkInfo //查询加密状态
+//    case YingjianTest //硬件测试
+//    case Yingjian //硬件
 }
 
 class KLMDeviceEditViewController: UIViewController, Editable {
@@ -154,6 +156,30 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                 self.setupNodeMessage()
             }
             
+        } else if KLMHomeManager.currentNode.deviceType == .meta {
+            KLMService.checkMeta2HardwareVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.tableView.reloadData()
+                self.setupNodeMessage()
+                
+            } failure: { error in
+                
+                self.setupNodeMessage()
+            }
+            
+        } else if KLMHomeManager.currentNode.deviceType == .TwoCamera {
+            KLMService.checkTwoCameraHardwareVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.tableView.reloadData()
+                self.setupNodeMessage()
+                
+            } failure: { error in
+                
+                self.setupNodeMessage()
+            }
+            
         } else {
             
             KLMService.checkBlueToothVersion { response in
@@ -189,12 +215,12 @@ class KLMDeviceEditViewController: UIViewController, Editable {
                     return
                 }
                 
-                if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
-                    
-                    let parame = parameModel(dp: .fenqu)
-                    KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
-                    return
-                }
+//                if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+//
+//                    let parame = parameModel(dp: .fenqu)
+//                    KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+//                    return
+//                }
                 
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData
@@ -293,25 +319,25 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
             self.hideEmptyView()
         }
         
-        if message?.opCode == .read {
-            if message?.dp == .fenqu, let value: Int = message?.value as? Int {
-                if value == 1 {
-                    
-                    guard let bleData = self.BLEVersionData else {
-                        SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
-                        return
-                    }
-                    
-                    let vc = KLMDFUTestViewController()
-                    vc.BLEVersionData = bleData
-                    navigationController?.pushViewController(vc, animated: true)
-                    
-                } else {
-                    
-                    SVProgressHUD.showInfo(withStatus: "请使用智谋纪dev再次升级")
-                }
-            }
-        }
+//        if message?.opCode == .read {
+//            if message?.dp == .fenqu, let value: Int = message?.value as? Int {
+//                if value == 1 {
+//
+//                    guard let bleData = self.BLEVersionData else {
+//                        SVProgressHUD.showInfo(withStatus: LANGLOC("Latest version"))
+//                        return
+//                    }
+//
+//                    let vc = KLMDFUTestViewController()
+//                    vc.BLEVersionData = bleData
+//                    navigationController?.pushViewController(vc, animated: true)
+//
+//                } else {
+//
+//                    SVProgressHUD.showInfo(withStatus: "请使用智谋纪dev再次升级")
+//                }
+//            }
+//        }
     }
     
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
@@ -355,23 +381,33 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             }
         }
         
-        switch indexPath.row {
-        case itemType.Yingjian.rawValue,
-            itemType.YingjianTest.rawValue,
-            itemType.checkInfo.rawValue:
-            if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
-                return 56
-            }
-            if indexPath.row == itemType.checkInfo.rawValue {
-                if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
-                    return 56
-                }
-            }
-            
+        if KLMHomeManager.currentNode.deviceType != .meta && indexPath.row == itemType.powerSetting.rawValue {
+
             return 0
-        default:
-            break
         }
+        
+//        if KLMHomeManager.currentNode.deviceType != .TwoCamera && indexPath.row == itemType.CustomerCounting.rawValue {
+//
+//            return 0
+//        }
+        
+//        switch indexPath.row {
+//        case itemType.Yingjian.rawValue,
+//            itemType.YingjianTest.rawValue,
+//            itemType.checkInfo.rawValue:
+//            if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
+//                return 56
+//            }
+//            if indexPath.row == itemType.checkInfo.rawValue {
+//                if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+//                    return 56
+//                }
+//            }
+//
+//            return 0
+//        default:
+//            break
+//        }
         
         return 56
     }
@@ -451,24 +487,37 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             cell.leftTitle = LANGLOC("View commodity position")
             cell.rightTitle = ""
             return cell
-        case itemType.checkInfo.rawValue:
+        case itemType.powerSetting.rawValue:
             let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
             cell.isShowLeftImage = false
-            cell.leftTitle = "查询分区和加密状态"
+            cell.leftTitle = LANGLOC("Power setting")
             cell.rightTitle = ""
             return cell
-        case itemType.Yingjian.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "料号和固件版本查询"
-            cell.rightTitle = ""
-            return cell
-        case itemType.YingjianTest.rawValue:
-            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
-            cell.isShowLeftImage = false
-            cell.leftTitle = "硬件信息"
-            cell.rightTitle = ""
-            return cell
+        //
+//        case itemType.CustomerCounting.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = LANGLOC("Customer Counting")
+//            cell.rightTitle = ""
+//            return cell
+//        case itemType.checkInfo.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "查询分区和加密状态"
+//            cell.rightTitle = ""
+//            return cell
+//        case itemType.Yingjian.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "料号和固件版本查询"
+//            cell.rightTitle = ""
+//            return cell
+//        case itemType.YingjianTest.rawValue:
+//            let cell: KLMTableViewCell = KLMTableViewCell.cellWithTableView(tableView: tableView)
+//            cell.isShowLeftImage = false
+//            cell.leftTitle = "硬件信息"
+//            cell.rightTitle = ""
+//            return cell
         default:
             break
         }
@@ -568,12 +617,12 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                     return
                 }
                 
-                if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
-                    
-                    let parame = parameModel(dp: .fenqu)
-                    KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
-                    return
-                }
+//                if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+//
+//                    let parame = parameModel(dp: .fenqu)
+//                    KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
+//                    return
+//                }
                 
                 let vc = KLMDFUTestViewController()
                 vc.BLEVersionData = bleData
@@ -591,23 +640,27 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
             let vc = KLMCMOSViewController()
             navigationController?.pushViewController(vc, animated: true)
             
-            //        case itemType.sigleControl.rawValue://六路测试
-            //            let vc = KLMTestViewController()
-            //            navigationController?.pushViewController(vc, animated: true)
         case itemType.downLoadPic.rawValue:
             
             let vc = KLMPicDownloadViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case itemType.checkInfo.rawValue:
-            let vc = KLMCheckVersionTestViewController()
+            
+        case itemType.powerSetting.rawValue:
+            let vc = KLMPowerSettingViewController()
             navigationController?.pushViewController(vc, animated: true)
-        case itemType.Yingjian.rawValue:
-            let vc = KLMTestVersionViewController()
-            vc.BLEVersion = BLEVersion
-            navigationController?.pushViewController(vc, animated: true)
-        case itemType.YingjianTest.rawValue:
-            let vc = KLMTestVersion1ViewController()
-            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.CustomerCounting.rawValue:
+//            let vc = KLMCustomerCountingViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.checkInfo.rawValue:
+//            let vc = KLMCheckVersionTestViewController()
+//            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.Yingjian.rawValue:
+//            let vc = KLMTestVersionViewController()
+//            vc.BLEVersion = BLEVersion
+//            navigationController?.pushViewController(vc, animated: true)
+//        case itemType.YingjianTest.rawValue:
+//            let vc = KLMTestVersion1ViewController()
+//            navigationController?.pushViewController(vc, animated: true)
         default:
             
             break

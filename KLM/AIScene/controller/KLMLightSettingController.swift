@@ -86,6 +86,28 @@ class KLMLightSettingController: UITableViewController {
                 self.checkBleVersion()
             }
 
+        } else if KLMHomeManager.currentNode.deviceType == .meta {
+            KLMService.checkMeta2HardwareVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.checkBleVersion()
+                
+            } failure: { error in
+                
+                self.checkBleVersion()
+            }
+             
+        } else if KLMHomeManager.currentNode.deviceType == .TwoCamera {
+            KLMService.checkTwoCameraHardwareVersion { response in
+                
+                self.BLEVersionData = response as? KLMVersion.KLMVersionData
+                self.checkBleVersion()
+                
+            } failure: { error in
+                
+                self.checkBleVersion()
+            }
+            
         } else {
             
             KLMService.checkBlueToothVersion { response in

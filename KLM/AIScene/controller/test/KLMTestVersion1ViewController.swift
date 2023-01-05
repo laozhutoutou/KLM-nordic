@@ -27,10 +27,8 @@ class KLMTestVersion1ViewController: UIViewController {
             qudongLab.text = qudongLIst[qudong - 1]
         }
     }
-    let gonglvList: [String] = ["35W有摄像头","25W有摄像头","35W无摄像头","25W无摄像头"]
+    let gonglvList: [String] = ["35W有摄像头","25W有摄像头","35W无摄像头","25W无摄像头","灯带控制器","切相调光器","DALI控制器","meta2_30W"]
     let qudongLIst: [String] = ["diodes","ocx"]
-    
-    var isFirst: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +79,6 @@ class KLMTestVersion1ViewController: UIViewController {
     
     @IBAction func confirmClick(_ sender: Any) {
         
-        isFirst = false
         SVProgressHUD.show()
         
         let gonglvv = gonglv.decimalTo2Hexadecimal()
@@ -112,7 +109,7 @@ extension KLMTestVersion1ViewController: KLMSmartNodeDelegate {
         SVProgressHUD.dismiss()
         if let value = message?.value as? [UInt8], value.count >= 2 , message?.dp == .hardwareInfo {
             
-            if isFirst {
+            if message?.opCode == .read {
                 let gonglv = Int(value[0])
                 let qudong = Int(value[1])
                 if gonglv > 0 && qudong > 0 && gonglv <= gonglvList.count && qudong <= qudongLIst.count {

@@ -722,6 +722,54 @@ class KLMService: NSObject {
         }
     }
     
+    ///meta2固件
+    static func checkMeta2HardwareVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        var type = "bluetooth"
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+            type = "mcu"
+        }
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
+            type = "development"
+        }
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)/4"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMVersion.self, from: responseObject!)
+                let data = model?.data
+                success(data as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    //双摄像头
+    static func checkTwoCameraHardwareVersion(success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        var type = "bluetooth"
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪mcu" {
+            type = "mcu"
+        }
+        if let appName: String = KLM_APP_NAME as? String, appName == "智谋纪dev" {
+            type = "development"
+        }
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/file/latestVersion/\(type)/5"), params: nil) { responseObject, error in
+            
+            if error == nil {
+                
+                let model = try? JSONDecoder().decode(KLMVersion.self, from: responseObject!)
+                let data = model?.data
+                success(data as AnyObject)
+                
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
     static func downLoadFile(id: Int, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
                 
         KLMNetworking.httpMethod(method: .downLoad, URLString: KLMUrl("api/file/download/\(id)"), params: nil) { responseObject, error in

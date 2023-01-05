@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="KLMCustomerCountingViewController" customModule="KLM_GN" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客流总人数：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OFc-dq-3Ud">
+                    <rect key="frame" x="15" y="121" width="92" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="有效客流人数（停留超过10s）：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5U-zi-Szt">
+                    <rect key="frame" x="15" y="155.66666666666666" width="223" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在经过人数：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0AL-BA-73j">
+                    <rect key="frame" x="15" y="188.66666666666666" width="108" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ik-yU-8Jo">
+                    <rect key="frame" x="112" y="119.66666666666669" width="28" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Hr-jB-0Mx">
+                    <rect key="frame" x="243" y="154" width="28" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0人" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLx-PG-QDR">
+                    <rect key="frame" x="128" y="187" width="28" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="c5U-zi-Szt" firstAttribute="top" secondItem="9ik-yU-8Jo" secondAttribute="bottom" constant="15" id="3ec-2u-dyA"/>
+                <constraint firstItem="0AL-BA-73j" firstAttribute="top" secondItem="c5U-zi-Szt" secondAttribute="bottom" constant="15" id="5xB-Ny-4by"/>
+                <constraint firstItem="9ik-yU-8Jo" firstAttribute="leading" secondItem="OFc-dq-3Ud" secondAttribute="trailing" constant="5" id="FgT-fw-pZ0"/>
+                <constraint firstItem="c5U-zi-Szt" firstAttribute="leading" secondItem="OFc-dq-3Ud" secondAttribute="leading" id="G6z-hY-znU"/>
+                <constraint firstItem="0AL-BA-73j" firstAttribute="leading" secondItem="c5U-zi-Szt" secondAttribute="leading" id="H18-Vs-ewA"/>
+                <constraint firstItem="3Hr-jB-0Mx" firstAttribute="leading" secondItem="c5U-zi-Szt" secondAttribute="trailing" constant="5" id="KeN-m2-9NT"/>
+                <constraint firstItem="OFc-dq-3Ud" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="Kez-64-zUM"/>
+                <constraint firstItem="hLx-PG-QDR" firstAttribute="centerY" secondItem="0AL-BA-73j" secondAttribute="centerY" id="Xns-Bu-YdC"/>
+                <constraint firstItem="9ik-yU-8Jo" firstAttribute="centerY" secondItem="OFc-dq-3Ud" secondAttribute="centerY" id="afx-9H-dVn"/>
+                <constraint firstItem="3Hr-jB-0Mx" firstAttribute="centerY" secondItem="c5U-zi-Szt" secondAttribute="centerY" id="cbO-3c-hBt"/>
+                <constraint firstItem="OFc-dq-3Ud" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="fyn-LS-Ubx"/>
+                <constraint firstItem="hLx-PG-QDR" firstAttribute="leading" secondItem="0AL-BA-73j" secondAttribute="trailing" constant="5" id="ldE-zd-KJ3"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="358" y="87"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

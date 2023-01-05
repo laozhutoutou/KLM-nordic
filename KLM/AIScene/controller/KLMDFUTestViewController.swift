@@ -143,7 +143,13 @@ class KLMDFUTestViewController: UIViewController {
         ///进度条
         KLMLog("Send OTA bin Version")
         
-        let binId: Int =  1
+        var binId: Int =  1
+        //meta的binId是2
+        if KLMHomeManager.currentNode.deviceType == .meta {
+            binId = 2
+        } else if KLMHomeManager.currentNode.deviceType == .TwoCamera {
+            binId = 3
+        }
         let version: Int = EspDataUtils.binVersionString2Int(version: BLEVersionData.fileVersion)
         KLMLog("version = \(version)")
         let bytes: [UInt8] = [UInt8(binId & 0xff),

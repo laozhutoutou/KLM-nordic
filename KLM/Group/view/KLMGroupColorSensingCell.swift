@@ -65,14 +65,14 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                 KLMLog("success")
                 guard let self = self else { return }
                 
-                if let network = MeshNetworkManager.instance.meshNetwork {
-                    
-                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
-                        SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
-                        return
-                    }
-                }
+//                if let network = MeshNetworkManager.instance.meshNetwork {
+//
+//                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+//                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
+//                        SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+//                        return
+//                    }
+//                }
                 
                 self.onBtn.isSelected = true
                 self.offBtn.isSelected = false
@@ -91,18 +91,18 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                 guard let self = self else { return }
                 
                 ///如果组里面都是无摄像头的设备，不给点击
-                let network = MeshNetworkManager.instance.meshNetwork!
-                let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
-                var nodeLists = [Node]()
-                for model in models {
-                    
-                    let node = KLMHomeManager.getNodeFromModel(model: model)!
-                    nodeLists.append(node)
-                }
-                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
-                    return
-                }
+//                let network = MeshNetworkManager.instance.meshNetwork!
+//                let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
+//                var nodeLists = [Node]()
+//                for model in models {
+//                    
+//                    let node = KLMHomeManager.getNodeFromModel(model: model)!
+//                    nodeLists.append(node)
+//                }
+//                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
+//                    SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+//                    return
+//                }
                 
                 self.onBtn.isSelected = true
                 self.offBtn.isSelected = false
@@ -126,14 +126,14 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                 KLMLog("success")
                 guard let self = self else { return }
                 
-                if let network = MeshNetworkManager.instance.meshNetwork {
-                    
-                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
-                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
-                        SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
-                        return
-                    }
-                }
+//                if let network = MeshNetworkManager.instance.meshNetwork {
+//
+//                    let notConfiguredNodes = network.nodes.filter({ !$0.isConfigComplete && !$0.isProvisioner})
+//                    if notConfiguredNodes.contains(where: {$0.deviceType == .camera}) == false {
+//                        SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+//                        return
+//                    }
+//                }
                 
                 self.onBtn.isSelected = false
                 self.offBtn.isSelected = true
@@ -153,18 +153,18 @@ class KLMGroupColorSensingCell: KLMBaseTableViewCell {
                 guard let self = self else { return }
                 
                 ///如果组里面都是无摄像头的设备，不给点击
-                let network = MeshNetworkManager.instance.meshNetwork!
-                let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
-                var nodeLists = [Node]()
-                for model in models {
-                    
-                    let node = KLMHomeManager.getNodeFromModel(model: model)!
-                    nodeLists.append(node)
-                }
-                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
-                    SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
-                    return
-                }
+//                let network = MeshNetworkManager.instance.meshNetwork!
+//                let models = network.models(subscribedTo: KLMHomeManager.currentGroup)
+//                var nodeLists = [Node]()
+//                for model in models {
+//                    
+//                    let node = KLMHomeManager.getNodeFromModel(model: model)!
+//                    nodeLists.append(node)
+//                }
+//                if nodeLists.contains(where: {$0.deviceType == .camera}) == false {
+//                    SVProgressHUD.showInfo(withStatus: LANGLOC("The device do not support"))
+//                    return
+//                }
                 
                 self.onBtn.isSelected = false
                 self.offBtn.isSelected = true

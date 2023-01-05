@@ -217,7 +217,6 @@
 "Please enter your old password" = "请输入旧密码";
 "Please enter a new password" = "请输入新密码";
 "Please enter the new password again" = "请再次输入新密码";
-
 "Nickname" = "昵称";
 "Code" = "验证码";
 "Send verification code" = "发送验证码";
@@ -225,7 +224,6 @@
 "Enter password again" = "再次输入密码";
 "Enter nickName" = "输入昵称";
 "Enter code" = "输入验证码";
-
 "Region" = "地区";
 "Please choose a region" = "请选择一个地区";
 "Phone" = "手机号";
@@ -239,5 +237,7 @@
 "Invitation code" = "请输入邀请码";
 "Turn on voice function on Mobile Phone." = "打开手机语音功能";
 
+"Power setting" = "功率设定";
+
 ///下面为适配第三方库
-"Request timed out." = "请求超时";
+"Request timed out." = "请求超时.";

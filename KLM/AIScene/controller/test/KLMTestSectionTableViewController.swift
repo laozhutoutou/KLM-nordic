@@ -9,15 +9,15 @@ import UIKit
 
 private enum itemType: Int, CaseIterable {
     case version = 0
-//    case PCBA
-//    case Qudong
-//    case Chengpin
-//    case Laohua
-//    case Baozhuang
+    case PCBA
+    case Qudong
+    case Chengpin
+    case Laohua
+    case Baozhuang
     case checkJiami
     case YingjianTest
     case Yingjian
-//    case Biaoding
+    case Biaoding
 }
 
 class KLMTestSectionTableViewController: UITableViewController {
@@ -71,10 +71,8 @@ class KLMTestSectionTableViewController: UITableViewController {
         KLMSmartNode.sharedInstacnce.resetNode(node: KLMHomeManager.currentNode)
     }
 
-    // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
@@ -89,20 +87,20 @@ class KLMTestSectionTableViewController: UITableViewController {
         case itemType.version.rawValue:
             cell.textLabel?.text = "版本号：  \(BLEVersion)"
             cell.contentView.addSubview(resetBtn)
-//        case itemType.PCBA.rawValue:
-//            cell.textLabel?.text = "PCBA测试"
-//        case itemType.Qudong.rawValue:
-//            cell.textLabel?.text = "驱动测试"
-//        case itemType.Chengpin.rawValue:
-//            cell.textLabel?.text = "成品测试"
-//        case itemType.Laohua.rawValue:
-//            cell.textLabel?.text = "老化测试"
-//        case itemType.Baozhuang.rawValue:
-//            cell.textLabel?.text = "包装测试"
+        case itemType.PCBA.rawValue:
+            cell.textLabel?.text = "PCBA测试"
+        case itemType.Qudong.rawValue:
+            cell.textLabel?.text = "驱动测试"
+        case itemType.Chengpin.rawValue:
+            cell.textLabel?.text = "成品测试"
+        case itemType.Laohua.rawValue:
+            cell.textLabel?.text = "老化测试"
+        case itemType.Baozhuang.rawValue:
+            cell.textLabel?.text = "包装测试"
         case itemType.Yingjian.rawValue:
             cell.textLabel?.text = "料号和固件版本查询"
-//        case itemType.Biaoding.rawValue:
-//            cell.textLabel?.text = "白平衡标定"
+        case itemType.Biaoding.rawValue:
+            cell.textLabel?.text = "白平衡标定"
         case itemType.YingjianTest.rawValue:
             cell.textLabel?.text = "硬件信息"
         case itemType.checkJiami.rawValue:
@@ -116,28 +114,28 @@ class KLMTestSectionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.row {
-//        case itemType.PCBA.rawValue:
-//            let vc = KLMPCBASensorViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.Qudong.rawValue:
-//            let vc = KLMQudongTestViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.Chengpin.rawValue:
-//            let vc = KLMChengpinViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.Laohua.rawValue:
-//            let vc = KLMLaoHuaTestViewController()
-//            navigationController?.pushViewController(vc, animated: true)
-//        case itemType.Baozhuang.rawValue:
-//            let vc = KLMBaoZhuangTestViewController()
-//            navigationController?.pushViewController(vc, animated: true)
+        case itemType.PCBA.rawValue:
+            let vc = KLMPCBASensorViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case itemType.Qudong.rawValue:
+            let vc = KLMQudongTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case itemType.Chengpin.rawValue:
+            let vc = KLMChengpinViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case itemType.Laohua.rawValue:
+            let vc = KLMLaoHuaTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        case itemType.Baozhuang.rawValue:
+            let vc = KLMBaoZhuangTestViewController()
+            navigationController?.pushViewController(vc, animated: true)
         case itemType.Yingjian.rawValue:
             let vc = KLMTestVersionViewController()
             vc.BLEVersion = BLEVersion
             navigationController?.pushViewController(vc, animated: true)
-//        case itemType.Biaoding.rawValue:
-//            let vc = KLMTestBiaodingViewController()
-//            navigationController?.pushViewController(vc, animated: true)
+        case itemType.Biaoding.rawValue:
+            let vc = KLMTestBiaodingViewController()
+            navigationController?.pushViewController(vc, animated: true)
         case itemType.YingjianTest.rawValue:
             let vc = KLMTestVersion1ViewController()
             navigationController?.pushViewController(vc, animated: true)

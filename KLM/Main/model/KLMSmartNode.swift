@@ -163,6 +163,9 @@ extension KLMSmartNode: MeshNetworkDelegate {
                         if status == 0xFE { //摄像头有问题
                             err.message = LANGLOC("Camera failure")
                         }
+                        if status == 0xFD { //摄像头温度太高
+                            err.message = LANGLOC("The temperature of camera is too high")
+                        }
                         self.delegate?.smartNode(self, didfailure: err)
                         return
                     }
@@ -204,6 +207,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .brightness,
                          .fenqu,
                          .encryption,
+                         .powerSetting,
                          .passengerFlow:
                         
                         response.value = Int(value.bytes[0])
@@ -223,8 +227,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .PWM:
                         response.value = value
                     case .factoryTest,
-                         .factoryTestResule,
-                         .DFU:
+                         .factoryTestResule:
                         response.value = value.hex
 
                     default:
@@ -319,7 +322,7 @@ extension KLMSmartNode {
              .category,
              .audio,
              .brightness,
-             
+             .powerSetting,
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()
@@ -327,7 +330,6 @@ extension KLMSmartNode {
              .recipe,
              .PWM,
              .checkVersion,
-             .DFU,
              .factoryTest,
              .colorTest,
              .motion,
@@ -347,6 +349,8 @@ extension KLMSmartNode {
 
 enum nodeDeviceType: String {
     case camera = "DD"
+    case meta = "D0"
+    case TwoCamera = "D1"
     case noCamera = "00"
     case qieXiang = "01"
     case RGBControl = "02"
@@ -407,6 +411,8 @@ extension Node {
         
         switch deviceType {
         case .camera,
+                .meta,
+                .TwoCamera,
                 .noCamera:
             return true
         default:

@@ -145,7 +145,7 @@ enum DPType: Int {
     case controller = 30 ///控制器
     case audio = 88 //语音播报
     case checkVersion = 99
-    case DFU = 100
+    case powerSetting = 100 //功率设定
     case PWM = 101
     case deviceSetting = 0xFE
     case AllDp = 0xFF
