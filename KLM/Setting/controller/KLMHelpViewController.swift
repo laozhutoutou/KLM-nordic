@@ -35,6 +35,7 @@ class KLMHelpViewController: UIViewController {
         contactLab.text = LANGLOC("Contact")
         commitBtn.setTitle(LANGLOC("Commit"), for: .normal)
         phoneField.placeholder = LANGLOC(" Phone number/Email")
+
     }
 
     @IBAction func commit(_ sender: Any) {

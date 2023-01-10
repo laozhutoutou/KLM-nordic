@@ -6,6 +6,10 @@ PODS:
   - AFNetworking/Reachability (3.2.1)
   - AFNetworking/Security (3.2.1)
   - AFNetworking/Serialization (3.2.1)
+  - Charts (4.1.0):
+    - Charts/Core (= 4.1.0)
+  - Charts/Core (4.1.0):
+    - SwiftAlgorithms (~> 1.0)
   - CryptoSwift (1.4.0)
   - DZNEmptyDataSet (1.8.1)
   - HandyJSON (5.0.2)
@@ -27,6 +31,7 @@ PODS:
   - SnapKitExtend (1.1.0):
     - SnapKit
   - SVProgressHUD (2.2.5)
+  - SwiftAlgorithms (1.0.0)
   - YBPopupMenu (1.1.9)
 
 DEPENDENCIES:
@@ -34,6 +39,7 @@ DEPENDENCIES:
   - AFNetworking/Reachability (~> 3.2.1)
   - AFNetworking/Security (~> 3.2.1)
   - AFNetworking/Serialization (~> 3.2.1)
+  - Charts (~> 4.1.0)
   - DZNEmptyDataSet (~> 1.8.1)
   - HandyJSON
   - IQKeyboardManagerSwift (~> 6.5.6)
@@ -52,6 +58,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - Charts
     - CryptoSwift
     - DZNEmptyDataSet
     - HandyJSON
@@ -67,10 +74,12 @@ SPEC REPOS:
     - SnapKit
     - SnapKitExtend
     - SVProgressHUD
+    - SwiftAlgorithms
     - YBPopupMenu
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Charts: 354f86803d11d9c35de280587fef50d1af063978
   CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
@@ -86,8 +95,9 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SnapKitExtend: aa30cf37196195fae9c4354686cc7710184ebfcc
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
   YBPopupMenu: 3a02e89860bb0568ba477aee609bc3f25e5bd339
 
-PODFILE CHECKSUM: 2137b16d50f8e3ddb050918d0b3e1a43267c958b
+PODFILE CHECKSUM: 2126fc80721efbc9394f87ad0dd2f0a3f318c91f
 
 COCOAPODS: 1.11.3

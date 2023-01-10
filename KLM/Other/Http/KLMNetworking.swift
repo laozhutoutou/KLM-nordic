@@ -918,4 +918,61 @@ class KLMService: NSObject {
             failure(error)
         }
     }
+    
+    ///客流统计相关接口
+    ///新增设备
+    static func addDevice(deviceName: String, deviceType: String, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let mesh = KLMMesh.loadHome()!
+        let zone: NSTimeZone = NSTimeZone.system as NSTimeZone
+        let seconds = zone.secondsFromGMT
+        let hour: Int = seconds / 60 / 60
+        let parame: [String : Any] = ["meshId": mesh.id,
+                                      "uuid": uuid,
+                                      "deviceName": deviceName,
+                                      "deviceType": deviceType,
+                                      "country": zone.name,
+                                      "timezone": hour]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/device"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func deleteDevice(uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame: [String : Any] = [
+            "uuid": uuid
+        ]
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/v2/app/device/deleteByUuid"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    static func updateDevice(deviceName: String, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let parame: [String : Any] = [
+            "uuid": uuid,
+            "deviceName": deviceName,
+        ]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/device/updateByUuid"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
 }
+
+
