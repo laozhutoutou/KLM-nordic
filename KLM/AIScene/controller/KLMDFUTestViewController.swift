@@ -269,8 +269,6 @@ extension KLMDFUTestViewController: MeshNetworkDelegate {
     
     func meshNetworkManager(_ manager: MeshNetworkManager, didReceiveMessage message: MeshMessage, sentFrom source: Address, to destination: Address) {
         
-        
-        
         ///不是当前节点的消息不处理
         if source != KLMHomeManager.currentNode.unicastAddress {
             KLMLog("别的节点回的消息")

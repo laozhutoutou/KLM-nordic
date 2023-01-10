@@ -10,7 +10,8 @@
 		27AD250D3450E0AA4AA0ED4B /* Pods_KLM_Sensetrack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */; };
 		655A0BF70D8128BC46C2C660 /* Pods_KLM_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */; };
 		892694C4D998BE59151D19E2 /* Pods_KLM_GW.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */; };
-		DB2304054AF7CF8FC4EC8ABC /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		D1A2A58B6C2374F101FC7056 /* Pods_KLM_GN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69E8727426AAF4890F7D1404 /* Pods_KLM_GN.framework */; };
+		DB2304054AF7CF8FC4EC8ABC /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
 		E411273428F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E411273828F9413500A1FBC3 /* KLMAudioViewController.xib */; };
 		E411273528F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E411273828F9413500A1FBC3 /* KLMAudioViewController.xib */; };
 		E411273628F9413500A1FBC3 /* KLMAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E411273828F9413500A1FBC3 /* KLMAudioViewController.xib */; };
@@ -113,14 +114,6 @@
 		E47D803A26D6153700278A40 /* KLMTestSectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */; };
 		E47D803D26D61BD200278A40 /* KLMBanchenpinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */; };
 		E47D803E26D61BD200278A40 /* KLMBanchenpinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */; };
-		E47FAF612965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FAF5F2965218500FB8E84 /* KLMCustomerCountingViewController.swift */; };
-		E47FAF622965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FAF5F2965218500FB8E84 /* KLMCustomerCountingViewController.swift */; };
-		E47FAF632965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FAF5F2965218500FB8E84 /* KLMCustomerCountingViewController.swift */; };
-		E47FAF642965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FAF5F2965218500FB8E84 /* KLMCustomerCountingViewController.swift */; };
-		E47FAF652965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47FAF602965218500FB8E84 /* KLMCustomerCountingViewController.xib */; };
-		E47FAF662965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47FAF602965218500FB8E84 /* KLMCustomerCountingViewController.xib */; };
-		E47FAF672965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47FAF602965218500FB8E84 /* KLMCustomerCountingViewController.xib */; };
-		E47FAF682965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47FAF602965218500FB8E84 /* KLMCustomerCountingViewController.xib */; };
 		E485C5FB291908D6004C0143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E485C5FC291908D6004C0143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
 		E485C5FD291908D7004C0143 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E498A78C26671BED00C78D50 /* LaunchScreen.storyboard */; };
@@ -1253,6 +1246,22 @@
 		E4CE89AA29163E7C0040B878 /* mote_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CE899C29163E7C0040B878 /* mote_1.wav */; };
 		E4CE89AB29163E7C0040B878 /* mote_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CE899C29163E7C0040B878 /* mote_1.wav */; };
 		E4CE89AC29163E7C0040B878 /* mote_1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4CE899C29163E7C0040B878 /* mote_1.wav */; };
+		E4D06E34296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E32296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift */; };
+		E4D06E35296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E32296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift */; };
+		E4D06E36296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E32296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift */; };
+		E4D06E37296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E32296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift */; };
+		E4D06E38296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E33296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib */; };
+		E4D06E39296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E33296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib */; };
+		E4D06E3A296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E33296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib */; };
+		E4D06E3B296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E33296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib */; };
+		E4D06E3E296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E3C296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift */; };
+		E4D06E3F296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E3C296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift */; };
+		E4D06E40296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E3C296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift */; };
+		E4D06E41296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D06E3C296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift */; };
+		E4D06E42296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E3D296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib */; };
+		E4D06E43296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E3D296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib */; };
+		E4D06E44296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E3D296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib */; };
+		E4D06E45296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E4D06E3D296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib */; };
 		E4D1F97728531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
 		E4D1F97828531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
 		E4D1F97928531C6800B4BB5D /* KLMCMOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */; };
@@ -1594,6 +1603,7 @@
 /* Begin PBXFileReference section */
 		173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_Sensetrack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E2FE9701E30AF6A2260D2B1 /* Pods-KLM_Test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_Test.release.xcconfig"; path = "Target Support Files/Pods-KLM_Test/Pods-KLM_Test.release.xcconfig"; sourceTree = "<group>"; };
+		69E8727426AAF4890F7D1404 /* Pods_KLM_GN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KLM_GW.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0F184670DEF6156F33C01A /* Pods-KLM_Test.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM_Test.debug.xcconfig"; path = "Target Support Files/Pods-KLM_Test/Pods-KLM_Test.debug.xcconfig"; sourceTree = "<group>"; };
 		8135F1AEA6A8CC51176CB660 /* Pods-KLM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KLM.debug.xcconfig"; path = "Target Support Files/Pods-KLM/Pods-KLM.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1668,8 +1678,6 @@
 		E47D803926D6153700278A40 /* KLMTestSectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMTestSectionTableViewController.swift; sourceTree = "<group>"; };
 		E47D803B26D61BD200278A40 /* KLMBanchenpinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMBanchenpinViewController.swift; sourceTree = "<group>"; };
 		E47D803C26D61BD200278A40 /* KLMBanchenpinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMBanchenpinViewController.xib; sourceTree = "<group>"; };
-		E47FAF5F2965218500FB8E84 /* KLMCustomerCountingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCustomerCountingViewController.swift; sourceTree = "<group>"; };
-		E47FAF602965218500FB8E84 /* KLMCustomerCountingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMCustomerCountingViewController.xib; sourceTree = "<group>"; };
 		E485C5FF29190905004C0143 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreenSensetrack.storyboard; sourceTree = "<group>"; };
 		E486366227DB342600F74DEB /* KLMQudongTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMQudongTestViewController.swift; sourceTree = "<group>"; };
 		E486366327DB342600F74DEB /* KLMQudongTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMQudongTestViewController.xib; sourceTree = "<group>"; };
@@ -1945,6 +1953,10 @@
 		E4CE899A29163E7C0040B878 /* mote_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mote_3.wav; sourceTree = "<group>"; };
 		E4CE899B29163E7C0040B878 /* mote_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mote_2.wav; sourceTree = "<group>"; };
 		E4CE899C29163E7C0040B878 /* mote_1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mote_1.wav; sourceTree = "<group>"; };
+		E4D06E32296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCustomerCountingTableViewController.swift; sourceTree = "<group>"; };
+		E4D06E33296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMCustomerCountingTableViewController.xib; sourceTree = "<group>"; };
+		E4D06E3C296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCustomerCountingWiFiViewController.swift; sourceTree = "<group>"; };
+		E4D06E3D296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMCustomerCountingWiFiViewController.xib; sourceTree = "<group>"; };
 		E4D1F97528531C6800B4BB5D /* KLMCMOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMCMOSViewController.swift; sourceTree = "<group>"; };
 		E4D3F995286B0ACE0071B5AE /* KLMRGBTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMRGBTestViewController.swift; sourceTree = "<group>"; };
 		E4D3F996286B0ACE0071B5AE /* KLMRGBTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMRGBTestViewController.xib; sourceTree = "<group>"; };
@@ -2071,8 +2083,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB2304054AF7CF8FC4EC8ABC /* (null) in Frameworks */,
+				DB2304054AF7CF8FC4EC8ABC /* BuildFile in Frameworks */,
 				E467161D283E03C900D02E41 /* NetworkExtension.framework in Frameworks */,
+				D1A2A58B6C2374F101FC7056 /* Pods_KLM_GN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2111,6 +2124,7 @@
 				7A2ACC8F463D08D7961EF6DE /* Pods_KLM_GW.framework */,
 				E37BEFA17E5BE4E95129C984 /* Pods_KLM_Test.framework */,
 				173791B18A9B5B363E6C4312 /* Pods_KLM_Sensetrack.framework */,
+				69E8727426AAF4890F7D1404 /* Pods_KLM_GN.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2234,8 +2248,10 @@
 				E4E607C328BDBC5400D0DF88 /* KLMBrightnessViewController.xib */,
 				E4A31A9D29642DB700A90402 /* KLMPowerSettingViewController.swift */,
 				E4A31A9E29642DB700A90402 /* KLMPowerSettingViewController.xib */,
-				E47FAF5F2965218500FB8E84 /* KLMCustomerCountingViewController.swift */,
-				E47FAF602965218500FB8E84 /* KLMCustomerCountingViewController.xib */,
+				E4D06E32296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift */,
+				E4D06E33296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib */,
+				E4D06E3C296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift */,
+				E4D06E3D296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -3192,6 +3208,7 @@
 				E42C6392287E7851006620D1 /* GroceriesPlist.plist in Resources */,
 				E476177A26DE10D1008225BB /* KLMPCBASensorViewController.xib in Resources */,
 				E4A0F7B22907AEFA00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
+				E4D06E38296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */,
 				E4D79D282914DF1F00B92082 /* spectrum_32.png in Resources */,
 				E4CBED752750D81000A21936 /* KLMUserInfoCell.xib in Resources */,
 				E4C258442859EAD60080192A /* KLMPhotoEditMoreViewController.xib in Resources */,
@@ -3306,6 +3323,7 @@
 				E4CE8987291633930040B878 /* hudongColor_1_前.wav in Resources */,
 				E4A0F7E12907BC8700150B0F /* 前_en.wav in Resources */,
 				E4D9E93928B6343000F09739 /* KLMTestVersionViewController.xib in Resources */,
+				E4D06E42296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */,
 				E4CE892F291616620040B878 /* sexi_6.wav in Resources */,
 				E4C5CC6128AB856F00D77CE3 /* 3.wav in Resources */,
 				E4CE8913291616620040B878 /* sexi_后.wav in Resources */,
@@ -3370,7 +3388,6 @@
 				E49B42EE26C21DD20056C7EE /* KLMHelpViewController.xib in Resources */,
 				E4C5CC5F28AB856F00D77CE3 /* 10.wav in Resources */,
 				E4CE894B291633930040B878 /* hudongHuanying_1.wav in Resources */,
-				E47FAF652965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */,
 				E4D6AB202934B64500958E9A /* en_no_color.wav in Resources */,
 				E498A78926671BEC00C78D50 /* Main.storyboard in Resources */,
 				E4C34660283378E1000852DE /* KLMAddDeviceTestViewController.xib in Resources */,
@@ -3408,6 +3425,7 @@
 				E4A0F8C62907E01B00150B0F /* GroceriesPlist.plist in Resources */,
 				E4A0F8C72907E01B00150B0F /* KLMPCBASensorViewController.xib in Resources */,
 				E4D79D2B2914DF1F00B92082 /* spectrum_32.png in Resources */,
+				E4D06E3B296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */,
 				E4A0F8C82907E01B00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
 				E4A0F8C92907E01B00150B0F /* KLMUserInfoCell.xib in Resources */,
 				E4A0F8CA2907E01B00150B0F /* KLMPhotoEditMoreViewController.xib in Resources */,
@@ -3522,6 +3540,7 @@
 				E4A0F9052907E01B00150B0F /* 0.wav in Resources */,
 				E4A0F9062907E01B00150B0F /* 前_en.wav in Resources */,
 				E4CE8932291616620040B878 /* sexi_6.wav in Resources */,
+				E4D06E45296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */,
 				E4A0F9072907E01B00150B0F /* KLMTestVersionViewController.xib in Resources */,
 				E4CE8916291616620040B878 /* sexi_后.wav in Resources */,
 				E4A0F9082907E01B00150B0F /* 3.wav in Resources */,
@@ -3586,7 +3605,6 @@
 				E4A0F9302907E01B00150B0F /* KLMHelpViewController.xib in Resources */,
 				E4A0F9312907E01B00150B0F /* 10.wav in Resources */,
 				E4CE894E291633930040B878 /* hudongHuanying_1.wav in Resources */,
-				E47FAF682965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */,
 				E4D6AB232934B64500958E9A /* en_no_color.wav in Resources */,
 				E4A0F9322907E01B00150B0F /* Main.storyboard in Resources */,
 				E4A0F9332907E01B00150B0F /* KLMAddDeviceTestViewController.xib in Resources */,
@@ -3701,8 +3719,10 @@
 				E4C57EDF28055B1F00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
 				E4D79D252914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4A0F7B32907AEFA00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
+				E4D06E43296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */,
 				E4A0F7FD2907BC8700150B0F /* 16_en.wav in Resources */,
 				E42C638F287E7766006620D1 /* OccasionPlist.plist in Resources */,
+				E4D06E39296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */,
 				E4D611D628B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
 				E4CE8978291633930040B878 /* hudong_4.wav in Resources */,
 				E4CE8908291616620040B878 /* sexi_9.wav in Resources */,
@@ -3724,7 +3744,6 @@
 				E4E607C828BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
 				E4A0F7CD2907BC8700150B0F /* 后_en.wav in Resources */,
 				E4CE899E29163E7C0040B878 /* mote_4.wav in Resources */,
-				E47FAF662965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */,
 				E4C57EE628055B1F00E7AB54 /* KLMGroupPowerCell.xib in Resources */,
 				E4D9E93A28B6343000F09739 /* KLMTestVersionViewController.xib in Resources */,
 				E4D7CD4828A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
@@ -3901,8 +3920,10 @@
 				E4C57FB628055C7C00E7AB54 /* KLMHomeAddViewController.xib in Resources */,
 				E4D79D262914DF1F00B92082 /* spectrum_33.png in Resources */,
 				E4A0F7B42907AEFA00150B0F /* KLMTestVersion1ViewController.xib in Resources */,
+				E4D06E44296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.xib in Resources */,
 				E4A0F7FE2907BC8700150B0F /* 16_en.wav in Resources */,
 				E42C6390287E7766006620D1 /* OccasionPlist.plist in Resources */,
+				E4D06E3A296CFF470083CB80 /* KLMCustomerCountingTableViewController.xib in Resources */,
 				E4D611D728B4C6910004BEC9 /* KLMGroupUseOccasionViewController.xib in Resources */,
 				E4CE8979291633930040B878 /* hudong_4.wav in Resources */,
 				E4CE8909291616620040B878 /* sexi_9.wav in Resources */,
@@ -3924,7 +3945,6 @@
 				E4E607C928BDBC5400D0DF88 /* KLMBrightnessViewController.xib in Resources */,
 				E4A0F7CE2907BC8700150B0F /* 后_en.wav in Resources */,
 				E4CE899F29163E7C0040B878 /* mote_4.wav in Resources */,
-				E47FAF672965218500FB8E84 /* KLMCustomerCountingViewController.xib in Resources */,
 				E4C57FBD28055C7C00E7AB54 /* KLMGroupPowerCell.xib in Resources */,
 				E4D9E93B28B6343000F09739 /* KLMTestVersionViewController.xib in Resources */,
 				E4D7CD4928A9F28600DC34B8 /* KLMPhoneForgotPasswordViewController.xib in Resources */,
@@ -4184,8 +4204,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "
-";
+			shellScript = "\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4241,6 +4260,7 @@
 				E4A31A9F29642DB700A90402 /* KLMPowerSettingViewController.swift in Sources */,
 				E4C4A0A9286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
 				E4C435C6289BA769008EA308 /* KLMBlueToothManager.swift in Sources */,
+				E4D06E3E296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */,
 				E476178126DE11C2008225BB /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4CE899429163D4C0040B878 /* KLMAudioMoteManager.swift in Sources */,
 				E4C64AF928E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift in Sources */,
@@ -4257,7 +4277,6 @@
 				E498A78226671BEC00C78D50 /* AppDelegate.swift in Sources */,
 				E4A65FD02670B06400FE6866 /* BitmapDrawManipulator.m in Sources */,
 				E4DE01AF289380DE00F69C45 /* KLMWifiSelectViewController.swift in Sources */,
-				E47FAF612965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */,
 				E4CD304E28A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */,
 				E4A65FD12670B06400FE6866 /* BitmapCropManipulator.m in Sources */,
 				E48AF166268EEDCB00140F1F /* KLMSlider.swift in Sources */,
@@ -4280,6 +4299,7 @@
 				E48B530A266875980006CDA7 /* UIImage+TL.m in Sources */,
 				E4B89F53281282CA0071D58A /* KLMTool.swift in Sources */,
 				E4C4361128A65C0600DAA16D /* KLMAudioManager.swift in Sources */,
+				E4D06E34296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */,
 				E476177626DE0EA8008225BB /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4E2843C269EFF45006C120E /* GenericLevelServerDelegate.swift in Sources */,
 				E4A65FD92670B06400FE6866 /* RSColorPickerState.m in Sources */,
@@ -4441,6 +4461,7 @@
 				E4A31AA229642DB700A90402 /* KLMPowerSettingViewController.swift in Sources */,
 				E4A0F82F2907E01B00150B0F /* KLMAdminTransferCell.swift in Sources */,
 				E4A0F8302907E01B00150B0F /* KLMBlueToothManager.swift in Sources */,
+				E4D06E41296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */,
 				E4A0F8312907E01B00150B0F /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4CE899729163D4C0040B878 /* KLMAudioMoteManager.swift in Sources */,
 				E4A0F8322907E01B00150B0F /* KLMTestBiaodingViewController.swift in Sources */,
@@ -4457,7 +4478,6 @@
 				E4A0F83C2907E01B00150B0F /* AppDelegate.swift in Sources */,
 				E4A0F83D2907E01B00150B0F /* BitmapDrawManipulator.m in Sources */,
 				E4A0F83E2907E01B00150B0F /* KLMWifiSelectViewController.swift in Sources */,
-				E47FAF642965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */,
 				E4A0F83F2907E01B00150B0F /* KLMAudioViewController.swift in Sources */,
 				E4A0F8402907E01B00150B0F /* BitmapCropManipulator.m in Sources */,
 				E4A0F8412907E01B00150B0F /* KLMSlider.swift in Sources */,
@@ -4480,6 +4500,7 @@
 				E4A0F8512907E01B00150B0F /* UIImage+TL.m in Sources */,
 				E4A0F8522907E01B00150B0F /* KLMTool.swift in Sources */,
 				E4A0F8532907E01B00150B0F /* KLMAudioManager.swift in Sources */,
+				E4D06E37296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */,
 				E4A0F8542907E01B00150B0F /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4A0F8552907E01B00150B0F /* GenericLevelServerDelegate.swift in Sources */,
 				E4A0F8562907E01B00150B0F /* RSColorPickerState.m in Sources */,
@@ -4641,6 +4662,7 @@
 				E4A31AA029642DB700A90402 /* KLMPowerSettingViewController.swift in Sources */,
 				E4C4A0AA286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
 				E4C435C7289BA769008EA308 /* KLMBlueToothManager.swift in Sources */,
+				E4D06E3F296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */,
 				E4C57E5428055B1F00E7AB54 /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4CE899529163D4C0040B878 /* KLMAudioMoteManager.swift in Sources */,
 				E4C64AFA28E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift in Sources */,
@@ -4657,7 +4679,6 @@
 				E4C57E5B28055B1F00E7AB54 /* AppDelegate.swift in Sources */,
 				E4C57E5C28055B1F00E7AB54 /* BitmapDrawManipulator.m in Sources */,
 				E4DE01B0289380DE00F69C45 /* KLMWifiSelectViewController.swift in Sources */,
-				E47FAF622965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */,
 				E4CD304F28A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */,
 				E4C57E5D28055B1F00E7AB54 /* BitmapCropManipulator.m in Sources */,
 				E4C57E5E28055B1F00E7AB54 /* KLMSlider.swift in Sources */,
@@ -4680,6 +4701,7 @@
 				E4C57E6928055B1F00E7AB54 /* UIImage+TL.m in Sources */,
 				E4B89F54281282CA0071D58A /* KLMTool.swift in Sources */,
 				E4C4361228A65C0600DAA16D /* KLMAudioManager.swift in Sources */,
+				E4D06E35296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */,
 				E4C57E6A28055B1F00E7AB54 /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4C57E6B28055B1F00E7AB54 /* GenericLevelServerDelegate.swift in Sources */,
 				E4C57E6C28055B1F00E7AB54 /* RSColorPickerState.m in Sources */,
@@ -4841,6 +4863,7 @@
 				E4A31AA129642DB700A90402 /* KLMPowerSettingViewController.swift in Sources */,
 				E4C4A0AB286EA1CD00450A52 /* KLMAdminTransferCell.swift in Sources */,
 				E4C435C8289BA769008EA308 /* KLMBlueToothManager.swift in Sources */,
+				E4D06E40296D03C00083CB80 /* KLMCustomerCountingWiFiViewController.swift in Sources */,
 				E4C57F2B28055C7C00E7AB54 /* KLMBaoZhuangTestViewController.swift in Sources */,
 				E4CE899629163D4C0040B878 /* KLMAudioMoteManager.swift in Sources */,
 				E4C64AFB28E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift in Sources */,
@@ -4857,7 +4880,6 @@
 				E4C57F3228055C7C00E7AB54 /* AppDelegate.swift in Sources */,
 				E4C57F3328055C7C00E7AB54 /* BitmapDrawManipulator.m in Sources */,
 				E4DE01B1289380DE00F69C45 /* KLMWifiSelectViewController.swift in Sources */,
-				E47FAF632965218500FB8E84 /* KLMCustomerCountingViewController.swift in Sources */,
 				E4CD305028A4AD3B000C4CA3 /* KLMAudioViewController.swift in Sources */,
 				E4C57F3428055C7C00E7AB54 /* BitmapCropManipulator.m in Sources */,
 				E4C57F3528055C7C00E7AB54 /* KLMSlider.swift in Sources */,
@@ -4880,6 +4902,7 @@
 				E4C57F4028055C7C00E7AB54 /* UIImage+TL.m in Sources */,
 				E4B89F55281282CA0071D58A /* KLMTool.swift in Sources */,
 				E4C4361328A65C0600DAA16D /* KLMAudioManager.swift in Sources */,
+				E4D06E36296CFF470083CB80 /* KLMCustomerCountingTableViewController.swift in Sources */,
 				E4C57F4128055C7C00E7AB54 /* KLMPCBASectionTableViewController.swift in Sources */,
 				E4C57F4228055C7C00E7AB54 /* GenericLevelServerDelegate.swift in Sources */,
 				E4C57F4328055C7C00E7AB54 /* RSColorPickerState.m in Sources */,
@@ -5695,7 +5718,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5708,7 +5731,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Test";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -5731,7 +5754,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -5744,7 +5767,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7.2;
+				MARKETING_VERSION = 1.7.3;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -D target_Test";
 				PRODUCT_BUNDLE_IDENTIFIER = kinglumi.jmj123.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";

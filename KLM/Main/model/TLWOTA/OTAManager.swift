@@ -88,14 +88,6 @@ class OTAManager: NSObject {
             self.perform(#selector(self.scanTimeout), with: nil, afterDelay: 12)
         }
         
-        ///如果是直连设备，不会再广播，这个时候需要先断开直连设备
-//        if let bearer = MeshNetworkManager.bearer.proxies.first {
-//            if bearer.nodeUUID == currentNode.nodeuuidString {
-//                KLMLog("断开直连设备的连接")
-//                MeshNetworkManager.bearer.close()
-//            }
-//        }
-        
         MeshNetworkManager.bearer.close()
         
         connectDevice()

@@ -18,7 +18,7 @@ targets.each do |t|
     pod 'JKSwiftExtension', '~> 1.6.8'
     pod 'MJRefresh', '~> 3.5.0'
     pod 'DZNEmptyDataSet', '~> 1.8.1' #数据为空时显示空白占位图
-#    pod 'Charts' #图表
+#    pod 'Charts', '~> 4.1.0' #图表
     pod 'KeychainAccess', '~> 4.2.2'
 #    pod 'Bugly'
     pod 'HandyJSON'

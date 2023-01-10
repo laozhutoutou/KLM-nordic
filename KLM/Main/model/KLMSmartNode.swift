@@ -208,7 +208,8 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .fenqu,
                          .encryption,
                          .powerSetting,
-                         .passengerFlow:
+                         .customerCounting:
+//                         .passengerFlow:
                         
                         response.value = Int(value.bytes[0])
                     case .color,
@@ -337,6 +338,7 @@ extension KLMSmartNode {
              .hardwareInfo,
              .biaoding,
              .controller,
+             .customerCounting,
              .factoryTestResule:
             parameString = parame.value as! String
 

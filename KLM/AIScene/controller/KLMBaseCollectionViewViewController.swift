@@ -123,6 +123,13 @@ extension KLMBaseCollectionViewViewController: UICollectionViewDelegate, UIColle
         
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
+        
+        if node.deviceType == .TwoCamera {
+            
+            let vc = KLMCustomerCountingTableViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            return
+        }
                 
         SVProgressHUD.show()
         SVProgressHUD.setDefaultMaskType(.black)

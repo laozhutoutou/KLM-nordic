@@ -131,8 +131,8 @@ enum DPType: Int {
     case motionPower = 10
     case colorTest = 11
     case cameraPic = 12 //下载摄像头图像
-    case passengerFlowPower = 13 //客流统计开关
-    case passengerFlow = 14 //客流统计数据
+//    case passengerFlowPower = 13 //客流统计开关
+//    case passengerFlow = 14 //客流统计数据
     case category = 15 //分类
     case brightness = 17 //亮度
     case motion = 18 //节能
@@ -142,6 +142,7 @@ enum DPType: Int {
     case biaoding = 22 ///标定
     case fenqu = 0x17 ///分区
     case encryption = 0x18 ///加密
+    case customerCounting = 0x1A ///客流统计
     case controller = 30 ///控制器
     case audio = 88 //语音播报
     case checkVersion = 99
