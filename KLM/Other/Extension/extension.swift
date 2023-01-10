@@ -280,6 +280,22 @@ extension UIColor {
         KLMLog("H = \(H * 360), S = \(S * 1000), B = \(B * 1000)")
         return HH + SS + BB
     }
+    /// color转化成16进制字符串 HS
+    /// - Returns: 16进制字符串
+    func HSToHexString() -> String {
+        
+        var a: CGFloat = 1
+        var H: CGFloat = 0
+        var S: CGFloat = 0
+        var B: CGFloat = 0
+        self.getHue(&H, saturation: &S, brightness: &B, alpha: &a)
+        
+        let HH = Int(H * 360).decimalTo4Hexadecimal()
+        let SS = Int(S * 1000).decimalTo4Hexadecimal()
+//        let BB = Int(B * 1000).decimalTo4Hexadecimal()
+        KLMLog("H = \(H * 360), S = \(S * 1000), B = \(B * 1000)")
+        return HH + SS
+    }
 }
 
 extension Dictionary {
