@@ -208,6 +208,7 @@ extension KLMSmartNode: MeshNetworkDelegate {
                          .fenqu,
                          .encryption,
                          .powerSetting,
+                         .customerCountingPower,
                          .customerCounting:
                         
                         response.value = Int(value.bytes[0])
@@ -324,6 +325,7 @@ extension KLMSmartNode {
              .audio,
              .brightness,
              .powerSetting,
+             .customerCountingPower,
              .motionPower:
             let value = parame.value as! Int
             parameString = value.decimalTo2Hexadecimal()

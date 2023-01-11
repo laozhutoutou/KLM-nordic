@@ -156,7 +156,11 @@ extension KLMPCBASensorViewController: KLMSmartNodeDelegate {
     func smartNodeDidResetNode(_ manager: KLMSmartNode){
         ///提交数据到服务器
         if KLMMesh.save() {
-            
+            KLMService.deleteDevice(uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            } 
         }
         SVProgressHUD.showSuccess(withStatus: "测试完成")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {

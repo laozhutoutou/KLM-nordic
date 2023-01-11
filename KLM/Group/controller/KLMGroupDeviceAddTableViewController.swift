@@ -158,17 +158,17 @@ extension KLMGroupDeviceAddTableViewController: KLMMessageManagerDelegate {
     
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
         
+        let selectNode = selectNodes[currentIndex]
+        KLMService.addDeviceToGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), uuid: selectNode.nodeuuidString) { response in
+            
+        } failure: { error in
+            
+        }
+        
         currentIndex += 1
         next()
-//        if error != nil { //失败
-//
-//            next()
-////            SVProgressHUD.showInfo(withStatus: error?.message)
-//            return
-//        }
     
     }
-    
 }
 
 extension KLMGroupDeviceAddTableViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {

@@ -377,7 +377,15 @@ extension KLMAddDeviceViewController: KLMSIGMeshManagerDelegate {
         
         //正式APP
         device.name = self.deviceName
+        
         if KLMMesh.save() {
+            
+            //修改名称
+            KLMService.updateDevice(deviceName: self.deviceName, uuid: device.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
             
             //刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)

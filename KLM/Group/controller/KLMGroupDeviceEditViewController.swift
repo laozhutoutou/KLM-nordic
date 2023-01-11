@@ -12,6 +12,7 @@ class KLMGroupDeviceEditViewController: UIViewController {
     
    
     @IBOutlet weak var tableView: UITableView!
+    private var removeNode: Node!
     
     //数据源
     lazy var deviceLists: [Node] = {
@@ -63,14 +64,6 @@ class KLMGroupDeviceEditViewController: UIViewController {
         let tempBarItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         tempBarItem.width = 15
         navigationItem.rightBarButtonItems = [moreBarItem, tempBarItem, addBarItem]
-        
-//        let addBar = UIBarButtonItem.init(icon: "icon_group_new_scene", target: self, action: #selector(addDevice))
-//        let tempBarItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-//        tempBarItem.width = 25
-        //        let addBar = UIBarButtonItem.init(title: "+", target: self, action: #selector(addDevice))
-        //        let moreBar = UIBarButtonItem.init(title: "...", target: self, action: #selector(more))
-//        let moreBar = UIBarButtonItem.init(icon: "icon_more_unselect", target: self, action: #selector(more))
-//        navigationItem.rightBarButtonItems = [moreBar, tempBarItem, addBar]
         
         setupData()
         
@@ -185,9 +178,11 @@ extension KLMGroupDeviceEditViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
         let deviceModel: Node = self.deviceLists[indexPath.item]
-
+        
         let deleteAction = UIContextualAction.init(style: .destructive, title: LANGLOC("Delete")) { action, sourceView, completionHandler in
-
+            
+            self.removeNode = deviceModel
+            
             let aler = UIAlertController.init(title: LANGLOC("Delete devices"), message: nil, preferredStyle: .alert)
             let cancel = UIAlertAction.init(title: LANGLOC("Cancel"), style: .cancel, handler: nil)
             let sure = UIAlertAction.init(title: LANGLOC("Confirm"), style: .default) { action in
@@ -256,6 +251,12 @@ extension KLMGroupDeviceEditViewController: KLMMessageManagerDelegate {
         ///提交到服务器
         if KLMMesh.save() {
 
+        }
+        
+        KLMService.removeDeviceFromGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), uuid: removeNode.nodeuuidString) { response in
+            
+        } failure: { error in
+            
         }
 
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

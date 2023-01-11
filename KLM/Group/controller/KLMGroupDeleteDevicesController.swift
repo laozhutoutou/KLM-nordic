@@ -166,6 +166,13 @@ extension KLMGroupDeleteDevicesController: KLMMessageManagerDelegate {
     
     func messageManager(_ manager: KLMMessageManager, didHandleGroup unicastAddress: Address, error: MessageError?) {
         
+        let selectNode = selectNodes[currentIndex]
+        KLMService.removeDeviceFromGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), uuid: selectNode.nodeuuidString) { response in
+            
+        } failure: { error in
+            
+        }
+        
         currentIndex += 1
         next()
     

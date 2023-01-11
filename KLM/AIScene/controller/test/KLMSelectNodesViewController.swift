@@ -163,6 +163,12 @@ extension KLMSelectNodesViewController: KLMSmartNodeDelegate {
         ///提交数据到服务器
         if KLMMesh.save() {
             
+            KLMService.deleteDevice(uuid: manager.currentNode!.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
+            
         }
         
         NotificationCenter.default.post(name: .deviceReset, object: nil)

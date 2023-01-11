@@ -124,49 +124,49 @@ extension KLMBaseCollectionViewViewController: UICollectionViewDelegate, UIColle
         //记录当前设备
         KLMHomeManager.sharedInstacnce.smartNode = node
         
-        if node.deviceType == .TwoCamera {
-            
-            let vc = KLMCustomerCountingTableViewController()
-            navigationController?.pushViewController(vc, animated: true)
-            return
-        }
-                
-        SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.black)
-        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
-            guard let self = self else { return }
-            SVProgressHUD.dismiss()
-            if node.isOnline == false {
-                node.isOnline = true
-                self.collectionView.reloadData()
-            }
-            
-            if node.isController {
-                
-                let vc = KLMControllerSettingViewController()
-                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-                return
-            }
-            
-            if apptype == .test {
-
-                let vc = KLMTestSectionTableViewController()
-                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-
-                return
-            }
-
-            let vc = KLMLightSettingController()
-            (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-
-        } failure: {
-            if node.isOnline == true {
-                MeshNetworkManager.bearer.close()
-                MeshNetworkManager.bearer.open()
-                node.isOnline = false
-                self.collectionView.reloadData()
-            }
-        }
+        //        if node.deviceType == .TwoCamera {
+        
+        let vc = KLMCustomerCountingTableViewController()
+        (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+        return
+        //        }
+        
+//        SVProgressHUD.show()
+//        SVProgressHUD.setDefaultMaskType(.black)
+//        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
+//            guard let self = self else { return }
+//            SVProgressHUD.dismiss()
+//            if node.isOnline == false {
+//                node.isOnline = true
+//                self.collectionView.reloadData()
+//            }
+//            
+//            if node.isController {
+//                
+//                let vc = KLMControllerSettingViewController()
+//                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+//                return
+//            }
+//            
+//            if apptype == .test {
+//                
+//                let vc = KLMTestSectionTableViewController()
+//                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+//                
+//                return
+//            }
+//            
+//            let vc = KLMLightSettingController()
+//            (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+//            
+//        } failure: {
+//            if node.isOnline == true {
+//                MeshNetworkManager.bearer.close()
+//                MeshNetworkManager.bearer.open()
+//                node.isOnline = false
+//                self.collectionView.reloadData()
+//            }
+//        }
     }
 }
 
@@ -242,6 +242,11 @@ extension KLMBaseCollectionViewViewController: KLMAINameListCellDelegate {
                 //连接不上，直接删除设备
                 MeshNetworkManager.instance.meshNetwork!.remove(node: model)
                 if KLMMesh.save() {
+                    KLMService.deleteDevice(uuid: model.nodeuuidString) { response in
+                        
+                    } failure: { error in
+                        
+                    }
                     //删除成功
                     self.setupData()
                 }
@@ -262,6 +267,11 @@ extension KLMBaseCollectionViewViewController: KLMSmartNodeDelegate {
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
         ///提交数据到服务器
         if KLMMesh.save() {
+            KLMService.deleteDevice(uuid: manager.currentNode!.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
             self.setupData()
         }
     }

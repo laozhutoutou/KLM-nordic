@@ -26,7 +26,7 @@ class KLMCustomerCountingWiFiViewController: UIViewController, Editable {
         super.viewWillAppear(animated)
         
         KLMSmartNode.sharedInstacnce.delegate = self
-        let parame = parameModel(dp: .customerCounting)
+        let parame = parameModel(dp: .customerCountingPower)
         KLMSmartNode.sharedInstacnce.readMessage(parame, toNode: KLMHomeManager.currentNode)
     }
     
@@ -44,6 +44,27 @@ class KLMCustomerCountingWiFiViewController: UIViewController, Editable {
     }
     
     private func setupUI() {
+        
+        if let result = KLMHomeManager.getWIFIMsg() {
+            
+            SSIDField.text = result.SSID
+            passField.text = result.password
+        } else {
+            
+            let ssid = KLMLocationManager.getCurrentWifiName()
+            SSIDField.text = ssid
+        }
+        
+        //弹出定位弹框
+        KLMLocationManager.shared.getLocation {
+            if KLMTool.isEmptyString(string: self.SSIDField.text) == nil {
+                
+                let ssid = KLMLocationManager.getCurrentWifiName()
+                self.SSIDField.text = ssid
+            }
+        } failure: {
+            
+        }
         
         selectwifiBtn.backgroundColor = .lightGray.withAlphaComponent(0.1)
         selectwifiBtn.layer.cornerRadius = selectwifiBtn.height/2
@@ -72,7 +93,7 @@ class KLMCustomerCountingWiFiViewController: UIViewController, Editable {
             
             SVProgressHUD.show()
             //发送关闭指令
-            let parame = parameModel(dp: .customerCounting, value: "00")
+            let parame = parameModel(dp: .customerCountingPower, value: 0)
             KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
         }
     }
@@ -147,13 +168,42 @@ extension KLMCustomerCountingWiFiViewController: KLMSmartNodeDelegate {
     
     func smartNode(_ manager: KLMSmartNode, didReceiveVendorMessage message: parameModel?) {
         
-        if message?.dp == .customerCounting {
-            hideEmptyView()
-            if message?.opCode == .read, let power: Int = message?.value as? Int {
-                powerSwitch.isOn = power == 1 ? true : false
-                contentView.isHidden = power == 1 ? false : true
-            } else {
+        SVProgressHUD.dismiss()
+        hideEmptyView()
+        
+        if message?.dp == .customerCountingPower {
+            
+            if let power = message?.value as? Int {
+                if message?.opCode == .read {
+                    powerSwitch.isOn = power == 1 ? true : false
+                    contentView.isHidden = power == 1 ? false : true
+                } else {
+                    if power == 0 {
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        contentView.isHidden = true
+                    } else if power == 1 {
+                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
+            }
+        }
+        
+        if message?.dp == .customerCounting, let power: Int = message?.value as? Int {
+            
+            if power == 0 { ///打开成功
                 
+                ///存储WiFi信息
+                KLMHomeManager.cacheWIFIMsg(SSID: self.SSIDField.text!, password: self.passField.text!)
+                let model = KLMWiFiModel.init(WiFiName: self.SSIDField.text!, WiFiPass: self.passField.text!)
+                KLMWiFiManager.saveWiFiName(wifiModel: model)
+                
+                let parame = parameModel(dp: .customerCountingPower, value: 1)
+                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            } else { ///失败
+                SVProgressHUD.showInfo(withStatus: LANGLOC("Connect failure") + "\(power)")
             }
         }
     }

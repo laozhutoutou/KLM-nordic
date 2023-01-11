@@ -157,6 +157,12 @@ extension KLMGroupEditViewController: UITableViewDelegate, UITableViewDataSource
                 
                 if KLMMesh.save() {
                     
+                    KLMService.updateGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), groupName: name) { response in
+                        
+                    } failure: { error in
+                        
+                    }
+
                     self.tableView.reloadData()
                     NotificationCenter.default.post(name: .groupRenameSuccess, object: nil)
                 }

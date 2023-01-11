@@ -973,6 +973,42 @@ class KLMService: NSObject {
             }
         }
     }
+    
+    ///添加设备到分组
+    static func addDeviceToGroup(groupId: Int, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let mesh = KLMMesh.loadHome()!
+        let parame: [String : Any] = ["meshId": mesh.id,
+                                      "uuid": uuid,
+                                      "groupId": groupId,
+                                      ]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/group/addDeviceByMeshIdAndGroupId"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
+    
+    ///分组中删除设备
+    static func removeDeviceFromGroup(groupId: Int, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
+        
+        let mesh = KLMMesh.loadHome()!
+        let parame: [String : Any] = ["meshId": mesh.id,
+                                      "uuid": uuid,
+                                      "groupId": groupId,
+                                      ]
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/group/removeDeviceByMeshIdAndGroupId"), params: parame) { responseObject, error in
+            
+            if error == nil {
+                success(responseObject as AnyObject)
+            } else {
+                failure(error!)
+            }
+        }
+    }
 }
 
 

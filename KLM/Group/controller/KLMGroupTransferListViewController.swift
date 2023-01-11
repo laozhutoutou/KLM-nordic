@@ -153,6 +153,16 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
         
         //设备添加进群组成功
         if self.deviceStatus == .deviceAddtoGroup {
+            
+            ///提交数据到服务器
+            let group = groups[selectedIndexPath!.row]
+            let selectNode = selectNodes[currentIndex]
+            KLMService.addDeviceToGroup(groupId: Int(group.address.address), uuid: selectNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
+
             self.deviceStatus = .deviceDeleteFromGroup
             currentIndex += 1
             if currentIndex >= selectNodes.count {
@@ -175,6 +185,13 @@ extension KLMGroupTransferListViewController: KLMMessageManagerDelegate {
             }
         } else { //设备移除成功
             
+            let selectNode = selectNodes[currentIndex]
+            KLMService.removeDeviceFromGroup(groupId: Int(KLMHomeManager.currentGroup.address.address), uuid: selectNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
+
             self.deviceStatus = .deviceAddtoGroup
             addDevice()
         }

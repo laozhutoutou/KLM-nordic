@@ -343,7 +343,11 @@ extension KLMDeviceEditViewController: KLMSmartNodeDelegate {
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
         ///提交数据到服务器
         if KLMMesh.save() {
-            
+            KLMService.deleteDevice(uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            } 
         }
         
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
@@ -555,6 +559,13 @@ extension KLMDeviceEditViewController: UITableViewDelegate, UITableViewDataSourc
                 KLMHomeManager.currentNode.name = name
                 
                 if KLMMesh.save() {
+                    
+                    //修改名称
+                    KLMService.updateDevice(deviceName: KLMHomeManager.currentNode.name!, uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                        
+                    } failure: { error in
+                        
+                    }
                     
                     self.nameLab.text = KLMHomeManager.currentNode.name
                     self.tableView.reloadData()

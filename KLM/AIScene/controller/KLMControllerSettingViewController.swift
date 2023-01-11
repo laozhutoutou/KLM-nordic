@@ -333,7 +333,11 @@ extension KLMControllerSettingViewController: KLMSmartNodeDelegate {
     func smartNodeDidResetNode(_ manager: KLMSmartNode) {
         ///提交数据到服务器
         if KLMMesh.save() {
-            
+            KLMService.deleteDevice(uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            } 
         }
         
         SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))

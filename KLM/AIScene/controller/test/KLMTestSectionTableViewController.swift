@@ -170,6 +170,11 @@ extension KLMTestSectionTableViewController: KLMSmartNodeDelegate {
         ///提交数据到服务器
         if KLMMesh.save() {
             
+            KLMService.deleteDevice(uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }            
         }
         SVProgressHUD.showSuccess(withStatus: "复位成功")
         DispatchQueue.main.asyncAfter(deadline: 0.5) {

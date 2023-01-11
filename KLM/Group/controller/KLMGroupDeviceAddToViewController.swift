@@ -14,6 +14,8 @@ class KLMGroupDeviceAddToViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var groups: [Group]!
+    private var oldGroup: Group!
+    
     private var selectedIndexPath: IndexPath?
     
     enum deviceStatus {
@@ -124,6 +126,8 @@ class KLMGroupDeviceAddToViewController: UIViewController {
         SVProgressHUD.show()
         
         if let oldGroup = KLMHomeManager.currentModel.subscriptions.first {
+            self.oldGroup = oldGroup
+            
             self.deviceStatus = .deviceDeleteFromGroup
             ///将设备从旧分组删除
             KLMMessageManager.sharedInstacnce.deleteNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: oldGroup)
@@ -152,6 +156,12 @@ extension KLMGroupDeviceAddToViewController: KLMMessageManagerDelegate {
             if KLMMesh.save() {
                 
             }
+            
+            KLMService.removeDeviceFromGroup(groupId: Int(oldGroup.address.address), uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
             ///设备添加进新分组
             let group = groups[selectedIndexPath!.row]
             KLMMessageManager.sharedInstacnce.addNodeToGroup(withNode: KLMHomeManager.currentNode, withGroup: group)
@@ -164,12 +174,18 @@ extension KLMGroupDeviceAddToViewController: KLMMessageManagerDelegate {
                 
             }
             
+            let group = groups[selectedIndexPath!.row]
+            KLMService.addDeviceToGroup(groupId: Int(group.address.address), uuid: KLMHomeManager.currentNode.nodeuuidString) { response in
+                
+            } failure: { error in
+                
+            }
+            
             SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
             NotificationCenter.default.post(name: .deviceAddToGroup, object: nil)
             self.navigationController?.popViewController(animated: true)
         }
     }
-    
 }
 
 extension KLMGroupDeviceAddToViewController: UITableViewDelegate, UITableViewDataSource {

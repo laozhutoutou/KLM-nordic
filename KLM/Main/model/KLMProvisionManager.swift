@@ -128,6 +128,17 @@ extension KLMProvisionManager: GattBearerDelegate {
             ///刷新首页
             NotificationCenter.default.post(name: .deviceAddSuccess, object: nil)
             
+            if let network = MeshNetworkManager.instance.meshNetwork {
+
+                let node = network.node(for: self.discoveredPeripheral.device)!
+                ///添加设备到服务器
+                KLMService.addDevice(deviceName: self.discoveredPeripheral.device.name!, deviceType: self.discoveredPeripheral.deviceType.rawValue, uuid: node.nodeuuidString) { response in
+                    
+                } failure: { error in
+                    
+                }
+            }
+            
             KLMLog("node add success")
             DispatchQueue.main.asyncAfter(deadline: 1) {
 
