@@ -795,7 +795,7 @@ class KLMService: NSObject {
                                       "groupName": groupName,
                                       "groupData": groupDataStr as Any
         ]
-        KLMNetworking.httpMethod(URLString: KLMUrl("api/group"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/group"), params: parame) { responseObject, error in
             
             if error == nil {
                 
@@ -812,7 +812,7 @@ class KLMService: NSObject {
         let mesh = KLMMesh.loadHome()!
         let parame = ["meshId": mesh.id,
                       "groupId": groupId]
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/group/deleteByMeshIdAndGroupId"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/v2/app/group/deleteByMeshIdAndGroupId"), params: parame) { responseObject, error in
             //没有记录也是成功
             if error == nil {
                 success(responseObject as AnyObject)
@@ -827,7 +827,7 @@ class KLMService: NSObject {
         let mesh = KLMMesh.loadHome()!
         let parame = ["meshId": mesh.id,
                       "groupId": groupId]
-        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/group/getByMeshIdAndGroupId"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(method: .get, URLString: KLMUrl("api/v2/app/group/getByMeshIdAndGroupId"), params: parame) { responseObject, error in
             
             if error == nil {
                 let model = try? JSONDecoder().decode(KLMGroupModel.self, from: responseObject!)
@@ -856,7 +856,7 @@ class KLMService: NSObject {
             let groupDataStr = String(data: data, encoding: .utf8)
             parame["groupData"] = groupDataStr
         }
-        KLMNetworking.httpMethod(URLString: KLMUrl("api/group/updateByMeshIdAndGroupId"), params: parame) { responseObject, error in
+        KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/group/updateByMeshIdAndGroupId"), params: parame) { responseObject, error in
 
             if error == nil {
 
