@@ -126,47 +126,47 @@ extension KLMBaseCollectionViewViewController: UICollectionViewDelegate, UIColle
         
         //        if node.deviceType == .TwoCamera {
         
-        let vc = KLMCustomerCountingTableViewController()
-        (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-        return
+//        let vc = KLMCustomerCountingTableViewController()
+//        (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+        
         //        }
         
-//        SVProgressHUD.show()
-//        SVProgressHUD.setDefaultMaskType(.black)
-//        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
-//            guard let self = self else { return }
-//            SVProgressHUD.dismiss()
-//            if node.isOnline == false {
-//                node.isOnline = true
-//                self.collectionView.reloadData()
-//            }
-//            
-//            if node.isController {
-//                
-//                let vc = KLMControllerSettingViewController()
-//                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-//                return
-//            }
-//            
-//            if apptype == .test {
-//                
-//                let vc = KLMTestSectionTableViewController()
-//                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-//                
-//                return
-//            }
-//            
-//            let vc = KLMLightSettingController()
-//            (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
-//            
-//        } failure: {
-//            if node.isOnline == true {
-//                MeshNetworkManager.bearer.close()
-//                MeshNetworkManager.bearer.open()
-//                node.isOnline = false
-//                self.collectionView.reloadData()
-//            }
-//        }
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.black)
+        KLMConnectManager.shared.connectToNode(node: node) { [weak self] in
+            guard let self = self else { return }
+            SVProgressHUD.dismiss()
+            if node.isOnline == false {
+                node.isOnline = true
+                self.collectionView.reloadData()
+            }
+            
+            if node.isController {
+                
+                let vc = KLMControllerSettingViewController()
+                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+                return
+            }
+            
+            if apptype == .test {
+                
+                let vc = KLMTestSectionTableViewController()
+                (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+                
+                return
+            }
+            
+            let vc = KLMLightSettingController()
+            (UIApplication.shared.delegate as! AppDelegate).getMainController()?.navigationController?.pushViewController(vc, animated: true)
+            
+        } failure: {
+            if node.isOnline == true {
+                MeshNetworkManager.bearer.close()
+                MeshNetworkManager.bearer.open()
+                node.isOnline = false
+                self.collectionView.reloadData()
+            }
+        }
     }
 }
 

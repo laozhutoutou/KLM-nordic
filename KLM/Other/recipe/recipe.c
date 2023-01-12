@@ -4,8 +4,6 @@
 #include <stdlib.h>
 #include "recipe.h"
 #include <math.h>
-//#include <stdio.h>
-
 #define min3v(v1, v2, v3)   ((v1)>(v2)? ((v2)>(v3)?(v3):(v2)):((v1)>(v3)?(v3):(v1)))
 #define max3v(v1, v2, v3)   ((v1)<(v2)? ((v2)<(v3)?(v3):(v2)):((v1)<(v3)?(v3):(v1)))
 
@@ -96,6 +94,31 @@ typedef enum {
     SPECTRUM_PLANT_4000K     ,
     SPECTRUM_PLANT_DEFAULT   ,
 }Spectrum_Index_Plant;
+typedef enum {
+    SPECTRUM_LEATHER_TILE_WARM_WHITE = 0,
+    SPECTRUM_LEATHER_TILE_WHITE,
+    SPECTRUM_LEATHER_TILE_BLACK,
+    SPECTRUM_LEATHER_TILE_RED,
+    SPECTRUM_LEATHER_TILE_ORANGE,
+    SPECTRUM_LEATHER_TILE_YELLOW,
+    SPECTRUM_LEATHER_TILE_GREEN,
+    SPECTRUM_LEATHER_TILE_CYAN,
+    SPECTRUM_LEATHER_TILE_BLUE,
+    SPECTRUM_LEATHER_TILE_PURPLE,
+    SPECTRUM_LEATHER_TILE_PINK = 10,
+    SPECTRUM_LEATHER_TILE_LIGHT_RED,
+    SPECTRUM_LEATHER_TILE_LIGHT_ORANGE,
+    SPECTRUM_LEATHER_TILE_LIGHT_YELLOW,
+    SPECTRUM_LEATHER_TILE_LIGHT_GREEN,
+    SPECTRUM_LEATHER_TILE_LIGHT_CYAN,
+    SPECTRUM_LEATHER_TILE_LIGHT_BLUE,
+    SPECTRUM_LEATHER_TILE_LIGHT_PURPLE,
+    SPECTRUM_LEATHER_TILE_LIGHT_PINK,
+    SPECTRUM_LEATHER_TILE_3000K,
+    SPECTRUM_LEATHER_TILE_3500K,
+    SPECTRUM_LEATHER_TILE_4000K,
+    SPECTRUM_LEATHER_TILE_3200K,
+}Spectrum_Index_Leather_Tile;
 typedef struct{
     unsigned char  R;
     unsigned char  G;
@@ -416,6 +439,14 @@ Spectrum_Index_Grocery get_spectrum_index_of_grocery_image(void * imgData, int i
         if (nww > 0.65 * sum) return SPECTRUM_GROCERY_RED;
         else if (nnw > 0.65 * sum) return SPECTRUM_GROCERY_WHITE;
     } else {
+        if (category != Grocery_Vegetable) {
+            color_dict[SPECTRUM_GROCERY_BLUE] += color_dict[SPECTRUM_GROCERY_PURPLE];
+            color_dict[SPECTRUM_GROCERY_PURPLE] = 0;
+        }
+        if (category == Grocery_Iced) {
+            color_dict[SPECTRUM_GROCERY_ORANGE] += color_dict[SPECTRUM_GROCERY_YELLOW];
+            color_dict[SPECTRUM_GROCERY_YELLOW] = 0;
+        }
         for (int i = 0; i < 8; i++) {
             if (color_dict[i] > 0.65 * sum) return i;
         }
@@ -490,7 +521,130 @@ Spectrum_Index_Plant get_spectrum_index_of_plant_image(void * imgData, int imgW,
     if (nnw > 0.5 * sum) return SPECTRUM_PLANT_3500K;
     return SPECTRUM_PLANT_DEFAULT;
 }
-
+Spectrum_Index_Leather_Tile get_spectrum_index_of_leather_tile_image(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, const IMAGE_AREA * area) {
+    int color_dict[11] = {0}, origin_index_pos[11] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+    real_colors[11] = {0}, color_priority[11] = {2, 1, 12, 17, 5, 3, 13, 9, 7, 11, 15}, sum = 0;
+    float avg_rgb[11][3] = {0}; //{0.0f};
+    unsigned char * p = (unsigned char *)imgData;
+    COLOR_RGB rgb;
+    COLOR_HSV hsv;
+    COLOR_YUV yuv;
+    for (int y = area->Y_Start; y <= area->Y_End; y++) {
+        for (int x = area->X_Start; x <= area->X_End; x++) {
+            if (format == IMAGE_FORMAT_RGBA) {
+                rgb.R = p[(y * imgW + x) * 4 + 0];
+                rgb.G = p[(y * imgW + x) * 4 + 1];
+                rgb.B = p[(y * imgW + x) * 4 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            } else if (format == IMAGE_FORMAT_RGB) {
+                rgb.R = p[(y * imgW + x) * 3 + 0];
+                rgb.G = p[(y * imgW + x) * 3 + 1];
+                rgb.B = p[(y * imgW + x) * 3 + 2];
+                RGBtoHSV100(&rgb, &hsv);
+            } else if (format == IMAGE_FORMAT_YUV420) {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int) (imgW * imgH + (y / 2) * (imgW / 2) + x / 2)];
+                yuv.V = p[(int) (imgW * imgH * 3 / 2 + (y / 2) * (imgW / 2) + x / 2)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            } else if (format == IMAGE_FORMAT_NV21) {
+                yuv.Y = p[y * imgW + x];
+                yuv.U = p[(int) (imgW * imgH + (y / 2) * imgW + x - (x % 2))];
+                yuv.V = p[(int) (imgW * imgH + (y / 2) * imgW + x - (x % 2) + 1)];
+                YUVtoRGB(&yuv, &rgb);
+                YUVtoHSV100(&yuv, &hsv);
+            }
+            sum++;
+            if (hsv.H <= 50 && hsv.H >= 30 && hsv.S <= 20 && hsv.S >= 5 && hsv.V >= 60)
+                color_dict[SPECTRUM_LEATHER_TILE_WARM_WHITE]++;
+            else if (hsv.S <= 15 && hsv.V >= 25) color_dict[SPECTRUM_LEATHER_TILE_WHITE]++;
+            else if (hsv.V <= 25) color_dict[SPECTRUM_LEATHER_TILE_BLACK]++;
+            else if (hsv.H >= 288 && hsv.H < 343) {
+                color_dict[SPECTRUM_LEATHER_TILE_PINK]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_PINK][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_PINK][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_PINK][2] += rgb.B;
+            } else if (hsv.H >= 250 && hsv.H < 288) {
+                color_dict[SPECTRUM_LEATHER_TILE_PURPLE]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_PURPLE][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_PURPLE][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_PURPLE][2] += rgb.B;
+            } else if (hsv.H >= 195 && hsv.H < 250) {
+                color_dict[SPECTRUM_LEATHER_TILE_BLUE]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_BLUE][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_BLUE][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_BLUE][2] += rgb.B;
+            } else if (hsv.H >= 151 && hsv.H <= 195) {
+                color_dict[SPECTRUM_LEATHER_TILE_CYAN]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_CYAN][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_CYAN][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_CYAN][2] += rgb.B;
+            } else if (hsv.H >= 78 && hsv.H <= 151) {
+                color_dict[SPECTRUM_LEATHER_TILE_GREEN]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_GREEN][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_GREEN][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_GREEN][2] += rgb.B;
+            } else if (hsv.H >= 45 && hsv.H <= 78) {
+                color_dict[SPECTRUM_LEATHER_TILE_YELLOW]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_YELLOW][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_YELLOW][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_YELLOW][2] += rgb.B;
+            } else if (hsv.H >= 10 && hsv.H <= 45) {
+                color_dict[SPECTRUM_LEATHER_TILE_ORANGE]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_ORANGE][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_ORANGE][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_ORANGE][2] += rgb.B;
+            } else {
+                color_dict[SPECTRUM_LEATHER_TILE_RED]++;
+                avg_rgb[SPECTRUM_LEATHER_TILE_RED][0] += rgb.R;
+                avg_rgb[SPECTRUM_LEATHER_TILE_RED][1] += rgb.G;
+                avg_rgb[SPECTRUM_LEATHER_TILE_RED][2] += rgb.B;
+            }
+        }
+    }
+    int nww = color_dict[SPECTRUM_LEATHER_TILE_RED] + color_dict[SPECTRUM_LEATHER_TILE_ORANGE] +
+              color_dict[SPECTRUM_LEATHER_TILE_YELLOW] + color_dict[SPECTRUM_LEATHER_TILE_PINK];
+    int ncw = color_dict[SPECTRUM_LEATHER_TILE_WHITE] + color_dict[SPECTRUM_LEATHER_TILE_BLACK] +
+              color_dict[SPECTRUM_LEATHER_TILE_GREEN] + color_dict[SPECTRUM_LEATHER_TILE_CYAN] +
+              color_dict[SPECTRUM_LEATHER_TILE_BLUE] + color_dict[SPECTRUM_LEATHER_TILE_PURPLE];
+    int nnw = color_dict[SPECTRUM_LEATHER_TILE_WARM_WHITE];
+    for (int i = 0; i < 11; i++) { // single color
+        real_colors[i] = i;
+        if (i >= SPECTRUM_LEATHER_TILE_RED) {
+            for (int j = 0; j < 3; j++) {
+                avg_rgb[i][j] /= color_dict[i];
+            }
+            rgb.R = (unsigned char)avg_rgb[i][0];
+            rgb.G = (unsigned char)avg_rgb[i][1];
+            rgb.B = (unsigned char)avg_rgb[i][2];
+            RGBtoHSV100(&rgb, &hsv);
+            if (hsv.S < 40) real_colors[i] = i + 8;
+        }
+        if (color_dict[i] > 0.6 * sum) return real_colors[i];
+    }
+    if (color_dict[SPECTRUM_LEATHER_TILE_WARM_WHITE] + color_dict[SPECTRUM_LEATHER_TILE_WHITE] > 0.75 * sum &&
+        color_dict[SPECTRUM_LEATHER_TILE_WARM_WHITE] > color_dict[SPECTRUM_LEATHER_TILE_WHITE]) { // white specific
+        return SPECTRUM_LEATHER_TILE_WARM_WHITE;
+    }
+    sort_array_and_indexes_int(color_dict, origin_index_pos, 0, 10, 0);
+    // find best recipe
+    float cmax_substract_ratio = (float)(color_dict[0] - color_dict[1]) / (float)sum;
+    if (cmax_substract_ratio > 0.3f) {
+        return real_colors[origin_index_pos[0]];
+    } else if (cmax_substract_ratio > 0.15f) {
+        if (color_priority[origin_index_pos[0]] > color_priority[origin_index_pos[1]]) return real_colors[origin_index_pos[0]];
+        else {
+            if (nww > 0.5 * sum) return SPECTRUM_LEATHER_TILE_3000K;
+            if (ncw > 0.5 * sum) return SPECTRUM_LEATHER_TILE_4000K;
+            if (nnw > 0.5 * sum) return SPECTRUM_LEATHER_TILE_3500K;
+        }
+    } else {
+        if (nww > 0.5 * sum) return SPECTRUM_LEATHER_TILE_3000K;
+        if (ncw > 0.5 * sum) return SPECTRUM_LEATHER_TILE_4000K;
+        if (nnw > 0.5 * sum) return SPECTRUM_LEATHER_TILE_3500K;
+    } // find end
+    return SPECTRUM_LEATHER_TILE_3200K;
+}
 int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int clickX, int clickY, COMMODITY_CATEGORY category) {
     int radius = 5;
     int startX = clickX - radius < 0 ? 0: clickX - radius;
@@ -500,13 +654,15 @@ int getRecipeIndexOfImageOnClick(void * imgData, int imgW, int imgH, IMAGE_FORMA
 
     IMAGE_AREA area = {startX, endX, startY, endY};
 //    LOGI("%d, %d, %d, %d", startX, endX , startY, endY);
-    if (category >= Grocery_Fruits) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
+    if (category == Leather || category == Tile) return get_spectrum_index_of_leather_tile_image(imgData, imgW, imgH, format, &area);
+    if (category >= Grocery_Fruits && category <= Grocery_Bread) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
     else if (category == Plants) return get_spectrum_index_of_plant_image(imgData, imgW, imgH, format, &area);
     else return get_spectrum_index_of_image(imgData, imgW, imgH, format, &area);
 }
 int getRecipeIndexOfImageOnBox(void * imgData, int imgW, int imgH, IMAGE_FORMAT format, int startX, int startY, int endX, int endY, COMMODITY_CATEGORY category){
     IMAGE_AREA area = {startX, endX, startY, endY};
-    if (category >= Grocery_Fruits) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
+    if (category == Leather || category == Tile) return get_spectrum_index_of_leather_tile_image(imgData, imgW, imgH, format, &area);
+    if (category >= Grocery_Fruits && category <= Grocery_Bread) return get_spectrum_index_of_grocery_image(imgData, imgW, imgH, format, &area, category);
     else if (category == Plants) return get_spectrum_index_of_plant_image(imgData, imgW, imgH, format, &area);
     else return get_spectrum_index_of_image(imgData, imgW, imgH, format, &area);
 }

@@ -367,7 +367,6 @@
 		E4A0F87D2907E01B00150B0F /* KLMHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4750A1026C1165500AA4C32 /* KLMHelpViewController.swift */; };
 		E4A0F87E2907E01B00150B0F /* KLMAddDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6604F2671F6CC00FE6866 /* KLMAddDeviceViewController.swift */; };
 		E4A0F87F2907E01B00150B0F /* KLMPhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4762C512695558C00100312 /* KLMPhotoManager.swift */; };
-		E4A0F8802907E01B00150B0F /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920128DAB21B003A3DA7 /* recipe.c */; };
 		E4A0F8812907E01B00150B0F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FE0CDD271FB6CC001EEABD /* EmptyView.swift */; };
 		E4A0F8822907E01B00150B0F /* KLMBrightnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E607C228BDBC5400D0DF88 /* KLMBrightnessViewController.swift */; };
 		E4A0F8832907E01B00150B0F /* KLMDeviceAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4A6607C2673486400FE6866 /* KLMDeviceAddCell.swift */; };
@@ -1314,6 +1313,10 @@
 		E4D6AB232934B64500958E9A /* en_no_color.wav in Resources */ = {isa = PBXBuildFile; fileRef = E4D6AB1F2934B64500958E9A /* en_no_color.wav */; };
 		E4D7448A278533C80049B670 /* EspDataUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D74489278533C80049B670 /* EspDataUtils.swift */; };
 		E4D7448D27853AA80049B670 /* KLMDFUTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */; };
+		E4D74C60296FA9D70003E353 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4D74C5F296FA9D70003E353 /* recipe.c */; };
+		E4D74C61296FA9D70003E353 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4D74C5F296FA9D70003E353 /* recipe.c */; };
+		E4D74C62296FA9D70003E353 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4D74C5F296FA9D70003E353 /* recipe.c */; };
+		E4D74C63296FA9D70003E353 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4D74C5F296FA9D70003E353 /* recipe.c */; };
 		E4D79C942914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
 		E4D79C952914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
 		E4D79C962914DF1F00B92082 /* spectrum_17.png in Resources */ = {isa = PBXBuildFile; fileRef = E4D79C6D2914DF1F00B92082 /* spectrum_17.png */; };
@@ -1545,9 +1548,6 @@
 		E4DF91FE28DAABAE003A3DA7 /* OTAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF91FD28DAABAE003A3DA7 /* OTAManager.swift */; };
 		E4DF91FF28DAABAE003A3DA7 /* OTAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF91FD28DAABAE003A3DA7 /* OTAManager.swift */; };
 		E4DF920028DAABAE003A3DA7 /* OTAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF91FD28DAABAE003A3DA7 /* OTAManager.swift */; };
-		E4DF920228DAB21C003A3DA7 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920128DAB21B003A3DA7 /* recipe.c */; };
-		E4DF920328DAB21C003A3DA7 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920128DAB21B003A3DA7 /* recipe.c */; };
-		E4DF920428DAB21C003A3DA7 /* recipe.c in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920128DAB21B003A3DA7 /* recipe.c */; };
 		E4DF920628DAE2AF003A3DA7 /* BlueBaseBearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920528DAE2AF003A3DA7 /* BlueBaseBearer.swift */; };
 		E4DF920728DAE2AF003A3DA7 /* BlueBaseBearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920528DAE2AF003A3DA7 /* BlueBaseBearer.swift */; };
 		E4DF920828DAE2AF003A3DA7 /* BlueBaseBearer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF920528DAE2AF003A3DA7 /* BlueBaseBearer.swift */; };
@@ -1904,7 +1904,6 @@
 		E4C727EB2917E32900FC1C00 /* sexi_12.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sexi_12.wav; sourceTree = "<group>"; };
 		E4C727EC2917E32900FC1C00 /* sexi_13.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sexi_13.wav; sourceTree = "<group>"; };
 		E4C727ED2917E32900FC1C00 /* sexi_11.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sexi_11.wav; sourceTree = "<group>"; };
-		E4C74885288145DA003C8770 /* recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recipe.h; sourceTree = "<group>"; };
 		E4C80D4027F7EC2400DA5155 /* KLMChartsTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMChartsTestViewController.swift; sourceTree = "<group>"; };
 		E4C80D4127F7EC2400DA5155 /* KLMChartsTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KLMChartsTestViewController.xib; sourceTree = "<group>"; };
 		E4CBED722750D81000A21936 /* KLMUserInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMUserInfoCell.swift; sourceTree = "<group>"; };
@@ -1973,6 +1972,8 @@
 		E4D6AB1F2934B64500958E9A /* en_no_color.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = en_no_color.wav; sourceTree = "<group>"; };
 		E4D74489278533C80049B670 /* EspDataUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EspDataUtils.swift; sourceTree = "<group>"; };
 		E4D7448B27853AA80049B670 /* KLMDFUTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMDFUTestViewController.swift; sourceTree = "<group>"; };
+		E4D74C5A296FA03F0003E353 /* recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = recipe.h; sourceTree = "<group>"; };
+		E4D74C5F296FA9D70003E353 /* recipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = recipe.c; sourceTree = "<group>"; };
 		E4D79C6D2914DF1F00B92082 /* spectrum_17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_17.png; sourceTree = "<group>"; };
 		E4D79C6E2914DF1F00B92082 /* spectrum_16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_16.png; sourceTree = "<group>"; };
 		E4D79C6F2914DF1F00B92082 /* spectrum_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spectrum_1.png; sourceTree = "<group>"; };
@@ -2037,7 +2038,6 @@
 		E4DF02C426A575F400FE7AE5 /* KLMProvisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMProvisionManager.swift; sourceTree = "<group>"; };
 		E4DF02D426A6B71D00FE7AE5 /* KLMSmartGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KLMSmartGroup.swift; sourceTree = "<group>"; };
 		E4DF91FD28DAABAE003A3DA7 /* OTAManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTAManager.swift; sourceTree = "<group>"; };
-		E4DF920128DAB21B003A3DA7 /* recipe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = recipe.c; sourceTree = "<group>"; };
 		E4DF920528DAE2AF003A3DA7 /* BlueBaseBearer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueBaseBearer.swift; sourceTree = "<group>"; };
 		E4E2842D269ED132006C120E /* NetworkConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkConnection.swift; sourceTree = "<group>"; };
 		E4E2842F269EFEF1006C120E /* GenericDefaultTransitionTimeServerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericDefaultTransitionTimeServerDelegate.swift; sourceTree = "<group>"; };
@@ -2562,8 +2562,8 @@
 		E48E608A2692A02100E630ED /* recipe */ = {
 			isa = PBXGroup;
 			children = (
-				E4DF920128DAB21B003A3DA7 /* recipe.c */,
-				E4C74885288145DA003C8770 /* recipe.h */,
+				E4D74C5F296FA9D70003E353 /* recipe.c */,
+				E4D74C5A296FA03F0003E353 /* recipe.h */,
 			);
 			path = recipe;
 			sourceTree = "<group>";
@@ -4267,6 +4267,7 @@
 				E4C64AF928E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift in Sources */,
 				E4CCBEEF29288CB00053430B /* KLMTrackLightsMainViewController.swift in Sources */,
 				E4E2844E269F00A1006C120E /* SimpleOnOffGet.swift in Sources */,
+				E4D74C60296FA9D70003E353 /* recipe.c in Sources */,
 				E4DF02C326A523B800FE7AE5 /* KLMSmartNode.swift in Sources */,
 				E4DE8B9D2897AE1F00D28D17 /* KLMSelectNodesViewController.swift in Sources */,
 				E4DF920628DAE2AF003A3DA7 /* BlueBaseBearer.swift in Sources */,
@@ -4349,7 +4350,6 @@
 				E4750A1226C1165500AA4C32 /* KLMHelpViewController.swift in Sources */,
 				E4A660512671F6CC00FE6866 /* KLMAddDeviceViewController.swift in Sources */,
 				E4762C522695558C00100312 /* KLMPhotoManager.swift in Sources */,
-				E4DF920228DAB21C003A3DA7 /* recipe.c in Sources */,
 				E4FE0CDE271FB6CC001EEABD /* EmptyView.swift in Sources */,
 				E4E607C428BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */,
 				E4A6607E2673486400FE6866 /* KLMDeviceAddCell.swift in Sources */,
@@ -4468,6 +4468,7 @@
 				E4A0F8322907E01B00150B0F /* KLMTestBiaodingViewController.swift in Sources */,
 				E4CCBEF229288CB00053430B /* KLMTrackLightsMainViewController.swift in Sources */,
 				E4A0F8332907E01B00150B0F /* SimpleOnOffGet.swift in Sources */,
+				E4D74C63296FA9D70003E353 /* recipe.c in Sources */,
 				E4A0F8342907E01B00150B0F /* KLMSmartNode.swift in Sources */,
 				E4A0F8352907E01B00150B0F /* KLMSelectNodesViewController.swift in Sources */,
 				E4A0F8362907E01B00150B0F /* BlueBaseBearer.swift in Sources */,
@@ -4550,7 +4551,6 @@
 				E4A0F87D2907E01B00150B0F /* KLMHelpViewController.swift in Sources */,
 				E4A0F87E2907E01B00150B0F /* KLMAddDeviceViewController.swift in Sources */,
 				E4A0F87F2907E01B00150B0F /* KLMPhotoManager.swift in Sources */,
-				E4A0F8802907E01B00150B0F /* recipe.c in Sources */,
 				E4A0F8812907E01B00150B0F /* EmptyView.swift in Sources */,
 				E4A0F8822907E01B00150B0F /* KLMBrightnessViewController.swift in Sources */,
 				E4A0F8832907E01B00150B0F /* KLMDeviceAddCell.swift in Sources */,
@@ -4669,6 +4669,7 @@
 				E4C64AFA28E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift in Sources */,
 				E4CCBEF029288CB00053430B /* KLMTrackLightsMainViewController.swift in Sources */,
 				E4C57E5528055B1F00E7AB54 /* SimpleOnOffGet.swift in Sources */,
+				E4D74C61296FA9D70003E353 /* recipe.c in Sources */,
 				E4C57E5628055B1F00E7AB54 /* KLMSmartNode.swift in Sources */,
 				E4DE8B9E2897AE1F00D28D17 /* KLMSelectNodesViewController.swift in Sources */,
 				E4DF920728DAE2AF003A3DA7 /* BlueBaseBearer.swift in Sources */,
@@ -4751,7 +4752,6 @@
 				E4C57E8E28055B1F00E7AB54 /* KLMHelpViewController.swift in Sources */,
 				E4C57E8F28055B1F00E7AB54 /* KLMAddDeviceViewController.swift in Sources */,
 				E4C57E9028055B1F00E7AB54 /* KLMPhotoManager.swift in Sources */,
-				E4DF920328DAB21C003A3DA7 /* recipe.c in Sources */,
 				E4C57E9128055B1F00E7AB54 /* EmptyView.swift in Sources */,
 				E4E607C528BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */,
 				E4C57E9228055B1F00E7AB54 /* KLMDeviceAddCell.swift in Sources */,
@@ -4870,6 +4870,7 @@
 				E4C64AFB28E2AAC9001D7A0C /* KLMTestBiaodingViewController.swift in Sources */,
 				E4CCBEF129288CB00053430B /* KLMTrackLightsMainViewController.swift in Sources */,
 				E4C57F2C28055C7C00E7AB54 /* SimpleOnOffGet.swift in Sources */,
+				E4D74C62296FA9D70003E353 /* recipe.c in Sources */,
 				E4C57F2D28055C7C00E7AB54 /* KLMSmartNode.swift in Sources */,
 				E4DE8B9F2897AE1F00D28D17 /* KLMSelectNodesViewController.swift in Sources */,
 				E4DF920828DAE2AF003A3DA7 /* BlueBaseBearer.swift in Sources */,
@@ -4952,7 +4953,6 @@
 				E4C57F6528055C7C00E7AB54 /* KLMHelpViewController.swift in Sources */,
 				E4C57F6628055C7C00E7AB54 /* KLMAddDeviceViewController.swift in Sources */,
 				E4C57F6728055C7C00E7AB54 /* KLMPhotoManager.swift in Sources */,
-				E4DF920428DAB21C003A3DA7 /* recipe.c in Sources */,
 				E4C57F6828055C7C00E7AB54 /* EmptyView.swift in Sources */,
 				E4E607C628BDBC5400D0DF88 /* KLMBrightnessViewController.swift in Sources */,
 				E4C57F6928055C7C00E7AB54 /* KLMDeviceAddCell.swift in Sources */,
@@ -5504,7 +5504,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
@@ -5541,7 +5541,7 @@
 				CODE_SIGN_ENTITLEMENTS = KLM/KLM.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = AV8WJAN52Z;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

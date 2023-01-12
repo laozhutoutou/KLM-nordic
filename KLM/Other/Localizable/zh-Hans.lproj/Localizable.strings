@@ -238,6 +238,9 @@
 "Turn on voice function on Mobile Phone." = "打开手机语音功能";
 
 "Power setting" = "功率设定";
+"Leather" = "皮具";
+"Tile" = "瓷砖卫浴";
+
 
 ///下面为适配第三方库
 "Request timed out." = "请求超时.";

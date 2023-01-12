@@ -1,5 +1,3 @@
-// updated 20220624
-
 #ifndef RECIPE_H
 #define RECIPE_H
 
@@ -19,6 +17,8 @@ typedef enum{
     Grocery_Iced,
     Grocery_Meat,
     Grocery_Bread,
+    Leather = 10,
+    Tile = 11,
 }COMMODITY_CATEGORY;
 
 /* 函数参数：

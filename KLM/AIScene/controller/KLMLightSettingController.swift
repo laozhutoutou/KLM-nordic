@@ -27,6 +27,10 @@ class KLMLightSettingController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if isNeedFrash == false { ///设置页面过来的不需要提示升级
+            return
+        }
+        
         if KLMHomeManager.sharedInstacnce.controllType == .Device {
             
             KLMSmartNode.sharedInstacnce.delegate = self

@@ -942,7 +942,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///删除设备
     static func deleteDevice(uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame: [String : Any] = [
@@ -957,7 +957,7 @@ class KLMService: NSObject {
             }
         }
     }
-    
+    ///修改设备
     static func updateDevice(deviceName: String, uuid: String, success: @escaping KLMResponseSuccess, failure: @escaping KLMResponseFailure) {
         
         let parame: [String : Any] = [

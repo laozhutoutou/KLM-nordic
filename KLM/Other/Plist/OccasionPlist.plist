@@ -26,5 +26,17 @@
 		<key>num</key>
 		<integer>4</integer>
 	</dict>
+	<dict>
+		<key>title</key>
+		<string>Leather</string>
+		<key>num</key>
+		<integer>10</integer>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>Tile</string>
+		<key>num</key>
+		<integer>11</integer>
+	</dict>
 </array>
 </plist>
