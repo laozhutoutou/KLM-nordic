@@ -155,9 +155,9 @@ var baseUrl: String {
 //    case .targetGN,
 //            .test,
 //         .targetsGW:
-        return "https://light.kaiwaresz.com/"
+//        return "https://light.kaiwaresz.com/"
 //    case .targetsGW:
-//        return "https://ai.kaiwaresz.com/"
+        return "https://ai.kaiwaresz.com/"
 //    }
 }
 

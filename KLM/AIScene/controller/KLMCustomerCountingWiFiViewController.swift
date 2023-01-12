@@ -88,7 +88,11 @@ class KLMCustomerCountingWiFiViewController: UIViewController, Editable {
     @IBAction func power(_ sender: UISwitch) {
         
         if sender.isOn {
-            contentView.isHidden = false
+            
+            SVProgressHUD.show()
+            let parame = parameModel(dp: .customerCountingPower, value: 1)
+            KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+            
         } else { //关闭
             
             SVProgressHUD.show()
@@ -179,13 +183,11 @@ extension KLMCustomerCountingWiFiViewController: KLMSmartNodeDelegate {
                     contentView.isHidden = power == 1 ? false : true
                 } else {
                     if power == 0 {
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+//                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
                         contentView.isHidden = true
                     } else if power == 1 {
-                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
-                        DispatchQueue.main.asyncAfter(deadline: 0.5) {
-                            self.navigationController?.popViewController(animated: true)
-                        }
+//                        SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                        contentView.isHidden = false
                     }
                 }
             }
@@ -200,8 +202,11 @@ extension KLMCustomerCountingWiFiViewController: KLMSmartNodeDelegate {
                 let model = KLMWiFiModel.init(WiFiName: self.SSIDField.text!, WiFiPass: self.passField.text!)
                 KLMWiFiManager.saveWiFiName(wifiModel: model)
                 
-                let parame = parameModel(dp: .customerCountingPower, value: 1)
-                KLMSmartNode.sharedInstacnce.sendMessage(parame, toNode: KLMHomeManager.currentNode)
+                SVProgressHUD.showSuccess(withStatus: LANGLOC("Success"))
+                DispatchQueue.main.asyncAfter(deadline: 0.5) {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                
             } else { ///失败
                 SVProgressHUD.showInfo(withStatus: LANGLOC("Connect failure") + "\(power)")
             }

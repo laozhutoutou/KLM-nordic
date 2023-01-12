@@ -932,7 +932,7 @@ class KLMService: NSObject {
                                       "deviceName": deviceName,
                                       "deviceType": deviceType,
                                       "country": zone.name,
-                                      "timezone": hour]
+                                      "timezone": "\(hour)"]
         KLMNetworking.httpMethod(URLString: KLMUrl("api/v2/app/device"), params: parame) { responseObject, error in
             
             if error == nil {
